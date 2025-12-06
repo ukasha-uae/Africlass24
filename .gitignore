@@ -1,0 +1,55 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Next.js
+/.next/
+/out/
+.next
+out
+
+# Production
+/build
+dist
+
+# Misc
+.DS_Store
+*.pem
+.env
+.env*.local
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Temporary script files (cleanup scripts you used during development)
+*.ps1
+check-*.js
+complete-*.js
+debug-*.js
+escape-*.js
+extract-*.js
+final-*.js
+find-*.js
+fix-*.js
+generate-*.js
+regex-*.js
+restore_*.js
+restore_*.py
+test-*.js
+update-*.js
+update_*.py
+validate-*.js
+part1.ts

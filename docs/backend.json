@@ -1,0 +1,198 @@
+{
+  "entities": {
+    "Subject": {
+      "title": "Subject",
+      "type": "object",
+      "description": "Represents a subject in the Junior High School curriculum.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the Subject entity." },
+        "slug": { "type": "string", "description": "URL-friendly identifier for the subject." },
+        "name": { "type": "string", "description": "The name of the subject (e.g., English Language, Core Mathematics)." },
+        "description": { "type": "string", "description": "A brief description of the subject." }
+      },
+      "required": ["id", "slug", "name"]
+    },
+    "Topic": {
+      "title": "Topic",
+      "type": "object",
+      "description": "Represents a specific topic within a subject.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the Topic entity." },
+        "slug": { "type": "string", "description": "URL-friendly identifier for the topic." },
+        "title": { "type": "string", "description": "The title of the topic." },
+        "jhsLevel": { "type": "string", "description": "The JHS level (JHS 1, 2, or 3) to which this topic belongs." }
+      },
+      "required": ["id", "slug", "title", "jhsLevel"]
+    },
+    "Lesson": {
+      "title": "Lesson",
+      "type": "object",
+      "description": "Represents a single lesson within a topic.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the Lesson entity." },
+        "slug": { "type": "string", "description": "URL-friendly identifier for the lesson." },
+        "title": { "type": "string", "description": "The title of the lesson." },
+        "objectives": { "type": "array", "items": { "type": "string" } },
+        "introduction": { "type": "string" },
+        "keyConcepts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "content": { "type": "string" }
+            },
+            "required": ["title", "content"]
+          }
+        },
+        "summary": { "type": "string" }
+      },
+      "required": ["id", "slug", "title", "introduction", "summary"]
+    },
+    "Quiz": {
+      "title": "Quiz",
+      "description": "Represents a single quiz item with various types.",
+      "oneOf": [
+        { "$ref": "#/backend/entities/McqQuiz" },
+        { "$ref": "#/backend/entities/TrueFalseQuiz" },
+        { "$ref": "#/backend/entities/FillBlankQuiz" },
+        { "$ref": "#/backend/entities/MatchingQuiz" },
+        { "$ref": "#/backend/entities/OrderingQuiz" },
+        { "$ref": "#/backend/entities/FlashcardQuiz" },
+        { "$ref": "#/backend/entities/ImageMcqQuiz" },
+        { "$ref": "#/backend/entities/ShortAnswerQuiz" }
+      ]
+    },
+    "McqQuiz": {
+      "title": "Multiple Choice Question",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "mcq" },
+        "question": { "type": "string" },
+        "options": { "type": "array", "items": { "type": "string" } },
+        "answer": { "type": "string" },
+        "explanation": { "type": "string" }
+      },
+      "required": ["type", "question", "options", "answer", "explanation"]
+    },
+    "TrueFalseQuiz": {
+      "title": "True/False Question",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "truefalse" },
+        "statement": { "type": "string" },
+        "answer": { "type": "string", "enum": ["true", "false"] },
+        "reason": { "type": "string" }
+      },
+      "required": ["type", "statement", "answer"]
+    },
+    "FillBlankQuiz": {
+      "title": "Fill in the Blank Question",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "fillblank" },
+        "sentence": { "type": "string" },
+        "answer": { "type": "string" }
+      },
+      "required": ["type", "sentence", "answer"]
+    },
+    "MatchingQuiz": {
+      "title": "Matching Question",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "matching" },
+        "pairs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "left": { "type": "string" },
+              "right": { "type": "string" }
+            },
+            "required": ["left", "right"]
+          }
+        }
+      },
+      "required": ["type", "pairs"]
+    },
+    "OrderingQuiz": {
+      "title": "Ordering Question",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "ordering" },
+        "items": { "type": "array", "items": { "type": "string" } },
+        "correctOrder": { "type": "array", "items": { "type": "integer" } }
+      },
+      "required": ["type", "items", "correctOrder"]
+    },
+    "FlashcardQuiz": {
+      "title": "Flashcard",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "flashcard" },
+        "front": { "type": "string" },
+        "back": { "type": "string" }
+      },
+      "required": ["type", "front", "back"]
+    },
+    "ImageMcqQuiz": {
+        "title": "Image MCQ",
+        "type": "object",
+        "properties": {
+            "type": { "type": "string", "const": "image_mcq" },
+            "imageUrl": { "type": "string" },
+            "question": { "type": "string" },
+            "options": { "type": "array", "items": { "type": "string" } },
+            "answer": { "type": "string" }
+        },
+        "required": ["type", "imageUrl", "question", "options", "answer"]
+    },
+    "ShortAnswerQuiz": {
+        "title": "Short Answer Question",
+        "type": "object",
+        "properties": {
+            "type": { "type": "string", "const": "shortanswer" },
+            "question": { "type": "string" },
+            "answer": { "type": "string" }
+        },
+        "required": ["type", "question", "answer"]
+    }
+  },
+  "auth": {
+    "providers": [
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/subjects/{subjectId}",
+        "definition": {
+          "schema": { "$ref": "#/backend/entities/Subject" },
+          "description": "Top-level collection for all subjects."
+        }
+      },
+      {
+        "path": "/subjects/{subjectId}/topics/{topicId}",
+        "definition": {
+          "schema": { "$ref": "#/backend/entities/Topic" },
+          "description": "Sub-collection for topics within a subject."
+        }
+      },
+      {
+        "path": "/subjects/{subjectId}/topics/{topicId}/lessons/{lessonId}",
+        "definition": {
+          "schema": { "$ref": "#/backend/entities/Lesson" },
+          "description": "Sub-collection for lessons within a topic."
+        }
+      },
+      {
+        "path": "/subjects/{subjectId}/topics/{topicId}/lessons/{lessonId}/quizzes/{quizId}",
+        "definition": {
+            "schema": { "$ref": "#/backend/entities/Quiz" },
+            "description": "Sub-collection for quiz items within a lesson."
+        }
+      }
+    ]
+  }
+}

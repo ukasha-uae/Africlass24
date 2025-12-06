@@ -1,0 +1,59 @@
+
+{
+  "id": "subjectCode-topicCode-lessonNumber",
+  "slug": "your-lesson-title-in-kebab-case",
+  "title": "Your Lesson Title",
+  "objectives": [
+    "First learning objective.",
+    "Second learning objective.",
+    "Third learning objective."
+  ],
+  "introduction": "A paragraph that introduces the lesson topic to the student. It should be engaging and set the stage for what they will learn.",
+  "keyConcepts": [
+    {
+      "title": "First Key Concept",
+      "content": "A detailed explanation of the first core idea of the lesson."
+    },
+    {
+      "title": "Second Key Concept",
+      "content": "A detailed explanation of the second core idea of the lesson."
+    },
+    {
+      "title": "Third Key Concept",
+      "content": "A detailed explanation of the third core idea of the lesson."
+    }
+  ],
+  "summary": "A concise summary paragraph of the entire lesson, reinforcing the main takeaways and key concepts.",
+  "endOfLessonQuiz": [
+    {
+      "type": "mcq",
+      "question": "What is the question for this multiple-choice problem?",
+      "options": [
+        "First incorrect option",
+        "The correct option",
+        "Another incorrect option",
+        "Fourth incorrect option"
+      ],
+      "answer": "The correct option",
+      "explanation": "A brief explanation of why this is the correct answer."
+    },
+    {
+      "type": "truefalse",
+      "statement": "This is a statement that is either true or false.",
+      "answer": "true",
+      "reason": "An optional brief explanation for why the statement is true or false."
+    },
+    {
+      "type": "mcq",
+      "question": "Here is another multiple-choice question.",
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C (Correct)",
+        "Option D"
+      ],
+      "answer": "Option C (Correct)",
+      "explanation": "This explains why C is the right choice."
+    }
+  ]
+}
