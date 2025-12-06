@@ -10,6 +10,8 @@ import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Camera } from 'lucide-react';
+import SchoolSelector from './SchoolSelector';
+import { School, updateSchoolStudentCount } from '@/lib/schools';
 
 export default function StudentProfileSetup() {
   const { firestore, user } = useFirebase();
@@ -21,6 +23,7 @@ export default function StudentProfileSetup() {
   // Form fields
   const [studentName, setStudentName] = useState('');
   const [schoolName, setSchoolName] = useState('');
+  const [selectedSchool, setSelectedSchool] = useState<School | null>(null);
   const [studentClass, setStudentClass] = useState('');
   const [schoolAddress, setSchoolAddress] = useState('');
   const [parentPhoneNumber, setParentPhoneNumber] = useState('');
@@ -58,7 +61,10 @@ export default function StudentProfileSetup() {
       const payload = {
         studentName,
         studentClass,
-        schoolName,
+        schoolName: selectedSchool?.name || schoolName,
+        schoolId: selectedSchool?.id || null,
+        schoolRegion: selectedSchool?.region || null,
+        schoolType: selectedSchool?.type || null,
         schoolAddress,
         parentPhoneNumber,
         profilePictureUrl: profilePictureUrl || null,
@@ -68,13 +74,13 @@ export default function StudentProfileSetup() {
       // Log user id for debugging; do not keep in production logging
       console.debug('Saving profile for uid:', user.uid);
       
-      // Validate the doc path we are about to write to; it must have an even number of segments
-      const path = `students/${user.uid}`;
-      if (path.split('/').length % 2 !== 0) {
-        throw new Error(`Invalid document path: ${path}`);
+      await setDoc(doc(firestore, `students/${user.uid}`), payload, { merge: true });
+      
+      // Update school student count
+      if (selectedSchool?.id) {
+        updateSchoolStudentCount(selectedSchool.id, 1);
       }
       
-      await setDoc(doc(firestore, `students/${user.uid}`), payload, { merge: true });
       toast({ title: 'Profile saved', description: 'Your student profile has been saved.' });
     } catch (err: any) {
       console.error('Failed to save profile', err);
@@ -150,10 +156,16 @@ export default function StudentProfileSetup() {
             />
             <p className="text-xs text-muted-foreground mt-1">Paste a link to your profile picture</p>
           </div>
-          <div>
-            <Label className="text-sm">School Name</Label>
-            <Input value={schoolName} onChange={(e: any) => setSchoolName(e.target.value)} />
-          </div>
+          <SchoolSelector
+            value={selectedSchool?.id}
+            onChange={(school) => {
+              setSelectedSchool(school);
+              if (school) {
+                setSchoolName(school.name);
+              }
+            }}
+            required={false}
+          />
           <div>
             <Label className="text-sm">Class / Year</Label>
             <Input value={studentClass} onChange={(e: any) => setStudentClass(e.target.value)} />

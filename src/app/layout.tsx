@@ -6,6 +6,7 @@ import BottomNav from '@/components/BottomNav';
 import { Toaster } from "@/components/ui/toaster"
 import { FirebaseClientProvider } from '@/firebase';
 import StudentProfileSetup from '@/components/StudentProfileSetup';
+import InstallPrompt from '@/components/InstallPrompt';
 
 export const metadata: Metadata = {
   title: 'SmartJHS',
@@ -35,6 +36,7 @@ export default function RootLayout({
             <Header />
             <main className="flex-1 pb-20 pt-16">{children}</main>
             <StudentProfileSetup />
+            <InstallPrompt />
             <BottomNav />
             <Toaster />
           </div>

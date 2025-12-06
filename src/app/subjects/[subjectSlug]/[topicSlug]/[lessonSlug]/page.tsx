@@ -10,7 +10,10 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowLeft, Target, Lightbulb, ListChecks, FileText, BookOpen, Brain } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Textarea } from '@/components/ui/textarea';
+import { ArrowLeft, Target, Lightbulb, ListChecks, FileText, BookOpen, Brain, Award, Bookmark, BookmarkCheck, Download, DownloadCloud, StickyNote, CheckSquare } from 'lucide-react';
 import Link from 'next/link';
 import ReadAloud from '@/components/ReadAloud';
 import LessonCompleteQuiz from '@/components/LessonCompleteQuiz';
@@ -22,6 +25,24 @@ import type { Lesson } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useEffect, useState } from 'react';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
+import { 
+  addBookmark, 
+  removeBookmark, 
+  isBookmarked, 
+  getLessonNote, 
+  saveNote,
+  getChecklist,
+  addChecklistItem,
+  toggleChecklistItem,
+  deleteChecklistItem
+} from '@/lib/lesson-tools';
+import { 
+  saveOfflineLesson, 
+  removeOfflineLesson, 
+  isLessonOffline, 
+  isOnline 
+} from '@/lib/offline-storage';
+import { useToast } from '@/hooks/use-toast';
 
 export default function LessonPage() {
   const params = useParams();
@@ -30,8 +51,15 @@ export default function LessonPage() {
   const lessonSlug = params.lessonSlug as string;
 
   const { firestore } = useFirebase();
+  const { toast } = useToast();
   const [firestoreLesson, setFirestoreLesson] = useState<Lesson | null>(null);
   const [isFirestoreLoading, setIsFirestoreLoading] = useState(true);
+  const [bookmarked, setBookmarked] = useState(false);
+  const [savedOffline, setSavedOffline] = useState(false);
+  const [noteContent, setNoteContent] = useState('');
+  const [showNotes, setShowNotes] = useState(false);
+  const [checklistItems, setChecklistItems] = useState<any[]>([]);
+  const [newChecklistItem, setNewChecklistItem] = useState('');
   
   const subjectInfo = getSubjectBySlug(subjectSlug);
 
@@ -44,6 +72,17 @@ export default function LessonPage() {
   // STABILITY FIX: If local lesson exists, use it immediately and ignore Firestore.
   // This prevents flickering and async state updates from interfering with local development.
   const lesson = localLesson || firestoreLesson;
+
+  // Load bookmark, offline, and notes state
+  useEffect(() => {
+    if (lesson) {
+      setBookmarked(isBookmarked(lesson.id));
+      setSavedOffline(isLessonOffline(lesson.id));
+      const note = getLessonNote(lesson.id);
+      if (note) setNoteContent(note.content);
+      setChecklistItems(getChecklist(lesson.id));
+    }
+  }, [lesson]);
 
   useEffect(() => {
     // If we already have the lesson locally, no need to fetch from Firestore.
@@ -117,6 +156,76 @@ export default function LessonPage() {
   const introductionId = `lesson-${lesson.slug}-intro`;
   const summaryId = `lesson-${lesson.slug}-summary`;
 
+  const handleBookmark = () => {
+    if (bookmarked) {
+      removeBookmark(lesson.id);
+      setBookmarked(false);
+      toast({ title: 'Bookmark removed' });
+    } else {
+      addBookmark({
+        lessonId: lesson.id,
+        lessonTitle: lesson.title,
+        subject: subjectInfo.name,
+        topic: localTopic?.title || '',
+        bookmarkedAt: new Date().toISOString(),
+        href: `/subjects/${subjectSlug}/${topicSlug}/${lessonSlug}`
+      });
+      setBookmarked(true);
+      toast({ title: 'Lesson bookmarked!' });
+    }
+  };
+
+  const handleSaveOffline = () => {
+    if (savedOffline) {
+      removeOfflineLesson(lesson.id);
+      setSavedOffline(false);
+      toast({ title: 'Removed from offline storage' });
+    } else {
+      saveOfflineLesson({
+        lessonId: lesson.id,
+        lessonTitle: lesson.title,
+        subject: subjectInfo.name,
+        topic: localTopic?.title || '',
+        content: lesson
+      });
+      setSavedOffline(true);
+      toast({ title: 'Saved for offline reading!' });
+    }
+  };
+
+  const handleSaveNote = () => {
+    saveNote({
+      lessonId: lesson.id,
+      content: noteContent,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    });
+    toast({ title: 'Note saved!' });
+  };
+
+  const handleAddChecklistItem = () => {
+    if (!newChecklistItem.trim()) return;
+    const item = addChecklistItem({
+      lessonId: lesson.id,
+      title: newChecklistItem,
+      completed: false
+    });
+    if (item) {
+      setChecklistItems([...checklistItems, item]);
+      setNewChecklistItem('');
+    }
+  };
+
+  const handleToggleChecklistItem = (id: string) => {
+    toggleChecklistItem(id);
+    setChecklistItems(getChecklist(lesson.id));
+  };
+
+  const handleDeleteChecklistItem = (id: string) => {
+    deleteChecklistItem(id);
+    setChecklistItems(getChecklist(lesson.id));
+  };
+
   return (
     <div className="container mx-auto p-4 md:p-6 lg:p-8">
       <Link
@@ -129,10 +238,36 @@ export default function LessonPage() {
       <div className="relative">
         <FloatingIcon icon="lightbulb" position="tr" size="lg" />
         <FloatingIcon icon="brain" position="br" size="md" />
-        <h1 className="text-4xl font-bold font-headline mb-2">{lesson.title}</h1>
-        <p className="text-lg text-muted-foreground mb-8">
-          From topic: {topicSlug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
-        </p>
+        <div className="flex items-start justify-between gap-4 mb-2">
+          <h1 className="text-4xl font-bold font-headline">{lesson.title}</h1>
+          <div className="flex items-center gap-2">
+            <Button
+              variant={bookmarked ? "default" : "outline"}
+              size="sm"
+              onClick={handleBookmark}
+              className="flex items-center gap-2"
+            >
+              {bookmarked ? <BookmarkCheck className="h-4 w-4" /> : <Bookmark className="h-4 w-4" />}
+              {bookmarked ? 'Bookmarked' : 'Bookmark'}
+            </Button>
+            <Button
+              variant={savedOffline ? "secondary" : "outline"}
+              size="sm"
+              onClick={handleSaveOffline}
+              className="flex items-center gap-2"
+            >
+              {savedOffline ? <DownloadCloud className="h-4 w-4" /> : <Download className="h-4 w-4" />}
+              {savedOffline ? 'Saved' : 'Save Offline'}
+            </Button>
+          </div>
+        </div>
+        <div className="flex items-center gap-2 mb-4">
+          <p className="text-lg text-muted-foreground">
+            From topic: {topicSlug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
+          </p>
+          {bookmarked && <Badge variant="secondary" className="text-xs">📌 Bookmarked</Badge>}
+          {savedOffline && <Badge variant="secondary" className="text-xs">💾 Offline</Badge>}
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -238,18 +373,21 @@ export default function LessonPage() {
             )}
 
             {lesson.pastQuestions && lesson.pastQuestions.length > 0 && (
-                <Card className="bg-primary text-primary-foreground">
+                <Card className="border-2 border-amber-500/50 bg-amber-50 dark:bg-amber-950/20">
                     <CardHeader className="flex flex-row items-center justify-between">
-                        <CardTitle>BECE Past Questions</CardTitle>
+                        <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
+                          <Award className="h-5 w-5" />
+                          BECE Past Questions
+                        </CardTitle>
                         <ReadAloud textId={`${lesson.id}-pastquestions`} />
                     </CardHeader>
-                    <CardContent id={`${lesson.id}-pastquestions`}>
+                    <CardContent id={`${lesson.id}-pastquestions`} className="text-foreground">
                         {lesson.pastQuestions.map((pq, i) => (
-                            <div key={i} className="mb-4">
-                                <p className="font-semibold">{pq.question}</p>
-                                <details className="mt-1 text-sm">
-                                    <summary className="cursor-pointer">View Solution</summary>
-                                    <p className="pt-2">{pq.solution}</p>
+                            <div key={i} className="mb-4 p-4 rounded-lg bg-background/50 border">
+                                <p className="font-semibold text-amber-900 dark:text-amber-100">{pq.question}</p>
+                                <details className="mt-2 text-sm">
+                                    <summary className="cursor-pointer hover:text-primary font-medium">View Solution</summary>
+                                    <p className="pt-2 pl-4 border-l-2 border-amber-500/30 mt-2">{pq.solution}</p>
                                 </details>
                             </div>
                         ))}
@@ -264,6 +402,112 @@ export default function LessonPage() {
                 lessonSlug={lessonSlug}
                 localQuizzes={lesson.endOfLessonQuiz}
              />
+
+            {/* Personal Notes Section */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <StickyNote className="h-5 w-5 text-primary" />
+                    My Notes
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setShowNotes(!showNotes)}
+                  >
+                    {showNotes ? 'Hide' : 'Show'}
+                  </Button>
+                </CardTitle>
+              </CardHeader>
+              {showNotes && (
+                <CardContent className="space-y-3">
+                  <Textarea
+                    placeholder="Add your personal notes about this lesson..."
+                    value={noteContent}
+                    onChange={(e) => setNoteContent(e.target.value)}
+                    rows={6}
+                    className="resize-none"
+                  />
+                  <Button
+                    onClick={handleSaveNote}
+                    disabled={!noteContent.trim()}
+                    className="w-full"
+                  >
+                    Save Note
+                  </Button>
+                </CardContent>
+              )}
+            </Card>
+
+            {/* Study Checklist Section */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <CheckSquare className="h-5 w-5 text-primary" />
+                  Study Checklist
+                  {checklistItems.length > 0 && (
+                    <Badge variant="secondary" className="text-xs">
+                      {checklistItems.filter(item => item.completed).length}/{checklistItems.length}
+                    </Badge>
+                  )}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    placeholder="Add checklist item..."
+                    value={newChecklistItem}
+                    onChange={(e) => setNewChecklistItem(e.target.value)}
+                    onKeyPress={(e) => e.key === 'Enter' && handleAddChecklistItem()}
+                    className="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm"
+                  />
+                  <Button
+                    onClick={handleAddChecklistItem}
+                    disabled={!newChecklistItem.trim()}
+                    size="sm"
+                  >
+                    Add
+                  </Button>
+                </div>
+
+                {checklistItems.length > 0 && (
+                  <div className="space-y-2">
+                    {checklistItems.map((item) => (
+                      <div
+                        key={item.id}
+                        className="flex items-center gap-2 p-2 rounded-md bg-muted/50 hover:bg-muted"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={item.completed}
+                          onChange={() => handleToggleChecklistItem(item.id)}
+                          className="h-4 w-4 rounded border-gray-300"
+                        />
+                        <span className={`flex-1 text-sm ${item.completed ? 'line-through text-muted-foreground' : ''}`}>
+                          {item.title}
+                        </span>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleDeleteChecklistItem(item.id)}
+                          className="h-6 w-6 p-0 text-destructive hover:text-destructive"
+                        >
+                          ×
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {checklistItems.length === 0 && (
+                  <p className="text-sm text-muted-foreground text-center py-4">
+                    No checklist items yet. Add items to track your study progress!
+                  </p>
+                )}
+              </CardContent>
+            </Card>
         </div>
       </div>
     </div>

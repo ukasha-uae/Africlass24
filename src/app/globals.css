@@ -39,38 +39,38 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 34.9 100% 49.2%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 221.2 83.2% 53.3%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 14%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 217 91% 60%;
+    --chart-1: 217 91% 60%;
+    --chart-2: 142 76% 36%;
+    --chart-3: 47 96% 53%;
     --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --chart-5: 340 82% 52%;
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 17%;
+    --sidebar-ring: 217 91% 60%;
   }
 }
 
@@ -80,8 +80,144 @@
   }
   body {
     @apply bg-background text-foreground;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   .tts-highlight {
     @apply bg-primary/20 rounded-md;
+  }
+}
+
+@layer utilities {
+  /* Smooth dark mode transitions */
+  .smooth-transition {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  /* Mobile touch optimizations */
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Pull to refresh animation */
+  @keyframes pullToRefresh {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .animate-refresh {
+    animation: pullToRefresh 1s linear infinite;
+  }
+  
+  /* Swipe indicator animations */
+  @keyframes slideInRight {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .slide-in-right {
+    animation: slideInRight 0.3s ease-out;
+  }
+  
+  .slide-in-left {
+    animation: slideInLeft 0.3s ease-out;
+  }
+  
+  /* Dark mode specific improvements */
+  .dark {
+    color-scheme: dark;
+  }
+  
+  .dark img {
+    opacity: 0.9;
+  }
+  
+  .dark code {
+    @apply bg-muted/50;
+  }
+  
+  /* Mobile-specific styles */
+  @media (max-width: 768px) {
+    .mobile-tap-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    .mobile-padding {
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+    
+    .mobile-padding-bottom {
+      padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+    }
+    
+    /* Make buttons more touch-friendly */
+    button {
+      min-height: 40px;
+    }
+    
+    /* Prevent text selection on tap */
+    .card-interactive {
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    
+    /* Better modal positioning on mobile */
+    .modal-container {
+      align-items: flex-start;
+      padding-top: 2rem;
+    }
+  }
+  
+  /* Smooth scrolling for mobile */
+  @media (max-width: 768px) {
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+  
+  /* Gesture feedback */
+  .gesture-active {
+    @apply scale-95 transition-transform duration-150;
+  }
+  
+  /* Improved scrollbar for dark mode */
+  .dark ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .dark ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+  
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full;
+  }
+  
+  .dark ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/30;
   }
 }

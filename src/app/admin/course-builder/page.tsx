@@ -20,6 +20,8 @@ export default function CourseBuilderPage() {
   const [availableLessons, setAvailableLessons] = useState<Array<{id: string, title: string, subject: string, topic: string}>>([]);
   const [selectedLessonId, setSelectedLessonId] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState('');
+  const [previewMode, setPreviewMode] = useState(false);
+  const [uploadedImages, setUploadedImages] = useState<Record<string, string>>({});
   const [lesson, setLesson] = useState<Partial<Lesson>>({
     id: '',
     slug: '',
@@ -329,18 +331,256 @@ export default function CourseBuilderPage() {
           <Code className="mr-2 h-4 w-4" />
           Generate Code
         </Button>
+        <Button onClick={() => setPreviewMode(!previewMode)} variant="outline">
+          <Eye className="mr-2 h-4 w-4" />
+          {previewMode ? 'Edit Mode' : 'Preview'}
+        </Button>
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="editor">Lesson Content</TabsTrigger>
+          <TabsTrigger value="media">Media</TabsTrigger>
           <TabsTrigger value="activities">Activities</TabsTrigger>
           <TabsTrigger value="quiz">End Quiz</TabsTrigger>
           <TabsTrigger value="export">Export Code</TabsTrigger>
         </TabsList>
 
         <TabsContent value="editor" className="space-y-6 mt-6">
-          <LessonEditor lesson={lesson} onChange={setLesson} />
+          {previewMode ? (
+            <Card>
+              <CardHeader>
+                <CardTitle>📖 Lesson Preview</CardTitle>
+                <CardDescription>This is how students will see the lesson</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div>
+                  <h2 className="text-3xl font-bold mb-4">{lesson.title || 'Untitled Lesson'}</h2>
+                  
+                  {lesson.objectives && lesson.objectives.length > 0 && (
+                    <div className="mb-6">
+                      <h3 className="text-xl font-semibold mb-2">Learning Objectives</h3>
+                      <ul className="list-disc list-inside space-y-1">
+                        {lesson.objectives.map((obj, idx) => (
+                          <li key={idx}>{obj}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {lesson.introduction && (
+                    <div className="mb-6">
+                      <h3 className="text-xl font-semibold mb-2">Introduction</h3>
+                      <p className="whitespace-pre-wrap">{lesson.introduction}</p>
+                    </div>
+                  )}
+
+                  {lesson.keyConcepts && lesson.keyConcepts.length > 0 && (
+                    <div className="mb-6">
+                      <h3 className="text-xl font-semibold mb-4">Key Concepts</h3>
+                      {lesson.keyConcepts.map((concept, idx) => (
+                        <div key={idx} className="mb-4 p-4 bg-muted rounded-lg">
+                          <h4 className="font-semibold mb-2">{concept.title}</h4>
+                          <p className="whitespace-pre-wrap">{concept.content}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {lesson.summary && (
+                    <div className="mb-6">
+                      <h3 className="text-xl font-semibold mb-2">Summary</h3>
+                      <p className="whitespace-pre-wrap">{lesson.summary}</p>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          ) : (
+            <LessonEditor lesson={lesson} onChange={setLesson} />
+          )}
+        </TabsContent>
+
+        <TabsContent value="media" className="space-y-6 mt-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Image Upload */}
+            <Card>
+              <CardHeader>
+                <CardTitle>📷 Image Upload</CardTitle>
+                <CardDescription>Upload and manage lesson images</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <label className="block mb-2 text-sm font-medium">Upload Image</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                          const imageUrl = event.target?.result as string;
+                          const imageName = file.name;
+                          setUploadedImages({...uploadedImages, [imageName]: imageUrl});
+                          toast({ title: 'Image uploaded', description: `${imageName} ready to use` });
+                        };
+                        reader.readAsDataURL(file);
+                      }
+                    }}
+                    className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:opacity-80"
+                  />
+                  <p className="text-xs text-muted-foreground mt-2">
+                    Supported formats: JPG, PNG, GIF, SVG
+                  </p>
+                </div>
+
+                {Object.keys(uploadedImages).length > 0 && (
+                  <div>
+                    <h4 className="font-semibold mb-2">Uploaded Images</h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      {Object.entries(uploadedImages).map(([name, url]) => (
+                        <div key={name} className="relative group">
+                          <img src={url} alt={name} className="w-full h-32 object-cover rounded border" />
+                          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded flex items-center justify-center">
+                            <Button
+                              size="sm"
+                              variant="secondary"
+                              onClick={() => {
+                                navigator.clipboard.writeText(url);
+                                toast({ title: 'Copied!', description: 'Image URL copied to clipboard' });
+                              }}
+                            >
+                              <Copy className="h-4 w-4 mr-1" />
+                              Copy URL
+                            </Button>
+                          </div>
+                          <p className="text-xs truncate mt-1">{name}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <Alert>
+                  <AlertDescription className="text-xs">
+                    <strong>How to use:</strong> Upload images here, copy the URL, then paste into lesson content using markdown: <code className="bg-muted px-1 rounded">[alt text](image-url)</code>
+                  </AlertDescription>
+                </Alert>
+              </CardContent>
+            </Card>
+
+            {/* Video Embedding */}
+            <Card>
+              <CardHeader>
+                <CardTitle>🎥 Video Embedding</CardTitle>
+                <CardDescription>Add YouTube or other video content</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <label className="block mb-2 text-sm font-medium">Video URL</label>
+                  <input
+                    type="text"
+                    placeholder="https://www.youtube.com/watch?v=..."
+                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
+                    onBlur={(e) => {
+                      const url = e.target.value;
+                      if (url) {
+                        let embedUrl = url;
+                        // Convert YouTube watch URL to embed URL
+                        if (url.includes('youtube.com/watch')) {
+                          const videoId = url.split('v=')[1]?.split('&')[0];
+                          embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                        } else if (url.includes('youtu.be/')) {
+                          const videoId = url.split('youtu.be/')[1]?.split('?')[0];
+                          embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                        }
+                        
+                        navigator.clipboard.writeText(embedUrl);
+                        toast({ 
+                          title: 'Embed URL copied!',
+                          description: 'Paste this in your lesson content'
+                        });
+                      }
+                    }}
+                  />
+                  <p className="text-xs text-muted-foreground mt-2">
+                    Paste YouTube, Vimeo, or direct video URLs
+                  </p>
+                </div>
+
+                <Alert>
+                  <AlertDescription className="text-xs space-y-2">
+                    <p><strong>YouTube embedding:</strong></p>
+                    <ol className="list-decimal list-inside space-y-1">
+                      <li>Paste YouTube URL above and blur the input</li>
+                      <li>Embed URL will be copied automatically</li>
+                      <li>In lesson content, add: <code className="bg-muted px-1 rounded">{'<iframe src="embed-url" width="100%" height="400"></iframe>'}</code></li>
+                    </ol>
+                  </AlertDescription>
+                </Alert>
+
+                <div className="p-4 bg-muted rounded-lg">
+                  <h4 className="font-semibold mb-2 text-sm">Example Videos:</h4>
+                  <div className="space-y-2 text-xs">
+                    <p><strong>Math Tutorial:</strong><br/>
+                    <code className="bg-background px-1 py-0.5 rounded">https://youtube.com/watch?v=abc123</code></p>
+                    <p><strong>Science Experiment:</strong><br/>
+                    <code className="bg-background px-1 py-0.5 rounded">https://youtu.be/xyz789</code></p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Interactive Diagrams Info */}
+          <Card>
+            <CardHeader>
+              <CardTitle>📊 Interactive Diagrams</CardTitle>
+              <CardDescription>Use the InteractiveDiagrams component for visual learning</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <p className="text-sm">
+                  SmartJHS includes an <code className="bg-muted px-1 py-0.5 rounded">InteractiveDiagrams</code> component for subjects like Science, Math, and Social Studies.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-2">🔬 Science</h4>
+                    <ul className="text-xs space-y-1">
+                      <li>• Plant cell diagrams</li>
+                      <li>• Water cycle animations</li>
+                      <li>• Solar system models</li>
+                    </ul>
+                  </div>
+                  <div className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-2">📐 Mathematics</h4>
+                    <ul className="text-xs space-y-1">
+                      <li>• Shape properties</li>
+                      <li>• Fraction visualizations</li>
+                      <li>• Graph plotting</li>
+                    </ul>
+                  </div>
+                  <div className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-2">🌍 Social Studies</h4>
+                    <ul className="text-xs space-y-1">
+                      <li>• Ghana map</li>
+                      <li>• Regional info</li>
+                      <li>• Historical timelines</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <Alert>
+                  <AlertDescription className="text-xs">
+                    <p className="mb-2"><strong>To add diagrams to lessons:</strong></p>
+                    <p>The <code className="bg-muted px-1 rounded">LessonVisual</code> component automatically shows relevant diagrams based on the lesson topic. No manual configuration needed!</p>
+                  </AlertDescription>
+                </Alert>
+              </div>
+            </CardContent>
+          </Card>
         </TabsContent>
 
         <TabsContent value="activities" className="space-y-6 mt-6">
