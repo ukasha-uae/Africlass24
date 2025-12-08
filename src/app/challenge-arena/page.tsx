@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
   Trophy, Zap, Calendar, Users, Target, TrendingUp, 
@@ -135,9 +135,13 @@ export default function ChallengeArenaPage() {
         <CardContent className="p-4 sm:p-6">
           <div className="flex items-center gap-4 mb-4">
             <Avatar className="h-16 w-16 border-4 border-primary">
-              <AvatarFallback className="text-2xl font-bold">
-                {player.userName.split(' ').map(n => n[0]).join('')}
-              </AvatarFallback>
+              {player.avatar ? (
+                <AvatarImage src={player.avatar} alt={player.userName} />
+              ) : (
+                <AvatarFallback className="text-2xl font-bold">
+                  {player.userName.split(' ').map(n => n[0]).join('')}
+                </AvatarFallback>
+              )}
             </Avatar>
             <div className="flex-1">
               <h2 className="text-2xl font-bold">{player.userName}</h2>

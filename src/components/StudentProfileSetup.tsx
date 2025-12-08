@@ -13,7 +13,7 @@ import { Camera } from 'lucide-react';
 import SchoolSelector from './SchoolSelector';
 import { School, updateSchoolStudentCount } from '@/lib/schools';
 
-export default function StudentProfileSetup() {
+export default function StudentProfileSetup({ onSave }: { onSave?: () => void }) {
   const { firestore, user } = useFirebase();
   const firebaseApp = useFirebaseApp();
   const { toast } = useToast();
@@ -44,15 +44,12 @@ export default function StudentProfileSetup() {
     }
   }, [profile]);
 
-  // TEMPORARY: Disable profile setup during development
-  // Remove this line when ready to enable profile setup
-  return null;
+  // Profile setup form is now enabled
   
   // If there's no user or profile yet not loaded, just return null for now.
   if (!user) return null;
   if (isLoading) return null; // Wait for doc check
-  // If profile exists, don't show the setup screen
-  if (profile && profile.studentName) return null;
+  // Always show the setup form for editing, even if profile exists
 
   const saveProfile = async () => {
     if (!firestore || !user) return;
@@ -75,6 +72,7 @@ export default function StudentProfileSetup() {
       console.debug('Saving profile for uid:', user.uid);
       
       await setDoc(doc(firestore, `students/${user.uid}`), payload, { merge: true });
+      if (onSave) onSave();
       
       // Update school student count
       if (selectedSchool?.id) {
@@ -117,12 +115,12 @@ export default function StudentProfileSetup() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-      <Card className="max-w-xl w-full">
+    <div className="min-h-screen w-full flex items-center justify-center bg-black/40 p-4">
+      <Card className="max-w-xl w-full flex flex-col max-h-[90vh]">
         <CardHeader>
           <CardTitle>Welcome — Set up your student profile</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-3">
+        <CardContent className="space-y-3 overflow-y-auto max-h-[70vh]">
           <div className="text-xs text-muted-foreground">
             Firebase Project: <span className="font-mono text-sm">{firebaseApp?.options?.projectId || 'unknown'}</span>
             {firebaseApp?.options?.projectId && (
@@ -179,7 +177,7 @@ export default function StudentProfileSetup() {
             <Input value={parentPhoneNumber} onChange={(e: any) => setParentPhoneNumber(e.target.value)} />
           </div>
         </CardContent>
-        <CardFooter className="flex justify-between gap-2">
+        <CardFooter className="flex justify-between gap-2 sticky bottom-0 bg-white/80 backdrop-blur-md py-4 z-10">
           <div className="flex items-center gap-2">
             <Button onClick={runPermissionCheck} disabled={!user || !firestore} variant="ghost">Test Permissions</Button>
             {permTestResult && (

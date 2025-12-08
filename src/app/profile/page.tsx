@@ -12,6 +12,7 @@ import { doc } from 'firebase/firestore';
 import { useEffect, useMemo, useState } from 'react';
 import { useHasMounted } from '@/hooks/use-has-mounted';
 import { useToast } from '@/hooks/use-toast';
+import StudentProfileSetup from '@/components/StudentProfileSetup';
 
 export default function ProfilePage() {
   const hasMounted = useHasMounted();
@@ -20,6 +21,7 @@ export default function ProfilePage() {
   const [linkingCode, setLinkingCode] = useState<string>('');
   const [copied, setCopied] = useState(false);
   const [parentEmail, setParentEmail] = useState('');
+  const [editMode, setEditMode] = useState(false);
   const { firestore, user } = useFirebase();
   const { toast } = useToast();
   const profileRef = useMemo(() => (user && firestore) ? doc(firestore, `students/${user.uid}`) : null, [user, firestore]);
@@ -93,7 +95,11 @@ export default function ProfilePage() {
             Settings
           </Button>
         </Link>
+        <Button variant="default" size="sm" className="ml-2" onClick={() => setEditMode((v) => !v)}>
+          {editMode ? 'Close Edit' : 'Edit Profile'}
+        </Button>
       </div>
+      {editMode && <StudentProfileSetup onSave={() => setEditMode(false)} />}
       
       <div className="flex flex-col items-center space-y-4 mb-8">
         <Avatar className="h-24 w-24">

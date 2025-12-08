@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { Skeleton } from "@/components/ui/skeleton";
 import { 
   BookOpen, ArrowRight, Trophy, Target, Calendar, 
   TrendingUp, Flame, Award, Brain, Clock
@@ -20,6 +21,7 @@ export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [todayDate, setTodayDate] = useState('');
   const [progress, setProgress] = useState(() => ({ lessonsCompleted: 0, quizzesTaken: 0, averageQuizScore: 0, points: 0 }));
+  const [loading, setLoading] = useState(true);
   const { firestore, user } = useFirebase();
   const profileRef = useMemo(() => (user && firestore) ? doc(firestore, `students/${user.uid}`) : null, [user, firestore]);
   const { data: profile } = useDoc<any>(profileRef as any);
@@ -36,8 +38,10 @@ export default function Home() {
 
   useEffect(() => {
     if (!mounted) return;
+    setLoading(true);
     const userProgress = getUserProgress();
     setProgress(userProgress as any);
+    setTimeout(() => setLoading(false), 600); // Simulate loading for skeleton
   }, [mounted]);
 
   // Get real subjects from jhs-data
@@ -112,21 +116,28 @@ export default function Home() {
           <Target className="mr-2 h-6 w-6" /> Quick Start
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {quickAccessSubjects.map((subject) => {
-            const Icon = subject.icon;
-            return (
-              <Link key={subject.id} href={`/subjects/${subject.slug}`}>
-                <Card className="hover:shadow-lg transition-all hover:scale-105 cursor-pointer h-full">
-                  <CardContent className="p-6 flex flex-col items-center text-center gap-2">
-                    <div className="p-3 rounded-full bg-primary/10">
-                      <Icon className="h-8 w-8 text-primary" />
-                    </div>
-                    <p className="font-semibold text-sm">{subject.name}</p>
-                  </CardContent>
+          {loading
+            ? Array.from({ length: 6 }).map((_, i) => (
+                <Card key={i} className="h-full p-6 flex flex-col items-center text-center gap-2 mobile-tap-target">
+                  <Skeleton className="h-8 w-8 mb-2" />
+                  <Skeleton className="h-5 w-16" />
                 </Card>
-              </Link>
-            );
-          })}
+              ))
+            : quickAccessSubjects.map((subject) => {
+                const Icon = subject.icon;
+                return (
+                  <Link key={subject.id} href={`/subjects/${subject.slug}`}>
+                    <Card className="hover:shadow-lg transition-all hover:scale-105 cursor-pointer h-full mobile-tap-target">
+                      <CardContent className="p-6 flex flex-col items-center text-center gap-2">
+                        <div className="p-3 rounded-full bg-primary/10">
+                          <Icon className="h-8 w-8 text-primary" />
+                        </div>
+                        <p className="font-semibold text-sm">{subject.name}</p>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                );
+              })}
         </div>
       </section>
 

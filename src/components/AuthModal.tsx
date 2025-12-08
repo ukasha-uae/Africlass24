@@ -24,33 +24,41 @@ export default function AuthModal() {
     if (password.length < 6) { toast({ title: 'Password too short', description: 'Password must be at least 6 characters.' }); return; }
     setLoading(true);
     try {
-        if (user && (user as any).isAnonymous) {
+      if (user && (user as any).isAnonymous) {
         // Link anonymous user to email credential
         await linkAnonymousToEmail(auth, email, password);
-          // Attempt to migrate any local quiz attempts into Firestore for this user
-          try {
-            const migratedCount = await migrateLocalAttemptsToFirestore(auth, firestore);
-            if (migratedCount > 0) {
-              toast({ title: 'Progress migrated', description: `Successfully migrated ${migratedCount} local quiz attempt(s) to your profile.` });
-            }
-          } catch (e) {
-            console.error('Migration error after linking:', e);
-            // Don't block flow — migration is best-effort.
+        // Attempt to migrate any local quiz attempts into Firestore for this user
+        try {
+          const migratedCount = await migrateLocalAttemptsToFirestore(auth, firestore);
+          if (migratedCount > 0) {
+            toast({ title: 'Progress migrated', description: `Successfully migrated ${migratedCount} local quiz attempt(s) to your profile.` });
           }
+        } catch (e) {
+          console.error('Migration error after linking:', e);
+          // Don't block flow — migration is best-effort.
+        }
         toast({ title: 'Account created', description: 'Your anonymous session is now linked to your email.' });
       } else {
         await initiateEmailSignUp(auth, email, password);
       }
     } catch (err: any) {
-      console.error('Sign up error', err);
+      // Only log unexpected errors, not email-already-in-use
+      if (err?.code !== 'auth/email-already-in-use') {
+        console.error('Sign up error', err);
+      }
       // If email already in use, show message prompting sign in
       if (err?.code === 'auth/email-already-in-use') {
         toast({ title: 'Email already in use', description: 'This email is already registered. Please sign in instead.', variant: 'destructive' });
         setActiveTab('sign-in');
+        setPassword('');
+        // Optionally focus email input if you use a ref
+        // if (emailInputRef.current) emailInputRef.current.focus();
       } else {
         toast({ title: 'Sign-up failed', description: err?.message || String(err), variant: 'destructive' });
       }
-    } finally { setLoading(false); }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const signIn = async () => {

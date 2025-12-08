@@ -37,6 +37,9 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Loader2, BrainCircuit, Clock, Trophy, AlertCircle, CheckCircle, XCircle } from "lucide-react";
+import Matching from '@/components/quiz/Matching';
+import MultipleSelect from '@/components/quiz/MultipleSelect';
+import Ordering from '@/components/quiz/Ordering';
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
@@ -263,81 +266,172 @@ export default function AdaptiveQuiz() {
   if (quizData && !quizFinished) {
     const question = quizData.quizQuestions[currentQuestionIndex];
     
+    // Common navigation buttons
+    const navButtons = (
+      <CardFooter className="flex justify-between">
+        <Button variant="outline" onClick={() => setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1))} disabled={currentQuestionIndex === 0}>
+          Previous
+        </Button>
+        <Button onClick={handleNextQuestion} disabled={!userAnswers[currentQuestionIndex] || userAnswers[currentQuestionIndex]?.length === 0}>
+          {currentQuestionIndex === quizData.quizQuestions.length - 1 ? "Finish Quiz" : "Next Question"}
+        </Button>
+      </CardFooter>
+    );
+
     if (question.type === 'multiple-choice') {
-        return (
-          <Card className="w-full max-w-2xl mx-auto">
-            <CardHeader>
-              <div className="flex justify-between items-center mb-4">
-                <Progress value={((currentQuestionIndex + 1) / quizData.quizQuestions.length) * 100} className="flex-1" />
-                {timedMode && (
-                  <Badge variant={timeLeft < 60 ? "destructive" : "secondary"} className="ml-4 flex items-center gap-1">
-                    <Clock className="h-3 w-3" />
-                    {formatTime(timeLeft)}
-                  </Badge>
-                )}
-              </div>
-              <CardTitle>Question {currentQuestionIndex + 1} of {quizData.quizQuestions.length}</CardTitle>
-              <CardDescription className="text-lg pt-2">{question.question}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <RadioGroup value={userAnswers[currentQuestionIndex]} onValueChange={handleAnswerChange}>
-                {question.options.map((option, index) => (
-                  <div key={index} className="flex items-center space-x-2 p-3 rounded-md hover:bg-muted border border-transparent hover:border-primary transition-all">
-                    <RadioGroupItem value={option} id={`option-${index}`} />
-                    <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer">{option}</Label>
-                  </div>
-                ))}
-              </RadioGroup>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" onClick={() => setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1))} disabled={currentQuestionIndex === 0}>
-                Previous
-              </Button>
-              <Button onClick={handleNextQuestion} disabled={!userAnswers[currentQuestionIndex]}>
-                {currentQuestionIndex === quizData.quizQuestions.length - 1 ? "Finish Quiz" : "Next Question"}
-              </Button>
-            </CardFooter>
-          </Card>
-        );
+      return (
+        <Card className="w-full max-w-2xl mx-auto">
+          <CardHeader>
+            <div className="flex justify-between items-center mb-4">
+              <Progress value={((currentQuestionIndex + 1) / quizData.quizQuestions.length) * 100} className="flex-1" />
+              {timedMode && (
+                <Badge variant={timeLeft < 60 ? "destructive" : "secondary"} className="ml-4 flex items-center gap-1">
+                  <Clock className="h-3 w-3" />
+                  {formatTime(timeLeft)}
+                </Badge>
+              )}
+            </div>
+            <CardTitle>Question {currentQuestionIndex + 1} of {quizData.quizQuestions.length}</CardTitle>
+            <CardDescription className="text-lg pt-2">{question.question}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <RadioGroup value={userAnswers[currentQuestionIndex]} onValueChange={handleAnswerChange}>
+              {question.options.map((option, index) => (
+                <div key={index} className="flex items-center space-x-2 p-3 rounded-md hover:bg-muted border border-transparent hover:border-primary transition-all">
+                  <RadioGroupItem value={option} id={`option-${index}`} />
+                  <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer">{option}</Label>
+                </div>
+              ))}
+            </RadioGroup>
+          </CardContent>
+          {navButtons}
+        </Card>
+      );
     }
     if (question.type === 'true-false') {
-         return (
-          <Card className="w-full max-w-2xl mx-auto">
-            <CardHeader>
-              <div className="flex justify-between items-center mb-4">
-                <Progress value={((currentQuestionIndex + 1) / quizData.quizQuestions.length) * 100} className="flex-1" />
-                {timedMode && (
-                  <Badge variant={timeLeft < 60 ? "destructive" : "secondary"} className="ml-4 flex items-center gap-1">
-                    <Clock className="h-3 w-3" />
-                    {formatTime(timeLeft)}
-                  </Badge>
-                )}
+      return (
+        <Card className="w-full max-w-2xl mx-auto">
+          <CardHeader>
+            <div className="flex justify-between items-center mb-4">
+              <Progress value={((currentQuestionIndex + 1) / quizData.quizQuestions.length) * 100} className="flex-1" />
+              {timedMode && (
+                <Badge variant={timeLeft < 60 ? "destructive" : "secondary"} className="ml-4 flex items-center gap-1">
+                  <Clock className="h-3 w-3" />
+                  {formatTime(timeLeft)}
+                </Badge>
+              )}
+            </div>
+            <CardTitle>Question {currentQuestionIndex + 1} of {quizData.quizQuestions.length}</CardTitle>
+            <CardDescription className="text-lg pt-2">{question.question}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <RadioGroup value={userAnswers[currentQuestionIndex]} onValueChange={handleAnswerChange}>
+              <div className="flex items-center space-x-2 p-3 rounded-md hover:bg-muted border border-transparent hover:border-primary transition-all">
+                <RadioGroupItem value="true" id="option-true" />
+                <Label htmlFor="option-true" className="flex-1 cursor-pointer">True</Label>
               </div>
-              <CardTitle>Question {currentQuestionIndex + 1} of {quizData.quizQuestions.length}</CardTitle>
-              <CardDescription className="text-lg pt-2">{question.question}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <RadioGroup value={userAnswers[currentQuestionIndex]} onValueChange={handleAnswerChange}>
-                  <div className="flex items-center space-x-2 p-3 rounded-md hover:bg-muted border border-transparent hover:border-primary transition-all">
-                    <RadioGroupItem value="true" id="option-true" />
-                    <Label htmlFor="option-true" className="flex-1 cursor-pointer">True</Label>
-                  </div>
-                   <div className="flex items-center space-x-2 p-3 rounded-md hover:bg-muted border border-transparent hover:border-primary transition-all">
-                    <RadioGroupItem value="false" id="option-false" />
-                    <Label htmlFor="option-false" className="flex-1 cursor-pointer">False</Label>
-                  </div>
-              </RadioGroup>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" onClick={() => setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1))} disabled={currentQuestionIndex === 0}>
-                Previous
-              </Button>
-              <Button onClick={handleNextQuestion} disabled={!userAnswers[currentQuestionIndex]}>
-                {currentQuestionIndex === quizData.quizQuestions.length - 1 ? "Finish Quiz" : "Next Question"}
-              </Button>
-            </CardFooter>
-          </Card>
-        );
+              <div className="flex items-center space-x-2 p-3 rounded-md hover:bg-muted border border-transparent hover:border-primary transition-all">
+                <RadioGroupItem value="false" id="option-false" />
+                <Label htmlFor="option-false" className="flex-1 cursor-pointer">False</Label>
+              </div>
+            </RadioGroup>
+          </CardContent>
+          {navButtons}
+        </Card>
+      );
+    }
+    if (question.type === 'matching') {
+      return (
+        <Card className="w-full max-w-2xl mx-auto">
+          <CardHeader>
+            <div className="flex justify-between items-center mb-4">
+              <Progress value={((currentQuestionIndex + 1) / quizData.quizQuestions.length) * 100} className="flex-1" />
+              {timedMode && (
+                <Badge variant={timeLeft < 60 ? "destructive" : "secondary"} className="ml-4 flex items-center gap-1">
+                  <Clock className="h-3 w-3" />
+                  {formatTime(timeLeft)}
+                </Badge>
+              )}
+            </div>
+            <CardTitle>Question {currentQuestionIndex + 1} of {quizData.quizQuestions.length}</CardTitle>
+            <CardDescription className="text-lg pt-2">{question.question}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Matching
+              quiz={question}
+              userAnswer={userAnswers[currentQuestionIndex] || {}}
+              onAnswerChange={(ans) => {
+                const newAnswers = [...userAnswers];
+                newAnswers[currentQuestionIndex] = ans;
+                setUserAnswers(newAnswers);
+              }}
+            />
+          </CardContent>
+          {navButtons}
+        </Card>
+      );
+    }
+    if (question.type === 'multiple-select') {
+      return (
+        <Card className="w-full max-w-2xl mx-auto">
+          <CardHeader>
+            <div className="flex justify-between items-center mb-4">
+              <Progress value={((currentQuestionIndex + 1) / quizData.quizQuestions.length) * 100} className="flex-1" />
+              {timedMode && (
+                <Badge variant={timeLeft < 60 ? "destructive" : "secondary"} className="ml-4 flex items-center gap-1">
+                  <Clock className="h-3 w-3" />
+                  {formatTime(timeLeft)}
+                </Badge>
+              )}
+            </div>
+            <CardTitle>Question {currentQuestionIndex + 1} of {quizData.quizQuestions.length}</CardTitle>
+            <CardDescription className="text-lg pt-2">{question.question}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <MultipleSelect
+              quiz={question}
+              userAnswer={userAnswers[currentQuestionIndex] || []}
+              onAnswerChange={(ans) => {
+                const newAnswers = [...userAnswers];
+                newAnswers[currentQuestionIndex] = ans;
+                setUserAnswers(newAnswers);
+              }}
+            />
+          </CardContent>
+          {navButtons}
+        </Card>
+      );
+    }
+    if (question.type === 'ordering') {
+      return (
+        <Card className="w-full max-w-2xl mx-auto">
+          <CardHeader>
+            <div className="flex justify-between items-center mb-4">
+              <Progress value={((currentQuestionIndex + 1) / quizData.quizQuestions.length) * 100} className="flex-1" />
+              {timedMode && (
+                <Badge variant={timeLeft < 60 ? "destructive" : "secondary"} className="ml-4 flex items-center gap-1">
+                  <Clock className="h-3 w-3" />
+                  {formatTime(timeLeft)}
+                </Badge>
+              )}
+            </div>
+            <CardTitle>Question {currentQuestionIndex + 1} of {quizData.quizQuestions.length}</CardTitle>
+            <CardDescription className="text-lg pt-2">{question.question}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Ordering
+              quiz={question}
+              userAnswer={userAnswers[currentQuestionIndex] || []}
+              onAnswerChange={(ans) => {
+                const newAnswers = [...userAnswers];
+                newAnswers[currentQuestionIndex] = ans;
+                setUserAnswers(newAnswers);
+              }}
+            />
+          </CardContent>
+          {navButtons}
+        </Card>
+      );
     }
   }
 
