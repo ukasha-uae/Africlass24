@@ -1,6 +1,8 @@
 
 import type { ReactNode } from 'react';
 import React from 'react'; // Import React
+import { coreMathSHS1Lessons } from './shs-lessons-data';
+import type { Lesson } from './types';
 
 export interface Topic {
   id: string;
@@ -1283,5 +1285,20 @@ export const getSHSSubjectBySlug = (slug: string): Subject | null => {
     if (electiveSubject) return electiveSubject;
   }
   
+  return null;
+};
+
+// Helper function to get SHS lesson by subject, topic, and lesson slug
+export const getSHSLesson = (subjectSlug: string, topicSlug: string, lessonSlug: string): Lesson | null => {
+  // Currently only Core Mathematics has detailed lessons
+  if (subjectSlug === 'core-mathematics') {
+    const allLessons = coreMathSHS1Lessons;
+    // For SHS, topicSlug and lessonSlug are often the same, try matching either
+    return allLessons.find(lesson =>  
+      lesson.slug === lessonSlug || lesson.slug === topicSlug
+    ) || null;
+  }
+  
+  // For other subjects, return null (will use placeholder content)
   return null;
 };

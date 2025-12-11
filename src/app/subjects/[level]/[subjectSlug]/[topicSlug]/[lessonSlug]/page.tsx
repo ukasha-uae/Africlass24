@@ -3,7 +3,7 @@
 
 import { getSubjectBySlug } from '@/lib/jhs-data';
 import { getPrimarySubjectBySlug } from '@/lib/primary-data';
-import { getSHSSubjectBySlug } from '@/lib/shs-data';
+import { getSHSSubjectBySlug, getSHSLesson } from '@/lib/shs-data';
 import { notFound, useParams } from 'next/navigation';
 
 type EducationLevel = 'Primary' | 'JHS' | 'SHS';
@@ -100,8 +100,15 @@ export default function LessonPage() {
   } else if (!isLevelLoading && educationLevel === 'SHS' && subjectInfo) {
     // SHS subjects have topics array directly (similar to Primary)
     localTopic = (subjectInfo as any).topics?.find((t: any) => t.slug === topicSlug);
-    // For SHS, create a lesson object from the topic since topics ARE the lessons
-    if (localTopic && localTopic.slug === lessonSlug) {
+    
+    // Try to get detailed lesson from shs-lessons-data.ts
+    const detailedLesson = getSHSLesson(subjectSlug, topicSlug, lessonSlug);
+    
+    if (detailedLesson) {
+      // Use the detailed lesson from shs-lessons-data.ts
+      localLesson = detailedLesson;
+    } else if (localTopic && localTopic.slug === lessonSlug) {
+      // Fallback: create a lesson object from the topic since topics ARE the lessons
       localLesson = {
         id: localTopic.id,
         slug: localTopic.slug,
@@ -427,28 +434,38 @@ export default function LessonPage() {
           )}
 
           {lesson.keyConcepts && lesson.keyConcepts.length > 0 && (
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold flex items-center gap-2">
-                <Brain className="h-6 w-6 text-primary" />
-                Key Concepts
-              </h2>
-              <div className="space-y-4">
-                {lesson.keyConcepts.map((concept, i) => {
-                  const conceptId = `${lesson.id}-concept-${i}`;
-                  return (
-                    <div key={i} className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <h3 className="font-semibold text-lg">{concept.title}</h3>
-                        <ReadAloud textId={conceptId} />
-                      </div>
-                      <ConceptCard title="" icon="brain">
-                        <MarkdownRenderer id={conceptId} content={concept.content} />
-                      </ConceptCard>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Brain className="h-6 w-6 text-primary" />
+                  Key Concepts
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Accordion type="single" collapsible className="w-full">
+                  {lesson.keyConcepts.map((concept, i) => {
+                    const conceptId = `${lesson.id}-concept-${i}`;
+                    return (
+                      <AccordionItem key={i} value={`concept-${i}`}>
+                        <div className="flex items-center justify-between">
+                          <AccordionTrigger className="text-left flex-1">
+                            <span className="font-semibold">{concept.title}</span>
+                          </AccordionTrigger>
+                          <div className="pr-4">
+                            <ReadAloud textId={conceptId} />
+                          </div>
+                        </div>
+                        <AccordionContent>
+                          <div className="pt-2">
+                            <MarkdownRenderer id={conceptId} content={concept.content} />
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    );
+                  })}
+                </Accordion>
+              </CardContent>
+            </Card>
           )}
 
           {lesson.activities && lesson.activities.questions && lesson.activities.questions.length > 0 && (
@@ -503,17 +520,21 @@ export default function LessonPage() {
                     <CardHeader className="flex flex-row items-center justify-between">
                         <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
                           <Award className="h-5 w-5" />
-                          BECE Past Questions
+                          {educationLevel === 'SHS' ? 'WASSCE Past Questions' : educationLevel === 'JHS' ? 'BECE Past Questions' : 'Past Questions'}
                         </CardTitle>
                         <ReadAloud textId={`${lesson.id}-pastquestions`} />
                     </CardHeader>
                     <CardContent id={`${lesson.id}-pastquestions`} className="text-foreground">
                         {lesson.pastQuestions.map((pq, i) => (
                             <div key={i} className="mb-4 p-4 rounded-lg bg-background/50 border">
-                                <p className="font-semibold text-amber-900 dark:text-amber-100">{pq.question}</p>
+                                <div className="font-semibold text-amber-900 dark:text-amber-100">
+                                  <MarkdownRenderer content={pq.question} />
+                                </div>
                                 <details className="mt-2 text-sm">
                                     <summary className="cursor-pointer hover:text-primary font-medium">View Solution</summary>
-                                    <p className="pt-2 pl-4 border-l-2 border-amber-500/30 mt-2">{pq.solution}</p>
+                                    <div className="pt-2 pl-4 border-l-2 border-amber-500/30 mt-2">
+                                      <MarkdownRenderer content={pq.solution} />
+                                    </div>
                                 </details>
                             </div>
                         ))}

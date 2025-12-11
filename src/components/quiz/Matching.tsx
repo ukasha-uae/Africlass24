@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import type { MatchingQuiz } from '@/lib/types';
+import MarkdownRenderer from '@/components/MarkdownRenderer';
 
 import type { QuizStyle } from '@/lib/types';
 
@@ -27,7 +28,7 @@ export default function Matching({ quiz, userAnswer, onAnswerChange, style }: Ma
 
   return (
     <div className="space-y-4">
-      {quiz.question && <p className="font-semibold mb-2">{quiz.question}</p>}
+      {quiz.question && <div className="font-semibold mb-2"><MarkdownRenderer content={quiz.question} /></div>}
       <div className="p-3 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-md text-sm">
         <p className="font-medium text-blue-900 dark:text-blue-100">📌 Instructions:</p>
         <ol className="list-decimal list-inside mt-1 text-blue-800 dark:text-blue-200 space-y-1">
@@ -41,9 +42,9 @@ export default function Matching({ quiz, userAnswer, onAnswerChange, style }: Ma
           <p className="font-semibold text-center mb-2 text-muted-foreground">LEFT COLUMN</p>
           {left.map((l, i) => (
           <div key={i} onClick={() => setSelectedLeft(i)} className={`p-2 rounded cursor-pointer hover:bg-muted ${selectedLeft === i ? 'bg-muted' : ''}`}>
-            <span className="font-medium">{l}</span>
+            <span className="font-medium"><MarkdownRenderer content={l} /></span>
             {typeof userAnswer?.[i] !== 'undefined' && (
-              <div className="text-sm text-muted-foreground">→ {quiz.pairs[userAnswer[i]].right}</div>
+              <div className="text-sm text-muted-foreground flex items-center gap-1">→ <MarkdownRenderer content={quiz.pairs[userAnswer[i]].right} /></div>
             )}
           </div>
         ))}
@@ -56,7 +57,7 @@ export default function Matching({ quiz, userAnswer, onAnswerChange, style }: Ma
               selectPair(selectedLeft, r);
               setSelectedLeft(null);
             }}>
-              <span>{r}</span>
+              <span><MarkdownRenderer content={r} /></span>
             </div>
           ))}
         </div>

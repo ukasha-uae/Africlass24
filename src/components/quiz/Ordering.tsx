@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import type { OrderingQuiz } from '@/lib/types';
+import MarkdownRenderer from '@/components/MarkdownRenderer';
 
 import type { QuizStyle } from '@/lib/types';
 
@@ -41,7 +42,7 @@ export default function Ordering({ quiz, userAnswer, onAnswerChange, style }: Or
           onDrop={(e) => onDrop(e, i)}
           className="p-2 rounded border border-border bg-card cursor-move"
         >
-          {quiz.items[o]}
+          <MarkdownRenderer content={quiz.items[o]} />
         </div>
       ))}
     </div>

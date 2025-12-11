@@ -21,6 +21,7 @@ import Matching from '@/components/quiz/Matching';
 import Ordering from '@/components/quiz/Ordering';
 import { Progress } from '@/components/ui/progress';
 import QuizStyleSelect from '@/components/quiz/QuizStyleSelect';
+import MarkdownRenderer from '@/components/MarkdownRenderer';
 
 type LessonCompleteQuizProps = {
   lessonId: string;
@@ -37,7 +38,9 @@ const McqQuizComponent = ({ quiz, userAnswer, onAnswerChange, style }: { quiz: M
       {quiz.options.map((option, index) => (
         <div key={index} className={`flex items-center space-x-2 p-2 rounded-md hover:bg-muted ${style === 'card' ? 'border border-border p-3 shadow-sm hover:shadow-md' : ''} ${style === 'compact' ? 'p-1 text-sm' : ''}`}>
           <RadioGroupItem value={option} id={`q-option-${index}`} />
-          <Label htmlFor={`q-option-${index}`} className="flex-1 cursor-pointer">{option}</Label>
+          <Label htmlFor={`q-option-${index}`} className="flex-1 cursor-pointer">
+            <MarkdownRenderer content={option} />
+          </Label>
         </div>
       ))}
     </RadioGroup>
@@ -464,13 +467,13 @@ export default function LessonCompleteQuiz({ lessonId, topicSlug, subjectSlug, l
                     {testReport.map((r, i) => (
                       <div key={i} className={`p-3 rounded border ${r.isCorrect ? 'border-green-200 bg-green-50' : 'border-destructive bg-red-50'}`}>
                         <div className="flex justify-between items-center">
-                          <div className="font-medium">Q{i+1}: {r.question}</div>
+                          <div className="font-medium">Q{i+1}: <MarkdownRenderer content={r.question} /></div>
                           <span className="text-sm text-muted-foreground">{r.isCorrect ? 'Correct' : 'Incorrect'}</span>
                         </div>
                         <div className="mt-2 text-sm">
-                          <div><strong>Your answer:</strong> {Array.isArray(r.userAnswer) ? r.userAnswer.join(', ') : String(r.userAnswer)}</div>
-                          <div><strong>Correct answer:</strong> {Array.isArray(r.correctAnswer) ? r.correctAnswer.join(', ') : String(r.correctAnswer)}</div>
-                          {r.explanation && <div className="mt-2 text-sm text-muted-foreground"><strong>Why:</strong> {r.explanation}</div>}
+                          <div><strong>Your answer:</strong> <MarkdownRenderer content={Array.isArray(r.userAnswer) ? r.userAnswer.join(', ') : String(r.userAnswer)} /></div>
+                          <div><strong>Correct answer:</strong> <MarkdownRenderer content={Array.isArray(r.correctAnswer) ? r.correctAnswer.join(', ') : String(r.correctAnswer)} /></div>
+                          {r.explanation && <div className="mt-2 text-sm text-muted-foreground"><strong>Why:</strong> <MarkdownRenderer content={r.explanation} /></div>}
                         </div>
                         {!r.isCorrect && (
                           <div className="mt-2 flex gap-2">
@@ -516,7 +519,9 @@ export default function LessonCompleteQuiz({ lessonId, topicSlug, subjectSlug, l
         <div className="mt-2 w-full">
           <Progress value={Math.round(((currentQuestionIndex+1) / displayedQuizzes.length) * 100)} />
         </div>
-        <CardDescription className="text-lg pt-2">{questionText}</CardDescription>
+        <CardDescription className="text-lg pt-2">
+          <MarkdownRenderer content={questionText} />
+        </CardDescription>
       </CardHeader>
       <CardContent>
         {(resolvedCurrentStyle === 'timed' || selectedStyle === 'rapid') && (

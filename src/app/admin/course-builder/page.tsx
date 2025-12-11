@@ -7,17 +7,23 @@ import { Textarea } from '@/components/ui/textarea';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Label } from '@/components/ui/label';
 import { generateLessonCode, generateLessonSummary, validateLessonData } from '@/lib/code-generator';
 import LessonEditor from '@/components/admin/LessonEditor';
 import QuestionBuilder from '@/components/admin/QuestionBuilder';
 import type { Lesson, Quiz, Topic } from '@/lib/types';
-import { Copy, CheckCircle, AlertCircle, Code, FileText, Save, Eye, FolderOpen, RefreshCw } from 'lucide-react';
+import { Copy, CheckCircle, AlertCircle, Code, FileText, Save, Eye, FolderOpen, RefreshCw, GraduationCap } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { subjects } from '@/lib/jhs-data';
+import { primarySubjects } from '@/lib/primary-data';
+import { getSHSSubjectBySlug } from '@/lib/shs-data';
+
+type EducationLevel = 'Primary' | 'JHS' | 'SHS';
 
 export default function CourseBuilderPage() {
   const [activeTab, setActiveTab] = useState('editor');
-  const [availableLessons, setAvailableLessons] = useState<Array<{id: string, title: string, subject: string, topic: string}>>([]);
+  const [educationLevel, setEducationLevel] = useState<EducationLevel>('JHS');
+  const [availableLessons, setAvailableLessons] = useState<Array<{id: string, title: string, subject: string, topic: string, level: EducationLevel}>>([]);
   const [selectedLessonId, setSelectedLessonId] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState('');
   const [previewMode, setPreviewMode] = useState(false);
@@ -42,25 +48,51 @@ export default function CourseBuilderPage() {
   const [validationErrors, setValidationErrors] = useState<string[]>([]);
   const { toast } = useToast();
 
-  // Load available lessons on mount
+  // Load available lessons based on education level
   useEffect(() => {
-    const lessons: Array<{id: string, title: string, subject: string, topic: string}> = [];
-    subjects.forEach(subject => {
-      subject.curriculum.forEach(curriculumLevel => {
-        curriculumLevel.topics.forEach((topic: Topic) => {
+    const lessons: Array<{id: string, title: string, subject: string, topic: string, level: EducationLevel}> = [];
+    
+    if (educationLevel === 'Primary') {
+      // Load Primary lessons
+      primarySubjects.forEach(subject => {
+        subject.topics.forEach((topic: any) => {
           topic.lessons.forEach((lesson: Lesson) => {
             lessons.push({
               id: lesson.id,
               title: lesson.title,
               subject: subject.name,
-              topic: topic.title
+              topic: topic.title,
+              level: 'Primary'
             });
           });
         });
       });
-    });
+    } else if (educationLevel === 'SHS') {
+      // SHS lessons would be loaded here once shs-data.ts has lesson structure
+      // Currently SHS only has topic lists without detailed lessons
+      // The UI alert explains this - no need for toast on page load
+    } else {
+      // Load JHS lessons (default)
+      subjects.forEach(subject => {
+        subject.curriculum.forEach(curriculumLevel => {
+          curriculumLevel.topics.forEach((topic: Topic) => {
+            topic.lessons.forEach((lesson: Lesson) => {
+              lessons.push({
+                id: lesson.id,
+                title: lesson.title,
+                subject: subject.name,
+                topic: topic.title,
+                level: 'JHS'
+              });
+            });
+          });
+        });
+      });
+    }
+    
     setAvailableLessons(lessons);
-  }, []);
+    setSelectedLessonId(''); // Reset selection when level changes
+  }, [educationLevel]);
 
   const updateActivitiesQuestions = (questions: Quiz[]) => {
     setLesson({
@@ -114,9 +146,10 @@ export default function CourseBuilderPage() {
 
     let foundLesson: Lesson | null = null;
     
-    for (const subject of subjects) {
-      for (const curriculumLevel of subject.curriculum) {
-        for (const topic of curriculumLevel.topics) {
+    if (educationLevel === 'Primary') {
+      // Search in Primary subjects
+      for (const subject of primarySubjects) {
+        for (const topic of subject.topics) {
           const lesson = topic.lessons.find((l: Lesson) => l.id === lessonId);
           if (lesson) {
             foundLesson = lesson;
@@ -125,7 +158,30 @@ export default function CourseBuilderPage() {
         }
         if (foundLesson) break;
       }
-      if (foundLesson) break;
+    } else if (educationLevel === 'SHS') {
+      // SHS lesson loading would be here once structure is added
+      // Currently SHS doesn't have detailed lesson data
+      toast({
+        title: 'SHS Lessons Not Available',
+        description: 'Please add lesson structure to shs-data.ts first',
+        variant: 'destructive'
+      });
+      return;
+    } else {
+      // Search in JHS subjects
+      for (const subject of subjects) {
+        for (const curriculumLevel of subject.curriculum) {
+          for (const topic of curriculumLevel.topics) {
+            const lesson = topic.lessons.find((l: Lesson) => l.id === lessonId);
+            if (lesson) {
+              foundLesson = lesson;
+              break;
+            }
+          }
+          if (foundLesson) break;
+        }
+        if (foundLesson) break;
+      }
     }
 
     if (foundLesson) {
@@ -279,15 +335,75 @@ export default function CourseBuilderPage() {
       <div className="mb-6">
         <h1 className="text-4xl font-bold mb-2">Course Builder</h1>
         <p className="text-muted-foreground">
-          Create and edit lesson content, then export to TypeScript code
+          Create and edit lesson content for Primary, JHS, or SHS, then export to TypeScript code
         </p>
       </div>
+
+      {/* Education Level Selector */}
+      <Card className="mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <GraduationCap className="h-5 w-5" />
+            Select Education Level
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div className="flex gap-3">
+            <Button
+              variant={educationLevel === 'Primary' ? 'default' : 'outline'}
+              onClick={() => setEducationLevel('Primary')}
+              className="flex-1"
+            >
+              Primary School
+            </Button>
+            <Button
+              variant={educationLevel === 'JHS' ? 'default' : 'outline'}
+              onClick={() => setEducationLevel('JHS')}
+              className="flex-1"
+            >
+              JHS
+            </Button>
+            <Button
+              variant={educationLevel === 'SHS' ? 'default' : 'outline'}
+              onClick={() => setEducationLevel('SHS')}
+              className="flex-1"
+            >
+              SHS
+            </Button>
+          </div>
+          {educationLevel === 'SHS' && (
+            <Alert>
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription className="text-xs">
+                <strong>Note:</strong> SHS lesson structure needs to be added to shs-data.ts. Currently, SHS only has topic lists. 
+                You can create new lessons and the code generator will work, but loading existing SHS lessons is not yet available.
+              </AlertDescription>
+            </Alert>
+          )}
+          {educationLevel === 'Primary' && (
+            <Alert>
+              <CheckCircle className="h-4 w-4" />
+              <AlertDescription className="text-xs">
+                <strong>Primary School:</strong> Create lessons for Classes 1-6. Lessons will be saved to primary-data.ts.
+              </AlertDescription>
+            </Alert>
+          )}
+          {educationLevel === 'JHS' && (
+            <Alert>
+              <CheckCircle className="h-4 w-4" />
+              <AlertDescription className="text-xs">
+                <strong>JHS:</strong> Create lessons for Forms 1-3. Lessons will be saved to jhs-data.ts.
+              </AlertDescription>
+            </Alert>
+          )}
+        </CardContent>
+      </Card>
 
       <div className="mb-4 flex flex-wrap gap-2 items-center">
         <div className="flex-1 max-w-md">
           <Select value={selectedLessonId} onValueChange={loadExistingLesson}>
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Load existing lesson..." />
+              <SelectValue placeholder={`Load existing ${educationLevel} lesson...`} />
             </SelectTrigger>
             <SelectContent className="max-h-[400px]">
               <div className="p-2 sticky top-0 bg-background border-b">
@@ -302,7 +418,7 @@ export default function CourseBuilderPage() {
               </div>
               {filteredLessons.length === 0 ? (
                 <div className="p-4 text-sm text-muted-foreground text-center">
-                  No lessons found
+                  No {educationLevel} lessons found
                 </div>
               ) : (
                 filteredLessons.map(lesson => (
@@ -689,7 +805,11 @@ export default function CourseBuilderPage() {
                     )}
                   </CardTitle>
                   <CardDescription>
-                    Copy this code and paste it into jhs-data.ts
+                    Copy this code and paste it into {
+                      educationLevel === 'Primary' ? 'primary-data.ts' :
+                      educationLevel === 'SHS' ? 'shs-data.ts' : 
+                      'jhs-data.ts'
+                    }
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -712,12 +832,20 @@ export default function CourseBuilderPage() {
                 <Alert>
                   <CheckCircle className="h-4 w-4" />
                   <AlertDescription>
-                    <strong>How to Update jhs-data.ts:</strong>
+                    <strong>How to Update {
+                      educationLevel === 'Primary' ? 'primary-data.ts' :
+                      educationLevel === 'SHS' ? 'shs-data.ts' : 
+                      'jhs-data.ts'
+                    }:</strong>
                     <ol className="mt-2 list-decimal list-inside space-y-2 text-sm">
                       <li>Click <strong>"Copy Code"</strong> button above</li>
-                      <li>Open <code className="bg-muted px-1 py-0.5 rounded text-xs">src/lib/jhs-data.ts</code></li>
+                      <li>Open <code className="bg-muted px-1 py-0.5 rounded text-xs">src/lib/{
+                        educationLevel === 'Primary' ? 'primary-data.ts' :
+                        educationLevel === 'SHS' ? 'shs-data.ts' : 
+                        'jhs-data.ts'
+                      }</code></li>
                       <li>
-                        <strong>For NEW lessons:</strong> Navigate to the appropriate subject → curriculum level → topic, 
+                        <strong>For NEW lessons:</strong> Navigate to the appropriate subject → {educationLevel === 'Primary' ? 'topic' : 'curriculum level → topic'}, 
                         and add the code to the <code className="bg-muted px-1 rounded text-xs">lessons: []</code> array
                       </li>
                       <li>
