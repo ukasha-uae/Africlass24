@@ -13,6 +13,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useHasMounted } from '@/hooks/use-has-mounted';
 import { useToast } from '@/hooks/use-toast';
 import StudentProfileSetup from '@/components/StudentProfileSetup';
+import CampusSelector from '@/components/CampusSelector';
 
 export default function ProfilePage() {
   const hasMounted = useHasMounted();
@@ -22,6 +23,7 @@ export default function ProfilePage() {
   const [copied, setCopied] = useState(false);
   const [parentEmail, setParentEmail] = useState('');
   const [editMode, setEditMode] = useState(false);
+  const [educationLevel, setEducationLevel] = useState<'Primary' | 'JHS' | 'SHS'>('Primary');
   const { firestore, user } = useFirebase();
   const { toast } = useToast();
   const profileRef = useMemo(() => (user && firestore) ? doc(firestore, `students/${user.uid}`) : null, [user, firestore]);
@@ -85,19 +87,22 @@ export default function ProfilePage() {
 
   return (
     <div className="container mx-auto p-4 md:p-6 lg:p-8 pb-20">
-      <div className="flex justify-end mb-4">
-        <Link href="/settings">
-          <Button variant="outline" size="sm">
-            <svg className="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            Settings
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+        <CampusSelector onLevelChange={setEducationLevel} defaultLevel={educationLevel} />
+        <div className="flex gap-2">
+          <Link href="/settings">
+            <Button variant="outline" size="sm">
+              <svg className="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Settings
+            </Button>
+          </Link>
+          <Button variant="default" size="sm" onClick={() => setEditMode((v) => !v)}>
+            {editMode ? 'Close Edit' : 'Edit Profile'}
           </Button>
-        </Link>
-        <Button variant="default" size="sm" className="ml-2" onClick={() => setEditMode((v) => !v)}>
-          {editMode ? 'Close Edit' : 'Edit Profile'}
-        </Button>
+        </div>
       </div>
       {editMode && <StudentProfileSetup onSave={() => setEditMode(false)} />}
       

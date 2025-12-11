@@ -9,8 +9,8 @@ import StudentProfileSetup from '@/components/StudentProfileSetup';
 import InstallPrompt from '@/components/InstallPrompt';
 
 export const metadata: Metadata = {
-  title: 'SmartJHS',
-  description: 'A Junior High School Learning App for Ghana',
+  title: 'Smartclass24',
+  description: 'Smart learning for JHS & SHS students across Ghana',
   manifest: '/manifest.json',
 };
 
@@ -28,7 +28,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
           rel="stylesheet"
         />
-         <meta name="theme-color" content="#0ea5e9" />
+         <meta name="theme-color" content="#7c3aed" />
       </head>
       <body className={cn('font-body antialiased bg-background h-full')}>
         <FirebaseClientProvider>

@@ -14,7 +14,9 @@ import {
 import { ArrowRight, BrainCircuit, BookOpen, Search, Award, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { subjects } from '@/lib/jhs-data';
+import { coreSubjects } from '@/lib/shs-data';
 import { useState, useMemo } from 'react';
+import CampusSelector from '@/components/CampusSelector';
 
 interface PastQuestion {
   question: string;
@@ -31,36 +33,59 @@ interface PastQuestion {
 export default function PastQuestionsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSubject, setSelectedSubject] = useState<string>('all');
+  const [educationLevel, setEducationLevel] = useState<'JHS' | 'SHS'>('JHS');
 
-  // Aggregate all BECE past questions from all lessons
+  // Aggregate all past questions from lessons based on education level
   const allPastQuestions = useMemo(() => {
     const questions: PastQuestion[] = [];
     
-    subjects.forEach(subject => {
-      subject.curriculum.forEach(curriculumLevel => {
-        curriculumLevel.topics.forEach(topic => {
-          topic.lessons.forEach(lesson => {
-            if (lesson.pastQuestions && lesson.pastQuestions.length > 0) {
-              lesson.pastQuestions.forEach(pq => {
-                questions.push({
-                  ...pq,
-                  subject: subject.name,
-                  subjectSlug: subject.slug,
-                  topic: topic.title,
-                  topicSlug: topic.slug,
-                  lesson: lesson.title,
-                  lessonSlug: lesson.slug,
-                  lessonId: lesson.id
+    const currentSubjects = educationLevel === 'JHS' ? subjects : coreSubjects;
+    
+    currentSubjects.forEach(subject => {
+      if (educationLevel === 'JHS' && 'curriculum' in subject) {
+        // JHS structure with curriculum levels
+        subject.curriculum.forEach((curriculumLevel: any) => {
+          curriculumLevel.topics.forEach((topic: any) => {
+            topic.lessons.forEach((lesson: any) => {
+              if (lesson.pastQuestions && lesson.pastQuestions.length > 0) {
+                lesson.pastQuestions.forEach((pq: any) => {
+                  questions.push({
+                    ...pq,
+                    subject: subject.name,
+                    subjectSlug: subject.slug,
+                    topic: topic.title,
+                    topicSlug: topic.slug,
+                    lesson: lesson.title,
+                    lessonSlug: lesson.slug,
+                    lessonId: lesson.id
+                  });
                 });
-              });
-            }
+              }
+            });
           });
         });
-      });
+      } else if (educationLevel === 'SHS' && 'topics' in subject) {
+        // SHS structure with topics directly
+        subject.topics.forEach((topic: any) => {
+          // For SHS, topics don't have lessons in the same way, so we'll treat topics as lesson containers
+          // This is a placeholder - you may need to adjust based on actual SHS data structure
+          questions.push({
+            question: `${topic.name} - Practice Questions`,
+            solution: 'Check WASSCE past papers for detailed solutions',
+            subject: subject.name,
+            subjectSlug: subject.slug,
+            topic: topic.name,
+            topicSlug: topic.slug,
+            lesson: topic.name,
+            lessonSlug: topic.slug,
+            lessonId: topic.id
+          });
+        });
+      }
     });
     
     return questions;
-  }, []);
+  }, [educationLevel]);
 
   // Filter questions by search and subject
   const filteredQuestions = useMemo(() => {
@@ -83,12 +108,19 @@ export default function PastQuestionsPage() {
   }, [allPastQuestions]);
 
   return (
-    <div className="container mx-auto p-4 md:p-6 lg:p-8">
+    <div className="container mx-auto p-4 md:p-6 lg:p-8 pb-20">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold font-headline mb-2">BECE Past Questions</h1>
-        <p className="text-muted-foreground">
-          Comprehensive database of {allPastQuestions.length} BECE past questions from all subjects
-        </p>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+          <div>
+            <h1 className="text-4xl font-bold font-headline mb-2">
+              {educationLevel === 'JHS' ? 'BECE' : 'WASSCE'} Past Questions
+            </h1>
+            <p className="text-muted-foreground">
+              Comprehensive database of {allPastQuestions.length} {educationLevel === 'JHS' ? 'BECE' : 'WASSCE'} past questions
+            </p>
+          </div>
+          <CampusSelector onLevelChange={setEducationLevel} defaultLevel={educationLevel} />
+        </div>
       </div>
 
       {/* Adaptive Quiz Card */}
@@ -169,7 +201,7 @@ export default function PastQuestionsPage() {
                     </CardTitle>
                   </div>
                   <Button asChild variant="ghost" size="sm">
-                    <Link href={`/subjects/${q.subjectSlug}/${q.topicSlug}/${q.lessonSlug}`}>
+                    <Link href={`/subjects/jhs/${q.subjectSlug}/${q.topicSlug}/${q.lessonSlug}`}>
                       <ExternalLink className="h-4 w-4 mr-2" />
                       View Lesson
                     </Link>

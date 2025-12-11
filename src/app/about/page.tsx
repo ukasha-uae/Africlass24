@@ -25,31 +25,44 @@ export default function PrivacyPolicyPage() {
         {/* Header */}
         <div className="mb-8 text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <GraduationCap className="h-12 w-12 text-primary" />
-            <h1 className="text-4xl font-bold">SmartJHS</h1>
+            <GraduationCap className="h-12 w-12 text-violet-600" />
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">SmartC24</h1>
           </div>
           <p className="text-lg text-muted-foreground">
-            Ghana's Premier Educational Platform for Junior High Students
+            Ghana's Premier Educational Platform for Primary, JHS & SHS Students
           </p>
-          <Badge variant="secondary" className="mt-2">Version 1.0.0</Badge>
+          <div className="flex gap-2 justify-center mt-3">
+            <Badge variant="secondary">Version 2.5.0</Badge>
+            <Badge className="bg-green-600">Primary</Badge>
+            <Badge className="bg-blue-600">JHS</Badge>
+            <Badge className="bg-violet-600">SHS</Badge>
+          </div>
         </div>
 
         {/* Mission Statement */}
-        <Card className="mb-6">
+        <Card className="mb-6 border-violet-200 dark:border-violet-800">
           <CardHeader>
-            <CardTitle>Our Mission</CardTitle>
+            <CardTitle className="text-violet-600">Our Mission</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p>
-              SmartJHS is dedicated to transforming education in Ghana by providing every Junior High School student 
-              with access to quality learning resources, interactive lessons, and collaborative tools that prepare 
-              them for the BECE and beyond.
+              <strong>SmartC24</strong> (formerly SmartJHS) is dedicated to transforming education in Ghana by providing every 
+              Primary School, Junior High School, and Senior High School student with access to quality learning resources, interactive lessons, 
+              competitive challenges, and collaborative tools that prepare them from foundational skills (Class 1-6) through BECE, WASSCE, and beyond.
             </p>
             <p>
               We believe that every student deserves the opportunity to excel, regardless of their location or 
-              economic background. Through innovative technology and deep understanding of the Ghanaian curriculum, 
-              we're making quality education accessible to all.
+              economic background. Through innovative technology, NSMQ-inspired school competitions, and deep understanding 
+              of the Ghanaian curriculum, we're making quality education accessible to all while celebrating Ghana's 
+              rich culture of academic excellence.
             </p>
+            <div className="p-4 bg-violet-50 dark:bg-violet-950/20 rounded-lg border border-violet-200 dark:border-violet-800 mt-4">
+              <p className="text-sm text-violet-900 dark:text-violet-100">
+                <strong>🎯 Our Vision:</strong> To become Ghana's premier online learning platform that empowers students 
+                from Primary School (Class 1) through Senior High School, fostering academic excellence through competition, collaboration, and comprehensive 
+                curriculum coverage at every educational stage.
+              </p>
+            </div>
           </CardContent>
         </Card>
 
@@ -62,18 +75,18 @@ export default function PrivacyPolicyPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <h3 className="font-semibold flex items-center gap-2">
-                  📚 Comprehensive Curriculum
+                  📚 Dual-Level Curriculum
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  Complete coverage of all JHS subjects aligned with Ghana Education Service standards
+                  Complete JHS and SHS curriculum coverage aligned with Ghana Education Service standards and WAEC syllabus
                 </p>
               </div>
               <div className="space-y-2">
                 <h3 className="font-semibold flex items-center gap-2">
-                  🎮 Interactive Learning
+                  🏆 NSMQ-Style School Battles
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  Gamified lessons, quizzes, and challenges that make learning fun and engaging
+                  Compete in school-vs-school battles inspired by Ghana's famous National Science & Maths Quiz
                 </p>
               </div>
               <div className="space-y-2">
@@ -81,7 +94,15 @@ export default function PrivacyPolicyPage() {
                   ⚔️ Challenge Arena
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  Compete with classmates and schools across Ghana in real-time quiz battles
+                  Quick matches, boss battles, and ranked competitions with real-time AI opponents
+                </p>
+              </div>
+              <div className="space-y-2">
+                <h3 className="font-semibold flex items-center gap-2">
+                  🎓 Seamless JHS → SHS Transition
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Upgrade your account when you graduate to SHS while preserving all your JHS achievements
                 </p>
               </div>
               <div className="space-y-2">
@@ -89,23 +110,31 @@ export default function PrivacyPolicyPage() {
                   👥 Social Learning
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  Study groups, Q&A community, and achievement sharing for collaborative growth
+                  Campus-specific study groups, Q&A community, and parent-student linking for collaborative growth
                 </p>
               </div>
               <div className="space-y-2">
                 <h3 className="font-semibold flex items-center gap-2">
-                  📊 Progress Tracking
+                  📊 Advanced Analytics
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  Detailed analytics for students, parents, and teachers to monitor improvement
+                  Detailed progress tracking, achievement systems, and performance insights for students and parents
                 </p>
               </div>
               <div className="space-y-2">
                 <h3 className="font-semibold flex items-center gap-2">
-                  🏫 School Integration
+                  🏫 School Rankings & Verification
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  Connect with your school, track rankings, and participate in inter-school competitions
+                  National school leaderboards, student verification, and school pride through competitive battles
+                </p>
+              </div>
+              <div className="space-y-2">
+                <h3 className="font-semibold flex items-center gap-2">
+                  📖 Past Questions Database
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Comprehensive BECE and WASSCE past questions organized by subject and difficulty level
                 </p>
               </div>
             </div>
@@ -125,8 +154,8 @@ export default function PrivacyPolicyPage() {
               <Mail className="h-5 w-5 text-muted-foreground mt-0.5" />
               <div>
                 <p className="font-medium">Email</p>
-                <a href="mailto:support@smartjhs.edu.gh" className="text-sm text-primary hover:underline">
-                  support@smartjhs.edu.gh
+                <a href="mailto:support@smartc24.edu.gh" className="text-sm text-primary hover:underline">
+                  support@smartc24.edu.gh
                 </a>
               </div>
             </div>
@@ -154,21 +183,21 @@ export default function PrivacyPolicyPage() {
             
             <Separator />
             
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-2">
               <Button variant="outline" size="sm" asChild>
-                <a href="https://twitter.com/smartjhs" target="_blank" rel="noopener noreferrer">
+                <a href="https://twitter.com/smartc24" target="_blank" rel="noopener noreferrer">
                   <Twitter className="h-4 w-4 mr-2" />
                   Twitter
                 </a>
               </Button>
               <Button variant="outline" size="sm" asChild>
-                <a href="https://github.com/smartjhs" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/ukasha-uae/Africlass24" target="_blank" rel="noopener noreferrer">
                   <Github className="h-4 w-4 mr-2" />
-                  GitHub
+                  Repository
                 </a>
               </Button>
               <Button variant="outline" size="sm" asChild>
-                <a href="https://smartjhs.edu.gh" target="_blank" rel="noopener noreferrer">
+                <a href="https://smartc24.edu.gh" target="_blank" rel="noopener noreferrer">
                   <Globe className="h-4 w-4 mr-2" />
                   Website
                 </a>
@@ -220,24 +249,34 @@ export default function PrivacyPolicyPage() {
           </CardHeader>
           <CardContent className="space-y-3 text-sm text-muted-foreground">
             <p>
-              SmartJHS is built in collaboration with educators, curriculum specialists, and students across Ghana 
-              to ensure our content meets the highest standards of educational excellence.
+              <strong>SmartC24</strong> is built in collaboration with educators, curriculum specialists, and students across Ghana 
+              to ensure our content meets the highest standards of educational excellence for both JHS and SHS levels.
             </p>
             <p>
-              Special thanks to the Ghana Education Service, WAEC, and participating schools for their guidance 
-              and support in developing this platform.
+              Special thanks to the Ghana Education Service, WAEC, participating schools from Accra to Kumasi, 
+              and the NSMQ community for inspiring our competitive learning approach. We're grateful to all the 
+              students and teachers who have contributed feedback to make this platform better.
             </p>
-            <div className="flex items-center gap-2 text-primary pt-2">
-              <Heart className="h-4 w-4 fill-current" />
-              <span>Made with love for Ghana's future leaders</span>
+            <div className="p-3 bg-gradient-to-r from-violet-50 to-indigo-50 dark:from-violet-950/20 dark:to-indigo-950/20 rounded-lg border border-violet-200 dark:border-violet-800">
+              <div className="flex items-center gap-2 text-violet-700 dark:text-violet-300">
+                <Heart className="h-4 w-4 fill-current" />
+                <span className="font-medium">Made with love for Ghana's future leaders - from JHS to SHS and beyond</span>
+              </div>
             </div>
           </CardContent>
         </Card>
 
         {/* Footer */}
         <div className="text-center text-sm text-muted-foreground">
-          <p>© 2025 SmartJHS. All rights reserved.</p>
-          <p className="mt-2">Empowering Ghana's students, one lesson at a time.</p>
+          <p>© 2025 SmartC24 (formerly SmartJHS). All rights reserved.</p>
+          <p className="mt-2">Empowering Ghana's students from Primary School through SHS with competitive learning and comprehensive curriculum.</p>
+          <div className="flex gap-2 justify-center mt-3">
+            <Badge variant="outline" className="text-xs">Primary (Class 1-6)</Badge>
+            <Badge variant="outline" className="text-xs">JHS Support</Badge>
+            <Badge variant="outline" className="text-xs">SHS Support</Badge>
+            <Badge variant="outline" className="text-xs">School Battles</Badge>
+            <Badge variant="outline" className="text-xs">NSMQ-Inspired</Badge>
+          </div>
         </div>
       </div>
     </div>

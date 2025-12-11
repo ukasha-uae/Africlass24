@@ -1,8 +1,8 @@
 // Challenge Arena - Competitive Quiz System
 import { getSchoolById } from './schools';
-import { getRandomQuestions, QuestionSubject, QuestionDifficulty } from './bece-questions';
+import { QuestionDifficulty } from './bece-questions';
+import { getChallengeQuestions, getAvailableSubjects, type EducationLevel } from './challenge-questions';
 import { createInAppNotification } from './in-app-notifications';
-
 import { calculateXP, checkAchievements } from './gamification';
 
 export interface Player {
@@ -22,11 +22,13 @@ export interface Player {
   isVerified?: boolean; // Verified student status
   xp: number;
   achievements: string[]; // Array of achievement IDs
+  level: EducationLevel; // JHS or SHS
 }
 
 export interface Challenge {
   id: string;
   type: 'quick' | 'scheduled' | 'school' | 'tournament' | 'practice' | 'boss';
+  level: EducationLevel; // JHS or SHS
   subject: string;
   difficulty: 'easy' | 'medium' | 'hard';
   questionCount: number;
@@ -206,6 +208,7 @@ export const createOrUpdatePlayer = (player: Partial<Player> & { userId: string 
       highestStreak: 0,
       xp: 0,
       achievements: [],
+      level: player.level || 'JHS',
     };
     players.push(newPlayer);
     localStorage.setItem('challengePlayers', JSON.stringify(players));
@@ -281,8 +284,8 @@ export const getMyChallenges = (userId: string): Challenge[] => {
 export const createChallenge = (challenge: Omit<Challenge, 'id' | 'createdAt' | 'status' | 'questions'>): Challenge => {
   const challenges = getAllChallenges();
   
-  // Generate questions from BECE past questions
-  const questions = generateGameQuestions(challenge.subject, challenge.difficulty, challenge.questionCount);
+  // Generate questions based on education level (JHS or SHS) with anti-repeat logic
+  const questions = generateGameQuestions(challenge.level, challenge.subject, challenge.difficulty, challenge.questionCount, challenge.creatorId);
   
   // Auto-matchmaking for quick and school battles
   if ((challenge.type === 'quick' || challenge.type === 'school') && challenge.opponents.length === 0) {
@@ -314,12 +317,16 @@ export const createChallenge = (challenge: Omit<Challenge, 'id' | 'createdAt' | 
   challenges.push(newChallenge);
   localStorage.setItem('challenges', JSON.stringify(challenges));
   
-  // Send notifications to opponents
-  challenge.opponents.forEach(opponent => {
-    if (opponent.status === 'invited') {
-      createChallengeNotification(newChallenge, opponent.userId);
-    }
-  });
+  // Send notifications to opponents (deferred to avoid React state update during render)
+  if (typeof window !== 'undefined') {
+    setTimeout(() => {
+      challenge.opponents.forEach(opponent => {
+        if (opponent.status === 'invited') {
+          createChallengeNotification(newChallenge, opponent.userId);
+        }
+      });
+    }, 0);
+  }
   
   return newChallenge;
 };
@@ -377,6 +384,59 @@ export const startChallenge = (challengeId: string): boolean => {
   
   localStorage.setItem('challenges', JSON.stringify(challenges));
   return true;
+};
+
+// AI Results Generation for School Battles
+const generateSchoolAIResults = (challenge: Challenge, aiUserId: string): void => {
+  const opponent = challenge.opponents.find(o => o.userId === aiUserId);
+  if (!opponent) return;
+
+  // AI difficulty based on challenge difficulty - competitive but fair
+  const accuracyRate = challenge.difficulty === 'easy' ? 0.65 : 
+                       challenge.difficulty === 'medium' ? 0.75 : 0.80;
+  
+  const answers: PlayerAnswer[] = challenge.questions.map(q => {
+    const isCorrect = Math.random() < accuracyRate;
+    let answer = q.correctAnswer;
+    if (!isCorrect && q.options) {
+      const wrongOptions = q.options.filter(o => o !== q.correctAnswer);
+      answer = wrongOptions[Math.floor(Math.random() * wrongOptions.length)] || q.correctAnswer;
+    }
+
+    return {
+      questionId: q.id,
+      answer,
+      isCorrect,
+      timeSpent: 4000 + Math.random() * 3000, // 4-7 seconds per question
+      points: isCorrect ? q.points : 0
+    };
+  });
+
+  const score = answers.reduce((sum, a) => sum + a.points, 0);
+  const totalTime = answers.reduce((sum, a) => sum + a.timeSpent, 0);
+  const correctAnswersCount = answers.filter(a => a.isCorrect).length;
+  const accuracy = (correctAnswersCount / answers.length) * 100;
+
+  const resultData: GameResult = {
+    userId: aiUserId,
+    userName: opponent.userName,
+    school: opponent.school,
+    answers,
+    score,
+    correctAnswers: correctAnswersCount,
+    totalTime,
+    accuracy,
+    rank: 0,
+    ratingChange: 0
+  };
+
+  if (!challenge.results) challenge.results = [];
+  challenge.results.push(resultData);
+  
+  // Mark opponent as finished
+  opponent.status = 'finished';
+  opponent.score = score;
+  opponent.timeTaken = totalTime;
 };
 
 export const submitChallengeAnswers = (
@@ -439,6 +499,14 @@ export const submitChallengeAnswers = (
   if (challenge.type === 'boss' && userId === challenge.creatorId) {
     const bossId = challenge.opponents[0].userId;
     generateAIResults(challenge, bossId);
+  }
+  
+  // Special handling for School Battles: Generate AI opponent results if opponent is AI
+  if (challenge.type === 'school' && userId === challenge.creatorId) {
+    const aiOpponent = challenge.opponents.find(o => o.userId.startsWith('ai-'));
+    if (aiOpponent && aiOpponent.status === 'accepted') {
+      generateSchoolAIResults(challenge, aiOpponent.userId);
+    }
   }
   
   // Check if all players finished
@@ -602,11 +670,12 @@ export const createBossChallenge = (
   const boss = AI_BOSSES.find(b => b.id === bossId);
   if (!boss) return null;
 
-  const questions = generateGameQuestions(subject, boss.difficulty === 'easy' ? 'easy' : boss.difficulty === 'medium' ? 'medium' : 'hard', 10);
+  const questions = generateGameQuestions(player.level, subject, boss.difficulty === 'easy' ? 'easy' : boss.difficulty === 'medium' ? 'medium' : 'hard', 10, userId);
 
   const challenge: Challenge = {
     id: `boss-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
     type: 'boss',
+    level: player.level,
     subject,
     difficulty: boss.difficulty === 'insane' ? 'hard' : boss.difficulty,
     questionCount: 10,
@@ -691,56 +760,38 @@ const generateAIResults = (challenge: Challenge, bossId: string): void => {
 // Question Generation
 
 const generateGameQuestions = (
+  level: EducationLevel,
   subject: string,
   difficulty: string,
-  count: number
+  count: number,
+  userId: string = 'guest'
 ): GameQuestion[] => {
   // Handle legacy/lowercase subject names to prevent empty question sets
   let mappedSubject = subject;
-  if (subject === 'math') mappedSubject = 'Mathematics';
+  if (subject === 'math') mappedSubject = level === 'JHS' ? 'Mathematics' : 'Core Mathematics';
   if (subject === 'english') mappedSubject = 'English Language';
-  if (subject === 'science') mappedSubject = 'Integrated Science';
+  if (subject === 'science') mappedSubject = level === 'JHS' ? 'Science' : 'Integrated Science';
   if (subject === 'social') mappedSubject = 'Social Studies';
 
-  let beceQuestions: any[] = [];
-
-  if (subject === 'general') {
-    const subjects = ['Mathematics', 'English Language', 'Integrated Science', 'Social Studies'];
-    const countPerSubject = Math.ceil(count / subjects.length);
-    
-    subjects.forEach(sub => {
-      const subQuestions = getRandomQuestions(
-        countPerSubject,
-        sub as QuestionSubject,
-        difficulty as QuestionDifficulty
-      );
-      beceQuestions = [...beceQuestions, ...subQuestions];
-    });
-    
-    // Shuffle and trim to requested count
-    beceQuestions = beceQuestions.sort(() => Math.random() - 0.5).slice(0, count);
-  } else {
-    // Fetch from BECE database
-    beceQuestions = getRandomQuestions(
-      count, 
-      mappedSubject as QuestionSubject, 
-      difficulty as QuestionDifficulty
-    );
-  }
+  // Use the new unified challenge questions system with anti-repeat logic
+  const challengeQuestions = getChallengeQuestions(
+    level,
+    subject === 'general' ? 'Mixed' : mappedSubject,
+    difficulty as QuestionDifficulty,
+    count,
+    userId
+  );
   
-  // If we don't have enough questions, we might need to duplicate or handle it
-  // For now, we map what we have
-  
-  return beceQuestions.map(q => ({
+  return challengeQuestions.map(q => ({
     id: q.id,
     question: q.question,
-    type: 'mcq',
+    type: 'mcq' as const,
     options: q.options,
     correctAnswer: q.options[q.correctAnswer],
     points: difficulty === 'hard' ? 15 : difficulty === 'medium' ? 10 : 5,
-    explanation: q.explanation,
-    source: 'bece',
-    year: q.year,
+    explanation: q.explanation || '',
+    source: level === 'JHS' ? 'bece' : 'wassce' as 'bece' | 'practice',
+    year: 2024,
   }));
 };
 
@@ -892,9 +943,10 @@ export const initializeChallengeData = (): void => {
         draws: 2,
         totalGames: 22,
         winStreak: 3,
-        highestStreak: 7,
+        highestStreak: 8,
         xp: 2500,
-        achievements: ['first_blood', 'warrior', 'rising_star']
+        achievements: ['first_blood', 'warrior', 'rising_star'],
+        level: 'JHS'
       },
       {
         userId: 'user-2',
@@ -908,7 +960,8 @@ export const initializeChallengeData = (): void => {
         winStreak: 0,
         highestStreak: 5,
         xp: 1800,
-        achievements: ['first_blood', 'warrior']
+        achievements: ['first_blood', 'warrior'],
+        level: 'JHS'
       },
       {
         userId: 'user-3',
@@ -922,7 +975,8 @@ export const initializeChallengeData = (): void => {
         winStreak: 8,
         highestStreak: 12,
         xp: 4500,
-        achievements: ['first_blood', 'warrior', 'rising_star', 'on_fire', 'unstoppable']
+        achievements: ['first_blood', 'warrior', 'rising_star', 'on_fire', 'unstoppable'],
+        level: 'SHS'
       },
       {
         userId: 'user-4',
@@ -936,7 +990,8 @@ export const initializeChallengeData = (): void => {
         winStreak: 2,
         highestStreak: 6,
         xp: 3200,
-        achievements: ['first_blood', 'warrior', 'rising_star']
+        achievements: ['first_blood', 'warrior', 'rising_star'],
+        level: 'SHS'
       },
       {
         userId: 'user-5',
@@ -950,7 +1005,8 @@ export const initializeChallengeData = (): void => {
         winStreak: 4,
         highestStreak: 9,
         xp: 3800,
-        achievements: ['first_blood', 'warrior', 'rising_star', 'on_fire']
+        achievements: ['first_blood', 'warrior', 'rising_star', 'on_fire'],
+        level: 'JHS'
       },
       {
         userId: 'user-6',
@@ -964,7 +1020,8 @@ export const initializeChallengeData = (): void => {
         winStreak: 1,
         highestStreak: 4,
         xp: 1500,
-        achievements: ['first_blood', 'warrior']
+        achievements: ['first_blood', 'warrior'],
+        level: 'SHS'
       },
       {
         userId: 'user-7',
@@ -978,7 +1035,8 @@ export const initializeChallengeData = (): void => {
         winStreak: 2,
         highestStreak: 5,
         xp: 2100,
-        achievements: ['first_blood', 'warrior', 'rising_star']
+        achievements: ['first_blood', 'warrior', 'rising_star'],
+        level: 'JHS'
       },
       {
         userId: 'user-8',
@@ -992,7 +1050,8 @@ export const initializeChallengeData = (): void => {
         winStreak: 0,
         highestStreak: 3,
         xp: 1600,
-        achievements: ['first_blood', 'warrior']
+        achievements: ['first_blood', 'warrior'],
+        level: 'JHS'
       }
     ];
     localStorage.setItem('challengePlayers', JSON.stringify(samplePlayers));

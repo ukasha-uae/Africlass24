@@ -2,6 +2,8 @@
 'use client';
 
 import { getSubjectBySlug } from '@/lib/jhs-data';
+import { getPrimarySubjectBySlug } from '@/lib/primary-data';
+import { getSHSSubjectBySlug } from '@/lib/shs-data';
 import { notFound, useParams } from 'next/navigation';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
@@ -19,15 +21,41 @@ import { Skeleton } from '@/components/ui/skeleton';
 import CreativeLoading from '@/components/CreativeLoading';
 import { useEffect, useState, useMemo } from 'react';
 
+type EducationLevel = 'Primary' | 'JHS' | 'SHS';
 type TopicWithLessons = Topic & { lessons: Lesson[] };
 
 export default function SubjectPage() {
   const params = useParams();
+  const levelParam = params.level as string;
   const subjectSlug = params.subjectSlug as string;
   const { firestore } = useFirebase();
+  
+  // Get education level from URL parameter first (more reliable)
+  const getLevelFromParam = (): EducationLevel => {
+    const level = levelParam?.toLowerCase();
+    if (level === 'primary') return 'Primary';
+    if (level === 'shs') return 'SHS';
+    return 'JHS';
+  };
+  
+  const [educationLevel, setEducationLevel] = useState<EducationLevel>(getLevelFromParam());
 
-  // We can't store icons in firestore, so we get static info locally.
-  const subjectInfo = getSubjectBySlug(subjectSlug);
+  // Sync with localStorage and update if URL param changes
+  useEffect(() => {
+    const levelFromParam = getLevelFromParam();
+    setEducationLevel(levelFromParam);
+    
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('userEducationLevel', levelFromParam);
+    }
+  }, [levelParam]);
+
+  // Get subject info based on education level
+  const subjectInfo = educationLevel === 'Primary' 
+    ? getPrimarySubjectBySlug(subjectSlug)
+    : educationLevel === 'SHS'
+    ? getSHSSubjectBySlug(subjectSlug)
+    : getSubjectBySlug(subjectSlug);
 
   const topicsQuery = useMemo(
     () => (firestore ? collection(firestore, `subjects/${subjectSlug}/topics`) : null),
@@ -40,6 +68,72 @@ export default function SubjectPage() {
 
   useEffect(() => {
     const loadData = async () => {
+      // Handle Primary School subjects
+      if (educationLevel === 'Primary' && subjectInfo) {
+        setIsLoadingLessons(true);
+        const primaryData: Record<string, TopicWithLessons[]> = {
+          'Class 1': [],
+          'Class 2': [],
+          'Class 3': [],
+          'Class 4': [],
+          'Class 5': [],
+          'Class 6': [],
+        };
+
+        // Group topics by grade level
+        (subjectInfo as any).topics?.forEach((topic: any) => {
+          const level = topic.gradeLevel || 'Class 1';
+          if (primaryData[level]) {
+            primaryData[level].push({
+              ...topic,
+              title: topic.name,
+              lessons: topic.lessons || [] // Use lessons from topic data
+            } as TopicWithLessons);
+          }
+        });
+
+        setTopicsWithLessons(primaryData);
+        setIsLoadingLessons(false);
+        return;
+      }
+
+      // Handle SHS subjects
+      if (educationLevel === 'SHS' && subjectInfo) {
+        setIsLoadingLessons(true);
+        const shsData: Record<string, TopicWithLessons[]> = {
+          'SHS 1': [],
+          'SHS 2': [],
+          'SHS 3': [],
+        };
+
+        // Group topics by grade level
+        // For SHS, each topic is treated as a single lesson
+        (subjectInfo as any).topics?.forEach((topic: any) => {
+          // Extract SHS level from gradeLevel field (e.g., "SHS 1 - Algebra" -> "SHS 1")
+          const gradeLevelMatch = topic.gradeLevel?.match(/SHS\s+(1|2|3)/);
+          const level = gradeLevelMatch ? `SHS ${gradeLevelMatch[1]}` : 'SHS 1';
+          
+          if (shsData[level]) {
+            shsData[level].push({
+              id: topic.id,
+              slug: topic.slug,
+              title: topic.name,
+              name: topic.name,
+              lessons: [{
+                id: topic.id,
+                slug: topic.slug,
+                title: topic.name,
+                description: `Learn about ${topic.name}`
+              }]
+            } as TopicWithLessons);
+          }
+        });
+
+        setTopicsWithLessons(shsData);
+        setIsLoadingLessons(false);
+        return;
+      }
+
       // If we have topics from Firestore, try to load their lessons
       if (topics && topics.length > 0 && firestore) {
         setIsLoadingLessons(true);
@@ -100,27 +194,40 @@ export default function SubjectPage() {
     };
 
     loadData();
-  }, [topics, firestore, subjectSlug, isLoadingTopics]);
+  }, [topics, firestore, subjectSlug, isLoadingTopics, educationLevel, subjectInfo]);
 
 
   if (!subjectInfo) {
     notFound();
   }
 
-  const curriculumLevels = ['JHS 1', 'JHS 2', 'JHS 3'];
+  const curriculumLevels = educationLevel === 'Primary'
+    ? ['Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6']
+    : educationLevel === 'SHS'
+    ? ['SHS 1', 'SHS 2', 'SHS 3']
+    : ['JHS 1', 'JHS 2', 'JHS 3'];
 
   return (
     <div className="container mx-auto p-4 md:p-6 lg:p-8">
       <div className="flex items-center space-x-4 mb-8">
-        <subjectInfo.icon className="h-12 w-12 text-primary" />
+        {(subjectInfo as any).icon ? (
+          <subjectInfo.icon className="h-12 w-12 text-primary" />
+        ) : (
+          <BookOpen className="h-12 w-12 text-primary" />
+        )}
         <div>
           <h1 className="text-4xl font-bold font-headline">{subjectInfo.name}</h1>
-          <p className="text-muted-foreground">{subjectInfo.description}</p>
+          <p className="text-muted-foreground">{subjectInfo.description || 'Explore topics and lessons'}</p>
+          {educationLevel === 'Primary' && (
+            <span className="inline-block mt-2 px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-sm font-medium">
+              Primary School
+            </span>
+          )}
         </div>
       </div>
 
       <Tabs defaultValue={curriculumLevels[0]} className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className={`grid w-full ${educationLevel === 'Primary' ? 'grid-cols-6' : 'grid-cols-3'}`}>
           {curriculumLevels.map((level) => (
             <TabsTrigger key={level} value={level}>
               {level}
@@ -150,7 +257,7 @@ export default function SubjectPage() {
                         {topic.lessons.map((lesson) => (
                           <li key={lesson.id}>
                             <Link
-                              href={`/subjects/${subjectSlug}/${topic.slug}/${lesson.slug}`}
+                              href={`/subjects/${levelParam}/${subjectSlug}/${topic.slug}/${lesson.slug}`}
                               className="text-primary hover:underline"
                             >
                               {lesson.title}

@@ -12,6 +12,7 @@ export interface StudyGroup {
   isPrivate: boolean;
   inviteCode?: string;
   avatar?: string;
+  educationLevel?: 'Primary' | 'JHS' | 'SHS';
 }
 
 export interface GroupMember {

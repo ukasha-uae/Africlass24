@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -30,6 +30,7 @@ import { getLevel } from '@/lib/gamification';
 import { useFirebase, useDoc } from '@/firebase';
 import { doc } from 'firebase/firestore';
 import { useMemo } from 'react';
+import CampusSelector from '@/components/CampusSelector';
 
 export default function ChallengeArenaPage() {
   const [player, setPlayer] = useState<Player | null>(null);
@@ -39,6 +40,8 @@ export default function ChallengeArenaPage() {
   const [topPlayers, setTopPlayers] = useState<Player[]>([]);
   const [matchHistory, setMatchHistory] = useState<any[]>([]);
   const [activeTab, setActiveTab] = useState('play');
+  const [educationLevel, setEducationLevel] = useState<'Primary' | 'JHS' | 'SHS'>('Primary');
+  const [hasInitialized, setHasInitialized] = useState(false);
 
   const { firestore, user } = useFirebase();
   const profileRef = useMemo(() => (user && firestore) ? doc(firestore, `students/${user.uid}`) : null, [user, firestore]);
@@ -48,18 +51,85 @@ export default function ChallengeArenaPage() {
     initializeChallengeData();
   }, []);
 
+  // Load guest mode after a short delay if no user is detected
   useEffect(() => {
-    if (user && profile) {
-      loadData(user.uid, profile);
-    } else if (!user) {
-      // Fallback for dev/testing if no user logged in, or handle loading state
-      // For now, we can keep the mock user if no real user is found, or just wait
-      // But to satisfy the user request, we prioritize the real user.
-      // If no user is logged in, we might want to redirect or show a login prompt, 
-      // but for now let's just load the mock data if we are in a dev environment or just wait.
-      // Actually, let's just wait for the user to load.
+    const timer = setTimeout(() => {
+      if (!hasInitialized && !user) {
+        loadGuestMode();
+      }
+    }, 1000); // Wait 1 second for auth to initialize
+
+    return () => clearTimeout(timer);
+  }, [hasInitialized, user]);
+
+  const loadGuestMode = () => {
+    if (hasInitialized) return;
+    
+    const guestId = 'guest-user';
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('currentUserId', guestId);
     }
-  }, [user, profile]);
+    
+    // Get education level from localStorage
+    let level: 'Primary' | 'JHS' | 'SHS' = 'Primary';
+    if (typeof window !== 'undefined') {
+      const savedLevel = localStorage.getItem('userEducationLevel');
+      if (savedLevel === 'JHS' || savedLevel === 'SHS' || savedLevel === 'Primary') {
+        level = savedLevel as 'Primary' | 'JHS' | 'SHS';
+      }
+    }
+    setEducationLevel(level);
+    
+    const guestPlayer = createOrUpdatePlayer({
+      userId: guestId,
+      userName: 'Guest Player',
+      school: 'Demo School',
+      level: level
+    });
+    
+    setPlayer(guestPlayer);
+    setChallenges(getMyChallenges(guestId));
+    setNotifications(getChallengeNotifications(guestId));
+    setSchoolRankings(getSchoolRankings());
+    setTopPlayers(getAllPlayers().sort((a, b) => b.rating - a.rating).slice(0, 10));
+    setMatchHistory(getMatchHistory(guestId));
+    setHasInitialized(true);
+  };
+
+  useEffect(() => {
+    if (user && profile && !hasInitialized) {
+      loadData(user.uid, profile);
+      setHasInitialized(true);
+    } else if (user && !profile && firestore && !hasInitialized) {
+      // User exists but no profile yet - use basic user info
+      // Get education level from localStorage
+      let detectedLevel: 'Primary' | 'JHS' | 'SHS' = 'JHS';
+      if (typeof window !== 'undefined') {
+        const savedLevel = localStorage.getItem('userEducationLevel');
+        if (savedLevel === 'SHS') {
+          detectedLevel = 'SHS';
+        } else if (savedLevel === 'Primary') {
+          detectedLevel = 'Primary';
+        }
+      }
+      setEducationLevel(detectedLevel);
+      
+      const playerProfile = createOrUpdatePlayer({
+        userId: user.uid,
+        userName: user.email?.split('@')[0] || 'Student',
+        school: 'My School',
+        level: detectedLevel
+      });
+      
+      setPlayer(playerProfile);
+      setChallenges(getMyChallenges(user.uid));
+      setNotifications(getChallengeNotifications(user.uid));
+      setSchoolRankings(getSchoolRankings());
+      setTopPlayers(getAllPlayers().sort((a, b) => b.rating - a.rating).slice(0, 10));
+      setMatchHistory(getMatchHistory(user.uid));
+      setHasInitialized(true);
+    }
+  }, [user?.uid, !!profile, hasInitialized]);
 
   const loadData = (uid: string, userProfile: any) => {
     // Set current user ID for social features
@@ -67,13 +137,29 @@ export default function ChallengeArenaPage() {
       localStorage.setItem('currentUserId', uid);
     }
 
+    // Determine education level based on user's navigation history or profile
+    // Check if user came from SHS sections or localStorage
+    let detectedLevel: 'JHS' | 'SHS' = 'JHS';
+    if (typeof window !== 'undefined') {
+      const referrer = document.referrer;
+      const savedLevel = localStorage.getItem('userEducationLevel');
+      
+      if (savedLevel === 'SHS' || referrer.includes('/shs-')) {
+        detectedLevel = 'SHS';
+      }
+    }
+
+    // Update state with detected level
+    setEducationLevel(detectedLevel);
+
     // Create or get player profile
     // Sync with real profile data
     const playerProfile = createOrUpdatePlayer({
       userId: uid,
       userName: userProfile.studentName || 'Student',
       school: userProfile.schoolName || 'My School', // Assuming schoolName exists, fallback if not
-      avatar: userProfile.profilePictureUrl
+      avatar: userProfile.profilePictureUrl,
+      level: detectedLevel
     });
     
     setPlayer(playerProfile);
@@ -111,13 +197,46 @@ export default function ChallengeArenaPage() {
     return 'text-muted-foreground';
   };
 
-  if (!player) return null;
+  const handleLevelChange = useCallback((level: 'Primary' | 'JHS' | 'SHS') => {
+    setEducationLevel(level);
+  }, []);
+
+  // Reload player data when education level changes
+  useEffect(() => {
+    if (player && user && profile) {
+      const updatedPlayer = createOrUpdatePlayer({
+        ...player,
+        level: educationLevel
+      });
+      setPlayer(updatedPlayer);
+    }
+  }, [educationLevel]);
+
+  if (!player) {
+    return (
+      <div className="container mx-auto p-4 md:p-6 lg:p-8">
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Trophy className="h-6 w-6" />
+              Loading Challenge Arena...
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center justify-center py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto p-3 sm:p-4 md:p-6 lg:p-8 pb-20">
       {/* Header */}
       <div className="mb-6 sm:mb-8">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
           <div>
             <h1 className="text-3xl sm:text-4xl font-bold mb-2 flex items-center gap-3">
               <Trophy className="h-10 w-10 text-yellow-500" />
@@ -127,6 +246,7 @@ export default function ChallengeArenaPage() {
               Compete with classmates and schools across Ghana
             </p>
           </div>
+          <CampusSelector onLevelChange={handleLevelChange} defaultLevel={educationLevel} />
         </div>
       </div>
 

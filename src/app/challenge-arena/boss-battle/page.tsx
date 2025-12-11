@@ -28,20 +28,41 @@ export default function BossBattlePage() {
   const { user } = useFirebase();
   
   const [selectedBoss, setSelectedBoss] = useState<AIBoss | null>(null);
-  const [subject, setSubject] = useState('Mathematics');
+  const [subject, setSubject] = useState('');
   const [isStarting, setIsStarting] = useState(false);
 
-  const subjects = [
-    'Mathematics',
-    'English Language',
-    'Integrated Science',
-    'Social Studies',
-    'Religious & Moral Education',
-    'Creative Arts',
-    'French',
-    'Ghanaian Language',
-    'ICT',
-  ];
+  // Get subjects based on user's education level from localStorage
+  const getSubjectsForLevel = () => {
+    if (typeof window !== 'undefined') {
+      const savedLevel = localStorage.getItem('userEducationLevel');
+      if (savedLevel === 'SHS') {
+        return [
+          'Core Mathematics',
+          'English Language',
+          'Integrated Science',
+          'Social Studies',
+        ];
+      }
+    }
+    return [
+      'Mathematics',
+      'English Language',
+      'Integrated Science',
+      'Social Studies',
+      'Religious & Moral Education',
+      'Creative Arts',
+      'French',
+      'Ghanaian Language',
+      'ICT',
+    ];
+  };
+
+  const subjects = getSubjectsForLevel();
+  
+  // Set default subject on mount
+  if (!subject && subjects.length > 0) {
+    setSubject(subjects[0]);
+  }
 
   const handleStartBattle = () => {
     if (!selectedBoss || !user) return;

@@ -22,6 +22,8 @@ import {
   AlertTriangle,
   CheckCircle2,
   HardDrive,
+  GraduationCap,
+  ArrowRight,
 } from 'lucide-react';
 import {
   AlertDialog,
@@ -62,9 +64,18 @@ export default function SettingsPage() {
     cache: 0,
   });
 
+  const [currentEducationLevel, setCurrentEducationLevel] = useState<'Primary' | 'JHS' | 'SHS'>('Primary');
+  const [showTransitionConfirm, setShowTransitionConfirm] = useState(false);
+
   useEffect(() => {
     calculateStorageUsage();
     loadSettings();
+    
+    // Load current education level
+    const savedLevel = localStorage.getItem('userEducationLevel') as 'Primary' | 'JHS' | 'SHS' | null;
+    if (savedLevel) {
+      setCurrentEducationLevel(savedLevel);
+    }
   }, []);
 
   const loadSettings = () => {
@@ -179,6 +190,68 @@ export default function SettingsPage() {
       title: 'Cache cleared',
       description: 'All temporary data has been removed',
     });
+  };
+
+  const transitionToJHS = () => {
+    // Save transition record
+    const transitionData = {
+      fromLevel: 'Primary',
+      toLevel: 'JHS',
+      transitionDate: new Date().toISOString(),
+      primaryDataPreserved: true,
+    };
+    localStorage.setItem('education-level-transition', JSON.stringify(transitionData));
+    
+    // Update education level
+    localStorage.setItem('userEducationLevel', 'JHS');
+    setCurrentEducationLevel('JHS');
+    
+    // Clear challenge arena player data to force re-registration with JHS school
+    localStorage.removeItem('challengePlayers');
+    
+    toast({
+      title: '🎓 Congratulations!',
+      description: 'You\'ve been upgraded to JHS. Please update your school in your profile.',
+      duration: 5000,
+    });
+    
+    setShowTransitionConfirm(false);
+    
+    // Redirect to profile to update school
+    setTimeout(() => {
+      router.push('/profile');
+    }, 2000);
+  };
+
+  const transitionToSHS = () => {
+    // Save transition record
+    const transitionData = {
+      fromLevel: 'JHS',
+      toLevel: 'SHS',
+      transitionDate: new Date().toISOString(),
+      jhsDataPreserved: true,
+    };
+    localStorage.setItem('education-level-transition', JSON.stringify(transitionData));
+    
+    // Update education level
+    localStorage.setItem('userEducationLevel', 'SHS');
+    setCurrentEducationLevel('SHS');
+    
+    // Clear challenge arena player data to force re-registration with SHS school
+    localStorage.removeItem('challengePlayers');
+    
+    toast({
+      title: '🎓 Congratulations!',
+      description: 'You\'ve been upgraded to SHS. Please update your school in your profile.',
+      duration: 5000,
+    });
+    
+    setShowTransitionConfirm(false);
+    
+    // Redirect to profile to update school
+    setTimeout(() => {
+      router.push('/profile');
+    }, 2000);
   };
 
   const exportData = () => {
@@ -484,26 +557,302 @@ export default function SettingsPage() {
           </CardContent>
         </Card>
 
+        {/* Education Level Transition - Primary to JHS */}
+        {currentEducationLevel === 'Primary' && (
+          <Card className="mb-6 border-blue-200 dark:border-blue-800">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <GraduationCap className="h-5 w-5 text-blue-600" />
+                Ready for Junior High School?
+              </CardTitle>
+              <CardDescription>
+                Transition your account from Primary School to JHS
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                <p className="text-sm text-blue-900 dark:text-blue-100 mb-3">
+                  <strong>📚 Congratulations on completing Primary School!</strong>
+                </p>
+                <p className="text-sm text-blue-900 dark:text-blue-100">
+                  When you transition to JHS, you will:
+                </p>
+                <ul className="text-sm text-blue-900 dark:text-blue-100 mt-2 ml-4 space-y-1">
+                  <li>✓ Keep all your Primary School achievements and progress</li>
+                  <li>✓ Access JHS curriculum for all subjects</li>
+                  <li>✓ Update your school to a JHS institution</li>
+                  <li>✓ Prepare for BECE examinations</li>
+                  <li>✓ Compete with other JHS students</li>
+                </ul>
+              </div>
+
+              <AlertDialog open={showTransitionConfirm && currentEducationLevel === 'Primary'} onOpenChange={setShowTransitionConfirm}>
+                <AlertDialogTrigger asChild>
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                    <GraduationCap className="h-4 w-4 mr-2" />
+                    Transition to JHS
+                    <ArrowRight className="h-4 w-4 ml-2" />
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle className="flex items-center gap-2">
+                      <GraduationCap className="h-5 w-5 text-blue-600" />
+                      Transition to Junior High School?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription className="space-y-3 pt-2">
+                      <p>
+                        This will upgrade your account to JHS level. You will need to:
+                      </p>
+                      <ol className="list-decimal list-inside space-y-2 text-sm">
+                        <li>Update your school to a JHS institution</li>
+                        <li>Re-verify your student status at your new school</li>
+                        <li>Access JHS curriculum and BECE preparation materials</li>
+                      </ol>
+                      <div className="bg-green-50 dark:bg-green-950/20 p-3 rounded border border-green-200 dark:border-green-800">
+                        <p className="text-sm text-green-900 dark:text-green-100">
+                          ✅ <strong>All your Primary School data will be preserved:</strong> achievements, quiz history, and progress remain in your account.
+                        </p>
+                      </div>
+                      <div className="bg-amber-50 dark:bg-amber-950/20 p-3 rounded border border-amber-200 dark:border-amber-800">
+                        <p className="text-sm text-amber-900 dark:text-amber-100">
+                          ⚠️ <strong>Note:</strong> This is a one-way transition. You cannot switch back to Primary after upgrading.
+                        </p>
+                      </div>
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={transitionToJHS} className="bg-blue-600 hover:bg-blue-700">
+                      Yes, Transition to JHS
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+
+              <p className="text-xs text-muted-foreground text-center">
+                Still in Primary School? You can transition later when you're ready.
+              </p>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Education Level Transition - JHS to SHS */}
+        {currentEducationLevel === 'JHS' && (
+          <Card className="mb-6 border-violet-200 dark:border-violet-800">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <GraduationCap className="h-5 w-5 text-violet-600" />
+                Graduated to SHS?
+              </CardTitle>
+              <CardDescription>
+                Transition your account from JHS to Senior High School
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="p-4 bg-violet-50 dark:bg-violet-950/20 rounded-lg border border-violet-200 dark:border-violet-800">
+                <p className="text-sm text-violet-900 dark:text-violet-100 mb-3">
+                  <strong>📚 Congratulations on completing JHS!</strong>
+                </p>
+                <p className="text-sm text-violet-900 dark:text-violet-100">
+                  When you transition to SHS, you will:
+                </p>
+                <ul className="text-sm text-violet-900 dark:text-violet-100 mt-2 ml-4 space-y-1">
+                  <li>✓ Keep all your JHS achievements and progress</li>
+                  <li>✓ Access SHS curriculum and subjects</li>
+                  <li>✓ Update your school to an SHS institution</li>
+                  <li>✓ Compete with other SHS students</li>
+                </ul>
+              </div>
+
+              <AlertDialog open={showTransitionConfirm && currentEducationLevel === 'JHS'} onOpenChange={setShowTransitionConfirm}>
+                <AlertDialogTrigger asChild>
+                  <Button className="w-full bg-violet-600 hover:bg-violet-700">
+                    <GraduationCap className="h-4 w-4 mr-2" />
+                    Transition to SHS
+                    <ArrowRight className="h-4 w-4 ml-2" />
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle className="flex items-center gap-2">
+                      <GraduationCap className="h-5 w-5 text-violet-600" />
+                      Transition to Senior High School?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription className="space-y-3 pt-2">
+                      <p>
+                        This will upgrade your account to SHS level. You will need to:
+                      </p>
+                      <ol className="list-decimal list-inside space-y-2 text-sm">
+                        <li>Update your school to an SHS institution</li>
+                        <li>Re-verify your student status at your new school</li>
+                        <li>Access SHS curriculum (Core Math, Physics, Chemistry, etc.)</li>
+                      </ol>
+                      <div className="bg-green-50 dark:bg-green-950/20 p-3 rounded border border-green-200 dark:border-green-800">
+                        <p className="text-sm text-green-900 dark:text-green-100">
+                          ✅ <strong>All your JHS data will be preserved:</strong> achievements, quiz history, and progress remain in your account.
+                        </p>
+                      </div>
+                      <div className="bg-amber-50 dark:bg-amber-950/20 p-3 rounded border border-amber-200 dark:border-amber-800">
+                        <p className="text-sm text-amber-900 dark:text-amber-100">
+                          ⚠️ <strong>Note:</strong> This is a one-way transition. You cannot switch back to JHS after upgrading.
+                        </p>
+                      </div>
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={transitionToSHS} className="bg-violet-600 hover:bg-violet-700">
+                      Yes, Transition to SHS
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+
+              <p className="text-xs text-muted-foreground text-center">
+                Still in JHS? You can transition later when you're ready.
+              </p>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Current Level Status Cards */}
+        {currentEducationLevel === 'Primary' && (
+          <Card className="mb-6 border-green-200 dark:border-green-800">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <CheckCircle2 className="h-5 w-5 text-green-600" />
+                Primary School Student
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center gap-3 p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">
+                <GraduationCap className="h-8 w-8 text-green-600" />
+                <div>
+                  <p className="text-sm font-medium text-green-900 dark:text-green-100">
+                    You're enrolled in Primary School (Class 1-6)
+                  </p>
+                  <p className="text-xs text-green-700 dark:text-green-300 mt-1">
+                    Build foundational skills in English, Math, Science, and more
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {currentEducationLevel === 'JHS' && (
+          <Card className="mb-6 border-green-200 dark:border-green-800">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <CheckCircle2 className="h-5 w-5 text-green-600" />
+                JHS Student
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center gap-3 p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">
+                <GraduationCap className="h-8 w-8 text-green-600" />
+                <div>
+                  <p className="text-sm font-medium text-green-900 dark:text-green-100">
+                    You're enrolled in Junior High School
+                  </p>
+                  <p className="text-xs text-green-700 dark:text-green-300 mt-1">
+                    Access JHS curriculum, compete in challenges, and prepare for BECE
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {currentEducationLevel === 'SHS' && (
+          <Card className="mb-6 border-green-200 dark:border-green-800">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <CheckCircle2 className="h-5 w-5 text-green-600" />
+                SHS Student
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center gap-3 p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">
+                <GraduationCap className="h-8 w-8 text-green-600" />
+                <div>
+                  <p className="text-sm font-medium text-green-900 dark:text-green-100">
+                    You're enrolled in Senior High School
+                  </p>
+                  <p className="text-xs text-green-700 dark:text-green-300 mt-1">
+                    Access SHS curriculum, compete in school battles, and prepare for WASSCE
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* About */}
         <Card>
           <CardHeader>
-            <CardTitle>About SmartJHS</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <GraduationCap className="h-5 w-5 text-violet-600" />
+              About SmartC24
+            </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 text-sm text-muted-foreground">
-            <p>Version 1.0.0</p>
-            <p>© 2025 SmartJHS. All rights reserved.</p>
-            <div className="flex flex-wrap gap-2 mt-4">
+          <CardContent className="space-y-3">
+            <div className="space-y-2 text-sm">
+              <div className="flex items-center justify-between">
+                <span className="text-muted-foreground">Version</span>
+                <Badge variant="outline">2.0.0</Badge>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-muted-foreground">Platform</span>
+                <Badge variant="secondary">Primary · JHS · SHS</Badge>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-muted-foreground">Features</span>
+                <div className="flex gap-1">
+                  <Badge variant="outline" className="text-xs">Challenge Arena</Badge>
+                  <Badge variant="outline" className="text-xs">School Battles</Badge>
+                  <Badge variant="outline" className="text-xs">Study Groups</Badge>
+                </div>
+              </div>
+            </div>
+            
+            <Separator />
+            
+            <div className="p-3 bg-violet-50 dark:bg-violet-950/20 rounded-lg border border-violet-200 dark:border-violet-800">
+              <p className="text-sm text-violet-900 dark:text-violet-100 mb-2">
+                <strong>🎓 Ghana's Premier Learning Platform</strong>
+              </p>
+              <p className="text-xs text-violet-800 dark:text-violet-200">
+                Empowering Primary, JHS, and SHS students with interactive lessons, competitive quizzes, 
+                NSMQ-style school battles, and comprehensive exam preparation (BECE/WASSCE).
+              </p>
+            </div>
+
+            <div className="space-y-2 text-xs text-muted-foreground">
+              <p>© 2025 SmartC24 (formerly SmartJHS). All rights reserved.</p>
+              <p>Serving {currentEducationLevel === 'Primary' ? 'Primary School (Class 1-6)' : currentEducationLevel === 'SHS' ? 'Senior High School' : 'Junior High School'} students across Ghana</p>
+            </div>
+            
+            <Separator />
+            
+            <div className="flex flex-wrap gap-2">
               <Link href="/about">
-                <Button variant="link" className="h-auto p-0">About Us</Button>
+                <Button variant="link" className="h-auto p-0 text-xs">About Us</Button>
               </Link>
               <Link href="/privacy-policy">
-                <Button variant="link" className="h-auto p-0">Privacy Policy</Button>
+                <Button variant="link" className="h-auto p-0 text-xs">Privacy Policy</Button>
               </Link>
               <Link href="/terms-of-service">
-                <Button variant="link" className="h-auto p-0">Terms of Service</Button>
+                <Button variant="link" className="h-auto p-0 text-xs">Terms of Service</Button>
               </Link>
-              <Button variant="link" className="h-auto p-0" asChild>
-                <a href="mailto:support@smartjhs.edu.gh">Support</a>
+              <Button variant="link" className="h-auto p-0 text-xs" asChild>
+                <a href="mailto:support@smartc24.edu.gh">Support</a>
+              </Button>
+              <Button variant="link" className="h-auto p-0 text-xs" asChild>
+                <a href="https://github.com/ukasha-uae/Africlass24" target="_blank" rel="noopener noreferrer">
+                  GitHub
+                </a>
               </Button>
             </div>
           </CardContent>

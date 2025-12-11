@@ -12,6 +12,7 @@ import { Switch } from '@/components/ui/switch';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
+import CampusSelector from '@/components/CampusSelector';
 import {
   getMyGroups,
   getAllGroups,
@@ -26,6 +27,7 @@ export default function StudyGroupsPage() {
   const [myGroups, setMyGroups] = useState<StudyGroup[]>([]);
   const [allGroups, setAllGroups] = useState<StudyGroup[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [educationLevel, setEducationLevel] = useState<'Primary' | 'JHS' | 'SHS'>('Primary');
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showJoinModal, setShowJoinModal] = useState(false);
   const [selectedGroup, setSelectedGroup] = useState<StudyGroup | null>(null);
@@ -39,6 +41,7 @@ export default function StudyGroupsPage() {
     isPrivate: false,
     createdBy: '',
     createdByName: '',
+    educationLevel: 'JHS' as 'JHS' | 'SHS',
   });
 
   const [joinCode, setJoinCode] = useState('');
@@ -59,9 +62,9 @@ export default function StudyGroupsPage() {
       return;
     }
 
-    createStudyGroup(newGroup);
+    createStudyGroup({ ...newGroup, educationLevel });
     setShowCreateModal(false);
-    setNewGroup({ name: '', description: '', subject: '', isPrivate: false, createdBy: '', createdByName: '' });
+    setNewGroup({ name: '', description: '', subject: '', isPrivate: false, createdBy: '', createdByName: '', educationLevel: 'JHS' });
     loadGroups();
     toast({ title: 'Study group created!', description: 'Invite your classmates to join' });
   };
@@ -105,16 +108,30 @@ export default function StudyGroupsPage() {
     group => !myGroups.some(myGroup => myGroup.id === group.id)
   );
 
+  // Filter groups by education level
+  const levelFilteredMyGroups = myGroups.filter(
+    g => !g.educationLevel || g.educationLevel === educationLevel
+  );
+  
+  const levelFilteredAllGroups = allGroups.filter(
+    g => !g.educationLevel || g.educationLevel === educationLevel
+  );
+
   return (
-    <div className="container mx-auto p-4 md:p-6 lg:p-8">
+    <div className="container mx-auto p-4 md:p-6 lg:p-8 pb-20">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold font-headline mb-2 flex items-center gap-3">
-          <Users className="h-10 w-10 text-primary" />
-          Study Groups
-        </h1>
-        <p className="text-lg text-muted-foreground">
-          Learn together with your classmates
-        </p>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+          <div>
+            <h1 className="text-4xl font-bold font-headline mb-2 flex items-center gap-3">
+              <Users className="h-10 w-10 text-primary" />
+              Study Groups
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              Learn together with your classmates
+            </p>
+          </div>
+          <CampusSelector onLevelChange={setEducationLevel} defaultLevel={educationLevel} />
+        </div>
       </div>
 
       {/* Stats */}
@@ -124,7 +141,7 @@ export default function StudyGroupsPage() {
             <div className="flex items-center gap-3">
               <Users className="h-8 w-8 text-primary" />
               <div>
-                <p className="text-2xl font-bold">{myGroups.length}</p>
+                <p className="text-2xl font-bold">{levelFilteredMyGroups.length}</p>
                 <p className="text-sm text-muted-foreground">My Groups</p>
               </div>
             </div>
@@ -136,7 +153,7 @@ export default function StudyGroupsPage() {
               <MessageCircle className="h-8 w-8 text-blue-500" />
               <div>
                 <p className="text-2xl font-bold">
-                  {myGroups.reduce((sum, g) => sum + g.members.length, 0)}
+                  {levelFilteredMyGroups.reduce((sum, g) => sum + g.members.length, 0)}
                 </p>
                 <p className="text-sm text-muted-foreground">Total Members</p>
               </div>
@@ -148,7 +165,7 @@ export default function StudyGroupsPage() {
             <div className="flex items-center gap-3">
               <Trophy className="h-8 w-8 text-yellow-500" />
               <div>
-                <p className="text-2xl font-bold">{allGroups.length}</p>
+                <p className="text-2xl font-bold">{levelFilteredAllGroups.length}</p>
                 <p className="text-sm text-muted-foreground">Available Groups</p>
               </div>
             </div>
@@ -174,11 +191,11 @@ export default function StudyGroupsPage() {
       </div>
 
       {/* My Groups */}
-      {myGroups.length > 0 && (
+      {levelFilteredMyGroups.length > 0 && (
         <div className="mb-8">
           <h2 className="text-2xl font-bold mb-4">My Groups</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {myGroups.map((group) => (
+            {levelFilteredMyGroups.map((group) => (
               <Card key={group.id} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <div className="flex items-start justify-between">
@@ -375,7 +392,7 @@ export default function StudyGroupsPage() {
                 <Button
                   onClick={() => {
                     setShowCreateModal(false);
-                    setNewGroup({ name: '', description: '', subject: '', isPrivate: false, createdBy: '', createdByName: '' });
+                    setNewGroup({ name: '', description: '', subject: '', isPrivate: false, createdBy: '', createdByName: '', educationLevel: 'JHS' });
                   }}
                   variant="outline"
                   className="flex-1"

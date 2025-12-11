@@ -58,6 +58,7 @@ export default function PracticeModePage() {
 
       const challenge = createChallenge({
         type: 'practice',
+        level: 'JHS',
         subject: selectedSubject,
         difficulty: formData.difficulty as any,
         questionCount,

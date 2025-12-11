@@ -1,6 +1,10 @@
-# Firebase Studio
+# Smartclass24 (SClass24)
 
-This is a NextJS starter in Firebase Studio.
+A scalable, multi-campus smart learning platform for JHS & SHS students across Ghana.
+
+## Overview
+
+Smartclass24 is a Next.js 16 App Router application that provides personalized learning experiences for Junior High School (JHS) and Senior High School (SHS) students. The platform features a campus-based architecture that allows easy expansion to additional educational levels.
 
 To get started, take a look at src/app/page.tsx.
 

@@ -105,6 +105,7 @@ export default function CreateChallengePage() {
 
       const challenge = createChallenge({
         type: formData.type as any,
+        level: 'JHS',
         subject: formData.subject,
         difficulty: formData.difficulty as any,
         questionCount,

@@ -36,27 +36,55 @@ export default function QuickMatchPage() {
   const [countdown, setCountdown] = useState(10);
   
   // Match settings
-  const [subject, setSubject] = useState('Mathematics');
+  const [subject, setSubject] = useState('');
   const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium');
   
-  const subjects = [
-    'Mathematics',
-    'English Language',
-    'Integrated Science',
-    'Social Studies',
-    'Religious & Moral Education',
-    'Creative Arts',
-    'French',
-    'Ghanaian Language',
-    'ICT',
-    'Career Technology'
-  ];
+  // Get subjects based on player's education level
+  const getSubjectsForLevel = (level: 'Primary' | 'JHS' | 'SHS') => {
+    if (level === 'Primary') {
+      return [
+        'English Language',
+        'Mathematics',
+        'Science',
+        'Social Studies',
+        'Computing',
+        'Creative Arts'
+      ];
+    } else if (level === 'SHS') {
+      return [
+        'Core Mathematics',
+        'English Language',
+        'Integrated Science',
+        'Social Studies',
+      ];
+    } else {
+      return [
+        'Mathematics',
+        'English Language',
+        'Integrated Science',
+        'Social Studies',
+        'Religious & Moral Education',
+        'Creative Arts',
+        'French',
+        'Ghanaian Language',
+        'ICT',
+        'Career Technology'
+      ];
+    }
+  };
+  
+  const subjects = player ? getSubjectsForLevel(player.level || 'JHS') : [];
 
   useEffect(() => {
     if (!user) return;
     const playerProfile = getPlayerProfile(user.uid);
     if (playerProfile) {
       setPlayer(playerProfile);
+      // Set default subject based on player's level
+      if (!subject) {
+        const defaultSubjects = getSubjectsForLevel(playerProfile.level || 'JHS');
+        setSubject(defaultSubjects[0] || 'Mathematics');
+      }
     } else {
       // If profile doesn't exist, redirect to setup or arena main page
       router.push('/challenge-arena');
@@ -130,6 +158,7 @@ export default function QuickMatchPage() {
     // Create challenge
     const challenge = createChallenge({
       type: 'quick',
+      level: player.level || 'JHS',
       subject,
       difficulty,
       questionCount: 10,

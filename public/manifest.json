@@ -1,11 +1,11 @@
 {
-  "name": "SmartJHS - BECE Prep & Learning",
-  "short_name": "SmartJHS",
-  "description": "The ultimate BECE preparation app for JHS students in Ghana. Learn, practice, and challenge friends.",
+  "name": "Smartclass24 - Smart Learning Platform",
+  "short_name": "SmartC24",
+  "description": "Smart learning platform for JHS & SHS students across Ghana. Learn, practice, and excel together.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#2563eb",
+  "theme_color": "#7c3aed",
   "orientation": "portrait",
   "icons": [
     {

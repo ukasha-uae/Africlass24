@@ -2,7 +2,11 @@
 'use client';
 
 import { getSubjectBySlug } from '@/lib/jhs-data';
+import { getPrimarySubjectBySlug } from '@/lib/primary-data';
+import { getSHSSubjectBySlug } from '@/lib/shs-data';
 import { notFound, useParams } from 'next/navigation';
+
+type EducationLevel = 'Primary' | 'JHS' | 'SHS';
 import {
   Accordion,
   AccordionContent,
@@ -23,7 +27,7 @@ import { useFirebase } from '@/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import type { Lesson } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
 import { 
   addBookmark, 
@@ -60,20 +64,125 @@ export default function LessonPage() {
   const [showNotes, setShowNotes] = useState(false);
   const [checklistItems, setChecklistItems] = useState<any[]>([]);
   const [newChecklistItem, setNewChecklistItem] = useState('');
+  const [educationLevel, setEducationLevel] = useState<EducationLevel | null>(null);
+  const [isLevelLoading, setIsLevelLoading] = useState(true);
+
+  // Detect education level from localStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const storedLevel = localStorage.getItem('userEducationLevel') as EducationLevel;
+      if (storedLevel && ['Primary', 'JHS', 'SHS'].includes(storedLevel)) {
+        setEducationLevel(storedLevel);
+      } else {
+        setEducationLevel('JHS');
+      }
+      setIsLevelLoading(false);
+    }
+  }, []);
   
-  const subjectInfo = getSubjectBySlug(subjectSlug);
+  // Get subject info based on education level (only after level is loaded)
+  const subjectInfo = !isLevelLoading && educationLevel
+    ? (educationLevel === 'Primary'
+      ? getPrimarySubjectBySlug(subjectSlug)
+      : educationLevel === 'SHS'
+      ? getSHSSubjectBySlug(subjectSlug)
+      : getSubjectBySlug(subjectSlug))
+    : null;
 
   // Calculate local lesson synchronously
-  const localTopic = subjectInfo?.curriculum
-      .flatMap(c => c.topics)
-      .find(t => t.slug === topicSlug);
-  const localLesson = localTopic?.lessons.find(l => l.slug === lessonSlug) || null;
+  let localTopic: any = null;
+  let localLesson: any = null;
+
+  if (!isLevelLoading && educationLevel === 'Primary' && subjectInfo) {
+    // Primary subjects have topics array directly
+    localTopic = (subjectInfo as any).topics?.find((t: any) => t.slug === topicSlug);
+    localLesson = localTopic?.lessons?.find((l: any) => l.slug === lessonSlug) || null;
+  } else if (!isLevelLoading && educationLevel === 'SHS' && subjectInfo) {
+    // SHS subjects have topics array directly (similar to Primary)
+    localTopic = (subjectInfo as any).topics?.find((t: any) => t.slug === topicSlug);
+    // For SHS, create a lesson object from the topic since topics ARE the lessons
+    if (localTopic && localTopic.slug === lessonSlug) {
+      localLesson = {
+        id: localTopic.id,
+        slug: localTopic.slug,
+        title: localTopic.name,
+        description: `Learn about ${localTopic.name} in detail.`,
+      };
+    }
+  } else if (subjectInfo) {
+    // JHS subjects have curriculum with topics
+    localTopic = (subjectInfo as any).curriculum
+        ?.flatMap((c: any) => c.topics)
+        .find((t: any) => t.slug === topicSlug);
+    localLesson = localTopic?.lessons?.find((l: any) => l.slug === lessonSlug) || null;
+  }
 
   // STABILITY FIX: If local lesson exists, use it immediately and ignore Firestore.
   // This prevents flickering and async state updates from interfering with local development.
-  const lesson = localLesson || firestoreLesson;
+  // Memoize to prevent infinite loops from recreating the object
+  const lesson = useMemo(() => {
+    const baseLesson = localLesson || firestoreLesson;
+    
+    // For Primary and SHS lessons without full content, generate placeholder content
+    if ((educationLevel === 'Primary' || educationLevel === 'SHS') && baseLesson && !baseLesson.introduction) {
+      const levelText = educationLevel === 'Primary' ? 'primary school' : 'Senior High School';
+      return {
+        ...baseLesson,
+        introduction: `Welcome to **${baseLesson.title}**! In this ${levelText} lesson, you will learn important concepts that will help you understand ${localTopic?.name || 'this topic'} better. Let's explore together!`,
+        objectives: [
+          `Understand the key concepts of ${baseLesson.title}`,
+          `Apply ${baseLesson.title} principles to solve problems`,
+          `Develop critical thinking skills in this area`,
+          `Practice and master the fundamental techniques`,
+        ],
+        keyConcepts: [
+          {
+            title: `Introduction to ${baseLesson.title}`,
+            explanation: `${baseLesson.title} is a fundamental concept in ${subjectInfo?.name}. This topic builds on your previous knowledge and introduces new ideas that are essential for your ${educationLevel} studies.`,
+          },
+          {
+            title: 'Key Principles',
+            explanation: `Understanding the core principles of ${baseLesson.title} will help you excel in ${subjectInfo?.name}. Pay attention to the definitions, formulas, and examples provided.`,
+          },
+          {
+            title: 'Practical Applications',
+            explanation: `${baseLesson.title} has many real-world applications. As you study, think about how these concepts apply to everyday situations and other subjects you're learning.`,
+          },
+          {
+            title: 'Study Tips',
+            explanation: 'Take notes, practice regularly, and don\'t hesitate to ask questions. Review this lesson multiple times to strengthen your understanding.',
+          }
+        ],
+        summary: `Congratulations on completing this lesson on ${baseLesson.title}! You've learned important concepts that will help you succeed in ${subjectInfo?.name}. Remember to review regularly and practice with examples. ${educationLevel === 'SHS' ? 'These skills will be valuable for your WASSCE preparation.' : 'Keep up the great work!'}`,
+        additionalResources: [
+          {
+            title: 'Practice Exercises',
+            description: 'Additional practice materials and exercises',
+            type: 'worksheet' as const
+          },
+          {
+            title: 'Video Tutorials',
+            description: 'Visual explanations and demonstrations',
+            type: 'video' as const
+          },
+          {
+            title: 'Interactive Quiz',
+            description: 'Test your understanding with practice questions',
+            type: 'quiz' as const
+          }
+        ]
+      };
+    }
+    
+    return baseLesson;
+  }, [localLesson, firestoreLesson, educationLevel, localTopic?.name, subjectInfo?.name]);
 
-  // Load bookmark, offline, and notes state
+  // Memoize the localQuizzes to prevent infinite loops
+  const localQuizzes = useMemo(() => {
+    return lesson?.endOfLessonQuiz || undefined;
+  }, [lesson?.endOfLessonQuiz]);
+
+  // Load bookmark, offline, and notes state - only when lesson.id changes, not the whole object
   useEffect(() => {
     if (lesson) {
       setBookmarked(isBookmarked(lesson.id));
@@ -82,9 +191,15 @@ export default function LessonPage() {
       if (note) setNoteContent(note.content);
       setChecklistItems(getChecklist(lesson.id));
     }
-  }, [lesson]);
+  }, [lesson?.id]);
 
   useEffect(() => {
+    // Primary and SHS lessons only exist locally, skip Firestore
+    if (educationLevel === 'Primary' || educationLevel === 'SHS') {
+      setIsFirestoreLoading(false);
+      return;
+    }
+
     // If we already have the lesson locally, no need to fetch from Firestore.
     if (localLesson) {
         setIsFirestoreLoading(false);
@@ -113,7 +228,18 @@ export default function LessonPage() {
     };
 
     fetchFirestoreLesson();
-  }, [firestore, subjectSlug, topicSlug, lessonSlug, localLesson]);
+  }, [firestore, subjectSlug, topicSlug, lessonSlug, localLesson, educationLevel]);
+
+  // Show loading while detecting education level
+  if (isLevelLoading) {
+    return (
+        <div className="container mx-auto p-4 md:p-6 lg:p-8 space-y-6">
+            <Skeleton className="h-8 w-1/4" />
+            <Skeleton className="h-10 w-3/4" />
+            <Skeleton className="h-6 w-1/2 mb-8" />
+        </div>
+    )
+  }
 
   // Only show loading if we don't have a lesson AND we are still trying to fetch one
   if (!lesson && isFirestoreLoading && !localLesson) {
@@ -229,7 +355,7 @@ export default function LessonPage() {
   return (
     <div className="container mx-auto p-4 md:p-6 lg:p-8">
       <Link
-        href={`/subjects/${subjectSlug}`}
+        href={`/subjects/${params.level}/${subjectSlug}`}
         className="inline-flex items-center text-primary mb-4 hover:underline"
       >
         <ArrowLeft className="h-4 w-4 mr-2" />
@@ -400,7 +526,7 @@ export default function LessonPage() {
                 subjectSlug={subjectSlug}
                 topicSlug={topicSlug}
                 lessonSlug={lessonSlug}
-                localQuizzes={lesson.endOfLessonQuiz}
+                localQuizzes={localQuizzes}
              />
 
             {/* Personal Notes Section */}

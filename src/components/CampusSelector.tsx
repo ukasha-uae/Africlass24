@@ -1,0 +1,81 @@
+"use client";
+
+import { useState, useEffect } from 'react';
+import { GraduationCap, BookOpen } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+
+interface CampusSelectorProps {
+  onLevelChange?: (level: 'Primary' | 'JHS' | 'SHS') => void;
+  defaultLevel?: 'Primary' | 'JHS' | 'SHS';
+  className?: string;
+}
+
+export default function CampusSelector({ onLevelChange, defaultLevel, className }: CampusSelectorProps) {
+  const [selectedLevel, setSelectedLevel] = useState<'Primary' | 'JHS' | 'SHS'>('Primary');
+
+  useEffect(() => {
+    // Initialize from localStorage or default
+    if (typeof window !== 'undefined') {
+      const savedLevel = localStorage.getItem('userEducationLevel') as 'Primary' | 'JHS' | 'SHS' | null;
+      const initialLevel = defaultLevel || savedLevel || 'Primary';
+      setSelectedLevel(initialLevel);
+      onLevelChange?.(initialLevel);
+    }
+  }, [defaultLevel, onLevelChange]);
+
+  const handleLevelChange = (level: 'Primary' | 'JHS' | 'SHS') => {
+    setSelectedLevel(level);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('userEducationLevel', level);
+    }
+    onLevelChange?.(level);
+  };
+
+  return (
+    <div className={cn("flex items-center gap-2 p-1 rounded-lg bg-muted", className)}>
+      <Button
+        variant={selectedLevel === 'Primary' ? 'default' : 'ghost'}
+        size="sm"
+        onClick={() => handleLevelChange('Primary')}
+        className={cn(
+          "flex items-center gap-2 transition-all",
+          selectedLevel === 'Primary' 
+            ? 'bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white' 
+            : 'hover:bg-background hover:text-foreground'
+        )}
+      >
+        <BookOpen className="h-4 w-4" />
+        <span className="font-semibold">Primary</span>
+      </Button>
+      <Button
+        variant={selectedLevel === 'JHS' ? 'default' : 'ghost'}
+        size="sm"
+        onClick={() => handleLevelChange('JHS')}
+        className={cn(
+          "flex items-center gap-2 transition-all",
+          selectedLevel === 'JHS' 
+            ? 'bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white' 
+            : 'hover:bg-background hover:text-foreground'
+        )}
+      >
+        <BookOpen className="h-4 w-4" />
+        <span className="font-semibold">JHS</span>
+      </Button>
+      <Button
+        variant={selectedLevel === 'SHS' ? 'default' : 'ghost'}
+        size="sm"
+        onClick={() => handleLevelChange('SHS')}
+        className={cn(
+          "flex items-center gap-2 transition-all",
+          selectedLevel === 'SHS' 
+            ? 'bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white' 
+            : 'hover:bg-background hover:text-foreground'
+        )}
+      >
+        <GraduationCap className="h-4 w-4" />
+        <span className="font-semibold">SHS</span>
+      </Button>
+    </div>
+  );
+}

@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { 
   School, 
   Trophy, 
@@ -27,8 +28,20 @@ import {
   SchoolRanking, 
   Player 
 } from '@/lib/challenge';
+import { GHANA_SCHOOLS } from '@/lib/schools';
 import { useToast } from '@/hooks/use-toast';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+
+// Get subjects based on education level
+const getSubjectsForLevel = (level: 'Primary' | 'JHS' | 'SHS') => {
+  if (level === 'Primary') {
+    return ['English Language', 'Mathematics', 'Science', 'Social Studies', 'Computing', 'Creative Arts'];
+  } else if (level === 'SHS') {
+    return ['Core Mathematics', 'Core English', 'Core Science', 'Social Studies', 'Elective Mathematics', 'Physics', 'Chemistry', 'Biology'];
+  } else {
+    return ['Mathematics', 'English Language', 'Integrated Science', 'Social Studies', 'RME', 'Creative Arts', 'French', 'Ghanaian Language', 'ICT'];
+  }
+};
 
 export default function SchoolBattlePage() {
   const router = useRouter();
@@ -37,18 +50,29 @@ export default function SchoolBattlePage() {
   const [mySchool, setMySchool] = useState<SchoolRanking | null>(null);
   const [player, setPlayer] = useState<Player | null>(null);
   const [loading, setLoading] = useState(false);
+  const [selectedSubject, setSelectedSubject] = useState<string>('');
+  const [selectedRivalSchool, setSelectedRivalSchool] = useState<string>('');
+  const [showSchoolSelector, setShowSchoolSelector] = useState(false);
 
   useEffect(() => {
     // Load data
     const allRankings = getSchoolRankings();
-    setRankings(allRankings);
-    
     const currentPlayer = getPlayerProfile('user-1'); // Mock user
     setPlayer(currentPlayer);
     
     if (currentPlayer) {
-      const schoolData = allRankings.find(r => r.school === currentPlayer.school);
+      // Filter rankings by education level (JHS or SHS)
+      const playerLevel = currentPlayer.level || 'JHS';
+      const schoolsOfSameLevel = GHANA_SCHOOLS.filter(school => school.type === playerLevel).map(s => s.name);
+      const filteredRankings = allRankings.filter(r => schoolsOfSameLevel.includes(r.school));
+      setRankings(filteredRankings);
+      
+      const schoolData = filteredRankings.find(r => r.school === currentPlayer.school);
       setMySchool(schoolData || null);
+      
+      // Set default subject based on player level
+      const subjects = getSubjectsForLevel(playerLevel);
+      setSelectedSubject(subjects[0]);
     }
   }, []);
 
@@ -62,34 +86,52 @@ export default function SchoolBattlePage() {
       return;
     }
 
+    if (!selectedRivalSchool) {
+      toast({
+        title: 'Select Rival School',
+        description: 'Please choose which school you want to challenge!',
+        variant: 'destructive',
+      });
+      return;
+    }
+
     setLoading(true);
     try {
-      // Create a school battle challenge
-      // In a real app, this would find a player from a rival school
-      // For now, we'll create a challenge that looks for an opponent
+      // Get the selected rival school
+      const rivalSchool = rankings.find(r => r.school === selectedRivalSchool);
+      
+      // Create AI opponent from selected rival school
+      const aiOpponent = {
+        userId: `ai-${rivalSchool?.school || 'rival'}-${Date.now()}`,
+        userName: `${rivalSchool?.school || 'Rival School'} Champion`,
+        school: rivalSchool?.school || 'Rival School',
+        status: 'accepted' as const,
+        acceptedAt: new Date().toISOString(),
+      };
       
       const challenge = createChallenge({
         type: 'school',
-        subject: 'general', // Mixed subjects for school battles
+        level: player?.level || 'JHS',
+        subject: selectedSubject, // Use selected subject
         difficulty: 'medium',
         questionCount: 10,
         timeLimit: 45,
         creatorId: player?.userId || 'user-1',
         creatorName: player?.userName || 'Unknown',
         creatorSchool: player?.school || 'Unknown',
-        opponents: [], // Open for matchmaking
+        opponents: [aiOpponent], // Add AI opponent
         maxPlayers: 2,
       });
 
       toast({
-        title: 'Finding Rival School...',
-        description: 'Searching for a worthy opponent!',
+        title: 'Matched with Rival School!',
+        description: `You'll be battling ${rivalSchool?.school || 'a rival school'}!`,
       });
 
-      // Simulate matchmaking delay
+      // Shorter delay since opponent is ready
       setTimeout(() => {
         router.push(`/challenge-arena/play/${challenge.id}`);
-      }, 1500);
+      }, 1000);
       
     } catch (error) {
       console.error(error);
@@ -196,26 +238,84 @@ export default function SchoolBattlePage() {
               </div>
             </div>
 
-            <Button 
-              size="lg" 
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white"
-              onClick={handleStartBattle}
-              disabled={loading || !player.isVerified}
-            >
-              {loading ? (
-                'Matching...'
-              ) : !player.isVerified ? (
-                <>
-                  <ShieldCheck className="mr-2 h-5 w-5" />
-                  Verify to Battle
-                </>
-              ) : (
-                <>
-                  <Swords className="mr-2 h-5 w-5" />
-                  Battle for {player.school}
-                </>
-              )}
-            </Button>
+            <div className="space-y-4">
+              <div>
+                <label className="text-sm font-medium mb-2 block">Choose Rival School</label>
+                <Select 
+                  value={selectedRivalSchool} 
+                  onValueChange={setSelectedRivalSchool}
+                  disabled={!player.isVerified}
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select school to challenge..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {rankings
+                      .filter(r => r.school !== player?.school)
+                      .sort((a, b) => a.rank - b.rank)
+                      .map((school) => (
+                        <SelectItem key={school.school} value={school.school}>
+                          <div className="flex items-center justify-between w-full">
+                            <span className="font-medium">{school.school}</span>
+                            <div className="flex items-center gap-2 ml-4">
+                              <Badge variant="outline" className="text-xs">
+                                #{school.rank}
+                              </Badge>
+                              <span className="text-xs text-muted-foreground">
+                                {school.points} pts
+                              </span>
+                            </div>
+                          </div>
+                        </SelectItem>
+                      ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <label className="text-sm font-medium mb-2 block">Battle Subject</label>
+                <Select 
+                  value={selectedSubject} 
+                  onValueChange={setSelectedSubject}
+                  disabled={!player.isVerified}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select subject" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {getSubjectsForLevel(player?.level || 'JHS').map((subject) => (
+                      <SelectItem key={subject} value={subject}>
+                        {subject}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <Button 
+                size="lg" 
+                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold"
+                onClick={handleStartBattle}
+                disabled={loading || !player.isVerified || !selectedRivalSchool}
+              >
+                {loading ? (
+                  <div className="flex items-center gap-2">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" />
+                    <span>Starting Battle...</span>
+                  </div>
+                ) : !player.isVerified ? (
+                  <>
+                    <ShieldCheck className="mr-2 h-5 w-5" />
+                    Verify to Battle
+                  </>
+                ) : (
+                  <>
+                    <Swords className="mr-2 h-5 w-5" />
+                    Challenge {selectedRivalSchool ? selectedRivalSchool : 'School'}!
+                  </>
+                )}
+              </Button>
+            </div>
           </CardContent>
         </Card>
 
@@ -260,7 +360,61 @@ export default function SchoolBattlePage() {
         </Card>
       </div>
 
-      {/* Leaderboard */}
+      {/* Quick Challenge - Featured Rivalries */}
+      {rankings.length > 3 && (
+        <Card className="mb-6 border-orange-200 dark:border-orange-800 bg-gradient-to-r from-orange-50 to-yellow-50 dark:from-orange-950/20 dark:to-yellow-950/20">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Trophy className="h-6 w-6 text-orange-600" />
+              Quick Challenge - Featured Rivals
+            </CardTitle>
+            <CardDescription>
+              Challenge top schools and climb the rankings!
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {rankings
+                .filter(r => r.school !== player?.school)
+                .slice(0, 3)
+                .map((school) => (
+                  <Card 
+                    key={school.school}
+                    className={`cursor-pointer transition-all hover:shadow-lg hover:scale-105 ${
+                      selectedRivalSchool === school.school 
+                        ? 'ring-2 ring-purple-500 bg-purple-50 dark:bg-purple-950/30' 
+                        : ''
+                    }`}
+                    onClick={() => setSelectedRivalSchool(school.school)}
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className={`flex items-center justify-center w-10 h-10 rounded-full font-bold ${
+                          school.rank === 1 ? 'bg-yellow-100 text-yellow-600' :
+                          school.rank === 2 ? 'bg-gray-100 text-gray-600' :
+                          school.rank === 3 ? 'bg-orange-100 text-orange-600' :
+                          'bg-background'
+                        }`}>
+                          #{school.rank}
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="font-bold text-sm leading-tight">{school.school}</h4>
+                          <p className="text-xs text-muted-foreground">{school.totalWins} wins</p>
+                        </div>
+                      </div>
+                      <div className="flex justify-between items-center text-xs">
+                        <span className="text-muted-foreground">Rating</span>
+                        <span className="font-bold">{school.points}</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* National School Rankings */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">

@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { useHasMounted } from '@/hooks/use-has-mounted';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -74,15 +74,16 @@ export default function LessonCompleteQuiz({ lessonId, topicSlug, subjectSlug, l
   const hasMounted = useHasMounted();
   const timerRef = useRef<number | null>(null);
   const [timeLeft, setTimeLeft] = useState<number>(0);
+  const handleSubmitQuizRef = useRef<(() => Promise<void>) | null>(null);
 
   const { toast } = useToast();
 
-  // Define default quizzes early so they can be referenced in useEffects
-  const defaultQuizzes: Quiz[] = [
+  // Memoize default quizzes to prevent infinite loops
+  const defaultQuizzes: Quiz[] = useMemo(() => [
     { type: 'mcq', question: 'Which word is a noun?', options: ['run', 'happy', 'table', 'blue'], answer: 'table', explanation: 'Table is a thing — a noun.' },
     { type: 'truefalse', statement: 'A noun can be a person, place, or thing.', answer: 'true' },
     { type: 'fillblank', sentence: 'A ___ is a naming word.', answer: 'noun' }
-  ];
+  ], []);
 
   const quizzesQuery = useMemo(
     () => (firestore ? collection(firestore, `subjects/${subjectSlug}/topics/${topicSlug}/lessons/${lessonSlug}/quizzes`) : null),
@@ -92,22 +93,36 @@ export default function LessonCompleteQuiz({ lessonId, topicSlug, subjectSlug, l
   const lessonDocRef = useMemo(() => (firestore ? doc(firestore, `subjects/${subjectSlug}/topics/${topicSlug}/lessons/${lessonSlug}`) : null), [firestore, subjectSlug, topicSlug, lessonSlug]);
   const { data: lessonDoc } = useDoc<any>(lessonDocRef as any);
   
+  // Calculate displayed quizzes early so it can be used in effects and handlers
+  const displayedQuizzes = useMemo(
+    () => (localQuizzes && localQuizzes.length > 0) ? localQuizzes : (quizzes && quizzes.length > 0) ? quizzes : defaultQuizzes,
+    [localQuizzes, quizzes, defaultQuizzes]
+  );
+  
   useEffect(() => {
     setIsCompleted(isLessonCompleted(lessonId));
   }, [lessonId]);
 
+  // Use ref to track if we've set the default style (won't trigger re-renders)
+  const hasSetDefaultStyleRef = useRef(false);
   useEffect(() => {
-    // If lesson has a defaultQuizStyle, set it as selected style
-    if (lessonDoc && lessonDoc.defaultQuizStyle) {
+    // If lesson has a defaultQuizStyle, set it as selected style (only once)
+    if (lessonDoc && lessonDoc.defaultQuizStyle && !hasSetDefaultStyleRef.current) {
       setSelectedStyle(lessonDoc.defaultQuizStyle as QuizStyle);
+      hasSetDefaultStyleRef.current = true;
     }
   }, [lessonDoc]);
 
+  // Track if we've initialized answers to prevent re-initialization loops
+  const hasInitializedAnswers = useRef(false);
+  
   useEffect(() => {
-    const source = (localQuizzes && localQuizzes.length > 0) ? localQuizzes : (quizzes && quizzes.length > 0) ? quizzes : defaultQuizzes;
-    if (source) {
+    // Only initialize if we haven't done so, or if quiz was reset (submitted is false and userAnswers is empty)
+    const shouldInitialize = !hasInitializedAnswers.current || (userAnswers.length === 0 && !submitted);
+    
+    if (displayedQuizzes && shouldInitialize) {
       // Initialize default answers depending on quiz type
-      setUserAnswers(source.map(quiz => {
+      setUserAnswers(displayedQuizzes.map(quiz => {
         switch (quiz.type) {
           case 'mcq':
             return '';
@@ -127,53 +142,12 @@ export default function LessonCompleteQuiz({ lessonId, topicSlug, subjectSlug, l
             return '';
         }
       }));
+      hasInitializedAnswers.current = true;
     }
-  }, [quizzes, localQuizzes]);
+  }, [displayedQuizzes, userAnswers.length, submitted]);
 
-  // If style is timed, automatically progress when time runs out
-  useEffect(() => {
-    const currentQuiz = ((localQuizzes && localQuizzes.length > 0) ? localQuizzes : (quizzes && quizzes.length > 0) ? quizzes : defaultQuizzes)?.[currentQuestionIndex];
-    if (!currentQuiz) return;
-    // Resolve visual/rapid to base behaviors
-    const resolvedSelectedStyle = selectedStyle === 'visual' ? 'image-first' : selectedStyle;
-    // Default per-question time based on style: rapid => 10s, timed => 20s, compact => 35s, classic => 45s
-    const perQuestionTime = selectedStyle === 'rapid' ? 10 : resolvedSelectedStyle === 'timed' ? 20 : resolvedSelectedStyle === 'compact' ? 35 : 45;
-    if (resolvedSelectedStyle === 'timed' || selectedStyle === 'rapid') {
-      setTimeLeft(perQuestionTime);
-      if (timerRef.current) { window.clearInterval(timerRef.current); }
-      timerRef.current = window.setInterval(() => {
-        setTimeLeft((t) => {
-          if (t <= 1) {
-            // Move to next question automatically if not submitted
-            (timerRef.current) && window.clearInterval(timerRef.current);
-            handleNextQuestion();
-            return 0;
-          }
-          return t - 1;
-        });
-      }, 1000);
-    }
-    return () => {
-      if (timerRef.current) { window.clearInterval(timerRef.current); }
-    };
-  }, [selectedStyle, currentQuestionIndex, quizzes, localQuizzes]);
-
-  const handleNextQuestion = () => {
-    if (displayedQuizzes && currentQuestionIndex < displayedQuizzes.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } else {
-      handleSubmitQuiz();
-    }
-  };
-  
-  const handleAnswerChange = (value: any) => {
-    if (submitted) return;
-    const newAnswers = [...userAnswers];
-    newAnswers[currentQuestionIndex] = value;
-    setUserAnswers(newAnswers);
-  };
-  
-  const handleSubmitQuiz = async () => {
+  // Define handlers before they're used in effects
+  const handleSubmitQuiz = useCallback(async () => {
     if (!displayedQuizzes) return;
     const report: any[] = [];
     const correctAnswers = displayedQuizzes.reduce((count, quiz, index) => {
@@ -298,10 +272,31 @@ export default function LessonCompleteQuiz({ lessonId, topicSlug, subjectSlug, l
           variant: "destructive",
         });
     }
-  };
+  }, [displayedQuizzes, userAnswers, lessonId, user, firestore, subjectSlug, topicSlug, lessonSlug, toast]);
+
+  // Store the latest version of handleSubmitQuiz in a ref
+  useEffect(() => {
+    handleSubmitQuizRef.current = handleSubmitQuiz;
+  }, [handleSubmitQuiz]);
+
+  const handleNextQuestion = useCallback(() => {
+    if (displayedQuizzes && currentQuestionIndex < displayedQuizzes.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } else {
+      handleSubmitQuiz();
+    }
+  }, [displayedQuizzes, currentQuestionIndex, handleSubmitQuiz]);
+  
+  const handleAnswerChange = useCallback((value: any) => {
+    if (submitted) return;
+    const newAnswers = [...userAnswers];
+    newAnswers[currentQuestionIndex] = value;
+    setUserAnswers(newAnswers);
+  }, [submitted, userAnswers, currentQuestionIndex]);
 
   const resetQuiz = () => {
     setCurrentQuestionIndex(0);
+    hasInitializedAnswers.current = false; // Reset the flag so answers can be re-initialized
     if(displayedQuizzes) {
       setUserAnswers(new Array(displayedQuizzes.length).fill(""));
     }
@@ -309,6 +304,45 @@ export default function LessonCompleteQuiz({ lessonId, topicSlug, subjectSlug, l
     setScore(0);
     setShowQuiz(true);
   }
+
+  // Timer effect - don't include handleNextQuestion in deps to avoid infinite loops
+  useEffect(() => {
+    const currentQuiz = displayedQuizzes?.[currentQuestionIndex];
+    if (!currentQuiz || !showQuiz || submitted) return;
+    // Resolve visual/rapid to base behaviors
+    const resolvedSelectedStyle = selectedStyle === 'visual' ? 'image-first' : selectedStyle;
+    // Default per-question time based on style: rapid => 10s, timed => 20s, compact => 35s, classic => 45s
+    const perQuestionTime = selectedStyle === 'rapid' ? 10 : resolvedSelectedStyle === 'timed' ? 20 : resolvedSelectedStyle === 'compact' ? 35 : 45;
+    if (resolvedSelectedStyle === 'timed' || selectedStyle === 'rapid') {
+      setTimeLeft(perQuestionTime);
+      if (timerRef.current) { window.clearInterval(timerRef.current); }
+      timerRef.current = window.setInterval(() => {
+        setTimeLeft((t) => {
+          if (t <= 1) {
+            // Move to next question automatically if not submitted
+            (timerRef.current) && window.clearInterval(timerRef.current);
+            // Use state update to trigger next question without calling handleNextQuestion
+            setCurrentQuestionIndex((prev) => {
+              if (displayedQuizzes && prev < displayedQuizzes.length - 1) {
+                return prev + 1;
+              } else {
+                // Last question - submit using ref
+                if (handleSubmitQuizRef.current) {
+                  handleSubmitQuizRef.current();
+                }
+                return prev;
+              }
+            });
+            return 0;
+          }
+          return t - 1;
+        });
+      }, 1000);
+    }
+    return () => {
+      if (timerRef.current) { window.clearInterval(timerRef.current); }
+    };
+  }, [selectedStyle, currentQuestionIndex, displayedQuizzes, showQuiz, submitted]);
 
   const renderQuizComponent = (quiz: Quiz, index: number, style?: QuizStyle) => {
     const commonProps = {
@@ -374,8 +408,6 @@ export default function LessonCompleteQuiz({ lessonId, topicSlug, subjectSlug, l
       </Card>
     );
   }
-
-  const displayedQuizzes = (localQuizzes && localQuizzes.length > 0) ? localQuizzes : (quizzes && quizzes.length > 0) ? quizzes : defaultQuizzes;
   
   if (isCompleted && !showQuiz) {
      return (
