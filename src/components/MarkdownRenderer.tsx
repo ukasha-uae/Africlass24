@@ -3,6 +3,32 @@ import katex from 'katex';
 import 'katex/dist/katex.min.css';
 import VennDiagram from './VennDiagram';
 import GeometryDiagram from './GeometryDiagram';
+import EnhancedAnimationPlayer from './EnhancedAnimationPlayer';
+import { 
+  MeanCalculatorAnimation,
+  MedianFinderAnimation,
+  ModeCounterAnimation,
+  RangeVisualizerAnimation,
+  ComparisonChartAnimation,
+  GroupedDataMedianAnimation,
+  MeasureDecisionTree,
+  MeasuresComparisonTable,
+  QuickReferenceTable
+} from './StatisticsAnimations';
+import {
+  TwoCoinTossAnimation,
+  TreeDiagramAnimation,
+  ProbabilityLawsTable,
+  MutuallyExclusiveVennDiagram
+} from './ProbabilityAnimations';
+import { 
+  translationSteps, 
+  translationFrames, 
+  reflectionSteps, 
+  reflectionFrames,
+  rotationSteps,
+  rotationFrames 
+} from '@/lib/transformationAnimations';
 
 interface MarkdownRendererProps {
   content: string;
@@ -72,6 +98,40 @@ export default function MarkdownRenderer({ content, id, className }: MarkdownRen
           }
         }
 
+        // Check for Animation block
+        if (paragraph.trim().startsWith('```animation:')) {
+          try {
+            const animationType = paragraph.match(/```animation:(\w+)/)?.[1];
+            
+            let steps, frames;
+            switch (animationType) {
+              case 'translation':
+                steps = translationSteps;
+                frames = translationFrames;
+                break;
+              case 'reflection':
+                steps = reflectionSteps;
+                frames = reflectionFrames;
+                break;
+              case 'rotation':
+                steps = rotationSteps;
+                frames = rotationFrames;
+                break;
+              default:
+                return <pre key={pIndex} className="text-red-500">Unknown animation type: {animationType}</pre>;
+            }
+            
+            return (
+              <div key={pIndex} className="my-8">
+                <EnhancedAnimationPlayer steps={steps} frames={frames} autoPlay={false} />
+              </div>
+            );
+          } catch (e) {
+            console.error("Error rendering animation:", e);
+            return <pre key={pIndex} className="text-red-500">Error rendering animation</pre>;
+          }
+        }
+
         // Check for Geometry Diagram code block
         if (paragraph.trim().startsWith('```geometry')) {
           try {
@@ -116,6 +176,149 @@ export default function MarkdownRenderer({ content, id, className }: MarkdownRen
           } catch (e) {
             console.error("Error parsing Geometry diagram JSON:", e);
             return <pre key={pIndex} className="text-red-500">Error rendering geometry diagram</pre>;
+          }
+        }
+
+        // Check for Statistics Animation code blocks (without colon)
+        if (paragraph.trim().startsWith('```animation') && !paragraph.trim().startsWith('```animation:')) {
+          try {
+            // More robust regex to extract JSON content between backticks
+            const jsonContent = paragraph
+              .replace(/^```animation\s*\n?/, '') // Remove opening backticks
+              .replace(/\n?```\s*$/, '')          // Remove closing backticks
+              .trim();
+            
+            const props = JSON.parse(jsonContent);
+              
+              // Determine which animation type to render
+              switch (props.type) {
+                case 'number-line-mean':
+                case 'mean-calculator':
+                  return (
+                    <div key={pIndex} className="my-6">
+                      <MeanCalculatorAnimation data={props.data} showCalculation={props.showCalculation} />
+                    </div>
+                  );
+                
+                case 'missing-value':
+                  // For missing value, we'll calculate it first
+                  const totalSum = props.mean * props.totalCount;
+                  const knownSum = props.data.reduce((a: number, b: number) => a + b, 0);
+                  const missingValue = totalSum - knownSum;
+                  return (
+                    <div key={pIndex} className="my-6">
+                      <MeanCalculatorAnimation data={[...props.data, missingValue]} showCalculation={true} />
+                    </div>
+                  );
+                
+                case 'median-finder':
+                  return (
+                    <div key={pIndex} className="my-6">
+                      <MedianFinderAnimation data={props.data} />
+                    </div>
+                  );
+                
+                case 'mode-counter':
+                  return (
+                    <div key={pIndex} className="my-6">
+                      <ModeCounterAnimation data={props.data} />
+                    </div>
+                  );
+                
+                case 'range-visualizer':
+                  return (
+                    <div key={pIndex} className="my-6">
+                      <RangeVisualizerAnimation data={props.data} unit={props.unit || ''} />
+                    </div>
+                  );
+                
+                case 'comparison-chart':
+                  return (
+                    <div key={pIndex} className="my-6">
+                      <ComparisonChartAnimation 
+                        measures={props.measures} 
+                        data={props.data}
+                        outlier={props.outlier}
+                      />
+                    </div>
+                  );
+                
+                case 'grouped-median':
+                  return (
+                    <div key={pIndex} className="my-6">
+                      <GroupedDataMedianAnimation 
+                        classIntervals={props.classIntervals}
+                        frequencies={props.frequencies}
+                      />
+                    </div>
+                  );
+                
+                case 'decision-tree':
+                  return (
+                    <div key={pIndex} className="my-6">
+                      <MeasureDecisionTree />
+                    </div>
+                  );
+                
+                case 'comparison-table':
+                  return (
+                    <div key={pIndex} className="my-6">
+                      <MeasuresComparisonTable />
+                    </div>
+                  );
+                
+                case 'quick-reference':
+                  return (
+                    <div key={pIndex} className="my-6">
+                      <QuickReferenceTable />
+                    </div>
+                  );
+                
+                case 'two-coins':
+                  return (
+                    <div key={pIndex} className="my-6">
+                      <TwoCoinTossAnimation />
+                    </div>
+                  );
+                
+                case 'tree-diagram':
+                  return (
+                    <div key={pIndex} className="my-6">
+                      <TreeDiagramAnimation scenario={props.scenario || 'without-replacement'} />
+                    </div>
+                  );
+                
+                case 'probability-laws':
+                  return (
+                    <div key={pIndex} className="my-6">
+                      <ProbabilityLawsTable />
+                    </div>
+                  );
+                
+                case 'venn-mutually-exclusive':
+                  return (
+                    <div key={pIndex} className="my-6">
+                      <MutuallyExclusiveVennDiagram />
+                    </div>
+                  );
+                
+                case 'bar-chart':
+                case 'line-graph':
+                case 'progress-tracker':
+                  // These can be rendered using geometry diagram for now
+                  return (
+                    <div key={pIndex} className="my-6 flex justify-center">
+                      <GeometryDiagram {...props} />
+                    </div>
+                  );
+                
+                default:
+                  console.warn('Unknown animation type:', props.type);
+                  return <pre key={pIndex} className="text-yellow-500">Unknown animation type: {props.type}</pre>;
+              }
+          } catch (e) {
+            console.error("Error parsing animation JSON:", e, paragraph);
+            return <pre key={pIndex} className="text-red-500">Error rendering animation: {String(e)}</pre>;
           }
         }
 

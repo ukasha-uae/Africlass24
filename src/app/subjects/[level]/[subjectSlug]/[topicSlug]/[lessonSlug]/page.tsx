@@ -50,6 +50,7 @@ import { useToast } from '@/hooks/use-toast';
 
 export default function LessonPage() {
   const params = useParams();
+  const level = params.level as string;
   const subjectSlug = params.subjectSlug as string;
   const topicSlug = params.topicSlug as string;
   const lessonSlug = params.lessonSlug as string;
@@ -362,7 +363,7 @@ export default function LessonPage() {
   return (
     <div className="container mx-auto p-4 md:p-6 lg:p-8">
       <Link
-        href={`/subjects/${params.level}/${subjectSlug}`}
+        href={`/subjects/${level}/${subjectSlug}`}
         className="inline-flex items-center text-primary mb-4 hover:underline"
       >
         <ArrowLeft className="h-4 w-4 mr-2" />
@@ -408,7 +409,7 @@ export default function LessonPage() {
           {lesson.objectives && lesson.objectives.length > 0 && (
             <LessonVisual type="objective" title="🎯 Lesson Objectives" icon="target">
               <ul className="space-y-2">
-                {lesson.objectives.map((obj, i) => (
+                {lesson.objectives.map((obj: string, i: number) => (
                   <li key={i} className="flex items-start gap-2">
                     <span className="text-primary font-bold">•</span>
                     <span>{obj}</span>
@@ -443,7 +444,7 @@ export default function LessonPage() {
               </CardHeader>
               <CardContent>
                 <Accordion type="single" collapsible className="w-full">
-                  {lesson.keyConcepts.map((concept, i) => {
+                  {lesson.keyConcepts.map((concept: any, i: number) => {
                     const conceptId = `${lesson.id}-concept-${i}`;
                     return (
                       <AccordionItem key={i} value={`concept-${i}`}>
@@ -525,7 +526,7 @@ export default function LessonPage() {
                         <ReadAloud textId={`${lesson.id}-pastquestions`} />
                     </CardHeader>
                     <CardContent id={`${lesson.id}-pastquestions`} className="text-foreground">
-                        {lesson.pastQuestions.map((pq, i) => (
+                        {lesson.pastQuestions.map((pq: any, i: number) => (
                             <div key={i} className="mb-4 p-4 rounded-lg bg-background/50 border">
                                 <div className="font-semibold text-amber-900 dark:text-amber-100">
                                   <MarkdownRenderer content={pq.question} />

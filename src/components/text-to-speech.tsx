@@ -14,6 +14,29 @@ interface TextToSpeechProps {
   autoPlay?: boolean;
 }
 
+// Sanitize text for clean speech output
+function sanitizeForSpeech(text: string): string {
+  return text
+    // Remove markdown formatting
+    .replace(/\*\*(.+?)\*\*/g, '$1') // Bold
+    .replace(/\*(.+?)\*/g, '$1') // Italic
+    .replace(/_(.+?)_/g, '$1') // Underscore italic
+    .replace(/~~(.+?)~~/g, '$1') // Strikethrough
+    .replace(/`(.+?)`/g, '$1') // Inline code
+    .replace(/#{1,6}\s+/g, '') // Headers
+    // Convert list markers to natural pauses
+    .replace(/^\s*[-*+]\s+/gm, '') // Bullet points
+    .replace(/^\s*\d+\.\s+/gm, '') // Numbered lists
+    // Clean special characters
+    .replace(/[_~`|]/g, '') // Remaining special chars
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // Links [text](url) -> text
+    // Normalize whitespace
+    .replace(/\n\n+/g, '. ') // Multiple newlines to sentence breaks
+    .replace(/\n/g, ', ') // Single newlines to pauses
+    .replace(/\s+/g, ' ') // Multiple spaces to single
+    .trim();
+}
+
 export function TextToSpeech({
   textToSpeak,
   onSentenceChange,
@@ -60,8 +83,11 @@ export function TextToSpeech({
     // Cancel any ongoing speech
     window.speechSynthesis.cancel();
 
+    // Sanitize text before speaking
+    const cleanText = sanitizeForSpeech(textToSpeak);
+
     // Split text into sentences for better tracking
-    const sentences = textToSpeak.match(/[^.!?]+[.!?]+/g) || [textToSpeak];
+    const sentences = cleanText.match(/[^.!?]+[.!?]+/g) || [cleanText];
     currentSentenceRef.current = 0;
 
     const speakSentence = (index: number) => {

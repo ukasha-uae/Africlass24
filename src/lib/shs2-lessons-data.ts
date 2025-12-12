@@ -4733,6 +4733,9 @@ Add the vector to each vertex:
 • (3, 2) → (3 + 4, 2 + (-3)) = (7, -1)
 • (2, 4) → (2 + 4, 4 + (-3)) = (6, 1)
 
+` + '```animation:translation' + `
+` + '```' + `
+
 **Properties:**
 • Shape and size remain unchanged
 • Orientation remains the same
@@ -4802,6 +4805,9 @@ $$\\begin{pmatrix} 7 - 2 \\\\ 3 - 5 \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ -2 
     { "text": "(Mirror Line)", "x": 195, "y": 90, "color": "#9333ea" }
   ]
 }
+` + '```' + `
+
+` + '```animation:reflection' + `
 ` + '```' + `
 
 **Common Mirror Lines:
@@ -4908,6 +4914,9 @@ You need THREE pieces of information:
     { "text": "90° CCW", "x": 200, "y": 100, "color": "#f59e0b" }
   ]
 }
+` + '```' + `
+
+` + '```animation:rotation' + `
 ` + '```' + `
 
 **1. 90° counterclockwise:
@@ -5626,6 +5635,2231 @@ Always specify completely:
 ✓ State transformations precisely with all details
 
 Transformation geometry connects algebra with visual reasoning—master it for WASSCE success!`
+  },
+
+  // Lesson 10: Statistics (Mean, Median, Mode, Range)
+  {
+    id: 'cm_shs2_data_1',
+    slug: 'shs2-statistics-measures',
+    title: 'Statistics (Mean, Median, Mode, Range)',
+    objectives: [
+      'Understand what measures of central tendency and dispersion are',
+      'Calculate the mean (average) of a set of numbers',
+      'Find the median (middle value) of ordered data',
+      'Identify the mode (most frequent value) in a dataset',
+      'Calculate the range of a dataset',
+      'Apply statistical measures to grouped data',
+      'Compare and choose the appropriate measure for different situations',
+      'Solve real-world problems using statistical measures',
+      'Interpret statistical data in context'
+    ],
+    introduction: `**Statistics** is the science of collecting, organizing, analyzing, and interpreting data. At the SHS level, we focus on **measures of central tendency** (mean, median, mode) and **measures of dispersion** (range), which help us understand and summarize large amounts of information.
+
+**Why Are These Measures Important?**
+
+**In Ghana:**
+• **National Planning:** Ghana Statistical Service uses these to track population, employment, and economic indicators
+• **Health:** The Ghana Health Service analyzes disease patterns and vaccination coverage
+• **Education:** GES uses statistics to evaluate school performance and plan resources
+• **Agriculture:** Farmers use averages to predict crop yields and plan planting
+• **Business:** Companies analyze sales data, customer behavior, and market trends
+
+**In WASSCE:**
+Statistics questions appear in **EVERY** Core Maths paper. You must be able to:
+• Calculate mean, median, mode, and range quickly and accurately
+• Work with both ungrouped and grouped data
+• Choose the appropriate measure for a given situation
+• Interpret statistical results in real-world contexts
+
+**The Four Key Measures:**
+
+**1. Mean (Average):** The sum of all values divided by the number of values. Best represents the "center" when data is evenly distributed.
+
+**2. Median (Middle):** The middle value when data is arranged in order. Best when there are extreme values (outliers).
+
+**3. Mode (Most Common):** The value that appears most frequently. Best for categorical data or finding the most popular option.
+
+**4. Range (Spread):** The difference between the highest and lowest values. Shows how spread out or consistent the data is.
+
+---
+
+\`\`\`animation
+{"type": "quick-reference"}
+\`\`\`
+
+---
+
+**Think of it this way:**
+If you're analyzing student exam scores, the **mean** tells you the overall performance, the **median** shows the typical score, the **mode** reveals the most common score, and the **range** indicates how varied the performance was.
+
+Let's master these essential statistical tools!`,
+    keyConcepts: [
+      {
+        title: '1. The Mean (Average) - Detailed Study',
+        content: `**Definition:** The mean is the sum of all values divided by the number of values. It's the most commonly used measure of central tendency.
+
+**Formula:**
+$$\\text{Mean} (\\bar{x}) = \\frac{\\sum x}{n} = \\frac{x_1 + x_2 + x_3 + ... + x_n}{n}$$
+
+Where:
+• $\\bar{x}$ (pronounced "x-bar") = the mean
+• $\\sum x$ (sigma x) = sum of all values
+• $n$ = number of values
+
+---
+
+**Example 1: Simple Mean Calculation**
+
+A student scored the following marks in 6 tests: **72, 85, 68, 90, 78, 81**
+
+Find the mean score.
+
+**Solution:**
+
+**Step-by-Step Method:**
+
+\`\`\`geometry
+{
+  "type": "table",
+  "height": 150,
+  "tableData": {
+    "headers": ["Test", "1", "2", "3", "4", "5", "6", "Total"],
+    "rows": [
+      ["Score", "72", "85", "68", "90", "78", "81", "474"]
+    ]
+  }
+}
+\`\`\`
+
+Step 1: Add all values
+$$\\sum x = 72 + 85 + 68 + 90 + 78 + 81 = 474$$
+
+Step 2: Count the number of values
+$$n = 6$$
+
+Step 3: Apply mean formula
+$$\\bar{x} = \\frac{\\sum x}{n} = \\frac{474}{6} = 79$$
+
+**Answer: Mean score = 79 marks**
+
+**Interpretation:** On average, the student scored 79 marks across all 6 tests. This means if all scores were equal, each would be 79.
+
+\`\`\`animation
+{
+  "type": "mean-calculator",
+  "data": [72, 85, 68, 90, 78, 81],
+  "showCalculation": true,
+  "title": "Step-by-Step Mean Calculation"
+}
+\`\`\`
+
+---
+
+**Example 2: Finding a Missing Value**
+
+The mean of five numbers is 24. Four of the numbers are 20, 22, 28, and 25. Find the fifth number.
+
+**Solution:**
+Step 1: Use the mean formula
+$$\\text{Mean} = \\frac{\\text{Sum of all values}}{n}$$
+
+Step 2: Substitute known values
+$$24 = \\frac{\\text{Sum}}{5}$$
+
+Step 3: Find the total sum
+$$\\text{Sum} = 24 \\times 5 = 120$$
+
+Step 4: Add the four known numbers
+$$20 + 22 + 28 + 25 = 95$$
+
+Step 5: Find the missing number
+$$\\text{Missing number} = 120 - 95 = 25$$
+
+**Answer: The fifth number is 25**
+
+**Verification:** $(20 + 22 + 28 + 25 + 25) \\div 5 = 120 \\div 5 = 24$ ✓
+
+\`\`\`animation
+{
+  "type": "missing-value",
+  "data": [20, 22, 28, 25],
+  "mean": 24,
+  "totalCount": 5,
+  "title": "Finding the Missing Number"
+}
+\`\`\`
+
+**⚠️ Common Mistakes:**
+❌ Forgetting to multiply: $24 = \\frac{\\text{Sum}}{5}$ → $\\text{Sum} = 24 \\times 5$
+❌ Not subtracting known values from total
+✓ Always verify your answer by calculating the mean again
+
+**💡 WASSCE Tip:** "Finding missing value" questions appear frequently. Remember:
+1. Find total sum using: Sum = Mean × n
+2. Subtract known values
+3. Always verify!
+
+---
+
+**Example 3: Mean of Grouped Data (Frequency Table)**
+
+The table shows the distribution of ages in a youth club:
+
+\`\`\`geometry
+{
+  "type": "table",
+  "height": 180,
+  "tableData": {
+    "headers": ["Age (x)", "15", "16", "17", "18", "19"],
+    "rows": [
+      ["Frequency (f)", "5", "8", "12", "7", "3"]
+    ]
+  }
+}
+\`\`\`
+
+Calculate the mean age.
+
+**Solution:**
+
+**Formula for grouped data:** $\\bar{x} = \\frac{\\sum fx}{\\sum f}$
+
+Step 1: Create calculation table and multiply each value by its frequency (fx)
+
+\`\`\`geometry
+{
+  "type": "table",
+  "height": 220,
+  "tableData": {
+    "headers": ["Age (x)", "Frequency (f)", "fx"],
+    "rows": [
+      ["15", "5", "75"],
+      ["16", "8", "128"],
+      ["17", "12", "204"],
+      ["18", "7", "126"],
+      ["19", "3", "57"],
+      ["Total", "35", "590"]
+    ]
+  }
+}
+\`\`\`
+
+Step 2: Apply formula
+$$\\bar{x} = \\frac{\\sum fx}{\\sum f} = \\frac{590}{35} = 16.857... \\approx 16.9 \\text{ years}$$
+
+**Answer: Mean age = 16.9 years**
+
+\`\`\`animation
+{
+  "type": "mean-calculator",
+  "data": [15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 19, 19, 19],
+  "showCalculation": true,
+  "title": "Mean Age Calculation (Youth Club)"
+}
+\`\`\`
+
+**💡 Key Point:** For frequency tables, always multiply x by f before summing!
+
+---
+
+**Properties of the Mean:**
+• Uses **all** values in the dataset
+• Can be affected by extreme values (outliers)
+• May not be an actual value in the dataset
+• Most useful for numerical data
+• Sensitive to changes in any value
+• Sum of deviations from mean = 0
+
+**Important Property - Effect of Changes:**
+• If you add k to each value → mean increases by k
+• If you multiply each value by k → mean multiplies by k
+• If you add one value equal to mean → mean stays same
+
+**Calculator Tip for WASSCE:**
+Most scientific calculators have STAT mode:
+1. Press MODE → STAT (or SD)
+2. Enter values
+3. Press SHIFT → 1 (STAT) → 5 (VAR) → 2 (x̄)
+
+**When to Use Mean:**
+✓ Data is evenly distributed
+✓ No extreme outliers
+✓ Need to represent all data equally
+✓ Performing further statistical analysis
+✓ Numerical continuous data
+
+**When NOT to Use Mean:**
+✗ Data has extreme outliers (use median instead)
+✗ Categorical data (use mode instead)
+✗ Heavily skewed distribution
+✗ Income/wealth data (usually has outliers)`
+      },
+      {
+        title: '2. The Median (Middle Value) - Advanced Analysis',
+        content: `**Definition:** The median is the middle value when data is arranged in ascending or descending order. It divides the dataset into two equal halves.
+
+**Why the Median Matters:**
+Unlike the mean, the median is **resistant to outliers**. This makes it more reliable for skewed data or datasets with extreme values.
+
+---
+
+**Finding the Median:**
+
+**Rule 1: For ODD number of values (n is odd):**
+$$\\text{Median position} = \\frac{n + 1}{2}$$
+
+**Rule 2: For EVEN number of values (n is even):**
+$$\\text{Median} = \\text{Average of } \\frac{n}{2}^{\\text{th}} \\text{ and } \\left(\\frac{n}{2} + 1\\right)^{\\text{th}} \\text{ values}$$
+
+**Visual Guide:**
+
+\`\`\`geometry
+{
+  "type": "table",
+  "height": 200,
+  "tableData": {
+    "headers": ["n", "Type", "Position Formula", "Example"],
+    "rows": [
+      ["7", "Odd", "(7+1)÷2 = 4th", "Pick 4th value"],
+      ["8", "Even", "4th and 5th", "Average of 4th and 5th"],
+      ["11", "Odd", "(11+1)÷2 = 6th", "Pick 6th value"],
+      ["12", "Even", "6th and 7th", "Average of 6th and 7th"]
+    ]
+  }
+}
+\`\`\`
+
+**🔑 Key Step:** ALWAYS arrange data in order first!
+
+---
+
+**Example 1: Odd Number of Values**
+
+Find the median of: **23, 17, 31, 19, 25, 28, 20**
+
+**Solution:**
+
+**Step 1: Arrange in ascending order** ⚠️ CRUCIAL STEP!
+$$17, 19, 20, 23, 25, 28, 31$$
+
+**Step 2: Count values**
+$$n = 7 \\text{ (odd number)}$$
+
+**Step 3: Find middle position**
+$$\\text{Position} = \\frac{n + 1}{2} = \\frac{7 + 1}{2} = \\frac{8}{2} = 4^{\\text{th}} \\text{ value}$$
+
+**Step 4: Identify the 4th value**
+
+\`\`\`geometry
+{
+  "type": "table",
+  "height": 150,
+  "tableData": {
+    "headers": ["Position", "1st", "2nd", "3rd", "4th ✓", "5th", "6th", "7th"],
+    "rows": [
+      ["Value", "17", "19", "20", "23", "25", "28", "31"]
+    ]
+  }
+}
+\`\`\`
+
+$$17, 19, 20, \\boxed{23}, 25, 28, 31$$
+← 3 values | Middle | 3 values →
+
+**Answer: Median = 23**
+
+\`\`\`animation
+{
+  "type": "median-finder",
+  "data": [23, 17, 31, 19, 25, 28, 20],
+  "title": "Finding Median (Odd Count)"
+}
+\`\`\`
+
+---
+
+**Example 2: Even Number of Values**
+
+Find the median of: **48, 52, 45, 58, 50, 55**
+
+**Solution:**
+Step 1: Arrange in ascending order
+$$45, 48, 50, 52, 55, 58$$
+
+Step 2: Count values
+$$n = 6 \\text{ (even)}$$
+
+Step 3: Find the two middle positions
+$$\\text{Positions: } \\frac{6}{2} = 3^{\\text{rd}} \\text{ and } 4^{\\text{th}} \\text{ values}$$
+
+Step 4: Identify the 3rd and 4th values
+$$45, 48, \\boxed{50, 52}, 55, 58$$
+
+Step 5: Calculate the mean of the two middle values
+$$\\text{Median} = \\frac{50 + 52}{2} = \\frac{102}{2} = 51$$
+
+**Answer: Median = 51**
+
+\`\`\`animation
+{
+  "type": "median-finder",
+  "data": [48, 52, 45, 58, 50, 55],
+  "title": "Finding Median (Even Count)"
+}
+\`\`\`
+
+---
+
+**Example 3: Median vs Mean with Outliers**
+
+**Scenario:** Five people's monthly income (GH₵):
+**1,500, 1,800, 1,600, 1,700, 15,000** (one person is the company owner)
+
+Calculate both mean and median. Which is more representative?
+
+**Mean Calculation:**
+$$\\bar{x} = \\frac{1500 + 1800 + 1600 + 1700 + 15000}{5} = \\frac{21600}{5} = 4,320$$
+
+**Median Calculation:**
+Arrange: 1500, 1600, 1700, 1800, 15000
+Middle value (3rd): 1,700
+
+**Analysis:**
+• **Mean = GH₵4,320** - Misleading! Most people earn around GH₵1,500-1,800
+• **Median = GH₵1,700** - More representative of the typical worker's income
+
+**Conclusion:** Use median when outliers are present
+
+---
+
+**Example 4: Median of Grouped Data (Advanced)**
+
+For grouped data with class intervals, we use:
+
+$$\\text{Median} = L + \\left(\\frac{\\frac{n}{2} - F}{f}\\right) \\times h$$
+
+Where:
+• $L$ = Lower boundary of median class
+• $n$ = Total frequency
+• $F$ = Cumulative frequency before median class
+• $f$ = Frequency of median class
+• $h$ = Class width
+
+**Problem:** Find the median from this grouped data:
+
+| Class Interval | 10-19 | 20-29 | 30-39 | 40-49 | 50-59 |
+|----------------|-------|-------|-------|-------|-------|
+| Frequency | 4 | 8 | 15 | 10 | 3 |
+
+**Solution:**
+Step 1: Find cumulative frequencies
+
+| Class | Frequency | Cumulative Frequency |
+|-------|-----------|---------------------|
+| 10-19 | 4 | 4 |
+| 20-29 | 8 | 12 |
+| 30-39 | 15 | 27 |
+| 40-49 | 10 | 37 |
+| 50-59 | 3 | 40 |
+
+Step 2: Find $\\frac{n}{2} = \\frac{40}{2} = 20$
+
+The median class is **30-39** (cumulative frequency 27 contains the 20th value)
+
+Step 3: Apply formula
+• $L = 29.5$ (lower boundary)
+• $F = 12$ (cumulative frequency before median class)
+• $f = 15$ (frequency of median class)
+• $h = 10$ (class width)
+
+$$\\text{Median} = 29.5 + \\left(\\frac{20 - 12}{15}\\right) \\times 10$$
+$$= 29.5 + \\left(\\frac{8}{15}\\right) \\times 10$$
+$$= 29.5 + 5.33 = 34.83$$
+
+**Answer: Median ≈ 34.8**
+
+---
+
+**When to Use Median:**
+✓ Data has outliers or extreme values
+✓ Skewed distributions
+✓ Income/salary data
+✓ House prices
+✓ When you want the "typical" middle value`
+      },
+      {
+        title: '3. The Mode (Most Frequent Value)',
+        content: `**Definition:** The mode is the value that appears most frequently in a dataset.
+
+**Key Characteristics:**
+• A dataset can have **one mode** (unimodal)
+• A dataset can have **two modes** (bimodal)
+• A dataset can have **multiple modes** (multimodal)
+• A dataset can have **no mode** (if all values appear equally)
+• The mode is the only measure that can be used with categorical data
+
+---
+
+**Example 1: Single Mode (Unimodal)**
+
+Find the mode of: **12, 15, 14, 15, 17, 15, 18, 14, 15, 19**
+
+**Solution:**
+
+**Method: Create a frequency count**
+
+\`\`\`geometry
+{
+  "type": "table",
+  "height": 220,
+  "tableData": {
+    "headers": ["Value", "Tally", "Frequency"],
+    "rows": [
+      ["12", "|", "1"],
+      ["14", "||", "2"],
+      ["15", "|||| ✓", "4 ← Highest"],
+      ["17", "|", "1"],
+      ["18", "|", "1"],
+      ["19", "|", "1"]
+    ]
+  }
+}
+\`\`\`
+
+**Answer: Mode = 15** (appears 4 times)
+
+\`\`\`animation
+{
+  "type": "mode-counter",
+  "data": [12, 15, 14, 15, 17, 15, 18, 14, 15, 19],
+  "title": "Finding the Mode"
+}
+\`\`\`
+
+**💡 Quick Method:** Cross out values as you count to avoid missing any!
+
+---
+
+**Example 2: Two Modes (Bimodal)**
+
+Find the mode of: **8, 10, 12, 10, 15, 12, 18, 20**
+
+**Solution:**
+• 8: 1 time
+• 10: **2 times** ← Most frequent
+• 12: **2 times** ← Most frequent
+• 15: 1 time
+• 18: 1 time
+• 20: 1 time
+
+Both 10 and 12 appear twice (most frequently)
+
+**Answer: Modes = 10 and 12 (bimodal distribution)**
+
+\`\`\`animation
+{
+  "type": "mode-counter",
+  "data": [8, 10, 12, 10, 15, 12, 18, 20],
+  "title": "Bimodal Distribution"
+}
+\`\`\`
+
+---
+
+**Example 3: No Mode**
+
+Find the mode of: **5, 7, 9, 11, 13, 15**
+
+**Solution:**
+Each value appears exactly once. No value is more frequent than others.
+
+**Answer: No mode**
+
+---
+
+**Example 4: Mode with Frequency Table (Business Application)**
+
+A shoe shop in Accra recorded weekly sales:
+
+\`\`\`geometry
+{
+  "type": "table",
+  "height": 200,
+  "tableData": {
+    "headers": ["Size", "6", "7", "8 ★", "9", "10", "11"],
+    "rows": [
+      ["Pairs Sold", "8", "15", "23", "18", "12", "6"]
+    ]
+  }
+}
+\`\`\`
+
+What size should the shop stock most?
+
+**Solution:**
+Identify highest frequency:
+Size 8 has the highest frequency (23 pairs sold)
+
+**Answer: Modal size = 8**
+
+**Business Decision:**
+✓ Stock 30% of inventory in size 8
+✓ Ensure size 8 never runs out
+✓ Order more size 8 from suppliers
+
+**Why mode matters here:** Mode shows customer demand better than mean (you can't sell size 8.5 shoes!)
+
+---
+
+**Example 5: Modal Class (Grouped Data)**
+
+For grouped data, we identify the **modal class** (the class with highest frequency).
+
+| Class Interval | 0-9 | 10-19 | 20-29 | 30-39 | 40-49 |
+|----------------|-----|-------|-------|-------|-------|
+| Frequency | 5 | 12 | 18 | 10 | 5 |
+
+**Solution:**
+The class 20-29 has the highest frequency (18)
+
+**Answer: Modal class = 20-29**
+
+To find an estimated mode value within the modal class:
+
+$$\\text{Mode} = L + \\left(\\frac{f_1 - f_0}{2f_1 - f_0 - f_2}\\right) \\times h$$
+
+Where:
+• $L$ = Lower boundary of modal class = 19.5
+• $f_1$ = Frequency of modal class = 18
+• $f_0$ = Frequency of class before = 12
+• $f_2$ = Frequency of class after = 10
+• $h$ = Class width = 10
+
+$$\\text{Mode} = 19.5 + \\left(\\frac{18 - 12}{2(18) - 12 - 10}\\right) \\times 10$$
+$$= 19.5 + \\left(\\frac{6}{36 - 22}\\right) \\times 10$$
+$$= 19.5 + \\left(\\frac{6}{14}\\right) \\times 10$$
+$$= 19.5 + 4.29 = 23.79$$
+
+**Estimated Mode ≈ 23.8**
+
+---
+
+**Example 6: Mode with Categorical Data**
+
+Students chose their favorite subject:
+
+| Subject | Math | English | Science | History |
+|---------|------|---------|---------|---------|
+| Students | 18 | 12 | 25 | 10 |
+
+**Answer: Modal subject = Science (most popular with 25 students)**
+
+---
+
+**When to Use Mode:**
+✓ Categorical data (colors, names, categories)
+✓ Finding the most popular/common item
+✓ Business decisions (inventory, production)
+✓ Discrete data with repeated values
+✓ Shoe sizes, clothing sizes
+✓ Survey responses
+
+**Limitations of Mode:**
+• May not exist
+• May not be unique (multiple modes)
+• Doesn't use all data values
+• Not suitable for continuous numerical data
+• Can be affected by how data is grouped`
+      },
+      {
+        title: '4. The Range (Measure of Dispersion)',
+        content: `**Definition:** The range is the difference between the highest and lowest values in a dataset. It's the simplest measure of **dispersion** (spread).
+
+**Formula:**
+$$\\text{Range} = \\text{Maximum Value} - \\text{Minimum Value}$$
+
+**What Range Tells Us:**
+• **Large range:** Data is spread out, highly variable, inconsistent
+• **Small range:** Data is clustered together, consistent, uniform
+
+---
+
+**Example 1: Simple Range Calculation**
+
+Find the range of these daily temperatures (°C): **28, 32, 25, 35, 29, 31, 26**
+
+**Solution:**
+Step 1: Identify maximum and minimum
+$$\\text{Maximum} = 35°C$$
+$$\\text{Minimum} = 25°C$$
+
+Step 2: Calculate range
+$$\\text{Range} = 35 - 25 = 10°C$$
+
+**Answer: Range = 10°C**
+
+**Interpretation:** Temperature varied by 10 degrees during the period.
+
+\`\`\`animation
+{
+  "type": "range-visualizer",
+  "data": [28, 32, 25, 35, 29, 31, 26],
+  "title": "Visualizing the Range",
+  "unit": "°C"
+}
+\`\`\`
+
+---
+
+**Example 2: Comparing Consistency Using Range**
+
+Two students took 6 tests each. Who is more consistent?
+
+**Student A:** 72, 75, 73, 74, 76, 74
+**Student B:** 60, 85, 65, 90, 70, 50
+
+**Solution:**
+
+\`\`\`geometry
+{
+  "type": "table",
+  "height": 220,
+  "tableData": {
+    "headers": ["Student", "Test Scores", "Mean", "Range", "Consistency"],
+    "rows": [
+      ["A", "72,75,73,74,76,74", "74", "4", "High ✓"],
+      ["B", "60,85,65,90,70,50", "70", "40", "Low"]
+    ]
+  }
+}
+\`\`\`
+
+**(a) Range Calculation:**
+
+**Student A:**
+Max = 76, Min = 72
+Range = 76 - 72 = **4 marks**
+
+**Student B:**
+Max = 90, Min = 50
+Range = 90 - 50 = **40 marks**
+
+**(b) Mean Calculation:**
+
+**Student A:** Mean = 444 ÷ 6 = **74 marks**
+**Student B:** Mean = 420 ÷ 6 = **70 marks**
+
+**(c) Consistency Analysis:**
+
+**Student A is MORE consistent:**
+✓ Small range (4) → scores very close together
+✓ All scores between 72-76
+✓ Reliable performance
+
+**Student B is INCONSISTENT:**
+✗ Large range (40) → highly variable
+✗ Sometimes excellent (90), sometimes poor (50)
+✗ Unpredictable performance
+
+**Key Insight:** Student B has lower mean AND higher variability - needs consistent study habits!
+
+\`\`\`animation
+{
+  "type": "comparison-chart",
+  "measures": {
+    "mean": 74,
+    "median": 74,
+    "mode": 74,
+    "range": 4
+  },
+  "data": [72, 75, 73, 74, 76, 74],
+  "title": "Student A - Consistent Performance"
+}
+\`\`\`
+
+\`\`\`animation
+{
+  "type": "comparison-chart",
+  "measures": {
+    "mean": 70,
+    "median": 67.5,
+    "mode": null,
+    "range": 40
+  },
+  "data": [60, 85, 65, 90, 70, 50],
+  "outlier": true,
+  "title": "Student B - Inconsistent Performance (High Variability)"
+}
+\`\`\`
+
+---
+
+**Example 3: Range in Business Analysis**
+
+A trader recorded weekly sales of mangoes (in baskets):
+
+**Week 1:** 45, 48, 47, 49, 46, 48, 47 → Range = 49 - 45 = 4
+**Week 2:** 30, 60, 35, 70, 40, 25, 65 → Range = 70 - 25 = 45
+
+**Analysis:**
+• Week 1: Small range (4) indicates **stable, predictable** sales
+• Week 2: Large range (45) indicates **volatile, unpredictable** sales
+
+**Business Implication:** Week 1's consistency makes planning easier for the trader.
+
+---
+
+**Example 4: Range with Other Measures**
+
+Consider two datasets with the same mean but different ranges:
+
+**Dataset A:** 50, 52, 51, 49, 53
+• Mean = 51
+• Median = 51
+• Range = 4
+
+**Dataset B:** 20, 60, 40, 70, 65
+• Mean = 51
+• Median = 60
+• Range = 50
+
+**Insight:** Same mean doesn't mean same distribution! Range reveals the difference.
+
+---
+
+**Example 5: Inter-Quartile Range (IQR) - Advanced**
+
+A more robust measure of spread is the **Inter-Quartile Range (IQR)**, which measures the spread of the middle 50% of data.
+
+$$\\text{IQR} = Q_3 - Q_1$$
+
+Where:
+• $Q_1$ = First Quartile (25th percentile)
+• $Q_3$ = Third Quartile (75th percentile)
+
+**Data:** 12, 15, 18, 20, 22, 25, 28, 30, 35, 40
+
+Step 1: Find $Q_1$ (position = $\\frac{10+1}{4} = 2.75$, so between 2nd and 3rd values)
+$$Q_1 \\approx 16$$ (interpolate between 15 and 18)
+
+Step 2: Find $Q_3$ (position = $\\frac{3(10+1)}{4} = 8.25$, so between 8th and 9th values)
+$$Q_3 \\approx 31$$ (interpolate between 30 and 35)
+
+Step 3: Calculate IQR
+$$\\text{IQR} = 31 - 16 = 15$$
+
+**Advantage of IQR:** Not affected by extreme values, unlike range.
+
+---
+
+**Limitations of Range:**
+• Uses only two values (max and min)
+• Extremely sensitive to outliers
+• Doesn't tell you about the distribution in between
+• Not suitable for comparing datasets of different sizes
+
+**When to Use Range:**
+✓ Quick measure of spread
+✓ Checking data consistency
+✓ Quality control in manufacturing
+✓ Weather data analysis
+✓ Comparing variability between datasets
+
+**Better Alternatives:**
+• **IQR** - for data with outliers
+• **Standard Deviation** - for more sophisticated analysis (SHS 3 topic)`
+      },
+      {
+        title: '5. Choosing the Right Measure - Decision Framework',
+        content: `**How to Choose the Best Measure of Central Tendency**
+
+Understanding when to use each measure is crucial for WASSCE success and real-world data analysis.
+
+---
+
+\`\`\`animation
+{"type": "decision-tree"}
+\`\`\`
+
+---
+
+\`\`\`animation
+{"type": "comparison-table"}
+\`\`\`
+
+---
+
+**Example 1: Test Scores (Use Mean)**
+
+Class test scores: **72, 75, 78, 70, 80, 73, 77, 74, 76, 75**
+
+• No extreme values
+• Fairly evenly distributed
+• Numerical data
+
+**Best Choice: Mean**
+Mean = 750 ÷ 10 = 75
+
+**Reasoning:** All students performed similarly, so mean represents the class well.
+
+\`\`\`animation
+{
+  "type": "comparison-chart",
+  "measures": {
+    "mean": 75,
+    "median": 75,
+    "mode": 75,
+    "range": 10
+  },
+  "data": [72, 75, 78, 70, 80, 73, 77, 74, 76, 75],
+  "title": "Test Scores - All Measures Similar"
+}
+\`\`\`
+
+---
+
+**Example 2: House Prices (Use Median)**
+
+House prices in a neighborhood (GH₵):
+**150,000, 180,000, 160,000, 170,000, 1,500,000** (one mansion)
+
+• Extreme outlier (1.5 million)
+• Skewed distribution
+
+**Comparison:**
+• Mean = GH₵432,000 (misleading - most houses are 150k-180k)
+• Median = GH₵170,000 (typical house price)
+
+**Best Choice: Median**
+
+**Reasoning:** The mansion skews the mean. Median better represents typical house price.
+
+\`\`\`animation
+{
+  "type": "comparison-chart",
+  "measures": {
+    "mean": 432,
+    "median": 170,
+    "mode": null,
+    "range": 1350
+  },
+  "data": [150, 180, 160, 170, 1500],
+  "outlier": true,
+  "title": "House Prices (in thousands) - Outlier Present"
+}
+\`\`\`
+
+---
+
+**Example 3: Favorite Sport (Use Mode)**
+
+Survey of students' favorite sports:
+• Football: 45 students
+• Basketball: 12 students
+• Athletics: 8 students
+• Swimming: 5 students
+
+**Best Choice: Mode = Football**
+
+**Reasoning:** Categorical data - can't calculate mean or median of sports names!
+
+---
+
+**Example 4: Daily Sales (Use Range + Mean)**
+
+A shop's daily sales over 2 weeks:
+
+**Week 1:** GH₵1,200, GH₵1,250, GH₵1,180, GH₵1,220, GH₵1,210, GH₵1,230, GH₵1,200
+• Mean = GH₵1,213
+• Range = GH₵70
+
+\`\`\`animation
+{
+  "type": "comparison-chart",
+  "measures": {
+    "mean": 1213,
+    "median": 1210,
+    "mode": 1200,
+    "range": 70
+  },
+  "data": [1200, 1250, 1180, 1220, 1210, 1230, 1200],
+  "title": "Week 1 Sales (GH₵) - Consistent Performance"
+}
+\`\`\`
+
+**Week 2:** GH₵800, GH₵1,500, GH₵900, GH₵1,600, GH₵1,000, GH₵700, GH₵1,400
+• Mean = GH₵1,129
+• Range = GH₵900
+
+\`\`\`animation
+{
+  "type": "comparison-chart",
+  "measures": {
+    "mean": 1129,
+    "median": 1000,
+    "mode": null,
+    "range": 900
+  },
+  "data": [800, 1500, 900, 1600, 1000, 700, 1400],
+  "outlier": true,
+  "title": "Week 2 Sales (GH₵) - High Variability"
+}
+\`\`\`
+
+**Analysis:**
+• Similar means, but Week 1 has small range (consistent)
+• Week 2 has large range (unpredictable)
+
+**Best Choice: Use BOTH mean AND range** to get complete picture
+
+---
+
+**Example 5: Combined Analysis**
+
+A teacher analyzes exam scores: **45, 48, 50, 51, 52, 52, 52, 55, 58, 95**
+
+**Calculate all measures:**
+• Mean = 55.8
+• Median = 52
+• Mode = 52
+• Range = 50
+
+**Analysis:**
+• Mean (55.8) is pulled up by the outlier (95)
+• Median and Mode (both 52) better represent typical performance
+• Large range shows one exceptional student
+
+**Best Report:**
+"Most students scored around 52 (median and mode), though one student achieved 95. The class average is 55.8, but this doesn't reflect typical performance."
+
+---
+
+**🎯 WASSCE Exam Strategy (Time-Saving Tips):**
+
+**Before You Calculate:**
+1️⃣ **Read the question carefully** - Often it specifies which measure to use
+2️⃣ **Identify the data type** - Categorical? Numerical? Grouped?
+3️⃣ **Scan for outliers** - Any extreme values?
+4️⃣ **Check what's required** - Single measure or comparison?
+
+**During Calculation:**
+5️⃣ **Show ALL working** - Even calculator steps get marks
+6️⃣ **Label your answers** - "Mean =", "Median =", etc.
+7️⃣ **Use correct notation** - $\\bar{x}$, $\\sum$, etc.
+8️⃣ **Round sensibly** - Usually 1 or 2 decimal places
+
+**After Calculation:**
+9️⃣ **Interpret in context** - "The average age is..."
+🔟 **Verify if time allows** - Does your answer make sense?
+
+**Time Management:**
+⏱️ Mean calculation: ~2 minutes
+⏱️ Median (small dataset): ~2 minutes  
+⏱️ Mode: ~1 minute
+⏱️ Interpretation: ~1 minute
+
+**Mark Allocation Guide:**
+• Correct formula: 1 mark
+• Correct working: 2 marks
+• Correct answer: 1 mark
+• Interpretation: 1 mark
+
+---
+
+**⚠️ Common Mistakes to Avoid:**
+
+\`\`\`geometry
+{
+  "type": "table",
+  "height": 280,
+  "tableData": {
+    "headers": ["Mistake", "Why It's Wrong", "Correct Approach"],
+    "rows": [
+      ["Using mean with outliers", "Skews result", "Use median instead"],
+      ["Not ordering for median", "Wrong middle value", "Always arrange first"],
+      ["Confusing mode/median", "Different concepts", "Mode=most, Median=middle"],
+      ["No working shown", "Lose method marks", "Show every step"],
+      ["Just giving numbers", "No interpretation", "Explain what it means"]
+    ]
+  }
+}
+\`\`\`
+
+**✓ Success Checklist:**
+☐ Data arranged in order (for median)
+☐ All values included in calculation
+☐ Formula stated clearly
+☐ Working shown step-by-step
+☐ Answer labeled with units
+☐ Interpretation provided
+☐ Answer verified (quick check)`
+      },
+      {
+        title: '6. Real-World Applications in Ghana',
+        content: `**Statistics in Action: Ghanaian Contexts**
+
+---
+
+**1. Agriculture: Cocoa Farming**
+
+The Ghana Cocoa Board uses statistics to monitor production:
+
+**Farm yields (bags per hectare) across 11 farms:**
+12, 15, 14, 18, 16, 15, 20, 15, 17, 14, 15
+
+**Analysis:**
+• Mean = (171 ÷ 11) = 15.5 bags/hectare
+• Median = 15 bags/hectare
+• Mode = 15 bags/hectare (appears 4 times)
+• Range = 20 - 12 = 8 bags
+
+**Interpretation:**
+The typical farm produces about 15 bags per hectare. The range of 8 shows moderate variation - most farms perform similarly, with one exceptional farm at 20 bags.
+
+**Policy Decision:** Focus resources on bringing underperforming farms (12-14 bags) up to the modal level (15 bags).
+
+---
+
+**2. Education: WASSCE Results Analysis**
+
+A school's aggregate scores for 50 students:
+
+| Aggregate | 6-10 | 11-15 | 16-20 | 21-25 | 26-30 |
+|-----------|------|-------|-------|-------|-------|
+| Frequency | 8 | 15 | 18 | 7 | 2 |
+
+**Calculate mean aggregate:**
+
+| Aggregate (x) | Frequency (f) | Midpoint | fx |
+|---------------|---------------|----------|-----|
+| 6-10 | 8 | 8 | 64 |
+| 11-15 | 15 | 13 | 195 |
+| 16-20 | 18 | 18 | 324 |
+| 21-25 | 7 | 23 | 161 |
+| 26-30 | 2 | 28 | 56 |
+| **Total** | **50** | - | **800** |
+
+Mean = 800 ÷ 50 = 16
+
+**Modal class:** 16-20 (highest frequency)
+
+**Interpretation:**
+Average aggregate is 16 (good performance). Most students fall in the 16-20 range. Only 2 students had poor aggregates (26-30), showing strong overall performance.
+
+---
+
+**3. Healthcare: Hospital Admissions**
+
+Ridge Hospital tracks daily emergency admissions:
+
+**January Week 1:** 45, 48, 52, 50, 47, 55, 42
+• Mean = 48.4 patients/day
+• Median = 48
+• Range = 13
+
+**Analysis:** Fairly stable admissions around 48 patients per day. The small range indicates predictable demand, helping with staff scheduling.
+
+---
+
+**4. Market Analysis: Food Prices**
+
+Makola Market tomato prices (GH₵ per paint bucket) over 10 days:
+
+**Week 1 (rainy season):** 80, 85, 90, 82, 88, 85, 87, 83, 86, 84
+• Mean = GH₵85
+• Median = GH₵85
+• Range = 10
+
+**Week 2 (dry season):** 50, 55, 48, 52, 51, 50, 53, 49, 52, 50
+• Mean = GH₵51
+• Median = GH₵50.5
+• Range = 7
+
+**Interpretation:**
+Prices are higher but more consistent in rainy season (limited supply). In dry season, prices drop significantly (abundant harvest) with similar consistency. Small ranges in both weeks show stable markets.
+
+---
+
+**5. Transport: Trotro Passenger Analysis**
+
+A trotro operator tracks daily passengers over 2 weeks:
+
+**Peak Season:** 180, 195, 200, 188, 192, 198, 185, 190, 194, 197, 186, 193, 199, 191
+• Mean = 192 passengers
+• Median = 192.5
+• Mode: No single mode
+• Range = 20
+
+**Off-Peak Season:** 120, 150, 110, 160, 125, 145, 130, 155, 115, 140, 125, 148, 122, 135
+• Mean = 134 passengers
+• Median = 132.5
+• Mode: 125 (appears twice)
+• Range = 50
+
+**Business Insights:**
+• Peak season: Consistent high ridership (small range relative to mean)
+• Off-peak: Lower ridership with more variation (larger range)
+• Plan for 192 passengers in peak, 134 in off-peak
+• More uncertainty in off-peak requires flexible scheduling
+
+---
+
+**6. Banking: Loan Approval Analysis**
+
+A microfinance institution analyzes loan amounts (GH₵) approved in a month:
+
+2,000, 5,000, 3,500, 4,000, 50,000, 3,000, 4,500, 3,800, 4,200, 3,600
+
+**Analysis:**
+• Mean = GH₵8,360 (skewed by 50,000 outlier - likely a business loan)
+• Median = GH₵3,900 (typical personal loan)
+• Mode: No clear mode
+• Range = 48,000
+
+**Interpretation:**
+Most loans are personal loans around GH₵3,000-4,500 (median = 3,900). The mean is misleading due to one large business loan. Use median to represent typical loan size.
+
+---
+
+**7. Weather: Rainfall Patterns**
+
+Ghana Meteorological Agency tracks monthly rainfall (mm) in Kumasi:
+
+**Rainy Season (May-July):** 180, 220, 195, 210, 225, 200, 215, 205, 230, 190, 218, 208
+• Mean = 208 mm
+• Median = 209 mm
+• Range = 50 mm
+
+**Dry Season (December-February):** 5, 8, 3, 10, 6, 7, 4, 9, 5, 8, 6, 7
+• Mean = 6.5 mm
+• Median = 6.5 mm
+• Range = 7 mm
+
+**Agricultural Planning:**
+Farmers can expect consistent heavy rainfall (around 208mm monthly) during rainy season for planting. Dry season has minimal, consistent low rainfall for harvesting.
+
+---
+
+**8. Sports: Black Stars Performance**
+
+Goals scored by Ghana in 12 World Cup qualifying matches:
+
+2, 1, 3, 0, 2, 2, 4, 1, 2, 3, 2, 1
+
+**Analysis:**
+• Mean = 1.92 goals/match
+• Median = 2 goals
+• Mode = 2 goals (appears 5 times)
+• Range = 4 goals
+
+**Interpretation:**
+Ghana typically scores 2 goals per match (mode and median). Average is just under 2 goals. Range of 4 shows some variation (from shut-out to 4-goal performance).
+
+---
+
+**Summary - Why Statistics Matter in Ghana:**
+
+\`\`\`geometry
+{
+  "type": "table",
+  "height": 400,
+  "tableData": {
+    "headers": ["Sector", "Application", "Measures Used"],
+    "rows": [
+      ["Government", "Census & resource planning", "Mean, Median"],
+      ["Education", "BECE/WASSCE tracking", "All four"],
+      ["Agriculture", "Crop yields & weather", "Mean, Range"],
+      ["Healthcare", "Disease tracking", "Mean, Mode"],
+      ["Business", "Sales & inventory", "Mode, Mean"],
+      ["Banking", "Loan & risk analysis", "Median, Range"],
+      ["Transport", "Passenger planning", "Mean, Mode"],
+      ["Sports", "Performance stats", "Mean, Range"]
+    ]
+  }
+}
+\`\`\`
+
+---
+
+**Real Impact Examples:**
+🏛️ **Ghana Statistical Service** uses median income to set poverty lines
+🏫 **GES** uses mean scores to rank schools and allocate support
+🌾 **MoFA** uses mean yields to plan food security
+🏥 **Ghana Health Service** uses mode to identify common diseases
+🏦 **Bank of Ghana** uses median to set lending benchmarks
+
+**🎯 WASSCE Success Tip:**
+Examiners LOVE well-interpreted answers! Always:
+1. Calculate accurately
+2. Interpret in context
+3. Explain what numbers mean
+4. Relate to real Ghana situations
+
+**Example of Good Interpretation:**
+❌ Bad: "The mean is 50"
+✓ Good: "The mean mark of 50 indicates that on average, students performed at 50%, suggesting the class needs additional support to reach the 75% target."`
+      }
+    ],
+    activities: {
+      type: 'quiz',
+      questions: [
+        {
+          type: 'mcq',
+          question: 'Calculate the mean of: 24, 18, 32, 26, 30, 20',
+          options: ['24', '25', '26', '27'],
+          answer: '25',
+          explanation: 'Mean = (24+18+32+26+30+20) ÷ 6 = 150 ÷ 6 = 25'
+        },
+        {
+          type: 'mcq',
+          question: 'Find the median of: 15, 23, 18, 30, 21, 19, 25',
+          options: ['19', '21', '23', '25'],
+          answer: '21',
+          explanation: 'Arrange in order: 15, 18, 19, 21, 23, 25, 30. The middle (4th) value is 21'
+        },
+        {
+          type: 'mcq',
+          question: 'What is the mode of: 7, 9, 12, 9, 15, 9, 18, 12, 9?',
+          options: ['7', '9', '12', '15'],
+          answer: '9',
+          explanation: '9 appears 4 times, which is more frequent than any other value'
+        },
+        {
+          type: 'mcq',
+          question: 'Calculate the range of: 45, 62, 38, 71, 55, 48',
+          options: ['26', '33', '36', '38'],
+          answer: '33',
+          explanation: 'Range = Maximum - Minimum = 71 - 38 = 33'
+        },
+        {
+          type: 'mcq',
+          question: 'The mean of six numbers is 20. Five of the numbers are 18, 22, 19, 21, and 24. Find the sixth number.',
+          options: ['14', '15', '16', '17'],
+          answer: '16',
+          explanation: 'Sum = 20 × 6 = 120. Known sum = 18+22+19+21+24 = 104. Sixth number = 120-104 = 16'
+        },
+        {
+          type: 'mcq',
+          question: 'For the dataset: 100, 120, 115, 110, 10000, which measure best represents the typical value?',
+          options: ['Mean', 'Median', 'Mode', 'Range'],
+          answer: 'Median',
+          explanation: 'The median (115) is best because 10000 is an extreme outlier that would make the mean (2089) very misleading'
+        },
+        {
+          type: 'mcq',
+          question: 'Find the median of: 8, 12, 15, 18, 20, 25',
+          options: ['15', '16', '16.5', '17'],
+          answer: '16.5',
+          explanation: 'With 6 values (even), median = average of 3rd and 4th values = (15+18)÷2 = 16.5'
+        },
+        {
+          type: 'mcq',
+          question: 'A set of data has values: 5, 10, 15, 20, 25. If each value is increased by 10, what happens to the mean?',
+          options: ['Stays the same', 'Increases by 10', 'Increases by 5', 'Doubles'],
+          answer: 'Increases by 10',
+          explanation: 'Adding a constant to all values increases the mean by that same constant. New values: 15,20,25,30,35. New mean = 25 (was 15, increased by 10)'
+        },
+        {
+          type: 'mcq',
+          question: 'What is the mode of: 3, 7, 11, 15, 19, 23?',
+          options: ['3', '11', '15', 'No mode'],
+          answer: 'No mode',
+          explanation: 'Each value appears exactly once, so there is no mode'
+        },
+        {
+          type: 'mcq',
+          question: 'Two datasets have the same mean but different ranges. What does this tell you?',
+          options: ['They are identical', 'They have different central values', 'They have different spreads', 'They have the same mode'],
+          answer: 'They have different spreads',
+          explanation: 'Same mean means same average, but different ranges indicate the data points are spread differently - one is more consistent, the other more variable'
+        }
+      ]
+    },
+    pastQuestions: [
+      {
+        question: 'The table shows the distribution of marks scored by 40 students in a test. Calculate the mean mark.\n\n| Mark | 2 | 3 | 4 | 5 | 6 |\n|------|---|---|---|---|---|\n| Frequency | 5 | 8 | 12 | 10 | 5 |',
+        solution: 'For grouped data with frequencies, use: Mean = Σfx / Σf\n\nStep 1: Create a calculation table\n\n| Mark (x) | Frequency (f) | fx |\n|----------|---------------|----|\n| 2 | 5 | 10 |\n| 3 | 8 | 24 |\n| 4 | 12 | 48 |\n| 5 | 10 | 50 |\n| 6 | 5 | 30 |\n| Total | 40 | 162 |\n\nStep 2: Calculate mean\nMean = Σfx / Σf = 162 / 40 = 4.05\n\nAnswer: Mean mark = 4.05 (or 4.1 to 1 d.p.)'
+      },
+      {
+        question: 'The mean of seven numbers is 15. Six of the numbers are 12, 14, 16, 18, 20, and 11. Find the seventh number.',
+        solution: 'Step 1: Use the mean formula\nMean = Sum of all values / Number of values\n15 = Sum / 7\n\nStep 2: Find the total sum\nSum = 15 × 7 = 105\n\nStep 3: Add the six known numbers\n12 + 14 + 16 + 18 + 20 + 11 = 91\n\nStep 4: Find the seventh number\nSeventh number = 105 - 91 = 14\n\nVerification:\n(12+14+16+18+20+11+14) ÷ 7 = 105 ÷ 7 = 15 ✓\n\nAnswer: The seventh number is 14'
+      },
+      {
+        question: 'The following are the ages (in years) of 15 members of a youth club: 16, 18, 17, 19, 16, 20, 17, 16, 18, 17, 21, 16, 17, 19, 17. Find: (a) the mode, (b) the median, (c) the mean.',
+        solution: '(a) Mode:\nCount frequencies:\n16 appears 4 times (most frequent)\n17 appears 5 times (most frequent) ← Winner\n18 appears 2 times\n19 appears 2 times\n20 appears 1 time\n21 appears 1 time\n\nMode = 17 years\n\n(b) Median:\nStep 1: Arrange in order\n16, 16, 16, 16, 17, 17, 17, 17, 17, 18, 18, 19, 19, 20, 21\n\nStep 2: Find middle position (15 values - odd)\nPosition = (15+1)/2 = 8th value\n\nStep 3: Identify 8th value\n16, 16, 16, 16, 17, 17, 17, [17], 17, 18, 18, 19, 19, 20, 21\n\nMedian = 17 years\n\n(c) Mean:\nSum = 16+18+17+19+16+20+17+16+18+17+21+16+17+19+17 = 264\nMean = 264 / 15 = 17.6 years\n\nAnswers: (a) Mode = 17 years, (b) Median = 17 years, (c) Mean = 17.6 years'
+      },
+      {
+        question: 'A student scored marks in 8 tests: 65, 72, 68, 75, 70, 73, 69, 71. After taking a 9th test, the mean became 71. What mark did the student score in the 9th test?',
+        solution: 'Step 1: Calculate sum of first 8 tests\nSum = 65+72+68+75+70+73+69+71 = 563\n\nStep 2: Use new mean to find total sum with 9 tests\nNew mean = 71\nTotal sum (9 tests) = 71 × 9 = 639\n\nStep 3: Find mark in 9th test\n9th test mark = 639 - 563 = 76\n\nVerification:\n(563 + 76) ÷ 9 = 639 ÷ 9 = 71 ✓\n\nAnswer: The student scored 76 marks in the 9th test'
+      },
+      {
+        question: 'The table shows the distribution of weekly wages of 50 workers in a factory. Calculate: (a) the modal class, (b) an estimate of the mean weekly wage.\n\n| Wage (GH₵) | 200-299 | 300-399 | 400-499 | 500-599 | 600-699 |\n|------------|---------|---------|---------|---------|----------|\n| Frequency | 5 | 12 | 18 | 10 | 5 |',
+        solution: '(a) Modal Class:\nThe class with the highest frequency is 400-499 (frequency = 18)\n\nModal class = 400-499\n\n(b) Mean Weekly Wage:\nStep 1: Find midpoint of each class\n\n| Wage | Frequency (f) | Midpoint (x) | fx |\n|------|---------------|--------------|------|\n| 200-299 | 5 | 249.5 | 1247.5 |\n| 300-399 | 12 | 349.5 | 4194 |\n| 400-499 | 18 | 449.5 | 8091 |\n| 500-599 | 10 | 549.5 | 5495 |\n| 600-699 | 5 | 649.5 | 3247.5 |\n| Total | 50 | - | 22,275 |\n\nStep 2: Calculate mean\nMean = Σfx / Σf = 22,275 / 50 = 445.5\n\nAnswers: (a) Modal class = 400-499, (b) Estimated mean = GH₵445.50'
+      },
+      {
+        question: 'The marks of 10 students in a test are: 45, 52, 58, 60, 62, 65, 68, 70, 75, 95. \n(a) Calculate the mean, median, and range.\n(b) Explain which measure of central tendency best represents the typical performance and why.',
+        solution: '(a) Calculations:\n\nMean:\nSum = 45+52+58+60+62+65+68+70+75+95 = 650\nMean = 650 / 10 = 65 marks\n\nMedian:\nData already ordered: 45, 52, 58, 60, 62, 65, 68, 70, 75, 95\n10 values (even), so median = average of 5th and 6th values\nMedian = (62 + 65) / 2 = 63.5 marks\n\nRange:\nRange = Maximum - Minimum = 95 - 45 = 50 marks\n\n(b) Analysis:\n\nThe MEDIAN (63.5) best represents typical performance.\n\nReason:\n• The value 95 is an outlier - it\'s much higher than the others (next highest is 75)\n• This outlier pulls the mean up to 65, which is higher than 7 out of 10 students\n• The median of 63.5 is not affected by the outlier and better represents where most students performed\n• Most students scored in the 45-75 range, with median in the middle of this\n\nConclusion: Use median when outliers are present.\n\nAnswers: (a) Mean = 65, Median = 63.5, Range = 50 (b) Median is best because the outlier (95) skews the mean'
+      }
+    ],
+    summary: `**📊 Statistics: Mean, Median, Mode, and Range - Complete Summary**
+
+**📍 Measures of Central Tendency:**
+
+**1️⃣ Mean (Average) - The Balance Point**
+• **Formula:** $\\bar{x} = \\frac{\\sum x}{n}$ (ungrouped) or $\\bar{x} = \\frac{\\sum fx}{\\sum f}$ (grouped)
+• **Method:** Add all values ÷ count
+• **Symbol:** $\\bar{x}$ (x-bar)
+• **Uses:** ALL values in calculation
+• **Best for:** Evenly distributed numerical data
+• **Weakness:** Affected by extreme values/outliers
+• **Example:** Average test score, average temperature
+
+**2️⃣ Median (Middle Value) - The Fair Divider**
+• **Formula:** Position = $\\frac{n+1}{2}$ (odd) or average of middle two (even)
+• **Method:** Arrange in order, find middle
+• **Symbol:** M or $\\tilde{x}$
+• **Critical Step:** MUST order data first!
+• **Best for:** Skewed data, data with outliers
+• **Strength:** NOT affected by extreme values
+• **Example:** Median house price, median salary
+
+**3️⃣ Mode (Most Frequent) - The Popular Choice**
+• **Definition:** Value appearing most often
+• **Method:** Count frequency, pick highest
+• **Symbol:** Mo
+• **Special Cases:** Can have 0, 1, or multiple modes
+• **Best for:** Categorical data, discrete values
+• **Unique Feature:** Only measure for non-numerical data
+• **Example:** Most common shoe size, favorite color
+
+**📊 Measure of Dispersion:**
+
+**4️⃣ Range - The Spread Indicator**
+• **Formula:** Range = Maximum - Minimum
+• **Method:** Find highest and lowest, subtract
+• **Symbol:** R
+• **Shows:** How spread out/consistent data is
+• **Interpretation:** Large = variable, Small = consistent
+• **Weakness:** Affected by outliers, uses only 2 values
+• **Example:** Temperature range, score variation
+
+**When to Use Each Measure:**
+
+✓ **Mean:** Normal distribution, no outliers, need to use all data
+✓ **Median:** Skewed data, outliers present, income/price data
+✓ **Mode:** Categorical data, discrete values, finding most popular
+✓ **Range:** Quick check of spread, comparing consistency
+
+**Key Properties:**
+
+• Mean: Can be calculated from grouped data using midpoints
+• Median: Divides dataset into two equal halves
+• Mode: Can be found in frequency tables (highest frequency)
+• Range: Simplest measure of spread but least informative
+
+**WASSCE Exam Tips:**
+
+1. **Always show working** - even for calculator steps
+2. **Arrange data in order** for median (common mistake!)
+3. **Use frequency tables efficiently** - create fx column for mean
+4. **Interpret your answer** - don't just give numbers
+5. **Choose appropriate measure** - consider outliers and data type
+6. **Check your answer** - does it make sense in context?
+
+**Common Pitfalls:**
+
+❌ Forgetting to order data before finding median
+❌ Using mean when obvious outliers exist
+❌ Confusing mode with median
+❌ Not multiplying by frequency in grouped data
+❌ Calculating without considering the question context
+
+**Real-World Applications:**
+
+These measures are used everywhere in Ghana:
+• **Education:** Analyzing exam results, setting benchmarks
+• **Business:** Sales forecasting, inventory management
+• **Agriculture:** Crop yield analysis, harvest planning
+• **Healthcare:** Patient flow analysis, resource allocation
+• **Economics:** Income distribution, inflation tracking
+• **Sports:** Performance analysis, team selection
+
+**Remember:** Statistics is not just about calculation - it's about interpreting data to make informed decisions. Always consider what your numbers mean in the real-world context!
+
+**📝 Formula Reference Card - Copy This!**
+
+\`\`\`geometry
+{
+  "type": "table",
+  "height": 320,
+  "tableData": {
+    "headers": ["Measure", "Ungrouped Data", "Grouped Data", "Key Point"],
+    "rows": [
+      ["Mean", "Σx ÷ n", "Σfx ÷ Σf", "Use all values"],
+      ["Median (odd)", "(n+1)÷2 position", "Use formula with cf", "Order first!"],
+      ["Median (even)", "Average of n/2 & n/2+1", "Use formula with cf", "Two middle values"],
+      ["Mode", "Most frequent value", "Highest frequency class", "Can have multiple"],
+      ["Range", "Max - Min", "UCB - LCB", "Shows spread"]
+    ]
+  }
+}
+\`\`\`
+
+**Detailed Formulas:**
+
+**Mean:**
+$$\\bar{x} = \\frac{\\sum x}{n} \\text{ (ungrouped)}$$
+$$\\bar{x} = \\frac{\\sum fx}{\\sum f} \\text{ (grouped frequency table)}$$
+
+**Median:**
+$$\\text{Position (odd)} = \\frac{n+1}{2}$$
+$$\\text{Position (even)} = \\text{average of } \\frac{n}{2} \\text{ and } \\left(\\frac{n}{2}+1\\right)$$
+$$\\text{Grouped: } L + \\left(\\frac{\\frac{n}{2} - F}{f}\\right) \\times h$$
+
+**Mode:**
+$$\\text{Most frequent value (count frequencies)}$$
+$$\\text{Grouped: } L + \\left(\\frac{f_1 - f_0}{2f_1 - f_0 - f_2}\\right) \\times h$$
+
+**Range:**
+$$\\text{Range} = \\text{Maximum} - \\text{Minimum}$$
+
+---
+
+**🎯 Master These and Excel in WASSCE!**
+
+**Final Study Tips:**
+1. Practice with real Ghana data (BECE scores, market prices)
+2. Always show working - method marks count!
+3. Interpret answers in context
+4. Check reasonableness of answers
+5. Use calculator STAT mode efficiently
+6. Memorize formulas - they're not always given!
+7. Time management: Don't spend >5 mins per question
+
+**Practice Makes Perfect!**
+Do at least 20 past questions before WASSCE. Focus on:
+✓ Grouped data with class intervals
+✓ Finding missing values given mean
+✓ Comparing measures for different contexts
+✓ Real-world interpretation questions
+
+**You've Got This! 🚀**
+
+Statistics is one of the EASIEST topics to master in WASSCE Core Maths because:
+✅ Formulas are straightforward
+✅ Calculations are systematic  
+✅ Questions follow predictable patterns
+✅ You can use calculators
+✅ Real-world applications make sense
+
+**Your Action Plan:**
+📅 **Week 1:** Master ungrouped data (mean, median, mode, range)
+📅 **Week 2:** Learn grouped data calculations
+📅 **Week 3:** Practice 10 past WASSCE questions
+📅 **Week 4:** Speed drills - complete questions in <5 minutes
+
+**Remember:** In WASSCE, statistics questions are often worth 10-15 marks. That's 10-15 marks you can GUARANTEE with practice!
+
+Good luck with your studies! 🌟`
+  },
+
+  // Lesson 2: Probability (Combined Events)
+  {
+    id: 'cm_shs2_data_2',
+    slug: 'shs2-probability-combined',
+    title: 'Probability (Combined Events)',
+    objectives: [
+      'Understand and apply the Addition Law for mutually exclusive and non-mutually exclusive events',
+      'Understand and apply the Multiplication Law for independent and dependent events',
+      'Use tree diagrams to solve complex probability problems',
+      'Calculate conditional probability',
+      'Distinguish between "with replacement" and "without replacement" scenarios',
+      'Solve real-world probability problems involving combined events'
+    ],
+    introduction: `In SHS 1, you learned the basics of probability. Now we're going to level up! Real-world situations rarely involve single events. Instead, we deal with **combined events** - multiple things happening together or in sequence.
+
+**Real Ghana Examples:**
+🎲 What's the probability of **both** you and your friend winning a raffle?
+🚗 If it rains, what's the probability that trotros will be delayed **and** you'll be late to school?
+📱 What's the chance of passing **at least one** of two exams?
+
+This lesson teaches you how to handle these complex scenarios using powerful mathematical tools: **Addition Law**, **Multiplication Law**, and **Tree Diagrams**.
+
+**The Three Big Questions:**
+1. **OR Problems:** What if Event A happens **OR** Event B happens? → **Addition Law**
+2. **AND Problems:** What if Event A happens **AND** Event B happens? → **Multiplication Law**
+3. **Sequential Events:** What if one event affects another? → **Tree Diagrams**
+
+Master these, and you'll ace every WASSCE probability question! 🎯`,
+    keyConcepts: [
+      {
+        title: '1. Review: Basic Probability Concepts',
+        content: `Before we tackle combined events, let's refresh the fundamentals:
+
+**Probability Formula:**
+$$P(\\text{Event}) = \\frac{\\text{Number of favorable outcomes}}{\\text{Total number of possible outcomes}}$$
+
+**Probability Scale:**
+• $P = 0$ → Impossible
+• $0 < P < 1$ → Possible
+• $P = 1$ → Certain
+• $P = 0.5$ → Evens (50-50 chance)
+
+**Complement Rule:**
+If $P(A)$ is the probability that event A happens, then:
+$$P(A') = 1 - P(A)$$
+
+Where $A'$ (A prime) means "A does NOT happen".
+
+**Example:**
+If the probability of rain is 0.3, what's the probability of NO rain?
+$$P(\\text{No Rain}) = 1 - 0.3 = 0.7$$
+
+\`\`\`animation
+{"type": "quick-reference"}
+\`\`\`
+
+---
+
+**Key Terms to Master:**
+
+🎯 **Sample Space:** All possible outcomes of an experiment.
+• Rolling a die: {1, 2, 3, 4, 5, 6}
+
+🎯 **Event:** A specific outcome or set of outcomes.
+• Rolling an even number: {2, 4, 6}
+
+🎯 **Mutually Exclusive:** Events that cannot happen at the same time.
+• Rolling a 3 AND rolling a 5 on one die (impossible!)
+
+🎯 **Independent:** Event A doesn't affect Event B.
+• Tossing a coin twice - the first toss doesn't change the second
+
+🎯 **Dependent:** Event A affects Event B.
+• Drawing cards without replacement - each draw changes what's left
+
+---
+
+**Quick Reference: Probability Laws**
+
+\`\`\`animation
+{"type": "probability-laws"}
+\`\`\`
+
+This table summarizes the two main laws we'll explore in detail below.`
+      },
+      {
+        title: '2. Addition Law (OR Probability)',
+        content: `The Addition Law helps us find the probability that **at least one** of multiple events occurs.
+
+---
+
+### **Case 1: Mutually Exclusive Events**
+
+**Definition:** Two events are mutually exclusive if they **cannot both happen at the same time**.
+
+**Ghana Examples:**
+• Getting Grade A **OR** Grade B on an exam (you can't get both!)
+• Traveling to Kumasi **OR** Accra tomorrow (can only be in one place)
+• Coin showing Heads **OR** Tails (not both!)
+
+**The Formula:**
+$$P(A \\text{ or } B) = P(A) + P(B)$$
+
+**Why it works:** Since they can't both happen, there's no overlap to worry about. Just add!
+
+**Example 1: Die Rolling**
+What's the probability of rolling a 2 **OR** a 5 on a single die?
+
+**Solution:**
+• $P(2) = \\frac{1}{6}$
+• $P(5) = \\frac{1}{6}$
+• $P(2 \\text{ or } 5) = \\frac{1}{6} + \\frac{1}{6} = \\frac{2}{6} = \\frac{1}{3}$
+
+**Example 2: Raffle Draw**
+In a raffle with 100 tickets, you have 3 tickets and your friend has 5. What's the probability that **you OR your friend** wins?
+
+**Solution:**
+• $P(\\text{You win}) = \\frac{3}{100}$
+• $P(\\text{Friend wins}) = \\frac{5}{100}$
+• $P(\\text{You or Friend}) = \\frac{3}{100} + \\frac{5}{100} = \\frac{8}{100} = 0.08$
+
+---
+
+### **Case 2: Non-Mutually Exclusive Events**
+
+**Definition:** Events that **CAN** happen at the same time.
+
+**Ghana Examples:**
+• Being a student **AND** being a footballer (you can be both!)
+• Picking a card that's red **AND** a King (King of Hearts or Diamonds)
+
+**The Problem:** If we just add $P(A) + P(B)$, we count the overlap TWICE!
+
+**The Formula:**
+$$P(A \\text{ or } B) = P(A) + P(B) - P(A \\text{ and } B)$$
+
+We subtract the overlap to avoid double-counting.
+
+**Example 3: Cards**
+From a standard deck, what's the probability of drawing a **King OR a Heart**?
+
+**Solution:**
+• Total cards = 52
+• Kings = 4, so $P(\\text{King}) = \\frac{4}{52}$
+• Hearts = 13, so $P(\\text{Heart}) = \\frac{13}{52}$
+• King of Hearts = 1, so $P(\\text{King and Heart}) = \\frac{1}{52}$
+
+$$P(\\text{King or Heart}) = \\frac{4}{52} + \\frac{13}{52} - \\frac{1}{52} = \\frac{16}{52} = \\frac{4}{13}$$
+
+**Why subtract?** The King of Hearts was counted in both "Kings" and "Hearts", so we remove it once.
+
+---
+
+**Interactive Venn Diagram Visualization:**
+
+\`\`\`animation
+{"type": "venn-mutually-exclusive"}
+\`\`\`
+
+The Venn diagram above lets you explore all four examples. Click through each one to see:
+• **Mutually Exclusive:** Separate circles (no overlap) - events can't happen together
+• **Non-Mutually Exclusive:** Overlapping circles - events CAN happen together
+
+**Key Insight:** When circles overlap, we must subtract P(A and B) to avoid counting the overlap twice!`
+      },
+      {
+        title: '3. Multiplication Law (AND Probability)',
+        content: `The Multiplication Law helps us find the probability that **all** of multiple events occur.
+
+---
+
+### **Case 1: Independent Events**
+
+**Definition:** Two events are independent if the outcome of one **does NOT affect** the other.
+
+**Ghana Examples:**
+• Tossing a coin AND rolling a die (coin doesn't care about die)
+• Your exam result AND the weather (unrelated)
+• Winning a lottery AND your birth month (no connection)
+
+**The Formula:**
+$$P(A \\text{ and } B) = P(A) \\times P(B)$$
+
+**Why multiply?** Each event has its own probability, and they don't interfere.
+
+**Example 1: Coin and Die**
+What's the probability of getting **Heads** on a coin **AND** rolling a **6** on a die?
+
+**Solution:**
+• $P(\\text{Heads}) = \\frac{1}{2}$
+• $P(6) = \\frac{1}{6}$
+• $P(\\text{Heads and } 6) = \\frac{1}{2} \\times \\frac{1}{6} = \\frac{1}{12}$
+
+**Example 2: Two Dice**
+What's the probability of rolling **two 6s** when you roll two dice?
+
+**Solution:**
+• $P(\\text{First die shows 6}) = \\frac{1}{6}$
+• $P(\\text{Second die shows 6}) = \\frac{1}{6}$
+• $P(\\text{Both show 6}) = \\frac{1}{6} \\times \\frac{1}{6} = \\frac{1}{36}$
+
+---
+
+### **Case 2: Dependent Events (Without Replacement)**
+
+**Definition:** Event B's probability **changes** based on whether Event A happened.
+
+**Classic Scenario:** Drawing cards or balls **without putting them back**.
+
+**Ghana Example:**
+A bowl has 5 red toffees and 3 blue toffees. You pick one, **eat it** (don't replace), then pick another. What's the probability both are red?
+
+**Solution:**
+
+**First pick:**
+• Total = 8 toffees
+• $P(\\text{Red first}) = \\frac{5}{8}$
+
+**Second pick (if first was red):**
+• Now only 7 toffees left (4 red, 3 blue)
+• $P(\\text{Red second | Red first}) = \\frac{4}{7}$
+
+**Both red:**
+$$P(\\text{Red and Red}) = \\frac{5}{8} \\times \\frac{4}{7} = \\frac{20}{56} = \\frac{5}{14}$$
+
+**Key Point:** The second probability DEPENDS on the first result!
+
+---
+
+### **Case 3: With Replacement**
+
+**Scenario:** You pick, then **put it back** before picking again.
+
+**Same toffee example, WITH replacement:**
+
+**First pick:**
+• $P(\\text{Red}) = \\frac{5}{8}$
+
+**Second pick:**
+• Toffee is back, so still 8 total
+• $P(\\text{Red}) = \\frac{5}{8}$ (unchanged!)
+
+**Both red:**
+$$P(\\text{Red and Red}) = \\frac{5}{8} \\times \\frac{5}{8} = \\frac{25}{64}$$
+
+**Notice:** With replacement, events become **independent**!
+
+---
+
+**Summary Table:**
+
+\`\`\`animation
+{"type": "quick-reference"}
+\`\`\`
+
+**Memory Trick:**
+• **OR** → **Add** (most of the time)
+• **AND** → **Multiply** (always)`
+      },
+      {
+        title: '4. Tree Diagrams - The Ultimate Tool',
+        content: `Tree Diagrams are visual maps that show **all possible outcomes** of sequential events. They're incredibly powerful for WASSCE questions!
+
+---
+
+### **Why Use Tree Diagrams?**
+
+✅ You see ALL possible paths
+✅ Probabilities are clearly labeled
+✅ Less chance of missing an outcome
+✅ Perfect for "at least" questions
+
+---
+
+### **How to Draw a Tree Diagram**
+
+**Step 1:** Start with a point (the "root")
+**Step 2:** Draw branches for each outcome of the first event
+**Step 3:** Label each branch with its probability
+**Step 4:** From each branch, draw more branches for the second event
+**Step 5:** Label these with their probabilities (which may depend on the first event!)
+**Step 6:** Multiply along each complete path to get that outcome's probability
+**Step 7:** Add probabilities of different paths for "OR" questions
+
+---
+
+### **Example 1: Tossing Two Coins**
+
+**Question:** What's the probability of getting exactly one Head?
+
+**Interactive Visualization:**
+
+\`\`\`animation
+{"type": "two-coins"}
+\`\`\`
+
+**Key Learning:**
+• All 4 outcomes (HH, HT, TH, TT) are equally likely
+• Each has probability 1/4
+• For "exactly one Head", we want HT **OR** TH
+• Using Addition Law: P(HT or TH) = 1/4 + 1/4 = **1/2**
+
+---
+
+### **Example 2: Drawing Without Replacement**
+
+**Scenario:** A bag has 3 red balls and 2 blue balls. Draw two balls **without replacement**. Find the probability both are red.
+
+**Interactive Tree Diagram:**
+
+\`\`\`animation
+{"type": "tree-diagram", "scenario": "without-replacement"}
+\`\`\`
+
+**Key Observations:**
+
+**First Draw:**
+• P(Red) = 3/5
+• P(Blue) = 2/5
+
+**Second Draw (DEPENDS on first!):**
+
+If first was **Red** (now only 2R, 2B left out of 4 total):
+• P(Red) = 2/4 = 1/2
+• P(Blue) = 2/4 = 1/2
+
+If first was **Blue** (now 3R, 1B left):
+• P(Red) = 3/4
+• P(Blue) = 1/4
+
+**Complete Paths:**
+
+1. **RR:** $\\frac{3}{5} \\times \\frac{2}{4} = \\frac{6}{20} = \\frac{3}{10}$
+2. **RB:** $\\frac{3}{5} \\times \\frac{2}{4} = \\frac{6}{20} = \\frac{3}{10}$
+3. **BR:** $\\frac{2}{5} \\times \\frac{3}{4} = \\frac{6}{20} = \\frac{3}{10}$
+4. **BB:** $\\frac{2}{5} \\times \\frac{1}{4} = \\frac{2}{20} = \\frac{1}{10}$
+
+**Answer:** P(Both Red) = **3/10**
+
+**Check:** All paths should add to 1:
+$$\\frac{3}{10} + \\frac{3}{10} + \\frac{3}{10} + \\frac{1}{10} = 1 ✓$$
+
+---
+
+**Comparison: WITH Replacement**
+
+Let's see what happens if we PUT THE BALL BACK after each draw:
+
+\`\`\`animation
+{"type": "tree-diagram", "scenario": "with-replacement"}
+\`\`\`
+
+**Key Difference:**
+• **Without replacement:** Events are DEPENDENT (2nd probability changes)
+• **With replacement:** Events are INDEPENDENT (probabilities stay same)
+• P(Both Red with replacement) = 3/5 × 3/5 = **9/25** (different answer!)
+
+---
+
+### **Example 3: "At Least" Questions**
+
+**Question:** Using the same bag (3R, 2B), find the probability of getting **at least one red** ball.
+
+**Strategy:** "At least one red" means RR, RB, or BR (everything except BB!)
+
+**Solution 1 (Long way):**
+$$P(\\text{At least 1 Red}) = P(RR) + P(RB) + P(BR)$$
+$$= \\frac{3}{10} + \\frac{3}{10} + \\frac{3}{10} = \\frac{9}{10}$$
+
+**Solution 2 (Smart way - Complement!):**
+$$P(\\text{At least 1 Red}) = 1 - P(\\text{No Red}) = 1 - P(BB)$$
+$$= 1 - \\frac{1}{10} = \\frac{9}{10}$$
+
+**Pro Tip:** For "at least" questions, use the complement! It's much faster! ⚡
+
+---
+
+**WASSCE-Style Question:**
+
+**Question:** A box contains 4 Science textbooks and 3 Math textbooks. Two books are selected at random without replacement. Calculate the probability that:
+a) Both are Science books
+b) One is Science and one is Math
+
+**Solution:**
+
+**a) Both Science:**
+$$P(SS) = \\frac{4}{7} \\times \\frac{3}{6} = \\frac{12}{42} = \\frac{2}{7}$$
+
+**b) One Science, One Math (SM or MS):**
+$$P(SM) = \\frac{4}{7} \\times \\frac{3}{6} = \\frac{12}{42}$$
+$$P(MS) = \\frac{3}{7} \\times \\frac{4}{6} = \\frac{12}{42}$$
+$$P(\\text{One of each}) = \\frac{12}{42} + \\frac{12}{42} = \\frac{24}{42} = \\frac{4}{7}$$`
+      },
+      {
+        title: '5. Conditional Probability',
+        content: `Conditional Probability answers the question: **"What's the probability of B happening, GIVEN that A has already happened?"**
+
+**Notation:**
+$$P(B|A)$$
+
+Read as: "Probability of B **given** A"
+
+---
+
+### **The Formula:**
+
+$$P(B|A) = \\frac{P(A \\text{ and } B)}{P(A)}$$
+
+**In words:** The probability of both happening, divided by the probability that the first (given) event happens.
+
+---
+
+### **Ghana Example: Weather and Trotro**
+
+**Scenario:**
+• P(Rain) = 0.3
+• If it rains, P(Trotro late) = 0.8
+• If no rain, P(Trotro late) = 0.1
+
+**Question:** If the trotro was late, what's the probability it rained?
+
+This is asking: $P(\\text{Rain}|\\text{Late})$
+
+**Step 1: Find P(Rain and Late)**
+$$P(\\text{Rain and Late}) = P(\\text{Rain}) \\times P(\\text{Late}|\\text{Rain})$$
+$$= 0.3 \\times 0.8 = 0.24$$
+
+**Step 2: Find P(No Rain and Late)**
+$$P(\\text{No Rain and Late}) = 0.7 \\times 0.1 = 0.07$$
+
+**Step 3: Total P(Late)**
+$$P(\\text{Late}) = 0.24 + 0.07 = 0.31$$
+
+**Step 4: Apply conditional probability formula**
+$$P(\\text{Rain}|\\text{Late}) = \\frac{0.24}{0.31} ≈ 0.774$$
+
+**Answer:** About 77.4% chance it rained if the trotro was late!
+
+---
+
+### **Medical Testing Example**
+
+**Scenario:**
+• Disease affects 1% of population
+• Test is 95% accurate if you have the disease
+• Test is 90% accurate if you don't have the disease (gives correct negative)
+
+**Question:** If you test positive, what's the probability you actually have the disease?
+
+**Using Tree Diagram:**
+
+**Branch 1: Have Disease (1%)**
+• Test Positive: 0.01 × 0.95 = 0.0095
+• Test Negative: 0.01 × 0.05 = 0.0005
+
+**Branch 2: Don't Have Disease (99%)**
+• Test Positive: 0.99 × 0.10 = 0.099 (false positive!)
+• Test Negative: 0.99 × 0.90 = 0.891
+
+**P(Test Positive) = 0.0095 + 0.099 = 0.1085**
+
+**P(Have Disease | Test Positive):**
+$$= \\frac{0.0095}{0.1085} ≈ 0.0876$$
+
+**Shocking Result:** Only 8.76% chance you actually have it, even with a positive test! This is because the disease is rare, so most positives are false alarms.
+
+**Key Lesson:** Context matters! Always consider base rates.`
+      },
+      {
+        title: '6. WASSCE Problem-Solving Strategies',
+        content: `Let's master the techniques that get you full marks in WASSCE!
+
+---
+
+### **Strategy 1: Identify the Type of Problem**
+
+**Read carefully and ask:**
+
+1. **Is it OR or AND?**
+   • "At least one" → OR
+   • "Both" or "All" → AND
+
+2. **Are events independent or dependent?**
+   • With replacement → Independent
+   • Without replacement → Dependent
+   • Unrelated events → Independent
+
+3. **Can both happen at once?**
+   • Yes → NOT mutually exclusive
+   • No → Mutually exclusive
+
+---
+
+### **Strategy 2: Draw It Out!**
+
+**For complex problems:**
+• 2 sequential events → Tree Diagram
+• Overlapping categories → Venn Diagram
+• Simple multiplication → Just calculate
+
+**Don't skip this step!** Drawing saves time and prevents errors.
+
+---
+
+### **Strategy 3: Use Complements for "At Least"**
+
+**Instead of:** P(at least 1) = P(1) + P(2) + P(3) + ...
+
+**Do this:** P(at least 1) = 1 - P(none)
+
+**Much faster!** ⚡
+
+---
+
+### **Strategy 4: Check Your Answer**
+
+**Common sense checks:**
+• Probability between 0 and 1? ✓
+• If you list all outcomes, do they add to 1? ✓
+• Does the answer match your intuition? ✓
+
+---
+
+### **Common WASSCE Question Types**
+
+**Type 1: Two Dice**
+"Two dice are thrown. Find the probability that the sum is greater than 9."
+
+**Approach:**
+• Total outcomes = 6 × 6 = 36
+• Favorable: (4,6), (5,5), (5,6), (6,4), (6,5), (6,6) = 6 outcomes
+• P = 6/36 = 1/6
+
+---
+
+**Type 2: Cards**
+"Two cards are drawn from a deck without replacement. Find P(both Aces)."
+
+**Approach:**
+• First Ace: 4/52
+• Second Ace (given first was Ace): 3/51
+• P(both) = 4/52 × 3/51 = 12/2652 = 1/221
+
+---
+
+**Type 3: Conditional Probability**
+"In a class, 60% play football, 40% play basketball, 25% play both. If a student plays football, what's the probability they also play basketball?"
+
+**Approach:**
+$$P(B|F) = \\frac{P(F \\text{ and } B)}{P(F)} = \\frac{0.25}{0.60} = \\frac{5}{12}$$
+
+---
+
+**Type 4: Tree Diagram**
+"A bag has 5 red and 3 green marbles. Two are drawn without replacement. Find P(different colors)."
+
+**Approach:**
+• P(RG) = 5/8 × 3/7 = 15/56
+• P(GR) = 3/8 × 5/7 = 15/56
+• P(different) = 15/56 + 15/56 = 30/56 = 15/28
+
+---
+
+### **Time-Saving Tips for Exams**
+
+⏱️ **1. Recognize patterns**
+• Both dice show same number? → 6/36 = 1/6
+• Sum of two dice = 7? → 6/36 = 1/6
+• Drawing 2 from n items? → Tree diagram
+
+⏱️ **2. Simplify fractions immediately**
+• 12/2652 = 1/221 (easier to work with)
+
+⏱️ **3. Write intermediate steps**
+• Shows your working (partial marks!)
+• Helps you catch errors
+
+⏱️ **4. Practice common scenarios**
+• Coins, dice, cards, marbles
+• With/without replacement
+• At least one
+
+**Remember:** WASSCE marks your METHOD, not just your answer! Show clear working! ✍️`
+      }
+    ],
+    activities: {
+      type: 'quiz',
+      questions: [
+        {
+          type: 'mcq',
+          question: 'Events A and B are mutually exclusive with P(A) = 0.3 and P(B) = 0.4. What is P(A or B)?',
+          options: ['0.1', '0.7', '0.12', '0.58'],
+          answer: '0.7',
+          explanation: 'For mutually exclusive events, P(A or B) = P(A) + P(B) = 0.3 + 0.4 = 0.7'
+        },
+        {
+          type: 'mcq',
+          question: 'Two fair dice are rolled. What is the probability that both show the same number?',
+          options: ['1/6', '1/12', '1/36', '1/2'],
+          answer: '1/6',
+          explanation: 'Favorable outcomes: (1,1), (2,2), (3,3), (4,4), (5,5), (6,6) = 6 outcomes. Total = 36. P = 6/36 = 1/6'
+        },
+        {
+          type: 'mcq',
+          question: 'A bag has 4 red and 3 blue balls. Two balls are drawn WITHOUT replacement. What is P(both red)?',
+          options: ['16/49', '12/42', '12/49', '2/7'],
+          answer: '2/7',
+          explanation: 'P(1st red) = 4/7. P(2nd red | 1st red) = 3/6 = 1/2. P(both) = 4/7 × 1/2 = 4/14 = 2/7'
+        },
+        {
+          type: 'mcq',
+          question: 'A coin is tossed and a die is rolled. What is P(Heads AND a number greater than 4)?',
+          options: ['1/3', '1/6', '1/12', '1/2'],
+          answer: '1/6',
+          explanation: 'P(Heads) = 1/2. P(>4) = 2/6 = 1/3. P(both) = 1/2 × 1/3 = 1/6'
+        },
+        {
+          type: 'truefalse',
+          statement: 'If two events are independent, then P(A and B) = P(A) × P(B)',
+          answer: 'true',
+          reason: 'This is the definition of the multiplication law for independent events.'
+        },
+        {
+          type: 'mcq',
+          question: 'What is the probability of getting at least one Head when tossing two coins?',
+          options: ['1/4', '1/2', '3/4', '1'],
+          answer: '3/4',
+          explanation: 'P(at least 1 H) = 1 - P(no heads) = 1 - P(TT) = 1 - 1/4 = 3/4. Or: HH, HT, TH are favorable (3 out of 4 outcomes).'
+        },
+        {
+          type: 'mcq',
+          question: 'From a deck of 52 cards, what is P(King OR Heart)?',
+          options: ['4/13', '17/52', '1/13', '16/52'],
+          answer: '4/13',
+          explanation: 'P(King) = 4/52, P(Heart) = 13/52, P(King and Heart) = 1/52. P(King or Heart) = 4/52 + 13/52 - 1/52 = 16/52 = 4/13'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Drawing cards without replacement creates dependent events.',
+          answer: 'true',
+          reason: 'Each draw changes the composition of the deck, so probabilities for subsequent draws depend on earlier outcomes.'
+        }
+      ]
+    },
+    pastQuestions: [],
+    summary: `**Congratulations!** You've mastered Probability of Combined Events! 🎉
+
+**What You Learned:**
+
+✅ **Addition Law (OR):** 
+   • Mutually Exclusive: P(A or B) = P(A) + P(B)
+   • Non-Mutually Exclusive: P(A or B) = P(A) + P(B) - P(A and B)
+
+✅ **Multiplication Law (AND):**
+   • Independent: P(A and B) = P(A) × P(B)
+   • Dependent: Use tree diagrams and multiply along paths
+
+✅ **Tree Diagrams:** Perfect for visualizing sequential events and complex scenarios
+
+✅ **Conditional Probability:** P(B|A) = P(A and B) / P(A)
+
+✅ **WASSCE Strategies:**
+   • Identify problem type (OR/AND, independent/dependent)
+   • Draw diagrams
+   • Use complements for "at least" questions
+   • Check answers for reasonableness
+
+**Key Formulas to Memorize:**
+
+📌 P(A') = 1 - P(A)
+📌 P(A or B) = P(A) + P(B) - P(A and B)
+📌 P(A and B) = P(A) × P(B) [if independent]
+📌 P(B|A) = P(A and B) / P(A)
+
+**Real-World Applications:**
+• Risk assessment in business
+• Medical diagnosis accuracy
+• Weather forecasting
+• Quality control in manufacturing
+• Sports predictions and betting odds
+
+**Your WASSCE Success Plan:**
+
+📅 **Week 1:** Master Addition and Multiplication Laws
+📅 **Week 2:** Perfect tree diagrams
+📅 **Week 3:** Practice 15 past questions
+📅 **Week 4:** Speed drills - complete questions in <7 minutes
+
+**Pro Tips:**
+• Always show your tree diagram (even rough sketch gets you marks!)
+• Write formulas before substituting (shows you know the method)
+• Check: probabilities must be between 0 and 1
+• For "at least" → use complement (much faster!)
+
+**Remember:** Probability questions in WASSCE are worth 10-15 marks and follow predictable patterns. With practice, these are FREE marks! 💯
+
+Keep practicing, and you'll ace every probability question! Good luck! 🌟`
   }
 ];
 
