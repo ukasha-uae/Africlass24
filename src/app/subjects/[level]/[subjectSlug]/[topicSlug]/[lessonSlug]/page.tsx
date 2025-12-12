@@ -13,11 +13,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Textarea } from '@/components/ui/textarea';
-import { ArrowLeft, Target, Lightbulb, ListChecks, FileText, BookOpen, Brain, Award, Bookmark, BookmarkCheck, Download, DownloadCloud, StickyNote, CheckSquare } from 'lucide-react';
+import { ArrowLeft, Target, Lightbulb, ListChecks, FileText, BookOpen, Brain, Award, Bookmark, BookmarkCheck, Download, DownloadCloud, StickyNote, CheckSquare, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import ReadAloud from '@/components/ReadAloud';
 import LessonCompleteQuiz from '@/components/LessonCompleteQuiz';
@@ -542,13 +542,28 @@ export default function LessonPage() {
                 </Card>
             )}
 
-             <LessonCompleteQuiz 
-                lessonId={lesson.id}
-                subjectSlug={subjectSlug}
-                topicSlug={topicSlug}
-                lessonSlug={lessonSlug}
-                localQuizzes={localQuizzes}
-             />
+            {localQuizzes && localQuizzes.length > 0 && (
+              <Card className="border-2 border-primary/50 bg-primary/5">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary" />
+                    End of Lesson Quiz
+                  </CardTitle>
+                  <CardDescription>
+                    Complete this quiz to test your understanding and mark this lesson as complete.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <LessonCompleteQuiz 
+                    lessonId={lesson.id}
+                    subjectSlug={subjectSlug}
+                    topicSlug={topicSlug}
+                    lessonSlug={lessonSlug}
+                    localQuizzes={localQuizzes}
+                  />
+                </CardContent>
+              </Card>
+            )}
 
             {/* Personal Notes Section */}
             <Card>

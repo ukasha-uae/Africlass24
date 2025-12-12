@@ -393,33 +393,77 @@ Classify each number:
 8. 0.333... → Rational, Real`
       },
       {
-        title: '7. Number Sets and Venn Diagrams',
+        title: '7. Number Sets and Relationships',
         content: `Visual representation helps understand how number sets relate to each other.
 
-**Venn Diagram of Number Sets:**
+**Hierarchical Diagram of Number Sets:**
 
-\`\`\`
-┌──────────────────── Real Numbers (ℝ) ────────────────────┐
-│                                                           │
-│  ┌────────── Rational Numbers (ℚ) ────────────┐          │
-│  │                                             │          │
-│  │  ┌──────── Integers (ℤ) ────────┐          │          │
-│  │  │                               │          │          │
-│  │  │  ┌───── Whole (𝕎) ─────┐    │          │          │
-│  │  │  │                      │    │          │          │
-│  │  │  │  ┌── Natural ──┐    │    │          │          │
-│  │  │  │  │  ℕ: 1,2,3   │    │    │          │          │
-│  │  │  │  └─────────────┘    │    │          │          │
-│  │  │  │   Plus 0 → 𝕎        │    │          │          │
-│  │  │  └─────────────────────┘    │          │          │
-│  │  │   Plus negatives → ℤ        │          │          │
-│  │  └──────────────────────────────┘          │          │
-│  │   Plus fractions/decimals → ℚ              │          │
-│  └─────────────────────────────────────────────┘          │
-│                                                           │
-│  Irrational Numbers: π, √2, e, √3, ...                   │
-│                                                           │
-└───────────────────────────────────────────────────────────┘
+\`\`\`geometry
+{
+  "type": "nested-sets",
+  "width": 500,
+  "height": 350,
+  "sets": [
+    {
+      "name": "Real Numbers (ℝ)",
+      "color": "#e3f2fd",
+      "stroke": "#1976d2",
+      "x": 10,
+      "y": 10,
+      "width": 480,
+      "height": 330,
+      "label": "All numbers on the number line"
+    },
+    {
+      "name": "Rational (ℚ)",
+      "color": "#fff3e0",
+      "stroke": "#f57c00",
+      "x": 30,
+      "y": 35,
+      "width": 290,
+      "height": 280,
+      "label": "Can be written as p/q"
+    },
+    {
+      "name": "Integers (ℤ)",
+      "color": "#e8f5e9",
+      "stroke": "#388e3c",
+      "x": 50,
+      "y": 60,
+      "width": 250,
+      "height": 230,
+      "label": "..., -2, -1, 0, 1, 2, ..."
+    },
+    {
+      "name": "Whole (𝕎)",
+      "color": "#fce4ec",
+      "stroke": "#c2185b",
+      "x": 70,
+      "y": 85,
+      "width": 210,
+      "height": 180,
+      "label": "0, 1, 2, 3, 4, ..."
+    },
+    {
+      "name": "Natural (ℕ)",
+      "color": "#f3e5f5",
+      "stroke": "#7b1fa2",
+      "x": 90,
+      "y": 110,
+      "width": 170,
+      "height": 130,
+      "label": "1, 2, 3, 4, 5, ..."
+    }
+  ],
+  "annotations": [
+    {
+      "text": "Irrational: π, √2, e",
+      "x": 350,
+      "y": 90,
+      "color": "#d32f2f"
+    }
+  ]
+}
 \`\`\`
 
 **Set Relationships:**
@@ -433,16 +477,25 @@ Classify each number:
 
 **Examples of Classification:**
 
-| Number | Natural | Whole | Integer | Rational | Irrational | Real |
-|--------|---------|-------|---------|----------|------------|------|
-| 5      | ✓       | ✓     | ✓       | ✓        | ✗          | ✓    |
-| 0      | ✗       | ✓     | ✓       | ✓        | ✗          | ✓    |
-| -3     | ✗       | ✗     | ✓       | ✓        | ✗          | ✓    |
-| 1/2    | ✗       | ✗     | ✗       | ✓        | ✗          | ✓    |
-| √2     | ✗       | ✗     | ✗       | ✗        | ✓          | ✓    |
-| π      | ✗       | ✗     | ✗       | ✗        | ✓          | ✓    |
-| -2.5   | ✗       | ✗     | ✗       | ✓        | ✗          | ✓    |
-| 0.7̄    | ✗       | ✗     | ✗       | ✓        | ✗          | ✓    |
+\`\`\`geometry
+{
+  "type": "table",
+  "height": 360,
+  "tableData": {
+    "headers": ["Number", "Natural", "Whole", "Integer", "Rational", "Irrational", "Real"],
+    "rows": [
+      ["5", "✓", "✓", "✓", "✓", "✗", "✓"],
+      ["0", "✗", "✓", "✓", "✓", "✗", "✓"],
+      ["-3", "✗", "✗", "✓", "✓", "✗", "✓"],
+      ["1/2", "✗", "✗", "✗", "✓", "✗", "✓"],
+      ["√2", "✗", "✗", "✗", "✗", "✓", "✓"],
+      ["π", "✗", "✗", "✗", "✗", "✓", "✓"],
+      ["-2.5", "✗", "✗", "✗", "✓", "✗", "✓"],
+      ["0.7̄", "✗", "✗", "✗", "✓", "✗", "✓"]
+    ]
+  }
+}
+\`\`\`
 
 **Key Insights:**
 1. Every natural number is also whole, integer, rational, and real
@@ -947,23 +1000,33 @@ Example: Start with GH₵100
         title: '7. Quick Conversion Table and Tips',
         content: `**Master Conversion Table:**
 
-| Fraction | Decimal | Percentage | Mnemon |
-|----------|---------|------------|--------|
-| 1/2      | 0.5     | 50%        | Half   |
-| 1/3      | 0.3̄     | 33.3%      | Third  |
-| 2/3      | 0.6̄     | 66.7%      | 2 Thirds |
-| 1/4      | 0.25    | 25%        | Quarter |
-| 3/4      | 0.75    | 75%        | 3 Quarters |
-| 1/5      | 0.2     | 20%        | Fifth  |
-| 2/5      | 0.4     | 40%        | 2 Fifths |
-| 3/5      | 0.6     | 60%        | 3 Fifths |
-| 4/5      | 0.8     | 80%        | 4 Fifths |
-| 1/8      | 0.125   | 12.5%      | Eighth |
-| 3/8      | 0.375   | 37.5%      | 3 Eighths |
-| 5/8      | 0.625   | 62.5%      | 5 Eighths |
-| 7/8      | 0.875   | 87.5%      | 7 Eighths |
-| 1/10     | 0.1     | 10%        | Tenth  |
-| 1/100    | 0.01    | 1%         | Hundredth |
+\`\`\`geometry
+{
+  "type": "table",
+  "width": 500,
+  "height": 680,
+  "tableData": {
+    "headers": ["Fraction", "Decimal", "Percentage", "Mnemon"],
+    "rows": [
+      ["1/2", "0.5", "50%", "Half"],
+      ["1/3", "0.3̄", "33.3%", "Third"],
+      ["2/3", "0.6̄", "66.7%", "2 Thirds"],
+      ["1/4", "0.25", "25%", "Quarter"],
+      ["3/4", "0.75", "75%", "3 Quarters"],
+      ["1/5", "0.2", "20%", "Fifth"],
+      ["2/5", "0.4", "40%", "2 Fifths"],
+      ["3/5", "0.6", "60%", "3 Fifths"],
+      ["4/5", "0.8", "80%", "4 Fifths"],
+      ["1/8", "0.125", "12.5%", "Eighth"],
+      ["3/8", "0.375", "37.5%", "3 Eighths"],
+      ["5/8", "0.625", "62.5%", "5 Eighths"],
+      ["7/8", "0.875", "87.5%", "7 Eighths"],
+      ["1/10", "0.1", "10%", "Tenth"],
+      ["1/100", "0.01", "1%", "Hundredth"]
+    ]
+  }
+}
+\`\`\`
 
 **Quick Mental Math Tips:**
 
@@ -6505,6 +6568,355 @@ $$P(A \\text{ and } B) = P(A) \\times P(B)$$
       }
     ],
     summary: 'Probability helps us understand the world of chance. We learned that probability is always between 0 and 1. We used the basic formula (Favorable/Total) to solve simple problems. We also learned the two big rules: The Addition Law (OR) for mutually exclusive events, and the Multiplication Law (AND) for independent events. Finally, we saw how Tree Diagrams can help us map out complex situations. Remember, while we can calculate probability, in real life (experimental), anything can happen in the short term!'
+  },
+
+  // Lesson 14: Logical Reasoning
+  {
+    id: 'cm_shs1_logic_1',
+    slug: 'shs1-logical-reasoning',
+    title: 'Logical Reasoning',
+    objectives: [
+      'Identify simple and compound statements',
+      'Determine the truth value of statements',
+      'Use logical connectives (and, or, if...then, if and only if, not)',
+      'Construct truth tables for logical statements',
+      'Understand logical equivalence and tautology'
+    ],
+    introduction: `Logic is the study of correct reasoning. In mathematics, we use logic to prove theorems and solve problems systematically. It helps us think clearly and avoid errors in judgment.
+
+**Why Logic Matters:**
+• **Computer Science:** Computers run on logic (0s and 1s, True/False).
+• **Law and Argumentation:** Lawyers use logic to build valid arguments.
+• **Daily Decisions:** "If it rains, then I will take an umbrella."
+
+In this lesson, we will learn how to translate English sentences into mathematical symbols and analyze their truth.`,
+    keyConcepts: [
+      {
+        title: '1. Statements and Truth Values',
+        content: `A **Statement** (or Proposition) is a sentence that is either **True** or **False**, but not both.
+
+**Examples of Statements:**
+• "Accra is the capital of Ghana." (True)
+• "2 + 2 = 5." (False)
+• "The sun rises in the west." (False)
+
+**Not Statements:**
+• "Come here!" (Command)
+• "What is your name?" (Question)
+• "He is tall." (Vague - who is 'he'?)
+
+**Truth Value:**
+• If a statement is True, its truth value is **T**.
+• If a statement is False, its truth value is **F**.`
+      },
+      {
+        title: '2. Logical Connectives',
+        content: `We use connectives to join simple statements into **Compound Statements**.
+
+**1. Negation (Not) [~p]**
+• Changes the truth value.
+• If p is True, ~p is False.
+• *Example:* p: "It is raining." ~p: "It is NOT raining."
+
+**2. Conjunction (And) [p ∧ q]**
+• True ONLY if **BOTH** p and q are True.
+• *Example:* "I like fufu AND I like banku." (True only if you like both).
+
+**3. Disjunction (Or) [p ∨ q]**
+• True if **AT LEAST ONE** is True.
+• *Example:* "I will study Math OR Science." (True if you study Math, Science, or both).
+
+**4. Implication (If...then) [p → q]**
+• False ONLY if p is True and q is False.
+• *Example:* "If you study hard (p), then you will pass (q)."
+• If you study hard and fail, the statement was a lie (False).
+
+**5. Bi-implication (If and only if) [p ↔ q]**
+• True if p and q have the **SAME** truth value (both True or both False).`
+      },
+      {
+        title: '3. Truth Tables',
+        content: `A Truth Table shows all possible truth values for a compound statement.
+
+**Table for AND (p ∧ q):**
+\`\`\`geometry
+{
+  "type": "table",
+  "height": 200,
+  "tableData": {
+    "headers": ["p", "q", "p ∧ q"],
+    "rows": [
+      ["T", "T", "T"],
+      ["T", "F", "F"],
+      ["F", "T", "F"],
+      ["F", "F", "F"]
+    ]
+  }
+}
+\`\`\`
+
+**Table for OR (p ∨ q):**
+\`\`\`geometry
+{
+  "type": "table",
+  "height": 200,
+  "tableData": {
+    "headers": ["p", "q", "p ∨ q"],
+    "rows": [
+      ["T", "T", "T"],
+      ["T", "F", "T"],
+      ["F", "T", "T"],
+      ["F", "F", "F"]
+    ]
+  }
+}
+\`\`\`
+
+**Table for Implication (p → q):**
+\`\`\`geometry
+{
+  "type": "table",
+  "height": 200,
+  "tableData": {
+    "headers": ["p", "q", "p → q"],
+    "rows": [
+      ["T", "T", "T"],
+      ["T", "F", "F"],
+      ["F", "T", "T"],
+      ["F", "F", "T"]
+    ]
+  }
+}
+\`\`\``
+      }
+    ],
+    activities: {
+      type: 'exercises',
+      questions: [
+        {
+          type: 'mcq',
+          question: 'Which of the following is a valid statement?',
+          options: ['Go home!', 'Accra is in Togo.', 'x + 2 = 5', 'What time is it?'],
+          answer: 'Accra is in Togo.',
+          explanation: 'It is a statement because it is definitely False. Commands, questions, and open sentences (with variables) are not statements.'
+        },
+        {
+          type: 'mcq',
+          question: 'If p is True and q is False, what is the value of p ∧ q?',
+          options: ['True', 'False', 'Cannot be determined', 'Both'],
+          answer: 'False',
+          explanation: 'For AND (∧) to be True, BOTH must be True.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'The negation of "All students are tall" is "No students are tall".',
+          answer: 'false',
+          reason: 'False. The negation is "Some students are NOT tall" (or "Not all students are tall").'
+        }
+      ]
+    },
+    pastQuestions: [
+      {
+        question: 'Construct a truth table for ~(p ∨ q).',
+        solution: `Step 1: List p, q.
+Step 2: Find (p ∨ q).
+Step 3: Negate it.
+
+\`\`\`geometry
+{
+  "type": "table",
+  "height": 200,
+  "tableData": {
+    "headers": ["p", "q", "p ∨ q", "~(p ∨ q)"],
+    "rows": [
+      ["T", "T", "T", "F"],
+      ["T", "F", "T", "F"],
+      ["F", "T", "T", "F"],
+      ["F", "F", "F", "T"]
+    ]
+  }
+}
+\`\`\``
+      },
+      {
+        question: 'Let p: "Kofi is a boy" and q: "Ama is a girl". Write in symbolic form: "If Kofi is a boy, then Ama is not a girl."',
+        solution: 'p: Kofi is a boy\nq: Ama is a girl\n~q: Ama is not a girl\n\nStatement: "If p, then ~q"\nSymbolic Form: $p \\rightarrow \\sim q$'
+      }
+    ],
+    endOfLessonQuiz: [
+      {
+        type: 'mcq',
+        question: 'The symbol ∨ represents:',
+        options: ['AND', 'OR', 'NOT', 'IMPLIES'],
+        answer: 'OR',
+        explanation: '∨ stands for Disjunction (OR).'
+      },
+      {
+        type: 'mcq',
+        question: 'A statement that is always True is called a:',
+        options: ['Contradiction', 'Tautology', 'Fallacy', 'Implication'],
+        answer: 'Tautology',
+        explanation: 'A Tautology is true under all conditions.'
+      },
+      {
+        type: 'truefalse',
+        statement: 'If p is False, then p → q is always True.',
+        answer: 'true',
+        reason: 'True. An implication is only False if T → F. If the start is False, the statement is automatically True.'
+      }
+    ],
+    summary: 'Logical Reasoning teaches us to think strictly and symbolically. We learned about Statements (True/False sentences) and Connectives (AND, OR, NOT, IF...THEN). We used Truth Tables to analyze complex statements. This skill is vital for computer science and constructing valid mathematical proofs.'
+  },
+
+  // Lesson 15: Business Mathematics
+  {
+    id: 'cm_shs1_biz_1',
+    slug: 'shs1-business-mathematics',
+    title: 'Business Mathematics',
+    objectives: [
+      'Calculate ratios and rates',
+      'Solve problems involving direct and inverse proportion',
+      'Calculate Simple Interest and Compound Interest',
+      'Understand profit, loss, and percentage change',
+      'Perform currency conversion (Exchange Rates)',
+      'Calculate depreciation and appreciation'
+    ],
+    introduction: `Business Mathematics is perhaps the most practical topic you will learn. It deals with money, banking, and daily transactions. Whether you are running a shop, saving money in a bank, or planning a trip abroad, these skills are essential.
+
+**Key Areas:**
+• **Ratios:** Sharing profits or resources.
+• **Interest:** How money grows in a bank (or debt grows on a loan).
+• **Exchange Rates:** Converting Cedis to Dollars or Pounds.
+• **Taxes & Bills:** Understanding VAT and utility bills.
+
+In this lesson, we will master the calculations that govern the financial world.`,
+    keyConcepts: [
+      {
+        title: '1. Ratios and Proportions',
+        content: `**Ratio:** A comparison of two or more quantities of the same kind.
+• Written as a : b or a/b.
+• *Example:* Sharing GH₵100 between Kofi and Ama in the ratio 2:3.
+• Total parts = 2 + 3 = 5.
+• Kofi = (2/5) × 100 = GH₵40.
+• Ama = (3/5) × 100 = GH₵60.
+
+**Proportion:** An equation stating that two ratios are equal ($a/b = c/d$).
+
+**Direct Proportion:** As one increases, the other increases.
+• *Example:* If 5 pens cost GH₵10, then 10 pens cost GH₵20.
+• Formula: $y = kx$
+
+**Inverse Proportion:** As one increases, the other decreases.
+• *Example:* If 3 men build a wall in 4 days, 6 men will build it in 2 days (more men, less time).
+• Formula: $y = k/x$`
+      },
+      {
+        title: '2. Simple and Compound Interest',
+        content: `**Simple Interest (S.I.):** Interest calculated only on the principal amount.
+$$I = \\frac{P \\times R \\times T}{100}$$
+• P = Principal (Starting amount)
+• R = Rate (%)
+• T = Time (years)
+• Amount = P + I
+
+**Compound Interest (C.I.):** Interest calculated on the principal AND the accumulated interest.
+$$A = P(1 + \\frac{R}{100})^n$$
+• A = Final Amount
+• n = Number of periods (years)
+• Compound Interest = A - P
+
+*Example:* Invest GH₵1000 at 10% for 2 years.
+• **Simple Interest:** $I = (1000 \\times 10 \\times 2)/100 = 200$. Total = 1200.
+• **Compound Interest:** $A = 1000(1 + 0.1)^2 = 1000(1.21) = 1210$.
+• Compound interest gives you more money!`
+      },
+      {
+        title: '3. Profit, Loss, and Percentages',
+        content: `**Cost Price (CP):** Amount you bought the item for.
+**Selling Price (SP):** Amount you sold it for.
+
+• **Profit** = SP - CP (if SP > CP)
+• **Loss** = CP - SP (if CP > SP)
+
+**Percentage Profit:**
+$$\\% \\text{Profit} = \\frac{\\text{Profit}}{\\text{Cost Price}} \\times 100$$
+
+**Discount:** Reduction in price.
+• Sale Price = Marked Price - Discount`
+      },
+      {
+        title: '4. Exchange Rates',
+        content: `Exchange rates determine the value of one currency in terms of another.
+
+*Example:* Exchange Rate: $1 USD = GH₵ 12.00$
+
+**Converting Cedis to Dollars:**
+• Divide by the rate.
+• GH₵ 2400 = $2400 / 12 = $200 USD.
+
+**Converting Dollars to Cedis:**
+• Multiply by the rate.
+• $50 USD = 50 \\times 12 = GH₵ 600$.`
+      }
+    ],
+    activities: {
+      type: 'exercises',
+      questions: [
+        {
+          type: 'mcq',
+          question: 'Share GH₵ 500 in the ratio 2:3.',
+          options: ['200:300', '250:250', '100:400', '150:350'],
+          answer: '200:300',
+          explanation: 'Total parts = 5. Part 1 = (2/5)*500 = 200. Part 2 = (3/5)*500 = 300.'
+        },
+        {
+          type: 'mcq',
+          question: 'Calculate the Simple Interest on GH₵ 2000 at 5% for 3 years.',
+          options: ['GH₵ 300', 'GH₵ 100', 'GH₵ 3000', 'GH₵ 150'],
+          answer: 'GH₵ 300',
+          explanation: 'I = (2000 * 5 * 3) / 100 = 300.'
+        },
+        {
+          type: 'fillblank',
+          sentence: 'If 1 USD = GH₵ 10, then $20 is equal to GH₵ ___.',
+          answer: '200',
+          explanation: '20 * 10 = 200.'
+        }
+      ]
+    },
+    pastQuestions: [
+      {
+        question: 'A trader bought a dress for GH₵ 80.00 and sold it for GH₵ 100.00. Calculate the percentage profit.',
+        solution: 'CP = 80, SP = 100\nProfit = 100 - 80 = 20\n% Profit = (Profit / CP) * 100\n= (20 / 80) * 100\n= (1/4) * 100\n= 25%'
+      },
+      {
+        question: 'The population of a town increases by 10% every year. If the current population is 10,000, what will it be in 2 years?',
+        solution: 'This is Compound Growth.\nA = P(1 + r/100)^n\nA = 10000(1 + 10/100)^2\nA = 10000(1.1)^2\nA = 10000(1.21)\nA = 12,100'
+      }
+    ],
+    endOfLessonQuiz: [
+      {
+        type: 'mcq',
+        question: 'Which yields more interest for the saver?',
+        options: ['Simple Interest', 'Compound Interest', 'They are the same', 'Depends on the bank'],
+        answer: 'Compound Interest',
+        explanation: 'Compound interest earns interest on interest, so it grows faster.'
+      },
+      {
+        type: 'mcq',
+        question: 'If y is inversely proportional to x, and y=4 when x=2, find y when x=4.',
+        options: ['2', '4', '8', '1'],
+        answer: '2',
+        explanation: 'y = k/x. 4 = k/2 => k=8. New y = 8/4 = 2.'
+      },
+      {
+        type: 'truefalse',
+        statement: 'Depreciation means the value of an asset increases over time.',
+        answer: 'false',
+        reason: 'False. Depreciation means the value decreases (like a used car).'
+      }
+    ],
+    summary: 'Business Mathematics equips you with the tools to handle money wisely. We mastered Ratios for sharing, Simple and Compound Interest for banking, and Exchange Rates for international trade. We also learned to calculate Profit and Loss percentages. These skills are not just for exams; they are for life!'
   }
 
 ];

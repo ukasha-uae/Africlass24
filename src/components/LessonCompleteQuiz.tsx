@@ -68,6 +68,7 @@ export default function LessonCompleteQuiz({ lessonId, topicSlug, subjectSlug, l
   const { firestore, user } = useFirebase();
   const [isCompleted, setIsCompleted] = useState(false);
   const [showQuiz, setShowQuiz] = useState(false);
+  const isActivityQuiz = lessonId.includes('-activities');
   const [userAnswers, setUserAnswers] = useState<any[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [score, setScore] = useState(0);
@@ -441,7 +442,7 @@ export default function LessonCompleteQuiz({ lessonId, topicSlug, subjectSlug, l
         </div>
         <Button onClick={() => setShowQuiz(true)} className="w-full" disabled={!hasMounted}>
         <CheckCircle className="mr-2 h-5 w-5" />
-        Test Your Knowledge to Complete
+        {isActivityQuiz ? 'Start Practice Questions' : 'Test Your Knowledge to Complete'}
         </Button>
       </div>
     )
@@ -465,15 +466,15 @@ export default function LessonCompleteQuiz({ lessonId, topicSlug, subjectSlug, l
                   <div className="space-y-3">
                     <h3 className="font-semibold">Review</h3>
                     {testReport.map((r, i) => (
-                      <div key={i} className={`p-3 rounded border ${r.isCorrect ? 'border-green-200 bg-green-50' : 'border-destructive bg-red-50'}`}>
+                      <div key={i} className={`p-3 rounded border ${r.isCorrect ? 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950' : 'border-destructive bg-red-50 dark:border-red-800 dark:bg-red-950'}`}>
                         <div className="flex justify-between items-center">
                           <div className="font-medium">Q{i+1}: <MarkdownRenderer content={r.question} /></div>
                           <span className="text-sm text-muted-foreground">{r.isCorrect ? 'Correct' : 'Incorrect'}</span>
                         </div>
                         <div className="mt-2 text-sm">
-                          <div><strong>Your answer:</strong> <MarkdownRenderer content={Array.isArray(r.userAnswer) ? r.userAnswer.join(', ') : String(r.userAnswer)} /></div>
-                          <div><strong>Correct answer:</strong> <MarkdownRenderer content={Array.isArray(r.correctAnswer) ? r.correctAnswer.join(', ') : String(r.correctAnswer)} /></div>
-                          {r.explanation && <div className="mt-2 text-sm text-muted-foreground"><strong>Why:</strong> <MarkdownRenderer content={r.explanation} /></div>}
+                          <div className="dark:text-gray-200"><strong>Your answer:</strong> <MarkdownRenderer content={Array.isArray(r.userAnswer) ? r.userAnswer.join(', ') : String(r.userAnswer)} /></div>
+                          <div className="dark:text-gray-200"><strong>Correct answer:</strong> <MarkdownRenderer content={Array.isArray(r.correctAnswer) ? r.correctAnswer.join(', ') : String(r.correctAnswer)} /></div>
+                          {r.explanation && <div className="mt-2 text-sm text-muted-foreground dark:text-gray-300"><strong>Why:</strong> <MarkdownRenderer content={r.explanation} /></div>}
                         </div>
                         {!r.isCorrect && (
                           <div className="mt-2 flex gap-2">

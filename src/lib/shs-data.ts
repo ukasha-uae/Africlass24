@@ -2,6 +2,7 @@
 import type { ReactNode } from 'react';
 import React from 'react'; // Import React
 import { coreMathSHS1Lessons } from './shs-lessons-data';
+import { coreMathSHS2Lessons } from './shs2-lessons-data';
 import type { Lesson } from './types';
 
 export interface Topic {
@@ -61,6 +62,8 @@ const getFullCoreMathematicsTopics = (): Topic[] => {
     
     { id: "cm_shs1_data_1", name: "Data Collection and Presentation", slug: "shs1-data-collection-presentation", gradeLevel: "SHS 1 - Strand 4: Data Handling and Probability" },
     { id: "cm_shs1_data_2", name: "Introduction to Probability", slug: "shs1-introduction-to-probability", gradeLevel: "SHS 1 - Strand 4: Data Handling and Probability" },
+    { id: "cm_shs1_logic_1", name: "Logical Reasoning", slug: "shs1-logical-reasoning", gradeLevel: "SHS 1 - Strand 5: Logical Reasoning" },
+    { id: "cm_shs1_biz_1", name: "Business Mathematics (Ratio & Rates)", slug: "shs1-business-mathematics", gradeLevel: "SHS 1 - Strand 1: Number and Numeration" },
 
     // SHS 2
     { id: "cm_shs2_num_1", name: "Number Bases", slug: "shs2-number-bases", gradeLevel: "SHS 2 - Strand 1: Number and Numeration" },
@@ -1292,7 +1295,7 @@ export const getSHSSubjectBySlug = (slug: string): Subject | null => {
 export const getSHSLesson = (subjectSlug: string, topicSlug: string, lessonSlug: string): Lesson | null => {
   // Currently only Core Mathematics has detailed lessons
   if (subjectSlug === 'core-mathematics') {
-    const allLessons = coreMathSHS1Lessons;
+    const allLessons = [...coreMathSHS1Lessons, ...coreMathSHS2Lessons];
     // For SHS, topicSlug and lessonSlug are often the same, try matching either
     return allLessons.find(lesson =>  
       lesson.slug === lessonSlug || lesson.slug === topicSlug
