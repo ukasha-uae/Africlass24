@@ -21,6 +21,14 @@ import {
   ProbabilityLawsTable,
   MutuallyExclusiveVennDiagram
 } from './ProbabilityAnimations';
+import {
+  FactorizationSolverAnimation,
+  CompletingTheSquareAnimation,
+  QuadraticFormulaAnimation,
+  DiscriminantExplorerAnimation,
+  WordProblemSolverAnimation,
+  SumProductRootsAnimation
+} from './QuadraticAnimations';
 import { 
   translationSteps, 
   translationFrames, 
@@ -195,7 +203,7 @@ export default function MarkdownRenderer({ content, id, className }: MarkdownRen
                 case 'number-line-mean':
                 case 'mean-calculator':
                   return (
-                    <div key={pIndex} className="my-6">
+                    <div key={pIndex} className="my-6" data-skip-tts="true">
                       <MeanCalculatorAnimation data={props.data} showCalculation={props.showCalculation} />
                     </div>
                   );
@@ -276,14 +284,14 @@ export default function MarkdownRenderer({ content, id, className }: MarkdownRen
                 
                 case 'two-coins':
                   return (
-                    <div key={pIndex} className="my-6">
+                    <div key={pIndex} className="my-6" data-skip-tts="true">
                       <TwoCoinTossAnimation />
                     </div>
                   );
                 
                 case 'tree-diagram':
                   return (
-                    <div key={pIndex} className="my-6">
+                    <div key={pIndex} className="my-6" data-skip-tts="true">
                       <TreeDiagramAnimation scenario={props.scenario || 'without-replacement'} />
                     </div>
                   );
@@ -299,6 +307,71 @@ export default function MarkdownRenderer({ content, id, className }: MarkdownRen
                   return (
                     <div key={pIndex} className="my-6">
                       <MutuallyExclusiveVennDiagram />
+                    </div>
+                  );
+                
+                case 'factorization-solver':
+                  return (
+                    <div key={pIndex} className="my-6" data-skip-tts="true">
+                      <FactorizationSolverAnimation 
+                        a={props.a || 1}
+                        b={props.b || 7}
+                        c={props.c || 12}
+                      />
+                    </div>
+                  );
+                
+                case 'completing-the-square':
+                  return (
+                    <div key={pIndex} className="my-6" data-skip-tts="true">
+                      <CompletingTheSquareAnimation 
+                        a={props.a || 1}
+                        b={props.b || 6}
+                        c={props.c || 5}
+                      />
+                    </div>
+                  );
+                
+                case 'quadratic-formula':
+                  return (
+                    <div key={pIndex} className="my-6" data-skip-tts="true">
+                      <QuadraticFormulaAnimation 
+                        a={props.a || 1}
+                        b={props.b || 6}
+                        c={props.c || 5}
+                      />
+                    </div>
+                  );
+                
+                case 'discriminant-explorer':
+                  return (
+                    <div key={pIndex} className="my-6" data-skip-tts="true">
+                      <DiscriminantExplorerAnimation 
+                        a={props.a || 2}
+                        b={props.b || 5}
+                        c={props.c || 2}
+                      />
+                    </div>
+                  );
+                
+                case 'word-problem-solver':
+                  return (
+                    <div key={pIndex} className="my-6" data-skip-tts="true">
+                      <WordProblemSolverAnimation 
+                        perimeter={props.perimeter || 28}
+                        area={props.area || 45}
+                      />
+                    </div>
+                  );
+                
+                case 'sum-product-roots':
+                  return (
+                    <div key={pIndex} className="my-6" data-skip-tts="true">
+                      <SumProductRootsAnimation 
+                        a={props.a || 1}
+                        b={props.b || -5}
+                        c={props.c || 6}
+                      />
                     </div>
                   );
                 
