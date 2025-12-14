@@ -7410,5 +7410,819 @@ Simple tests to identify nutrients in food:
       }
     ],
     summary: "Nutrition is the process by which organisms obtain and use food for growth, repair, and energy. The six classes of nutrients are carbohydrates (energy), proteins (growth and repair), fats (concentrated energy and insulation), vitamins (regulate body processes), minerals (build tissues and regulate functions), and water (transport and temperature control). A balanced diet contains all six nutrient classes in correct proportions. Common deficiency diseases include kwashiorkor (protein), anemia (iron), goitre (iodine), night blindness (vitamin A), and scurvy (vitamin C). Ghanaian foods like palm oil, kontomire, fish, beans, and fruits provide essential nutrients when combined properly in a balanced diet."
+  },
+
+  // ============================================================
+  // LESSON 8: Digestion (Human Digestive System)
+  // ============================================================
+  {
+    id: 'is-dm-digestion-process',
+    slug: 'is-dm-digestion-process',
+    title: 'Digestion and the Human Digestive System',
+    objectives: [
+      'Define digestion and distinguish between mechanical and chemical digestion',
+      'Identify and describe the organs of the human digestive system',
+      'Explain the role of enzymes in digestion',
+      'Trace the path of food through the alimentary canal',
+      'Describe the digestion and absorption of carbohydrates, proteins, and fats',
+      'Explain the importance of a healthy digestive system',
+      'Relate digestion to nutrition and overall health'
+    ],
+    introduction: `Have you ever wondered what happens to your waakye or banku after you swallow it? How does that delicious fufu become energy for your body? The answer lies in digestion - an amazing journey through your digestive system!
+
+Digestion is the process of breaking down large, complex food molecules into smaller, simpler molecules that can be absorbed into the blood and used by your body cells. Without digestion, you couldn't get energy from your food, build new cells, or repair damaged tissues.
+
+In this lesson, we'll follow food on its incredible journey through your body - from the moment it enters your mouth to when nutrients are absorbed into your bloodstream!`,
+    keyConcepts: [
+      {
+        title: '1. Introduction to Digestion',
+        content: `**WHAT IS DIGESTION?**
+
+**Definition:** Digestion is the process of breaking down large, complex food molecules into smaller, simpler molecules that can be absorbed and used by body cells.
+
+**Why is Digestion Necessary?**
+• Food molecules are too large to pass through cell membranes
+• Complex molecules must be converted to simple forms
+• Nutrients need to be dissolved for absorption
+• Energy cannot be released from undigested food
+
+**TWO TYPES OF DIGESTION:**
+
+<h4 style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: white; padding: 0.75rem 1rem; border-radius: 8px 8px 0 0; margin: 1.5rem 0 0 0; font-weight: 600;">🦷 MECHANICAL DIGESTION</h4>
+<table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; background: #fff7ed; border-radius: 0 0 8px 8px; overflow: hidden; margin-bottom: 1.5rem;">
+<tbody>
+<tr style="border-bottom: 1px solid #fed7aa;">
+<td style="padding: 0.75rem; font-weight: 600; width: 30%;">Definition</td>
+<td style="padding: 0.75rem;">Physical breakdown of food into smaller pieces WITHOUT changing chemical composition</td>
+</tr>
+<tr style="border-bottom: 1px solid #fed7aa; background: #fff1e6;">
+<td style="padding: 0.75rem; font-weight: 600;">Actions</td>
+<td style="padding: 0.75rem;">Chewing (teeth), churning (stomach), segmentation (intestines)</td>
+</tr>
+<tr>
+<td style="padding: 0.75rem; font-weight: 600;">Purpose</td>
+<td style="padding: 0.75rem;">Increases surface area for enzymes to work on</td>
+</tr>
+</tbody>
+</table>
+
+<h4 style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 0.75rem 1rem; border-radius: 8px 8px 0 0; margin: 1.5rem 0 0 0; font-weight: 600;">🧪 CHEMICAL DIGESTION</h4>
+<table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; background: #f5f3ff; border-radius: 0 0 8px 8px; overflow: hidden; margin-bottom: 1.5rem;">
+<tbody>
+<tr style="border-bottom: 1px solid #c4b5fd;">
+<td style="padding: 0.75rem; font-weight: 600; width: 30%;">Definition</td>
+<td style="padding: 0.75rem;">Breakdown of large molecules into smaller ones using ENZYMES</td>
+</tr>
+<tr style="border-bottom: 1px solid #c4b5fd; background: #ede9fe;">
+<td style="padding: 0.75rem; font-weight: 600;">Agents</td>
+<td style="padding: 0.75rem;">Enzymes (biological catalysts like amylase, pepsin, lipase)</td>
+</tr>
+<tr>
+<td style="padding: 0.75rem; font-weight: 600;">Result</td>
+<td style="padding: 0.75rem;">Complex molecules → Simple, absorbable molecules</td>
+</tr>
+</tbody>
+</table>
+
+**Example of Both Types:**
+When you eat fufu:
+1. **Mechanical:** Your teeth crush and grind it into smaller pieces
+2. **Chemical:** Enzymes in saliva start breaking down the starch into sugars`
+      },
+      {
+        title: '2. The Human Digestive System',
+        content: `**ORGANS OF THE DIGESTIVE SYSTEM**
+
+The digestive system consists of the **alimentary canal** (digestive tract) and **accessory organs**.
+
+<h4 style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 0.75rem 1rem; border-radius: 8px 8px 0 0; margin: 1.5rem 0 0 0; font-weight: 600;">🍽️ THE ALIMENTARY CANAL (9 meters long!)</h4>
+<table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; background: #ecfdf5; border-radius: 0 0 8px 8px; overflow: hidden; margin-bottom: 1.5rem;">
+<thead>
+<tr style="background: #d1fae5;">
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #10b981; font-weight: 600;">Organ</th>
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #10b981; font-weight: 600;">Main Function</th>
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #10b981; font-weight: 600;">Time Food Spends</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px solid #a7f3d0;">
+<td style="padding: 0.75rem; font-weight: 600;">Mouth</td>
+<td style="padding: 0.75rem;">Mechanical (chewing) + Chemical (amylase)</td>
+<td style="padding: 0.75rem;">1 minute</td>
+</tr>
+<tr style="border-bottom: 1px solid #a7f3d0; background: #d1fae5;">
+<td style="padding: 0.75rem; font-weight: 600;">Oesophagus</td>
+<td style="padding: 0.75rem;">Transport food to stomach (peristalsis)</td>
+<td style="padding: 0.75rem;">10 seconds</td>
+</tr>
+<tr style="border-bottom: 1px solid #a7f3d0;">
+<td style="padding: 0.75rem; font-weight: 600;">Stomach</td>
+<td style="padding: 0.75rem;">Churning + Protein digestion (pepsin)</td>
+<td style="padding: 0.75rem;">2-6 hours</td>
+</tr>
+<tr style="border-bottom: 1px solid #a7f3d0; background: #d1fae5;">
+<td style="padding: 0.75rem; font-weight: 600;">Small Intestine</td>
+<td style="padding: 0.75rem;">Complete digestion + Absorption</td>
+<td style="padding: 0.75rem;">3-5 hours</td>
+</tr>
+<tr style="border-bottom: 1px solid #a7f3d0;">
+<td style="padding: 0.75rem; font-weight: 600;">Large Intestine</td>
+<td style="padding: 0.75rem;">Water absorption + Faeces formation</td>
+<td style="padding: 0.75rem;">12-36 hours</td>
+</tr>
+<tr>
+<td style="padding: 0.75rem; font-weight: 600;">Rectum & Anus</td>
+<td style="padding: 0.75rem;">Storage and elimination of waste</td>
+<td style="padding: 0.75rem;">Variable</td>
+</tr>
+</tbody>
+</table>
+
+<h4 style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 0.75rem 1rem; border-radius: 8px 8px 0 0; margin: 1.5rem 0 0 0; font-weight: 600;">🏭 ACCESSORY ORGANS</h4>
+<table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; background: #fffbeb; border-radius: 0 0 8px 8px; overflow: hidden; margin-bottom: 1.5rem;">
+<thead>
+<tr style="background: #fef3c7;">
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f59e0b; font-weight: 600;">Organ</th>
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f59e0b; font-weight: 600;">Secretion</th>
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f59e0b; font-weight: 600;">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px solid #fcd34d;">
+<td style="padding: 0.75rem; font-weight: 600;">Salivary Glands</td>
+<td style="padding: 0.75rem;">Saliva (contains amylase)</td>
+<td style="padding: 0.75rem;">Moistens food, begins starch digestion</td>
+</tr>
+<tr style="border-bottom: 1px solid #fcd34d; background: #fef9e7;">
+<td style="padding: 0.75rem; font-weight: 600;">Liver</td>
+<td style="padding: 0.75rem;">Bile</td>
+<td style="padding: 0.75rem;">Emulsifies fats (breaks into droplets)</td>
+</tr>
+<tr style="border-bottom: 1px solid #fcd34d;">
+<td style="padding: 0.75rem; font-weight: 600;">Gallbladder</td>
+<td style="padding: 0.75rem;">Stores bile</td>
+<td style="padding: 0.75rem;">Releases bile when needed</td>
+</tr>
+<tr>
+<td style="padding: 0.75rem; font-weight: 600;">Pancreas</td>
+<td style="padding: 0.75rem;">Pancreatic juice</td>
+<td style="padding: 0.75rem;">Contains multiple enzymes for digestion</td>
+</tr>
+</tbody>
+</table>
+
+<div style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); border-radius: 12px; padding: 1.25rem; margin: 1rem 0; border-left: 4px solid #0ea5e9;">
+<strong>🇬🇭 Ghana Health Fact:</strong> The liver is the largest internal organ! It also detoxifies harmful substances - so drinking too much alcohol damages the liver over time.
+</div>`
+      },
+      {
+        title: '3. Digestion in the Mouth',
+        content: `**THE MOUTH - Where Digestion Begins**
+
+The mouth is where both mechanical and chemical digestion start.
+
+**MECHANICAL DIGESTION IN THE MOUTH:**
+
+**Teeth** - Four types with different functions:
+
+<h4 style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); color: white; padding: 0.75rem 1rem; border-radius: 8px 8px 0 0; margin: 1.5rem 0 0 0; font-weight: 600;">🦷 TYPES OF TEETH</h4>
+<table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; background: #fdf2f8; border-radius: 0 0 8px 8px; overflow: hidden; margin-bottom: 1.5rem;">
+<thead>
+<tr style="background: #fce7f3;">
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #ec4899; font-weight: 600;">Tooth Type</th>
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #ec4899; font-weight: 600;">Number (Adult)</th>
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #ec4899; font-weight: 600;">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px solid #f9a8d4;">
+<td style="padding: 0.75rem; font-weight: 600;">Incisors</td>
+<td style="padding: 0.75rem;">8 (4 top, 4 bottom)</td>
+<td style="padding: 0.75rem;">Cutting and biting food</td>
+</tr>
+<tr style="border-bottom: 1px solid #f9a8d4; background: #fce7f3;">
+<td style="padding: 0.75rem; font-weight: 600;">Canines</td>
+<td style="padding: 0.75rem;">4 (2 top, 2 bottom)</td>
+<td style="padding: 0.75rem;">Tearing food (meat)</td>
+</tr>
+<tr style="border-bottom: 1px solid #f9a8d4;">
+<td style="padding: 0.75rem; font-weight: 600;">Premolars</td>
+<td style="padding: 0.75rem;">8 (4 top, 4 bottom)</td>
+<td style="padding: 0.75rem;">Crushing and grinding</td>
+</tr>
+<tr>
+<td style="padding: 0.75rem; font-weight: 600;">Molars</td>
+<td style="padding: 0.75rem;">12 (6 top, 6 bottom)</td>
+<td style="padding: 0.75rem;">Grinding food into paste</td>
+</tr>
+</tbody>
+</table>
+
+**Total: 32 teeth in adults** (including 4 wisdom teeth)
+
+**The Tongue:**
+• Moves food around for chewing
+• Mixes food with saliva
+• Forms food into a ball (bolus) for swallowing
+• Contains taste buds
+
+**CHEMICAL DIGESTION IN THE MOUTH:**
+
+**Saliva** - Produced by three pairs of salivary glands:
+• **Parotid glands** (near ears)
+• **Submandibular glands** (under jaw)
+• **Sublingual glands** (under tongue)
+
+**Components of Saliva:**
+• **Water** (99%) - Moistens food
+• **Salivary amylase** - Enzyme that breaks down starch to maltose
+• **Mucus** - Lubricates food for swallowing
+• **Lysozyme** - Kills bacteria
+
+<div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-radius: 12px; padding: 1.25rem; border-left: 4px solid #22c55e; margin: 1.5rem 0;">
+<h4 style="color: #166534; margin: 0 0 0.5rem 0; font-weight: 600;">🧪 Simple Experiment!</h4>
+<p style="margin: 0;">Chew a piece of bread (or kenkey) for 2-3 minutes without swallowing. Notice how it starts to taste sweet? That's amylase breaking down starch into sugar!</p>
+</div>`
+      },
+      {
+        title: '4. The Stomach - Protein Factory',
+        content: `**THE STOMACH**
+
+The stomach is a J-shaped muscular bag that stores food and begins protein digestion.
+
+**Structure:**
+• **Cardiac sphincter** - Ring of muscle at entrance (from oesophagus)
+• **Fundus** - Upper rounded part
+• **Body** - Main central part
+• **Pyloric sphincter** - Ring of muscle at exit (to small intestine)
+
+**What Happens in the Stomach:**
+
+**1. Mechanical Digestion:**
+• Strong muscular walls churn food
+• Mixes food with gastric juice
+• Turns food into a semi-liquid called **chyme**
+
+**2. Chemical Digestion:**
+
+<h4 style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; padding: 0.75rem 1rem; border-radius: 8px 8px 0 0; margin: 1.5rem 0 0 0; font-weight: 600;">🧪 GASTRIC JUICE COMPONENTS</h4>
+<table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; background: #fef2f2; border-radius: 0 0 8px 8px; overflow: hidden; margin-bottom: 1.5rem;">
+<thead>
+<tr style="background: #fee2e2;">
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #ef4444; font-weight: 600;">Component</th>
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #ef4444; font-weight: 600;">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px solid #fca5a5;">
+<td style="padding: 0.75rem; font-weight: 600;">Hydrochloric Acid (HCl)</td>
+<td style="padding: 0.75rem;">• Creates acidic environment (pH 1.5-2)<br/>• Kills bacteria in food<br/>• Activates pepsinogen to pepsin</td>
+</tr>
+<tr style="border-bottom: 1px solid #fca5a5; background: #fee2e2;">
+<td style="padding: 0.75rem; font-weight: 600;">Pepsin</td>
+<td style="padding: 0.75rem;">• Enzyme that breaks down proteins<br/>• Converts proteins → peptides</td>
+</tr>
+<tr style="border-bottom: 1px solid #fca5a5;">
+<td style="padding: 0.75rem; font-weight: 600;">Rennin (in babies)</td>
+<td style="padding: 0.75rem;">• Curdles milk protein (casein)<br/>• Important for digesting breast milk</td>
+</tr>
+<tr>
+<td style="padding: 0.75rem; font-weight: 600;">Mucus</td>
+<td style="padding: 0.75rem;">• Protects stomach wall from acid<br/>• Lubricates food movement</td>
+</tr>
+</tbody>
+</table>
+
+**Why doesn't the stomach digest itself?**
+• Thick mucus layer protects the stomach lining
+• Stomach cells are replaced every 3 days
+• Pepsin is secreted as inactive pepsinogen
+
+<div style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border-radius: 12px; padding: 1.25rem; border-left: 4px solid #ef4444; margin: 1.5rem 0;">
+<h4 style="color: #991b1b; margin: 0 0 0.5rem 0; font-weight: 600;">⚠️ Ulcers Warning</h4>
+<p style="margin: 0;">When the mucus layer is damaged (by bacteria like H. pylori, or by too much spicy food/alcohol), stomach acid can attack the stomach wall, causing painful <strong>ulcers</strong>. Always eat regularly and avoid excessive alcohol!</p>
+</div>
+
+**Time in Stomach:** 2-6 hours (depends on food type)
+• Carbohydrates leave fastest
+• Proteins take medium time
+• Fats stay longest`
+      },
+      {
+        title: '5. The Small Intestine - Digestion Central',
+        content: `**THE SMALL INTESTINE**
+
+The small intestine is where most digestion and absorption occurs. Despite being called "small," it's about **6-7 meters long** - but narrow in diameter!
+
+**Three Regions:**
+
+<h4 style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; padding: 0.75rem 1rem; border-radius: 8px 8px 0 0; margin: 1.5rem 0 0 0; font-weight: 600;">📍 REGIONS OF SMALL INTESTINE</h4>
+<table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; background: #eff6ff; border-radius: 0 0 8px 8px; overflow: hidden; margin-bottom: 1.5rem;">
+<thead>
+<tr style="background: #dbeafe;">
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #3b82f6; font-weight: 600;">Region</th>
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #3b82f6; font-weight: 600;">Length</th>
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #3b82f6; font-weight: 600;">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px solid #93c5fd;">
+<td style="padding: 0.75rem; font-weight: 600;">Duodenum</td>
+<td style="padding: 0.75rem;">25 cm</td>
+<td style="padding: 0.75rem;">Receives bile and pancreatic juice; main chemical digestion</td>
+</tr>
+<tr style="border-bottom: 1px solid #93c5fd; background: #dbeafe;">
+<td style="padding: 0.75rem; font-weight: 600;">Jejunum</td>
+<td style="padding: 0.75rem;">2.5 m</td>
+<td style="padding: 0.75rem;">Continues digestion; begins absorption</td>
+</tr>
+<tr>
+<td style="padding: 0.75rem; font-weight: 600;">Ileum</td>
+<td style="padding: 0.75rem;">3.5 m</td>
+<td style="padding: 0.75rem;">Completes digestion; main absorption site</td>
+</tr>
+</tbody>
+</table>
+
+**Digestive Juices in Small Intestine:**
+
+**1. Bile (from liver, stored in gallbladder):**
+• Not an enzyme - no chemical breakdown
+• **Emulsifies fats** - breaks large fat droplets into tiny droplets
+• Increases surface area for lipase to work
+• Yellow-green color (gives faeces brown color)
+
+**2. Pancreatic Juice (from pancreas):**
+
+<h4 style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 0.75rem 1rem; border-radius: 8px 8px 0 0; margin: 1.5rem 0 0 0; font-weight: 600;">🧬 PANCREATIC ENZYMES</h4>
+<table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; background: #f5f3ff; border-radius: 0 0 8px 8px; overflow: hidden; margin-bottom: 1.5rem;">
+<thead>
+<tr style="background: #ede9fe;">
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #8b5cf6; font-weight: 600;">Enzyme</th>
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #8b5cf6; font-weight: 600;">Substrate</th>
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #8b5cf6; font-weight: 600;">Product</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px solid #c4b5fd;">
+<td style="padding: 0.75rem; font-weight: 600;">Pancreatic Amylase</td>
+<td style="padding: 0.75rem;">Starch</td>
+<td style="padding: 0.75rem;">Maltose</td>
+</tr>
+<tr style="border-bottom: 1px solid #c4b5fd; background: #ede9fe;">
+<td style="padding: 0.75rem; font-weight: 600;">Trypsin</td>
+<td style="padding: 0.75rem;">Proteins/Peptides</td>
+<td style="padding: 0.75rem;">Smaller peptides</td>
+</tr>
+<tr>
+<td style="padding: 0.75rem; font-weight: 600;">Lipase</td>
+<td style="padding: 0.75rem;">Fats (emulsified)</td>
+<td style="padding: 0.75rem;">Fatty acids + Glycerol</td>
+</tr>
+</tbody>
+</table>
+
+**3. Intestinal Juice (from intestinal wall):**
+• **Maltase** - Maltose → Glucose
+• **Sucrase** - Sucrose → Glucose + Fructose
+• **Lactase** - Lactose → Glucose + Galactose
+• **Peptidases** - Peptides → Amino acids
+
+<div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-radius: 12px; padding: 1.25rem; border-left: 4px solid #22c55e; margin: 1.5rem 0;">
+<h4 style="color: #166534; margin: 0 0 0.5rem 0; font-weight: 600;">🇬🇭 Ghana Health Note</h4>
+<p style="margin: 0;">Many Ghanaian adults have <strong>lactose intolerance</strong> - they don't produce enough lactase enzyme. This causes bloating and discomfort after drinking milk. Fermented milk products like <strong>fura</strong> and yogurt are easier to digest!</p>
+</div>`
+      },
+      {
+        title: '6. Absorption of Nutrients',
+        content: `**ABSORPTION - Getting Nutrients into the Blood**
+
+After digestion, nutrients must be absorbed into the bloodstream to reach body cells.
+
+**Where Does Absorption Occur?**
+• **Small intestine** - Main site (90% of nutrients)
+• **Large intestine** - Water and minerals
+• **Stomach** - Only alcohol and some drugs
+
+**ADAPTATIONS OF SMALL INTESTINE FOR ABSORPTION:**
+
+<h4 style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 0.75rem 1rem; border-radius: 8px 8px 0 0; margin: 1.5rem 0 0 0; font-weight: 600;">🔬 WHY THE SMALL INTESTINE IS PERFECT FOR ABSORPTION</h4>
+<table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; background: #ecfdf5; border-radius: 0 0 8px 8px; overflow: hidden; margin-bottom: 1.5rem;">
+<thead>
+<tr style="background: #d1fae5;">
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #10b981; font-weight: 600;">Adaptation</th>
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #10b981; font-weight: 600;">How It Helps</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px solid #a7f3d0;">
+<td style="padding: 0.75rem; font-weight: 600;">Very long (6-7 m)</td>
+<td style="padding: 0.75rem;">More surface area for absorption</td>
+</tr>
+<tr style="border-bottom: 1px solid #a7f3d0; background: #d1fae5;">
+<td style="padding: 0.75rem; font-weight: 600;">Folds in wall</td>
+<td style="padding: 0.75rem;">Increases surface area 3x</td>
+</tr>
+<tr style="border-bottom: 1px solid #a7f3d0;">
+<td style="padding: 0.75rem; font-weight: 600;">Villi (finger-like projections)</td>
+<td style="padding: 0.75rem;">Increases surface area 10x</td>
+</tr>
+<tr style="border-bottom: 1px solid #a7f3d0; background: #d1fae5;">
+<td style="padding: 0.75rem; font-weight: 600;">Microvilli (on villi)</td>
+<td style="padding: 0.75rem;">Increases surface area 20x more!</td>
+</tr>
+<tr style="border-bottom: 1px solid #a7f3d0;">
+<td style="padding: 0.75rem; font-weight: 600;">Thin walls (one cell thick)</td>
+<td style="padding: 0.75rem;">Short distance for diffusion</td>
+</tr>
+<tr>
+<td style="padding: 0.75rem; font-weight: 600;">Rich blood supply</td>
+<td style="padding: 0.75rem;">Maintains concentration gradient</td>
+</tr>
+</tbody>
+</table>
+
+**Total surface area: About 250 m² (size of a tennis court!)**
+
+**WHAT GETS ABSORBED WHERE:**
+
+<h4 style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 0.75rem 1rem; border-radius: 8px 8px 0 0; margin: 1.5rem 0 0 0; font-weight: 600;">📦 ABSORPTION OF DIFFERENT NUTRIENTS</h4>
+<table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; background: #fffbeb; border-radius: 0 0 8px 8px; overflow: hidden; margin-bottom: 1.5rem;">
+<thead>
+<tr style="background: #fef3c7;">
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f59e0b; font-weight: 600;">Nutrient</th>
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f59e0b; font-weight: 600;">Absorbed As</th>
+<th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f59e0b; font-weight: 600;">Goes To</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px solid #fcd34d;">
+<td style="padding: 0.75rem; font-weight: 600;">Carbohydrates</td>
+<td style="padding: 0.75rem;">Glucose, fructose, galactose</td>
+<td style="padding: 0.75rem;">Blood → Liver</td>
+</tr>
+<tr style="border-bottom: 1px solid #fcd34d; background: #fef9e7;">
+<td style="padding: 0.75rem; font-weight: 600;">Proteins</td>
+<td style="padding: 0.75rem;">Amino acids</td>
+<td style="padding: 0.75rem;">Blood → Liver</td>
+</tr>
+<tr style="border-bottom: 1px solid #fcd34d;">
+<td style="padding: 0.75rem; font-weight: 600;">Fats</td>
+<td style="padding: 0.75rem;">Fatty acids + Glycerol</td>
+<td style="padding: 0.75rem;">Lacteal → Lymph → Blood</td>
+</tr>
+<tr>
+<td style="padding: 0.75rem; font-weight: 600;">Water, Vitamins, Minerals</td>
+<td style="padding: 0.75rem;">Unchanged</td>
+<td style="padding: 0.75rem;">Blood directly</td>
+</tr>
+</tbody>
+</table>
+
+**Note:** Fats take a different route - they enter the lymphatic system (lacteals) first, then join the blood!`
+      },
+      {
+        title: '7. The Large Intestine and Egestion',
+        content: `**THE LARGE INTESTINE**
+
+The large intestine is shorter (1.5 m) but wider than the small intestine.
+
+**Parts of the Large Intestine:**
+• **Caecum** - Receives material from small intestine (appendix attached here)
+• **Colon** - Main part (ascending, transverse, descending, sigmoid)
+• **Rectum** - Stores faeces
+• **Anus** - Opening for elimination
+
+**Functions of the Large Intestine:**
+
+<h4 style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); color: white; padding: 0.75rem 1rem; border-radius: 8px 8px 0 0; margin: 1.5rem 0 0 0; font-weight: 600;">🔄 WHAT HAPPENS IN THE LARGE INTESTINE</h4>
+<table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; background: #eef2ff; border-radius: 0 0 8px 8px; overflow: hidden; margin-bottom: 1.5rem;">
+<tbody>
+<tr style="border-bottom: 1px solid #a5b4fc;">
+<td style="padding: 0.75rem; font-weight: 600; width: 35%;">1. Water Absorption</td>
+<td style="padding: 0.75rem;">Absorbs most of the remaining water (about 1.5 liters daily)</td>
+</tr>
+<tr style="border-bottom: 1px solid #a5b4fc; background: #e0e7ff;">
+<td style="padding: 0.75rem; font-weight: 600;">2. Mineral Absorption</td>
+<td style="padding: 0.75rem;">Absorbs sodium, potassium, and other minerals</td>
+</tr>
+<tr style="border-bottom: 1px solid #a5b4fc;">
+<td style="padding: 0.75rem; font-weight: 600;">3. Vitamin Production</td>
+<td style="padding: 0.75rem;">Bacteria produce vitamin K and some B vitamins</td>
+</tr>
+<tr style="border-bottom: 1px solid #a5b4fc; background: #e0e7ff;">
+<td style="padding: 0.75rem; font-weight: 600;">4. Faeces Formation</td>
+<td style="padding: 0.75rem;">Compacts undigested material into solid waste</td>
+</tr>
+<tr>
+<td style="padding: 0.75rem; font-weight: 600;">5. Storage</td>
+<td style="padding: 0.75rem;">Stores faeces until elimination</td>
+</tr>
+</tbody>
+</table>
+
+**Gut Bacteria (Microbiome):**
+• Billions of helpful bacteria live in the large intestine
+• They break down fiber we can't digest
+• Produce vitamins (K, B12, biotin)
+• Protect against harmful bacteria
+
+**EGESTION (Defecation)**
+
+**What is Egestion?**
+Egestion is the removal of undigested food (faeces) from the body. This is NOT the same as excretion (removal of metabolic waste).
+
+**Composition of Faeces:**
+• **65% water**
+• **Undigested fiber** (roughage)
+• **Dead bacteria** (make up 30% of dry weight!)
+• **Dead cells** from intestinal lining
+• **Bile pigments** (give brown color)
+• **Mucus**
+
+<div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-radius: 12px; padding: 1.25rem; border-left: 4px solid #22c55e; margin: 1.5rem 0;">
+<h4 style="color: #166534; margin: 0 0 0.5rem 0; font-weight: 600;">💡 Fiber is Important!</h4>
+<p style="margin: 0;">Eating plenty of fiber (kontomire, vegetables, whole grains, fruits) helps prevent constipation! Fiber absorbs water and adds bulk to faeces, making them easier to pass. Drink plenty of water too!</p>
+</div>`
+      },
+      {
+        title: '8. Enzymes and Digestion Summary',
+        content: `**SUMMARY OF DIGESTIVE ENZYMES**
+
+<h4 style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); color: white; padding: 0.75rem 1rem; border-radius: 8px 8px 0 0; margin: 1.5rem 0 0 0; font-weight: 600;">🧬 COMPLETE ENZYME TABLE</h4>
+<table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; background: #f0f9ff; border-radius: 0 0 8px 8px; overflow: hidden; margin-bottom: 1.5rem;">
+<thead>
+<tr style="background: #e0f2fe;">
+<th style="padding: 0.6rem; text-align: left; border-bottom: 2px solid #0ea5e9; font-weight: 600;">Enzyme</th>
+<th style="padding: 0.6rem; text-align: left; border-bottom: 2px solid #0ea5e9; font-weight: 600;">Source</th>
+<th style="padding: 0.6rem; text-align: left; border-bottom: 2px solid #0ea5e9; font-weight: 600;">Acts On</th>
+<th style="padding: 0.6rem; text-align: left; border-bottom: 2px solid #0ea5e9; font-weight: 600;">Product</th>
+<th style="padding: 0.6rem; text-align: left; border-bottom: 2px solid #0ea5e9; font-weight: 600;">pH</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px solid #7dd3fc;">
+<td style="padding: 0.6rem; font-weight: 600;">Salivary Amylase</td>
+<td style="padding: 0.6rem;">Mouth</td>
+<td style="padding: 0.6rem;">Starch</td>
+<td style="padding: 0.6rem;">Maltose</td>
+<td style="padding: 0.6rem;">6.5-7</td>
+</tr>
+<tr style="border-bottom: 1px solid #7dd3fc; background: #e0f2fe;">
+<td style="padding: 0.6rem; font-weight: 600;">Pepsin</td>
+<td style="padding: 0.6rem;">Stomach</td>
+<td style="padding: 0.6rem;">Proteins</td>
+<td style="padding: 0.6rem;">Peptides</td>
+<td style="padding: 0.6rem;">1.5-2</td>
+</tr>
+<tr style="border-bottom: 1px solid #7dd3fc;">
+<td style="padding: 0.6rem; font-weight: 600;">Pancreatic Amylase</td>
+<td style="padding: 0.6rem;">Pancreas</td>
+<td style="padding: 0.6rem;">Starch</td>
+<td style="padding: 0.6rem;">Maltose</td>
+<td style="padding: 0.6rem;">7-8</td>
+</tr>
+<tr style="border-bottom: 1px solid #7dd3fc; background: #e0f2fe;">
+<td style="padding: 0.6rem; font-weight: 600;">Trypsin</td>
+<td style="padding: 0.6rem;">Pancreas</td>
+<td style="padding: 0.6rem;">Proteins</td>
+<td style="padding: 0.6rem;">Peptides</td>
+<td style="padding: 0.6rem;">7-8</td>
+</tr>
+<tr style="border-bottom: 1px solid #7dd3fc;">
+<td style="padding: 0.6rem; font-weight: 600;">Lipase</td>
+<td style="padding: 0.6rem;">Pancreas</td>
+<td style="padding: 0.6rem;">Fats</td>
+<td style="padding: 0.6rem;">Fatty acids + Glycerol</td>
+<td style="padding: 0.6rem;">7-8</td>
+</tr>
+<tr style="border-bottom: 1px solid #7dd3fc; background: #e0f2fe;">
+<td style="padding: 0.6rem; font-weight: 600;">Maltase</td>
+<td style="padding: 0.6rem;">Small intestine</td>
+<td style="padding: 0.6rem;">Maltose</td>
+<td style="padding: 0.6rem;">Glucose</td>
+<td style="padding: 0.6rem;">7-8</td>
+</tr>
+<tr>
+<td style="padding: 0.6rem; font-weight: 600;">Peptidases</td>
+<td style="padding: 0.6rem;">Small intestine</td>
+<td style="padding: 0.6rem;">Peptides</td>
+<td style="padding: 0.6rem;">Amino acids</td>
+<td style="padding: 0.6rem;">7-8</td>
+</tr>
+</tbody>
+</table>
+
+**SUMMARY: THE JOURNEY OF FOOD**
+
+<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 12px; padding: 1.25rem; margin: 1.5rem 0; border-left: 4px solid #f59e0b;">
+<h4 style="color: #92400e; margin: 0 0 1rem 0; font-weight: 600;">🍛 Journey of a Waakye Meal</h4>
+<p style="margin: 0.5rem 0;"><strong>1. Mouth:</strong> Teeth chew → Amylase starts breaking rice starch into sugars</p>
+<p style="margin: 0.5rem 0;"><strong>2. Oesophagus:</strong> Peristalsis pushes food down (10 seconds)</p>
+<p style="margin: 0.5rem 0;"><strong>3. Stomach:</strong> HCl + Pepsin break down bean proteins → Chyme formed</p>
+<p style="margin: 0.5rem 0;"><strong>4. Small Intestine:</strong> Bile emulsifies fats → All enzymes complete digestion → Nutrients absorbed into blood</p>
+<p style="margin: 0.5rem 0;"><strong>5. Large Intestine:</strong> Water absorbed → Faeces formed</p>
+<p style="margin: 0;"><strong>6. Egestion:</strong> Undigested fiber eliminated</p>
+</div>
+
+<div style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border-radius: 12px; padding: 1.25rem; border-left: 4px solid #ef4444; margin: 1.5rem 0;">
+<h4 style="color: #991b1b; margin: 0 0 1rem 0; font-weight: 600;">⚠️ Common Digestive Problems</h4>
+<div style="display: grid; gap: 0.5rem;">
+<p style="margin: 0;"><strong>Constipation:</strong> Too little fiber/water → Hard faeces → Eat more vegetables!</p>
+<p style="margin: 0;"><strong>Diarrhea:</strong> Too little water absorbed → Drink ORS (oral rehydration salts)</p>
+<p style="margin: 0;"><strong>Ulcers:</strong> Stomach acid attacks wall → Avoid alcohol, treat H. pylori</p>
+<p style="margin: 0;"><strong>Heartburn:</strong> Acid enters oesophagus → Don't lie down right after eating</p>
+</div>
+</div>`
+      }
+    ],
+    activities: {
+      type: 'exercises',
+      questions: [
+        {
+          type: 'mcq',
+          question: 'What type of digestion occurs when you chew food?',
+          options: ['Chemical digestion', 'Mechanical digestion', 'Absorption', 'Egestion'],
+          answer: 'Mechanical digestion',
+          explanation: 'Chewing is mechanical digestion - it physically breaks food into smaller pieces without changing its chemical composition.'
+        },
+        {
+          type: 'mcq',
+          question: 'Which enzyme in saliva starts the digestion of starch?',
+          options: ['Pepsin', 'Lipase', 'Amylase', 'Trypsin'],
+          answer: 'Amylase',
+          explanation: 'Salivary amylase is the enzyme in saliva that breaks down starch into maltose. This is why bread tastes sweet after chewing for a while.'
+        },
+        {
+          type: 'mcq',
+          question: 'What is the main function of bile?',
+          options: ['Digest proteins', 'Emulsify fats', 'Absorb water', 'Kill bacteria'],
+          answer: 'Emulsify fats',
+          explanation: 'Bile emulsifies fats, breaking large fat droplets into smaller droplets. This increases surface area for lipase to work on.'
+        },
+        {
+          type: 'mcq',
+          question: 'Where does most nutrient absorption occur?',
+          options: ['Stomach', 'Small intestine', 'Large intestine', 'Mouth'],
+          answer: 'Small intestine',
+          explanation: 'The small intestine is the main site of absorption. Its villi and microvilli provide a huge surface area (about 250 m²) for absorbing nutrients.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'The stomach produces hydrochloric acid which creates an acidic environment for pepsin to work.',
+          answer: 'true',
+          reason: 'HCl creates pH 1.5-2 in the stomach, which is the optimal pH for pepsin to digest proteins.'
+        },
+        {
+          type: 'mcq',
+          question: 'What is the final product of protein digestion?',
+          options: ['Glucose', 'Fatty acids', 'Amino acids', 'Glycerol'],
+          answer: 'Amino acids',
+          explanation: 'Proteins are broken down first to peptides (by pepsin and trypsin), then to individual amino acids (by peptidases) for absorption.'
+        }
+      ]
+    },
+    pastQuestions: [
+      {
+        year: '2022',
+        question: 'Describe the digestion of a starchy food from the mouth to the small intestine.',
+        solution: `**Digestion of Starchy Food (e.g., fufu, rice, banku):**
+
+**1. MOUTH:**
+• **Mechanical:** Teeth chew and grind food into smaller pieces
+• **Chemical:** Salivary amylase breaks down starch → maltose
+• Food mixed with saliva to form bolus
+• Swallowed through oesophagus
+
+**2. STOMACH:**
+• Amylase action stops (too acidic - pH 1.5-2)
+• No starch digestion here
+• Food churned into chyme
+
+**3. SMALL INTESTINE (Duodenum):**
+• Pancreatic amylase continues starch → maltose
+• Maltase converts maltose → glucose
+• Glucose absorbed through villi into blood
+
+**Summary:**
+Starch → Maltose (amylase) → Glucose (maltase) → Absorbed`
+      },
+      {
+        year: '2021',
+        question: 'State three ways the small intestine is adapted for absorption.',
+        solution: `**Adaptations of Small Intestine for Absorption:**
+
+**1. Very Long Length (6-7 meters)**
+• Provides a large surface area for absorption
+• Food spends more time in contact with absorbing surface
+
+**2. Presence of Villi and Microvilli**
+• Villi are finger-like projections on intestinal wall
+• Microvilli are tiny projections on villi surface
+• Together they increase surface area by 600 times!
+
+**3. Thin Walls (One Cell Thick)**
+• Short diffusion distance for nutrients
+• Allows rapid absorption into blood
+
+**Additional adaptations:**
+• Rich blood supply (maintains concentration gradient)
+• Presence of lacteals (for fat absorption)
+• Muscular walls for mixing (segmentation)`
+      }
+    ],
+    endOfLessonQuiz: [
+      {
+        type: 'mcq',
+        question: 'What is the correct order of organs in the digestive system?',
+        options: [
+          'Mouth → Stomach → Oesophagus → Small intestine',
+          'Mouth → Oesophagus → Stomach → Small intestine',
+          'Mouth → Small intestine → Stomach → Large intestine',
+          'Oesophagus → Mouth → Stomach → Small intestine'
+        ],
+        answer: 'Mouth → Oesophagus → Stomach → Small intestine',
+        explanation: 'Food travels: Mouth → Oesophagus → Stomach → Small intestine → Large intestine → Rectum → Anus'
+      },
+      {
+        type: 'mcq',
+        question: 'Which substance is produced by the liver and stored in the gallbladder?',
+        options: ['Pepsin', 'Bile', 'Amylase', 'Lipase'],
+        answer: 'Bile',
+        explanation: 'Bile is produced by the liver and stored in the gallbladder. It emulsifies fats in the small intestine.'
+      },
+      {
+        type: 'mcq',
+        question: 'The enzyme pepsin works best in:',
+        options: ['Acidic conditions', 'Alkaline conditions', 'Neutral conditions', 'Any conditions'],
+        answer: 'Acidic conditions',
+        explanation: 'Pepsin works best at pH 1.5-2 (acidic), which is why the stomach produces hydrochloric acid.'
+      },
+      {
+        type: 'mcq',
+        question: 'What is the final product of carbohydrate digestion?',
+        options: ['Maltose', 'Amino acids', 'Glucose', 'Fatty acids'],
+        answer: 'Glucose',
+        explanation: 'Carbohydrates are broken down to simple sugars like glucose, which can be absorbed into the blood.'
+      },
+      {
+        type: 'mcq',
+        question: 'Villi in the small intestine help to:',
+        options: ['Produce enzymes', 'Increase surface area for absorption', 'Digest fats', 'Kill bacteria'],
+        answer: 'Increase surface area for absorption',
+        explanation: 'Villi are finger-like projections that greatly increase the surface area of the small intestine for nutrient absorption.'
+      },
+      {
+        type: 'mcq',
+        question: 'Which part of the digestive system absorbs most of the water?',
+        options: ['Stomach', 'Small intestine', 'Large intestine', 'Oesophagus'],
+        answer: 'Large intestine',
+        explanation: 'The large intestine absorbs most of the remaining water (about 1.5 liters daily) from the digestive contents.'
+      },
+      {
+        type: 'mcq',
+        question: 'Mechanical digestion involves:',
+        options: [
+          'Breaking down food using enzymes',
+          'Physical breakdown of food into smaller pieces',
+          'Absorption of nutrients',
+          'Production of digestive juices'
+        ],
+        answer: 'Physical breakdown of food into smaller pieces',
+        explanation: 'Mechanical digestion is the physical breakdown of food (chewing, churning) without changing its chemical composition.'
+      },
+      {
+        type: 'mcq',
+        question: 'The pancreas produces:',
+        options: [
+          'Only amylase',
+          'Only lipase',
+          'Amylase, trypsin, and lipase',
+          'Bile and pepsin'
+        ],
+        answer: 'Amylase, trypsin, and lipase',
+        explanation: 'The pancreas produces pancreatic juice containing amylase (for starch), trypsin (for proteins), and lipase (for fats).'
+      },
+      {
+        type: 'mcq',
+        question: 'Proteins are finally digested into:',
+        options: ['Glucose', 'Maltose', 'Amino acids', 'Glycerol'],
+        answer: 'Amino acids',
+        explanation: 'Proteins are broken down by pepsin and trypsin into peptides, then by peptidases into amino acids for absorption.'
+      },
+      {
+        type: 'mcq',
+        question: 'The main function of the large intestine is to:',
+        options: [
+          'Digest proteins',
+          'Absorb glucose',
+          'Absorb water and form faeces',
+          'Produce enzymes'
+        ],
+        answer: 'Absorb water and form faeces',
+        explanation: 'The large intestine absorbs water and minerals, and compacts undigested material into faeces for elimination.'
+      }
+    ],
+    summary: "Digestion is the breakdown of large food molecules into smaller, absorbable molecules. It involves mechanical digestion (physical breakdown by chewing and churning) and chemical digestion (breakdown by enzymes). Food travels through the alimentary canal: mouth → oesophagus → stomach → small intestine → large intestine → rectum → anus. Key enzymes include amylase (starch → maltose), pepsin and trypsin (proteins → peptides → amino acids), and lipase (fats → fatty acids + glycerol). The small intestine is the main site of digestion and absorption, with villi and microvilli providing enormous surface area. The liver produces bile for fat emulsification, and the pancreas produces multiple digestive enzymes. The large intestine absorbs water and forms faeces. A healthy digestive system requires a balanced diet with adequate fiber and water."
   }
 ];

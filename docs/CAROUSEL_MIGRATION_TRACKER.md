@@ -10,10 +10,10 @@
 
 ### Overall Statistics
 - **Total Lessons Planned**: ~800-1000
-- **Migrated**: 7
+- **Migrated**: 8
 - **In Progress**: 0
-- **Remaining**: ~793-993
-- **Progress**: ~0.7-0.9%
+- **Remaining**: ~792-992
+- **Progress**: ~0.8-1.0%
 
 ---
 
@@ -38,7 +38,7 @@
 | Nature and Scope of Chemistry | `chem-shs1-intro-nature-scope` | `NatureAndScopeOfChemistryIntro.tsx` | ✅ GOLD STANDARD | Dec 2025 |
 | Scientific Methods & Safety | `chem-shs1-intro-scientific-methods-safety` | `ScientificMethodsSafetyIntro.tsx` | ✅ Complete | Dec 14, 2025 |
 
-#### Integrated Science (SHS1) - 5 lessons
+#### Integrated Science (SHS1) - 6 lessons
 | Lesson | Slug | Intro Component | Status | Date |
 |--------|------|-----------------|--------|------|
 | States and Changes of Matter | `is-dm-matter-states-properties` | `StatesAndChangesOfMatterIntro.tsx` | ✅ Complete | Dec 14, 2025 |
@@ -46,6 +46,7 @@
 | Cell Division | `is-cells-division-mitosis-meiosis` | `CellDivisionIntro.tsx` | ✅ Complete | Dec 14, 2025 |
 | Rocks Types and Formation | `is-rocks-types-formation` | `RocksTypesFormationIntro.tsx` | ✅ Complete | Dec 14, 2025 |
 | Nutrition and Balanced Diet | `is-dm-nutrition-balanced-diet` | `NutritionBalancedDietIntro.tsx` | ✅ Complete | Dec 14, 2025 |
+| Digestion and Digestive System | `is-dm-digestion-process` | `DigestionIntro.tsx` | ✅ Complete | Dec 14, 2025 |
 
 ### Key Learnings
 1. ✅ **DO NOT** add `carouselTeachingMethod` property - uses standard lesson structure
@@ -53,6 +54,7 @@
 3. ✅ Autostart feature works perfectly
 4. ✅ Validation system catches issues early
 5. ✅ Ghana-contextualized content resonates well
+6. ✅ **USE HTML tables** with inline styles for data tables (NOT markdown)
 
 ---
 
@@ -66,7 +68,7 @@
 
 #### Priority 1: Core Biology Topics
 - [x] **Nutrition** - `is-dm-nutrition-balanced-diet` ✅ COMPLETE (Dec 14, 2025)
-- [ ] **Digestion** - `is-digestion-process`
+- [x] **Digestion** - `is-dm-digestion-process` ✅ COMPLETE (Dec 14, 2025)
 - [ ] **Respiration** - `is-respiration-aerobic-anaerobic`
 - [ ] **Photosynthesis** - `is-photosynthesis-process`
 - [ ] **Genetics** - `is-genetics-inheritance`

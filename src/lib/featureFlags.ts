@@ -77,6 +77,7 @@ export const FEATURE_FLAGS = {
       'is-dm-cells-cell-division',
       'is-dm-rocks-soil-types-formation',
       'is-dm-nutrition-balanced-diet',
+      'is-dm-digestion-process',
     ], // Support multiple topic formats
     lessons: [
       'quadratic-equations',
@@ -144,7 +145,8 @@ export const FEATURE_FLAGS = {
       'is-dm-cells-cell-division', // Cell Division
       'is-dm-rocks-soil-types-formation', // Types and Formation of Rocks
       'is-dm-nutrition-balanced-diet', // Nutrition and Balanced Diet
-    ], // SHS3 (29) + SHS2 (11) + SHS1 (15) + Science (7) = 62 lessons total
+      'is-dm-digestion-process', // Digestion and Digestive System
+    ], // SHS3 (29) + SHS2 (11) + SHS1 (15) + Science (8) = 63 lessons total
   },
 };
 
