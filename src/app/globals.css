@@ -236,4 +236,31 @@
     min-height: 100vh;
     min-height: 100dvh;
   }
+
+  /* HTML Table Styles for Lesson Content */
+  .prose table,
+  table {
+    @apply w-full border-collapse my-4 text-sm;
+  }
+  
+  .prose table th,
+  table th {
+    @apply bg-primary/10 dark:bg-primary/20 font-semibold text-left p-2 border border-border;
+  }
+  
+  .prose table td,
+  table td {
+    @apply p-2 border border-border;
+  }
+  
+  .prose table tr:nth-child(even),
+  table tr:nth-child(even) {
+    @apply bg-muted/30;
+  }
+  
+  /* Pre block styling */
+  .prose pre:not([class*="language-"]),
+  pre:not([class*="language-"]) {
+    @apply bg-muted/50 dark:bg-muted/30 p-3 rounded-lg text-sm font-mono overflow-x-auto my-4;
+  }
 }

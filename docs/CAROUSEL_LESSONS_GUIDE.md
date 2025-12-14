@@ -478,10 +478,79 @@ Description here
 
 1. ✅ Carousel uses **standard lesson data structure**
 2. ✅ NO special `carouselTeachingMethod` property
-3. ✅ Intro components MUST use `IntelligentLessonIntro`
-4. ✅ Follow reference examples (Chemistry lessons)
+3. ✅ Intro components: Use either `IntelligentLessonIntro` OR custom TTS pattern (see below)
+4. ✅ Follow reference examples
 5. ✅ Test voice narration after changes
-6. ⚠️ If user says "intro looks different" → check if using IntelligentLessonIntro
+6. ⚠️ If user says "intro looks different" → check intro component type
 7. ⚠️ If user says "no voice narrator" → check narration property in scenes
 
-**When in doubt**: Compare to `NatureAndScopeOfChemistryIntro.tsx` - it's the gold standard.
+---
+
+## 🎙️ Two Intro Component Patterns
+
+### Pattern A: IntelligentLessonIntro (Simple)
+**Use for:** Quick implementations, text-focused intros
+
+```typescript
+import { IntelligentLessonIntro } from '@/components/IntelligentLessonIntro';
+import { Icon1, Icon2 } from 'lucide-react';
+
+export default function MyLessonIntro({ onComplete }) {
+  const scenes = [
+    {
+      id: 1,
+      icon: Icon1,
+      narration: "Scene narration text...",
+      visualContent: "Display heading",
+      highlightWords: ['key', 'words'],
+      teacherTip: "Teaching tip"
+    }
+  ];
+
+  return (
+    <IntelligentLessonIntro
+      lessonTitle="Lesson Title"
+      subject="Subject Name"
+      scenes={scenes}
+      onComplete={onComplete}
+    />
+  );
+}
+```
+
+**Example:** `NutritionBalancedDietIntro.tsx`, `DigestionIntro.tsx`
+
+---
+
+### Pattern B: Custom TTS Pattern (⭐ RECOMMENDED for best voice quality)
+**Use for:** Rich animations, canvas graphics, premium teacher-like voice
+
+**Reference:** `FormsOfEnergyIntro.tsx`, `HeatEnergyIntro.tsx`
+
+#### Key Voice Settings:
+```typescript
+utterance.rate = 0.88;    // Natural teacher pace
+utterance.pitch = 1.0;    // Clear tone
+utterance.volume = 1;     // Full clarity
+
+// Voice selection priority
+const englishVoice = voices.find(v => v.lang.startsWith('en-') && v.name.toLowerCase().includes('female'))
+  || voices.find(v => v.lang.startsWith('en-GB'))
+  || voices.find(v => v.lang.startsWith('en-US'))
+  || voices.find(v => v.lang.startsWith('en'))
+  || voices[0];
+```
+
+#### Required Implementation:
+1. ✅ Use `useRef` to track currentScene (avoids stale closures)
+2. ✅ Cancel speech before any navigation
+3. ✅ Wait for voices to load before speaking
+4. ✅ 1500ms delay after speech ends before auto-advance
+5. ✅ 8000ms fallback timeout if TTS fails
+
+**Full implementation details:** See `TTS_IMPLEMENTATION_STANDARD.md`
+
+---
+
+**When in doubt about voice quality:** Use Pattern B (FormsOfEnergyIntro style)
+**When in doubt about simplicity:** Use Pattern A (IntelligentLessonIntro)

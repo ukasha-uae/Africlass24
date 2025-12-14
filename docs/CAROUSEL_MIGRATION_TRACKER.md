@@ -10,10 +10,10 @@
 
 ### Overall Statistics
 - **Total Lessons Planned**: ~800-1000
-- **Migrated**: 10
+- **Migrated**: 11
 - **In Progress**: 0
-- **Remaining**: ~790-990
-- **Progress**: ~1.0-1.25%
+- **Remaining**: ~789-989
+- **Progress**: ~1.1-1.4%
 
 ---
 
@@ -39,7 +39,7 @@
 | Nature and Scope of Chemistry | `chem-shs1-intro-nature-scope` | `NatureAndScopeOfChemistryIntro.tsx` | ✅ GOLD STANDARD | Dec 2025 |
 | Scientific Methods & Safety | `chem-shs1-intro-scientific-methods-safety` | `ScientificMethodsSafetyIntro.tsx` | ✅ Complete | Dec 14, 2025 |
 
-#### Integrated Science (SHS1) - 8 lessons
+#### Integrated Science (SHS1) - 9 lessons
 | Lesson | Slug | Intro Component | Status | Date |
 |--------|------|-----------------|--------|------|
 | States and Changes of Matter | `is-dm-matter-states-properties` | `StatesAndChangesOfMatterIntro.tsx` | ✅ Complete | Dec 14, 2025 |
@@ -50,6 +50,7 @@
 | Digestion and Digestive System | `is-dm-digestion-process` | `DigestionIntro.tsx` | ✅ Complete | Dec 14, 2025 |
 | Respiration: Aerobic & Anaerobic | `is-dm-respiration-aerobic-anaerobic` | `RespirationIntro.tsx` | ✅ Complete | Dec 14, 2025 |
 | Photosynthesis: Making Food from Sunlight | `is-dm-photosynthesis-process` | `PhotosynthesisIntro.tsx` | ✅ Complete | Dec 14, 2025 |
+| Genetics and Inheritance | `is-dm-genetics-inheritance` | `GeneticsIntro.tsx` | ✅ Complete | Dec 14, 2025 |
 
 ### Key Learnings
 1. ✅ **DO NOT** add `carouselTeachingMethod` property - uses standard lesson structure
@@ -74,7 +75,7 @@
 - [x] **Digestion** - `is-dm-digestion-process` ✅ COMPLETE (Dec 14, 2025)
 - [x] **Respiration** - `is-dm-respiration-aerobic-anaerobic` ✅ COMPLETE (Dec 14, 2025)
 - [x] **Photosynthesis** - `is-dm-photosynthesis-process` ✅ COMPLETE (Dec 14, 2025)
-- [ ] **Genetics** - `is-genetics-inheritance`
+- [x] **Genetics** - `is-dm-genetics-inheritance` ✅ COMPLETE (Dec 14, 2025)
 
 #### Priority 2: Physics Topics
 - [ ] **Motion** - `is-motion-types`

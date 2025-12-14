@@ -71,6 +71,26 @@ export default function EnhancedAnimationPlayer({
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
   const [completedSteps, setCompletedSteps] = useState<Set<number>>(new Set());
   const [showCelebration, setShowCelebration] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(width);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  // Responsive sizing
+  useEffect(() => {
+    const updateSize = () => {
+      if (containerRef.current) {
+        const parentWidth = containerRef.current.offsetWidth;
+        // Use parent width but cap at original width, min at 280 for very small screens
+        setContainerWidth(Math.max(280, Math.min(parentWidth - 32, width)));
+      }
+    };
+    
+    updateSize();
+    window.addEventListener('resize', updateSize);
+    return () => window.removeEventListener('resize', updateSize);
+  }, [width]);
+
+  const scaleFactor = containerWidth / width;
+  const scaledHeight = height * scaleFactor;
 
   const stepDuration = (steps[currentStep]?.duration || 3000) / playbackSpeed;
 
@@ -304,9 +324,10 @@ export default function EnhancedAnimationPlayer({
   const frame = getInterpolatedFrame();
   const currentStepData = steps[currentStep];
   const allCompleted = completedSteps.size === steps.length;
+  const isMobile = containerWidth < 400;
 
   return (
-    <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+    <div ref={containerRef} className="w-full max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
       {/* Celebration overlay */}
       {showCelebration && (
         <div className="fixed inset-0 pointer-events-none z-50 flex items-center justify-center">
@@ -321,24 +342,25 @@ export default function EnhancedAnimationPlayer({
       )}
 
       {/* Header with controls */}
-      <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-4 text-white">
-        <div className="flex items-center justify-between mb-2">
+      <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-3 sm:p-4 text-white">
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
           <div className="flex items-center gap-2">
-            <Zap className="h-5 w-5 text-yellow-300" />
-            <h3 className="text-lg font-semibold">Interactive Animation</h3>
+            <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-300" />
+            <h3 className="text-sm sm:text-lg font-semibold">Interactive Animation</h3>
             {allCompleted && (
-              <Badge className="bg-yellow-400 text-gray-900 flex items-center gap-1">
+              <Badge className="bg-yellow-400 text-gray-900 flex items-center gap-1 text-xs">
                 <Award className="h-3 w-3" />
-                Completed!
+                <span className="hidden sm:inline">Completed!</span>
+                <span className="sm:hidden">✓</span>
               </Badge>
             )}
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             <Button
               variant="ghost"
               size="sm"
               onClick={cycleSpeed}
-              className="text-white hover:bg-white/20"
+              className="text-white hover:bg-white/20 h-8 w-8 sm:h-9 sm:w-auto px-1 sm:px-2"
             >
               <span className="text-xs font-mono">{playbackSpeed}x</span>
             </Button>
@@ -346,7 +368,7 @@ export default function EnhancedAnimationPlayer({
               variant="ghost"
               size="sm"
               onClick={toggleSound}
-              className="text-white hover:bg-white/20"
+              className="text-white hover:bg-white/20 h-8 w-8 sm:h-9 sm:w-9"
             >
               {soundEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
             </Button>
@@ -355,7 +377,7 @@ export default function EnhancedAnimationPlayer({
                 variant="ghost"
                 size="sm"
                 onClick={toggleHint}
-                className={`text-white hover:bg-white/20 ${showHint ? 'bg-white/20' : ''}`}
+                className={`text-white hover:bg-white/20 h-8 w-8 sm:h-9 sm:w-9 ${showHint ? 'bg-white/20' : ''}`}
               >
                 <Lightbulb className="h-4 w-4" />
               </Button>
@@ -364,7 +386,7 @@ export default function EnhancedAnimationPlayer({
         </div>
         
         {/* Progress bar */}
-        <div className="w-full bg-white/30 rounded-full h-2 overflow-hidden">
+        <div className="w-full bg-white/30 rounded-full h-1.5 sm:h-2 overflow-hidden">
           <div
             className="bg-yellow-300 h-full transition-all duration-100 ease-linear"
             style={{ width: `${((currentStep * 100 + progress) / steps.length)}%` }}
@@ -373,21 +395,21 @@ export default function EnhancedAnimationPlayer({
       </div>
 
       {/* Main content */}
-      <div className="p-6">
+      <div className="p-3 sm:p-6">
         {/* Step information */}
-        <div className="mb-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+        <div className="mb-4 sm:mb-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 sm:p-4">
           <div className="flex items-center justify-between mb-2">
-            <h4 className="text-lg font-semibold text-blue-900 dark:text-blue-100">
+            <h4 className="text-sm sm:text-lg font-semibold text-blue-900 dark:text-blue-100">
               Step {currentStep + 1}: {currentStepData.title}
             </h4>
-            <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
+            <span className="text-xs sm:text-sm font-medium text-blue-700 dark:text-blue-300">
               {Math.round(progress)}%
             </span>
           </div>
-          <p className="text-gray-700 dark:text-gray-300 mb-3">{currentStepData.description}</p>
+          <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-3">{currentStepData.description}</p>
           
           {currentStepData.formula && (
-            <div className="bg-white dark:bg-gray-700 rounded p-3 mb-3 font-mono text-sm border-l-4 border-blue-500">
+            <div className="bg-white dark:bg-gray-700 rounded p-2 sm:p-3 mb-3 font-mono text-xs sm:text-sm border-l-4 border-blue-500 overflow-x-auto">
               {currentStepData.formula}
             </div>
           )}
@@ -395,8 +417,8 @@ export default function EnhancedAnimationPlayer({
           {currentStepData.highlights && currentStepData.highlights.length > 0 && (
             <ul className="space-y-1">
               {currentStepData.highlights.map((highlight, index) => (
-                <li key={index} className="flex items-start gap-2 text-sm">
-                  <Star className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" />
+                <li key={index} className="flex items-start gap-2 text-xs sm:text-sm">
+                  <Star className="h-3 w-3 sm:h-4 sm:w-4 text-yellow-500 mt-0.5 flex-shrink-0" />
                   <span className="text-gray-700 dark:text-gray-300">{highlight}</span>
                 </li>
               ))}
@@ -405,12 +427,12 @@ export default function EnhancedAnimationPlayer({
 
           {/* Hint display */}
           {showHint && currentStepData.hint && (
-            <div className="mt-3 bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-3 rounded">
+            <div className="mt-3 bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-2 sm:p-3 rounded">
               <div className="flex items-start gap-2">
-                <Lightbulb className="h-5 w-5 text-yellow-600 dark:text-yellow-400 mt-0.5 flex-shrink-0" />
+                <Lightbulb className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-600 dark:text-yellow-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="font-semibold text-yellow-800 dark:text-yellow-300 text-sm mb-1">Hint:</p>
-                  <p className="text-yellow-700 dark:text-yellow-400 text-sm">{currentStepData.hint}</p>
+                  <p className="font-semibold text-yellow-800 dark:text-yellow-300 text-xs sm:text-sm mb-1">Hint:</p>
+                  <p className="text-yellow-700 dark:text-yellow-400 text-xs sm:text-sm">{currentStepData.hint}</p>
                 </div>
               </div>
             </div>
@@ -418,12 +440,12 @@ export default function EnhancedAnimationPlayer({
 
           {/* Fun fact */}
           {currentStepData.funFact && completedSteps.has(currentStep) && (
-            <div className="mt-3 bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-400 p-3 rounded">
+            <div className="mt-3 bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-400 p-2 sm:p-3 rounded">
               <div className="flex items-start gap-2">
-                <Zap className="h-5 w-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
+                <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="font-semibold text-purple-800 dark:text-purple-300 text-sm mb-1">Fun Fact:</p>
-                  <p className="text-purple-700 dark:text-purple-400 text-sm">{currentStepData.funFact}</p>
+                  <p className="font-semibold text-purple-800 dark:text-purple-300 text-xs sm:text-sm mb-1">Fun Fact:</p>
+                  <p className="text-purple-700 dark:text-purple-400 text-xs sm:text-sm">{currentStepData.funFact}</p>
                 </div>
               </div>
             </div>
@@ -431,8 +453,14 @@ export default function EnhancedAnimationPlayer({
         </div>
 
         {/* Animation canvas */}
-        <div className="flex justify-center mb-6">
-          <svg width={width} height={height} className="border-2 border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900">
+        <div className="flex justify-center mb-4 sm:mb-6">
+          <svg 
+            width={containerWidth} 
+            height={scaledHeight} 
+            viewBox={`0 0 ${width} ${height}`}
+            preserveAspectRatio="xMidYMid meet"
+            className="border-2 border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900"
+          >
             {/* Coordinate grid */}
             <defs>
               <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -529,15 +557,15 @@ export default function EnhancedAnimationPlayer({
         </div>
 
         {/* Playback controls */}
-        <div className="flex items-center justify-center gap-3 mb-4">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-4">
           <Button
             variant="outline"
             size="sm"
             onClick={handleReset}
-            className="flex items-center gap-2"
+            className="flex items-center gap-1 sm:gap-2 h-9 sm:h-10 px-2 sm:px-3 text-xs sm:text-sm"
           >
-            <RotateCcw className="h-4 w-4" />
-            Reset
+            <RotateCcw className="h-3 w-3 sm:h-4 sm:w-4" />
+            <span className="hidden xs:inline">Reset</span>
           </Button>
           
           <Button
@@ -545,26 +573,26 @@ export default function EnhancedAnimationPlayer({
             size="sm"
             onClick={handlePrevious}
             disabled={currentStep === 0}
-            className="flex items-center gap-2"
+            className="flex items-center gap-1 sm:gap-2 h-9 sm:h-10 px-2 sm:px-3 text-xs sm:text-sm"
           >
-            <ChevronLeft className="h-4 w-4" />
-            Previous
+            <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4" />
+            <span className="hidden sm:inline">Previous</span>
           </Button>
           
           <Button
             variant="default"
             size="lg"
             onClick={handlePlayPause}
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700"
+            className="flex items-center gap-1 sm:gap-2 bg-blue-600 hover:bg-blue-700 h-10 sm:h-12 px-4 sm:px-6 text-sm sm:text-base min-w-[100px]"
           >
             {isPlaying ? (
               <>
-                <Pause className="h-5 w-5" />
+                <Pause className="h-4 w-4 sm:h-5 sm:w-5" />
                 Pause
               </>
             ) : (
               <>
-                <Play className="h-5 w-5" />
+                <Play className="h-4 w-4 sm:h-5 sm:w-5" />
                 Play
               </>
             )}
@@ -575,25 +603,25 @@ export default function EnhancedAnimationPlayer({
             size="sm"
             onClick={handleNext}
             disabled={currentStep === steps.length - 1}
-            className="flex items-center gap-2"
+            className="flex items-center gap-1 sm:gap-2 h-9 sm:h-10 px-2 sm:px-3 text-xs sm:text-sm"
           >
-            Next
-            <ChevronRight className="h-4 w-4" />
+            <span className="hidden sm:inline">Next</span>
+            <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
           </Button>
         </div>
 
         {/* Step indicators */}
-        <div className="flex justify-center gap-2 flex-wrap">
+        <div className="flex justify-center gap-1.5 sm:gap-2 flex-wrap">
           {steps.map((step, index) => (
             <button
               key={step.id}
               onClick={() => handleStepClick(index)}
-              className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-all ${
+              className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs sm:text-sm font-semibold transition-all touch-manipulation ${
                 index === currentStep
                   ? 'bg-blue-600 text-white scale-110 shadow-lg'
                   : completedSteps.has(index)
-                  ? 'bg-green-500 text-white hover:bg-green-600'
-                  : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                  ? 'bg-green-500 text-white hover:bg-green-600 active:bg-green-700'
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 active:bg-gray-400'
               }`}
             >
               {completedSteps.has(index) ? '✓' : index + 1}

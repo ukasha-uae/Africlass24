@@ -80,6 +80,11 @@ export const FEATURE_FLAGS = {
       'is-dm-digestion-process',
       'is-dm-respiration-aerobic-anaerobic',
       'is-dm-photosynthesis-process',
+      'is-dm-genetics-inheritance',
+      'is-en-forms-of-energy-types',
+      'is-en-forms-of-energy-transformation-conservation',
+      'is-en-heat-energy-temperature',
+      'is-im-acids-bases-salts-properties-reactions',
     ], // Support multiple topic formats
     lessons: [
       'quadratic-equations',
@@ -150,7 +155,12 @@ export const FEATURE_FLAGS = {
       'is-dm-digestion-process', // Digestion and Digestive System
       'is-dm-respiration-aerobic-anaerobic', // Respiration: Aerobic and Anaerobic
       'is-dm-photosynthesis-process', // Photosynthesis: Making Food from Sunlight
-    ], // SHS3 (29) + SHS2 (11) + SHS1 (15) + Science (10) = 65 lessons total
+      'is-dm-genetics-inheritance', // Genetics and Inheritance
+      'is-en-forms-of-energy-types', // Forms of Energy
+      'is-en-forms-of-energy-transformation-conservation', // Energy Transformation and Conservation
+      'is-en-heat-energy-temperature', // Heat Energy and Temperature
+      'is-im-acids-bases-salts-properties-reactions', // Acids, Bases, and Salts
+    ], // SHS3 (29) + SHS2 (11) + SHS1 (15) + Science (15) = 70 lessons total
   },
 };
 

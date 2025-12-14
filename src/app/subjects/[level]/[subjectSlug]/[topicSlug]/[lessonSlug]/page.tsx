@@ -99,6 +99,11 @@ import NutritionBalancedDietIntro from '@/components/intros/shs/integrated-scien
 import DigestionIntro from '@/components/intros/shs/integrated-science/DigestionIntro';
 import RespirationIntro from '@/components/intros/shs/integrated-science/RespirationIntro';
 import PhotosynthesisIntro from '@/components/intros/shs/integrated-science/PhotosynthesisIntro';
+import GeneticsIntro from '@/components/intros/shs/integrated-science/GeneticsIntro';
+import FormsOfEnergyIntro from '@/components/intros/shs/integrated-science/FormsOfEnergyIntro';
+import EnergyTransformationIntro from '@/components/intros/shs/integrated-science/EnergyTransformationIntro';
+import HeatEnergyIntro from '@/components/intros/shs/integrated-science/HeatEnergyIntro';
+import AcidsBasesIntro from '@/components/intros/shs/integrated-science/AcidsBasesIntro';
 import { CarouselLesson } from '@/components/CarouselLesson';
 import { 
   addBookmark, 
@@ -692,6 +697,16 @@ export default function LessonPage() {
               <RespirationIntro />
             ) : lessonSlug === 'is-dm-photosynthesis-process' ? (
               <PhotosynthesisIntro />
+            ) : lessonSlug === 'is-dm-genetics-inheritance' ? (
+              <GeneticsIntro />
+            ) : lessonSlug === 'is-en-forms-of-energy-types' ? (
+              <FormsOfEnergyIntro />
+            ) : lessonSlug === 'is-en-forms-of-energy-transformation-conservation' ? (
+              <EnergyTransformationIntro />
+            ) : lessonSlug === 'is-en-heat-energy-temperature' ? (
+              <HeatEnergyIntro />
+            ) : lessonSlug === 'is-im-acids-bases-salts-properties-reactions' ? (
+              <AcidsBasesIntro />
             ) : (
               // Fallback - should not reach here if all intros are properly mapped
               null
@@ -853,6 +868,11 @@ export default function LessonPage() {
               {lessonSlug === 'is-dm-digestion-process' && <DigestionIntro />}
               {lessonSlug === 'is-dm-respiration-aerobic-anaerobic' && <RespirationIntro />}
               {lessonSlug === 'is-dm-photosynthesis-process' && <PhotosynthesisIntro />}
+              {lessonSlug === 'is-dm-genetics-inheritance' && <GeneticsIntro />}
+              {lessonSlug === 'is-en-forms-of-energy-types' && <FormsOfEnergyIntro />}
+              {lessonSlug === 'is-en-forms-of-energy-transformation-conservation' && <EnergyTransformationIntro />}
+              {lessonSlug === 'is-en-heat-energy-temperature' && <HeatEnergyIntro />}
+              {lessonSlug === 'is-im-acids-bases-salts-properties-reactions' && <AcidsBasesIntro />}
             </>
           )}
 

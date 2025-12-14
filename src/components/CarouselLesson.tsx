@@ -281,7 +281,8 @@ export function CarouselLesson({
                     <details className="p-3 md:p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-300 dark:border-green-700">
                       <summary className="cursor-pointer font-semibold text-green-900 dark:text-green-100 text-sm md:text-base hover:text-green-700 dark:hover:text-green-300">💡 View Solution</summary>
                       <div className="mt-3 pt-3 border-t border-green-200 dark:border-green-800 text-sm">
-                        <MarkdownRenderer content={currentSlide.content.solution} />
+                        <p className="font-semibold text-green-800 dark:text-green-200 mb-2">Answer: {currentSlide.content.answer}</p>
+                        <MarkdownRenderer content={currentSlide.content.explanation || currentSlide.content.solution} />
                       </div>
                     </details>
                   </div>

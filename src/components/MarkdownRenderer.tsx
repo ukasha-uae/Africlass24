@@ -47,6 +47,21 @@ interface MarkdownRendererProps {
   className?: string;
 }
 
+// Helper function to convert basic markdown to HTML for mixed content
+function processMarkdownToHtml(text: string): string {
+  return text
+    // Bold: **text** or __text__
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/__(.+?)__/g, '<strong>$1</strong>')
+    // Italic: *text* or _text_
+    .replace(/\*([^*]+?)\*/g, '<em>$1</em>')
+    .replace(/_([^_]+?)_/g, '<em>$1</em>')
+    // Inline code: `text`
+    .replace(/`([^`]+?)`/g, '<code>$1</code>')
+    // Line breaks within the block
+    .replace(/\n/g, '<br/>');
+}
+
 export default function MarkdownRenderer({ content, id, className }: MarkdownRendererProps) {
   if (!content) return null;
 
@@ -62,13 +77,38 @@ export default function MarkdownRenderer({ content, id, className }: MarkdownRen
   return (
     <div id={id} className={`space-y-4 text-base leading-relaxed ${className || ''}`}>
       {paragraphs.map((paragraph, pIndex) => {
-        // Check for HTML table blocks
-        if (paragraph.trim().startsWith('<table') || paragraph.trim().startsWith('<div') || paragraph.trim().startsWith('<h4')) {
+        // Check for HTML blocks (table, div, h4, p, or any tag starting with <)
+        const trimmedPara = paragraph.trim();
+        
+        // Check if the paragraph contains HTML table tags anywhere (not just at start)
+        const containsHtmlTable = trimmedPara.includes('<table') || trimmedPara.includes('<tr>') || trimmedPara.includes('<th>') || trimmedPara.includes('<td>');
+        const containsHtmlPre = trimmedPara.includes('<pre>') || trimmedPara.includes('<pre ');
+        
+        if (containsHtmlTable || containsHtmlPre ||
+            trimmedPara.startsWith('<table') || 
+            trimmedPara.startsWith('<div') || 
+            trimmedPara.startsWith('<h4') ||
+            trimmedPara.startsWith('<p ') ||
+            trimmedPara.startsWith('<p>') ||
+            trimmedPara.startsWith('<h1') ||
+            trimmedPara.startsWith('<h2') ||
+            trimmedPara.startsWith('<h3') ||
+            trimmedPara.startsWith('<h5') ||
+            trimmedPara.startsWith('<h6') ||
+            trimmedPara.startsWith('<ul') ||
+            trimmedPara.startsWith('<ol') ||
+            trimmedPara.startsWith('<blockquote') ||
+            trimmedPara.startsWith('<figure') ||
+            trimmedPara.startsWith('<section') ||
+            trimmedPara.startsWith('<pre') ||
+            trimmedPara.startsWith('<article')) {
+          // Process markdown in the text before rendering as HTML
+          const processedHtml = processMarkdownToHtml(paragraph);
           return (
             <div 
               key={pIndex} 
               className="my-4"
-              dangerouslySetInnerHTML={{ __html: paragraph }} 
+              dangerouslySetInnerHTML={{ __html: processedHtml }} 
             />
           );
         }

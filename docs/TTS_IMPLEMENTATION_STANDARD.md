@@ -1,7 +1,140 @@
 # 🎙️ SmartClass24 Text-to-Speech Implementation Standard
 
-**Last Updated:** December 12, 2025  
+**Last Updated:** December 14, 2025  
 **Status:** ACTIVE STANDARD
+
+---
+
+## 🏆 RECOMMENDED: Teacher-Quality Voice Pattern
+
+**For the most natural, teacher-like voice narration, use this pattern from `FormsOfEnergyIntro.tsx` and `HeatEnergyIntro.tsx`:**
+
+### Reference Implementation
+Location: `src/components/intros/shs/integrated-science/FormsOfEnergyIntro.tsx`
+
+```typescript
+// Speak function - core TTS logic for teacher-quality voice
+const speakScene = useCallback((sceneIndex: number) => {
+  if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+  
+  // Cancel any ongoing speech first
+  window.speechSynthesis.cancel();
+  setIsSpeaking(false);
+  
+  if (isMuted || !isPlaying) return;
+
+  const scene = scenes[sceneIndex];
+  const fullText = `${scene.title}. ${scene.narration}`;
+  
+  const performSpeak = () => {
+    if (!window.speechSynthesis) {
+      console.warn('Speech synthesis not available');
+      // Fall back to timed auto-advance
+      setTimeout(() => {
+        if (currentSceneRef.current === sceneIndex && sceneIndex < scenes.length - 1) {
+          setCurrentScene(sceneIndex + 1);
+        }
+      }, 8000);
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(fullText);
+    
+    // ⭐ KEY SETTINGS FOR TEACHER-QUALITY VOICE
+    utterance.rate = 0.88;    // Slightly slower - more natural
+    utterance.pitch = 1.0;    // Normal pitch
+    utterance.volume = 1;     // Full volume
+    
+    // ⭐ VOICE SELECTION PRIORITY (for best quality)
+    const voices = window.speechSynthesis.getVoices();
+    const englishVoice = voices.find(v => v.lang.startsWith('en-') && v.name.toLowerCase().includes('female'))
+      || voices.find(v => v.lang.startsWith('en-GB'))
+      || voices.find(v => v.lang.startsWith('en-US'))
+      || voices.find(v => v.lang.startsWith('en'))
+      || voices[0];
+    
+    if (englishVoice) {
+      utterance.voice = englishVoice;
+    }
+    
+    utterance.onstart = () => setIsSpeaking(true);
+    
+    utterance.onend = () => {
+      setIsSpeaking(false);
+      // Auto-advance after speech ends (with delay for reading)
+      setTimeout(() => {
+        if (currentSceneRef.current === sceneIndex && sceneIndex < scenes.length - 1) {
+          setCurrentScene(sceneIndex + 1);
+        }
+      }, 1500);  // 1.5 second pause for comprehension
+    };
+    
+    utterance.onerror = (e: SpeechSynthesisErrorEvent) => {
+      // 'interrupted' and 'canceled' are normal when navigating
+      if (e.error === 'interrupted' || e.error === 'canceled') {
+        setIsSpeaking(false);
+        return;
+      }
+      console.warn('Speech synthesis issue:', e.error);
+      setIsSpeaking(false);
+    };
+    
+    window.speechSynthesis.speak(utterance);
+  };
+
+  // Ensure voices are loaded before speaking
+  const voices = window.speechSynthesis.getVoices();
+  if (voices.length === 0) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      window.speechSynthesis.onvoiceschanged = null;
+      setTimeout(performSpeak, 100);
+    };
+  } else {
+    setTimeout(performSpeak, 150);
+  }
+}, [isMuted, isPlaying]);
+```
+
+### ⭐ Critical Settings Summary
+
+| Setting | Value | Why |
+|---------|-------|-----|
+| `rate` | **0.88** | Natural teacher pace, not rushed |
+| `pitch` | **1.0** | Normal, clear tone |
+| `volume` | **1.0** | Full clarity |
+| Voice Priority | Female EN → en-GB → en-US → any EN | Most pleasant teaching voice |
+| Auto-advance delay | **1500ms** | Time for comprehension |
+| Fallback timeout | **8000ms** | If TTS fails, still advances |
+
+### ⭐ Critical Implementation Details
+
+1. **Use `useRef` to avoid stale closures:**
+```typescript
+const currentSceneRef = useRef(currentScene);
+
+useEffect(() => {
+  currentSceneRef.current = currentScene;
+}, [currentScene]);
+
+// In onend callback, use currentSceneRef.current, NOT currentScene
+```
+
+2. **Cancel speech before any navigation:**
+```typescript
+const handleNext = () => {
+  window.speechSynthesis?.cancel();
+  setIsSpeaking(false);
+  // then navigate
+};
+```
+
+3. **Wait for voices to load:**
+```typescript
+const voices = window.speechSynthesis.getVoices();
+if (voices.length === 0) {
+  window.speechSynthesis.onvoiceschanged = () => performSpeak();
+}
+```
 
 ---
 
@@ -162,6 +295,17 @@ Before implementing TTS, ask:
 ---
 
 ## 📊 Migration Status
+
+### ⭐ Gold Standard (Pattern B - Custom TTS):
+- `FormsOfEnergyIntro.tsx` - **Reference implementation**
+- `HeatEnergyIntro.tsx` - Full canvas animations + teacher voice
+
+### ✅ Using IntelligentLessonIntro (Pattern A):
+- `NutritionBalancedDietIntro.tsx`
+- `DigestionIntro.tsx`
+- `RespirationIntro.tsx`
+- `PhotosynthesisIntro.tsx`
+- Most other lesson intros
 
 ### ✅ Using Intelligent TTS:
 - Statistics Animations (4 components)

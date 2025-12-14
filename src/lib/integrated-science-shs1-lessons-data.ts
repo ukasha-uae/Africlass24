@@ -9611,5 +9611,3184 @@ The part of the leaf exposed to light produced starch (through photosynthesis), 
     ],
 
     summary: "Photosynthesis is the process by which green plants use light energy to convert carbon dioxide and water into glucose and oxygen: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂. It occurs in chloroplasts, which contain the green pigment chlorophyll. The process has two stages: light-dependent reactions (in thylakoids) produce ATP, NADPH, and oxygen; light-independent reactions (Calvin cycle in stroma) use these to make glucose. Factors affecting photosynthesis rate include light intensity, CO₂ concentration, temperature, water availability, and chlorophyll amount. The factor in shortest supply is the limiting factor. Photosynthesis is vital because it produces all food (directly or indirectly), all atmospheric oxygen, removes CO₂ (combating climate change), and powers Ghana's agricultural economy (cocoa, cassava, oil palm, maize). It is the opposite of respiration: photosynthesis stores energy and makes glucose, while respiration releases energy and breaks down glucose. We can test for photosynthesis using the iodine test for starch."
+  },
+
+  // ===================================
+  // GENETICS AND INHERITANCE
+  // ===================================
+  {
+    id: 'is-dm-genetics-inheritance',
+    slug: 'is-dm-genetics-inheritance',
+    title: 'Genetics and Inheritance',
+    objectives: [
+      'Define genetics and explain its importance',
+      'Describe the structure and function of DNA',
+      'Explain the relationship between genes, chromosomes, and traits',
+      'Distinguish between genotype and phenotype',
+      'Use genetic crosses to predict inheritance patterns',
+      'Explain dominant and recessive alleles',
+      'Describe sex determination in humans',
+      'Explain the causes and examples of genetic disorders'
+    ],
+    introduction: `Have you ever wondered why you look like your parents? Why some siblings look alike while others look different? Why sickle cell disease is common in Ghana? The answers lie in genetics - the science of heredity!
+
+Genetics explains how traits pass from parents to offspring through genes. Every living thing - from the smallest bacteria to the tallest odum tree, from the grasscutter to the elephant - inherits characteristics from its parents through genetic material called DNA.
+
+In Ghana, understanding genetics is crucial for:
+🧬 Fighting genetic diseases like sickle cell anemia (affecting 2% of Ghanaians)
+🧬 Improving crop varieties (drought-resistant maize, disease-resistant cocoa)
+🧬 Breeding better livestock (cattle, poultry)
+🧬 Understanding family traits and medical history
+🧬 Forensic science and paternity testing
+
+This lesson will take you on a journey into the fascinating world of genes, DNA, and inheritance!`,
+
+    keyConcepts: [
+      {
+        title: 'What is Genetics?',
+        content: `**Definition:** Genetics is the branch of biology that studies heredity - how traits are passed from parents to offspring through genes.
+
+**Key Terms to Know:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: #6366f1; color: white;">
+<th style="padding: 10px; border: 1px solid #4f46e5;">Term</th>
+<th style="padding: 10px; border: 1px solid #4f46e5;">Definition</th>
+<th style="padding: 10px; border: 1px solid #4f46e5;">Example</th>
+</tr>
+<tr style="background: #eef2ff;">
+<td style="padding: 8px; border: 1px solid #c7d2fe;"><strong>Heredity</strong></td>
+<td style="padding: 8px; border: 1px solid #c7d2fe;">Passing of traits from parents to offspring</td>
+<td style="padding: 8px; border: 1px solid #c7d2fe;">Child inheriting parent's eye color</td>
+</tr>
+<tr style="background: #f8fafc;">
+<td style="padding: 8px; border: 1px solid #c7d2fe;"><strong>Gene</strong></td>
+<td style="padding: 8px; border: 1px solid #c7d2fe;">Unit of heredity; a segment of DNA that codes for a trait</td>
+<td style="padding: 8px; border: 1px solid #c7d2fe;">Gene for blood type, height</td>
+</tr>
+<tr style="background: #eef2ff;">
+<td style="padding: 8px; border: 1px solid #c7d2fe;"><strong>Chromosome</strong></td>
+<td style="padding: 8px; border: 1px solid #c7d2fe;">Thread-like structure of DNA carrying many genes</td>
+<td style="padding: 8px; border: 1px solid #c7d2fe;">Humans have 46 chromosomes (23 pairs)</td>
+</tr>
+<tr style="background: #f8fafc;">
+<td style="padding: 8px; border: 1px solid #c7d2fe;"><strong>DNA</strong></td>
+<td style="padding: 8px; border: 1px solid #c7d2fe;">Deoxyribonucleic acid - the genetic material</td>
+<td style="padding: 8px; border: 1px solid #c7d2fe;">Double helix molecule in nucleus</td>
+</tr>
+<tr style="background: #eef2ff;">
+<td style="padding: 8px; border: 1px solid #c7d2fe;"><strong>Trait</strong></td>
+<td style="padding: 8px; border: 1px solid #c7d2fe;">A characteristic that can be inherited</td>
+<td style="padding: 8px; border: 1px solid #c7d2fe;">Skin color, hair texture, height</td>
+</tr>
+</table>
+
+**Why Study Genetics?**
+- Understand inheritance of diseases (sickle cell, diabetes)
+- Improve agriculture through selective breeding
+- Solve crimes using DNA fingerprinting
+- Understand human diversity and evolution
+- Develop gene therapy for genetic disorders`
+      },
+      {
+        title: 'DNA - The Molecule of Life',
+        content: `**DNA (Deoxyribonucleic Acid)** is the molecule that carries genetic information in all living things.
+
+**Structure of DNA:**
+DNA has a **double helix** structure - like a twisted ladder:
+- **Sides of ladder:** Sugar (deoxyribose) and phosphate backbone
+- **Rungs of ladder:** Base pairs (A-T and G-C)
+
+**The Four Bases:**
+
+<div style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong>🧬 Base Pairing Rules:</strong><br>
+• <strong>A</strong>denine pairs with <strong>T</strong>hymine (A=T) - 2 hydrogen bonds<br>
+• <strong>G</strong>uanine pairs with <strong>C</strong>ytosine (G≡C) - 3 hydrogen bonds<br><br>
+<em>Memory trick: "Apple Tree, Green Car" or "AT the GC"</em>
+</div>
+
+**Where is DNA Found?**
+- **Nucleus** - Main location (nuclear DNA)
+- **Mitochondria** - Small amount (mitochondrial DNA, inherited from mother only)
+- **Chloroplasts** - In plant cells
+
+**Key Facts About Human DNA:**
+- Contains about **3 billion base pairs**
+- If stretched out, DNA from one cell would be about **2 meters long**
+- 99.9% identical between all humans
+- The 0.1% difference makes you unique!
+
+**DNA → RNA → Protein**
+
+<div style="background: #fef3c7; padding: 12px; border-radius: 8px; border-left: 4px solid #f59e0b; margin: 10px 0;">
+<strong>⚡ The Central Dogma:</strong><br>
+DNA (in nucleus) → transcribed to → mRNA → translated to → Protein<br>
+<em>Proteins determine your traits!</em>
+</div>`
+      },
+      {
+        title: 'Genes and Chromosomes',
+        content: `**Chromosomes** are thread-like structures made of DNA and proteins, found in the nucleus.
+
+**Human Chromosome Numbers:**
+- **Body cells (somatic):** 46 chromosomes (23 pairs) - called **diploid (2n)**
+- **Sex cells (gametes):** 23 chromosomes - called **haploid (n)**
+- **22 pairs** are autosomes (same in males and females)
+- **1 pair** are sex chromosomes (XX in females, XY in males)
+
+**Chromosome Structure:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: #059669; color: white;">
+<th style="padding: 10px; border: 1px solid #047857;">Part</th>
+<th style="padding: 10px; border: 1px solid #047857;">Description</th>
+</tr>
+<tr style="background: #d1fae5;">
+<td style="padding: 8px; border: 1px solid #a7f3d0;"><strong>Chromatids</strong></td>
+<td style="padding: 8px; border: 1px solid #a7f3d0;">Two identical halves joined at centromere (after replication)</td>
+</tr>
+<tr style="background: #f0fdf4;">
+<td style="padding: 8px; border: 1px solid #a7f3d0;"><strong>Centromere</strong></td>
+<td style="padding: 8px; border: 1px solid #a7f3d0;">Point where chromatids join; attachment for spindle fibers</td>
+</tr>
+<tr style="background: #d1fae5;">
+<td style="padding: 8px; border: 1px solid #a7f3d0;"><strong>Telomeres</strong></td>
+<td style="padding: 8px; border: 1px solid #a7f3d0;">Protective caps at chromosome ends</td>
+</tr>
+</table>
+
+**Genes on Chromosomes:**
+- Each chromosome contains **hundreds to thousands of genes**
+- Genes are at specific locations called **loci** (singular: locus)
+- **Alleles** are different versions of the same gene
+- Humans have about **20,000-25,000 genes**
+
+**Homologous Chromosomes:**
+- Chromosomes that come in **matching pairs** (one from each parent)
+- Same genes at same locations, but may have different alleles
+- Example: Both chromosome 9s have the blood type gene, but one might have allele A, other has allele B`
+      },
+      {
+        title: 'Genotype vs Phenotype',
+        content: `Understanding the difference between genotype and phenotype is crucial for genetics!
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(90deg, #7c3aed, #2563eb); color: white;">
+<th style="padding: 12px; border: 1px solid #4c1d95;">Genotype</th>
+<th style="padding: 12px; border: 1px solid #1e40af;">Phenotype</th>
+</tr>
+<tr>
+<td style="padding: 10px; border: 1px solid #c4b5fd; background: #ede9fe;">The genetic makeup (alleles)</td>
+<td style="padding: 10px; border: 1px solid #bfdbfe; background: #dbeafe;">The physical expression (observable trait)</td>
+</tr>
+<tr>
+<td style="padding: 10px; border: 1px solid #c4b5fd; background: #f5f3ff;">Written with letters: AA, Aa, aa</td>
+<td style="padding: 10px; border: 1px solid #bfdbfe; background: #eff6ff;">Described in words: tall, short, brown eyes</td>
+</tr>
+<tr>
+<td style="padding: 10px; border: 1px solid #c4b5fd; background: #ede9fe;">Cannot be seen directly</td>
+<td style="padding: 10px; border: 1px solid #bfdbfe; background: #dbeafe;">Can be observed</td>
+</tr>
+<tr>
+<td style="padding: 10px; border: 1px solid #c4b5fd; background: #f5f3ff;">Determined only by genes</td>
+<td style="padding: 10px; border: 1px solid #bfdbfe; background: #eff6ff;">Determined by genes AND environment</td>
+</tr>
+</table>
+
+**Allele Types:**
+
+<div style="background: #dcfce7; padding: 12px; border-radius: 8px; border-left: 4px solid #22c55e; margin: 8px 0;">
+<strong>✅ Dominant Allele (Capital letter: A, B, T)</strong><br>
+• Always expressed when present<br>
+• Only ONE copy needed to show the trait<br>
+• Example: Brown eyes (B) is dominant over blue eyes (b)
+</div>
+
+<div style="background: #fef9c3; padding: 12px; border-radius: 8px; border-left: 4px solid #eab308; margin: 8px 0;">
+<strong>⚠️ Recessive Allele (Lowercase letter: a, b, t)</strong><br>
+• Only expressed when TWO copies present<br>
+• "Hidden" when paired with dominant allele<br>
+• Example: Blue eyes (b) only shows as bb
+</div>
+
+**Zygosity:**
+- **Homozygous:** Both alleles are the same (AA or aa)
+- **Heterozygous:** Alleles are different (Aa) - also called "carrier"
+
+**Example - Tongue Rolling:**
+- T = can roll tongue (dominant)
+- t = cannot roll tongue (recessive)
+- TT or Tt = can roll tongue (phenotype)
+- tt = cannot roll tongue (phenotype)`
+      },
+      {
+        title: 'Mendel and Genetic Crosses',
+        content: `**Gregor Mendel** (1822-1884) was an Austrian monk who discovered the basic laws of inheritance by studying pea plants. He is called the "Father of Genetics."
+
+**Mendel's Laws:**
+
+**1. Law of Segregation:**
+- Each organism has two alleles for each trait
+- These alleles separate during gamete formation
+- Each gamete receives only ONE allele
+
+**2. Law of Independent Assortment:**
+- Genes for different traits are inherited independently
+- (Unless they're on the same chromosome - linked genes)
+
+**Punnett Square - A Tool for Predicting Offspring:**
+
+**Example: Crossing two heterozygous tall plants (Tt × Tt)**
+
+<table style="width:70%; border-collapse: collapse; margin: 10px auto; text-align: center;">
+<tr>
+<td style="border: 2px solid #6366f1; padding: 10px; background: #eef2ff;"></td>
+<td style="border: 2px solid #6366f1; padding: 10px; background: #c7d2fe; font-weight: bold;">T</td>
+<td style="border: 2px solid #6366f1; padding: 10px; background: #c7d2fe; font-weight: bold;">t</td>
+</tr>
+<tr>
+<td style="border: 2px solid #6366f1; padding: 10px; background: #c7d2fe; font-weight: bold;">T</td>
+<td style="border: 2px solid #6366f1; padding: 10px; background: #dcfce7;">TT (tall)</td>
+<td style="border: 2px solid #6366f1; padding: 10px; background: #fef9c3;">Tt (tall)</td>
+</tr>
+<tr>
+<td style="border: 2px solid #6366f1; padding: 10px; background: #c7d2fe; font-weight: bold;">t</td>
+<td style="border: 2px solid #6366f1; padding: 10px; background: #fef9c3;">Tt (tall)</td>
+<td style="border: 2px solid #6366f1; padding: 10px; background: #fecaca;">tt (short)</td>
+</tr>
+</table>
+
+**Results:**
+- **Genotype ratio:** 1 TT : 2 Tt : 1 tt
+- **Phenotype ratio:** 3 tall : 1 short (3:1 ratio)
+
+**Key Ratios to Remember:**
+- **Monohybrid cross (Aa × Aa):** 3:1 phenotype ratio
+- **Test cross (Aa × aa):** 1:1 phenotype ratio
+- **Dihybrid cross:** 9:3:3:1 phenotype ratio`
+      },
+      {
+        title: 'Sex Determination',
+        content: `In humans, biological sex is determined by sex chromosomes.
+
+**Sex Chromosomes:**
+- **Females:** XX (two X chromosomes)
+- **Males:** XY (one X, one Y chromosome)
+
+**How Sex is Determined:**
+
+<table style="width:70%; border-collapse: collapse; margin: 10px auto; text-align: center;">
+<tr>
+<td style="border: 2px solid #ec4899; padding: 10px; background: #fdf2f8;"></td>
+<td style="border: 2px solid #ec4899; padding: 10px; background: #fbcfe8; font-weight: bold;">X (from mother)</td>
+<td style="border: 2px solid #ec4899; padding: 10px; background: #fbcfe8; font-weight: bold;">X (from mother)</td>
+</tr>
+<tr>
+<td style="border: 2px solid #3b82f6; padding: 10px; background: #dbeafe; font-weight: bold;">X (from father)</td>
+<td style="border: 2px solid #a855f7; padding: 10px; background: #fce7f3;">XX ♀ (girl)</td>
+<td style="border: 2px solid #a855f7; padding: 10px; background: #fce7f3;">XX ♀ (girl)</td>
+</tr>
+<tr>
+<td style="border: 2px solid #3b82f6; padding: 10px; background: #dbeafe; font-weight: bold;">Y (from father)</td>
+<td style="border: 2px solid #3b82f6; padding: 10px; background: #dbeafe;">XY ♂ (boy)</td>
+<td style="border: 2px solid #3b82f6; padding: 10px; background: #dbeafe;">XY ♂ (boy)</td>
+</tr>
+</table>
+
+**Key Points:**
+- Mother ALWAYS contributes X chromosome
+- Father contributes either X or Y
+- **Father determines the sex** of the child!
+- **50% chance** of boy or girl with each pregnancy
+
+**Sex-Linked Traits:**
+Some genes are located on sex chromosomes (especially X):
+- **X-linked traits** are more common in males (only need one copy)
+- Examples: Color blindness, hemophilia, muscular dystrophy
+
+**Example - Color Blindness:**
+- Gene for color vision is on X chromosome
+- C = normal vision (dominant), c = color blind (recessive)
+- Female needs cc to be color blind (rare)
+- Male needs only c (on his single X) to be color blind (more common)
+
+**Why More Males are Color Blind:**
+- Females: XᶜXᶜ = carrier, XᶜXᶜ = color blind
+- Males: XᶜY = color blind (no second X to mask it!)`
+      },
+      {
+        title: 'Genetic Disorders',
+        content: `Genetic disorders are diseases caused by abnormalities in genes or chromosomes.
+
+**Types of Genetic Disorders:**
+
+**1. Single Gene Disorders:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: #dc2626; color: white;">
+<th style="padding: 10px; border: 1px solid #b91c1c;">Disorder</th>
+<th style="padding: 10px; border: 1px solid #b91c1c;">Type</th>
+<th style="padding: 10px; border: 1px solid #b91c1c;">Description</th>
+</tr>
+<tr style="background: #fef2f2;">
+<td style="padding: 8px; border: 1px solid #fecaca;"><strong>Sickle Cell Disease</strong></td>
+<td style="padding: 8px; border: 1px solid #fecaca;">Recessive</td>
+<td style="padding: 8px; border: 1px solid #fecaca;">Red blood cells become sickle-shaped; common in Ghana (2%)</td>
+</tr>
+<tr style="background: #fff7ed;">
+<td style="padding: 8px; border: 1px solid #fecaca;"><strong>Albinism</strong></td>
+<td style="padding: 8px; border: 1px solid #fecaca;">Recessive</td>
+<td style="padding: 8px; border: 1px solid #fecaca;">Lack of melanin pigment; affects skin, hair, eyes</td>
+</tr>
+<tr style="background: #fef2f2;">
+<td style="padding: 8px; border: 1px solid #fecaca;"><strong>Hemophilia</strong></td>
+<td style="padding: 8px; border: 1px solid #fecaca;">X-linked recessive</td>
+<td style="padding: 8px; border: 1px solid #fecaca;">Blood doesn't clot properly; mostly affects males</td>
+</tr>
+<tr style="background: #fff7ed;">
+<td style="padding: 8px; border: 1px solid #fecaca;"><strong>Huntington's Disease</strong></td>
+<td style="padding: 8px; border: 1px solid #fecaca;">Dominant</td>
+<td style="padding: 8px; border: 1px solid #fecaca;">Progressive brain disorder; symptoms appear in adulthood</td>
+</tr>
+</table>
+
+**2. Chromosomal Disorders:**
+- **Down Syndrome:** Extra chromosome 21 (trisomy 21) - 47 chromosomes
+- **Turner Syndrome:** Female with only one X (45, X)
+- **Klinefelter Syndrome:** Male with extra X (47, XXY)
+
+**Sickle Cell in Ghana - A Special Case:**
+
+<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #f59e0b; margin: 10px 0;">
+<strong>🇬🇭 Why is Sickle Cell Common in Ghana?</strong><br><br>
+• Carriers (HbAS) have <strong>resistance to malaria</strong>!<br>
+• In malaria-endemic regions, carriers survive better<br>
+• This is called <strong>"heterozygote advantage"</strong><br>
+• Natural selection maintained the sickle cell gene<br><br>
+<strong>Inheritance Pattern:</strong><br>
+• HbAA = Normal (no sickle cell, no protection)<br>
+• HbAS = Carrier/Trait (mild symptoms, malaria resistant)<br>
+• HbSS = Sickle Cell Disease (severe symptoms)
+</div>
+
+**Genetic Counseling:**
+- Helps couples understand risks of genetic disorders
+- Important before marriage in families with genetic diseases
+- Sickle cell testing is recommended for all Ghanaians`
+      },
+      {
+        title: 'Applications of Genetics',
+        content: `Genetics has many practical applications in Ghana and worldwide!
+
+**1. Agriculture - Crop Improvement:**
+
+<div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #22c55e; margin: 10px 0;">
+<strong>🌱 Crop Genetics in Ghana:</strong><br><br>
+• <strong>Selective breeding:</strong> Choosing plants with best traits to breed<br>
+• <strong>Hybrid crops:</strong> Drought-resistant maize for Northern Ghana<br>
+• <strong>Disease resistance:</strong> Cocoa varieties resistant to swollen shoot virus<br>
+• <strong>Higher yields:</strong> Improved cassava, rice, cowpea varieties<br>
+• <strong>CSIR-CRI</strong> develops improved crop varieties for Ghana
+</div>
+
+**2. Animal Breeding:**
+- Better milk production in cattle
+- Disease-resistant poultry
+- Faster-growing fish (tilapia) for aquaculture
+
+**3. Medicine:**
+
+<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6; margin: 10px 0;">
+<strong>💊 Medical Genetics:</strong><br><br>
+• <strong>Genetic testing:</strong> Identify disease risk before symptoms<br>
+• <strong>Gene therapy:</strong> Correcting faulty genes (experimental)<br>
+• <strong>Pharmacogenomics:</strong> Personalized medicine based on genes<br>
+• <strong>Prenatal screening:</strong> Detecting genetic disorders in pregnancy
+</div>
+
+**4. Forensic Science:**
+- **DNA fingerprinting** for crime investigation
+- **Paternity testing** to determine biological father
+- **Identification** of disaster victims
+
+**5. Conservation:**
+- Preserving genetic diversity in endangered species
+- Gene banks for seeds and plant material
+
+**Ethical Considerations:**
+
+<div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #a855f7; margin: 10px 0;">
+<strong>🤔 Important Questions:</strong><br><br>
+• Should we genetically modify food crops?<br>
+• Is it right to select embryos based on genetics?<br>
+• Who should have access to your genetic information?<br>
+• Should genetic testing be mandatory before marriage?<br><br>
+<em>These are important discussions for society!</em>
+</div>
+
+**Careers in Genetics:**
+- Geneticist / Genetic counselor
+- Biotechnologist
+- Agricultural scientist
+- Forensic scientist
+- Medical researcher`
+      }
+    ],
+
+    activities: {
+      type: 'exercises',
+      questions: [
+        {
+          type: 'mcq',
+          question: 'What is the basic unit of heredity?',
+          options: ['Chromosome', 'Gene', 'DNA', 'Cell'],
+          answer: 'Gene',
+          explanation: 'A gene is the basic unit of heredity - a segment of DNA that codes for a specific trait. Chromosomes contain many genes, and DNA is the molecule that makes up genes.'
+        },
+        {
+          type: 'mcq',
+          question: 'How many chromosomes are in a normal human body cell?',
+          options: ['23', '46', '44', '48'],
+          answer: '46',
+          explanation: 'Human body cells (somatic cells) have 46 chromosomes arranged in 23 pairs. Sex cells (gametes) have only 23 chromosomes (haploid).'
+        },
+        {
+          type: 'mcq',
+          question: 'If a plant has genotype Tt for height (T=tall, t=short), what is its phenotype?',
+          options: ['Short', 'Tall', 'Medium', 'Cannot determine'],
+          answer: 'Tall',
+          explanation: 'Since T (tall) is dominant over t (short), even one copy of T will make the plant tall. Both TT and Tt genotypes produce a tall phenotype.'
+        },
+        {
+          type: 'mcq',
+          question: 'In DNA, adenine (A) always pairs with:',
+          options: ['Cytosine', 'Guanine', 'Thymine', 'Uracil'],
+          answer: 'Thymine',
+          explanation: 'In DNA base pairing, Adenine (A) always pairs with Thymine (T), and Guanine (G) always pairs with Cytosine (C). Remember: "AT the GC" or "Apple Tree, Green Car".'
+        },
+        {
+          type: 'mcq',
+          question: 'Which parent determines the biological sex of a child?',
+          options: ['Mother', 'Father', 'Both equally', 'Neither - it is random'],
+          answer: 'Father',
+          explanation: 'The father determines sex because he can contribute either an X chromosome (resulting in XX = female) or a Y chromosome (resulting in XY = male). The mother always contributes an X.'
+        }
+      ]
+    },
+
+    pastQuestions: [
+      {
+        question: '(WASSCE 2020) (a) Define the following terms: (i) Gene (ii) Allele (iii) Genotype (iv) Phenotype',
+        solution: `<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong style="color: #1e40af;">(i) Gene:</strong><br>
+A gene is a unit of heredity; a segment of DNA located on a chromosome that codes for a specific trait or characteristic.
+</div>
+
+<div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong style="color: #166534;">(ii) Allele:</strong><br>
+An allele is an alternative form of a gene. Different alleles of the same gene produce variations in inherited characteristics (e.g., alleles for brown eyes vs blue eyes).
+</div>
+
+<div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong style="color: #7c3aed;">(iii) Genotype:</strong><br>
+Genotype is the genetic makeup of an organism - the combination of alleles it possesses for a particular trait. Written using letters (e.g., AA, Aa, aa).
+</div>
+
+<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong style="color: #b45309;">(iv) Phenotype:</strong><br>
+Phenotype is the physical or observable expression of a trait, determined by the genotype and sometimes influenced by the environment (e.g., tall, short, brown eyes).
+</div>`
+      },
+      {
+        question: '(WASSCE 2019) A man with blood group A married a woman with blood group B. Both are heterozygous. Using a Punnett square, show the possible blood groups of their children.',
+        solution: `<div style="background: #f0f9ff; padding: 12px; border-radius: 8px; border-left: 4px solid #3b82f6; margin: 10px 0;">
+<strong>Given Information:</strong><br>
+• Man: Blood group A, heterozygous = IᴬIᵒ<br>
+• Woman: Blood group B, heterozygous = IᴮIᵒ
+</div>
+
+**Punnett Square:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white;">
+<th style="border: 1px solid #4f46e5; padding: 10px;"></th>
+<th style="border: 1px solid #4f46e5; padding: 10px;">Iᴬ</th>
+<th style="border: 1px solid #4f46e5; padding: 10px;">Iᵒ</th>
+</tr>
+<tr style="background: #fdf4ff;">
+<td style="border: 1px solid #d8b4fe; padding: 10px; font-weight: bold; background: #f3e8ff;">Iᴮ</td>
+<td style="border: 1px solid #d8b4fe; padding: 10px; text-align: center;">IᴬIᴮ</td>
+<td style="border: 1px solid #d8b4fe; padding: 10px; text-align: center;">IᴮIᵒ</td>
+</tr>
+<tr style="background: #faf5ff;">
+<td style="border: 1px solid #d8b4fe; padding: 10px; font-weight: bold; background: #f3e8ff;">Iᵒ</td>
+<td style="border: 1px solid #d8b4fe; padding: 10px; text-align: center;">IᴬIᵒ</td>
+<td style="border: 1px solid #d8b4fe; padding: 10px; text-align: center;">IᵒIᵒ</td>
+</tr>
+</table>
+
+**Results:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: white;">
+<th style="border: 1px solid #047857; padding: 10px;">Genotype</th>
+<th style="border: 1px solid #047857; padding: 10px;">Blood Group</th>
+<th style="border: 1px solid #047857; padding: 10px;">Proportion</th>
+</tr>
+<tr style="background: #ecfdf5;">
+<td style="border: 1px solid #a7f3d0; padding: 10px; text-align: center;">IᴬIᴮ</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px; text-align: center; font-weight: bold; color: #7c3aed;">AB</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px; text-align: center;">1/4 (25%)</td>
+</tr>
+<tr style="background: #f0fdf4;">
+<td style="border: 1px solid #a7f3d0; padding: 10px; text-align: center;">IᴬIᵒ</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px; text-align: center; font-weight: bold; color: #dc2626;">A</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px; text-align: center;">1/4 (25%)</td>
+</tr>
+<tr style="background: #ecfdf5;">
+<td style="border: 1px solid #a7f3d0; padding: 10px; text-align: center;">IᴮIᵒ</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px; text-align: center; font-weight: bold; color: #2563eb;">B</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px; text-align: center;">1/4 (25%)</td>
+</tr>
+<tr style="background: #f0fdf4;">
+<td style="border: 1px solid #a7f3d0; padding: 10px; text-align: center;">IᵒIᵒ</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px; text-align: center; font-weight: bold; color: #f59e0b;">O</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px; text-align: center;">1/4 (25%)</td>
+</tr>
+</table>
+
+<div style="background: #fef3c7; padding: 12px; border-radius: 8px; border-left: 4px solid #f59e0b; margin: 10px 0;">
+<strong>Phenotype Ratio:</strong> 1 A : 1 B : 1 AB : 1 O<br><br>
+<strong>Conclusion:</strong> The children could have any of the four blood groups: A, B, AB, or O, each with 25% probability.
+</div>`
+      },
+      {
+        question: '(WASSCE 2018) (a) What is sickle cell anemia? (b) Explain why sickle cell trait is common in Ghana and other malaria-endemic regions.',
+        solution: `<div style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #dc2626; margin: 10px 0;">
+<strong style="color: #991b1b;">(a) What is Sickle Cell Anemia:</strong><br><br>
+Sickle cell anemia is a genetic blood disorder caused by a mutation in the gene for hemoglobin. People with sickle cell disease (genotype HbSS) have red blood cells that become rigid and sickle-shaped (crescent-shaped) under low oxygen conditions.<br><br>
+<strong>Symptoms include:</strong><br>
+• Severe pain crises<br>
+• Anemia (low red blood cell count)<br>
+• Frequent infections<br>
+• Organ damage<br>
+• Fatigue
+</div>
+
+<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #f59e0b; margin: 10px 0;">
+<strong style="color: #b45309;">(b) Why Sickle Cell is Common in Ghana:</strong>
+</div>
+
+<div style="background: #ecfdf5; padding: 12px; border-radius: 8px; border-left: 4px solid #10b981; margin: 8px 0;">
+<strong style="color: #059669;">1. Heterozygote Advantage:</strong><br>
+• People who are carriers (HbAS - sickle cell trait) have one normal allele and one sickle cell allele<br>
+• These carriers have RESISTANCE to malaria<br>
+• The malaria parasite cannot easily survive in cells with some sickle hemoglobin
+</div>
+
+<div style="background: #dbeafe; padding: 12px; border-radius: 8px; border-left: 4px solid #3b82f6; margin: 8px 0;">
+<strong style="color: #1d4ed8;">2. Natural Selection:</strong><br>
+• In malaria-endemic regions like Ghana, carriers (HbAS) survive better than:<br>
+&nbsp;&nbsp;- Normal individuals (HbAA) who are more susceptible to malaria<br>
+&nbsp;&nbsp;- Sickle cell patients (HbSS) who have the disease<br>
+• This survival advantage maintained the sickle cell gene in the population
+</div>
+
+<div style="background: #f3e8ff; padding: 12px; border-radius: 8px; border-left: 4px solid #8b5cf6; margin: 8px 0;">
+<strong style="color: #7c3aed;">3. Balanced Polymorphism:</strong><br>
+• The benefit of malaria resistance in carriers balances the cost of the disease in homozygotes<br>
+• This is why the gene persists at relatively high frequencies (about 20-25% carriers in Ghana)
+</div>
+
+<div style="background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong>🇬🇭 Conclusion:</strong> The sickle cell gene is common in Ghana because being a carrier provides protection against malaria, which has been a major cause of death in the region for thousands of years.
+</div>`
+      }
+    ],
+
+    endOfLessonQuiz: [
+      {
+        type: 'mcq',
+        question: 'What is the shape of a DNA molecule?',
+        options: ['Single strand', 'Double helix', 'Triple helix', 'Circular loop'],
+        answer: 'Double helix',
+        explanation: 'DNA has a double helix structure, like a twisted ladder. The sides are made of sugar-phosphate backbone, and the rungs are complementary base pairs (A-T and G-C).'
+      },
+      {
+        type: 'mcq',
+        question: 'A heterozygous individual has the genotype:',
+        options: ['AA', 'aa', 'Aa', 'AABB'],
+        answer: 'Aa',
+        explanation: 'Heterozygous means having two different alleles for a trait (Aa). Homozygous means having two identical alleles (AA or aa).'
+      },
+      {
+        type: 'mcq',
+        question: 'If both parents are carriers of sickle cell (HbAS), what is the probability their child will have sickle cell disease?',
+        options: ['0%', '25%', '50%', '100%'],
+        answer: '25%',
+        explanation: 'Using a Punnett square for HbAS × HbAS: 1/4 HbAA (normal), 2/4 HbAS (carriers), 1/4 HbSS (sickle cell disease). So there is a 25% (1 in 4) chance of having a child with sickle cell disease.'
+      },
+      {
+        type: 'mcq',
+        question: 'Which of these is a sex-linked trait?',
+        options: ['Blood type', 'Sickle cell disease', 'Color blindness', 'Tongue rolling'],
+        answer: 'Color blindness',
+        explanation: 'Color blindness is X-linked (the gene is on the X chromosome). This is why it affects males more than females - males only have one X chromosome, so one defective copy causes the condition.'
+      },
+      {
+        type: 'mcq',
+        question: 'The "Father of Genetics" who studied pea plants was:',
+        options: ['Charles Darwin', 'Gregor Mendel', 'James Watson', 'Francis Crick'],
+        answer: 'Gregor Mendel',
+        explanation: 'Gregor Mendel was an Austrian monk who discovered the basic laws of inheritance by studying pea plants in the 1860s. Watson and Crick discovered the structure of DNA in 1953.'
+      },
+      {
+        type: 'mcq',
+        question: 'What determines biological sex in humans?',
+        options: ['Number of chromosomes', 'XX or XY sex chromosomes', 'Mitochondrial DNA', 'Number of genes'],
+        answer: 'XX or XY sex chromosomes',
+        explanation: 'In humans, females have XX sex chromosomes and males have XY. The presence of the Y chromosome (specifically the SRY gene) determines male development.'
+      },
+      {
+        type: 'mcq',
+        question: 'Down syndrome is caused by:',
+        options: ['Missing chromosome', 'Extra chromosome 21', 'X-linked mutation', 'Dominant allele'],
+        answer: 'Extra chromosome 21',
+        explanation: 'Down syndrome (trisomy 21) is caused by having three copies of chromosome 21 instead of two, resulting in 47 chromosomes total instead of 46.'
+      },
+      {
+        type: 'mcq',
+        question: 'In a cross between Tt × Tt, what fraction of offspring will be homozygous?',
+        options: ['1/4', '2/4', '3/4', '4/4'],
+        answer: '2/4',
+        explanation: 'From Tt × Tt: TT (1/4), Tt (2/4), tt (1/4). Homozygous offspring are TT and tt, which together make 2/4 or 1/2 (50%).'
+      },
+      {
+        type: 'mcq',
+        question: 'Why do carriers of sickle cell trait (HbAS) have an advantage in Ghana?',
+        options: [
+          'They are immune to all diseases',
+          'They have resistance to malaria',
+          'They live longer than everyone',
+          'They cannot pass sickle cell to children'
+        ],
+        answer: 'They have resistance to malaria',
+        explanation: 'Carriers (HbAS) have some sickle-shaped red blood cells that make it difficult for the malaria parasite to survive. This gives them resistance to malaria while not having the full sickle cell disease.'
+      },
+      {
+        type: 'mcq',
+        question: 'Which statement about genes and chromosomes is correct?',
+        options: [
+          'Each gene is made up of many chromosomes',
+          'Each chromosome contains many genes',
+          'Genes and chromosomes are the same thing',
+          'Chromosomes are found in cytoplasm, genes in nucleus'
+        ],
+        answer: 'Each chromosome contains many genes',
+        explanation: 'Chromosomes are thread-like structures made of DNA that contain hundreds to thousands of genes. Genes are segments of DNA that code for specific traits. Both are found in the nucleus.'
+      }
+    ],
+
+    summary: "Genetics is the study of heredity - how traits pass from parents to offspring through genes. DNA (deoxyribonucleic acid) is the genetic material with a double helix structure, made of four bases: Adenine pairs with Thymine (A-T), Guanine pairs with Cytosine (G-C). Humans have 46 chromosomes (23 pairs) in body cells and 23 in sex cells. Genes are located on chromosomes, and different versions of genes are called alleles. Genotype is the genetic makeup (AA, Aa, aa), while phenotype is the observable trait. Dominant alleles (A) are expressed with one copy; recessive alleles (a) need two copies. Gregor Mendel discovered inheritance laws using pea plants. Punnett squares help predict offspring ratios (3:1 for Aa × Aa). Sex is determined by X and Y chromosomes - XX = female, XY = male. Father determines sex. Sex-linked traits (like color blindness) are on X chromosome and affect males more. Genetic disorders include sickle cell disease (common in Ghana due to malaria resistance in carriers), albinism, and Down syndrome (extra chromosome 21). Genetics is applied in agriculture (crop improvement), medicine (genetic testing), and forensics (DNA fingerprinting)."
+  },
+
+  // ============================================
+  // LESSON 12: Forms of Energy
+  // ============================================
+  {
+    id: 'is-en-forms-of-energy-types',
+    slug: 'is-en-forms-of-energy-types',
+    title: 'Forms of Energy',
+
+    introduction: `Have you ever wondered what makes a car move, a light bulb glow, or your phone work? 🚗💡📱
+
+The answer is **ENERGY**! Energy is everywhere - in the food you eat, the sun that shines, the wind that blows, and even in the atoms that make up your body.
+
+In this lesson, we'll discover:
+• What energy really is
+• The different forms energy can take
+• How energy powers everything in Ghana and around the world
+• Why understanding energy is crucial for our future
+
+**Did you know?** The word "energy" comes from the Greek word "energeia" meaning "activity" or "operation." Energy is literally the ability to do work or cause change!
+
+Let's power up and explore the amazing world of energy! ⚡`,
+
+    objectives: [
+      'Define energy and explain its importance in daily life',
+      'Identify and describe the main forms of energy',
+      'Differentiate between kinetic energy and potential energy',
+      'Give examples of each form of energy from everyday life in Ghana',
+      'Explain the concept of energy transformation with practical examples'
+    ],
+
+    keyConcepts: [
+      {
+        title: 'What is Energy?',
+        content: `**Definition:** Energy is the ability to do work or cause change in matter.
+
+<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6; margin: 10px 0;">
+<strong>🔑 Key Point:</strong><br>
+Energy cannot be created or destroyed - it can only be <strong>transformed</strong> from one form to another. This is the <strong>Law of Conservation of Energy</strong>.
+</div>
+
+**Properties of Energy:**
+• Energy is measured in **Joules (J)** - the SI unit
+• Other units include kilojoules (kJ), calories, kilowatt-hours (kWh)
+• Energy can be stored, transferred, and transformed
+• Everything that happens requires energy!
+
+**Why Energy Matters in Ghana:**
+
+<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #f59e0b; margin: 10px 0;">
+<strong>🇬🇭 Energy in Ghana:</strong><br>
+• Akosombo Dam generates hydroelectric power for the nation<br>
+• Solar panels are increasingly used in rural areas<br>
+• Ghana is expanding its energy infrastructure<br>
+• Understanding energy helps solve Ghana's power challenges
+</div>
+
+**The Energy Story:**
+Every action requires energy - walking, thinking, cooking, even sleeping! Your body uses about 2,000 calories (8,400 kJ) of energy every day just to stay alive.`
+      },
+      {
+        title: 'Kinetic Energy',
+        content: `**Definition:** Kinetic energy is the energy of motion - the energy an object has because it is moving.
+
+**Formula:**
+$$KE = \\frac{1}{2}mv^2$$
+
+Where:
+• KE = Kinetic energy (Joules)
+• m = mass (kilograms)
+• v = velocity/speed (meters per second)
+
+<div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #22c55e; margin: 10px 0;">
+<strong>🏃 Examples of Kinetic Energy:</strong><br>
+• A running athlete at the National Sports Festival<br>
+• A trotro moving through Accra traffic<br>
+• Wind blowing through palm trees<br>
+• Water flowing in the Volta River<br>
+• A football being kicked during a Black Stars match ⚽
+</div>
+
+**Key Points about Kinetic Energy:**
+• The faster an object moves, the MORE kinetic energy it has
+• A heavier object has MORE kinetic energy at the same speed
+• Kinetic energy increases with the SQUARE of velocity
+  - Double the speed → 4 times the kinetic energy!
+
+**Example Calculation:**
+A motorcycle of mass 200 kg travels at 20 m/s. Calculate its kinetic energy.
+
+<div style="background: #f3e8ff; padding: 12px; border-radius: 8px; border-left: 4px solid #8b5cf6; margin: 10px 0;">
+<strong>Solution:</strong><br>
+KE = ½mv² = ½ × 200 × (20)² = ½ × 200 × 400 = <strong>40,000 J</strong> or <strong>40 kJ</strong>
+</div>`
+      },
+      {
+        title: 'Potential Energy',
+        content: `**Definition:** Potential energy is stored energy - the energy an object has because of its position, condition, or composition.
+
+**Types of Potential Energy:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white;">
+<th style="border: 1px solid #4f46e5; padding: 12px;">Type</th>
+<th style="border: 1px solid #4f46e5; padding: 12px;">Description</th>
+<th style="border: 1px solid #4f46e5; padding: 12px;">Example in Ghana</th>
+</tr>
+<tr style="background: #f0f9ff;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">Gravitational PE</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Energy due to height above ground</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Water stored in Akosombo Dam</td>
+</tr>
+<tr style="background: #f8fafc;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">Elastic PE</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Energy stored in stretched/compressed objects</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Stretched catapult (kettie)</td>
+</tr>
+<tr style="background: #f0f9ff;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">Chemical PE</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Energy stored in chemical bonds</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Fufu and groundnut soup 🍲</td>
+</tr>
+</table>
+
+**Gravitational Potential Energy Formula:**
+$$PE = mgh$$
+
+Where:
+• PE = Potential energy (Joules)
+• m = mass (kilograms)
+• g = gravitational acceleration (9.8 m/s² or ≈10 m/s²)
+• h = height (meters)
+
+<div style="background: #ecfdf5; padding: 12px; border-radius: 8px; border-left: 4px solid #10b981; margin: 10px 0;">
+<strong>🏔️ Example:</strong><br>
+A coconut of mass 2 kg is at a height of 15 m on a palm tree.<br>
+PE = mgh = 2 × 10 × 15 = <strong>300 J</strong><br>
+(When it falls, this PE converts to kinetic energy!)
+</div>
+
+**Remember:**
+• Higher position = More gravitational PE
+• Heavier object = More gravitational PE
+• More stretch/compression = More elastic PE`
+      },
+      {
+        title: 'Thermal (Heat) Energy',
+        content: `**Definition:** Thermal energy is the total kinetic energy of all particles in a substance. It's what we commonly call "heat."
+
+<div style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #ef4444; margin: 10px 0;">
+<strong>🌡️ Key Concept:</strong><br>
+Temperature is a measure of the AVERAGE kinetic energy of particles.<br>
+Thermal energy is the TOTAL kinetic energy of ALL particles.
+</div>
+
+**Sources of Thermal Energy:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); color: white;">
+<th style="border: 1px solid #b91c1c; padding: 12px;">Source</th>
+<th style="border: 1px solid #b91c1c; padding: 12px;">Example</th>
+</tr>
+<tr style="background: #fef2f2;">
+<td style="border: 1px solid #fca5a5; padding: 10px;">☀️ Sun</td>
+<td style="border: 1px solid #fca5a5; padding: 10px;">Solar radiation heating Ghana's tropical climate</td>
+</tr>
+<tr style="background: #fff5f5;">
+<td style="border: 1px solid #fca5a5; padding: 10px;">🔥 Combustion</td>
+<td style="border: 1px solid #fca5a5; padding: 10px;">Burning charcoal in a coal pot for cooking</td>
+</tr>
+<tr style="background: #fef2f2;">
+<td style="border: 1px solid #fca5a5; padding: 10px;">⚡ Electrical heating</td>
+<td style="border: 1px solid #fca5a5; padding: 10px;">Electric kettle boiling water</td>
+</tr>
+<tr style="background: #fff5f5;">
+<td style="border: 1px solid #fca5a5; padding: 10px;">🧪 Chemical reactions</td>
+<td style="border: 1px solid #fca5a5; padding: 10px;">Exothermic reactions in industries</td>
+</tr>
+<tr style="background: #fef2f2;">
+<td style="border: 1px solid #fca5a5; padding: 10px;">🤝 Friction</td>
+<td style="border: 1px solid #fca5a5; padding: 10px;">Rubbing hands together to warm them</td>
+</tr>
+</table>
+
+**Heat Transfer Methods:**
+1. **Conduction** - Through direct contact (metal spoon in hot soup)
+2. **Convection** - Through moving fluids (boiling water, sea breeze)
+3. **Radiation** - Through electromagnetic waves (heat from the sun)
+
+**Everyday Examples in Ghana:**
+• The sun heating rooftops during harmattan
+• Charcoal stoves cooking jollof rice
+• Car engines getting hot after long journeys
+• Your body producing heat during exercise`
+      },
+      {
+        title: 'Chemical Energy',
+        content: `**Definition:** Chemical energy is energy stored in the bonds between atoms and molecules. When these bonds break, energy is released.
+
+<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #f59e0b; margin: 10px 0;">
+<strong>🔬 Key Insight:</strong><br>
+Chemical energy is a form of potential energy. It's "hidden" in substances until chemical reactions release it!
+</div>
+
+**Sources of Chemical Energy:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); color: white;">
+<th style="border: 1px solid #d97706; padding: 12px;">Source</th>
+<th style="border: 1px solid #d97706; padding: 12px;">Energy Released When</th>
+<th style="border: 1px solid #d97706; padding: 12px;">Ghana Example</th>
+</tr>
+<tr style="background: #fffbeb;">
+<td style="border: 1px solid #fcd34d; padding: 10px; font-weight: bold;">🍚 Food</td>
+<td style="border: 1px solid #fcd34d; padding: 10px;">Digested & metabolized</td>
+<td style="border: 1px solid #fcd34d; padding: 10px;">Banku giving you energy</td>
+</tr>
+<tr style="background: #fef3c7;">
+<td style="border: 1px solid #fcd34d; padding: 10px; font-weight: bold;">⛽ Fuels</td>
+<td style="border: 1px solid #fcd34d; padding: 10px;">Burned (combustion)</td>
+<td style="border: 1px solid #fcd34d; padding: 10px;">Petrol powering cars</td>
+</tr>
+<tr style="background: #fffbeb;">
+<td style="border: 1px solid #fcd34d; padding: 10px; font-weight: bold;">🔋 Batteries</td>
+<td style="border: 1px solid #fcd34d; padding: 10px;">Chemical reaction occurs</td>
+<td style="border: 1px solid #fcd34d; padding: 10px;">Phone batteries</td>
+</tr>
+<tr style="background: #fef3c7;">
+<td style="border: 1px solid #fcd34d; padding: 10px; font-weight: bold;">🪵 Biomass</td>
+<td style="border: 1px solid #fcd34d; padding: 10px;">Burned or decomposed</td>
+<td style="border: 1px solid #fcd34d; padding: 10px;">Firewood, charcoal</td>
+</tr>
+</table>
+
+**Chemical Energy in Your Body:**
+Your body converts chemical energy from food into:
+• Kinetic energy (movement)
+• Thermal energy (body heat)
+• Electrical energy (nerve signals)
+
+<div style="background: #dcfce7; padding: 12px; border-radius: 8px; border-left: 4px solid #22c55e; margin: 10px 0;">
+<strong>🍎 Fun Fact:</strong><br>
+One plate of jollof rice contains about 700 calories (2,900 kJ) of chemical energy - enough to power your brain for 8 hours!
+</div>
+
+**Photosynthesis & Chemical Energy:**
+Plants convert light energy into chemical energy stored in glucose:
+$$6CO_2 + 6H_2O + \\text{Light} → C_6H_{12}O_6 + 6O_2$$`
+      },
+      {
+        title: 'Electrical Energy',
+        content: `**Definition:** Electrical energy is the energy of moving electrons (electric current) or stored in electric fields.
+
+<div style="background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #eab308; margin: 10px 0;">
+<strong>⚡ Power Formula:</strong><br>
+Power (P) = Voltage (V) × Current (I)<br>
+Energy (E) = Power (P) × Time (t)
+</div>
+
+**Sources of Electrical Energy in Ghana:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); color: white;">
+<th style="border: 1px solid #1d4ed8; padding: 12px;">Source</th>
+<th style="border: 1px solid #1d4ed8; padding: 12px;">Type</th>
+<th style="border: 1px solid #1d4ed8; padding: 12px;">Location</th>
+</tr>
+<tr style="background: #eff6ff;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">💧 Hydroelectric</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Renewable</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Akosombo Dam, Kpong Dam, Bui Dam</td>
+</tr>
+<tr style="background: #f8fafc;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">🔥 Thermal</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Non-renewable</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Takoradi Power Station</td>
+</tr>
+<tr style="background: #eff6ff;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">☀️ Solar</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Renewable</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">BXC Solar Plant (Navrongo)</td>
+</tr>
+</table>
+
+**Uses of Electrical Energy:**
+• **Lighting** - Bulbs, LEDs, street lights
+• **Heating** - Electric stoves, irons, kettles
+• **Mechanical** - Fans, motors, refrigerators
+• **Electronics** - Phones, computers, TVs
+
+<div style="background: #dbeafe; padding: 12px; border-radius: 8px; border-left: 4px solid #3b82f6; margin: 10px 0;">
+<strong>🇬🇭 ECG & Northern Electricity:</strong><br>
+The Electricity Company of Ghana (ECG) and Northern Electricity Distribution Company distribute power across the nation. Your electricity bill is measured in kilowatt-hours (kWh).
+</div>
+
+**Calculating Electricity Cost:**
+A 100W bulb running for 10 hours uses:
+Energy = P × t = 100W × 10h = 1,000 Wh = **1 kWh**
+If 1 kWh costs GH₵1.50, the cost is **GH₵1.50**`
+      },
+      {
+        title: 'Sound and Light Energy',
+        content: `**Sound Energy:**
+Energy that travels through matter as vibrations (waves).
+
+<div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #a855f7; margin: 10px 0;">
+<strong>🔊 Properties of Sound:</strong><br>
+• Needs a medium (solid, liquid, gas) to travel<br>
+• Cannot travel through vacuum<br>
+• Speed in air ≈ 340 m/s<br>
+• Measured in decibels (dB)
+</div>
+
+**Examples of Sound Energy:**
+• Music from highlife bands 🎵
+• Talking drums at cultural festivals
+• Thunder during rainy season
+• Car horns in traffic
+• Your voice speaking Twi, Ga, or Ewe
+
+---
+
+**Light Energy:**
+Electromagnetic radiation that we can see - it travels as waves AND particles (photons).
+
+<div style="background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #eab308; margin: 10px 0;">
+<strong>💡 Properties of Light:</strong><br>
+• Travels at 300,000 km/s (fastest in the universe!)<br>
+• Can travel through vacuum (space)<br>
+• Shows wave AND particle properties<br>
+• Visible light is part of the electromagnetic spectrum
+</div>
+
+**The Electromagnetic Spectrum:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(90deg, #ef4444 0%, #f97316 16%, #eab308 33%, #22c55e 50%, #3b82f6 66%, #6366f1 83%, #a855f7 100%); color: white;">
+<th colspan="7" style="border: 1px solid #374151; padding: 12px; text-align: center;">Electromagnetic Spectrum (Low → High Energy)</th>
+</tr>
+<tr style="background: #f9fafb;">
+<td style="border: 1px solid #d1d5db; padding: 8px; text-align: center; font-size: 12px;">Radio</td>
+<td style="border: 1px solid #d1d5db; padding: 8px; text-align: center; font-size: 12px;">Micro</td>
+<td style="border: 1px solid #d1d5db; padding: 8px; text-align: center; font-size: 12px;">Infrared</td>
+<td style="border: 1px solid #d1d5db; padding: 8px; text-align: center; font-size: 12px; background: #fef08a;"><strong>Visible</strong></td>
+<td style="border: 1px solid #d1d5db; padding: 8px; text-align: center; font-size: 12px;">UV</td>
+<td style="border: 1px solid #d1d5db; padding: 8px; text-align: center; font-size: 12px;">X-rays</td>
+<td style="border: 1px solid #d1d5db; padding: 8px; text-align: center; font-size: 12px;">Gamma</td>
+</tr>
+</table>
+
+**Light Sources:**
+• **Natural:** Sun, stars, fireflies, lightning
+• **Artificial:** Bulbs, LEDs, fire, screens`
+      },
+      {
+        title: 'Nuclear Energy',
+        content: `**Definition:** Nuclear energy is energy stored in the nucleus of atoms. It can be released through:
+• **Fission** - Splitting heavy nuclei (like uranium)
+• **Fusion** - Joining light nuclei (like hydrogen in the sun)
+
+<div style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #ef4444; margin: 10px 0;">
+<strong>☢️ Nuclear Fission:</strong><br>
+$$^{235}U + n → ^{141}Ba + ^{92}Kr + 3n + \\text{Energy}$$<br>
+A small amount of mass is converted to a HUGE amount of energy!
+</div>
+
+**Einstein's Famous Equation:**
+$$E = mc^2$$
+
+Where:
+• E = Energy
+• m = mass
+• c = speed of light (3 × 10⁸ m/s)
+
+This shows that a tiny bit of mass can become enormous energy!
+
+<div style="background: #dcfce7; padding: 12px; border-radius: 8px; border-left: 4px solid #22c55e; margin: 10px 0;">
+<strong>☀️ The Sun's Energy:</strong><br>
+The Sun produces energy through nuclear FUSION - hydrogen atoms fuse to form helium, releasing energy that lights and warms our planet!
+</div>
+
+**Nuclear Energy Facts:**
+• Nuclear power plants produce electricity without CO₂ emissions
+• Ghana has been exploring nuclear energy options
+• Very efficient: 1 kg uranium = 2,500,000 kg coal equivalent
+• Safety and waste disposal are major concerns
+
+**Radioactivity:**
+Some atoms are unstable and emit radiation:
+• Alpha (α) particles
+• Beta (β) particles
+• Gamma (γ) rays
+
+Used in medicine (cancer treatment), industry, and archaeology (carbon dating).`
+      },
+      {
+        title: 'Energy Transformations',
+        content: `**The Law of Conservation of Energy:**
+Energy cannot be created or destroyed - only transformed from one form to another.
+
+<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6; margin: 10px 0;">
+<strong>🔄 Energy Transformation Chain:</strong><br>
+Total Energy IN = Total Energy OUT<br>
+(Some energy is always "lost" as heat due to friction/resistance)
+</div>
+
+**Common Energy Transformations:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: white;">
+<th style="border: 1px solid #047857; padding: 12px;">Device/Process</th>
+<th style="border: 1px solid #047857; padding: 12px;">Input Energy</th>
+<th style="border: 1px solid #047857; padding: 12px;">Output Energy</th>
+</tr>
+<tr style="background: #ecfdf5;">
+<td style="border: 1px solid #a7f3d0; padding: 10px;">🔦 Torch/Flashlight</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Chemical (battery)</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Light + Heat</td>
+</tr>
+<tr style="background: #f0fdf4;">
+<td style="border: 1px solid #a7f3d0; padding: 10px;">🚗 Car engine</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Chemical (petrol)</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Kinetic + Heat + Sound</td>
+</tr>
+<tr style="background: #ecfdf5;">
+<td style="border: 1px solid #a7f3d0; padding: 10px;">☀️ Solar panel</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Light (solar)</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Electrical</td>
+</tr>
+<tr style="background: #f0fdf4;">
+<td style="border: 1px solid #a7f3d0; padding: 10px;">🌱 Photosynthesis</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Light (solar)</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Chemical (glucose)</td>
+</tr>
+<tr style="background: #ecfdf5;">
+<td style="border: 1px solid #a7f3d0; padding: 10px;">💪 Muscles</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Chemical (food)</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Kinetic + Heat</td>
+</tr>
+<tr style="background: #f0fdf4;">
+<td style="border: 1px solid #a7f3d0; padding: 10px;">💧 Hydroelectric dam</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Potential (water)</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Kinetic → Electrical</td>
+</tr>
+</table>
+
+**Akosombo Dam Energy Chain:**
+$$\\text{Gravitational PE} → \\text{Kinetic Energy} → \\text{Mechanical Energy} → \\text{Electrical Energy}$$
+
+Water stored high → Falls down → Turns turbines → Generator produces electricity
+
+<div style="background: #fef3c7; padding: 12px; border-radius: 8px; border-left: 4px solid #f59e0b; margin: 10px 0;">
+<strong>⚠️ Energy Efficiency:</strong><br>
+No transformation is 100% efficient. A car engine is only about 25% efficient - 75% of fuel energy becomes heat!
+</div>`
+      }
+    ],
+
+    activities: {
+      type: 'exercises',
+      questions: [
+        {
+          type: 'mcq',
+          question: 'What is the SI unit for measuring energy?',
+          options: ['Watt', 'Joule', 'Newton', 'Kilogram'],
+          answer: 'Joule',
+          hint: 'Named after James Prescott Joule, a physicist who studied heat and energy'
+        },
+        {
+          type: 'mcq',
+          question: 'A ball at the top of a hill has maximum:',
+          options: ['Kinetic energy', 'Potential energy', 'Sound energy', 'Light energy'],
+          answer: 'Potential energy',
+          hint: 'Think about what type of energy is stored due to position/height'
+        },
+        {
+          type: 'mcq',
+          question: 'Which of these is a renewable energy source in Ghana?',
+          options: ['Petrol', 'Natural gas', 'Hydroelectric', 'Coal'],
+          answer: 'Hydroelectric',
+          hint: 'Think about Akosombo Dam!'
+        },
+        {
+          type: 'mcq',
+          question: 'Chemical energy in food is converted to kinetic energy when you:',
+          options: ['Sleep', 'Run', 'Eat', 'Think'],
+          answer: 'Run',
+          hint: 'Kinetic energy is the energy of motion'
+        },
+        {
+          type: 'mcq',
+          question: 'The Law of Conservation of Energy states that energy:',
+          options: ['Can be created from nothing', 'Can be destroyed', 'Can only be transformed', 'Always stays the same form'],
+          answer: 'Can only be transformed',
+          hint: 'Energy is never created or destroyed!'
+        }
+      ]
+    },
+
+    pastQuestions: [
+      {
+        question: '(WASSCE 2021) (a) State the law of conservation of energy. (b) Describe the energy transformations that occur in a hydroelectric power station.',
+        solution: `<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong style="color: #1e40af;">(a) Law of Conservation of Energy:</strong><br>
+Energy cannot be created nor destroyed; it can only be transformed from one form to another. The total energy in an isolated system remains constant.
+</div>
+
+<div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong style="color: #166534;">(b) Energy Transformations in a Hydroelectric Power Station:</strong>
+</div>
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white;">
+<th style="border: 1px solid #1d4ed8; padding: 12px;">Stage</th>
+<th style="border: 1px solid #1d4ed8; padding: 12px;">Energy Transformation</th>
+</tr>
+<tr style="background: #eff6ff;">
+<td style="border: 1px solid #93c5fd; padding: 10px;"><strong>1. Dam Reservoir</strong></td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Water stored at height has <strong>Gravitational Potential Energy</strong></td>
+</tr>
+<tr style="background: #f8fafc;">
+<td style="border: 1px solid #93c5fd; padding: 10px;"><strong>2. Falling Water</strong></td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Potential Energy → <strong>Kinetic Energy</strong></td>
+</tr>
+<tr style="background: #eff6ff;">
+<td style="border: 1px solid #93c5fd; padding: 10px;"><strong>3. Turbine</strong></td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Kinetic Energy → <strong>Rotational/Mechanical Energy</strong></td>
+</tr>
+<tr style="background: #f8fafc;">
+<td style="border: 1px solid #93c5fd; padding: 10px;"><strong>4. Generator</strong></td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Mechanical Energy → <strong>Electrical Energy</strong></td>
+</tr>
+</table>
+
+<div style="background: #fef3c7; padding: 12px; border-radius: 8px; border-left: 4px solid #f59e0b; margin: 10px 0;">
+<strong>Summary Chain:</strong><br>
+Gravitational PE → Kinetic Energy → Mechanical Energy → Electrical Energy
+</div>`
+      },
+      {
+        question: '(WASSCE 2019) (a) Define kinetic energy. (b) Calculate the kinetic energy of a car of mass 1,200 kg moving at 20 m/s.',
+        solution: `<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong style="color: #1e40af;">(a) Definition of Kinetic Energy:</strong><br>
+Kinetic energy is the energy possessed by a body due to its motion. It is the work done in bringing a body from rest to its current velocity.
+</div>
+
+<div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong style="color: #7c3aed;">(b) Calculation:</strong>
+</div>
+
+<div style="background: #f8fafc; padding: 12px; border-radius: 8px; border-left: 4px solid #6366f1; margin: 10px 0;">
+<strong>Given:</strong><br>
+• Mass (m) = 1,200 kg<br>
+• Velocity (v) = 20 m/s<br><br>
+
+<strong>Formula:</strong><br>
+KE = ½mv²<br><br>
+
+<strong>Substitution:</strong><br>
+KE = ½ × 1,200 × (20)²<br>
+KE = ½ × 1,200 × 400<br>
+KE = 600 × 400<br><br>
+
+<strong style="color: #059669;">KE = 240,000 J or 240 kJ</strong>
+</div>`
+      },
+      {
+        question: '(WASSCE 2018) List five different forms of energy and give one example of each.',
+        solution: `<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6; margin: 10px 0;">
+<strong>Five Forms of Energy with Examples:</strong>
+</div>
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white;">
+<th style="border: 1px solid #4f46e5; padding: 12px;">Form of Energy</th>
+<th style="border: 1px solid #4f46e5; padding: 12px;">Example</th>
+</tr>
+<tr style="background: #fdf4ff;">
+<td style="border: 1px solid #d8b4fe; padding: 10px; font-weight: bold;">1. Kinetic Energy</td>
+<td style="border: 1px solid #d8b4fe; padding: 10px;">A moving car, running athlete, flowing water</td>
+</tr>
+<tr style="background: #faf5ff;">
+<td style="border: 1px solid #d8b4fe; padding: 10px; font-weight: bold;">2. Potential Energy</td>
+<td style="border: 1px solid #d8b4fe; padding: 10px;">Water stored in a dam, raised hammer, stretched spring</td>
+</tr>
+<tr style="background: #fdf4ff;">
+<td style="border: 1px solid #d8b4fe; padding: 10px; font-weight: bold;">3. Chemical Energy</td>
+<td style="border: 1px solid #d8b4fe; padding: 10px;">Food, petrol, batteries, firewood</td>
+</tr>
+<tr style="background: #faf5ff;">
+<td style="border: 1px solid #d8b4fe; padding: 10px; font-weight: bold;">4. Electrical Energy</td>
+<td style="border: 1px solid #d8b4fe; padding: 10px;">Current in wires, lightning, electric motors</td>
+</tr>
+<tr style="background: #fdf4ff;">
+<td style="border: 1px solid #d8b4fe; padding: 10px; font-weight: bold;">5. Thermal (Heat) Energy</td>
+<td style="border: 1px solid #d8b4fe; padding: 10px;">Heat from fire, hot water, sun's warmth</td>
+</tr>
+</table>
+
+<div style="background: #dcfce7; padding: 12px; border-radius: 8px; border-left: 4px solid #22c55e; margin: 10px 0;">
+<strong>Other acceptable forms:</strong><br>
+• Light/Radiant Energy - Sunlight, bulb light<br>
+• Sound Energy - Music, thunder, voice<br>
+• Nuclear Energy - Nuclear reactor, Sun's core
+</div>`
+      }
+    ],
+
+    endOfLessonQuiz: [
+      {
+        type: 'mcq',
+        question: 'Energy is defined as:',
+        options: ['The ability to move', 'The ability to do work or cause change', 'The amount of force applied', 'The speed of an object'],
+        answer: 'The ability to do work or cause change',
+        explanation: 'Energy is fundamentally the capacity to do work or cause changes in matter. Work in physics means applying force to move something.'
+      },
+      {
+        type: 'mcq',
+        question: 'Which type of energy does a coconut at the top of a palm tree have?',
+        options: ['Kinetic energy', 'Thermal energy', 'Gravitational potential energy', 'Chemical energy'],
+        answer: 'Gravitational potential energy',
+        explanation: 'Any object at a height has gravitational potential energy (PE = mgh). The higher it is, the more potential energy it has.'
+      },
+      {
+        type: 'mcq',
+        question: 'The formula for kinetic energy is:',
+        options: ['KE = mgh', 'KE = ½mv²', 'KE = mv', 'KE = mc²'],
+        answer: 'KE = ½mv²',
+        explanation: 'Kinetic energy depends on mass and the SQUARE of velocity. This is why doubling speed quadruples kinetic energy!'
+      },
+      {
+        type: 'mcq',
+        question: 'Akosombo Dam produces electricity by converting:',
+        options: ['Chemical energy to electrical', 'Nuclear energy to electrical', 'Potential energy to electrical', 'Thermal energy to electrical'],
+        answer: 'Potential energy to electrical',
+        explanation: 'Water stored at height has gravitational potential energy. As it falls, this becomes kinetic energy, then mechanical energy in turbines, then electrical energy.'
+      },
+      {
+        type: 'mcq',
+        question: 'Food provides our body with which form of energy?',
+        options: ['Electrical energy', 'Nuclear energy', 'Chemical energy', 'Light energy'],
+        answer: 'Chemical energy',
+        explanation: 'Food contains chemical energy stored in molecular bonds. Through digestion and metabolism, this is converted to other forms like kinetic and thermal energy.'
+      },
+      {
+        type: 'mcq',
+        question: 'The Sun produces energy through:',
+        options: ['Nuclear fission', 'Nuclear fusion', 'Chemical combustion', 'Electrical discharge'],
+        answer: 'Nuclear fusion',
+        explanation: 'The Sun fuses hydrogen atoms into helium in its core. This nuclear fusion releases enormous amounts of energy as heat and light.'
+      },
+      {
+        type: 'mcq',
+        question: 'Which of these CANNOT travel through empty space (vacuum)?',
+        options: ['Light', 'Radio waves', 'Sound', 'X-rays'],
+        answer: 'Sound',
+        explanation: 'Sound needs a medium (solid, liquid, or gas) to travel. Light and other electromagnetic waves can travel through vacuum - that\'s how sunlight reaches Earth!'
+      },
+      {
+        type: 'mcq',
+        question: 'According to the Law of Conservation of Energy:',
+        options: ['Energy can be created', 'Energy can be destroyed', 'Energy can only be transformed', 'Energy always increases'],
+        answer: 'Energy can only be transformed',
+        explanation: 'The total energy in an isolated system remains constant. Energy simply changes from one form to another, like chemical to kinetic when you run.'
+      },
+      {
+        type: 'mcq',
+        question: 'A car traveling at 40 m/s has how many times more kinetic energy than one at 20 m/s?',
+        options: ['2 times', '3 times', '4 times', '8 times'],
+        answer: '4 times',
+        explanation: 'Since KE = ½mv², kinetic energy depends on velocity SQUARED. Double the speed (40/20 = 2), square it (2² = 4), so 4 times more KE.'
+      },
+      {
+        type: 'mcq',
+        question: 'Which energy transformation occurs in a flashlight?',
+        options: ['Light → Chemical', 'Chemical → Light', 'Electrical → Chemical', 'Nuclear → Light'],
+        answer: 'Chemical → Light',
+        explanation: 'The battery stores chemical energy. When the flashlight is on, chemical reactions produce electrical energy, which the bulb converts to light (and some heat).'
+      }
+    ],
+
+    summary: "Energy is the ability to do work or cause change, measured in Joules (J). The Law of Conservation of Energy states energy cannot be created or destroyed, only transformed. There are many forms of energy: Kinetic energy (energy of motion, KE = ½mv²) - like a moving car or running person. Potential energy (stored energy) includes gravitational PE (PE = mgh) - like water in a dam, elastic PE - like a stretched rubber band, and chemical PE - like food or fuel. Thermal/Heat energy is the total kinetic energy of particles in matter. Chemical energy is stored in bonds and released in reactions - found in food, batteries, and fuels. Electrical energy powers our devices - Ghana gets it from Akosombo Dam (hydroelectric), thermal plants, and solar. Light energy is electromagnetic radiation traveling at 300,000 km/s. Sound energy travels as vibrations through matter. Nuclear energy comes from fission (splitting atoms) or fusion (joining atoms - how the Sun works). Energy transforms between forms: car engines convert chemical→kinetic, solar panels convert light→electrical, and Akosombo Dam converts potential→kinetic→mechanical→electrical. No transformation is 100% efficient - some energy is always 'lost' as heat."
+  },
+
+  // ============================================
+  // LESSON 13: Energy Transformation and Conservation
+  // ============================================
+  {
+    id: 'is-en-forms-of-energy-transformation-conservation',
+    slug: 'is-en-forms-of-energy-transformation-conservation',
+    title: 'Energy Transformation and Conservation',
+
+    introduction: `Imagine dropping a ball from the top of a building. What happens to its energy as it falls? Where does the energy go when it hits the ground and stops? 🏀
+
+These questions puzzled scientists for centuries until they discovered one of the most powerful laws in all of physics: **The Law of Conservation of Energy**.
+
+In this lesson, we'll explore:
+• How energy transforms from one form to another
+• Why energy is NEVER created or destroyed
+• The concept of efficiency in energy conversions
+• Real-world applications from Akosombo Dam to your own body
+
+**Fun Fact:** Every second, the Sun converts about 4 million tonnes of mass into energy through nuclear fusion - and that energy eventually reaches Ghana as sunlight! ☀️
+
+Let's uncover the secrets of energy transformation!`,
+
+    objectives: [
+      'State and explain the Law of Conservation of Energy',
+      'Describe energy transformation chains with practical examples',
+      'Calculate energy efficiency in various systems',
+      'Explain why no machine can be 100% efficient',
+      'Analyze energy transformations in everyday devices and natural processes'
+    ],
+
+    keyConcepts: [
+      {
+        title: 'The Law of Conservation of Energy',
+        content: `<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6; margin: 10px 0;">
+<strong>⚖️ The Fundamental Law:</strong><br>
+<em>"Energy cannot be created or destroyed; it can only be transformed from one form to another."</em><br><br>
+The total energy in an isolated system remains constant.
+</div>
+
+**What This Means:**
+• Energy doesn't appear from nothing
+• Energy doesn't disappear into nothing
+• Energy simply changes form
+• The total amount stays the same!
+
+**Mathematical Expression:**
+$$E_{total} = E_1 + E_2 + E_3 + ... = \\text{constant}$$
+
+**Example - Falling Coconut:**
+At the top: PE = 100 J, KE = 0 J → Total = 100 J
+Halfway down: PE = 50 J, KE = 50 J → Total = 100 J
+Just before ground: PE = 0 J, KE = 100 J → Total = 100 J
+
+<div style="background: #fef3c7; padding: 12px; border-radius: 8px; border-left: 4px solid #f59e0b; margin: 10px 0;">
+<strong>🤔 But Wait!</strong><br>
+When the coconut hits the ground and stops, where did the 100 J go? It transformed into sound energy (the "thud"), thermal energy (slight heating), and deformation energy (the dent in the ground)!
+</div>`
+      },
+      {
+        title: 'Energy Transformation Chains',
+        content: `An **energy transformation chain** shows the sequence of energy conversions in a process.
+
+**How to Write Energy Chains:**
+Use arrows (→) to show transformations:
+$$\\text{Input Energy} → \\text{Intermediate Forms} → \\text{Output Energy}$$
+
+<div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #22c55e; margin: 10px 0;">
+<strong>🇬🇭 Akosombo Dam Energy Chain:</strong><br>
+Gravitational PE (stored water) → Kinetic Energy (falling water) → Mechanical Energy (spinning turbines) → Electrical Energy (generator output) → Various forms in homes
+</div>
+
+**Common Energy Transformation Chains:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white;">
+<th style="border: 1px solid #4f46e5; padding: 12px;">Device/Process</th>
+<th style="border: 1px solid #4f46e5; padding: 12px;">Energy Transformation Chain</th>
+</tr>
+<tr style="background: #f0f9ff;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">🚗 Car Engine</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Chemical → Thermal → Mechanical → Kinetic</td>
+</tr>
+<tr style="background: #f8fafc;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">☀️ Solar Panel</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Light (Radiant) → Electrical</td>
+</tr>
+<tr style="background: #f0f9ff;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">🔦 Torch/Flashlight</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Chemical → Electrical → Light + Heat</td>
+</tr>
+<tr style="background: #f8fafc;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">📱 Phone Charging</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Electrical → Chemical (stored in battery)</td>
+</tr>
+<tr style="background: #f0f9ff;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">🌱 Photosynthesis</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Light → Chemical (glucose)</td>
+</tr>
+<tr style="background: #f8fafc;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">💪 Human Body</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Chemical (food) → Kinetic + Thermal + Electrical (nerves)</td>
+</tr>
+</table>`
+      },
+      {
+        title: 'Energy Efficiency',
+        content: `**Efficiency** measures how much of the input energy is converted to useful output energy.
+
+<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6; margin: 10px 0;">
+<strong>📊 Efficiency Formula:</strong>
+</div>
+
+$$\\text{Efficiency} = \\frac{\\text{Useful Energy Output}}{\\text{Total Energy Input}} \\times 100\\%$$
+
+**Example Calculation:**
+A light bulb uses 100 J of electrical energy and produces 20 J of light energy.
+
+$$\\text{Efficiency} = \\frac{20}{100} \\times 100\\% = 20\\%$$
+
+This means 80 J is "wasted" as heat (that's why bulbs get hot!).
+
+**Typical Efficiencies:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: white;">
+<th style="border: 1px solid #047857; padding: 12px;">Device</th>
+<th style="border: 1px solid #047857; padding: 12px;">Efficiency</th>
+<th style="border: 1px solid #047857; padding: 12px;">Main Energy Loss</th>
+</tr>
+<tr style="background: #ecfdf5;">
+<td style="border: 1px solid #a7f3d0; padding: 10px;">LED Light Bulb</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px; font-weight: bold; color: #059669;">80-90%</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Heat</td>
+</tr>
+<tr style="background: #f0fdf4;">
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Electric Motor</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px; font-weight: bold; color: #059669;">85-95%</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Heat, Sound</td>
+</tr>
+<tr style="background: #ecfdf5;">
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Hydroelectric Dam</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px; font-weight: bold; color: #059669;">80-90%</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Friction, Heat</td>
+</tr>
+<tr style="background: #f0fdf4;">
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Car Engine (Petrol)</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px; font-weight: bold; color: #f59e0b;">20-30%</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Heat (exhaust, radiator)</td>
+</tr>
+<tr style="background: #ecfdf5;">
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Incandescent Bulb</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px; font-weight: bold; color: #ef4444;">5-10%</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Heat (95% wasted!)</td>
+</tr>
+<tr style="background: #f0fdf4;">
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Human Body</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px; font-weight: bold; color: #f59e0b;">20-25%</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Heat (body warmth)</td>
+</tr>
+</table>
+
+<div style="background: #fef3c7; padding: 12px; border-radius: 8px; border-left: 4px solid #f59e0b; margin: 10px 0;">
+<strong>⚠️ Important:</strong><br>
+No machine can ever be 100% efficient! Some energy is ALWAYS lost to heat due to friction and resistance.
+</div>`
+      },
+      {
+        title: 'Why 100% Efficiency Is Impossible',
+        content: `**The Unavoidable Energy Losses:**
+
+Every energy transformation involves some "waste" - energy that becomes unusable, usually as heat.
+
+<div style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #ef4444; margin: 10px 0;">
+<strong>🔥 Sources of Energy Loss:</strong><br>
+1. <strong>Friction</strong> - Moving parts rubbing together<br>
+2. <strong>Air Resistance</strong> - Objects moving through air<br>
+3. <strong>Electrical Resistance</strong> - Current flowing through wires<br>
+4. <strong>Sound</strong> - Vibrations in machines<br>
+5. <strong>Heat Radiation</strong> - Warm objects losing heat
+</div>
+
+**The Sankey Diagram:**
+Scientists use Sankey diagrams to visualize energy flow. The width of each arrow represents the amount of energy.
+
+**Example - Car Engine (25% efficient):**
+\`\`\`
+Input: 100 J Chemical Energy (Petrol)
+├── 25 J → Kinetic Energy (useful movement)
+├── 40 J → Heat (exhaust gases)
+├── 30 J → Heat (radiator/cooling)
+└── 5 J → Sound, Friction
+\`\`\`
+
+**The Second Law of Thermodynamics:**
+This law states that in any energy transformation, some energy will always become thermal energy (heat) that spreads out and becomes less useful. This is why:
+• Perpetual motion machines are impossible
+• Machines always need energy input
+• The universe tends toward disorder (entropy)`
+      },
+      {
+        title: 'Principle of Conservation of Mechanical Energy',
+        content: `For objects where only gravity does work (no friction), mechanical energy is conserved.
+
+<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6; margin: 10px 0;">
+<strong>🎢 Mechanical Energy Conservation:</strong>
+</div>
+
+$$PE_1 + KE_1 = PE_2 + KE_2$$
+
+$$mgh_1 + \\frac{1}{2}mv_1^2 = mgh_2 + \\frac{1}{2}mv_2^2$$
+
+**Example - Pendulum:**
+A pendulum swings back and forth, continuously converting:
+• At highest points: Maximum PE, Zero KE
+• At lowest point: Zero PE, Maximum KE
+
+**Example - Falling Ball:**
+A 2 kg ball is dropped from 5 m height. Find its velocity just before hitting the ground (ignore air resistance).
+
+<div style="background: #f3e8ff; padding: 12px; border-radius: 8px; border-left: 4px solid #8b5cf6; margin: 10px 0;">
+<strong>Solution:</strong><br>
+At top: PE = mgh = 2 × 10 × 5 = 100 J, KE = 0<br>
+At bottom: PE = 0, KE = 100 J<br><br>
+Using KE = ½mv²:<br>
+100 = ½ × 2 × v²<br>
+100 = v²<br>
+<strong>v = 10 m/s</strong>
+</div>
+
+**Roller Coaster Physics:**
+Roller coasters are designed using energy conservation:
+• First hill is always the highest (maximum PE)
+• Speed is greatest at the lowest points (maximum KE)
+• Each subsequent hill must be lower than the first (some energy lost to friction)`
+      },
+      {
+        title: 'Energy Transformations in Power Stations',
+        content: `Power stations convert various forms of energy into electrical energy.
+
+<div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #22c55e; margin: 10px 0;">
+<strong>🇬🇭 Ghana's Power Generation:</strong><br>
+• <strong>Akosombo Dam</strong> - Hydroelectric (≈90% efficient)<br>
+• <strong>Bui Dam</strong> - Hydroelectric<br>
+• <strong>Takoradi</strong> - Thermal (≈35% efficient)<br>
+• <strong>Tema</strong> - Thermal<br>
+• <strong>Navrongo Solar Plant</strong> - Solar PV (≈20% efficient)
+</div>
+
+**Energy Chains in Different Power Stations:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); color: white;">
+<th style="border: 1px solid #1d4ed8; padding: 12px;">Power Station Type</th>
+<th style="border: 1px solid #1d4ed8; padding: 12px;">Energy Transformation Chain</th>
+</tr>
+<tr style="background: #eff6ff;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">💧 Hydroelectric</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Gravitational PE → Kinetic → Mechanical → Electrical</td>
+</tr>
+<tr style="background: #f8fafc;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">🔥 Thermal (Coal/Gas)</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Chemical → Thermal → Kinetic (steam) → Mechanical → Electrical</td>
+</tr>
+<tr style="background: #eff6ff;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">☢️ Nuclear</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Nuclear → Thermal → Kinetic (steam) → Mechanical → Electrical</td>
+</tr>
+<tr style="background: #f8fafc;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">☀️ Solar PV</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Light (Radiant) → Electrical</td>
+</tr>
+<tr style="background: #eff6ff;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">💨 Wind</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Kinetic (wind) → Mechanical → Electrical</td>
+</tr>
+</table>
+
+**Why Hydroelectric Is Most Efficient:**
+• Fewer transformation steps = less energy loss
+• No combustion = no heat waste
+• Akosombo Dam: Direct conversion of gravitational PE to electricity`
+      },
+      {
+        title: 'Energy in Living Organisms',
+        content: `Living things are energy transformation machines!
+
+**Photosynthesis - Energy Capture:**
+$$6CO_2 + 6H_2O + \\text{Light Energy} → C_6H_{12}O_6 + 6O_2$$
+
+Plants capture light energy and store it as chemical energy in glucose. This is about **1-2% efficient** (most light is reflected or used for other processes).
+
+**Respiration - Energy Release:**
+$$C_6H_{12}O_6 + 6O_2 → 6CO_2 + 6H_2O + \\text{Energy (ATP)}$$
+
+Cells break down glucose to release energy for life processes. About **40% efficient** - the rest becomes heat (body warmth).
+
+<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #f59e0b; margin: 10px 0;">
+<strong>🍽️ Your Body's Energy Budget:</strong><br>
+• An average person uses about <strong>2000 kcal (8400 kJ)</strong> per day<br>
+• Your brain alone uses about <strong>20%</strong> of this energy!<br>
+• Walking uses about <strong>300 kJ/hour</strong><br>
+• Running uses about <strong>1500 kJ/hour</strong>
+</div>
+
+**Food Chains - Energy Flow:**
+At each level of a food chain, about **90%** of energy is lost:
+• Plants capture 1% of sunlight
+• Herbivores get 10% of plant energy
+• Carnivores get 10% of herbivore energy
+
+This is why food chains rarely have more than 4-5 levels!`
+      },
+      {
+        title: 'Energy Conservation in Practice',
+        content: `Understanding energy conservation helps us use energy wisely!
+
+**Ways to Improve Energy Efficiency:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: white;">
+<th style="border: 1px solid #047857; padding: 12px;">Area</th>
+<th style="border: 1px solid #047857; padding: 12px;">Inefficient</th>
+<th style="border: 1px solid #047857; padding: 12px;">Efficient Alternative</th>
+</tr>
+<tr style="background: #ecfdf5;">
+<td style="border: 1px solid #a7f3d0; padding: 10px; font-weight: bold;">💡 Lighting</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Incandescent bulbs (5%)</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">LED bulbs (85%)</td>
+</tr>
+<tr style="background: #f0fdf4;">
+<td style="border: 1px solid #a7f3d0; padding: 10px; font-weight: bold;">🚗 Transport</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Petrol cars (25%)</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Electric cars (85%)</td>
+</tr>
+<tr style="background: #ecfdf5;">
+<td style="border: 1px solid #a7f3d0; padding: 10px; font-weight: bold;">🏠 Cooling</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Old ACs</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Inverter ACs, proper insulation</td>
+</tr>
+<tr style="background: #f0fdf4;">
+<td style="border: 1px solid #a7f3d0; padding: 10px; font-weight: bold;">🍳 Cooking</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Open fire cooking</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Gas stoves, induction cookers</td>
+</tr>
+</table>
+
+<div style="background: #dcfce7; padding: 12px; border-radius: 8px; border-left: 4px solid #22c55e; margin: 10px 0;">
+<strong>🇬🇭 Energy Saving Tips for Ghana:</strong><br>
+• Switch off lights and fans when leaving a room<br>
+• Use energy-efficient appliances (look for Energy Star labels)<br>
+• Unplug phone chargers when not in use (they still use power!)<br>
+• Use natural light during the day<br>
+• Regular maintenance of fridges and ACs improves efficiency
+</div>
+
+**The Energy Efficiency Paradox:**
+When we make devices more efficient, we often use MORE total energy because:
+• More people can afford to use them
+• We use them more often
+• We buy more devices
+
+This is called the **Jevons Paradox** - efficiency gains don't always reduce consumption!`
+      }
+    ],
+
+    activities: {
+      type: 'exercises',
+      questions: [
+        {
+          type: 'mcq',
+          question: 'According to the Law of Conservation of Energy:',
+          options: ['Energy can be created from nothing', 'Energy can be completely destroyed', 'Energy can only be transformed from one form to another', 'The total energy always increases'],
+          answer: 'Energy can only be transformed from one form to another',
+          hint: 'This is the fundamental principle - energy is never created or destroyed!'
+        },
+        {
+          type: 'mcq',
+          question: 'A machine has an efficiency of 25%. If the input energy is 200 J, what is the useful output energy?',
+          options: ['25 J', '50 J', '75 J', '150 J'],
+          answer: '50 J',
+          hint: 'Useful output = Efficiency × Input = 0.25 × 200'
+        },
+        {
+          type: 'mcq',
+          question: 'Which type of power station is typically most efficient?',
+          options: ['Coal thermal', 'Nuclear', 'Hydroelectric', 'Solar PV'],
+          answer: 'Hydroelectric',
+          hint: 'Fewer energy transformations means less energy loss'
+        },
+        {
+          type: 'mcq',
+          question: 'Why can no machine be 100% efficient?',
+          options: ['Engineers are not skilled enough', 'Materials are too expensive', 'Some energy is always lost as heat due to friction', 'The laws of physics prevent it'],
+          answer: 'Some energy is always lost as heat due to friction',
+          hint: 'Friction and resistance are unavoidable in real machines'
+        },
+        {
+          type: 'mcq',
+          question: 'In the energy transformation chain of a flashlight, what is the correct order?',
+          options: ['Light → Electrical → Chemical', 'Chemical → Electrical → Light', 'Electrical → Chemical → Light', 'Light → Chemical → Electrical'],
+          answer: 'Chemical → Electrical → Light',
+          hint: 'Start with the battery (chemical energy)'
+        }
+      ]
+    },
+
+    pastQuestions: [
+      {
+        question: '(WASSCE 2022) (a) State the law of conservation of energy. (b) A ball of mass 0.5 kg is dropped from a height of 20 m. Calculate: (i) its potential energy at the top, (ii) its kinetic energy just before hitting the ground, (iii) its velocity just before hitting the ground. [Take g = 10 m/s²]',
+        solution: `<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong style="color: #1e40af;">(a) Law of Conservation of Energy:</strong><br>
+Energy cannot be created nor destroyed; it can only be transformed from one form to another. The total energy in an isolated system remains constant.
+</div>
+
+<div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong style="color: #7c3aed;">(b) Calculations:</strong>
+</div>
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white;">
+<th style="border: 1px solid #4f46e5; padding: 12px;">Part</th>
+<th style="border: 1px solid #4f46e5; padding: 12px;">Working</th>
+<th style="border: 1px solid #4f46e5; padding: 12px;">Answer</th>
+</tr>
+<tr style="background: #fdf4ff;">
+<td style="border: 1px solid #d8b4fe; padding: 10px;"><strong>(i) PE at top</strong></td>
+<td style="border: 1px solid #d8b4fe; padding: 10px;">PE = mgh = 0.5 × 10 × 20</td>
+<td style="border: 1px solid #d8b4fe; padding: 10px; font-weight: bold; color: #059669;">PE = 100 J</td>
+</tr>
+<tr style="background: #faf5ff;">
+<td style="border: 1px solid #d8b4fe; padding: 10px;"><strong>(ii) KE at bottom</strong></td>
+<td style="border: 1px solid #d8b4fe; padding: 10px;">By conservation: KE = PE (at top)</td>
+<td style="border: 1px solid #d8b4fe; padding: 10px; font-weight: bold; color: #059669;">KE = 100 J</td>
+</tr>
+<tr style="background: #fdf4ff;">
+<td style="border: 1px solid #d8b4fe; padding: 10px;"><strong>(iii) Velocity</strong></td>
+<td style="border: 1px solid #d8b4fe; padding: 10px;">KE = ½mv²<br>100 = ½ × 0.5 × v²<br>v² = 400</td>
+<td style="border: 1px solid #d8b4fe; padding: 10px; font-weight: bold; color: #059669;">v = 20 m/s</td>
+</tr>
+</table>`
+      },
+      {
+        question: '(WASSCE 2020) (a) Define efficiency of a machine. (b) An electric motor uses 500 J of electrical energy and produces 400 J of mechanical energy. Calculate: (i) the efficiency of the motor, (ii) the energy wasted.',
+        solution: `<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong style="color: #1e40af;">(a) Definition of Efficiency:</strong><br>
+Efficiency is the ratio of useful energy output to total energy input, usually expressed as a percentage. It measures how effectively a machine converts input energy into useful output energy.
+</div>
+
+<div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong style="color: #166534;">(b) Calculations:</strong>
+</div>
+
+<div style="background: #f8fafc; padding: 12px; border-radius: 8px; border-left: 4px solid #6366f1; margin: 10px 0;">
+<strong>Given:</strong><br>
+• Input energy = 500 J<br>
+• Useful output energy = 400 J
+</div>
+
+**(i) Efficiency:**
+
+$$\\text{Efficiency} = \\frac{\\text{Useful Output}}{\\text{Total Input}} \\times 100\\%$$
+
+$$= \\frac{400}{500} \\times 100\\% = \\mathbf{80\\%}$$
+
+<div style="background: #f8fafc; padding: 12px; border-radius: 8px; border-left: 4px solid #6366f1; margin: 10px 0;">
+<strong>(ii) Energy Wasted:</strong><br>
+Energy wasted = Input - Useful Output<br>
+= 500 - 400 = <strong>100 J</strong>
+</div>
+
+<div style="background: #fef3c7; padding: 12px; border-radius: 8px; border-left: 4px solid #f59e0b; margin: 10px 0;">
+<strong>Note:</strong> This motor is quite efficient at 80%. The 100 J wasted is mostly converted to heat energy due to friction in the motor's moving parts and electrical resistance in its coils.
+</div>`
+      },
+      {
+        question: '(WASSCE 2019) Describe the energy transformations that occur in a hydroelectric power station from the water in the reservoir to the electrical energy output.',
+        solution: `<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6; margin: 10px 0;">
+<strong>Energy Transformations in a Hydroelectric Power Station:</strong>
+</div>
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); color: white;">
+<th style="border: 1px solid #1d4ed8; padding: 12px;">Stage</th>
+<th style="border: 1px solid #1d4ed8; padding: 12px;">Location</th>
+<th style="border: 1px solid #1d4ed8; padding: 12px;">Energy Form</th>
+</tr>
+<tr style="background: #eff6ff;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">1. Storage</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Water in reservoir (dam)</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;"><strong>Gravitational Potential Energy</strong></td>
+</tr>
+<tr style="background: #f8fafc;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">2. Release</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Water falling through pipes (penstock)</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;"><strong>Kinetic Energy</strong></td>
+</tr>
+<tr style="background: #eff6ff;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">3. Turbine</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Water strikes turbine blades</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;"><strong>Mechanical (Rotational) Energy</strong></td>
+</tr>
+<tr style="background: #f8fafc;">
+<td style="border: 1px solid #93c5fd; padding: 10px; font-weight: bold;">4. Generator</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;">Coils rotate in magnetic field</td>
+<td style="border: 1px solid #93c5fd; padding: 10px;"><strong>Electrical Energy</strong></td>
+</tr>
+</table>
+
+<div style="background: #dcfce7; padding: 12px; border-radius: 8px; border-left: 4px solid #22c55e; margin: 10px 0;">
+<strong>Energy Chain Summary:</strong><br>
+Gravitational PE → Kinetic Energy → Mechanical Energy → Electrical Energy<br><br>
+<strong>Note:</strong> Hydroelectric power stations are highly efficient (80-90%) because they involve direct mechanical conversion with minimal thermal losses.
+</div>`
+      }
+    ],
+
+    endOfLessonQuiz: [
+      {
+        type: 'mcq',
+        question: 'The Law of Conservation of Energy states that:',
+        options: ['Energy can be created but not destroyed', 'Energy can be destroyed but not created', 'Energy can neither be created nor destroyed, only transformed', 'Energy always remains in the same form'],
+        answer: 'Energy can neither be created nor destroyed, only transformed',
+        explanation: 'This fundamental law means the total energy in an isolated system stays constant - energy only changes from one form to another.'
+      },
+      {
+        type: 'mcq',
+        question: 'A pendulum at its highest point has:',
+        options: ['Maximum kinetic energy, zero potential energy', 'Maximum potential energy, zero kinetic energy', 'Equal kinetic and potential energy', 'Zero total energy'],
+        answer: 'Maximum potential energy, zero kinetic energy',
+        explanation: 'At the highest point, the pendulum momentarily stops (zero KE) and has maximum height (maximum PE). As it swings down, PE converts to KE.'
+      },
+      {
+        type: 'mcq',
+        question: 'If a machine is 40% efficient and receives 250 J of input energy, the useful output is:',
+        options: ['40 J', '100 J', '150 J', '200 J'],
+        answer: '100 J',
+        explanation: 'Useful output = Efficiency × Input = 0.40 × 250 J = 100 J. The remaining 150 J is "wasted" as heat.'
+      },
+      {
+        type: 'mcq',
+        question: 'Which energy transformation occurs in photosynthesis?',
+        options: ['Chemical → Light', 'Light → Chemical', 'Thermal → Chemical', 'Chemical → Thermal'],
+        answer: 'Light → Chemical',
+        explanation: 'Plants capture light energy from the sun and convert it into chemical energy stored in glucose molecules.'
+      },
+      {
+        type: 'mcq',
+        question: 'Why are hydroelectric power stations more efficient than thermal power stations?',
+        options: ['They use more water', 'They have larger turbines', 'They have fewer energy transformation steps', 'They produce more electricity'],
+        answer: 'They have fewer energy transformation steps',
+        explanation: 'Each transformation step loses some energy. Hydro: PE→KE→Mechanical→Electrical. Thermal: Chemical→Heat→Steam(KE)→Mechanical→Electrical (more steps = more losses).'
+      },
+      {
+        type: 'mcq',
+        question: 'A 4 kg object falls from 10 m. Its kinetic energy just before hitting the ground is: (g = 10 m/s²)',
+        options: ['40 J', '100 J', '200 J', '400 J'],
+        answer: '400 J',
+        explanation: 'By conservation of energy: KE at bottom = PE at top = mgh = 4 × 10 × 10 = 400 J'
+      },
+      {
+        type: 'mcq',
+        question: 'Which device has the highest efficiency?',
+        options: ['Incandescent light bulb (10%)', 'Petrol car engine (25%)', 'LED light bulb (85%)', 'Human body (25%)'],
+        answer: 'LED light bulb (85%)',
+        explanation: 'LED bulbs convert most electrical energy directly to light with minimal heat loss, making them far more efficient than incandescent bulbs.'
+      },
+      {
+        type: 'mcq',
+        question: 'In a car engine, most of the wasted energy is lost as:',
+        options: ['Sound energy', 'Light energy', 'Heat energy', 'Electrical energy'],
+        answer: 'Heat energy',
+        explanation: 'About 70-75% of fuel energy in a car engine is lost as heat through the exhaust, radiator, and engine block. Only 25-30% becomes useful kinetic energy.'
+      },
+      {
+        type: 'mcq',
+        question: 'The energy transformation in a mobile phone battery being charged is:',
+        options: ['Chemical → Electrical', 'Electrical → Chemical', 'Electrical → Light', 'Chemical → Light'],
+        answer: 'Electrical → Chemical',
+        explanation: 'When charging, electrical energy from the socket is converted to chemical energy and stored in the battery. When using the phone, this reverses: Chemical → Electrical.'
+      },
+      {
+        type: 'mcq',
+        question: 'According to the Second Law of Thermodynamics:',
+        options: ['Energy can be 100% converted to useful work', 'Some energy is always lost as unusable heat', 'Perpetual motion machines are possible', 'Cold objects can heat warm objects'],
+        answer: 'Some energy is always lost as unusable heat',
+        explanation: 'This law explains why no machine can be 100% efficient - some energy always becomes disordered thermal energy that cannot be fully recovered.'
+      }
+    ],
+
+    summary: "The Law of Conservation of Energy states that energy cannot be created or destroyed, only transformed from one form to another. Energy transformation chains show the sequence of energy conversions (e.g., Akosombo Dam: Gravitational PE → Kinetic → Mechanical → Electrical). Efficiency measures useful output divided by total input × 100%. No machine is 100% efficient because some energy is always lost as heat due to friction and resistance. Typical efficiencies: LED bulbs (85%), electric motors (90%), hydroelectric (85%), car engines (25%), incandescent bulbs (5%). The Principle of Conservation of Mechanical Energy applies when only gravity does work: PE₁ + KE₁ = PE₂ + KE₂. Power stations transform energy: Hydroelectric (PE → KE → Mechanical → Electrical) is most efficient; Thermal (Chemical → Heat → KE → Mechanical → Electrical) has more losses. Living organisms transform energy through photosynthesis (Light → Chemical) and respiration (Chemical → ATP + Heat). Energy conservation in practice means using efficient appliances, switching off unused devices, and understanding that 90% of energy is lost at each food chain level."
+  },
+
+  // LESSON 14: Heat Energy and Temperature
+  // ============================================
+  {
+    id: 'is-en-heat-energy-temperature',
+    slug: 'is-en-heat-energy-temperature',
+    title: 'Heat Energy and Temperature',
+
+    introduction: `Have you ever wondered why your hand feels cold when you touch ice, or why metal feels colder than wood even when they're at the same temperature? 🧊
+
+Heat energy is one of the most common and important forms of energy in our daily lives. From cooking our food to keeping our bodies warm, understanding heat is essential for science and everyday life.
+
+In this lesson, we'll explore:
+• The difference between heat and temperature
+• How heat travels through conduction, convection, and radiation
+• Why some materials conduct heat better than others
+• Thermal expansion and its practical applications
+
+**Ghana Connection:** Traditional methods of smoking fish at Elmina use heat transfer principles that have been perfected over generations! 🐟
+
+Let's feel the heat! 🔥`,
+
+    objectives: [
+      'Distinguish between heat energy and temperature',
+      'Describe the three modes of heat transfer: conduction, convection, and radiation',
+      'Explain thermal conductivity and classify materials as conductors or insulators',
+      'Describe thermal expansion and its effects in everyday life',
+      'Apply knowledge of heat transfer to practical situations in Ghana'
+    ],
+
+    keyConcepts: [
+      {
+        title: 'Heat vs Temperature',
+        content: `Many people confuse heat and temperature, but they are different concepts!
+
+<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #f59e0b; margin: 10px 0;">
+<strong>🌡️ Key Definitions:</strong><br>
+• <strong>Heat (Q)</strong> - The total kinetic energy of ALL particles in a substance. Measured in <strong>Joules (J)</strong>.<br>
+• <strong>Temperature (T)</strong> - The AVERAGE kinetic energy of particles. Measured in <strong>°C, °F, or Kelvin (K)</strong>.
+</div>
+
+**Simple Analogy:**
+Think of a bucket of warm water and a cup of boiling water:
+• The bucket has MORE heat (more particles)
+• The cup has HIGHER temperature (particles moving faster on average)
+
+**Temperature Scales:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white;">
+<th style="border: 1px solid #4f46e5; padding: 12px;">Scale</th>
+<th style="border: 1px solid #4f46e5; padding: 12px;">Freezing Point of Water</th>
+<th style="border: 1px solid #4f46e5; padding: 12px;">Boiling Point of Water</th>
+<th style="border: 1px solid #4f46e5; padding: 12px;">Absolute Zero</th>
+</tr>
+<tr style="background: #f5f3ff;">
+<td style="border: 1px solid #c4b5fd; padding: 10px; font-weight: bold;">Celsius (°C)</td>
+<td style="border: 1px solid #c4b5fd; padding: 10px;">0°C</td>
+<td style="border: 1px solid #c4b5fd; padding: 10px;">100°C</td>
+<td style="border: 1px solid #c4b5fd; padding: 10px;">-273°C</td>
+</tr>
+<tr style="background: #ede9fe;">
+<td style="border: 1px solid #c4b5fd; padding: 10px; font-weight: bold;">Fahrenheit (°F)</td>
+<td style="border: 1px solid #c4b5fd; padding: 10px;">32°F</td>
+<td style="border: 1px solid #c4b5fd; padding: 10px;">212°F</td>
+<td style="border: 1px solid #c4b5fd; padding: 10px;">-459°F</td>
+</tr>
+<tr style="background: #f5f3ff;">
+<td style="border: 1px solid #c4b5fd; padding: 10px; font-weight: bold;">Kelvin (K)</td>
+<td style="border: 1px solid #c4b5fd; padding: 10px;">273 K</td>
+<td style="border: 1px solid #c4b5fd; padding: 10px;">373 K</td>
+<td style="border: 1px solid #c4b5fd; padding: 10px;">0 K</td>
+</tr>
+</table>
+
+**Conversion Formulas:**
+• Celsius to Kelvin: K = °C + 273
+• Celsius to Fahrenheit: °F = (°C × 9/5) + 32`
+      },
+      {
+        title: 'Conduction',
+        content: `**Definition:** Conduction is the transfer of heat through a material by direct contact between particles, without the particles themselves moving from place to place.
+
+<div style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #ef4444; margin: 10px 0;">
+<strong>🔥 How Conduction Works:</strong><br>
+1. Heat particles at the hot end vibrate faster<br>
+2. They bump into neighboring particles<br>
+3. Energy passes along from particle to particle<br>
+4. Heat travels from hot end to cold end
+</div>
+
+**Ghana Examples:**
+• A metal cooking spoon gets hot when left in a pot of jollof rice
+• The handle of an iron pot becomes too hot to touch
+• Walking barefoot on hot sand at Labadi Beach burns your feet
+
+**Good Conductors vs Insulators:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); color: white;">
+<th style="border: 1px solid #b91c1c; padding: 12px;">Good Conductors</th>
+<th style="border: 1px solid #b91c1c; padding: 12px;">Why?</th>
+</tr>
+<tr style="background: #fef2f2;">
+<td style="border: 1px solid #fecaca; padding: 10px;">Metals (copper, iron, aluminum)</td>
+<td style="border: 1px solid #fecaca; padding: 10px;">Free electrons carry heat quickly</td>
+</tr>
+<tr style="background: #fff5f5;">
+<td style="border: 1px solid #fecaca; padding: 10px;">Silver (best conductor)</td>
+<td style="border: 1px solid #fecaca; padding: 10px;">Highest number of free electrons</td>
+</tr>
+</table>
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); color: white;">
+<th style="border: 1px solid #1d4ed8; padding: 12px;">Poor Conductors (Insulators)</th>
+<th style="border: 1px solid #1d4ed8; padding: 12px;">Why?</th>
+</tr>
+<tr style="background: #eff6ff;">
+<td style="border: 1px solid #bfdbfe; padding: 10px;">Wood, plastic, cloth</td>
+<td style="border: 1px solid #bfdbfe; padding: 10px;">No free electrons; particles fixed</td>
+</tr>
+<tr style="background: #dbeafe;">
+<td style="border: 1px solid #bfdbfe; padding: 10px;">Air, cork, foam</td>
+<td style="border: 1px solid #bfdbfe; padding: 10px;">Particles are far apart</td>
+</tr>
+</table>
+
+**Practical Applications:**
+• Cooking pots have metal bottoms (conduct heat) but plastic handles (insulate)
+• Buildings use wood or foam insulation to keep cool
+• Traditional clay pots keep water cool by evaporation and insulation`
+      },
+      {
+        title: 'Convection',
+        content: `**Definition:** Convection is the transfer of heat in fluids (liquids and gases) by the actual movement of the heated particles from one place to another.
+
+<div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #22c55e; margin: 10px 0;">
+<strong>🌊 How Convection Works:</strong><br>
+1. Fluid at the bottom is heated<br>
+2. Hot fluid expands and becomes less dense<br>
+3. Hot fluid rises (because it's lighter)<br>
+4. Cool fluid sinks to take its place<br>
+5. This creates a continuous <strong>convection current</strong>
+</div>
+
+**Ghana Examples:**
+• Boiling water for banku - you see the water circulating
+• Sea breeze cooling Accra during hot afternoons
+• Land breeze at night (wind blows from land to sea)
+• Harmattan winds bringing dry air from the Sahara
+
+**Sea Breeze and Land Breeze:**
+
+\`\`\`
+DAY (Sea Breeze):
+☀️ Sun heats land faster than sea
+🌡️ Hot air rises over land
+💨 Cool air from sea moves in to replace it
+= Cool breeze from sea to land
+
+NIGHT (Land Breeze):
+🌙 Land cools faster than sea
+🌡️ Warm air rises over sea
+💨 Cool air from land moves to sea
+= Breeze from land to sea
+\`\`\`
+
+**Convection in Everyday Life:**
+• Air conditioning - cool air sinks, warm air rises, creating circulation
+• Refrigerator - cooling element at top, cold air sinks
+• Chimneys - hot smoke rises, creating draft
+• Hot air balloons - heated air rises, lifting the balloon`
+      },
+      {
+        title: 'Radiation',
+        content: `**Definition:** Radiation is the transfer of heat energy through electromagnetic waves, without needing any medium (can travel through vacuum).
+
+<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #f59e0b; margin: 10px 0;">
+<strong>☀️ Key Facts About Radiation:</strong><br>
+• Does NOT need particles to travel<br>
+• Can travel through empty space (vacuum)<br>
+• Travels at the speed of light (3 × 10⁸ m/s)<br>
+• How the Sun's heat reaches Earth!
+</div>
+
+**Ghana Examples:**
+• You feel warm standing in sunlight at Kwame Nkrumah Memorial Park
+• A charcoal brazier glowing red-hot warms you without touching
+• Dark-colored clothes make you feel hotter on sunny days
+• Shiny metallic surfaces reflect heat in the Sahel region
+
+**Absorption and Emission of Radiation:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #1f2937 0%, #374151 100%); color: white;">
+<th style="border: 1px solid #111827; padding: 12px;">Surface Type</th>
+<th style="border: 1px solid #111827; padding: 12px;">Absorbs Heat</th>
+<th style="border: 1px solid #111827; padding: 12px;">Emits Heat</th>
+<th style="border: 1px solid #111827; padding: 12px;">Reflects Heat</th>
+</tr>
+<tr style="background: #1f2937; color: white;">
+<td style="border: 1px solid #374151; padding: 10px;">Dark, Dull (Black)</td>
+<td style="border: 1px solid #374151; padding: 10px; color: #4ade80; font-weight: bold;">Good ✓</td>
+<td style="border: 1px solid #374151; padding: 10px; color: #4ade80; font-weight: bold;">Good ✓</td>
+<td style="border: 1px solid #374151; padding: 10px; color: #f87171;">Poor ✗</td>
+</tr>
+<tr style="background: #f3f4f6;">
+<td style="border: 1px solid #d1d5db; padding: 10px;">Light, Shiny (Silver)</td>
+<td style="border: 1px solid #d1d5db; padding: 10px; color: #f87171;">Poor ✗</td>
+<td style="border: 1px solid #d1d5db; padding: 10px; color: #f87171;">Poor ✗</td>
+<td style="border: 1px solid #d1d5db; padding: 10px; color: #4ade80; font-weight: bold;">Good ✓</td>
+</tr>
+</table>
+
+**Practical Applications:**
+• Light-colored clothes in hot weather (reflect heat)
+• Solar panels are dark (absorb more radiation)
+• Thermos flasks have shiny inner surfaces (reduce radiation)
+• Houses in northern Ghana have thick walls (block radiation)`
+      },
+      {
+        title: 'Comparing the Three Methods',
+        content: `<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%); color: white;">
+<th style="border: 1px solid #7c3aed; padding: 12px;">Feature</th>
+<th style="border: 1px solid #7c3aed; padding: 12px;">Conduction</th>
+<th style="border: 1px solid #7c3aed; padding: 12px;">Convection</th>
+<th style="border: 1px solid #7c3aed; padding: 12px;">Radiation</th>
+</tr>
+<tr style="background: #faf5ff;">
+<td style="border: 1px solid #e9d5ff; padding: 10px; font-weight: bold;">Medium Needed?</td>
+<td style="border: 1px solid #e9d5ff; padding: 10px;">Yes (solids best)</td>
+<td style="border: 1px solid #e9d5ff; padding: 10px;">Yes (fluids only)</td>
+<td style="border: 1px solid #e9d5ff; padding: 10px;">No (vacuum OK)</td>
+</tr>
+<tr style="background: #f5f3ff;">
+<td style="border: 1px solid #e9d5ff; padding: 10px; font-weight: bold;">Particle Movement?</td>
+<td style="border: 1px solid #e9d5ff; padding: 10px;">Vibrate in place</td>
+<td style="border: 1px solid #e9d5ff; padding: 10px;">Move from place to place</td>
+<td style="border: 1px solid #e9d5ff; padding: 10px;">No particles involved</td>
+</tr>
+<tr style="background: #faf5ff;">
+<td style="border: 1px solid #e9d5ff; padding: 10px; font-weight: bold;">Direction</td>
+<td style="border: 1px solid #e9d5ff; padding: 10px;">Any direction</td>
+<td style="border: 1px solid #e9d5ff; padding: 10px;">Hot rises, cold sinks</td>
+<td style="border: 1px solid #e9d5ff; padding: 10px;">Straight lines (all directions)</td>
+</tr>
+<tr style="background: #f5f3ff;">
+<td style="border: 1px solid #e9d5ff; padding: 10px; font-weight: bold;">Speed</td>
+<td style="border: 1px solid #e9d5ff; padding: 10px;">Slow to medium</td>
+<td style="border: 1px solid #e9d5ff; padding: 10px;">Medium</td>
+<td style="border: 1px solid #e9d5ff; padding: 10px;">Very fast (speed of light)</td>
+</tr>
+<tr style="background: #faf5ff;">
+<td style="border: 1px solid #e9d5ff; padding: 10px; font-weight: bold;">Ghana Example</td>
+<td style="border: 1px solid #e9d5ff; padding: 10px;">Hot cooking spoon</td>
+<td style="border: 1px solid #e9d5ff; padding: 10px;">Sea breeze at Cape Coast</td>
+<td style="border: 1px solid #e9d5ff; padding: 10px;">Feeling warmth from a fire</td>
+</tr>
+</table>
+
+**Memory Trick:** 
+• **C**onduction = **C**ontact (particles touch)
+• **C**onvection = **C**irculation (fluids move in circles)
+• **R**adiation = **R**ays (electromagnetic waves)`
+      },
+      {
+        title: 'Thermal Expansion',
+        content: `**Definition:** Thermal expansion is the increase in size (length, area, or volume) of a substance when heated.
+
+<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6; margin: 10px 0;">
+<strong>📏 Why Does Expansion Occur?</strong><br>
+• Heating increases particle kinetic energy<br>
+• Particles vibrate more vigorously<br>
+• Particles push each other further apart<br>
+• Material takes up more space
+</div>
+
+**Order of Expansion (Most to Least):**
+1. **Gases** expand most (particles already far apart)
+2. **Liquids** expand moderately  
+3. **Solids** expand least (particles tightly packed)
+
+**Types of Expansion:**
+• **Linear expansion** - increase in length
+• **Superficial/Area expansion** - increase in area
+• **Cubical/Volume expansion** - increase in volume
+
+**Ghana Applications:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: white;">
+<th style="border: 1px solid #047857; padding: 12px;">Application</th>
+<th style="border: 1px solid #047857; padding: 12px;">How Expansion Is Used/Managed</th>
+</tr>
+<tr style="background: #ecfdf5;">
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Railway tracks</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Gaps left between rails to allow expansion in hot weather</td>
+</tr>
+<tr style="background: #f0fdf4;">
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Bridges (like Adomi Bridge)</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Expansion joints allow movement without cracking</td>
+</tr>
+<tr style="background: #ecfdf5;">
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Electric power lines</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Sag more in hot weather; tighter in harmattan</td>
+</tr>
+<tr style="background: #f0fdf4;">
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Glass bottles</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Can crack if filled with hot liquid suddenly</td>
+</tr>
+<tr style="background: #ecfdf5;">
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Bimetallic strip</td>
+<td style="border: 1px solid #a7f3d0; padding: 10px;">Used in thermostats for air conditioners</td>
+</tr>
+</table>
+
+**Bimetallic Strip:**
+Two different metals bonded together. Since they expand at different rates, the strip bends when heated. Used in:
+• Thermostats (control temperature)
+• Fire alarms
+• Circuit breakers`
+      },
+      {
+        title: 'Heat Capacity and Specific Heat',
+        content: `**Heat Capacity (C):** The amount of heat energy needed to raise the temperature of an object by 1°C.
+
+**Specific Heat Capacity (c):** The amount of heat energy needed to raise the temperature of 1 kg of a substance by 1°C.
+
+<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6; margin: 10px 0;">
+<strong>📐 Heat Energy Formula:</strong>
+</div>
+
+$$Q = mc\\Delta T$$
+
+Where:
+• Q = Heat energy (Joules)
+• m = Mass (kg)
+• c = Specific heat capacity (J/kg°C)
+• ΔT = Change in temperature (°C)
+
+**Common Specific Heat Capacities:**
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); color: white;">
+<th style="border: 1px solid #0e7490; padding: 12px;">Substance</th>
+<th style="border: 1px solid #0e7490; padding: 12px;">c (J/kg°C)</th>
+<th style="border: 1px solid #0e7490; padding: 12px;">Significance</th>
+</tr>
+<tr style="background: #ecfeff;">
+<td style="border: 1px solid #a5f3fc; padding: 10px; font-weight: bold;">Water</td>
+<td style="border: 1px solid #a5f3fc; padding: 10px;">4,200</td>
+<td style="border: 1px solid #a5f3fc; padding: 10px;">Very high - good for cooling</td>
+</tr>
+<tr style="background: #cffafe;">
+<td style="border: 1px solid #a5f3fc; padding: 10px; font-weight: bold;">Ice</td>
+<td style="border: 1px solid #a5f3fc; padding: 10px;">2,100</td>
+<td style="border: 1px solid #a5f3fc; padding: 10px;">Half of water's value</td>
+</tr>
+<tr style="background: #ecfeff;">
+<td style="border: 1px solid #a5f3fc; padding: 10px; font-weight: bold;">Aluminum</td>
+<td style="border: 1px solid #a5f3fc; padding: 10px;">900</td>
+<td style="border: 1px solid #a5f3fc; padding: 10px;">Good for cooking pots</td>
+</tr>
+<tr style="background: #cffafe;">
+<td style="border: 1px solid #a5f3fc; padding: 10px; font-weight: bold;">Iron/Steel</td>
+<td style="border: 1px solid #a5f3fc; padding: 10px;">450</td>
+<td style="border: 1px solid #a5f3fc; padding: 10px;">Heats up faster than aluminum</td>
+</tr>
+<tr style="background: #ecfeff;">
+<td style="border: 1px solid #a5f3fc; padding: 10px; font-weight: bold;">Copper</td>
+<td style="border: 1px solid #a5f3fc; padding: 10px;">385</td>
+<td style="border: 1px solid #a5f3fc; padding: 10px;">Used in heat exchangers</td>
+</tr>
+</table>
+
+**Why Water Has High Specific Heat:**
+Water's high specific heat capacity means:
+• It takes a lot of energy to heat water
+• It releases a lot of energy when cooling
+• This is why coastal areas (like Accra) have milder temperatures than inland areas (like Tamale)
+• Car engines use water as coolant`
+      },
+      {
+        title: 'Applications in Ghana',
+        content: `<div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); padding: 15px; border-radius: 10px; border-left: 4px solid #22c55e; margin: 10px 0;">
+<strong>🇬🇭 Heat Transfer in Ghanaian Life:</strong>
+</div>
+
+**Traditional Cooking:**
+• **Clay pots** - Poor conductors keep food warm longer
+• **Aluminum pots** - Good conductors for faster cooking
+• **Wooden spoons** - Insulators protect hands
+• **Coal pots (coalpot)** - Radiation from burning charcoal
+
+**Building Design:**
+• **Thick mud walls** in Northern Ghana - Insulate against desert heat
+• **High ceilings** - Hot air rises, keeping occupants cool
+• **Ventilation gaps** - Allow convection currents
+• **Light-colored roofs** - Reflect solar radiation
+
+**Fish Smoking at Elmina:**
+1. **Radiation** - Heat radiates from burning wood
+2. **Convection** - Hot smoke rises past the fish
+3. **Conduction** - Heat transfers into the fish flesh
+
+**Solar Water Heating:**
+• Dark-colored collectors **absorb** solar radiation
+• Water inside pipes gets heated by **conduction**
+• Hot water rises by **convection** to storage tank
+• Saves electricity - common in hotels and schools
+
+**The Harmattan Season:**
+• Dry winds from Sahara carry **convection** currents
+• Temperature drops at night due to **radiation** loss
+• Low humidity means rapid evaporative cooling`
+      }
+    ],
+
+    activities: {
+      type: 'exercises',
+      questions: [
+        {
+          type: 'mcq',
+          question: 'A metal spoon feels colder than a wooden spoon at room temperature because:',
+          options: ['Metal is actually colder', 'Metal is a better conductor of heat', 'Wood generates heat', 'Metal absorbs more light'],
+          answer: 'Metal is a better conductor of heat',
+          explanation: 'Metal conducts heat away from your warm hand faster than wood, making it feel colder even though both are at the same temperature.'
+        },
+        {
+          type: 'mcq',
+          question: 'Sea breeze occurs during the day because:',
+          options: ['The sea is always colder', 'Land heats up faster than sea', 'Wind always blows from sea', 'Waves push air toward land'],
+          answer: 'Land heats up faster than sea',
+          explanation: 'Land has lower specific heat capacity than water, so it heats up faster. Hot air rises over land, and cool air from the sea moves in to replace it.'
+        },
+        {
+          type: 'mcq',
+          question: 'Which method of heat transfer does NOT require a medium?',
+          options: ['Conduction', 'Convection', 'Radiation', 'All require a medium'],
+          answer: 'Radiation',
+          explanation: 'Radiation transfers heat through electromagnetic waves which can travel through a vacuum. This is how the Sun\'s heat reaches Earth.'
+        },
+        {
+          type: 'mcq',
+          question: 'Expansion gaps are left in railway tracks to:',
+          options: ['Allow trains to change speed', 'Reduce noise', 'Allow for thermal expansion in hot weather', 'Make construction easier'],
+          answer: 'Allow for thermal expansion in hot weather',
+          explanation: 'Metals expand when heated. Without gaps, railway tracks would buckle and bend in hot weather, causing accidents.'
+        },
+        {
+          type: 'mcq',
+          question: 'Dark-colored clothes make you feel hotter in sunlight because dark surfaces:',
+          options: ['Generate heat', 'Reflect more radiation', 'Absorb more radiation', 'Block all radiation'],
+          answer: 'Absorb more radiation',
+          explanation: 'Dark, dull surfaces are good absorbers of radiation. They absorb more of the Sun\'s energy and convert it to heat.'
+        }
+      ]
+    },
+
+    pastQuestions: [
+      {
+        question: '(WASSCE 2022) (a) Distinguish between heat and temperature. (b) State three differences between conduction and convection. (c) Give two applications of thermal expansion.',
+        solution: `<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong style="color: #1e40af;">(a) Distinguishing Heat and Temperature:</strong>
+</div>
+
+<table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+<tr style="background: #6366f1; color: white;">
+<th style="border: 1px solid #4f46e5; padding: 10px;">Heat</th>
+<th style="border: 1px solid #4f46e5; padding: 10px;">Temperature</th>
+</tr>
+<tr style="background: #f5f3ff;">
+<td style="border: 1px solid #c4b5fd; padding: 10px;">Total kinetic energy of all particles</td>
+<td style="border: 1px solid #c4b5fd; padding: 10px;">Average kinetic energy of particles</td>
+</tr>
+<tr style="background: #ede9fe;">
+<td style="border: 1px solid #c4b5fd; padding: 10px;">Measured in Joules (J)</td>
+<td style="border: 1px solid #c4b5fd; padding: 10px;">Measured in °C, K, or °F</td>
+</tr>
+<tr style="background: #f5f3ff;">
+<td style="border: 1px solid #c4b5fd; padding: 10px;">Depends on mass and temperature</td>
+<td style="border: 1px solid #c4b5fd; padding: 10px;">Independent of mass</td>
+</tr>
+</table>
+
+<div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong style="color: #166534;">(b) Differences Between Conduction and Convection:</strong>
+</div>
+
+| Conduction | Convection |
+|------------|------------|
+| Occurs mainly in solids | Occurs in fluids (liquids and gases) |
+| Particles vibrate in fixed positions | Particles move from place to place |
+| Can occur in any direction | Hot fluid rises, cold fluid sinks |
+
+<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong style="color: #92400e;">(c) Applications of Thermal Expansion:</strong><br>
+1. <strong>Expansion gaps in railway tracks</strong> - Gaps are left between rails to allow for expansion in hot weather, preventing buckling.<br><br>
+2. <strong>Bimetallic strips in thermostats</strong> - Used to control temperature in devices like air conditioners and refrigerators.<br><br>
+3. <strong>Expansion joints in bridges</strong> - Allow bridges to expand and contract without cracking (e.g., Adomi Bridge).
+</div>`
+      },
+      {
+        question: '(WASSCE 2021) Explain why: (a) A metal handle feels colder than a wooden handle at the same temperature. (b) Land and sea breezes occur in coastal areas.',
+        solution: `<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong style="color: #1e40af;">(a) Why Metal Feels Colder:</strong>
+</div>
+
+<div style="background: #f8fafc; padding: 12px; border-radius: 8px; border-left: 4px solid #6366f1; margin: 10px 0;">
+Metal is a <strong>good conductor of heat</strong>. When you touch a metal handle:
+<br><br>
+• Heat flows <strong>rapidly</strong> from your warm hand to the metal<br>
+• Your hand loses heat quickly<br>
+• This rapid heat loss makes the metal feel cold<br><br>
+Wood is a <strong>poor conductor (insulator)</strong>:
+<br><br>
+• Heat flows <strong>slowly</strong> from your hand to wood<br>
+• Your hand loses heat slowly<br>
+• Wood feels warmer even though both are at the same temperature
+</div>
+
+<div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong style="color: #166534;">(b) Land and Sea Breezes:</strong>
+</div>
+
+<p style="font-weight: bold; margin: 10px 0 5px 0;">Sea Breeze (Day):</p>
+<div style="background: #f0fdf4; padding: 12px; border-radius: 8px; border-left: 4px solid #22c55e; margin: 10px 0;">
+1. During the day, land heats up <strong>faster</strong> than sea (lower specific heat capacity)<br>
+2. Hot air over land <strong>rises</strong><br>
+3. Cool air from the sea moves in to replace it<br>
+4. This creates a <strong>breeze from sea to land</strong>
+</div>
+
+<p style="font-weight: bold; margin: 10px 0 5px 0;">Land Breeze (Night):</p>
+<div style="background: #ecfdf5; padding: 12px; border-radius: 8px; border-left: 4px solid #22c55e; margin: 10px 0;">
+1. At night, land cools down <strong>faster</strong> than sea<br>
+2. Warm air over sea <strong>rises</strong><br>
+3. Cool air from land moves to replace it<br>
+4. This creates a <strong>breeze from land to sea</strong>
+</div>
+
+<p>These breezes are examples of <strong>convection currents</strong> on a large scale.</p>`
+      },
+      {
+        question: '(WASSCE 2020) Calculate the heat energy required to raise the temperature of 2 kg of water from 25°C to 100°C. (Specific heat capacity of water = 4,200 J/kg°C)',
+        solution: `<div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong style="color: #1e40af;">Given Information:</strong><br>
+• Mass (m) = 2 kg<br>
+• Initial temperature (T₁) = 25°C<br>
+• Final temperature (T₂) = 100°C<br>
+• Specific heat capacity (c) = 4,200 J/kg°C
+</div>
+
+<div style="background: #f8fafc; padding: 12px; border-radius: 8px; border-left: 4px solid #6366f1; margin: 10px 0;">
+<strong>Step 1: Find temperature change (ΔT)</strong><br>
+ΔT = T₂ - T₁ = 100 - 25 = <strong>75°C</strong>
+</div>
+
+<div style="background: #f8fafc; padding: 12px; border-radius: 8px; border-left: 4px solid #6366f1; margin: 10px 0;">
+<strong>Step 2: Apply the formula</strong>
+</div>
+
+$$Q = mc\\Delta T$$
+
+$$Q = 2 \\times 4200 \\times 75$$
+
+$$Q = \\mathbf{630,000 \\text{ J}}$$ 
+
+<p>or <strong>630 kJ</strong></p>
+
+<div style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); padding: 15px; border-radius: 10px; margin: 10px 0;">
+<strong>Answer:</strong> The heat energy required is <strong>630,000 J</strong> or <strong>630 kJ</strong>.
+</div>
+
+<div style="background: #fef3c7; padding: 12px; border-radius: 8px; border-left: 4px solid #f59e0b; margin: 10px 0;">
+<strong>Note:</strong> This is the energy needed just to heat the water. It does not include the extra energy needed to convert the water to steam (latent heat of vaporization).
+</div>`
+      }
+    ],
+
+    endOfLessonQuiz: [
+      {
+        type: 'mcq',
+        question: 'Heat energy is measured in:',
+        options: ['Degrees Celsius', 'Kelvin', 'Joules', 'Watts'],
+        answer: 'Joules',
+        explanation: 'Heat is a form of energy, so it is measured in Joules (J). Temperature is measured in degrees Celsius, Kelvin, or Fahrenheit.'
+      },
+      {
+        type: 'mcq',
+        question: 'Which method of heat transfer does NOT require a medium?',
+        options: ['Conduction', 'Convection', 'Radiation', 'All require a medium'],
+        answer: 'Radiation',
+        explanation: 'Radiation transfers heat through electromagnetic waves, which can travel through a vacuum. This is how heat from the Sun reaches Earth.'
+      },
+      {
+        type: 'mcq',
+        question: 'A sea breeze occurs because:',
+        options: ['Land heats faster than sea during the day', 'Sea heats faster than land during the day', 'Wind always blows from sea to land', 'The Sun is closer to the coast'],
+        answer: 'Land heats faster than sea during the day',
+        explanation: 'During the day, land has a lower specific heat capacity than water, so it heats up faster. Hot air rises over the land, and cool air from the sea moves in to replace it.'
+      },
+      {
+        type: 'mcq',
+        question: 'The best conductor of heat among these is:',
+        options: ['Wood', 'Glass', 'Copper', 'Plastic'],
+        answer: 'Copper',
+        explanation: 'Copper is a metal with many free electrons that can carry heat energy quickly, making it an excellent conductor. This is why copper is used in cooking pots and heat exchangers.'
+      },
+      {
+        type: 'mcq',
+        question: 'Dark-colored objects in sunlight:',
+        options: ['Reflect more heat', 'Absorb more heat', 'Neither absorb nor reflect heat', 'Conduct heat better'],
+        answer: 'Absorb more heat',
+        explanation: 'Dark, dull surfaces are good absorbers of radiation. This is why wearing dark clothes in the sun makes you feel hotter.'
+      },
+      {
+        type: 'mcq',
+        question: 'Expansion gaps in railway tracks are needed because:',
+        options: ['To reduce noise', 'To allow trains to change direction', 'To allow metal to expand in hot weather', 'To save on metal costs'],
+        answer: 'To allow metal to expand in hot weather',
+        explanation: 'Metals expand when heated. Without gaps, railway tracks would buckle and bend in hot weather, causing accidents.'
+      },
+      {
+        type: 'mcq',
+        question: 'Water has a high specific heat capacity. This means:',
+        options: ['Water boils easily', 'Water takes a lot of energy to heat up', 'Water is a good conductor', 'Water freezes quickly'],
+        answer: 'Water takes a lot of energy to heat up',
+        explanation: 'High specific heat capacity (4,200 J/kg°C) means water requires a lot of energy to change its temperature. This is why coastal areas have milder climates.'
+      },
+      {
+        type: 'mcq',
+        question: 'In a vacuum flask (thermos), heat loss by radiation is reduced by:',
+        options: ['Thick glass walls', 'Shiny silver coating', 'Plastic stopper', 'Air gap'],
+        answer: 'Shiny silver coating',
+        explanation: 'The shiny silver coating reflects radiation, preventing heat from escaping (for hot drinks) or entering (for cold drinks). Poor reflectors would absorb and emit radiation.'
+      },
+      {
+        type: 'mcq',
+        question: 'A metal spoon left in hot soup becomes hot throughout. This is an example of:',
+        options: ['Convection', 'Radiation', 'Conduction', 'Evaporation'],
+        answer: 'Conduction',
+        explanation: 'Heat travels through the metal spoon by conduction - particles vibrate and pass energy to neighboring particles without the particles themselves moving.'
+      },
+      {
+        type: 'mcq',
+        question: 'The formula Q = mcΔT is used to calculate:',
+        options: ['Temperature', 'Heat capacity', 'Heat energy', 'Thermal expansion'],
+        answer: 'Heat energy',
+        explanation: 'This formula calculates heat energy (Q) where m is mass, c is specific heat capacity, and ΔT is the temperature change.'
+      }
+    ],
+
+    summary: "Heat and temperature are different: heat is the total kinetic energy of particles (measured in Joules), while temperature is the average kinetic energy (measured in °C, K, or °F). Heat transfers by three methods: Conduction (through solids by particle vibration - metals are good conductors, wood/plastic are insulators), Convection (through fluids by actual particle movement - hot rises, cold sinks, creating convection currents like sea/land breezes), and Radiation (through electromagnetic waves - no medium needed, how Sun's heat reaches Earth). Dark surfaces absorb and emit radiation well; shiny surfaces reflect it. Thermal expansion occurs when heated particles vibrate more and push apart - gases expand most, then liquids, then solids. Applications include expansion gaps in railways, bimetallic strips in thermostats. Specific heat capacity (c) measures how much energy is needed to heat 1 kg by 1°C. Water has high specific heat capacity (4,200 J/kg°C), explaining why coastal areas have milder climates. Heat energy formula: Q = mcΔT."
+  },
+
+  // ============================================
+  // ACIDS, BASES, AND SALTS: PROPERTIES AND REACTIONS
+  // ============================================
+  {
+    id: 'is-shs1-acids-bases-salts-1',
+    slug: 'is-im-acids-bases-salts-properties-reactions',
+    title: 'Acids, Bases, and Salts: Properties and Reactions',
+    objectives: [
+      'Define acids, bases, and salts with examples',
+      'Describe the properties of acids and bases',
+      'Understand the pH scale and indicators',
+      'Explain neutralization reactions and their applications',
+      'Identify common acids, bases, and salts in everyday life'
+    ],
+
+    introduction: `
+# ACIDS, BASES, AND SALTS: Properties and Reactions
+
+## What Are Acids, Bases, and Salts?
+
+Every day, you encounter acids and bases without even realizing it! The sourness of lemon, the slippery feel of soap, the bubbles when you mix baking soda with vinegar - all these involve acids and bases!
+
+**In this lesson, you will learn:**
+- What makes a substance acidic or basic
+- How to identify acids and bases using indicators
+- The pH scale and what it measures
+- Neutralization reactions and their importance
+- Common acids, bases, and salts around you
+
+---
+
+## ACIDS - The Sour Substances
+
+**Definition:** An acid is a substance that produces hydrogen ions (H⁺) when dissolved in water.
+
+### Common Properties of Acids:
+<table>
+<tr><th>Property</th><th>Explanation</th></tr>
+<tr><td><strong>Sour taste</strong></td><td>Lemons, oranges, and vinegar taste sour because they contain acids</td></tr>
+<tr><td><strong>Turn blue litmus red</strong></td><td>This is a classic test for acids</td></tr>
+<tr><td><strong>React with metals</strong></td><td>Produce hydrogen gas (fizzing/bubbling)</td></tr>
+<tr><td><strong>React with carbonates</strong></td><td>Produce carbon dioxide gas</td></tr>
+<tr><td><strong>Corrosive</strong></td><td>Strong acids can burn skin and damage materials</td></tr>
+<tr><td><strong>Conduct electricity</strong></td><td>Acids are electrolytes when dissolved in water</td></tr>
+</table>
+
+### Common Acids:
+
+**Strong Acids (fully ionize in water):**
+- **Hydrochloric acid (HCl)** - Found in stomach, used in cleaning
+- **Sulfuric acid (H₂SO₄)** - Battery acid, industrial uses
+- **Nitric acid (HNO₃)** - Used in fertilizers, explosives
+
+**Weak Acids (partially ionize):**
+- **Citric acid** - In citrus fruits (oranges, lemons)
+- **Acetic acid (CH₃COOH)** - In vinegar
+- **Carbonic acid (H₂CO₃)** - In soft drinks
+- **Lactic acid** - In sour milk, produced in muscles during exercise
+
+### Acids in Ghana:
+- **Palm wine** becomes acidic when it ferments (acetic acid)
+- **Sobolo (hibiscus drink)** contains citric acid
+- **Tamarind** contains tartaric acid
+- **Shito** (black pepper sauce) contains capsaicin, which is mildly acidic
+
+---
+
+## BASES - The Bitter and Slippery Substances
+
+**Definition:** A base is a substance that produces hydroxide ions (OH⁻) when dissolved in water.
+
+**Alkali:** A base that dissolves in water.
+
+### Common Properties of Bases:
+<table>
+<tr><th>Property</th><th>Explanation</th></tr>
+<tr><td><strong>Bitter taste</strong></td><td>Soap and baking soda taste bitter</td></tr>
+<tr><td><strong>Slippery feel</strong></td><td>Feel soapy or slippery when touched</td></tr>
+<tr><td><strong>Turn red litmus blue</strong></td><td>Classic test for bases</td></tr>
+<tr><td><strong>React with acids</strong></td><td>Neutralization produces salt and water</td></tr>
+<tr><td><strong>Corrosive</strong></td><td>Strong bases can cause chemical burns</td></tr>
+<tr><td><strong>Conduct electricity</strong></td><td>Bases are electrolytes when dissolved</td></tr>
+</table>
+
+### Common Bases:
+
+**Strong Bases:**
+- **Sodium hydroxide (NaOH)** - Caustic soda, used in soap making
+- **Potassium hydroxide (KOH)** - Used in liquid soaps
+- **Calcium hydroxide (Ca(OH)₂)** - Slaked lime, used in construction
+
+**Weak Bases:**
+- **Ammonia (NH₃)** - Cleaning products
+- **Sodium bicarbonate (NaHCO₃)** - Baking soda
+- **Magnesium hydroxide (Mg(OH)₂)** - Antacid (Milk of Magnesia)
+
+### Bases in Ghana:
+- **Kaolin (white clay)** - Traditional uses, slightly basic
+- **Wood ash water (potash)** - Traditional soap making
+- **Limestone areas** - Basic soil conditions
+
+---
+
+## THE pH SCALE - Measuring Acidity and Basicity
+
+**pH** stands for "power of Hydrogen" and measures how acidic or basic a solution is.
+
+### The pH Scale:
+<pre>
+0 -------- 7 -------- 14
+Acidic   Neutral   Basic
+</pre>
+
+<table>
+<tr><th>pH Range</th><th>Classification</th><th>Examples</th></tr>
+<tr><td>0-2</td><td>Strong acid</td><td>Battery acid, stomach acid</td></tr>
+<tr><td>3-4</td><td>Moderate acid</td><td>Vinegar, lemon juice</td></tr>
+<tr><td>5-6</td><td>Weak acid</td><td>Tomatoes, black coffee</td></tr>
+<tr><td>7</td><td>Neutral</td><td>Pure water</td></tr>
+<tr><td>8-9</td><td>Weak base</td><td>Baking soda, sea water</td></tr>
+<tr><td>10-11</td><td>Moderate base</td><td>Soap, milk of magnesia</td></tr>
+<tr><td>12-14</td><td>Strong base</td><td>Bleach, drain cleaner</td></tr>
+</table>
+
+### Important Points:
+- Each pH unit represents a **10-fold difference** in acidity
+- pH 4 is **10 times** more acidic than pH 5
+- pH 3 is **100 times** more acidic than pH 5
+- Human blood maintains pH between **7.35-7.45** (slightly basic)
+
+---
+
+## INDICATORS - Detecting Acids and Bases
+
+**Indicator:** A substance that changes color depending on whether it's in an acid or base.
+
+### Common Indicators:
+
+<table>
+<tr><th>Indicator</th><th>Color in Acid</th><th>Color in Base</th><th>Neutral</th></tr>
+<tr><td><strong>Litmus</strong></td><td>Red</td><td>Blue</td><td>Purple</td></tr>
+<tr><td><strong>Phenolphthalein</strong></td><td>Colorless</td><td>Pink/Magenta</td><td>Colorless</td></tr>
+<tr><td><strong>Methyl orange</strong></td><td>Red</td><td>Yellow</td><td>Orange</td></tr>
+<tr><td><strong>Universal indicator</strong></td><td>Red-Yellow</td><td>Green-Purple</td><td>Green</td></tr>
+</table>
+
+### Natural Indicators:
+- **Red cabbage juice** - Red in acids, green/yellow in bases
+- **Turmeric** - Yellow in acids, red in bases
+- **Hibiscus (sobolo)** - Red in acids, green in bases
+- **Beetroot juice** - Changes color with pH
+
+### pH Paper and pH Meter:
+- **pH paper** - Strips that change color to indicate pH
+- **Universal indicator paper** - Shows exact pH by color
+- **pH meter** - Electronic device for precise measurements
+
+---
+
+## NEUTRALIZATION REACTIONS
+
+**Neutralization:** A reaction between an acid and a base to form a salt and water.
+
+### General Equation:
+**Acid + Base → Salt + Water**
+
+### Examples:
+
+1. **Hydrochloric acid + Sodium hydroxide → Sodium chloride + Water**
+   - HCl + NaOH → NaCl + H₂O
+
+2. **Sulfuric acid + Potassium hydroxide → Potassium sulfate + Water**
+   - H₂SO₄ + 2KOH → K₂SO₄ + 2H₂O
+
+3. **Nitric acid + Calcium hydroxide → Calcium nitrate + Water**
+   - 2HNO₃ + Ca(OH)₂ → Ca(NO₃)₂ + 2H₂O
+
+### Types of Salts Formed:
+<table>
+<tr><th>Acid Used</th><th>Salt Type</th><th>Example</th></tr>
+<tr><td>Hydrochloric acid (HCl)</td><td>Chloride</td><td>NaCl, KCl</td></tr>
+<tr><td>Sulfuric acid (H₂SO₄)</td><td>Sulfate</td><td>Na₂SO₄, CaSO₄</td></tr>
+<tr><td>Nitric acid (HNO₃)</td><td>Nitrate</td><td>NaNO₃, KNO₃</td></tr>
+<tr><td>Carbonic acid (H₂CO₃)</td><td>Carbonate</td><td>Na₂CO₃, CaCO₃</td></tr>
+</table>
+
+---
+
+## APPLICATIONS OF NEUTRALIZATION
+
+### 1. Treating Acid Indigestion
+- **Problem:** Excess stomach acid causes heartburn
+- **Solution:** Antacids (bases like Mg(OH)₂) neutralize the acid
+- **Example:** Andrews Liver Salt, Milk of Magnesia
+
+### 2. Treating Insect Stings
+- **Bee stings** are acidic → Apply baking soda (base)
+- **Wasp stings** are basic → Apply vinegar (acid)
+
+### 3. Agriculture - Soil Treatment
+- **Acidic soil** → Add lime (calcium hydroxide) to neutralize
+- **Basic soil** → Add comite or organic matter
+- Ghanaian soils in the forest zone are often acidic and benefit from liming
+
+### 4. Industrial Uses
+- **Waste water treatment** - Neutralize acidic industrial waste
+- **Manufacturing** - Control pH in processes
+- **Food industry** - Maintain correct pH levels
+
+### 5. Toothpaste
+- Bacteria in mouth produce acids that cause tooth decay
+- Toothpaste contains mild bases to neutralize these acids
+
+---
+
+## SALTS - Products of Neutralization
+
+**Definition:** A salt is an ionic compound formed when the hydrogen of an acid is replaced by a metal.
+
+### Common Salts and Their Uses:
+
+<table>
+<tr><th>Salt</th><th>Formula</th><th>Uses</th></tr>
+<tr><td><strong>Sodium chloride</strong></td><td>NaCl</td><td>Table salt, food preservation</td></tr>
+<tr><td><strong>Sodium bicarbonate</strong></td><td>NaHCO₃</td><td>Baking soda, antacid</td></tr>
+<tr><td><strong>Calcium carbonate</strong></td><td>CaCO₃</td><td>Chalk, limestone, antacid</td></tr>
+<tr><td><strong>Sodium sulfate</strong></td><td>Na₂SO₄</td><td>Detergents, paper making</td></tr>
+<tr><td><strong>Ammonium nitrate</strong></td><td>NH₄NO₃</td><td>Fertilizer</td></tr>
+<tr><td><strong>Copper sulfate</strong></td><td>CuSO₄</td><td>Fungicide, electroplating</td></tr>
+</table>
+
+### Types of Salts:
+
+**1. Normal Salts**
+- All hydrogen replaced by metal
+- Example: NaCl, Na₂SO₄
+
+**2. Acid Salts**
+- Some hydrogen remains
+- Example: NaHSO₄ (sodium hydrogen sulfate)
+
+**3. Basic Salts**
+- Contains hydroxide
+- Example: Mg(OH)Cl (magnesium hydroxide chloride)
+
+---
+
+## WASSCE PAST QUESTIONS
+
+### WASSCE 2022 - Question 1
+**Question:** Which of the following is NOT a property of acids?
+A. They turn blue litmus red
+B. They have a sour taste
+C. They feel slippery
+D. They react with metals to produce hydrogen
+
+**Answer: C**
+
+**Solution:**
+<p style="font-weight:bold">Slippery feel is a property of BASES, not acids.</p>
+
+Properties of Acids:
+<p>• Turn blue litmus red ✓</p>
+<p>• Have sour taste ✓</p>
+<p>• React with metals to produce hydrogen ✓</p>
+<p>• React with carbonates to produce CO₂</p>
+
+Bases feel slippery because they react with oils in skin to form soap-like substances.
+
+---
+
+### WASSCE 2021 - Question 2
+**Question:** The pH of a solution is 3. What happens when the pH is increased to 6?
+
+A. The acidity increases by 3 times
+B. The acidity decreases by 1000 times
+C. The basicity increases by 3 times
+D. The solution becomes neutral
+
+**Answer: B**
+
+**Solution:**
+<p style="font-weight:bold">Each pH unit represents a 10-fold change in H⁺ concentration.</p>
+
+From pH 3 to pH 6 = 3 units increase
+
+Change = 10 × 10 × 10 = <strong>1000 times decrease in acidity</strong>
+
+Remember: Higher pH = Less acidic (more basic)
+
+---
+
+### WASSCE 2020 - Question 3
+**Question:** What is the salt produced when sulfuric acid reacts with sodium hydroxide?
+
+A. Sodium chloride
+B. Sodium sulfate
+C. Sodium nitrate
+D. Sodium carbonate
+
+**Answer: B**
+
+**Solution:**
+<p style="font-weight:bold">Neutralization: Acid + Base → Salt + Water</p>
+
+H₂SO₄ + 2NaOH → Na₂SO₄ + 2H₂O
+
+The acid determines the type of salt:
+<p>• HCl produces chlorides</p>
+<p>• H₂SO₄ produces <strong>sulfates</strong></p>
+<p>• HNO₃ produces nitrates</p>
+
+Answer: <strong>Sodium sulfate (Na₂SO₄)</strong>
+
+---
+
+## LABORATORY SAFETY WITH ACIDS AND BASES
+
+### Safety Precautions:
+1. **Always wear safety goggles** - Protect eyes from splashes
+2. **Wear lab coat and gloves** - Protect skin and clothing
+3. **Work in ventilated area** - Some acids produce fumes
+4. **Add acid to water, never water to acid** - Prevents violent reaction
+5. **Handle with care** - Use appropriate containers
+6. **Know emergency procedures** - Location of eyewash, neutralizers
+
+### First Aid:
+- **Acid on skin:** Rinse with plenty of water, then apply dilute base
+- **Base on skin:** Rinse with water, then apply dilute acid
+- **In eyes:** Rinse with water for 15+ minutes, seek medical help
+
+---
+
+## KEY FORMULAS AND EQUATIONS
+
+### Important Equations:
+1. **Neutralization:** Acid + Base → Salt + Water
+2. **Acid + Metal:** Acid + Metal → Salt + Hydrogen gas
+3. **Acid + Carbonate:** Acid + Carbonate → Salt + Water + CO₂
+
+### pH Calculations:
+- pH = -log[H⁺]
+- [H⁺] = 10^(-pH)
+- For every 1 unit pH change = 10× change in [H⁺]
+    `,
+
+    keyConcepts: [
+      {
+        title: '1. Understanding Acids',
+        content: `**Definition:** An acid is a substance that produces hydrogen ions (H⁺) when dissolved in water.
+
+**Common Properties of Acids:**
+<table>
+<tr><th>Property</th><th>Explanation</th></tr>
+<tr><td><strong>Sour taste</strong></td><td>Lemons, oranges, and vinegar taste sour</td></tr>
+<tr><td><strong>Turn blue litmus red</strong></td><td>Classic test for acids</td></tr>
+<tr><td><strong>React with metals</strong></td><td>Produce hydrogen gas</td></tr>
+<tr><td><strong>Corrosive</strong></td><td>Strong acids burn skin</td></tr>
+<tr><td><strong>Conduct electricity</strong></td><td>Electrolytes in water</td></tr>
+</table>
+
+**Strong Acids:** HCl, H₂SO₄, HNO₃ (fully ionize)
+**Weak Acids:** Citric acid, acetic acid (partially ionize)
+
+**Acids in Ghana:** Palm wine (acetic acid), Sobolo (citric acid), Tamarind (tartaric acid)`
+      },
+      {
+        title: '2. Understanding Bases',
+        content: `**Definition:** A base produces hydroxide ions (OH⁻) when dissolved in water. An alkali is a base that dissolves in water.
+
+**Common Properties of Bases:**
+<table>
+<tr><th>Property</th><th>Explanation</th></tr>
+<tr><td><strong>Bitter taste</strong></td><td>Soap and baking soda taste bitter</td></tr>
+<tr><td><strong>Slippery feel</strong></td><td>Feel soapy when touched</td></tr>
+<tr><td><strong>Turn red litmus blue</strong></td><td>Classic test for bases</td></tr>
+<tr><td><strong>Corrosive</strong></td><td>Strong bases cause burns</td></tr>
+</table>
+
+**Strong Bases:** NaOH (caustic soda), KOH, Ca(OH)₂ (slaked lime)
+**Weak Bases:** Ammonia, baking soda, Mg(OH)₂
+
+**Bases in Ghana:** Wood ash water (potash) for soap making, limestone areas`
+      },
+      {
+        title: '3. The pH Scale',
+        content: `**pH** stands for "power of Hydrogen" - measures acidity/basicity.
+
+**The Scale:**
+<div style="background: linear-gradient(to right, #dc2626, #f59e0b, #22c55e, #0ea5e9, #7c3aed); padding: 8px 16px; border-radius: 8px; text-align: center; font-family: monospace; font-size: 14px; color: white; font-weight: bold;">
+0 ←── Acidic ──── 7 (Neutral) ──── Basic ──→ 14
+</div><table style="margin-top: 8px;">
+<tr><th>pH</th><th>Type</th><th>Examples</th></tr>
+<tr><td>0-3</td><td>Strong acid</td><td>Battery acid, stomach acid</td></tr>
+<tr><td>4-6</td><td>Weak acid</td><td>Vinegar, tomatoes, coffee</td></tr>
+<tr><td>7</td><td>Neutral</td><td>Pure water</td></tr>
+<tr><td>8-10</td><td>Weak base</td><td>Baking soda, sea water</td></tr>
+<tr><td>11-14</td><td>Strong base</td><td>Bleach, drain cleaner</td></tr>
+</table>
+
+**Key Point:** Each pH unit = 10× difference in acidity
+- pH 4 is 10× more acidic than pH 5
+- pH 3 is 100× more acidic than pH 5
+
+**Human blood pH:** 7.35-7.45 (slightly basic)`
+      },
+      {
+        title: '4. Indicators',
+        content: `**Indicator:** A substance that changes color to show acid or base.
+
+<table>
+<tr><th>Indicator</th><th>In Acid</th><th>In Base</th></tr>
+<tr><td><strong>Litmus</strong></td><td>Red</td><td>Blue</td></tr>
+<tr><td><strong>Phenolphthalein</strong></td><td>Colorless</td><td>Pink</td></tr>
+<tr><td><strong>Methyl orange</strong></td><td>Red</td><td>Yellow</td></tr>
+<tr><td><strong>Universal indicator</strong></td><td>Red-Yellow</td><td>Green-Purple</td></tr>
+</table>
+
+**Natural Indicators from Ghana:**
+- Red cabbage juice - Red in acids, green in bases
+- Turmeric - Yellow in acids, red in bases
+- Hibiscus (sobolo) - Red in acids, green in bases
+
+**Tools:** pH paper (color-matching), pH meter (electronic)`
+      },
+      {
+        title: '5. Neutralization Reactions',
+        content: `**Neutralization:** Acid + Base → Salt + Water
+
+**Examples:**
+1. HCl + NaOH → NaCl + H₂O
+2. H₂SO₄ + 2KOH → K₂SO₄ + 2H₂O
+3. 2HNO₃ + Ca(OH)₂ → Ca(NO₃)₂ + 2H₂O
+
+**Salt Types from Different Acids:**
+- HCl → Chlorides (NaCl)
+- H₂SO₄ → Sulfates (Na₂SO₄)
+- HNO₃ → Nitrates (NaNO₃)
+
+**Applications:**
+1. **Antacids** - Neutralize stomach acid (Mg(OH)₂)
+2. **Bee stings** - Apply baking soda (base) for acidic sting
+3. **Wasp stings** - Apply vinegar (acid) for basic sting
+4. **Farming** - Lime added to acidic soil
+5. **Toothpaste** - Base neutralizes mouth acids`
+      }
+    ],
+
+    activities: {
+      type: 'exercises',
+      questions: [
+        {
+          type: 'mcq',
+          question: 'Which ion is always present in acids when dissolved in water?',
+          options: ['Hydroxide ion (OH⁻)', 'Hydrogen ion (H⁺)', 'Chloride ion (Cl⁻)', 'Sodium ion (Na⁺)'],
+          answer: 'Hydrogen ion (H⁺)',
+          explanation: 'By definition, an acid produces hydrogen ions (H⁺) when dissolved in water.'
+        },
+        {
+          type: 'mcq',
+          question: 'What color does blue litmus paper turn in an acidic solution?',
+          options: ['Blue', 'Green', 'Red', 'Purple'],
+          answer: 'Red',
+          explanation: 'Blue litmus turns red in acids. Red litmus turns blue in bases.'
+        },
+        {
+          type: 'mcq',
+          question: 'A solution has pH of 2. This solution is:',
+          options: ['Strongly basic', 'Weakly basic', 'Neutral', 'Strongly acidic'],
+          answer: 'Strongly acidic',
+          explanation: 'pH 2 is in the strong acid range (0-3). pH 7 is neutral.'
+        },
+        {
+          type: 'mcq',
+          question: 'What products form when an acid reacts with a base?',
+          options: ['Only water', 'Only salt', 'Salt and water', 'Salt and hydrogen gas'],
+          answer: 'Salt and water',
+          explanation: 'Neutralization: Acid + Base → Salt + Water.'
+        },
+        {
+          type: 'mcq',
+          question: 'Which of these is a strong acid?',
+          options: ['Citric acid', 'Acetic acid', 'Carbonic acid', 'Hydrochloric acid'],
+          answer: 'Hydrochloric acid',
+          explanation: 'HCl is a strong acid that fully ionizes in water.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'All bases dissolve in water.',
+          answer: 'false',
+          reason: 'Only alkalis dissolve in water. Some bases like Cu(OH)₂ are insoluble.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'A pH of 5 is more acidic than a pH of 3.',
+          answer: 'false',
+          reason: 'Lower pH means more acidic. pH 3 is 100× more acidic than pH 5.'
+        }
+      ]
+    },
+
+    pastQuestions: [
+      {
+        question: 'Which of the following is NOT a property of acids?',
+        options: ['They turn blue litmus red', 'They have a sour taste', 'They feel slippery', 'They react with metals to produce hydrogen'],
+        answer: 'They feel slippery',
+        year: 'WASSCE 2022',
+        explanation: 'Slippery feel is a property of BASES, not acids. Bases feel slippery because they react with oils in skin.'
+      },
+      {
+        question: 'The pH of a solution is 3. What happens when the pH is increased to 6?',
+        options: ['The acidity increases by 3 times', 'The acidity decreases by 1000 times', 'The basicity increases by 3 times', 'The solution becomes neutral'],
+        answer: 'The acidity decreases by 1000 times',
+        year: 'WASSCE 2021',
+        explanation: 'Each pH unit = 10× change. From pH 3 to 6 = 3 units = 10×10×10 = 1000× decrease in acidity.'
+      },
+      {
+        question: 'What salt is produced when sulfuric acid reacts with sodium hydroxide?',
+        options: ['Sodium chloride', 'Sodium sulfate', 'Sodium nitrate', 'Sodium carbonate'],
+        answer: 'Sodium sulfate',
+        year: 'WASSCE 2020',
+        explanation: 'H₂SO₄ + 2NaOH → Na₂SO₄ + 2H₂O. Sulfuric acid produces sulfates.'
+      }
+    ],
+
+    summary: `**🧪 ACIDS:**
+• Produce H⁺ ions in water
+• Taste sour, turn blue litmus red
+• React with metals → hydrogen gas
+• Strong acids (HCl, H₂SO₄, HNO₃) fully ionize
+• Weak acids (citric, acetic) partially ionize
+
+**🧼 BASES:**
+• Produce OH⁻ ions in water
+• Taste bitter, feel slippery
+• Turn red litmus blue
+• Alkalis = bases that dissolve in water
+
+**📊 pH SCALE (0-14):**
+• pH 7 = Neutral
+• Below 7 = Acidic
+• Above 7 = Basic
+• Each pH unit = 10× change in H⁺
+
+**🎨 INDICATORS:**
+• Litmus, phenolphthalein, universal indicator
+• Change color to show pH
+
+**⚗️ NEUTRALIZATION:**
+• Acid + Base → Salt + Water
+• HCl → chlorides
+• H₂SO₄ → sulfates
+• HNO₃ → nitrates
+
+**💡 APPLICATIONS:**
+• Antacids neutralize stomach acid
+• Treating bee/wasp stings
+• Soil treatment with lime
+• Toothpaste neutralizes mouth acids
+
+**⚠️ SAFETY:**
+• Always add acid TO water
+• Wear protective equipment
+• Know first aid procedures`
   }
 ];
+

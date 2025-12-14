@@ -164,6 +164,7 @@ const getFullIntegratedScienceTopics = (): Topic[] => [
   { id: "is-dm-digestion-process", name: "Digestion and the Human Digestive System", slug: "is-dm-digestion-process", progressValue: 0, gradeLevel: "SHS 1 - Unit 2: Life Processes" },
   { id: "is-dm-respiration-aerobic-anaerobic", name: "Respiration: Aerobic and Anaerobic", slug: "is-dm-respiration-aerobic-anaerobic", progressValue: 0, gradeLevel: "SHS 1 - Unit 2: Life Processes" },
   { id: "is-dm-photosynthesis-process", name: "Photosynthesis: Making Food from Sunlight", slug: "is-dm-photosynthesis-process", progressValue: 0, gradeLevel: "SHS 1 - Unit 2: Life Processes" },
+  { id: "is-dm-genetics-inheritance", name: "Genetics and Inheritance", slug: "is-dm-genetics-inheritance", progressValue: 0, gradeLevel: "SHS 1 - Unit 2: Life Processes" },
 
   // Unit 3: Measurement
   { id: "is-measurement-units-instruments", name: "Units and Instruments", slug: "is-measurement-units-instruments", progressValue: 0, gradeLevel: "SHS 1 - Unit 2: Measurement" },
@@ -172,6 +173,7 @@ const getFullIntegratedScienceTopics = (): Topic[] => [
   // Unit 3: Energy
   { id: "is-en-forms-of-energy-types", name: "Forms of Energy", slug: "is-en-forms-of-energy-types", progressValue: 0, gradeLevel: "SHS 1 - Unit 3: Energy" },
   { id: "is-en-forms-of-energy-transformation-conservation", name: "Energy Transformation and Conservation", slug: "is-en-forms-of-energy-transformation-conservation", progressValue: 0, gradeLevel: "SHS 1 - Unit 3: Energy" },
+  { id: "is-en-heat-energy-temperature", name: "Heat Energy and Temperature", slug: "is-en-heat-energy-temperature", progressValue: 0, gradeLevel: "SHS 1 - Unit 3: Energy" },
 
   // Unit 4: Interactions of Matter
   { id: "is-im-acids-bases-salts-properties-reactions", name: "Acids, Bases, and Salts: Properties and Reactions", slug: "is-im-acids-bases-salts-properties-reactions", progressValue: 0, gradeLevel: "SHS 1 - Unit 4: Interactions of Matter" },
