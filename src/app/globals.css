@@ -220,4 +220,20 @@
   .dark ::-webkit-scrollbar-thumb:hover {
     @apply bg-muted-foreground/30;
   }
+
+  /* Immersive lesson mode - hide navigation on mobile */
+  body.immersive-lesson-mode header,
+  body.immersive-lesson-mode nav.fixed.bottom-0 {
+    @apply hidden md:flex;
+  }
+  
+  body.immersive-lesson-mode main {
+    @apply pt-0 pb-0;
+  }
+  
+  /* Ensure immersive content takes full height */
+  body.immersive-lesson-mode .immersive-container {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
 }
