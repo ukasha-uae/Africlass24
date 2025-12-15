@@ -1,6 +1,6 @@
 # Carousel Migration Tracker
 
-**Last Updated**: December 14, 2025  
+**Last Updated**: December 15, 2025  
 **Reference Guide**: [CAROUSEL_LESSONS_GUIDE.md](./CAROUSEL_LESSONS_GUIDE.md)  
 **Strategy Document**: [CAROUSEL_MIGRATION_STRATEGY.md](./CAROUSEL_MIGRATION_STRATEGY.md)
 
@@ -10,10 +10,10 @@
 
 ### Overall Statistics
 - **Total Lessons Planned**: ~800-1000
-- **Migrated**: 11
+- **Migrated**: 15
 - **In Progress**: 0
-- **Remaining**: ~789-989
-- **Progress**: ~1.1-1.4%
+- **Remaining**: ~785-985
+- **Progress**: ~1.5-1.9%
 
 ---
 
@@ -39,7 +39,7 @@
 | Nature and Scope of Chemistry | `chem-shs1-intro-nature-scope` | `NatureAndScopeOfChemistryIntro.tsx` | ✅ GOLD STANDARD | Dec 2025 |
 | Scientific Methods & Safety | `chem-shs1-intro-scientific-methods-safety` | `ScientificMethodsSafetyIntro.tsx` | ✅ Complete | Dec 14, 2025 |
 
-#### Integrated Science (SHS1) - 9 lessons
+#### Integrated Science (SHS1) - 13 lessons
 | Lesson | Slug | Intro Component | Status | Date |
 |--------|------|-----------------|--------|------|
 | States and Changes of Matter | `is-dm-matter-states-properties` | `StatesAndChangesOfMatterIntro.tsx` | ✅ Complete | Dec 14, 2025 |
@@ -51,6 +51,10 @@
 | Respiration: Aerobic & Anaerobic | `is-dm-respiration-aerobic-anaerobic` | `RespirationIntro.tsx` | ✅ Complete | Dec 14, 2025 |
 | Photosynthesis: Making Food from Sunlight | `is-dm-photosynthesis-process` | `PhotosynthesisIntro.tsx` | ✅ Complete | Dec 14, 2025 |
 | Genetics and Inheritance | `is-dm-genetics-inheritance` | `GeneticsIntro.tsx` | ✅ Complete | Dec 14, 2025 |
+| Forms of Energy | `is-en-forms-of-energy-types` | `FormsOfEnergyIntro.tsx` | ✅ Complete | Dec 15, 2025 |
+| Energy Transformation & Conservation | `is-en-forms-of-energy-transformation-conservation` | `EnergyTransformationIntro.tsx` | ✅ Complete | Dec 15, 2025 |
+| Heat Energy & Temperature | `is-en-heat-energy-temperature` | `HeatEnergyIntro.tsx` | ✅ Complete | Dec 15, 2025 |
+| Acids, Bases, and Salts | `is-im-acids-bases-salts-properties-reactions` | `AcidsBasesIntro.tsx` | ✅ Complete | Dec 15, 2025 |
 
 ### Key Learnings
 1. ✅ **DO NOT** add `carouselTeachingMethod` property - uses standard lesson structure

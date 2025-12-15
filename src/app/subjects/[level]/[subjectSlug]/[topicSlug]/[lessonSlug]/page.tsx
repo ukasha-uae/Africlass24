@@ -104,6 +104,13 @@ import FormsOfEnergyIntro from '@/components/intros/shs/integrated-science/Forms
 import EnergyTransformationIntro from '@/components/intros/shs/integrated-science/EnergyTransformationIntro';
 import HeatEnergyIntro from '@/components/intros/shs/integrated-science/HeatEnergyIntro';
 import AcidsBasesIntro from '@/components/intros/shs/integrated-science/AcidsBasesIntro';
+import PHScaleIntro from '@/components/intros/shs/integrated-science/PHScaleIntro';
+import CropAnimalProductionIntro from '@/components/intros/shs/integrated-science/CropAnimalProductionIntro';
+import SoilFertilityIntro from '@/components/intros/shs/integrated-science/SoilFertilityIntro';
+import SoilCompositionIntro from '@/components/intros/shs/integrated-science/SoilCompositionIntro';
+import ElementsCompoundsIntro from '@/components/intros/shs/integrated-science/ElementsCompoundsIntro';
+import UnitsInstrumentsIntro from '@/components/intros/shs/integrated-science/UnitsInstrumentsIntro';
+import AccuracyPrecisionIntro from '@/components/intros/shs/integrated-science/AccuracyPrecisionIntro';
 import { CarouselLesson } from '@/components/CarouselLesson';
 import { 
   addBookmark, 
@@ -280,8 +287,11 @@ export default function LessonPage() {
   }, [localLesson, firestoreLesson, educationLevel, localTopic?.name, subjectInfo?.name]);
 
   // Check carousel eligibility using feature flags
+  // Use lessonSlug as the main dependency to prevent infinite loops
+  const lessonId = lesson?.id || lesson?.slug || lessonSlug;
+  
   useEffect(() => {
-    if (lesson && level && subjectSlug && topicSlug && lessonSlug) {
+    if (lessonId && level && subjectSlug && topicSlug && lessonSlug) {
       // Check if carousel is enabled for this lesson
       const eligible = isCarouselEnabled(
         level,
@@ -301,7 +311,7 @@ export default function LessonPage() {
       setCarouselEligible(eligible);
       
       // Validate lesson structure if eligible
-      if (eligible) {
+      if (eligible && lesson) {
         try {
           const validation = validateLessonForCarousel(lesson);
           setValidationResult(validation);
@@ -347,7 +357,7 @@ export default function LessonPage() {
         }
       }
     }
-  }, [lesson, level, subjectSlug, topicSlug, lessonSlug]);
+  }, [lessonId, level, subjectSlug, topicSlug, lessonSlug, lesson]);
 
   // Autostart carousel mode if enabled in feature flags
   useEffect(() => {
@@ -361,15 +371,15 @@ export default function LessonPage() {
         setHasCheckedAutostart(true);
       });
     }
-  }, [carouselEligible, validationResult, hasCheckedAutostart]);
+  }, [carouselEligible, validationResult?.isValid, hasCheckedAutostart]);
 
-  // Debug: Log lesson slug
+  // Debug: Log lesson slug - use lessonSlug to prevent infinite loops
   useEffect(() => {
-    if (lesson) {
+    if (lesson?.slug) {
       console.log('Current lesson slug:', lesson.slug);
       console.log('Should show carousel button:', lesson.slug === 'shs3-quadratic-equations');
     }
-  }, [lesson]);
+  }, [lesson?.slug]);
 
   // Memoize the localQuizzes to prevent infinite loops
   const localQuizzes = useMemo(() => {
@@ -707,6 +717,20 @@ export default function LessonPage() {
               <HeatEnergyIntro />
             ) : lessonSlug === 'is-im-acids-bases-salts-properties-reactions' ? (
               <AcidsBasesIntro />
+            ) : lessonSlug === 'is-im-acids-bases-salts-ph-scale' ? (
+              <PHScaleIntro />
+            ) : lessonSlug === 'is-im-agricultural-science-crop-animal-production' ? (
+              <CropAnimalProductionIntro />
+            ) : lessonSlug === 'is-im-agricultural-science-soil-fertility-conservation' ? (
+              <SoilFertilityIntro />
+            ) : lessonSlug === 'is-dm-rocks-soil-composition' ? (
+              <SoilCompositionIntro />
+            ) : lessonSlug === 'is-diversity-matter-shs1' ? (
+              <ElementsCompoundsIntro />
+            ) : lessonSlug === 'is-measurement-units-instruments' ? (
+              <UnitsInstrumentsIntro />
+            ) : lessonSlug === 'is-accuracy-precision-measurement' ? (
+              <AccuracyPrecisionIntro />
             ) : (
               // Fallback - should not reach here if all intros are properly mapped
               null
@@ -798,83 +822,8 @@ export default function LessonPage() {
             </LessonVisual>
           )}
 
-          {/* Intelligent Voice Introduction for eligible carousel lessons */}
-          {carouselEligible && (
-            <>
-              {(lessonSlug === 'quadratic-equations' || lessonSlug === 'shs3-quadratic-equations') && <QuadraticEquationsIntro />}
-              {lessonSlug === 'factorization' && <FactorizationIntro />}
-              {lessonSlug === 'completing-the-square' && <CompletingSquareIntro />}
-              {lessonSlug === 'quadratic-formula' && <QuadraticFormulaIntro />}
-              {lessonSlug === 'sequences-series' && <SequencesSeriesIntro />}
-              {lessonSlug === 'functions-relations' && <FunctionsRelationsIntro />}
-              {lessonSlug === 'linear-programming' && <LinearProgrammingIntro />}
-              {lessonSlug === 'matrices-determinants' && <MatricesDeterminantsIntro />}
-              {lessonSlug === 'circle-theorems-1' && <CircleTheorems1Intro />}
-              {lessonSlug === 'circle-theorems-2' && <CircleTheorems2Intro />}
-              {lessonSlug === 'polygons-angles' && <PolygonsAnglesIntro />}
-              {lessonSlug === 'similarity-congruence' && <SimilarityCongruenceIntro />}
-              {lessonSlug === 'geometric-constructions' && <GeometricConstructionsIntro />}
-              {lessonSlug === 'coordinate-geometry' && <CoordinateGeometryIntro />}
-              {lessonSlug === 'trigonometric-ratios' && <TrigonometricRatiosIntro />}
-              {lessonSlug === 'trigonometric-identities' && <TrigonometricIdentitiesIntro />}
-              {lessonSlug === 'trig-graphs' && <TrigGraphsIntro />}
-              {lessonSlug === 'trigonometric-equations' && <TrigonometricEquationsIntro />}
-              {lessonSlug === 'applications-of-trigonometry' && <ApplicationsOfTrigonometryIntro />}
-              {lessonSlug === 'measures-of-central-tendency' && <MeasuresOfCentralTendencyIntro />}
-              {lessonSlug === 'measures-of-dispersion' && <MeasuresOfDispersionIntro />}
-              {lessonSlug === 'probability-fundamentals' && <ProbabilityFundamentalsIntro />}
-              {lessonSlug === 'probability-distributions' && <ProbabilityDistributionsIntro />}
-              {lessonSlug === 'sine-cosine-rules' && <SineCosineRulesIntro />}
-              {lessonSlug === 'shs3-bearings-scale-drawing' && <BearingsScaleDrawingIntro />}
-              {lessonSlug === 'shs3-cumulative-frequency-box-plots' && <CumulativeFrequencyBoxPlotsIntro />}
-              {lessonSlug === 'shs3-problem-solving-strategies' && <StructuredProblemSolvingIntro />}
-              {lessonSlug === 'shs3-wassce-revision' && <IntegratedWASSCERevisionIntro />}
-              {/* SHS2 Lessons */}
-              {lessonSlug === 'shs2-number-bases' && <NumberBasesIntro />}
-              {lessonSlug === 'shs2-binary-operations' && <BinaryOperationsIntro />}
-              {lessonSlug === 'shs2-algebraic-factorization' && <AlgebraicFactorizationIntro />}
-              {lessonSlug === 'shs2-simultaneous-linear-equations' && <SimultaneousLinearEquationsIntro />}
-              {lessonSlug === 'shs2-variation' && <VariationIntro />}
-              {lessonSlug === 'shs2-mensuration' && <MensurationIntro />}
-              {lessonSlug === 'shs2-trigonometry-ratios' && <TrigonometryRatiosIntro />}
-              {lessonSlug === 'shs2-circle-geometry' && <CircleGeometryIntro />}
-              {lessonSlug === 'shs2-transformation-geometry' && <TransformationGeometryIntro />}
-              {lessonSlug === 'shs2-statistics-measures' && <StatisticsMeasuresIntro />}
-              {lessonSlug === 'shs2-probability-combined' && <ProbabilityCombinedIntro />}
-              {/* SHS1 Lessons */}
-              {lessonSlug === 'shs1-types-of-numbers' && <TypesOfNumbersIntro />}
-              {lessonSlug === 'shs1-fractions-decimals-percentages' && <FractionsDecimalsPercentagesIntro />}
-              {lessonSlug === 'sets-venn-diagrams' && <SetsVennDiagramsIntro />}
-              {lessonSlug === 'cm-algebraic-expressions' && <AlgebraicExpressionsIntro />}
-              {lessonSlug === 'shs1-linear-equations-inequalities' && <LinearEquationsInequalitiesIntro />}
-              {lessonSlug === 'shs1-directed-numbers' && <DirectedNumbersIntro />}
-              {lessonSlug === 'shs1-approximation-estimation' && <ApproximationEstimationIntro />}
-              {lessonSlug === 'shs1-factors-multiples' && <FactorsMultiplesIntro />}
-              {lessonSlug === 'shs1-geometry-lines-angles' && <GeometryLinesAnglesIntro />}
-              {lessonSlug === 'shs1-geometry-triangles-quadrilaterals' && <GeometryTrianglesQuadrilateralsIntro />}
-              {lessonSlug === 'shs1-geometry-constructions-loci' && <GeometryConstructionsLociIntro />}
-              {lessonSlug === 'shs1-data-collection-presentation' && <DataCollectionPresentationIntro />}
-              {lessonSlug === 'shs1-introduction-to-probability' && <IntroductionToProbabilityIntro />}
-              {lessonSlug === 'shs1-logical-reasoning' && <LogicalReasoningIntro />}
-              {lessonSlug === 'shs1-business-mathematics' && <BusinessMathematicsIntro />}
-              {/* Integrated Science Lessons */}
-              {lessonSlug === 'chem-shs1-intro-nature-scope' && <NatureAndScopeOfChemistryIntro />}
-              {lessonSlug === 'chem-shs1-intro-scientific-methods-safety' && <ScientificMethodsAndSafetyIntro />}
-              {lessonSlug === 'is-dm-matter-states-properties' && <StatesAndChangesOfMatterIntro />}
-              {lessonSlug === 'is-dm-cells-structure-function' && <CellStructureFunctionIntro />}
-              {lessonSlug === 'is-dm-cells-cell-division' && <CellDivisionIntro />}
-              {lessonSlug === 'is-dm-rocks-soil-types-formation' && <RocksTypesFormationIntro />}
-              {lessonSlug === 'is-dm-nutrition-balanced-diet' && <NutritionBalancedDietIntro />}
-              {lessonSlug === 'is-dm-digestion-process' && <DigestionIntro />}
-              {lessonSlug === 'is-dm-respiration-aerobic-anaerobic' && <RespirationIntro />}
-              {lessonSlug === 'is-dm-photosynthesis-process' && <PhotosynthesisIntro />}
-              {lessonSlug === 'is-dm-genetics-inheritance' && <GeneticsIntro />}
-              {lessonSlug === 'is-en-forms-of-energy-types' && <FormsOfEnergyIntro />}
-              {lessonSlug === 'is-en-forms-of-energy-transformation-conservation' && <EnergyTransformationIntro />}
-              {lessonSlug === 'is-en-heat-energy-temperature' && <HeatEnergyIntro />}
-              {lessonSlug === 'is-im-acids-bases-salts-properties-reactions' && <AcidsBasesIntro />}
-            </>
-          )}
+          {/* Note: Intelligent Voice Intros are now shown ONLY inside CarouselLesson mode
+              to avoid duplicate intros and ensure buttons work properly */}
 
           {lesson.introduction && (
             <Card>

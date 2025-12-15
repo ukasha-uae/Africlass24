@@ -32,6 +32,7 @@ import {
 import {
   ParticleArrangementAnimation
 } from './MatterAnimations';
+import { NumberSetsAnimation } from './NumberSetsAnimation';
 import { 
   translationSteps, 
   translationFrames, 
@@ -107,7 +108,6 @@ export default function MarkdownRenderer({ content, id, className }: MarkdownRen
           return (
             <div 
               key={pIndex} 
-              className="my-4"
               dangerouslySetInnerHTML={{ __html: processedHtml }} 
             />
           );
@@ -379,6 +379,13 @@ export default function MarkdownRenderer({ content, id, className }: MarkdownRen
                   return (
                     <div key={pIndex} className="my-6" data-skip-tts="true">
                       <ParticleArrangementAnimation />
+                    </div>
+                  );
+                
+                case 'numbersetsanimation':
+                  return (
+                    <div key={pIndex} className="my-6" data-skip-tts="true">
+                      <NumberSetsAnimation />
                     </div>
                   );
                 

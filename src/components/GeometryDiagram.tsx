@@ -8,13 +8,23 @@ interface TreeNode {
 
 interface SetBox {
   name: string;
+  symbol?: string;
   color: string;
   stroke: string;
-  x: number;
-  y: number;
-  width: number;
-  height: number;
+  x?: number;
+  y?: number;
+  width?: number;
+  height?: number;
   label: string;
+  examples?: string;
+}
+
+interface IrrationalSet {
+  show: boolean;
+  color: string;
+  stroke: string;
+  label: string;
+  examples: string;
 }
 
 interface Annotation {
@@ -58,6 +68,9 @@ interface GeometryDiagramProps {
   sets?: SetBox[];
   annotations?: Annotation[];
   shapes?: Shape[]; // For custom transformation diagrams
+  responsive?: boolean;
+  layout?: 'horizontal' | 'vertical';
+  irrational?: IrrationalSet;
 }
 
 export default function GeometryDiagram(props: GeometryDiagramProps) {
@@ -989,65 +1002,234 @@ export default function GeometryDiagram(props: GeometryDiagramProps) {
   }
 
   if (props.type === 'nested-sets' && props.sets) {
-    // Render nested rectangles representing number sets hierarchy
-    props.sets.forEach((set, index) => {
-      shapes.push(
-        <rect
-          key={`set-${index}`}
-          x={set.x}
-          y={set.y}
-          width={set.width}
-          height={set.height}
-          fill={set.color}
-          stroke={set.stroke}
-          strokeWidth="3"
-          rx="10"
-          className="opacity-90"
-        />
-      );
+    const isVertical = props.layout === 'vertical';
+    const numSets = props.sets.length;
+    const padding = 12;
+    const setHeight = isVertical ? 70 : height / numSets;
+    const totalHeight = isVertical ? numSets * setHeight + padding * 2 : height;
+    
+    // Use vertical stacked layout (mobile-friendly)
+    if (isVertical) {
+      // Calculate dimensions for nested concentric rectangles
+      const boxWidth = width - padding * 2;
+      const boxHeight = totalHeight - padding * 2;
+      const shrinkX = 16;
+      const shrinkY = (boxHeight - 40) / (numSets);
+      
+      props.sets.forEach((set, index) => {
+        const x = padding + index * shrinkX;
+        const y = padding + index * shrinkY;
+        const w = boxWidth - index * shrinkX * 2;
+        const h = boxHeight - index * shrinkY;
+        
+        // Draw the nested rectangle
+        shapes.push(
+          <rect
+            key={`set-${index}`}
+            x={x}
+            y={y}
+            width={w}
+            height={h}
+            fill={set.color}
+            stroke={set.stroke}
+            strokeWidth="2.5"
+            rx="12"
+            className="transition-all duration-200"
+          />
+        );
 
-      // Set name at top
-      textLabels.push(
-        <text
-          key={`set-name-${index}`}
-          x={set.x + 15}
-          y={set.y + 25}
-          className="fill-current text-base font-bold"
-        >
-          {set.name}
-        </text>
-      );
-
-      // Set description/label
-      if (set.label) {
+        // Set symbol badge (circle with symbol)
+        const badgeX = x + 12;
+        const badgeY = y + 12;
+        shapes.push(
+          <circle
+            key={`badge-${index}`}
+            cx={badgeX + 14}
+            cy={badgeY + 14}
+            r="14"
+            fill={set.stroke}
+            className="opacity-90"
+          />
+        );
         textLabels.push(
           <text
-            key={`set-label-${index}`}
-            x={set.x + 15}
-            y={set.y + 45}
-            className="fill-current text-xs opacity-70"
+            key={`symbol-${index}`}
+            x={badgeX + 14}
+            y={badgeY + 19}
+            textAnchor="middle"
+            className="fill-white text-sm font-bold"
+            style={{ fontSize: '13px' }}
           >
-            {set.label}
+            {set.symbol || set.name.charAt(0)}
+          </text>
+        );
+
+        // Set name
+        textLabels.push(
+          <text
+            key={`set-name-${index}`}
+            x={badgeX + 35}
+            y={badgeY + 10}
+            className="fill-current font-semibold"
+            style={{ fontSize: '11px' }}
+          >
+            {set.name}
+          </text>
+        );
+
+        // Examples (smaller, below the name)
+        if (set.examples) {
+          textLabels.push(
+            <text
+              key={`set-examples-${index}`}
+              x={badgeX + 35}
+              y={badgeY + 24}
+              className="fill-current opacity-60"
+              style={{ fontSize: '9px' }}
+            >
+              {set.examples}
+            </text>
+          );
+        }
+      });
+
+      // Add Irrational numbers section if specified
+      if (props.irrational?.show) {
+        const irrX = width - 95;
+        const irrY = padding + 40;
+        
+        // Irrational box
+        shapes.push(
+          <rect
+            key="irrational-box"
+            x={irrX}
+            y={irrY}
+            width={80}
+            height={60}
+            fill={props.irrational.color}
+            stroke={props.irrational.stroke}
+            strokeWidth="2"
+            rx="8"
+            strokeDasharray="4,2"
+          />
+        );
+        
+        textLabels.push(
+          <text
+            key="irrational-label"
+            x={irrX + 40}
+            y={irrY + 20}
+            textAnchor="middle"
+            className="fill-current font-semibold"
+            style={{ fontSize: '9px', fill: props.irrational.stroke }}
+          >
+            Irrational
+          </text>
+        );
+        
+        textLabels.push(
+          <text
+            key="irrational-examples"
+            x={irrX + 40}
+            y={irrY + 38}
+            textAnchor="middle"
+            className="fill-current opacity-70"
+            style={{ fontSize: '9px' }}
+          >
+            {props.irrational.examples}
+          </text>
+        );
+        
+        // Note explaining irrational is part of Real but not Rational
+        textLabels.push(
+          <text
+            key="irrational-note"
+            x={irrX + 40}
+            y={irrY + 52}
+            textAnchor="middle"
+            className="fill-current opacity-50"
+            style={{ fontSize: '7px' }}
+          >
+            (ℝ but not ℚ)
           </text>
         );
       }
-    });
 
-    // Add annotations (for irrational numbers text, etc.)
-    if (props.annotations) {
-      props.annotations.forEach((annotation, index) => {
+      // Return with the calculated height for vertical layout
+      return (
+        <div className="w-full flex justify-center my-4">
+          <svg
+            viewBox={`0 0 ${width} ${totalHeight}`}
+            className="w-full max-w-sm h-auto"
+            style={{ maxHeight: `${totalHeight}px` }}
+            preserveAspectRatio="xMidYMid meet"
+          >
+            {shapes}
+            {textLabels}
+          </svg>
+        </div>
+      );
+    } else {
+      // Legacy horizontal layout (backward compatibility)
+      props.sets.forEach((set, index) => {
+        shapes.push(
+          <rect
+            key={`set-${index}`}
+            x={set.x}
+            y={set.y}
+            width={set.width}
+            height={set.height}
+            fill={set.color}
+            stroke={set.stroke}
+            strokeWidth="3"
+            rx="10"
+            className="opacity-90"
+          />
+        );
+
+        // Set name at top
         textLabels.push(
           <text
-            key={`annotation-${index}`}
-            x={annotation.x}
-            y={annotation.y}
-            className="fill-current text-sm font-medium"
-            style={{ fill: annotation.color || 'currentColor' }}
+            key={`set-name-${index}`}
+            x={(set.x || 0) + 15}
+            y={(set.y || 0) + 25}
+            className="fill-current text-base font-bold"
           >
-            {annotation.text}
+            {set.name}
           </text>
         );
+
+        // Set description/label
+        if (set.label) {
+          textLabels.push(
+            <text
+              key={`set-label-${index}`}
+              x={(set.x || 0) + 15}
+              y={(set.y || 0) + 45}
+              className="fill-current text-xs opacity-70"
+            >
+              {set.label}
+            </text>
+          );
+        }
       });
+
+      // Add annotations (for irrational numbers text, etc.)
+      if (props.annotations) {
+        props.annotations.forEach((annotation, index) => {
+          textLabels.push(
+            <text
+              key={`annotation-${index}`}
+              x={annotation.x}
+              y={annotation.y}
+              className="fill-current text-sm font-medium"
+              style={{ fill: annotation.color || 'currentColor' }}
+            >
+              {annotation.text}
+            </text>
+          );
+        });
+      }
     }
   }
 

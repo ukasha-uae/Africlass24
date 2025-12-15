@@ -85,6 +85,13 @@ export const FEATURE_FLAGS = {
       'is-en-forms-of-energy-transformation-conservation',
       'is-en-heat-energy-temperature',
       'is-im-acids-bases-salts-properties-reactions',
+      'is-im-acids-bases-salts-ph-scale',
+      'is-im-agricultural-science-crop-animal-production',
+      'is-im-agricultural-science-soil-fertility-conservation',
+      'is-dm-rocks-soil-composition',
+      'is-diversity-matter-shs1',
+      'is-measurement-units-instruments',
+      'is-accuracy-precision-measurement',
     ], // Support multiple topic formats
     lessons: [
       'quadratic-equations',
@@ -160,7 +167,14 @@ export const FEATURE_FLAGS = {
       'is-en-forms-of-energy-transformation-conservation', // Energy Transformation and Conservation
       'is-en-heat-energy-temperature', // Heat Energy and Temperature
       'is-im-acids-bases-salts-properties-reactions', // Acids, Bases, and Salts
-    ], // SHS3 (29) + SHS2 (11) + SHS1 (15) + Science (15) = 70 lessons total
+      'is-im-acids-bases-salts-ph-scale', // Acids, Bases, and Salts: The pH Scale
+      'is-im-agricultural-science-crop-animal-production', // Crop and Animal Production (Basics)
+      'is-im-agricultural-science-soil-fertility-conservation', // Soil Fertility and Conservation
+      'is-dm-rocks-soil-composition', // Soil Composition and Importance
+      'is-diversity-matter-shs1', // Elements, Compounds & Mixtures
+      'is-measurement-units-instruments', // Units and Instruments (Measurement)
+      'is-accuracy-precision-measurement', // Accuracy and Precision in Measurement
+    ], // SHS3 (29) + SHS2 (11) + SHS1 (16) + Science (21) = 77 lessons total
   },
 };
 

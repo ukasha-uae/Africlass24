@@ -12789,6 +12789,3284 @@ Answer: <strong>Sodium sulfate (Na₂SO₄)</strong>
 • Always add acid TO water
 • Wear protective equipment
 • Know first aid procedures`
+  },
+
+  // =============================================
+  // pH SCALE (Detailed Lesson)
+  // =============================================
+  {
+    id: 'is-shs1-acids-bases-salts-2',
+    slug: 'is-im-acids-bases-salts-ph-scale',
+    title: 'The pH Scale',
+    objectives: [
+      'Define pH and explain what it measures',
+      'Describe the pH scale from 0 to 14',
+      'Classify substances as acidic, neutral, or basic using pH values',
+      'Explain the logarithmic nature of the pH scale',
+      'Use indicators to determine pH of common substances',
+      'Apply pH knowledge to real-world situations'
+    ],
+
+    introduction: `
+# THE pH SCALE: Measuring Acidity and Basicity
+
+## What is pH?
+
+Have you ever wondered why lemon juice tastes sour while soap feels slippery? The answer lies in the **pH scale** - a fundamental chemistry concept that measures how acidic or basic a substance is!
+
+**pH** stands for "**p**ower of **H**ydrogen" and tells us the concentration of hydrogen ions (H⁺) in a solution.
+
+**In this lesson, you will learn:**
+- What pH means and how it is measured
+- The pH scale from 0 to 14
+- How to classify substances by their pH
+- Why pH matters in living systems and agriculture
+- How to use indicators to test pH
+- Safety considerations when handling acids and bases
+
+---
+
+## The pH Scale at a Glance
+
+The pH scale runs from **0 to 14**:
+- **pH 0-6:** Acidic (more H⁺ ions)
+- **pH 7:** Neutral (equal H⁺ and OH⁻)
+- **pH 8-14:** Basic/Alkaline (fewer H⁺ ions)
+
+**Key Insight:** Each pH unit represents a **10-fold change** in acidity!
+- pH 3 is 10× more acidic than pH 4
+- pH 3 is 100× more acidic than pH 5
+- pH 3 is 1000× more acidic than pH 6
+
+---
+
+## pH in Ghana
+
+Understanding pH is crucial for many aspects of Ghanaian life:
+- **Agriculture:** Soil pH determines which crops grow best
+- **Food:** Sobolo, palm wine, and kenkey all have specific pH values
+- **Health:** Blood pH must stay between 7.35-7.45
+- **Industry:** Water treatment, soap making, and mining all depend on pH control
+
+Let us explore this fascinating topic!
+`,
+
+    keyConcepts: [
+      {
+        title: '1. What is pH?',
+        content: `**pH** stands for "**p**ower of **H**ydrogen" or "**p**otential of **H**ydrogen."
+
+**Definition:** pH is a measure of how acidic or basic (alkaline) a solution is.
+
+**The Chemistry:**
+- pH measures the concentration of hydrogen ions (H⁺) in a solution
+- More H⁺ ions = more acidic = lower pH
+- Fewer H⁺ ions = more basic = higher pH
+
+**The Formula:**
+<div style="background: #1e293b; padding: 12px 16px; border-radius: 8px; font-family: monospace; text-align: center; margin: 8px 0;">
+pH = -log[H⁺]
+</div>
+
+**Why It Matters:**
+- Living organisms are very sensitive to pH changes
+- Blood must stay between pH 7.35-7.45
+- Even small changes can be fatal!
+
+**Fun Fact for Ghana:**
+Shea butter production involves monitoring pH to ensure quality and skin safety!`
+      },
+      {
+        title: '2. The pH Scale Explained',
+        content: `**The pH scale runs from 0 to 14:**
+
+<div style="background: linear-gradient(to right, #dc2626, #f97316, #eab308, #22c55e, #0ea5e9, #6366f1, #9333ea); padding: 12px 20px; border-radius: 8px; text-align: center; font-family: monospace; font-size: 16px; color: white; font-weight: bold; margin: 12px 0;">
+0 — 1 — 2 — 3 — 4 — 5 — 6 — 7 — 8 — 9 — 10 — 11 — 12 — 13 — 14
+</div>
+
+<table>
+<tr><th>pH Range</th><th>Classification</th><th>H⁺ Concentration</th></tr>
+<tr><td><strong>0-6</strong></td><td>🔴 Acidic</td><td>High H⁺ concentration</td></tr>
+<tr><td><strong>7</strong></td><td>⚪ Neutral</td><td>Equal H⁺ and OH⁻</td></tr>
+<tr><td><strong>8-14</strong></td><td>🔵 Basic/Alkaline</td><td>Low H⁺, High OH⁻</td></tr>
+</table>
+
+**Key Points:**
+- Pure water has pH 7 (neutral)
+- Strong acids have pH close to 0
+- Strong bases have pH close to 14
+- Most living things need pH between 6-8`
+      },
+      {
+        title: '3. The Logarithmic Nature',
+        content: `**Why pH is Special:** Each pH unit represents a **10-fold (10×) change** in H⁺ concentration!
+
+**Understanding the Math:**
+<table>
+<tr><th>pH Change</th><th>Difference in H⁺</th><th>Example</th></tr>
+<tr><td>pH 4 to pH 3</td><td>10× more acidic</td><td>Tomato → Orange juice</td></tr>
+<tr><td>pH 5 to pH 3</td><td>100× more acidic</td><td>Coffee → Lemon juice</td></tr>
+<tr><td>pH 6 to pH 3</td><td>1,000× more acidic</td><td>Milk → Battery acid</td></tr>
+</table>
+
+**Real Example:**
+- Stomach acid (pH 1) is **1,000,000 times** more acidic than pure water (pH 7)
+- That is 10⁶ = 1 million times difference!
+
+**Why This Matters:**
+- Small pH changes mean BIG chemical changes
+- This is why acid rain (pH 4.2) damages ecosystems
+- Normal rain is pH 5.6 - that is 25× less acidic!`
+      },
+      {
+        title: '4. Common Substances and Their pH',
+        content: `**Everyday pH Values:**
+
+<table>
+<tr><th>Substance</th><th>pH</th><th>Classification</th></tr>
+<tr><td>🔋 Battery Acid</td><td>0-1</td><td>Strongly Acidic</td></tr>
+<tr><td>🍋 Lemon Juice</td><td>2-3</td><td>Acidic</td></tr>
+<tr><td>🍅 Tomatoes</td><td>4</td><td>Mildly Acidic</td></tr>
+<tr><td>☕ Coffee</td><td>5</td><td>Weakly Acidic</td></tr>
+<tr><td>🥛 Milk</td><td>6.5</td><td>Slightly Acidic</td></tr>
+<tr><td>💧 Pure Water</td><td>7</td><td>Neutral</td></tr>
+<tr><td>🩸 Blood</td><td>7.4</td><td>Slightly Basic</td></tr>
+<tr><td>🧼 Soap</td><td>9-10</td><td>Basic</td></tr>
+<tr><td>🧴 Bleach</td><td>12-13</td><td>Strongly Basic</td></tr>
+<tr><td>🔧 Drain Cleaner</td><td>14</td><td>Very Strongly Basic</td></tr>
+</table>
+
+**Ghanaian Context:**
+- Palm wine: pH 3.5-4 (acidic from fermentation)
+- Sobolo (hibiscus drink): pH 2.5-3 (very acidic)
+- Kenkey water: pH 3.8-4.2 (acidic, aids digestion)
+- Cocoa: pH 5-6 (mildly acidic)`
+      },
+      {
+        title: '5. pH Indicators',
+        content: `**Indicators** are substances that change color depending on pH.
+
+**Common Indicators:**
+<table>
+<tr><th>Indicator</th><th>Acidic Color</th><th>Basic Color</th><th>Range</th></tr>
+<tr><td>Litmus Paper</td><td>🔴 Red</td><td>🔵 Blue</td><td>Acid/Base only</td></tr>
+<tr><td>Phenolphthalein</td><td>⚪ Colorless</td><td>🩷 Pink</td><td>pH 8-10</td></tr>
+<tr><td>Methyl Orange</td><td>🔴 Red</td><td>🟡 Yellow</td><td>pH 3-5</td></tr>
+<tr><td>Bromothymol Blue</td><td>🟡 Yellow</td><td>🔵 Blue</td><td>pH 6-8</td></tr>
+<tr><td>Universal Indicator</td><td>🔴→🟠→🟡</td><td>🟢→🔵→🟣</td><td>pH 1-14</td></tr>
+</table>
+
+**Universal Indicator:** Shows the complete rainbow!
+- Red/Orange = Very acidic (pH 1-4)
+- Yellow/Green = Neutral (pH 5-7)
+- Blue/Purple = Basic (pH 8-14)
+
+**Natural Indicators in Ghana:**
+- Red cabbage juice changes color with pH
+- Hibiscus (sobolo) flowers - red in acid, blue-green in base
+- Turmeric - yellow in acid, red in base`
+      },
+      {
+        title: '6. pH in Living Systems',
+        content: `**Life Depends on pH Balance!**
+
+**Human Body pH:**
+<table>
+<tr><th>Body Part</th><th>pH</th><th>Why It Matters</th></tr>
+<tr><td>Stomach</td><td>1.5-3.5</td><td>Kills bacteria, digests proteins</td></tr>
+<tr><td>Skin</td><td>4.5-5.5</td><td>Protects against infections</td></tr>
+<tr><td>Saliva</td><td>6.5-7.5</td><td>Starts digestion, protects teeth</td></tr>
+<tr><td>Blood</td><td>7.35-7.45</td><td>Enzymes work only in this range</td></tr>
+<tr><td>Small Intestine</td><td>7.5-8.5</td><td>Optimal for digestive enzymes</td></tr>
+</table>
+
+**What Happens When pH Goes Wrong?**
+- Blood pH below 7.35 = **Acidosis** (can be fatal)
+- Blood pH above 7.45 = **Alkalosis** (can be fatal)
+- Body uses buffers to maintain pH
+
+**Enzymes and pH:**
+- Each enzyme works best at a specific pH
+- Pepsin (stomach) works best at pH 2
+- Trypsin (intestine) works best at pH 8
+- Wrong pH = enzyme does not work!`
+      },
+      {
+        title: '7. pH in Agriculture',
+        content: `**Soil pH Affects Crop Growth!**
+
+**Ideal Soil pH for Crops:**
+<table>
+<tr><th>Crop</th><th>Optimal pH</th><th>Notes</th></tr>
+<tr><td>🌾 Maize</td><td>5.8-7.0</td><td>Main staple in Ghana</td></tr>
+<tr><td>🍅 Tomatoes</td><td>6.0-6.8</td><td>Slightly acidic preferred</td></tr>
+<tr><td>🥜 Groundnuts</td><td>5.5-6.5</td><td>Important cash crop</td></tr>
+<tr><td>🌴 Oil Palm</td><td>4.0-6.0</td><td>Tolerates acidic soil</td></tr>
+<tr><td>🍫 Cocoa</td><td>5.0-7.0</td><td>Ghana major export</td></tr>
+</table>
+
+**Why Soil pH Matters:**
+- Affects nutrient availability
+- Controls bacterial activity
+- Influences root growth
+- Determines which crops thrive
+
+**Correcting Soil pH in Ghana:**
+- **Too Acidic:** Add lime (calcium carbonate)
+- **Too Basic:** Add sulfur or organic matter
+- Forest soils are often acidic
+- Savanna soils vary more widely
+
+**Ghanaian Context:**
+Many soils in Southern Ghana are acidic due to high rainfall washing away basic minerals.`
+      },
+      {
+        title: '8. pH Applications and Safety',
+        content: `**Real-World pH Applications:**
+
+**Medicine:**
+- Antacids (like Mist. Mag.) neutralize excess stomach acid
+- pH testing in urine indicates health issues
+- Wound care products maintain proper pH
+
+**Industry:**
+- Swimming pool pH kept at 7.2-7.8
+- Food preservation uses pH control
+- Water treatment monitors pH
+- Soap making requires pH testing
+
+**Environment:**
+- Acid rain damages buildings and plants
+- Ocean acidification affects marine life
+- Water quality testing for safety
+
+**Safety Precautions:**
+<table>
+<tr><th>pH Level</th><th>Hazard</th><th>Safety Action</th></tr>
+<tr><td>0-2</td><td>⚠️ Strong Acid Burns</td><td>Wear gloves, goggles, apron</td></tr>
+<tr><td>12-14</td><td>⚠️ Strong Base Burns</td><td>Wear gloves, goggles, apron</td></tr>
+<tr><td>3-11</td><td>Generally safer</td><td>Still use caution</td></tr>
+</table>
+
+**First Aid:**
+- Acid on skin: Wash with lots of water
+- Base on skin: Wash with water (NOT vinegar)
+- Always seek medical help for burns`
+      }
+    ],
+
+    activities: {
+      type: 'exercises',
+      questions: [
+        {
+          type: 'mcq',
+          question: 'What does pH stand for?',
+          options: ['Power of Helium', 'Percentage of Hydrogen', 'Power of Hydrogen', 'Pure Hydrogen'],
+          answer: 'Power of Hydrogen',
+          explanation: 'pH stands for "power of Hydrogen" and measures hydrogen ion concentration.'
+        },
+        {
+          type: 'mcq',
+          question: 'What is the pH of a neutral solution?',
+          options: ['0', '5', '7', '14'],
+          answer: '7',
+          explanation: 'pH 7 is neutral - equal concentrations of H⁺ and OH⁻ ions.'
+        },
+        {
+          type: 'mcq',
+          question: 'If a solution has pH 3, it is:',
+          options: ['Neutral', 'Weakly acidic', 'Strongly acidic', 'Basic'],
+          answer: 'Strongly acidic',
+          explanation: 'pH 3 is strongly acidic. The lower the pH below 7, the more acidic.'
+        },
+        {
+          type: 'mcq',
+          question: 'How much more acidic is pH 2 compared to pH 4?',
+          options: ['2 times', '4 times', '20 times', '100 times'],
+          answer: '100 times',
+          explanation: 'Each pH unit = 10× change. Two units = 10 × 10 = 100 times more acidic.'
+        },
+        {
+          type: 'mcq',
+          question: 'What color does litmus paper turn in an acid?',
+          options: ['Blue', 'Red', 'Green', 'Yellow'],
+          answer: 'Red',
+          explanation: 'Acids turn blue litmus paper red.'
+        },
+        {
+          type: 'mcq',
+          question: 'What is the normal pH range of human blood?',
+          options: ['6.0-6.5', '7.35-7.45', '8.0-8.5', '5.5-6.0'],
+          answer: '7.35-7.45',
+          explanation: 'Blood pH must stay between 7.35-7.45 for enzymes to function properly.'
+        },
+        {
+          type: 'mcq',
+          question: 'Which indicator gives a full range of colors for different pH values?',
+          options: ['Litmus', 'Phenolphthalein', 'Methyl orange', 'Universal indicator'],
+          answer: 'Universal indicator',
+          explanation: 'Universal indicator shows a rainbow of colors across the entire pH scale.'
+        },
+        {
+          type: 'mcq',
+          question: 'Which substance has the lowest pH?',
+          options: ['Lemon juice', 'Coffee', 'Milk', 'Battery acid'],
+          answer: 'Battery acid',
+          explanation: 'Battery acid has pH 0-1, making it the most acidic of these substances.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'A pH of 9 is more acidic than a pH of 4.',
+          answer: 'false',
+          reason: 'pH 9 is basic (above 7), while pH 4 is acidic. Lower pH = more acidic.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Pure water has a pH of exactly 7.',
+          answer: 'true',
+          reason: 'Pure water at 25°C has equal H⁺ and OH⁻ concentrations, giving pH 7.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'A change from pH 5 to pH 2 represents a 30-fold increase in acidity.',
+          answer: 'false',
+          reason: 'Three pH units = 10×10×10 = 1000-fold increase in acidity, not 30-fold.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Phenolphthalein turns pink in acidic solutions.',
+          answer: 'false',
+          reason: 'Phenolphthalein is colorless in acid and turns pink in basic solutions.'
+        }
+      ]
+    },
+
+    pastQuestions: [
+      {
+        question: 'The pH of a solution changed from 5 to 3. By what factor did the hydrogen ion concentration change?\n\nA. 2 times\nB. 5 times\nC. 10 times\nD. 100 times',
+        year: 'WASSCE 2022',
+        solution: `**Answer: D. 100 times**
+
+**Explanation:** From pH 5 to pH 3 is a change of 2 units. Since each pH unit represents a 10× change in hydrogen ion concentration:
+- 2 units = 10 × 10 = **100 times increase**
+
+Remember: The pH scale is logarithmic, so each unit change means a 10-fold change in H⁺ concentration.`
+      },
+      {
+        question: 'Which of the following has the highest pH?\n\nA. Lemon juice\nB. Pure water\nC. Soap solution\nD. Vinegar',
+        year: 'WASSCE 2021',
+        solution: `**Answer: C. Soap solution**
+
+**Explanation:** 
+- Lemon juice: pH 2-3 (acidic)
+- Pure water: pH 7 (neutral)
+- Soap solution: pH 9-10 (basic) ✓ **HIGHEST**
+- Vinegar: pH 2-3 (acidic)
+
+The higher the pH, the more basic the solution. Soap is basic, so it has the highest pH among these options.`
+      },
+      {
+        question: 'Universal indicator in a solution shows green color. The solution is:\n\nA. Strongly acidic\nB. Weakly acidic\nC. Neutral\nD. Strongly basic',
+        year: 'WASSCE 2020',
+        solution: `**Answer: C. Neutral**
+
+**Explanation:** Universal indicator shows different colors at different pH values:
+- Red/Orange = Strongly acidic (pH 1-4)
+- Yellow = Weakly acidic (pH 5-6)
+- **Green = Neutral (pH 7)** ✓
+- Blue = Weakly basic (pH 8-10)
+- Purple = Strongly basic (pH 11-14)
+
+Green color indicates pH around 7, which is neutral.`
+      },
+      {
+        question: 'Blood pH must be maintained within a narrow range because:\n\nA. Blood cells need oxygen\nB. Enzymes only work at specific pH\nC. The heart pumps better\nD. Nutrients dissolve better',
+        year: 'WASSCE 2019',
+        solution: `**Answer: B. Enzymes only work at specific pH**
+
+**Explanation:** Blood pH must stay between 7.35-7.45 because:
+- Enzymes are pH-sensitive proteins
+- Each enzyme has an optimal pH range
+- Even small pH changes can denature (damage) enzymes
+- Denatured enzymes cannot catalyze vital biochemical reactions
+- This can be fatal to the organism
+
+While all options have some truth, the PRIMARY reason is enzyme function.`
+      }
+    ],
+
+    summary: `**📊 WHAT IS pH?**
+• pH = Power of Hydrogen
+• Measures hydrogen ion (H⁺) concentration
+• Formula: pH = -log[H⁺]
+
+**📏 THE pH SCALE (0-14):**
+• pH 0-6 = Acidic (high H⁺)
+• pH 7 = Neutral (pure water)
+• pH 8-14 = Basic/Alkaline (low H⁺)
+
+**🔢 LOGARITHMIC SCALE:**
+• Each pH unit = 10× change in H⁺
+• pH 3 is 100× more acidic than pH 5
+• pH 2 is 1000× more acidic than pH 5
+
+**🎨 INDICATORS:**
+• Litmus: Red in acid, Blue in base
+• Phenolphthalein: Colorless → Pink in base
+• Universal: Full rainbow of colors
+
+**🏠 COMMON pH VALUES:**
+• Battery acid: pH 0-1
+• Lemon juice: pH 2-3
+• Coffee: pH 5
+• Pure water: pH 7
+• Blood: pH 7.4
+• Soap: pH 9-10
+• Bleach: pH 12-13
+
+**🧬 pH IN LIVING SYSTEMS:**
+• Blood MUST stay pH 7.35-7.45
+• Stomach acid: pH 1.5-3.5
+• Each enzyme has optimal pH
+
+**🌱 pH IN AGRICULTURE:**
+• Soil pH affects crop growth
+• Most crops prefer pH 5.5-7.0
+• Lime raises soil pH
+• Sulfur lowers soil pH
+
+**⚠️ SAFETY:**
+• Strong acids (pH 0-2) cause burns
+• Strong bases (pH 12-14) cause burns
+• Always wear protection
+• Wash spills with water`
+  },
+
+  // =============================================
+  // CROP AND ANIMAL PRODUCTION (BASICS)
+  // =============================================
+  {
+    id: 'is-shs1-agriculture-1',
+    slug: 'is-im-agricultural-science-crop-animal-production',
+    title: 'Crop and Animal Production (Basics)',
+    objectives: [
+      'Define crop production and animal production',
+      'Identify major crops grown in Ghana and their importance',
+      'Describe basic crop farming practices',
+      'Identify common livestock raised in Ghana',
+      'Explain basic animal husbandry practices',
+      'Understand the economic importance of agriculture in Ghana'
+    ],
+
+    introduction: `
+# CROP AND ANIMAL PRODUCTION: The Foundation of Ghana's Agriculture
+
+## Why Study Agriculture?
+
+Agriculture is the backbone of Ghana's economy! Over 50% of Ghanaians are involved in farming, and agriculture contributes significantly to our GDP and food security.
+
+**In this lesson, you will learn:**
+- What crop and animal production involve
+- Major crops grown in Ghana and how to cultivate them
+- Common livestock raised and how to care for them
+- Modern farming techniques for better yields
+- The economic importance of agriculture
+
+---
+
+## Ghana's Agricultural Heritage
+
+Ghana has a rich agricultural heritage with diverse farming systems:
+- **Southern Ghana:** Cocoa, oil palm, rubber, cassava
+- **Northern Ghana:** Maize, millet, sorghum, cattle
+- **Coastal Areas:** Fishing, coconut, vegetables
+
+Understanding crop and animal production helps you:
+- Appreciate our food systems
+- Consider careers in agriculture
+- Make informed decisions about food choices
+- Contribute to national food security
+
+Let's explore the fascinating world of farming!
+`,
+
+    keyConcepts: [
+      {
+        title: '1. Introduction to Crop Production',
+        content: `**Crop Production** is the practice of growing plants for food, fiber, fuel, and other uses.
+
+**Types of Crops:**
+<table>
+<tr><th>Category</th><th>Examples</th><th>Uses</th></tr>
+<tr><td><strong>Food Crops</strong></td><td>Maize, rice, cassava, yam</td><td>Human consumption</td></tr>
+<tr><td><strong>Cash Crops</strong></td><td>Cocoa, coffee, oil palm</td><td>Export and income</td></tr>
+<tr><td><strong>Fiber Crops</strong></td><td>Cotton, kenaf</td><td>Textiles</td></tr>
+<tr><td><strong>Vegetables</strong></td><td>Tomatoes, peppers, okra</td><td>Nutrition</td></tr>
+</table>
+
+**Ghana's Major Crops:**
+- 🍫 **Cocoa** - Ghana is the world's 2nd largest producer
+- 🌽 **Maize** - Main staple food crop
+- 🥔 **Cassava** - Most widely grown root crop
+- 🌴 **Oil Palm** - Important for cooking oil
+- 🍚 **Rice** - Increasingly important food crop`
+      },
+      {
+        title: '2. Basic Crop Farming Practices',
+        content: `**Steps in Crop Production:**
+
+**1. Land Preparation:**
+- Clearing vegetation
+- Ploughing and harrowing
+- Making beds or ridges
+
+**2. Seed Selection:**
+- Choose disease-free seeds
+- Use certified/improved varieties
+- Consider climate and soil type
+
+**3. Planting:**
+<table>
+<tr><th>Method</th><th>Description</th><th>Crops</th></tr>
+<tr><td>Broadcasting</td><td>Scattering seeds over soil</td><td>Rice, millet</td></tr>
+<tr><td>Drilling</td><td>Planting in rows</td><td>Maize, beans</td></tr>
+<tr><td>Dibbling</td><td>Making holes for seeds</td><td>Yam, cassava</td></tr>
+<tr><td>Transplanting</td><td>Moving seedlings</td><td>Tomatoes, peppers</td></tr>
+</table>
+
+**4. Crop Maintenance:**
+- Weeding (removing unwanted plants)
+- Watering/Irrigation
+- Fertilizer application
+- Pest and disease control
+
+**5. Harvesting:**
+- Harvest at right maturity
+- Handle crops carefully
+- Store properly to prevent spoilage`
+      },
+      {
+        title: '3. Soil and Fertilizers',
+        content: `**Soil Types in Ghana:**
+<table>
+<tr><th>Soil Type</th><th>Characteristics</th><th>Suitable Crops</th></tr>
+<tr><td>Sandy soil</td><td>Drains quickly, low nutrients</td><td>Groundnuts, carrots</td></tr>
+<tr><td>Clay soil</td><td>Holds water, rich in nutrients</td><td>Rice, vegetables</td></tr>
+<tr><td>Loamy soil</td><td>Best for farming, well-balanced</td><td>Most crops</td></tr>
+<tr><td>Forest soil</td><td>Rich in organic matter</td><td>Cocoa, plantain</td></tr>
+</table>
+
+**Fertilizers:**
+
+**Organic Fertilizers (Natural):**
+- Compost (decomposed plant matter)
+- Manure (animal waste)
+- Green manure (ploughed-in plants)
+
+**Inorganic Fertilizers (Chemical):**
+- NPK (Nitrogen, Phosphorus, Potassium)
+- Urea (high nitrogen)
+- Superphosphate
+
+**The NPK Ratio:**
+- **N (Nitrogen)** - Leaf growth
+- **P (Phosphorus)** - Root development
+- **K (Potassium)** - Flowering and fruiting`
+      },
+      {
+        title: '4. Introduction to Animal Production',
+        content: `**Animal Production** (Livestock Farming) is the raising of animals for food, fiber, work, and other products.
+
+**Types of Livestock:**
+<table>
+<tr><th>Category</th><th>Animals</th><th>Products</th></tr>
+<tr><td><strong>Ruminants</strong></td><td>Cattle, sheep, goats</td><td>Meat, milk, hides</td></tr>
+<tr><td><strong>Non-ruminants</strong></td><td>Pigs, rabbits</td><td>Meat</td></tr>
+<tr><td><strong>Poultry</strong></td><td>Chickens, ducks, turkeys</td><td>Meat, eggs</td></tr>
+<tr><td><strong>Aquaculture</strong></td><td>Tilapia, catfish</td><td>Fish meat</td></tr>
+</table>
+
+**Livestock in Ghana:**
+- 🐄 **Cattle** - Mainly in Northern Ghana
+- 🐐 **Goats** - Most common livestock, nationwide
+- 🐑 **Sheep** - Popular for festivals (Eid, etc.)
+- 🐔 **Poultry** - Fastest growing sector
+- 🐷 **Pigs** - Popular in southern regions
+- 🐟 **Fish** - Growing aquaculture industry`
+      },
+      {
+        title: '5. Basic Animal Husbandry Practices',
+        content: `**Animal Husbandry** is the care, breeding, and management of livestock.
+
+**Key Practices:**
+
+**1. Housing/Shelter:**
+- Protects from weather and predators
+- Should be well-ventilated
+- Easy to clean
+- Adequate space per animal
+
+**2. Feeding:**
+<table>
+<tr><th>Animal</th><th>Feed Type</th><th>Examples</th></tr>
+<tr><td>Cattle</td><td>Roughage + Concentrates</td><td>Grass, hay, grains</td></tr>
+<tr><td>Poultry</td><td>Mash/Pellets</td><td>Maize, soya, fish meal</td></tr>
+<tr><td>Pigs</td><td>Concentrates</td><td>Maize, kitchen waste</td></tr>
+<tr><td>Fish</td><td>Floating/Sinking feed</td><td>Commercial fish feed</td></tr>
+</table>
+
+**3. Health Care:**
+- Regular vaccination
+- Deworming
+- Treatment of diseases
+- Good hygiene
+
+**4. Breeding:**
+- Select healthy parents
+- Control mating
+- Record keeping
+- Improve genetics over time`
+      },
+      {
+        title: '6. Common Livestock Diseases',
+        content: `**Preventing diseases is cheaper than treating them!**
+
+**Common Poultry Diseases:**
+<table>
+<tr><th>Disease</th><th>Symptoms</th><th>Prevention</th></tr>
+<tr><td>Newcastle</td><td>Twisted neck, paralysis</td><td>Vaccination</td></tr>
+<tr><td>Coccidiosis</td><td>Bloody droppings</td><td>Good hygiene, medication</td></tr>
+<tr><td>Fowl pox</td><td>Scabs on comb/wattle</td><td>Vaccination</td></tr>
+</table>
+
+**Common Cattle Diseases:**
+<table>
+<tr><th>Disease</th><th>Symptoms</th><th>Prevention</th></tr>
+<tr><td>Foot and mouth</td><td>Blisters, lameness</td><td>Vaccination</td></tr>
+<tr><td>Anthrax</td><td>Sudden death, bleeding</td><td>Vaccination</td></tr>
+<tr><td>Trypanosomiasis</td><td>Weakness, weight loss</td><td>Tsetse fly control</td></tr>
+</table>
+
+**Disease Prevention Tips:**
+- Quarantine new animals
+- Vaccinate regularly
+- Maintain clean housing
+- Provide balanced nutrition
+- Isolate sick animals immediately`
+      },
+      {
+        title: '7. Modern Farming Techniques',
+        content: `**Improving Agricultural Productivity:**
+
+**Crop Improvement:**
+- **Hybrid seeds** - Higher yields
+- **Irrigation** - Water during dry season
+- **Mechanization** - Tractors, harvesters
+- **Greenhouse farming** - Controlled environment
+- **Organic farming** - No chemicals
+
+**Animal Production Improvements:**
+- **Artificial insemination** - Better genetics
+- **Improved breeds** - Higher productivity
+- **Battery cages** - Efficient poultry housing
+- **Aquaculture ponds** - Fish farming
+
+**Technology in Agriculture:**
+- Mobile apps for market prices
+- Weather forecasting
+- GPS for precision farming
+- Drones for crop monitoring
+
+**Government Support in Ghana:**
+- Planting for Food and Jobs
+- Rearing for Food and Jobs
+- Subsidized fertilizers
+- Agricultural extension services`
+      },
+      {
+        title: '8. Economic Importance of Agriculture',
+        content: `**Agriculture's Role in Ghana's Economy:**
+
+**Contributions:**
+<table>
+<tr><th>Aspect</th><th>Contribution</th></tr>
+<tr><td>Employment</td><td>Over 50% of workforce</td></tr>
+<tr><td>GDP</td><td>About 20% of national GDP</td></tr>
+<tr><td>Food Security</td><td>Provides food for 30+ million Ghanaians</td></tr>
+<tr><td>Export Earnings</td><td>Cocoa is #1 agricultural export</td></tr>
+<tr><td>Raw Materials</td><td>Supplies agro-industries</td></tr>
+</table>
+
+**Career Opportunities:**
+- Farming and farm management
+- Agricultural extension services
+- Agribusiness and marketing
+- Food processing
+- Research and development
+- Veterinary services
+- Agricultural journalism
+
+**Challenges Facing Agriculture:**
+- Climate change and unpredictable weather
+- Post-harvest losses
+- Limited access to credit
+- Poor road infrastructure
+- Low mechanization
+
+**Solutions:**
+- Irrigation systems
+- Improved storage facilities
+- Agricultural cooperatives
+- Youth involvement in farming
+- Technology adoption`
+      }
+    ],
+
+    activities: {
+      type: 'exercises',
+      questions: [
+        {
+          type: 'mcq',
+          question: 'Which of the following is Ghana\'s main cash crop?',
+          options: ['Maize', 'Cocoa', 'Rice', 'Cassava'],
+          answer: 'Cocoa',
+          explanation: 'Cocoa is Ghana\'s main cash crop and #1 agricultural export. Ghana is the world\'s second largest cocoa producer.'
+        },
+        {
+          type: 'mcq',
+          question: 'What type of soil is best for growing most crops?',
+          options: ['Sandy soil', 'Clay soil', 'Loamy soil', 'Gravel soil'],
+          answer: 'Loamy soil',
+          explanation: 'Loamy soil is best because it has a good balance of sand, silt, and clay, retains moisture, and has good drainage.'
+        },
+        {
+          type: 'mcq',
+          question: 'What does the "N" in NPK fertilizer stand for?',
+          options: ['Nickel', 'Nitrogen', 'Neon', 'Nutrient'],
+          answer: 'Nitrogen',
+          explanation: 'NPK stands for Nitrogen (N), Phosphorus (P), and Potassium (K) - the three main nutrients plants need.'
+        },
+        {
+          type: 'mcq',
+          question: 'Which livestock is most commonly raised across all regions of Ghana?',
+          options: ['Cattle', 'Pigs', 'Goats', 'Rabbits'],
+          answer: 'Goats',
+          explanation: 'Goats are the most commonly raised livestock in Ghana because they can survive in various climates and require less space and feed.'
+        },
+        {
+          type: 'mcq',
+          question: 'What is the main purpose of quarantining new animals?',
+          options: ['To make them comfortable', 'To prevent disease spread', 'To train them', 'To fatten them'],
+          answer: 'To prevent disease spread',
+          explanation: 'Quarantine isolates new animals to observe them for diseases before introducing them to the existing herd/flock.'
+        },
+        {
+          type: 'mcq',
+          question: 'Which planting method involves moving seedlings from a nursery to the main field?',
+          options: ['Broadcasting', 'Drilling', 'Dibbling', 'Transplanting'],
+          answer: 'Transplanting',
+          explanation: 'Transplanting involves raising seedlings in a nursery and then moving them to the main field when they are strong enough.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Cattle are mainly raised in Southern Ghana.',
+          answer: 'false',
+          reason: 'Cattle are mainly raised in Northern Ghana where the savanna climate and grasslands are more suitable for cattle rearing.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Agriculture employs over 50% of Ghana\'s workforce.',
+          answer: 'true',
+          reason: 'Agriculture is the largest employer in Ghana, employing over 50% of the workforce, mostly in rural areas.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Organic fertilizers are made from chemicals.',
+          answer: 'false',
+          reason: 'Organic fertilizers come from natural sources like animal manure, compost, and decomposed plant matter. Chemical fertilizers are inorganic.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Newcastle disease affects poultry birds.',
+          answer: 'true',
+          reason: 'Newcastle disease is a highly contagious viral disease that affects poultry, causing symptoms like twisted neck and paralysis.'
+        }
+      ]
+    },
+
+    pastQuestions: [
+      {
+        question: 'State four importance of agriculture to the Ghanaian economy.',
+        year: 'WASSCE 2021',
+        solution: `**Four importance of agriculture to Ghana's economy:**
+
+1. **Employment:** Agriculture employs over 50% of Ghana's workforce, providing livelihoods for millions of Ghanaians, especially in rural areas.
+
+2. **Food Security:** Agriculture provides food for over 30 million Ghanaians, ensuring the country has enough food to feed its population.
+
+3. **Foreign Exchange:** Agricultural exports, especially cocoa, earn foreign exchange for Ghana. Cocoa alone earns billions of dollars annually.
+
+4. **Raw Materials:** Agriculture provides raw materials for industries such as cocoa for chocolate, oil palm for soap, cotton for textiles.
+
+**Other acceptable answers:**
+- Contribution to GDP (about 20%)
+- Source of income for farmers
+- Development of rural areas
+- Reduces poverty`
+      },
+      {
+        question: 'Explain three cultural practices in crop production.',
+        year: 'WASSCE 2020',
+        solution: `**Three cultural practices in crop production:**
+
+1. **Weeding:** The removal of unwanted plants (weeds) that compete with crops for water, nutrients, and sunlight. This can be done manually (using cutlass or hoe) or chemically (using herbicides).
+
+2. **Mulching:** Covering the soil surface around plants with organic materials like grass, leaves, or straw. This conserves soil moisture, controls weeds, and adds nutrients as it decomposes.
+
+3. **Thinning:** Removing excess seedlings to give remaining plants adequate space for proper growth. This ensures plants don't compete for resources and produce better yields.
+
+**Other cultural practices:**
+- Pruning (removing unwanted branches)
+- Staking (providing support for climbing plants)
+- Earthing up (mounding soil around plant base)
+- Irrigation (providing water to crops)`
+      },
+      {
+        question: 'List four factors to consider when selecting a site for a poultry farm.',
+        year: 'WASSCE 2019',
+        solution: `**Four factors for poultry farm site selection:**
+
+1. **Accessibility:** The site should be accessible by road for easy transportation of birds, feed, eggs, and products to market.
+
+2. **Water Supply:** Reliable source of clean water must be available since poultry need constant access to fresh water for drinking and cleaning.
+
+3. **Distance from Residential Areas:** Site should be away from homes to avoid complaints about noise and smell, and to prevent disease transmission.
+
+4. **Security:** The site should be secure from thieves and predators (hawks, snakes) that could harm the birds.
+
+**Other factors:**
+- Good drainage (no waterlogging)
+- Electricity supply
+- Land availability for expansion
+- Nearness to market
+- Direction of prevailing wind`
+      }
+    ],
+
+    summary: `**🌾 CROP PRODUCTION:**
+• Growing plants for food, fiber, and income
+• Major crops: Cocoa, maize, cassava, rice, oil palm
+• Steps: Land prep → Planting → Maintenance → Harvesting
+
+**🌱 PLANTING METHODS:**
+• Broadcasting: Scattering seeds (rice, millet)
+• Drilling: Rows (maize)
+• Dibbling: Holes (yam, cassava)
+• Transplanting: Moving seedlings (tomatoes)
+
+**🧪 FERTILIZERS:**
+• Organic: Compost, manure, green manure
+• Inorganic: NPK (Nitrogen, Phosphorus, Potassium)
+• N = Leaves, P = Roots, K = Flowers/Fruits
+
+**🐄 ANIMAL PRODUCTION:**
+• Ruminants: Cattle, sheep, goats
+• Non-ruminants: Pigs, rabbits
+• Poultry: Chickens, ducks
+• Fish: Tilapia, catfish
+
+**🏠 ANIMAL HUSBANDRY:**
+• Housing: Ventilation, space, cleanliness
+• Feeding: Balanced diet for each animal type
+• Health: Vaccination, deworming, hygiene
+• Breeding: Selection, record keeping
+
+**💰 ECONOMIC IMPORTANCE:**
+• Employs over 50% of workforce
+• ~20% of Ghana's GDP
+• Food security for 30+ million
+• Export earnings (cocoa #1)
+
+**🚀 MODERN TECHNIQUES:**
+• Hybrid seeds, irrigation
+• Mechanization, greenhouses
+• AI breeding, improved breeds
+• Technology: apps, GPS, drones`
+  },
+
+  // =============================================
+  // SOIL FERTILITY AND CONSERVATION
+  // =============================================
+  {
+    id: 'is-shs1-agriculture-2',
+    slug: 'is-im-agricultural-science-soil-fertility-conservation',
+    title: 'Soil Fertility and Conservation',
+    objectives: [
+      'Define soil fertility and explain its importance to agriculture',
+      'Identify the factors that affect soil fertility',
+      'Describe methods of maintaining and improving soil fertility',
+      'Explain soil conservation and its importance',
+      'Identify causes of soil erosion and degradation',
+      'Describe methods of soil conservation practiced in Ghana'
+    ],
+
+    introduction: `
+# SOIL FERTILITY AND CONSERVATION: Protecting Ghana's Agricultural Foundation
+
+## Why is Soil So Important?
+
+Soil is the foundation of all agriculture! Without healthy, fertile soil, crops cannot grow, and food security is threatened. In Ghana, where over 50% of people depend on agriculture, protecting our soil is critical for national development.
+
+**In this lesson, you will learn:**
+- What makes soil fertile and productive
+- How to maintain and improve soil fertility
+- Why soil conservation matters
+- Methods to prevent soil erosion and degradation
+- Sustainable farming practices for Ghana
+
+---
+
+## Ghana's Soil Challenge
+
+Ghana faces serious soil fertility challenges:
+- **70% of farmlands** have declining fertility
+- **Soil erosion** removes 5-10 tonnes of soil per hectare yearly
+- **Deforestation** has increased soil degradation
+- **Poor farming practices** deplete nutrients
+
+Understanding soil fertility and conservation helps us:
+- Produce more food sustainably
+- Protect our environment
+- Ensure food security for future generations
+- Maintain productive farmlands
+
+Let's dig into the science of soil! 🌱
+`,
+
+    keyConcepts: [
+      {
+        title: '1. What is Soil Fertility?',
+        content: `**Soil Fertility** is the ability of soil to provide essential nutrients for plant growth in adequate amounts and proper balance.
+
+**Components of Fertile Soil:**
+<table>
+<tr><th>Component</th><th>Percentage</th><th>Function</th></tr>
+<tr><td><strong>Mineral matter</strong></td><td>45%</td><td>Provides structure and some nutrients</td></tr>
+<tr><td><strong>Organic matter</strong></td><td>5%</td><td>Nutrients, water retention, soil structure</td></tr>
+<tr><td><strong>Water</strong></td><td>25%</td><td>Dissolves nutrients for plant uptake</td></tr>
+<tr><td><strong>Air</strong></td><td>25%</td><td>Provides oxygen for roots and organisms</td></tr>
+</table>
+
+**Essential Plant Nutrients:**
+
+**Primary Nutrients (needed in large amounts):**
+- **Nitrogen (N)** - Leaf and stem growth, green color
+- **Phosphorus (P)** - Root development, flowering, fruiting
+- **Potassium (K)** - Disease resistance, overall health
+
+**Secondary Nutrients:**
+- Calcium (Ca), Magnesium (Mg), Sulfur (S)
+
+**Micronutrients (trace elements):**
+- Iron (Fe), Zinc (Zn), Manganese (Mn), Boron (B), Copper (Cu)`
+      },
+      {
+        title: '2. Factors Affecting Soil Fertility',
+        content: `**Natural Factors:**
+
+<table>
+<tr><th>Factor</th><th>Effect on Fertility</th></tr>
+<tr><td><strong>Parent rock</strong></td><td>Determines mineral content of soil</td></tr>
+<tr><td><strong>Climate</strong></td><td>Rainfall and temperature affect nutrient cycling</td></tr>
+<tr><td><strong>Topography</strong></td><td>Slopes lose nutrients through erosion</td></tr>
+<tr><td><strong>Organisms</strong></td><td>Decompose organic matter, fix nitrogen</td></tr>
+<tr><td><strong>Time</strong></td><td>Older soils may be more weathered/leached</td></tr>
+</table>
+
+**Human Factors:**
+
+**Factors that REDUCE fertility:**
+- 🔴 Continuous cropping (depletes nutrients)
+- 🔴 Burning crop residues (destroys organic matter)
+- 🔴 Overgrazing (removes vegetation cover)
+- 🔴 Deforestation (exposes soil to erosion)
+- 🔴 Wrong fertilizer use (imbalances nutrients)
+
+**Factors that INCREASE fertility:**
+- 🟢 Crop rotation (different nutrient needs)
+- 🟢 Adding organic matter (compost, manure)
+- 🟢 Cover cropping (protects and feeds soil)
+- 🟢 Proper fertilizer application
+- 🟢 Mulching (conserves moisture, adds organic matter)`
+      },
+      {
+        title: '3. Maintaining Soil Fertility',
+        content: `**Methods to Maintain and Improve Soil Fertility:**
+
+**1. Adding Organic Matter:**
+<table>
+<tr><th>Source</th><th>Benefits</th><th>Application</th></tr>
+<tr><td>Compost</td><td>Adds nutrients, improves structure</td><td>Mix into topsoil</td></tr>
+<tr><td>Animal manure</td><td>Rich in N, P, K</td><td>Apply and incorporate</td></tr>
+<tr><td>Green manure</td><td>Adds nitrogen, organic matter</td><td>Plough in before flowering</td></tr>
+<tr><td>Crop residues</td><td>Returns nutrients to soil</td><td>Leave on field or compost</td></tr>
+</table>
+
+**2. Crop Rotation:**
+- Alternate crops with different nutrient needs
+- Include legumes to fix nitrogen
+- Example: Maize → Groundnuts → Vegetables → Maize
+
+**3. Cover Cropping:**
+- Plant crops to cover bare soil
+- Prevents erosion, adds organic matter
+- Examples: Mucuna, cowpea, velvet bean
+
+**4. Mulching:**
+- Cover soil with organic materials
+- Conserves moisture, controls weeds
+- Adds nutrients as it decomposes
+
+**5. Proper Fertilizer Use:**
+- Test soil before applying fertilizers
+- Apply right type, amount, and time
+- Combine organic and inorganic sources`
+      },
+      {
+        title: '4. What is Soil Conservation?',
+        content: `**Soil Conservation** is the protection of soil from erosion, degradation, and loss of fertility.
+
+**Why Conserve Soil?**
+- Soil takes **hundreds of years** to form (1 cm = 200-1000 years)
+- Once lost, it's essentially **gone forever**
+- Eroded soil **pollutes water bodies**
+- Degraded soil **reduces crop yields**
+
+**Types of Soil Degradation:**
+
+<table>
+<tr><th>Type</th><th>Description</th><th>Cause</th></tr>
+<tr><td><strong>Erosion</strong></td><td>Physical removal of topsoil</td><td>Water, wind</td></tr>
+<tr><td><strong>Nutrient depletion</strong></td><td>Loss of essential nutrients</td><td>Overcropping, leaching</td></tr>
+<tr><td><strong>Compaction</strong></td><td>Soil becomes dense and hard</td><td>Heavy machinery, overgrazing</td></tr>
+<tr><td><strong>Salinization</strong></td><td>Salt accumulation</td><td>Poor irrigation</td></tr>
+<tr><td><strong>Acidification</strong></td><td>Soil becomes too acidic</td><td>Acid rain, some fertilizers</td></tr>
+</table>
+
+**Ghana's Soil Conservation Challenge:**
+- Northern Ghana faces desertification
+- Southern Ghana has heavy erosion from rainfall
+- Mining areas have severe land degradation`
+      },
+      {
+        title: '5. Soil Erosion',
+        content: `**Soil Erosion** is the removal and transportation of topsoil by water, wind, or other agents.
+
+**Types of Water Erosion:**
+<table>
+<tr><th>Type</th><th>Description</th><th>Severity</th></tr>
+<tr><td><strong>Splash erosion</strong></td><td>Raindrops dislodge soil particles</td><td>Initial stage</td></tr>
+<tr><td><strong>Sheet erosion</strong></td><td>Thin layer of soil removed uniformly</td><td>Often unnoticed</td></tr>
+<tr><td><strong>Rill erosion</strong></td><td>Small channels form</td><td>Moderate</td></tr>
+<tr><td><strong>Gully erosion</strong></td><td>Deep channels cut into land</td><td>Severe, visible</td></tr>
+</table>
+
+**Wind Erosion:**
+- Common in Northern Ghana (dry season)
+- Removes fine particles and organic matter
+- Creates dust storms
+
+**Causes of Soil Erosion:**
+- ❌ Deforestation and bush burning
+- ❌ Overgrazing by livestock
+- ❌ Farming on steep slopes without protection
+- ❌ Leaving soil bare (no cover crops)
+- ❌ Poor road and construction practices
+
+**Effects of Erosion:**
+- Loss of fertile topsoil
+- Reduced crop yields
+- Siltation of rivers and dams
+- Flooding and landslides
+- Desertification`
+      },
+      {
+        title: '6. Soil Conservation Methods',
+        content: `**Biological/Agronomic Methods:**
+
+<table>
+<tr><th>Method</th><th>How It Works</th></tr>
+<tr><td><strong>Afforestation</strong></td><td>Planting trees reduces erosion, adds organic matter</td></tr>
+<tr><td><strong>Cover cropping</strong></td><td>Vegetation protects soil from rain and wind</td></tr>
+<tr><td><strong>Mulching</strong></td><td>Covers soil, reduces splash erosion</td></tr>
+<tr><td><strong>Strip cropping</strong></td><td>Alternating strips slow water runoff</td></tr>
+<tr><td><strong>Contour farming</strong></td><td>Ploughing across slope, not up and down</td></tr>
+<tr><td><strong>Agroforestry</strong></td><td>Trees + crops together protect soil</td></tr>
+</table>
+
+**Mechanical/Structural Methods:**
+
+<table>
+<tr><th>Method</th><th>Description</th></tr>
+<tr><td><strong>Terracing</strong></td><td>Step-like structures on slopes</td></tr>
+<tr><td><strong>Bunding</strong></td><td>Earth banks to slow water flow</td></tr>
+<tr><td><strong>Gabions</strong></td><td>Wire cages filled with rocks</td></tr>
+<tr><td><strong>Check dams</strong></td><td>Small barriers in gullies</td></tr>
+<tr><td><strong>Grass waterways</strong></td><td>Grassed channels for water drainage</td></tr>
+</table>
+
+**In Ghana:**
+- **Northern Ghana:** Zai pits, stone bunds, dry season gardening
+- **Forest zone:** Agroforestry with cocoa and shade trees
+- **Coastal areas:** Mangrove protection, windbreaks`
+      },
+      {
+        title: '7. Sustainable Soil Management',
+        content: `**Integrated Soil Fertility Management (ISFM):**
+
+A holistic approach combining:
+1. **Organic inputs** (compost, manure)
+2. **Mineral fertilizers** (NPK, urea)
+3. **Improved germplasm** (better crop varieties)
+4. **Good agricultural practices**
+
+**Sustainable Practices for Ghana:**
+
+**1. No-till/Minimum Tillage:**
+- Reduces soil disturbance
+- Maintains soil structure
+- Saves time and fuel
+
+**2. Integrated Nutrient Management:**
+- Combine organic + inorganic fertilizers
+- Use locally available materials
+- Soil testing before application
+
+**3. Water Harvesting:**
+- Collect rainwater for irrigation
+- Zai pits and half-moons (Northern Ghana)
+- Reduces erosion, increases infiltration
+
+**4. Controlled Grazing:**
+- Rotational grazing
+- Carrying capacity limits
+- Protects vegetation cover
+
+**Government Programs:**
+- Planting for Food and Jobs
+- Ghana Agriculture Sector Investment Programme
+- Savanna Agricultural Productivity Programme`
+      },
+      {
+        title: '8. Soil Testing and Management',
+        content: `**Why Test Soil?**
+- Know exact nutrient levels
+- Avoid over/under fertilization
+- Save money on inputs
+- Maximize crop yields
+
+**What Soil Tests Measure:**
+<table>
+<tr><th>Parameter</th><th>What It Tells Us</th></tr>
+<tr><td><strong>pH</strong></td><td>Acidity/alkalinity - affects nutrient availability</td></tr>
+<tr><td><strong>N, P, K levels</strong></td><td>Primary nutrient content</td></tr>
+<tr><td><strong>Organic matter</strong></td><td>Overall soil health</td></tr>
+<tr><td><strong>Texture</strong></td><td>Sand, silt, clay proportions</td></tr>
+<tr><td><strong>CEC</strong></td><td>Nutrient holding capacity</td></tr>
+</table>
+
+**Soil pH and Crop Requirements:**
+- Most crops prefer pH 6.0-7.0
+- Below 5.5: Add lime (calcium carbonate)
+- Above 8.0: Add sulfur or gypsum
+
+**Where to Get Soil Tested in Ghana:**
+- Soil Research Institute (CSIR)
+- University of Ghana, Legon
+- Ministry of Food and Agriculture (MoFA) offices
+- Private agricultural laboratories
+
+**Simple Field Tests:**
+- Texture: Feel test (sandy, silty, clayey)
+- pH: pH paper or digital meter
+- Organic matter: Color (darker = more organic matter)`
+      }
+    ],
+
+    activities: {
+      type: 'exercises',
+      questions: [
+        {
+          type: 'mcq',
+          question: 'What percentage of fertile soil is made up of organic matter?',
+          options: ['5%', '25%', '45%', '75%'],
+          answer: '5%',
+          explanation: 'Fertile soil is typically 45% mineral matter, 25% water, 25% air, and only 5% organic matter. Despite being a small percentage, organic matter is crucial for fertility.'
+        },
+        {
+          type: 'mcq',
+          question: 'Which nutrient is primarily responsible for leaf and stem growth?',
+          options: ['Phosphorus', 'Potassium', 'Nitrogen', 'Calcium'],
+          answer: 'Nitrogen',
+          explanation: 'Nitrogen (N) promotes vegetative growth - leaves and stems. Phosphorus helps roots and flowering, while potassium improves disease resistance.'
+        },
+        {
+          type: 'mcq',
+          question: 'What is the practice of ploughing across a slope called?',
+          options: ['Strip cropping', 'Terracing', 'Contour farming', 'Mulching'],
+          answer: 'Contour farming',
+          explanation: 'Contour farming involves ploughing along the contour lines (across the slope), which slows water runoff and reduces erosion.'
+        },
+        {
+          type: 'mcq',
+          question: 'Which type of erosion creates deep channels in the land?',
+          options: ['Splash erosion', 'Sheet erosion', 'Rill erosion', 'Gully erosion'],
+          answer: 'Gully erosion',
+          explanation: 'Gully erosion is the most severe form, creating deep channels that are difficult to repair. It starts from rill erosion that is left unchecked.'
+        },
+        {
+          type: 'mcq',
+          question: 'What is green manure?',
+          options: ['Manure from grass-fed animals', 'Crops ploughed into soil while still green', 'Dried grass used as fertilizer', 'Green-colored fertilizer'],
+          answer: 'Crops ploughed into soil while still green',
+          explanation: 'Green manure refers to crops (usually legumes) that are grown and then ploughed into the soil while still green to add organic matter and nutrients.'
+        },
+        {
+          type: 'mcq',
+          question: 'How long does it take to form 1 cm of topsoil?',
+          options: ['1-5 years', '10-50 years', '200-1000 years', '1-2 years'],
+          answer: '200-1000 years',
+          explanation: 'Soil formation is extremely slow - it takes 200-1000 years to form just 1 cm of topsoil. This is why soil conservation is so critical.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Crop rotation helps maintain soil fertility.',
+          answer: 'true',
+          reason: 'Crop rotation involves growing different crops in sequence, which prevents nutrient depletion because different crops have different nutrient requirements.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Burning crop residues is good for soil fertility.',
+          answer: 'false',
+          reason: 'Burning destroys organic matter that could improve soil structure and fertility. It also kills beneficial soil organisms and releases carbon into the atmosphere.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Most crops grow best in soil with pH between 6.0 and 7.0.',
+          answer: 'true',
+          reason: 'Most crops prefer slightly acidic to neutral soil (pH 6.0-7.0) because nutrients are most available in this range.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Wind erosion is common in Southern Ghana.',
+          answer: 'false',
+          reason: 'Wind erosion is more common in Northern Ghana during the dry season. Southern Ghana experiences more water erosion due to higher rainfall.'
+        }
+      ]
+    },
+
+    pastQuestions: [
+      {
+        question: 'State four ways by which soil fertility can be maintained.',
+        year: 'WASSCE 2022',
+        solution: `**Four ways to maintain soil fertility:**
+
+1. **Crop rotation:** Growing different crops in sequence prevents depletion of specific nutrients. Including legumes adds nitrogen through biological fixation.
+
+2. **Adding organic matter:** Applying compost, farmyard manure, or green manure improves soil structure, adds nutrients, and increases water-holding capacity.
+
+3. **Mulching:** Covering soil with organic materials conserves moisture, suppresses weeds, moderates temperature, and adds organic matter as it decomposes.
+
+4. **Proper fertilizer application:** Using the right type and amount of fertilizer based on soil tests ensures adequate nutrition without causing imbalances.
+
+**Other acceptable answers:**
+- Cover cropping
+- Fallowing (allowing land to rest)
+- Liming acidic soils
+- Controlled grazing`
+      },
+      {
+        question: 'Explain three causes of soil erosion.',
+        year: 'WASSCE 2021',
+        solution: `**Three causes of soil erosion:**
+
+1. **Deforestation:** When trees are removed, the soil loses protection from rain and wind. Tree roots no longer hold the soil together, and there is no canopy to intercept rainfall. This exposes the soil to erosion agents.
+
+2. **Overgrazing:** When too many animals graze on land, they remove vegetation cover and compact the soil with their hooves. The bare, compacted soil is easily eroded by water and wind.
+
+3. **Farming on steep slopes without protection:** When land is cultivated on slopes without conservation measures like terracing or contour ploughing, water flows rapidly downhill, carrying topsoil with it.
+
+**Other causes:**
+- Bush burning
+- Mining activities
+- Construction without erosion control
+- Heavy rainfall`
+      },
+      {
+        question: 'Describe three methods of soil conservation.',
+        year: 'WASSCE 2020',
+        solution: `**Three methods of soil conservation:**
+
+1. **Terracing:** This involves constructing step-like platforms on steep slopes. The terraces reduce the slope length and steepness, slowing down water runoff and allowing water to infiltrate the soil rather than causing erosion.
+
+2. **Contour ploughing/farming:** This is the practice of ploughing and planting across the slope rather than up and down. The furrows act as barriers that slow water flow and reduce soil loss.
+
+3. **Afforestation:** Planting trees helps conserve soil in several ways - tree roots bind soil particles together, leaves intercept rainfall, and falling leaves add organic matter. Trees also act as windbreaks.
+
+**Other methods:**
+- Cover cropping
+- Mulching
+- Strip cropping
+- Construction of bunds and gabions`
+      }
+    ],
+
+    summary: `**🌍 SOIL FERTILITY:**
+• Ability of soil to provide nutrients for plant growth
+• Fertile soil: 45% minerals, 25% water, 25% air, 5% organic matter
+
+**🌱 ESSENTIAL NUTRIENTS:**
+• Primary (N, P, K): Needed in large amounts
+• N = leaves, P = roots, K = disease resistance
+• Secondary: Ca, Mg, S
+• Micronutrients: Fe, Zn, Mn, B, Cu
+
+**⬆️ MAINTAINING FERTILITY:**
+• Add organic matter (compost, manure)
+• Crop rotation (include legumes)
+• Cover cropping and mulching
+• Proper fertilizer use (soil test first!)
+• Green manure (plough in legumes)
+
+**⬇️ FACTORS REDUCING FERTILITY:**
+• Continuous cropping
+• Burning crop residues
+• Overgrazing and deforestation
+• Wrong fertilizer use
+• Erosion and leaching
+
+**🌊 SOIL EROSION TYPES:**
+• Splash → Sheet → Rill → Gully (increasing severity)
+• Wind erosion (common in Northern Ghana)
+• Water erosion (common in Southern Ghana)
+
+**🛡️ CONSERVATION METHODS:**
+• Biological: Afforestation, cover crops, mulching
+• Mechanical: Terracing, bunding, contour farming
+• Management: Controlled grazing, crop rotation
+
+**📊 SOIL TESTING:**
+• Test pH, N, P, K, organic matter
+• Most crops prefer pH 6.0-7.0
+• Get tested at CSIR, universities, MoFA
+
+**⏰ KEY FACT:**
+• 1 cm of soil takes 200-1000 years to form
+• Once lost, it's essentially gone forever!`
+  },
+
+  // =============================================
+  // SOIL COMPOSITION AND IMPORTANCE
+  // =============================================
+  {
+    id: 'is-shs1-diversity-5',
+    slug: 'is-dm-rocks-soil-composition',
+    title: 'Soil Composition and Importance',
+    objectives: [
+      'Describe the composition of soil',
+      'Explain the role of each soil component',
+      'Identify different soil types and their characteristics',
+      'Explain the importance of soil to plants, animals, and humans',
+      'Describe the soil profile and its horizons',
+      'Relate soil composition to agricultural productivity'
+    ],
+
+    introduction: `
+# SOIL COMPOSITION AND IMPORTANCE: The Foundation of Life
+
+## What is Soil Made Of?
+
+Soil is not just "dirt" - it's a complex mixture of materials that took thousands of years to form! Understanding what soil contains helps us grow better crops and protect this vital resource.
+
+**In this lesson, you will learn:**
+- The four main components of soil
+- Different types of soil and their properties
+- The soil profile and its layers
+- Why soil is essential for life on Earth
+
+---
+
+## Why Study Soil Composition?
+
+In Ghana, agriculture employs over 50% of the workforce. The success of farming depends largely on soil quality. By understanding soil composition, farmers can:
+- Choose the right crops for their land
+- Apply appropriate fertilizers
+- Improve soil health naturally
+- Increase crop yields sustainably
+
+Let's dig deeper into what makes soil so important! 🌱
+`,
+
+    keyConcepts: [
+      {
+        title: '1. The Four Components of Soil',
+        content: `**Soil** is a mixture of four main components:
+
+<table>
+<tr><th>Component</th><th>Percentage</th><th>Description</th></tr>
+<tr><td><strong>Mineral Matter</strong></td><td>~45%</td><td>Broken down rocks - sand, silt, clay particles</td></tr>
+<tr><td><strong>Organic Matter</strong></td><td>~5%</td><td>Decomposed plants and animals (humus)</td></tr>
+<tr><td><strong>Water</strong></td><td>~25%</td><td>Soil solution containing dissolved nutrients</td></tr>
+<tr><td><strong>Air</strong></td><td>~25%</td><td>Gases in soil pores (O₂, CO₂, N₂)</td></tr>
+</table>
+
+**Why Each Component Matters:**
+
+**Mineral Matter (45%):**
+- Provides soil structure and texture
+- Source of some plant nutrients
+- Determines drainage and water-holding capacity
+
+**Organic Matter (5%):**
+- Called **humus** when fully decomposed
+- Rich in nutrients (N, P, K)
+- Improves water retention
+- Feeds soil organisms
+- Gives soil its dark color
+
+**Water (25%):**
+- Dissolves nutrients for plant uptake
+- Essential for plant photosynthesis
+- Regulates soil temperature
+
+**Air (25%):**
+- Provides oxygen for root respiration
+- Needed by soil organisms
+- Contains nitrogen for nitrogen-fixing bacteria`
+      },
+      {
+        title: '2. Mineral Particles: Sand, Silt, and Clay',
+        content: `**Soil Texture** refers to the proportion of sand, silt, and clay particles.
+
+<table>
+<tr><th>Particle</th><th>Size (mm)</th><th>Feel</th><th>Properties</th></tr>
+<tr><td><strong>Sand</strong></td><td>0.05-2.0</td><td>Gritty</td><td>Large pores, drains quickly, low nutrients</td></tr>
+<tr><td><strong>Silt</strong></td><td>0.002-0.05</td><td>Smooth, silky</td><td>Medium drainage, holds some nutrients</td></tr>
+<tr><td><strong>Clay</strong></td><td><0.002</td><td>Sticky when wet</td><td>Tiny pores, holds water and nutrients</td></tr>
+</table>
+
+**Soil Types Based on Texture:**
+
+**Sandy Soil:**
+- 🔴 Drains too quickly
+- 🔴 Poor nutrient retention
+- 🟢 Easy to work with
+- 🟢 Warms up quickly
+
+**Clay Soil:**
+- 🟢 Holds water and nutrients well
+- 🔴 Poor drainage (waterlogging)
+- 🔴 Hard when dry, sticky when wet
+- 🔴 Slow to warm up
+
+**Loam Soil (Ideal!):**
+- Balanced mixture of sand, silt, and clay
+- Best for most crops
+- Good drainage AND water retention
+- Common in Ghana's forest zones`
+      },
+      {
+        title: '3. Organic Matter and Humus',
+        content: `**Organic Matter** comes from decomposed plants, animals, and microorganisms.
+
+**Sources of Organic Matter:**
+- Dead leaves and plant material
+- Animal droppings and remains
+- Dead soil organisms
+- Root secretions
+
+**Humus:**
+- The final product of decomposition
+- Dark brown to black in color
+- Stable and long-lasting
+- Contains concentrated nutrients
+
+**Benefits of Organic Matter:**
+
+<table>
+<tr><th>Benefit</th><th>How It Helps</th></tr>
+<tr><td><strong>Nutrient supply</strong></td><td>Releases N, P, K, and micronutrients slowly</td></tr>
+<tr><td><strong>Water retention</strong></td><td>Holds up to 20x its weight in water</td></tr>
+<tr><td><strong>Soil structure</strong></td><td>Binds particles into aggregates</td></tr>
+<tr><td><strong>Feeds organisms</strong></td><td>Food source for beneficial microbes</td></tr>
+<tr><td><strong>Buffer pH</strong></td><td>Helps stabilize soil acidity</td></tr>
+</table>
+
+**Building Organic Matter:**
+- Add compost and manure
+- Leave crop residues on field
+- Use cover crops
+- Minimize tillage
+- Avoid burning crop residues`
+      },
+      {
+        title: '4. Soil Water and Air',
+        content: `**Soil Water** exists in spaces between soil particles called **pores**.
+
+**Types of Soil Water:**
+<table>
+<tr><th>Type</th><th>Description</th><th>Plant Use</th></tr>
+<tr><td><strong>Gravitational water</strong></td><td>Drains quickly through large pores</td><td>Not available</td></tr>
+<tr><td><strong>Capillary water</strong></td><td>Held in small pores by adhesion</td><td>Main source for plants</td></tr>
+<tr><td><strong>Hygroscopic water</strong></td><td>Thin film around particles</td><td>Not available</td></tr>
+</table>
+
+**Field Capacity:** The amount of water soil holds after gravitational water drains away - ideal for plant growth.
+
+**Wilting Point:** When only hygroscopic water remains - plants cannot extract it and wilt.
+
+**Soil Air:**
+- Fills pores not occupied by water
+- Contains:
+  - Oxygen (O₂) - for root respiration
+  - Carbon dioxide (CO₂) - from respiration
+  - Nitrogen (N₂) - for nitrogen fixation
+
+**Balance is Key:**
+- Too much water → no air → roots suffocate
+- Too little water → air only → plants wilt
+- Good soil has balance of both`
+      },
+      {
+        title: '5. The Soil Profile',
+        content: `The **Soil Profile** is a vertical cross-section showing distinct layers called **horizons**.
+
+**Soil Horizons:**
+
+<table>
+<tr><th>Horizon</th><th>Name</th><th>Description</th></tr>
+<tr><td><strong>O Horizon</strong></td><td>Organic layer</td><td>Fresh and decomposing organic matter (leaves, etc.)</td></tr>
+<tr><td><strong>A Horizon</strong></td><td>Topsoil</td><td>Dark, rich in humus and nutrients - most roots here</td></tr>
+<tr><td><strong>B Horizon</strong></td><td>Subsoil</td><td>Accumulation of leached minerals; less organic matter</td></tr>
+<tr><td><strong>C Horizon</strong></td><td>Parent material</td><td>Weathered rock fragments; little organic matter</td></tr>
+<tr><td><strong>R Horizon</strong></td><td>Bedrock</td><td>Solid, unweathered rock</td></tr>
+</table>
+
+**Importance of the A Horizon (Topsoil):**
+- Contains most nutrients and organic matter
+- Where most plant roots grow
+- Home to most soil organisms
+- Takes hundreds of years to form
+- **Must be protected from erosion!**
+
+**Soil Depth:**
+- Deep soils (>1m) - better for crops
+- Shallow soils (<25cm) - limited root growth
+- Depth varies with climate and parent rock`
+      },
+      {
+        title: '6. Soil Organisms',
+        content: `**Soil is alive!** Billions of organisms live in every gram of healthy soil.
+
+**Types of Soil Organisms:**
+
+<table>
+<tr><th>Type</th><th>Examples</th><th>Role</th></tr>
+<tr><td><strong>Bacteria</strong></td><td>Rhizobium, Nitrobacter</td><td>Decomposition, nitrogen fixation</td></tr>
+<tr><td><strong>Fungi</strong></td><td>Mycorrhizae, decomposers</td><td>Break down organic matter, help plant roots</td></tr>
+<tr><td><strong>Protozoa</strong></td><td>Amoebae, ciliates</td><td>Eat bacteria, release nutrients</td></tr>
+<tr><td><strong>Earthworms</strong></td><td>Various species</td><td>Mix soil, create channels, produce castings</td></tr>
+<tr><td><strong>Insects</strong></td><td>Ants, termites, beetles</td><td>Aerate soil, break down organic matter</td></tr>
+</table>
+
+**Earthworms - Soil Engineers:**
+- Create tunnels for air and water
+- Mix organic matter into soil
+- Produce nutrient-rich castings
+- Can process tons of soil per hectare per year
+
+**Mycorrhizae - Plant Helpers:**
+- Fungi that attach to plant roots
+- Extend root reach by 100x
+- Help plants absorb phosphorus and water
+- Found on 90% of plant species
+
+**Protecting Soil Life:**
+- Avoid excessive tillage
+- Minimize pesticide use
+- Add organic matter
+- Maintain soil moisture`
+      },
+      {
+        title: '7. Importance of Soil',
+        content: `**Soil is essential for life on Earth!**
+
+**Importance to Plants:**
+<table>
+<tr><th>Function</th><th>How Soil Helps</th></tr>
+<tr><td><strong>Anchorage</strong></td><td>Roots grip soil for support</td></tr>
+<tr><td><strong>Water supply</strong></td><td>Stores and releases water to roots</td></tr>
+<tr><td><strong>Nutrient supply</strong></td><td>Contains and releases essential nutrients</td></tr>
+<tr><td><strong>Air for roots</strong></td><td>Pore spaces hold oxygen for respiration</td></tr>
+</table>
+
+**Importance to Animals and Humans:**
+- **Food production:** All crops grow in soil
+- **Habitat:** Home to countless organisms
+- **Building material:** Clay for bricks, roads
+- **Water filtration:** Purifies groundwater
+- **Carbon storage:** Stores more carbon than atmosphere
+
+**Importance to Ghana:**
+- Agriculture employs 50%+ of workforce
+- ~20% of GDP from agriculture
+- Food security for 30+ million people
+- Export crops: cocoa, cashews, shea
+
+**Environmental Functions:**
+- Filters and purifies water
+- Recycles nutrients
+- Regulates climate
+- Supports biodiversity`
+      },
+      {
+        title: '8. Soil Types in Ghana',
+        content: `**Ghana has diverse soil types related to climate and vegetation zones.**
+
+<table>
+<tr><th>Region</th><th>Soil Type</th><th>Characteristics</th><th>Crops</th></tr>
+<tr><td><strong>Forest Zone</strong></td><td>Forest Ochrosols</td><td>Deep, red-brown, fertile</td><td>Cocoa, oil palm, plantain</td></tr>
+<tr><td><strong>Transition Zone</strong></td><td>Savanna Ochrosols</td><td>Brown, moderate fertility</td><td>Maize, yams, cashew</td></tr>
+<tr><td><strong>Northern Savanna</strong></td><td>Groundwater Laterites</td><td>Sandy, low fertility</td><td>Millet, sorghum, groundnuts</td></tr>
+<tr><td><strong>Coastal</strong></td><td>Coastal Savanna soils</td><td>Sandy, alkaline</td><td>Coconut, vegetables</td></tr>
+</table>
+
+**Challenges in Ghana:**
+- **Soil degradation** from poor farming practices
+- **Erosion** especially in Northern regions
+- **Nutrient depletion** from continuous cropping
+- **Low organic matter** from burning
+
+**Solutions:**
+- Crop rotation with legumes
+- Composting and organic manures
+- Agroforestry systems
+- Conservation farming
+- Soil testing and targeted fertilizers`
+      }
+    ],
+
+    activities: {
+      type: 'exercises',
+      questions: [
+        {
+          type: 'mcq',
+          question: 'What percentage of soil is typically made up of organic matter?',
+          options: ['5%', '25%', '45%', '75%'],
+          answer: '5%',
+          explanation: 'Organic matter makes up only about 5% of soil, but it is crucial for fertility. The rest is mineral matter (45%), water (25%), and air (25%).'
+        },
+        {
+          type: 'mcq',
+          question: 'Which soil particle is the smallest?',
+          options: ['Sand', 'Silt', 'Clay', 'Gravel'],
+          answer: 'Clay',
+          explanation: 'Clay particles are the smallest (<0.002 mm), followed by silt (0.002-0.05 mm), then sand (0.05-2.0 mm).'
+        },
+        {
+          type: 'mcq',
+          question: 'What is humus?',
+          options: ['A type of soil', 'Decomposed organic matter', 'A mineral', 'Soil water'],
+          answer: 'Decomposed organic matter',
+          explanation: 'Humus is fully decomposed organic matter. It is dark brown to black, rich in nutrients, and improves soil structure.'
+        },
+        {
+          type: 'mcq',
+          question: 'Which horizon contains the most organic matter and nutrients?',
+          options: ['O Horizon', 'A Horizon (Topsoil)', 'B Horizon (Subsoil)', 'C Horizon'],
+          answer: 'A Horizon (Topsoil)',
+          explanation: 'The A horizon (topsoil) is the most important for farming as it contains the most humus, nutrients, and is where most plant roots grow.'
+        },
+        {
+          type: 'mcq',
+          question: 'What type of soil is ideal for most crops?',
+          options: ['Sandy soil', 'Clay soil', 'Loam soil', 'Gravel soil'],
+          answer: 'Loam soil',
+          explanation: 'Loam is a balanced mixture of sand, silt, and clay. It has good drainage, retains water and nutrients well, and is easy to work with.'
+        },
+        {
+          type: 'mcq',
+          question: 'Which organism is known as a "soil engineer" for mixing and aerating soil?',
+          options: ['Bacteria', 'Fungi', 'Earthworms', 'Protozoa'],
+          answer: 'Earthworms',
+          explanation: 'Earthworms create tunnels that allow air and water to penetrate soil, mix organic matter through the soil, and produce nutrient-rich castings.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Sandy soil holds more water than clay soil.',
+          answer: 'false',
+          reason: 'Clay soil has tiny particles with small pores that hold water tightly. Sandy soil has large particles with big pores that allow water to drain quickly.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Soil air provides oxygen for plant root respiration.',
+          answer: 'true',
+          reason: 'Plant roots need oxygen for cellular respiration. The air in soil pores supplies this oxygen. Waterlogged soils have no air, causing root suffocation.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'The C horizon contains the most organic matter.',
+          answer: 'false',
+          reason: 'The C horizon is parent material (weathered rock) with little organic matter. The A horizon (topsoil) contains the most organic matter and nutrients.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Mycorrhizae are fungi that help plants absorb water and nutrients.',
+          answer: 'true',
+          reason: 'Mycorrhizal fungi form beneficial partnerships with plant roots, extending their reach and helping absorb phosphorus and water.'
+        }
+      ]
+    },
+
+    pastQuestions: [
+      {
+        question: 'State the four main components of soil and their approximate percentages.',
+        year: 'WASSCE 2021',
+        solution: `**Four main components of soil:**
+
+1. **Mineral matter (45%):** Particles of weathered rock including sand, silt, and clay that provide soil structure and some nutrients.
+
+2. **Organic matter (5%):** Decomposed plant and animal material (humus) that provides nutrients and improves water retention.
+
+3. **Soil water (25%):** Water held in soil pores that dissolves and transports nutrients to plant roots.
+
+4. **Soil air (25%):** Gases in soil pores, mainly oxygen for root respiration and carbon dioxide from decomposition.`
+      },
+      {
+        question: 'Describe the characteristics of sandy soil and clay soil.',
+        year: 'WASSCE 2020',
+        solution: `**Sandy Soil:**
+- Large particles (0.05-2.0 mm)
+- Feels gritty when rubbed
+- Has large pore spaces
+- Drains water very quickly
+- Poor nutrient and water retention
+- Easy to cultivate and dig
+- Warms up quickly in sunlight
+- Good aeration for roots
+
+**Clay Soil:**
+- Very small particles (<0.002 mm)
+- Feels sticky and smooth when wet
+- Has tiny pore spaces
+- Poor drainage, holds water
+- Good nutrient retention
+- Difficult to work when wet or dry
+- Slow to warm up
+- Can become waterlogged, reducing aeration`
+      },
+      {
+        question: 'Explain the importance of organic matter in soil.',
+        year: 'WASSCE 2019',
+        solution: `**Importance of organic matter in soil:**
+
+1. **Nutrient supply:** Organic matter releases nitrogen, phosphorus, potassium, and micronutrients slowly as it decomposes.
+
+2. **Water retention:** Humus can hold up to 20 times its weight in water, helping plants survive dry periods.
+
+3. **Soil structure:** Organic matter binds soil particles into aggregates, improving soil structure and reducing compaction.
+
+4. **Feeds soil organisms:** Provides food for beneficial bacteria, fungi, and earthworms that cycle nutrients.
+
+5. **Buffers soil pH:** Helps maintain stable soil acidity, protecting plants from pH fluctuations.
+
+6. **Improves aeration:** Better soil structure means more pore spaces for air and water movement.`
+      }
+    ],
+
+    summary: `**🌍 SOIL COMPOSITION:**
+• Mineral matter (45%): Sand, silt, clay
+• Organic matter (5%): Humus from decomposition
+• Water (25%): Dissolves nutrients
+• Air (25%): Oxygen for roots
+
+**📏 SOIL PARTICLES:**
+• Sand: Largest (0.05-2mm), gritty, drains fast
+• Silt: Medium, smooth, moderate drainage
+• Clay: Smallest (<0.002mm), sticky, holds water
+• Loam: Best mix of all three!
+
+**🏔️ SOIL PROFILE (Horizons):**
+• O: Organic layer (leaves, debris)
+• A: Topsoil (most important, dark, rich)
+• B: Subsoil (leached minerals)
+• C: Parent material (weathered rock)
+• R: Bedrock (solid rock)
+
+**🐛 SOIL ORGANISMS:**
+• Bacteria: Decompose, fix nitrogen
+• Fungi: Help roots, break down matter
+• Earthworms: Mix soil, create channels
+• All need organic matter as food!
+
+**🌱 IMPORTANCE OF SOIL:**
+• Anchors plants and provides nutrients
+• Stores and filters water
+• Habitat for organisms
+• Carbon storage
+• Foundation of food production
+
+**🇬🇭 GHANA'S SOILS:**
+• Forest: Deep, fertile (cocoa, oil palm)
+• Transition: Moderate (maize, yams)
+• Savanna: Sandy, low fertility (millet)
+• Coastal: Sandy, alkaline (coconut)`
+  },
+
+  // =============================================
+  // ELEMENTS, COMPOUNDS AND MIXTURES
+  // =============================================
+  {
+    id: 'is-shs1-diversity-6',
+    slug: 'is-diversity-matter-shs1',
+    title: 'Elements, Compounds and Mixtures',
+    objectives: [
+      'Define and differentiate elements, compounds, and mixtures',
+      'Classify substances as elements, compounds, or mixtures',
+      'Describe the properties of elements, compounds, and mixtures',
+      'Explain methods of separating mixtures',
+      'Give examples of elements, compounds, and mixtures in everyday life',
+      'Write chemical symbols and formulae for common substances'
+    ],
+
+    introduction: `
+# ELEMENTS, COMPOUNDS AND MIXTURES: Building Blocks of Matter
+
+## What is Everything Made Of?
+
+Look around you - the air you breathe, the water you drink, the food you eat, even your own body. Everything is made of matter, but how is this matter organized?
+
+**In this lesson, you will learn:**
+- What elements are and how they combine
+- How compounds are different from elements
+- What mixtures are and how to separate them
+- The difference between pure substances and mixtures
+
+---
+
+## Why Does This Matter?
+
+Understanding elements, compounds, and mixtures helps us:
+- Know what substances are made of
+- Understand chemical reactions
+- Separate useful substances from mixtures
+- Create new materials for technology
+
+From the gold in jewelry to the salt in your soup, this knowledge is fundamental to chemistry and everyday life!
+
+Let's explore the building blocks of matter! ⚛️
+`,
+
+    keyConcepts: [
+      {
+        title: '1. What are Elements?',
+        content: `An **Element** is a pure substance that cannot be broken down into simpler substances by chemical means.
+
+**Key Characteristics:**
+- Made of only ONE type of atom
+- Cannot be decomposed chemically
+- Building blocks of all matter
+- 118 elements known (92 natural, 26 man-made)
+
+**Examples of Elements:**
+<table>
+<tr><th>Element</th><th>Symbol</th><th>State at Room Temp</th><th>Common Use</th></tr>
+<tr><td>Gold</td><td>Au</td><td>Solid</td><td>Jewelry, electronics</td></tr>
+<tr><td>Oxygen</td><td>O</td><td>Gas</td><td>Breathing, combustion</td></tr>
+<tr><td>Carbon</td><td>C</td><td>Solid</td><td>Fuels, life molecules</td></tr>
+<tr><td>Iron</td><td>Fe</td><td>Solid</td><td>Construction, tools</td></tr>
+<tr><td>Mercury</td><td>Hg</td><td>Liquid</td><td>Thermometers</td></tr>
+<tr><td>Nitrogen</td><td>N</td><td>Gas</td><td>Fertilizers, air</td></tr>
+</table>
+
+**Types of Elements:**
+- **Metals:** Shiny, conduct electricity (e.g., gold, iron, copper)
+- **Non-metals:** Dull, poor conductors (e.g., oxygen, carbon, sulfur)
+- **Metalloids:** Properties of both (e.g., silicon)`
+      },
+      {
+        title: '2. Chemical Symbols',
+        content: `**Chemical Symbols** are abbreviations used to represent elements.
+
+**Rules for Symbols:**
+- One or two letters
+- First letter is ALWAYS capital
+- Second letter (if any) is lowercase
+- Based on English or Latin names
+
+**Common Elements and Their Symbols:**
+
+<table>
+<tr><th>Element</th><th>Symbol</th><th>Origin</th></tr>
+<tr><td>Hydrogen</td><td>H</td><td>Hydrogen</td></tr>
+<tr><td>Carbon</td><td>C</td><td>Carbon</td></tr>
+<tr><td>Nitrogen</td><td>N</td><td>Nitrogen</td></tr>
+<tr><td>Oxygen</td><td>O</td><td>Oxygen</td></tr>
+<tr><td>Sodium</td><td>Na</td><td>Natrium (Latin)</td></tr>
+<tr><td>Potassium</td><td>K</td><td>Kalium (Latin)</td></tr>
+<tr><td>Iron</td><td>Fe</td><td>Ferrum (Latin)</td></tr>
+<tr><td>Copper</td><td>Cu</td><td>Cuprum (Latin)</td></tr>
+<tr><td>Silver</td><td>Ag</td><td>Argentum (Latin)</td></tr>
+<tr><td>Gold</td><td>Au</td><td>Aurum (Latin)</td></tr>
+<tr><td>Lead</td><td>Pb</td><td>Plumbum (Latin)</td></tr>
+</table>
+
+**Remember:**
+- Co = Cobalt (element)
+- CO = Carbon monoxide (compound)
+- The capital letters matter!`
+      },
+      {
+        title: '3. What are Compounds?',
+        content: `A **Compound** is a pure substance made of TWO or MORE different elements chemically combined in a fixed ratio.
+
+**Key Characteristics:**
+- Made of two or more different elements
+- Elements are CHEMICALLY bonded
+- Fixed composition (always same ratio)
+- Properties differ from constituent elements
+- Can only be separated by chemical means
+
+**Examples of Compounds:**
+
+<table>
+<tr><th>Compound</th><th>Formula</th><th>Elements</th><th>Properties</th></tr>
+<tr><td>Water</td><td>H₂O</td><td>Hydrogen + Oxygen</td><td>Liquid, essential for life</td></tr>
+<tr><td>Table Salt</td><td>NaCl</td><td>Sodium + Chlorine</td><td>White solid, salty taste</td></tr>
+<tr><td>Carbon Dioxide</td><td>CO₂</td><td>Carbon + Oxygen</td><td>Gas, used by plants</td></tr>
+<tr><td>Glucose</td><td>C₆H₁₂O₆</td><td>C + H + O</td><td>Sweet, energy source</td></tr>
+<tr><td>Ammonia</td><td>NH₃</td><td>Nitrogen + Hydrogen</td><td>Pungent gas, fertilizer</td></tr>
+</table>
+
+**Important Point:**
+Compounds have DIFFERENT properties from their elements!
+- Sodium (Na): Reactive metal, dangerous
+- Chlorine (Cl): Poisonous green gas
+- Sodium Chloride (NaCl): Safe table salt!`
+      },
+      {
+        title: '4. Chemical Formulae',
+        content: `A **Chemical Formula** shows the elements in a compound and their ratio.
+
+**How to Read Formulae:**
+- Letters = Elements
+- Subscript numbers = Number of atoms
+- No number means 1 atom
+
+**Examples:**
+<table>
+<tr><th>Formula</th><th>Meaning</th></tr>
+<tr><td>H₂O</td><td>2 hydrogen atoms + 1 oxygen atom</td></tr>
+<tr><td>CO₂</td><td>1 carbon atom + 2 oxygen atoms</td></tr>
+<tr><td>NaCl</td><td>1 sodium atom + 1 chlorine atom</td></tr>
+<tr><td>H₂SO₄</td><td>2 H + 1 S + 4 O atoms</td></tr>
+<tr><td>CaCO₃</td><td>1 Ca + 1 C + 3 O atoms</td></tr>
+</table>
+
+**Common Compounds in Ghana:**
+- **Calcium carbonate (CaCO₃):** Limestone, cement
+- **Sodium hydroxide (NaOH):** Soap making
+- **Calcium oxide (CaO):** Quicklime for construction
+- **Sodium chloride (NaCl):** Salt for food
+- **Carbon dioxide (CO₂):** In soft drinks`
+      },
+      {
+        title: '5. What are Mixtures?',
+        content: `A **Mixture** is two or more substances physically combined, NOT chemically bonded.
+
+**Key Characteristics:**
+- Components keep their original properties
+- No fixed composition (variable ratios)
+- Can be separated by physical methods
+- No chemical reaction occurs
+
+**Types of Mixtures:**
+
+<table>
+<tr><th>Type</th><th>Description</th><th>Examples</th></tr>
+<tr><td><strong>Homogeneous</strong></td><td>Uniform throughout (one phase)</td><td>Salt water, air, alloys</td></tr>
+<tr><td><strong>Heterogeneous</strong></td><td>Not uniform (can see parts)</td><td>Sand + water, salad, soil</td></tr>
+</table>
+
+**Solutions (Homogeneous Mixtures):**
+- **Solute:** Substance dissolved (e.g., salt)
+- **Solvent:** Substance doing the dissolving (e.g., water)
+- **Solution:** The resulting mixture (e.g., salt water)
+
+**Examples of Mixtures:**
+- **Air:** Nitrogen (78%), Oxygen (21%), other gases
+- **Sea water:** Water + salt + minerals
+- **Soil:** Sand + clay + organic matter + water + air
+- **Blood:** Water + cells + proteins + dissolved substances
+- **Bronze:** Copper + tin (alloy)`
+      },
+      {
+        title: '6. Elements vs Compounds vs Mixtures',
+        content: `**Comparison Table:**
+
+<table>
+<tr><th>Property</th><th>Element</th><th>Compound</th><th>Mixture</th></tr>
+<tr><td><strong>Composition</strong></td><td>One type of atom</td><td>Two+ elements chemically bonded</td><td>Two+ substances physically combined</td></tr>
+<tr><td><strong>Separation</strong></td><td>Cannot be broken down</td><td>Only by chemical means</td><td>By physical methods</td></tr>
+<tr><td><strong>Properties</strong></td><td>Characteristic of element</td><td>Different from elements</td><td>Same as components</td></tr>
+<tr><td><strong>Ratio</strong></td><td>N/A</td><td>Fixed ratio</td><td>Variable ratio</td></tr>
+<tr><td><strong>Example</strong></td><td>Gold (Au), Oxygen (O₂)</td><td>Water (H₂O), Salt (NaCl)</td><td>Air, Salt water</td></tr>
+</table>
+
+**Classification Test:**
+Ask these questions:
+1. Is it a pure substance? 
+   - No → It's a MIXTURE
+   - Yes → Go to step 2
+2. Can it be decomposed chemically?
+   - No → It's an ELEMENT
+   - Yes → It's a COMPOUND`
+      },
+      {
+        title: '7. Separation of Mixtures',
+        content: `**Physical methods** separate mixtures based on physical properties.
+
+<table>
+<tr><th>Method</th><th>Principle</th><th>Example</th></tr>
+<tr><td><strong>Filtration</strong></td><td>Particle size (solid from liquid)</td><td>Sand from water</td></tr>
+<tr><td><strong>Evaporation</strong></td><td>Boiling point differences</td><td>Salt from salt water</td></tr>
+<tr><td><strong>Distillation</strong></td><td>Boiling point (collect vapor)</td><td>Pure water from sea water</td></tr>
+<tr><td><strong>Chromatography</strong></td><td>Solubility differences</td><td>Dyes in ink</td></tr>
+<tr><td><strong>Magnetic separation</strong></td><td>Magnetic properties</td><td>Iron from sand</td></tr>
+<tr><td><strong>Decantation</strong></td><td>Density differences</td><td>Oil from water</td></tr>
+<tr><td><strong>Sieving</strong></td><td>Particle size (solid from solid)</td><td>Rice from stones</td></tr>
+</table>
+
+**Practical Applications in Ghana:**
+- **Salt production:** Evaporating sea water
+- **Gold mining:** Separating gold from ore
+- **Water treatment:** Filtration, distillation
+- **Food processing:** Sieving flour, filtering palm oil`
+      },
+      {
+        title: '8. Everyday Examples',
+        content: `**Elements Around Us:**
+- Gold (Au) - Jewelry, money
+- Iron (Fe) - Roofing sheets, tools
+- Aluminum (Al) - Pots, cans
+- Carbon (C) - Charcoal, pencils
+- Oxygen (O₂) - Breathing
+
+**Compounds Around Us:**
+- Water (H₂O) - Drinking, cooking
+- Salt (NaCl) - Seasoning food
+- Sugar (C₁₂H₂₂O₁₁) - Sweetening
+- Baking soda (NaHCO₃) - Baking
+- Vinegar (CH₃COOH) - Cooking
+
+**Mixtures Around Us:**
+- Air - Breathing (N₂, O₂, CO₂)
+- Soil - Farming
+- Blood - Transports nutrients
+- Milk - Nutrition
+- Concrete - Construction
+
+**Classifying Substances:**
+<table>
+<tr><th>Substance</th><th>Classification</th><th>Reason</th></tr>
+<tr><td>Diamond</td><td>Element</td><td>Pure carbon only</td></tr>
+<tr><td>Rust</td><td>Compound</td><td>Iron oxide (Fe₂O₃)</td></tr>
+<tr><td>Seawater</td><td>Mixture</td><td>Water + salts + minerals</td></tr>
+<tr><td>Bronze</td><td>Mixture (alloy)</td><td>Copper + tin physically mixed</td></tr>
+</table>`
+      }
+    ],
+
+    activities: {
+      type: 'exercises',
+      questions: [
+        {
+          type: 'mcq',
+          question: 'Which of the following is an element?',
+          options: ['Water (H₂O)', 'Salt (NaCl)', 'Gold (Au)', 'Air'],
+          answer: 'Gold (Au)',
+          explanation: 'Gold (Au) is an element because it contains only one type of atom. Water and salt are compounds. Air is a mixture of gases.'
+        },
+        {
+          type: 'mcq',
+          question: 'What is the chemical symbol for sodium?',
+          options: ['S', 'So', 'Na', 'Sd'],
+          answer: 'Na',
+          explanation: 'Sodium\'s symbol is Na, from the Latin name "Natrium." S is the symbol for sulfur.'
+        },
+        {
+          type: 'mcq',
+          question: 'Which method would you use to separate salt from water?',
+          options: ['Filtration', 'Evaporation', 'Magnetic separation', 'Sieving'],
+          answer: 'Evaporation',
+          explanation: 'Evaporation removes water by heating, leaving the dissolved salt behind. Filtration is for insoluble solids, not dissolved substances.'
+        },
+        {
+          type: 'mcq',
+          question: 'In the formula H₂SO₄, how many oxygen atoms are present?',
+          options: ['1', '2', '4', '6'],
+          answer: '4',
+          explanation: 'The subscript 4 after O indicates 4 oxygen atoms. The formula has 2 hydrogen, 1 sulfur, and 4 oxygen atoms.'
+        },
+        {
+          type: 'mcq',
+          question: 'Which of the following is a homogeneous mixture?',
+          options: ['Sand and water', 'Salt water', 'Salad', 'Oil and water'],
+          answer: 'Salt water',
+          explanation: 'Salt water is homogeneous because salt dissolves completely, making a uniform solution. The others are heterogeneous - you can see separate parts.'
+        },
+        {
+          type: 'mcq',
+          question: 'What distinguishes a compound from a mixture?',
+          options: ['Compounds contain only one element', 'Compounds can be separated by physical means', 'Compounds have fixed composition', 'Compounds keep the properties of their components'],
+          answer: 'Compounds have fixed composition',
+          explanation: 'Compounds have elements in fixed ratios (e.g., water is always H₂O). Mixtures have variable composition and can be separated physically.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Air is a compound because it contains oxygen and nitrogen.',
+          answer: 'false',
+          reason: 'Air is a mixture, not a compound. The gases in air are physically mixed, not chemically bonded, and exist in variable proportions.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'The properties of a compound are different from the properties of its elements.',
+          answer: 'true',
+          reason: 'When elements combine chemically, new substances with different properties form. For example, sodium (reactive metal) + chlorine (poisonous gas) = sodium chloride (safe table salt).'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Filtration can be used to separate dissolved salt from water.',
+          answer: 'false',
+          reason: 'Filtration only separates insoluble solids from liquids. Dissolved salt passes through filter paper. Evaporation or distillation is needed to separate salt from water.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'An element is made up of only one type of atom.',
+          answer: 'true',
+          reason: 'By definition, an element contains only one type of atom. For example, gold contains only gold atoms, and oxygen gas contains only oxygen atoms.'
+        }
+      ]
+    },
+
+    pastQuestions: [
+      {
+        question: 'Distinguish between a compound and a mixture.',
+        year: 'WASSCE 2022',
+        solution: `**Compound vs Mixture:**
+
+**Compound:**
+1. Made of two or more elements chemically combined
+2. Has a fixed composition (definite ratio)
+3. Components lose their individual properties
+4. Can only be separated by chemical means
+5. Formation involves a chemical reaction
+Example: Water (H₂O) - always 2 hydrogen : 1 oxygen
+
+**Mixture:**
+1. Made of two or more substances physically combined
+2. Has variable composition (any ratio possible)
+3. Components retain their individual properties
+4. Can be separated by physical methods
+5. No chemical reaction occurs
+Example: Salt water - can have different amounts of salt`
+      },
+      {
+        question: 'State the method used to separate each of the following mixtures: (a) Sand and water (b) Salt and water (c) Iron filings and sand',
+        year: 'WASSCE 2021',
+        solution: `**Separation methods:**
+
+**(a) Sand and water: FILTRATION**
+- Sand does not dissolve in water (insoluble)
+- Pour mixture through filter paper
+- Sand stays on filter paper, water passes through
+
+**(b) Salt and water: EVAPORATION**
+- Salt is dissolved in water (solution)
+- Heat the solution to evaporate water
+- Salt crystals remain when water evaporates
+- Alternative: Distillation (if you want to collect the water)
+
+**(c) Iron filings and sand: MAGNETIC SEPARATION**
+- Iron is magnetic, sand is not
+- Pass a magnet through the mixture
+- Iron filings stick to magnet, sand stays behind`
+      },
+      {
+        question: 'Give two examples each of: (a) elements (b) compounds (c) mixtures',
+        year: 'WASSCE 2020',
+        solution: `**(a) Elements (pure substances with one type of atom):**
+1. Iron (Fe) - used in construction
+2. Gold (Au) - used in jewelry
+Other examples: Oxygen, Carbon, Nitrogen, Copper
+
+**(b) Compounds (two or more elements chemically combined):**
+1. Water (H₂O) - hydrogen and oxygen
+2. Sodium chloride/Table salt (NaCl) - sodium and chlorine
+Other examples: Carbon dioxide (CO₂), Glucose (C₆H₁₂O₆)
+
+**(c) Mixtures (substances physically combined):**
+1. Air - mixture of nitrogen, oxygen, and other gases
+2. Sea water - mixture of water and dissolved salts
+Other examples: Soil, Blood, Alloys (bronze, brass)`
+      }
+    ],
+
+    summary: `**⚛️ ELEMENTS:**
+• Pure substance with ONE type of atom
+• Cannot be broken down chemically
+• 118 known elements (92 natural)
+• Examples: Gold (Au), Oxygen (O), Iron (Fe)
+• Types: Metals, Non-metals, Metalloids
+
+**🔬 COMPOUNDS:**
+• Two+ elements CHEMICALLY combined
+• Fixed ratio (definite composition)
+• Properties differ from elements
+• Separated only by chemical means
+• Examples: H₂O, NaCl, CO₂, C₆H₁₂O₆
+
+**🧪 MIXTURES:**
+• Two+ substances PHYSICALLY combined
+• Variable composition
+• Components keep their properties
+• Separated by physical methods
+• Types: Homogeneous (uniform), Heterogeneous (visible parts)
+
+**📝 CHEMICAL SYMBOLS:**
+• One or two letters (first capital)
+• From English or Latin names
+• Na = Sodium, K = Potassium, Fe = Iron
+
+**🔧 SEPARATION METHODS:**
+• Filtration: Solid from liquid (sand from water)
+• Evaporation: Dissolved solid (salt from water)
+• Distillation: Liquids with different boiling points
+• Magnetic separation: Iron from non-magnetic materials
+• Chromatography: Soluble substances (dyes)
+
+**✅ CLASSIFICATION TEST:**
+1. Is it pure? No → Mixture
+2. Can it be decomposed? No → Element, Yes → Compound`
+  },
+
+  // =============================================
+  // UNITS AND INSTRUMENTS
+  // =============================================
+  {
+    id: 'is-shs1-measurement-1',
+    slug: 'is-measurement-units-instruments',
+    title: 'Units and Instruments',
+    objectives: [
+      'State the SI base units and their symbols',
+      'Identify appropriate measuring instruments for different quantities',
+      'Describe how to use common measuring instruments correctly',
+      'Convert between different units of measurement',
+      'Explain the importance of standardized units in science',
+      'Read and record measurements from various instruments'
+    ],
+
+    introduction: `
+# UNITS AND INSTRUMENTS: The Language of Measurement
+
+## Why Do We Need Units?
+
+Imagine buying fabric at the market - would you accept "some meters" or do you need an exact measurement? Science requires even more precision! Without standard units, scientists around the world couldn't share or compare their work.
+
+**In this lesson, you will learn:**
+- The international system of units (SI units)
+- How to use common measuring instruments
+- How to convert between units
+- The importance of measurement in science
+
+---
+
+## Measurement in Everyday Life
+
+We measure things constantly:
+- Time to wake up for school
+- Distance to walk to the market
+- Amount of water to cook rice
+- Temperature when feeling unwell
+
+Understanding units and instruments is essential for science, engineering, medicine, and daily life!
+
+Let's master the art of measurement! 📏
+`,
+
+    keyConcepts: [
+      {
+        title: '1. SI Base Units',
+        content: `**SI Units** (Système International) are the internationally agreed standard units.
+
+**The Seven SI Base Units:**
+
+<table>
+<tr><th>Quantity</th><th>SI Unit</th><th>Symbol</th></tr>
+<tr><td><strong>Length</strong></td><td>meter</td><td>m</td></tr>
+<tr><td><strong>Mass</strong></td><td>kilogram</td><td>kg</td></tr>
+<tr><td><strong>Time</strong></td><td>second</td><td>s</td></tr>
+<tr><td><strong>Temperature</strong></td><td>kelvin</td><td>K</td></tr>
+<tr><td><strong>Electric current</strong></td><td>ampere</td><td>A</td></tr>
+<tr><td><strong>Amount of substance</strong></td><td>mole</td><td>mol</td></tr>
+<tr><td><strong>Luminous intensity</strong></td><td>candela</td><td>cd</td></tr>
+</table>
+
+**Why SI Units?**
+- Universal language for scientists
+- Avoids confusion between countries
+- Based on natural constants
+- Easy to convert using powers of 10
+
+**Common Derived Units:**
+- Area: square meter (m²)
+- Volume: cubic meter (m³)
+- Speed: meter per second (m/s)
+- Force: newton (N) = kg⋅m/s²
+- Energy: joule (J) = N⋅m`
+      },
+      {
+        title: '2. SI Prefixes',
+        content: `**Prefixes** make large and small numbers easier to work with.
+
+<table>
+<tr><th>Prefix</th><th>Symbol</th><th>Meaning</th><th>Example</th></tr>
+<tr><td>giga</td><td>G</td><td>10⁹ (billion)</td><td>1 GB = 1,000,000,000 bytes</td></tr>
+<tr><td>mega</td><td>M</td><td>10⁶ (million)</td><td>1 MW = 1,000,000 watts</td></tr>
+<tr><td>kilo</td><td>k</td><td>10³ (thousand)</td><td>1 km = 1,000 m</td></tr>
+<tr><td>hecto</td><td>h</td><td>10² (hundred)</td><td>1 hL = 100 L</td></tr>
+<tr><td>deca</td><td>da</td><td>10¹ (ten)</td><td>1 dam = 10 m</td></tr>
+<tr><td>--</td><td>--</td><td>10⁰ (one)</td><td>base unit</td></tr>
+<tr><td>deci</td><td>d</td><td>10⁻¹ (tenth)</td><td>1 dm = 0.1 m</td></tr>
+<tr><td>centi</td><td>c</td><td>10⁻² (hundredth)</td><td>1 cm = 0.01 m</td></tr>
+<tr><td>milli</td><td>m</td><td>10⁻³ (thousandth)</td><td>1 mm = 0.001 m</td></tr>
+<tr><td>micro</td><td>μ</td><td>10⁻⁶ (millionth)</td><td>1 μm = 0.000001 m</td></tr>
+<tr><td>nano</td><td>n</td><td>10⁻⁹ (billionth)</td><td>1 nm = 0.000000001 m</td></tr>
+</table>
+
+**Memory Aid (Large to Small):**
+**K**ing **H**enry **D**ied **B**y **D**rinking **C**hocolate **M**ilk
+(Kilo, Hecto, Deca, Base, Deci, Centi, Milli)`
+      },
+      {
+        title: '3. Measuring Length',
+        content: `**Length** is the distance between two points.
+
+**Instruments for Measuring Length:**
+
+<table>
+<tr><th>Instrument</th><th>Range</th><th>Precision</th><th>Use</th></tr>
+<tr><td><strong>Meter rule</strong></td><td>0-100 cm</td><td>1 mm</td><td>Medium lengths (books, desks)</td></tr>
+<tr><td><strong>Tape measure</strong></td><td>0-several m</td><td>1 mm</td><td>Long lengths (rooms, fabric)</td></tr>
+<tr><td><strong>Vernier caliper</strong></td><td>0-15 cm</td><td>0.1 mm</td><td>Small precise lengths</td></tr>
+<tr><td><strong>Micrometer screw gauge</strong></td><td>0-25 mm</td><td>0.01 mm</td><td>Very small objects (wire, paper)</td></tr>
+</table>
+
+**Using a Meter Rule:**
+1. Place zero mark at one end of object
+2. Read scale at the other end
+3. Eye should be directly above the mark (avoid parallax)
+4. Record to nearest mm
+
+**Using Vernier Calipers:**
+1. Main scale reading (before zero of vernier)
+2. Vernier scale reading (line that aligns with main scale)
+3. Total = Main + Vernier reading
+
+**Unit Conversions:**
+- 1 km = 1,000 m
+- 1 m = 100 cm = 1,000 mm
+- 1 cm = 10 mm`
+      },
+      {
+        title: '4. Measuring Mass',
+        content: `**Mass** is the amount of matter in an object. (Different from weight!)
+
+**Instruments for Measuring Mass:**
+
+<table>
+<tr><th>Instrument</th><th>Range</th><th>Precision</th><th>Use</th></tr>
+<tr><td><strong>Beam balance</strong></td><td>0-2 kg</td><td>0.1 g</td><td>Laboratory work</td></tr>
+<tr><td><strong>Top-pan balance</strong></td><td>0-5 kg</td><td>0.01 g</td><td>Precise lab measurements</td></tr>
+<tr><td><strong>Spring balance</strong></td><td>Various</td><td>Variable</td><td>Quick estimates</td></tr>
+<tr><td><strong>Kitchen scale</strong></td><td>0-5 kg</td><td>1 g</td><td>Cooking</td></tr>
+</table>
+
+**Using a Beam Balance:**
+1. Ensure balance is on level surface
+2. Zero the balance (pointer at center)
+3. Place object on left pan
+4. Add masses to right pan until balanced
+5. Sum up the masses used
+
+**Using a Top-Pan (Electronic) Balance:**
+1. Turn on and wait for zero
+2. Place container if needed
+3. Press "Tare" to zero with container
+4. Add substance and read mass
+
+**Mass vs Weight:**
+- **Mass:** Amount of matter (constant everywhere)
+- **Weight:** Force of gravity on mass (varies with location)
+- Weight = Mass × Gravitational acceleration (W = mg)`
+      },
+      {
+        title: '5. Measuring Volume',
+        content: `**Volume** is the amount of space an object occupies.
+
+**Instruments for Measuring Liquid Volume:**
+
+<table>
+<tr><th>Instrument</th><th>Range</th><th>Precision</th><th>Use</th></tr>
+<tr><td><strong>Measuring cylinder</strong></td><td>10-1000 mL</td><td>0.5-10 mL</td><td>General lab work</td></tr>
+<tr><td><strong>Beaker</strong></td><td>50-2000 mL</td><td>±10%</td><td>Approximate volumes</td></tr>
+<tr><td><strong>Pipette</strong></td><td>1-50 mL</td><td>0.01 mL</td><td>Precise small volumes</td></tr>
+<tr><td><strong>Burette</strong></td><td>0-50 mL</td><td>0.1 mL</td><td>Titrations</td></tr>
+</table>
+
+**Reading Volume (Meniscus):**
+- Liquids curve at edges (meniscus)
+- Read at BOTTOM of meniscus
+- Eye level with liquid surface
+
+**Measuring Solid Volumes:**
+
+*Regular solids (cubes, cylinders):*
+- Calculate using formulas
+- Cube: V = length × width × height
+- Cylinder: V = πr²h
+
+*Irregular solids (stones, keys):*
+- Water displacement method
+- Volume = Final level - Initial level
+
+**Unit Conversions:**
+- 1 L = 1,000 mL = 1,000 cm³
+- 1 m³ = 1,000 L
+- 1 cm³ = 1 mL`
+      },
+      {
+        title: '6. Measuring Time',
+        content: `**Time** measures the duration of events.
+
+**Instruments for Measuring Time:**
+
+<table>
+<tr><th>Instrument</th><th>Precision</th><th>Use</th></tr>
+<tr><td><strong>Stopwatch</strong></td><td>0.01 s</td><td>Short events, experiments</td></tr>
+<tr><td><strong>Digital clock</strong></td><td>1 s</td><td>Everyday timing</td></tr>
+<tr><td><strong>Analog clock</strong></td><td>1 s</td><td>Everyday use</td></tr>
+<tr><td><strong>Atomic clock</strong></td><td>10⁻¹⁵ s</td><td>GPS, scientific research</td></tr>
+</table>
+
+**Using a Stopwatch:**
+1. Reset to zero before use
+2. Press start at beginning of event
+3. Press stop at end of event
+4. Read and record time
+5. For better accuracy, repeat and average
+
+**Reaction Time:**
+When measuring fast events, account for human reaction time (~0.2 s).
+
+**Time Conversions:**
+- 1 hour = 60 minutes = 3,600 seconds
+- 1 minute = 60 seconds
+- 1 day = 24 hours = 86,400 seconds
+
+**Period and Frequency:**
+- Period (T): Time for one complete cycle
+- Frequency (f): Cycles per second (Hz)
+- f = 1/T`
+      },
+      {
+        title: '7. Measuring Temperature',
+        content: `**Temperature** measures how hot or cold something is.
+
+**Instruments for Measuring Temperature:**
+
+<table>
+<tr><th>Instrument</th><th>Range</th><th>Use</th></tr>
+<tr><td><strong>Mercury thermometer</strong></td><td>-10 to 110°C</td><td>Lab, medical</td></tr>
+<tr><td><strong>Alcohol thermometer</strong></td><td>-80 to 70°C</td><td>Low temperatures</td></tr>
+<tr><td><strong>Digital thermometer</strong></td><td>Various</td><td>Quick readings</td></tr>
+<tr><td><strong>Clinical thermometer</strong></td><td>35-42°C</td><td>Body temperature</td></tr>
+<tr><td><strong>Thermocouple</strong></td><td>-200 to 2000°C</td><td>Industrial</td></tr>
+</table>
+
+**Temperature Scales:**
+<table>
+<tr><th>Scale</th><th>Freezing Point of Water</th><th>Boiling Point of Water</th></tr>
+<tr><td>Celsius (°C)</td><td>0°C</td><td>100°C</td></tr>
+<tr><td>Fahrenheit (°F)</td><td>32°F</td><td>212°F</td></tr>
+<tr><td>Kelvin (K)</td><td>273 K</td><td>373 K</td></tr>
+</table>
+
+**Temperature Conversions:**
+- °C to K: K = °C + 273
+- K to °C: °C = K - 273
+- °C to °F: °F = (9/5)°C + 32
+- °F to °C: °C = (5/9)(°F - 32)
+
+**Using a Thermometer:**
+1. Check the range is suitable
+2. Wait for reading to stabilize
+3. Read at eye level
+4. For liquids, don't let bulb touch container walls`
+      },
+      {
+        title: '8. Good Measurement Practice',
+        content: `**How to Make Reliable Measurements:**
+
+**Avoid Errors:**
+<table>
+<tr><th>Error Type</th><th>Cause</th><th>Solution</th></tr>
+<tr><td><strong>Parallax error</strong></td><td>Wrong viewing angle</td><td>Eye level with scale</td></tr>
+<tr><td><strong>Zero error</strong></td><td>Scale doesn't start at zero</td><td>Check and adjust before use</td></tr>
+<tr><td><strong>Reaction time</strong></td><td>Delay in starting/stopping</td><td>Practice, use automatic timers</td></tr>
+<tr><td><strong>Environmental</strong></td><td>Temperature, humidity changes</td><td>Control conditions</td></tr>
+</table>
+
+**Best Practices:**
+1. **Choose right instrument** for the quantity and precision needed
+2. **Check for zero error** before measuring
+3. **Position correctly** - eye at right angle to scale
+4. **Repeat measurements** and calculate average
+5. **Record immediately** with correct units
+6. **Use appropriate significant figures**
+
+**Recording Measurements:**
+- Always include the unit
+- Use appropriate decimal places
+- Note the uncertainty if known
+- Example: Length = 15.3 ± 0.1 cm
+
+**In the Lab:**
+- Handle instruments carefully
+- Return instruments properly
+- Report any damage
+- Clean after use`
+      }
+    ],
+
+    activities: {
+      type: 'exercises',
+      questions: [
+        {
+          type: 'mcq',
+          question: 'What is the SI unit of mass?',
+          options: ['gram', 'kilogram', 'pound', 'newton'],
+          answer: 'kilogram',
+          explanation: 'The kilogram (kg) is the SI base unit of mass. The gram is 1/1000 of a kilogram. Newton is the unit of force, not mass.'
+        },
+        {
+          type: 'mcq',
+          question: 'Which instrument is best for measuring the diameter of a thin wire?',
+          options: ['Meter rule', 'Tape measure', 'Vernier caliper', 'Micrometer screw gauge'],
+          answer: 'Micrometer screw gauge',
+          explanation: 'A micrometer screw gauge has precision of 0.01 mm, making it ideal for measuring very small dimensions like wire diameter.'
+        },
+        {
+          type: 'mcq',
+          question: 'Convert 2.5 km to meters.',
+          options: ['25 m', '250 m', '2,500 m', '25,000 m'],
+          answer: '2,500 m',
+          explanation: '1 km = 1,000 m, so 2.5 km = 2.5 × 1,000 = 2,500 m'
+        },
+        {
+          type: 'mcq',
+          question: 'When reading a measuring cylinder, where should your eye be?',
+          options: ['Above the liquid level', 'Below the liquid level', 'Level with the bottom of the meniscus', 'Level with the top of the meniscus'],
+          answer: 'Level with the bottom of the meniscus',
+          explanation: 'To avoid parallax error and get accurate readings, your eye should be level with the bottom of the meniscus (the curved surface of the liquid).'
+        },
+        {
+          type: 'mcq',
+          question: 'What is 25°C in Kelvin?',
+          options: ['248 K', '273 K', '298 K', '325 K'],
+          answer: '298 K',
+          explanation: 'K = °C + 273, so 25°C = 25 + 273 = 298 K'
+        },
+        {
+          type: 'mcq',
+          question: 'Which prefix means one thousandth (10⁻³)?',
+          options: ['centi', 'milli', 'micro', 'kilo'],
+          answer: 'milli',
+          explanation: 'Milli (m) means 10⁻³ or 1/1000. Centi means 1/100, micro means 1/1,000,000, and kilo means 1000.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Mass and weight are the same thing.',
+          answer: 'false',
+          reason: 'Mass is the amount of matter (constant everywhere), while weight is the force of gravity on that mass (varies with location). An astronaut has the same mass on Earth and Moon, but different weight.'
+        },
+        {
+          type: 'truefalse',
+          statement: '1 mL is equal to 1 cm³.',
+          answer: 'true',
+          reason: '1 milliliter (mL) equals exactly 1 cubic centimeter (cm³). This is why both units are used interchangeably for liquid volumes.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'A beaker is more accurate than a measuring cylinder for measuring liquid volume.',
+          answer: 'false',
+          reason: 'Beakers have approximate graduations (±10%) and are for rough measurements. Measuring cylinders are designed for accurate volume measurement with finer graduations.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Zero Kelvin is called absolute zero and is the coldest possible temperature.',
+          answer: 'true',
+          reason: '0 K (absolute zero, -273°C) is theoretically the lowest possible temperature where all molecular motion stops. It cannot be reached in practice.'
+        }
+      ]
+    },
+
+    pastQuestions: [
+      {
+        question: 'State the SI units for: (a) length (b) mass (c) time (d) temperature',
+        year: 'WASSCE 2022',
+        solution: `**SI Units:**
+
+(a) **Length:** meter (m)
+- The meter is defined as the distance light travels in vacuum in 1/299,792,458 of a second.
+
+(b) **Mass:** kilogram (kg)
+- The kilogram is the only SI unit with a prefix (kilo-). It's based on the Planck constant.
+
+(c) **Time:** second (s)
+- Defined by the vibration of cesium-133 atoms in atomic clocks.
+
+(d) **Temperature:** kelvin (K)
+- Note: Celsius (°C) is commonly used but kelvin is the SI unit.
+- 0 K = -273°C (absolute zero)`
+      },
+      {
+        question: 'Describe how you would use a measuring cylinder to find the volume of an irregular solid.',
+        year: 'WASSCE 2021',
+        solution: `**Water Displacement Method:**
+
+1. **Select appropriate cylinder** - one large enough to submerge the object and contain the displaced water.
+
+2. **Add water** to the measuring cylinder and record the initial volume (V₁). Choose a level that will fully cover the object.
+
+3. **Position your eye** level with the bottom of the meniscus to read accurately.
+
+4. **Carefully lower** the irregular solid into the water using a string (to avoid splashing).
+
+5. **Record the final volume** (V₂) after the water level rises.
+
+6. **Calculate the volume** of the solid:
+   Volume of solid = V₂ - V₁
+
+**Example:**
+- Initial water level (V₁) = 50.0 mL
+- Final water level (V₂) = 67.5 mL
+- Volume of solid = 67.5 - 50.0 = 17.5 mL = 17.5 cm³`
+      },
+      {
+        question: 'Convert the following: (a) 500 g to kg (b) 2.5 km to m (c) 350 mL to L',
+        year: 'WASSCE 2020',
+        solution: `**Unit Conversions:**
+
+**(a) 500 g to kg:**
+- 1 kg = 1000 g
+- 500 g = 500 ÷ 1000 = **0.5 kg**
+
+**(b) 2.5 km to m:**
+- 1 km = 1000 m
+- 2.5 km = 2.5 × 1000 = **2500 m**
+
+**(c) 350 mL to L:**
+- 1 L = 1000 mL
+- 350 mL = 350 ÷ 1000 = **0.35 L**
+
+**Tip:** When converting:
+- Larger to smaller unit → Multiply
+- Smaller to larger unit → Divide`
+      }
+    ],
+
+    summary: `**📐 SI BASE UNITS:**
+• Length: meter (m)
+• Mass: kilogram (kg)
+• Time: second (s)
+• Temperature: kelvin (K)
+• Current: ampere (A)
+• Amount: mole (mol)
+• Luminosity: candela (cd)
+
+**🔢 PREFIXES (Large to Small):**
+• kilo (k) = 10³ = 1000
+• hecto (h) = 10² = 100
+• deca (da) = 10¹ = 10
+• Base unit = 10⁰ = 1
+• deci (d) = 10⁻¹ = 0.1
+• centi (c) = 10⁻² = 0.01
+• milli (m) = 10⁻³ = 0.001
+
+**📏 LENGTH INSTRUMENTS:**
+• Meter rule: 1 mm precision
+• Tape measure: Long lengths
+• Vernier caliper: 0.1 mm precision
+• Micrometer: 0.01 mm precision
+
+**⚖️ MASS INSTRUMENTS:**
+• Beam balance: Compare with known masses
+• Top-pan balance: Direct reading
+• Remember: Mass ≠ Weight
+
+**🧪 VOLUME INSTRUMENTS:**
+• Measuring cylinder: Accurate
+• Beaker: Approximate only
+• Pipette: Precise small volumes
+• Read at bottom of meniscus!
+
+**🌡️ TEMPERATURE:**
+• Celsius: Water freezes 0°C, boils 100°C
+• Kelvin: K = °C + 273
+• Absolute zero = 0 K = -273°C
+
+**✅ GOOD PRACTICE:**
+• Choose right instrument
+• Check for zero error
+• Avoid parallax - eye level with scale
+• Repeat and average measurements`
+  },
+
+  // =============================================
+  // ACCURACY AND PRECISION IN MEASUREMENT
+  // =============================================
+  {
+    id: 'is-shs1-measurement-2',
+    slug: 'is-accuracy-precision-measurement',
+    title: 'Accuracy and Precision in Measurement',
+    objectives: [
+      'Define accuracy and precision in measurement',
+      'Distinguish between accuracy and precision',
+      'Identify sources of error in measurements',
+      'Classify errors as systematic or random',
+      'Calculate and express uncertainty in measurements',
+      'Apply significant figures rules correctly'
+    ],
+
+    introduction: `
+# ACCURACY AND PRECISION: The Quality of Measurement
+
+## Is Your Measurement Good Enough?
+
+Not all measurements are equal! A measurement can be close to the true value (accurate), reproducible (precise), both, or neither. Understanding the difference is crucial for doing reliable science.
+
+**In this lesson, you will learn:**
+- The difference between accuracy and precision
+- Types of errors in measurements
+- How to minimize errors
+- How to express uncertainty
+- Rules for significant figures
+
+---
+
+## Why Does This Matter?
+
+In science, medicine, and engineering, poor measurements can have serious consequences:
+- Wrong drug dosages can harm patients
+- Incorrect bridge measurements can cause collapse
+- Bad experimental data leads to wrong conclusions
+
+Learning to make and report measurements correctly is a fundamental skill!
+
+Let's sharpen our measurement skills! 🎯
+`,
+
+    keyConcepts: [
+      {
+        title: '1. Accuracy vs Precision',
+        content: `**Accuracy** is how close a measurement is to the TRUE VALUE.
+**Precision** is how close repeated measurements are to EACH OTHER.
+
+**Visual Analogy (Dart Board):**
+<table>
+<tr><th>Scenario</th><th>Pattern</th><th>Accuracy</th><th>Precision</th></tr>
+<tr><td>All darts in bullseye</td><td>🎯 Clustered at center</td><td>✅ High</td><td>✅ High</td></tr>
+<tr><td>Darts spread around center</td><td>⭕ Scattered around bullseye</td><td>✅ High (average)</td><td>❌ Low</td></tr>
+<tr><td>Darts clustered but off-center</td><td>🔴 Tight group, wrong spot</td><td>❌ Low</td><td>✅ High</td></tr>
+<tr><td>Darts scattered everywhere</td><td>❌ Random pattern</td><td>❌ Low</td><td>❌ Low</td></tr>
+</table>
+
+**Key Point:** You can be precise but not accurate!
+
+**Examples:**
+- A scale always reads 2 g too high → Precise but NOT accurate
+- Different readings each time but average is correct → Accurate but NOT precise
+- Best measurements are BOTH accurate AND precise
+
+**Improving Accuracy:**
+- Use calibrated instruments
+- Follow correct procedures
+- Compare with known standards
+
+**Improving Precision:**
+- Use instruments with finer scales
+- Control experimental conditions
+- Practice measurement technique`
+      },
+      {
+        title: '2. Types of Errors',
+        content: `**Errors** are deviations from the true value.
+
+**Systematic Errors:**
+- Always in the SAME direction (always too high or too low)
+- Cause: faulty equipment, wrong technique
+- Effect: Low accuracy
+- Solution: Calibrate instruments, check technique
+
+**Examples of Systematic Errors:**
+<table>
+<tr><th>Error</th><th>Cause</th><th>Effect</th></tr>
+<tr><td>Zero error</td><td>Scale doesn't start at zero</td><td>All readings off by same amount</td></tr>
+<tr><td>Calibration error</td><td>Incorrect scale</td><td>Proportional error in all readings</td></tr>
+<tr><td>Reaction time</td><td>Delay in starting/stopping timer</td><td>Time always too long/short</td></tr>
+<tr><td>Parallax error</td><td>Consistent wrong viewing angle</td><td>Readings always shifted</td></tr>
+</table>
+
+**Random Errors:**
+- Vary in direction and magnitude
+- Cause: uncontrollable variations
+- Effect: Scatter in readings, low precision
+- Solution: Take many readings and average
+
+**Examples of Random Errors:**
+- Slight variations in reaction time
+- Small fluctuations in conditions
+- Natural variation in repeated readings
+- Difficulty reading between scale marks
+
+**Note:** Systematic errors CANNOT be reduced by averaging!`
+      },
+      {
+        title: '3. Zero Error and Parallax Error',
+        content: `**Zero Error:**
+When an instrument doesn't read exactly zero when it should.
+
+**Checking for Zero Error:**
+- Meter rule: Check if 0 mark is at the end
+- Vernier caliper: Close jaws - should read 0.00
+- Balance: Should read 0.00 with nothing on pan
+- Ammeter/Voltmeter: Pointer at zero with no current
+
+**Correcting Zero Error:**
+- Positive zero error: Subtract error from reading
+- Negative zero error: Add error to reading
+
+**Example:**
+If caliper reads 0.02 mm when closed (positive zero error):
+Actual length = Measured length - 0.02 mm
+
+---
+
+**Parallax Error:**
+When the reading appears different due to wrong viewing angle.
+
+**Why It Happens:**
+- Scale and pointer have a gap between them
+- Viewing from an angle shifts apparent position
+
+**Avoiding Parallax:**
+- Position eye DIRECTLY in line with the mark
+- For vertical scales: eye level with reading
+- For horizontal scales: view from directly above
+- Use instruments with mirrors to align eye
+
+**Where Parallax Occurs:**
+- Meter rules and scales
+- Measuring cylinders (meniscus)
+- Analog meters with pointer
+- Thermometers`
+      },
+      {
+        title: '4. Uncertainty in Measurements',
+        content: `**Uncertainty** tells us the range within which the true value likely lies.
+
+**Expressing Uncertainty:**
+Measurement = Best estimate ± Uncertainty
+
+**Example:** Length = 25.4 ± 0.1 cm
+This means the actual length is between 25.3 cm and 25.5 cm
+
+**Absolute Uncertainty:**
+- Has same units as measurement
+- Example: 50.0 ± 0.5 g
+
+**Percentage Uncertainty:**
+% Uncertainty = (Absolute Uncertainty / Measurement) × 100%
+
+**Example:**
+Mass = 50.0 ± 0.5 g
+% Uncertainty = (0.5/50.0) × 100% = 1%
+
+**Estimating Uncertainty:**
+- For analog instruments: ± half the smallest division
+- For digital instruments: ± the last digit
+- For multiple readings: Use the spread/range
+
+**Example Uncertainties:**
+<table>
+<tr><th>Instrument</th><th>Typical Uncertainty</th></tr>
+<tr><td>Meter rule (mm scale)</td><td>± 0.5 mm</td></tr>
+<tr><td>Measuring cylinder</td><td>± 0.5 mL</td></tr>
+<tr><td>Digital balance</td><td>± 0.01 g</td></tr>
+<tr><td>Stopwatch</td><td>± 0.01 s + reaction time</td></tr>
+</table>`
+      },
+      {
+        title: '5. Significant Figures',
+        content: `**Significant Figures (s.f.)** show the precision of a measurement.
+
+**Rules for Counting Significant Figures:**
+<table>
+<tr><th>Rule</th><th>Example</th><th>Sig Figs</th></tr>
+<tr><td>All non-zero digits are significant</td><td>123</td><td>3 s.f.</td></tr>
+<tr><td>Zeros between non-zeros are significant</td><td>1001</td><td>4 s.f.</td></tr>
+<tr><td>Leading zeros are NOT significant</td><td>0.0025</td><td>2 s.f.</td></tr>
+<tr><td>Trailing zeros after decimal ARE significant</td><td>2.500</td><td>4 s.f.</td></tr>
+<tr><td>Trailing zeros in whole numbers are ambiguous</td><td>1500</td><td>2, 3, or 4?</td></tr>
+</table>
+
+**Avoiding Ambiguity:**
+Use scientific notation: 1.50 × 10³ (3 s.f.)
+
+**Examples:**
+- 0.00340 → 3 s.f. (3, 4, trailing 0)
+- 5.060 → 4 s.f. (all digits)
+- 600 → Ambiguous (use 6.00 × 10² for 3 s.f.)
+
+**Calculations with Significant Figures:**
+
+**Addition/Subtraction:** Result has same decimal places as least precise value
+- 12.52 + 1.7 = 14.2 (not 14.22)
+
+**Multiplication/Division:** Result has same s.f. as value with fewest s.f.
+- 3.45 × 2.1 = 7.2 (not 7.245)
+
+**Rule of Thumb:** Don't claim more precision than your least precise measurement!`
+      },
+      {
+        title: '6. Reducing Errors',
+        content: `**Strategies to Minimize Errors:**
+
+**For Systematic Errors:**
+<table>
+<tr><th>Strategy</th><th>How It Helps</th></tr>
+<tr><td><strong>Calibrate instruments</strong></td><td>Correct zero and scale errors</td></tr>
+<tr><td><strong>Use standards</strong></td><td>Compare with known values</td></tr>
+<tr><td><strong>Check technique</strong></td><td>Follow correct procedures</td></tr>
+<tr><td><strong>Use control experiments</strong></td><td>Identify systematic bias</td></tr>
+</table>
+
+**For Random Errors:**
+<table>
+<tr><th>Strategy</th><th>How It Helps</th></tr>
+<tr><td><strong>Take multiple readings</strong></td><td>Average reduces random scatter</td></tr>
+<tr><td><strong>Use sensitive instruments</strong></td><td>Better resolution</td></tr>
+<tr><td><strong>Control conditions</strong></td><td>Reduce environmental variation</td></tr>
+<tr><td><strong>Improve technique</strong></td><td>More consistent readings</td></tr>
+</table>
+
+**Calculating Average:**
+Mean = Sum of readings ÷ Number of readings
+
+**Example:**
+Readings: 24.5, 24.8, 24.3, 24.6, 24.5 cm
+Mean = (24.5 + 24.8 + 24.3 + 24.6 + 24.5) ÷ 5
+Mean = 122.7 ÷ 5 = 24.54 cm ≈ 24.5 cm
+
+**Number of Readings:**
+- Minimum: 3 readings (to spot anomalies)
+- Better: 5 or more readings
+- Discard obvious outliers (if justified)`
+      },
+      {
+        title: '7. Recording and Reporting Data',
+        content: `**Good Data Recording Practice:**
+
+**In a Table:**
+<table>
+<tr><th>Trial</th><th>Length / cm</th></tr>
+<tr><td>1</td><td>15.2</td></tr>
+<tr><td>2</td><td>15.4</td></tr>
+<tr><td>3</td><td>15.3</td></tr>
+<tr><td>4</td><td>15.3</td></tr>
+<tr><td>5</td><td>15.2</td></tr>
+<tr><td><strong>Mean</strong></td><td><strong>15.3</strong></td></tr>
+</table>
+
+**Table Rules:**
+- Include units in header (not in data)
+- Use consistent decimal places
+- Draw neat lines
+- Calculate mean or total as needed
+
+**Reporting Results:**
+- State the mean value
+- Include uncertainty
+- Use appropriate significant figures
+- Include units
+
+**Example Report:**
+"The length of the pendulum was measured five times. The mean length was 15.3 ± 0.1 cm."
+
+**Common Mistakes to Avoid:**
+❌ Recording without units
+❌ Mixing units in same column
+❌ Too many decimal places
+❌ No repeated readings
+❌ Including outliers in average
+❌ Forgetting to state uncertainty`
+      },
+      {
+        title: '8. Practical Examples',
+        content: `**Example 1: Measuring Length**
+
+A student measures a rod with a meter rule:
+Readings: 23.5, 23.6, 23.5, 23.4, 23.5 cm
+
+**Analysis:**
+- Mean = (23.5+23.6+23.5+23.4+23.5)/5 = 23.5 cm
+- Range = 23.6 - 23.4 = 0.2 cm
+- Uncertainty ≈ ±0.1 cm (half of range)
+- **Result: 23.5 ± 0.1 cm**
+
+---
+
+**Example 2: Timing a Pendulum**
+
+Time for 20 swings: 32.4, 32.1, 32.3, 32.5, 32.2 s
+
+**Analysis:**
+- Mean = 32.3 s for 20 swings
+- Period = 32.3/20 = 1.615 s
+- Round to 3 s.f.: **Period = 1.62 s**
+
+---
+
+**Example 3: Identifying Error Type**
+
+A balance always reads 0.5 g too high.
+- Type: **Systematic error** (zero error)
+- Effect: All masses too high by 0.5 g
+- Solution: Subtract 0.5 g from all readings
+
+---
+
+**Example 4: Significant Figures in Calculation**
+
+Area = length × width
+Length = 12.5 cm (3 s.f.)
+Width = 4.2 cm (2 s.f.)
+
+Area = 12.5 × 4.2 = 52.5 cm²
+But answer should have 2 s.f.: **Area = 53 cm²**`
+      }
+    ],
+
+    activities: {
+      type: 'exercises',
+      questions: [
+        {
+          type: 'mcq',
+          question: 'A measurement is precise if it:',
+          options: ['Is close to the true value', 'Is reproducible with little variation', 'Has no errors', 'Uses SI units'],
+          answer: 'Is reproducible with little variation',
+          explanation: 'Precision refers to how close repeated measurements are to each other (reproducibility). Accuracy is about closeness to the true value.'
+        },
+        {
+          type: 'mcq',
+          question: 'Which type of error can be reduced by taking more readings and averaging?',
+          options: ['Systematic error', 'Random error', 'Zero error', 'Calibration error'],
+          answer: 'Random error',
+          explanation: 'Random errors vary randomly, so averaging multiple readings reduces their effect. Systematic errors are constant and cannot be reduced by averaging.'
+        },
+        {
+          type: 'mcq',
+          question: 'How many significant figures are in 0.00450?',
+          options: ['2', '3', '4', '5'],
+          answer: '3',
+          explanation: 'The leading zeros are not significant. The significant figures are 4, 5, and the trailing 0 (which indicates precision). Answer: 3 s.f.'
+        },
+        {
+          type: 'mcq',
+          question: 'A vernier caliper shows 0.04 mm when fully closed. This is called:',
+          options: ['Parallax error', 'Random error', 'Zero error', 'Human error'],
+          answer: 'Zero error',
+          explanation: 'When an instrument doesn\'t read zero when it should, this is a zero error. Here, the positive zero error of 0.04 mm should be subtracted from all readings.'
+        },
+        {
+          type: 'mcq',
+          question: 'Calculate 4.52 × 1.2 with correct significant figures.',
+          options: ['5.424', '5.42', '5.4', '5'],
+          answer: '5.4',
+          explanation: 'In multiplication, the answer should have the same number of significant figures as the value with fewest s.f. 1.2 has 2 s.f., so answer = 5.4 (2 s.f.)'
+        },
+        {
+          type: 'mcq',
+          question: 'To avoid parallax error when reading a measuring cylinder, your eye should be:',
+          options: ['Above the liquid level', 'Below the liquid level', 'Level with the bottom of the meniscus', 'At any convenient position'],
+          answer: 'Level with the bottom of the meniscus',
+          explanation: 'Parallax error occurs when viewing from wrong angle. For measuring cylinders, eye must be level with the bottom of the meniscus for accurate reading.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'A measurement can be precise but not accurate.',
+          answer: 'true',
+          reason: 'Yes! If your scale is wrong but consistent, you get the same wrong answer each time. This is precise (reproducible) but not accurate (not close to true value).'
+        },
+        {
+          type: 'truefalse',
+          statement: 'Taking more readings can reduce systematic errors.',
+          answer: 'false',
+          reason: 'Systematic errors are constant and affect all readings the same way. Averaging cannot remove them. They can only be reduced by calibration or correcting the source of error.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'The uncertainty in a measurement tells you the exact error.',
+          answer: 'false',
+          reason: 'Uncertainty gives a range within which the true value probably lies. The actual error (difference from true value) is usually unknown - that\'s why we use uncertainty.'
+        },
+        {
+          type: 'truefalse',
+          statement: 'In 2500.0, all five digits are significant.',
+          answer: 'true',
+          reason: 'The decimal point and trailing zero indicate that all digits are significant. Without the decimal (2500), the trailing zeros would be ambiguous.'
+        }
+      ]
+    },
+
+    pastQuestions: [
+      {
+        question: 'Explain the difference between accuracy and precision in measurement.',
+        year: 'WASSCE 2022',
+        solution: `**Accuracy vs Precision:**
+
+**Accuracy:**
+- Definition: How close a measurement is to the TRUE or ACCEPTED value
+- Related to: Systematic errors
+- Improved by: Calibration, correct technique, using standards
+- Example: A balance calibrated with standard masses gives accurate readings
+
+**Precision:**
+- Definition: How close REPEATED measurements are to EACH OTHER (reproducibility)
+- Related to: Random errors
+- Improved by: Better instruments, controlled conditions, more readings
+- Example: Getting 25.2, 25.3, 25.2, 25.2 g shows high precision
+
+**Key Distinction:**
+- You can be precise but NOT accurate (consistently wrong)
+- You can be accurate but NOT precise (scattered around true value)
+- Ideal measurements are BOTH accurate AND precise`
+      },
+      {
+        question: 'Distinguish between systematic and random errors. Give one example of each.',
+        year: 'WASSCE 2021',
+        solution: `**Systematic Errors:**
+- Always in the SAME direction (always too high or too low)
+- Affect accuracy, not precision
+- Cannot be reduced by averaging
+- Caused by faulty equipment or incorrect technique
+
+**Example:** A thermometer that always reads 2°C too high due to a calibration fault. All temperature readings will be 2°C above the true value.
+
+**Random Errors:**
+- Vary in direction and size unpredictably
+- Affect precision, not accuracy
+- CAN be reduced by averaging multiple readings
+- Caused by uncontrollable variations
+
+**Example:** Slight variations in reaction time when using a stopwatch. Sometimes you press too early, sometimes too late, varying randomly.
+
+**Summary Table:**
+| Feature | Systematic | Random |
+|---------|------------|--------|
+| Direction | Same | Varies |
+| Effect | Low accuracy | Low precision |
+| Averaging | Doesn't help | Helps reduce |`
+      },
+      {
+        question: 'What is meant by zero error? How do you correct for it?',
+        year: 'WASSCE 2020',
+        solution: `**Zero Error:**
+
+**Definition:**
+Zero error occurs when an instrument does not read exactly zero when it should (when measuring nothing or at the zero position).
+
+**Types:**
+1. **Positive zero error:** Reads above zero when it should read zero
+   - Example: Vernier caliper reads +0.03 mm when jaws fully closed
+   - Correction: SUBTRACT the error from all readings
+
+2. **Negative zero error:** Reads below zero when it should read zero
+   - Example: Balance reads -0.5 g with empty pan
+   - Correction: ADD the magnitude of error to all readings
+
+**How to Correct:**
+1. Check the instrument for zero error before measuring
+2. Record the zero error value
+3. Apply correction to all readings:
+   - Corrected value = Measured value - Zero error (for positive error)
+   - Corrected value = Measured value + |Zero error| (for negative error)
+
+**Example:**
+Vernier caliper has zero error of +0.02 mm
+Measured length = 3.54 mm
+Actual length = 3.54 - 0.02 = 3.52 mm`
+      }
+    ],
+
+    summary: `**🎯 ACCURACY vs PRECISION:**
+• Accuracy: Close to TRUE value
+• Precision: Close to EACH OTHER (reproducible)
+• Can be precise but not accurate!
+• Best measurements are BOTH
+
+**⚠️ TYPES OF ERRORS:**
+• Systematic: Same direction, affects accuracy
+  - Zero error, calibration error
+  - Cannot reduce by averaging
+• Random: Varies randomly, affects precision
+  - Reduced by multiple readings + averaging
+
+**🔧 COMMON ERRORS:**
+• Zero error: Doesn't read zero when it should
+• Parallax error: Wrong viewing angle
+• Reaction time: Delay in timing
+
+**📊 UNCERTAINTY:**
+• Format: Value ± Uncertainty
+• Example: 25.4 ± 0.1 cm
+• % Uncertainty = (Uncertainty/Value) × 100%
+
+**🔢 SIGNIFICANT FIGURES:**
+• Non-zero digits: Always significant
+• Zeros between: Significant (e.g., 101)
+• Leading zeros: NOT significant (e.g., 0.005)
+• Trailing after decimal: Significant (e.g., 2.50)
+
+**📐 CALCULATION RULES:**
+• Add/Subtract: Keep fewest decimal places
+• Multiply/Divide: Keep fewest sig figs
+
+**✅ REDUCING ERRORS:**
+• Systematic: Calibrate, use standards
+• Random: Multiple readings, average
+• Always: Correct technique, right instrument`
   }
 ];
 

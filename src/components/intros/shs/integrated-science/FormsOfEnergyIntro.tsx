@@ -442,12 +442,12 @@ export default function FormsOfEnergyIntro({ onComplete, className }: FormsOfEne
         </div>
 
         {/* Controls */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mt-6 sm:mt-8">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mt-6 sm:mt-8 relative z-50">
           <Button
             variant="ghost"
             size="sm"
             onClick={toggleMute}
-            className="text-white hover:bg-white/20"
+            className="text-white hover:bg-white/20 active:bg-white/30 touch-manipulation select-none min-h-[44px] min-w-[44px]"
           >
             {isMuted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
           </Button>
@@ -456,14 +456,14 @@ export default function FormsOfEnergyIntro({ onComplete, className }: FormsOfEne
             variant="ghost"
             size="sm"
             onClick={togglePlay}
-            className="text-white hover:bg-white/20"
+            className="text-white hover:bg-white/20 active:bg-white/30 touch-manipulation select-none min-h-[44px] min-w-[44px]"
           >
             {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5" />}
           </Button>
 
           <Button
             onClick={handleNext}
-            className="bg-white/20 hover:bg-white/30 text-white border border-white/30 px-4 sm:px-6"
+            className="bg-white/20 hover:bg-white/30 active:bg-white/40 text-white border border-white/30 px-4 sm:px-6 touch-manipulation select-none min-h-[44px]"
           >
             {currentScene === scenes.length - 1 ? "Start Learning!" : "Next"}
             <ChevronRight className="h-4 w-4 ml-1" />
@@ -473,7 +473,7 @@ export default function FormsOfEnergyIntro({ onComplete, className }: FormsOfEne
             variant="ghost"
             size="sm"
             onClick={handleSkip}
-            className="text-white/80 hover:text-white hover:bg-white/20"
+            className="text-white/80 hover:text-white hover:bg-white/20 active:bg-white/30 touch-manipulation select-none min-h-[44px]"
           >
             <SkipForward className="h-4 w-4 mr-1" />
             <span className="hidden sm:inline">Skip Intro</span>

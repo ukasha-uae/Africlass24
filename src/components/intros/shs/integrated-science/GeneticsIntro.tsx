@@ -658,12 +658,12 @@ export default function GeneticsIntro({ onComplete }: GeneticsIntroProps) {
           {/* Controls */}
           <div className="flex flex-col gap-3 md:gap-4">
             {/* Main navigation */}
-            <div className="flex gap-2 md:gap-3 justify-center">
+            <div className="flex gap-2 md:gap-3 justify-center relative z-50">
               <Button
                 onClick={handlePrevious}
                 disabled={currentScene === 0}
                 variant="ghost"
-                className="text-white hover:bg-white/20 disabled:opacity-30 h-12 md:h-14 px-4 md:px-6 text-base md:text-lg"
+                className="text-white hover:bg-white/20 active:bg-white/30 disabled:opacity-30 h-12 md:h-14 px-4 md:px-6 text-base md:text-lg touch-manipulation select-none"
               >
                 <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 mr-1" />
                 Back
@@ -671,7 +671,7 @@ export default function GeneticsIntro({ onComplete }: GeneticsIntroProps) {
 
               <Button
                 onClick={handleNext}
-                className="bg-white text-gray-800 hover:bg-white/90 px-6 md:px-10 h-12 md:h-14 rounded-full font-semibold shadow-lg flex items-center gap-2 flex-1 max-w-xs md:max-w-sm justify-center text-base md:text-lg"
+                className="bg-white text-gray-800 hover:bg-white/90 active:bg-white/80 px-6 md:px-10 h-12 md:h-14 rounded-full font-semibold shadow-lg flex items-center gap-2 flex-1 max-w-xs md:max-w-sm justify-center text-base md:text-lg touch-manipulation select-none"
               >
                 {currentScene === scenes.length - 1 ? "Start Lesson!" : "Next"}
                 <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
@@ -679,11 +679,11 @@ export default function GeneticsIntro({ onComplete }: GeneticsIntroProps) {
             </div>
 
             {/* Secondary controls */}
-            <div className="flex gap-2 md:gap-3 justify-center flex-wrap">
+            <div className="flex gap-2 md:gap-3 justify-center flex-wrap relative z-50">
               <Button
                 onClick={toggleMute}
                 variant="ghost"
-                className="text-white/80 hover:text-white hover:bg-white/20 h-10 md:h-12 text-sm md:text-base"
+                className="text-white/80 hover:text-white hover:bg-white/20 active:bg-white/30 h-10 md:h-12 text-sm md:text-base touch-manipulation select-none min-h-[44px]"
               >
                 {isMuted ? (
                   <>
@@ -701,7 +701,7 @@ export default function GeneticsIntro({ onComplete }: GeneticsIntroProps) {
               <Button
                 variant="ghost"
                 onClick={handleSkip}
-                className="text-white/80 hover:text-white hover:bg-white/20 h-10 md:h-12 text-sm md:text-base"
+                className="text-white/80 hover:text-white hover:bg-white/20 active:bg-white/30 h-10 md:h-12 text-sm md:text-base touch-manipulation select-none min-h-[44px]"
               >
                 <SkipForward className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                 Skip Intro

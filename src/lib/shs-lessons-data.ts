@@ -396,73 +396,70 @@ Classify each number:
         title: '7. Number Sets and Relationships',
         content: `Visual representation helps understand how number sets relate to each other.
 
+\`\`\`animation
+{
+  "type": "numbersetsanimation"
+}
+\`\`\`
+
 **Hierarchical Diagram of Number Sets:**
 
 \`\`\`geometry
 {
   "type": "nested-sets",
-  "width": 500,
-  "height": 350,
+  "width": 340,
+  "height": 420,
+  "responsive": true,
+  "layout": "vertical",
   "sets": [
     {
       "name": "Real Numbers (ℝ)",
-      "color": "#e3f2fd",
-      "stroke": "#1976d2",
-      "x": 10,
-      "y": 10,
-      "width": 480,
-      "height": 330,
-      "label": "All numbers on the number line"
+      "symbol": "ℝ",
+      "color": "#dbeafe",
+      "stroke": "#2563eb",
+      "label": "All numbers on the number line",
+      "examples": "π, √2, -3, 0.5, 7"
     },
     {
-      "name": "Rational (ℚ)",
-      "color": "#fff3e0",
-      "stroke": "#f57c00",
-      "x": 30,
-      "y": 35,
-      "width": 290,
-      "height": 280,
-      "label": "Can be written as p/q"
+      "name": "Rational Numbers (ℚ)",
+      "symbol": "ℚ",
+      "color": "#fef3c7",
+      "stroke": "#d97706",
+      "label": "Can be written as p/q",
+      "examples": "½, -3, 0.75, 2"
     },
     {
       "name": "Integers (ℤ)",
-      "color": "#e8f5e9",
-      "stroke": "#388e3c",
-      "x": 50,
-      "y": 60,
-      "width": 250,
-      "height": 230,
-      "label": "..., -2, -1, 0, 1, 2, ..."
+      "symbol": "ℤ",
+      "color": "#d1fae5",
+      "stroke": "#059669",
+      "label": "..., -2, -1, 0, 1, 2, ...",
+      "examples": "-5, 0, 42"
     },
     {
-      "name": "Whole (𝕎)",
-      "color": "#fce4ec",
-      "stroke": "#c2185b",
-      "x": 70,
-      "y": 85,
-      "width": 210,
-      "height": 180,
-      "label": "0, 1, 2, 3, 4, ..."
+      "name": "Whole Numbers (𝕎)",
+      "symbol": "𝕎",
+      "color": "#fce7f3",
+      "stroke": "#db2777",
+      "label": "0, 1, 2, 3, 4, ...",
+      "examples": "0, 1, 100"
     },
     {
-      "name": "Natural (ℕ)",
-      "color": "#f3e5f5",
-      "stroke": "#7b1fa2",
-      "x": 90,
-      "y": 110,
-      "width": 170,
-      "height": 130,
-      "label": "1, 2, 3, 4, 5, ..."
+      "name": "Natural Numbers (ℕ)",
+      "symbol": "ℕ",
+      "color": "#ede9fe",
+      "stroke": "#7c3aed",
+      "label": "1, 2, 3, 4, 5, ...",
+      "examples": "1, 2, 3, ..."
     }
   ],
-  "annotations": [
-    {
-      "text": "Irrational: π, √2, e",
-      "x": 350,
-      "y": 90,
-      "color": "#d32f2f"
-    }
-  ]
+  "irrational": {
+    "show": true,
+    "color": "#fee2e2",
+    "stroke": "#dc2626",
+    "label": "Irrational Numbers",
+    "examples": "π, √2, e"
+  }
 }
 \`\`\`
 
@@ -475,27 +472,86 @@ Classify each number:
 • ℚ ∩ Irrational = ∅ (No number is both rational and irrational)
 • ℚ ∪ Irrational = ℝ (Union of rational and irrational gives all real numbers)
 
-**Examples of Classification:**
-
-\`\`\`geometry
-{
-  "type": "table",
-  "height": 360,
-  "tableData": {
-    "headers": ["Number", "Natural", "Whole", "Integer", "Rational", "Irrational", "Real"],
-    "rows": [
-      ["5", "✓", "✓", "✓", "✓", "✗", "✓"],
-      ["0", "✗", "✓", "✓", "✓", "✗", "✓"],
-      ["-3", "✗", "✗", "✓", "✓", "✗", "✓"],
-      ["1/2", "✗", "✗", "✗", "✓", "✗", "✓"],
-      ["√2", "✗", "✗", "✗", "✗", "✓", "✓"],
-      ["π", "✗", "✗", "✗", "✗", "✓", "✓"],
-      ["-2.5", "✗", "✗", "✗", "✓", "✗", "✓"],
-      ["0.7̄", "✗", "✗", "✗", "✓", "✗", "✓"]
-    ]
-  }
-}
-\`\`\`
+<div class="overflow-x-auto not-prose" style="margin-top: 1rem;"><p style="font-weight: 700; margin-bottom: 0.5rem; font-size: 1rem;">Examples of Classification:</p><table class="w-full text-sm border-collapse"><thead><tr class="bg-gradient-to-r from-violet-100 to-blue-100 dark:from-violet-900/40 dark:to-blue-900/40"><th class="border border-violet-200 dark:border-violet-700 px-3 py-2 text-left font-bold text-violet-800 dark:text-violet-300">Number</th><th class="border border-violet-200 dark:border-violet-700 px-2 py-2 text-center font-bold text-violet-700 dark:text-violet-300">ℕ</th><th class="border border-violet-200 dark:border-violet-700 px-2 py-2 text-center font-bold text-pink-700 dark:text-pink-300">𝕎</th><th class="border border-violet-200 dark:border-violet-700 px-2 py-2 text-center font-bold text-green-700 dark:text-green-300">ℤ</th><th class="border border-violet-200 dark:border-violet-700 px-2 py-2 text-center font-bold text-orange-700 dark:text-orange-300">ℚ</th><th class="border border-violet-200 dark:border-violet-700 px-2 py-2 text-center font-bold text-red-700 dark:text-red-300">Irr</th><th class="border border-violet-200 dark:border-violet-700 px-2 py-2 text-center font-bold text-blue-700 dark:text-blue-300">ℝ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="bg-white dark:bg-slate-800/50 hover:bg-violet-50 dark:hover:bg-violet-900/20">
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2 font-semibold">5</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+</tr>
+<tr class="bg-gray-50 dark:bg-slate-900/50 hover:bg-violet-50 dark:hover:bg-violet-900/20">
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2 font-semibold">0</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+</tr>
+<tr class="bg-white dark:bg-slate-800/50 hover:bg-violet-50 dark:hover:bg-violet-900/20">
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2 font-semibold">-3</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+</tr>
+<tr class="bg-gray-50 dark:bg-slate-900/50 hover:bg-violet-50 dark:hover:bg-violet-900/20">
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2 font-semibold">½</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+</tr>
+<tr class="bg-white dark:bg-slate-800/50 hover:bg-violet-50 dark:hover:bg-violet-900/20">
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2 font-semibold">√2</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+</tr>
+<tr class="bg-gray-50 dark:bg-slate-900/50 hover:bg-violet-50 dark:hover:bg-violet-900/20">
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2 font-semibold">π</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+</tr>
+<tr class="bg-white dark:bg-slate-800/50 hover:bg-violet-50 dark:hover:bg-violet-900/20">
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2 font-semibold">-2.5</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+</tr>
+<tr class="bg-gray-50 dark:bg-slate-900/50 hover:bg-violet-50 dark:hover:bg-violet-900/20">
+<td class="border border-gray-200 dark:border-gray-700 px-3 py-2 font-semibold">0.7̄</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-red-500 text-lg">✗</td>
+<td class="border border-gray-200 dark:border-gray-700 px-2 py-2 text-center text-green-600 text-lg">✓</td>
+</tr>
+</tbody>
+</table>
+<p class="text-xs text-center text-muted-foreground mt-2">ℕ = Natural, 𝕎 = Whole, ℤ = Integer, ℚ = Rational, Irr = Irrational, ℝ = Real</p>
+</div>
 
 **Key Insights:**
 1. Every natural number is also whole, integer, rational, and real
@@ -622,7 +678,32 @@ Classify each number:
         reason: '22/7 ≈ 3.142857..., which is rational. π ≈ 3.141592..., which is irrational. They are not equal; 22/7 is an approximation.'
       }
     ],
-    summary: 'In this lesson, you learned about the classification of numbers into different sets: natural numbers (1, 2, 3...), whole numbers (0, 1, 2, 3...), integers (...-2, -1, 0, 1, 2...), rational numbers (fractions and terminating/recurring decimals), irrational numbers (non-terminating, non-repeating decimals like π and √2), and real numbers (all rational and irrational numbers). Understanding these number types is foundational for algebra and higher mathematics. Remember: Every natural number is whole, every whole number is an integer, every integer is rational, and every rational and irrational number is real. This hierarchy helps you classify and work with numbers correctly in mathematical problems and real-world applications.'
+    summary: `## 📚 What You Learned
+
+**The Six Number Sets:**
+• **ℕ Natural Numbers** → 1, 2, 3, 4, 5... (counting numbers)
+• **𝕎 Whole Numbers** → 0, 1, 2, 3, 4... (naturals + zero)
+• **ℤ Integers** → ...-3, -2, -1, 0, 1, 2, 3... (whole + negatives)
+• **ℚ Rational Numbers** → Fractions like ½, ¾, -⅔ (can be written as p/q)
+• **Irrational Numbers** → π, √2, √3 (decimals that never end or repeat)
+• **ℝ Real Numbers** → All rationals + all irrationals
+
+**The Number Family Tree:**
+ℕ ⊂ 𝕎 ⊂ ℤ ⊂ ℚ ⊂ ℝ
+(Each set contains the previous one!)
+
+**Key Takeaways:**
+✅ Every natural number is also whole, integer, rational, and real
+✅ Zero is NOT a natural number, but IS a whole number
+✅ Negative numbers are integers but NOT whole numbers
+✅ Fractions are rational but NOT integers
+✅ √2 and π are irrational - they go on forever without repeating
+✅ A number is either rational OR irrational, never both!
+
+**Quick Test Yourself:**
+• Is -5 an integer? ✓ Yes!
+• Is 0.333... rational? ✓ Yes (it's ⅓)
+• Is √4 irrational? ✗ No (√4 = 2, which is rational)`
   },
 
   // Lesson 2: Fractions, Decimals, and Percentages

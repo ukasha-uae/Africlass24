@@ -13,7 +13,10 @@ import {
   Sparkles,
   BookOpen,
   Target,
-  Lightbulb
+  Lightbulb,
+  SkipForward,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
@@ -274,7 +277,7 @@ export function IntelligentLessonIntro({
               <Button 
                 size="lg" 
                 onClick={handleStart}
-                className="w-full md:w-auto bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 shadow-lg h-12"
+                className="w-full md:w-auto bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 shadow-lg h-12 touch-manipulation select-none active:scale-95 transition-transform"
               >
                 <Play className="h-5 w-5 mr-2" />
                 Start Lesson
@@ -294,9 +297,26 @@ export function IntelligentLessonIntro({
     );
   }
 
+  const handleSkipIntro = () => {
+    stop();
+    onComplete?.();
+  };
+
   return (
     <Card className="border-2 border-violet-300 dark:border-violet-700 shadow-lg mb-6" data-skip-tts="true">
-      <CardContent className="p-6 space-y-4">
+      <CardContent className="p-4 md:p-6 space-y-4">
+        {/* Skip Intro Button */}
+        <div className="flex justify-end -mt-2 -mr-2 relative z-50">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleSkipIntro}
+            className="text-muted-foreground hover:text-foreground text-xs touch-manipulation select-none active:scale-95 transition-transform min-h-[40px] px-3"
+          >
+            Skip Intro <SkipForward className="ml-1 h-3 w-3" />
+          </Button>
+        </div>
+
         {/* Progress Bar */}
         <div className="flex gap-1 mb-4">
           {scenes.map((_, idx) => (
@@ -381,13 +401,13 @@ export function IntelligentLessonIntro({
         </AnimatePresence>
 
         {/* Controls */}
-        <div className="flex gap-2 pt-2">
+        <div className="flex gap-2 pt-2 relative z-50">
           <Button
             variant="outline"
             size="sm"
             onClick={toggleAudio}
             disabled={!isSupported}
-            className="h-10 md:h-9"
+            className="h-10 md:h-9 touch-manipulation select-none active:scale-95 transition-transform"
           >
             {isSpeaking ? (
               <>
@@ -407,8 +427,9 @@ export function IntelligentLessonIntro({
             size="sm"
             onClick={handlePrevious}
             disabled={currentScene === 0}
-            className="h-10 md:h-9"
+            className="h-10 md:h-9 touch-manipulation select-none active:scale-95 transition-transform"
           >
+            <ChevronLeft className="h-4 w-4 mr-1" />
             <span className="hidden sm:inline">Previous</span>
             <span className="sm:hidden">Prev</span>
           </Button>
@@ -417,7 +438,7 @@ export function IntelligentLessonIntro({
             variant="default"
             size="sm"
             onClick={handleNext}
-            className={`flex-1 h-10 md:h-9 ${
+            className={`flex-1 h-10 md:h-9 touch-manipulation select-none active:scale-95 transition-transform ${
               currentScene === scenes.length - 1 
                 ? 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 shadow-lg animate-pulse'
                 : 'bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700'
@@ -432,6 +453,7 @@ export function IntelligentLessonIntro({
               <>
                 <span className="hidden sm:inline">Next ({currentScene + 2}/{scenes.length})</span>
                 <span className="sm:hidden">Next</span>
+                <ChevronRight className="h-4 w-4 ml-1" />
               </>
             )}
           </Button>
@@ -440,7 +462,7 @@ export function IntelligentLessonIntro({
             variant="ghost"
             size="sm"
             onClick={handleReset}
-            className="h-10 md:h-9 px-2"
+            className="h-10 md:h-9 px-2 touch-manipulation select-none active:scale-95 transition-transform"
           >
             <RotateCcw className="h-4 w-4" />
           </Button>
