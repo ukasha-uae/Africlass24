@@ -7,6 +7,7 @@ import { coreMathSHS3Lessons } from './shs3-lessons-data';
 import { integratedScienceSHS1Lessons } from './integrated-science-shs1-lessons-data';
 import { integratedScienceSHS2Lessons } from './integrated-science-shs2-lessons-data';
 import { integratedScienceSHS3Lessons } from './integrated-science-shs3-lessons-data';
+import { englishSHS1Lessons } from './english-shs1-lessons-data';
 import type { Lesson } from './types';
 
 export interface Topic {
@@ -1389,6 +1390,43 @@ export const getSHSLesson = (subjectSlug: string, topicSlug: string, lessonSlug:
       lesson.slug === `is-shs2-${topicSlug}` ||
       lesson.slug === `is-shs3-${lessonSlug}` ||
       lesson.slug === `is-shs3-${topicSlug}`
+    );
+    if (match) return match;
+
+    // 3. Try stripped versions
+    match = allLessons.find(lesson =>
+      lesson.slug === strippedLessonSlug ||
+      lesson.slug === strippedTopicSlug
+    );
+    if (match) return match;
+
+    return null;
+  }
+
+  // English Language lessons
+  if (subjectSlug === 'english-language') {
+    const allLessons = [...englishSHS1Lessons]; // Will add SHS2 and SHS3 later
+
+    // Helper to strip shs1-, shs2-, shs3- prefix
+    const stripPrefix = (slug: string) => slug.replace(/^shs[123]-/, '');
+    const strippedTopicSlug = stripPrefix(topicSlug);
+    const strippedLessonSlug = stripPrefix(lessonSlug);
+
+    // 1. Try exact match first
+    let match = allLessons.find(lesson => 
+      lesson.slug === lessonSlug || 
+      lesson.slug === topicSlug
+    );
+    if (match) return match;
+
+    // 2. Try with shs prefix (for lessons like 'eng-shs1-ls-1')
+    match = allLessons.find(lesson =>
+      lesson.slug === `eng-shs1-${lessonSlug}` ||
+      lesson.slug === `eng-shs1-${topicSlug}` ||
+      lesson.slug === `eng-shs2-${lessonSlug}` ||
+      lesson.slug === `eng-shs2-${topicSlug}` ||
+      lesson.slug === `eng-shs3-${lessonSlug}` ||
+      lesson.slug === `eng-shs3-${topicSlug}`
     );
     if (match) return match;
 

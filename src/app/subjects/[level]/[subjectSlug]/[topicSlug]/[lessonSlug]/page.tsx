@@ -131,6 +131,8 @@ import EcosystemsComponentsRelationshipsIntro from '@/components/lesson-intros/i
 import EcosystemsEnergyFlowIntro from '@/components/lesson-intros/integrated-science/shs3/EcosystemsEnergyFlowIntro';
 import EnvironmentalChemistryPollutionIntro from '@/components/lesson-intros/integrated-science/shs3/EnvironmentalChemistryPollutionIntro';
 import WasteManagementIntro from '@/components/lesson-intros/integrated-science/shs3/WasteManagementIntro';
+// English Language Intro Components
+import EffectiveListeningIntro from '@/components/lesson-intros/english-language/shs1/EffectiveListeningIntro';
 import { CarouselLesson } from '@/components/CarouselLesson';
 import { 
   addBookmark, 
@@ -797,6 +799,9 @@ export default function LessonPage() {
               <EnvironmentalChemistryPollutionIntro />
             ) : lessonSlug === 'is-im-environmental-chemistry-waste-management' ? (
               <WasteManagementIntro />
+            ) : // English Language Intros
+            lessonSlug === 'eng-ls-effective-listening' ? (
+              <EffectiveListeningIntro />
             ) : (
               // Fallback - should not reach here if all intros are properly mapped
               null

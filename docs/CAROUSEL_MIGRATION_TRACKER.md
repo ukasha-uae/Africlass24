@@ -10,10 +10,10 @@
 
 ### Overall Statistics
 - **Total Lessons Planned**: ~800-1000
-- **Migrated**: 33
+- **Migrated**: 34
 - **In Progress**: 0
-- **Remaining**: ~767-967
-- **Progress**: ~3.3-4.1%
+- **Remaining**: ~766-966
+- **Progress**: ~3.4-4.3%
 
 ---
 
@@ -81,6 +81,11 @@
 | Ecosystems: Energy Flow & Food Chains | `is-sy-ecosystems-energy-flow-food-chains` | `EcosystemsEnergyFlowIntro.tsx` | ✅ Complete | Dec 16, 2025 |
 | Environmental Chemistry: Pollution & Effects | `is-im-environmental-chemistry-pollution-effects` | `EnvironmentalChemistryPollutionIntro.tsx` | ✅ Complete | Dec 16, 2025 |
 | Environmental Chemistry: Waste Management | `is-im-environmental-chemistry-waste-management` | `WasteManagementIntro.tsx` | ✅ Complete | Dec 16, 2025 |
+
+#### English Language (SHS1) - 1 lesson (IN PROGRESS)
+| Lesson | Slug | Intro Component | Status | Date |
+|--------|------|-----------------|--------|------|
+| Effective Listening Strategies | `eng-ls-effective-listening` | `EffectiveListeningIntro.tsx` | ✅ Complete | Dec 16, 2025 |
 
 ### Key Learnings
 1. ✅ **DO NOT** add `carouselTeachingMethod` property - uses standard lesson structure

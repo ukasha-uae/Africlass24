@@ -7,7 +7,7 @@ export const FEATURE_FLAGS = {
   CAROUSEL_MODE: {
     enabled: true,
     autostart: true, // Automatically start carousel mode for eligible lessons
-    subjects: ['mathematics', 'core-mathematics', 'integrated-science'], // Support both formats
+    subjects: ['mathematics', 'core-mathematics', 'integrated-science', 'english-language'], // Support both formats
     levels: ['shs', 'shs1', 'shs2', 'shs3'], // Support all SHS levels and generic 'shs'
     topics: [
       'algebra', 
@@ -112,6 +112,8 @@ export const FEATURE_FLAGS = {
       'is-sy-ecosystems-energy-flow-food-chains', // NEW: Ecosystems Energy Flow
       'is-im-environmental-chemistry-pollution-effects', // NEW: Environmental Chemistry
       'is-im-environmental-chemistry-waste-management', // NEW: Waste Management
+      // English Language SHS1 Topics
+      'eng-ls-effective-listening',
     ], // Support multiple topic formats
     lessons: [
       'quadratic-equations',
@@ -215,7 +217,9 @@ export const FEATURE_FLAGS = {
       'is-sy-ecosystems-components-relationships', // Ecosystems: Components & Relationships
       'is-im-environmental-chemistry-pollution-effects', // Environmental Chemistry: Pollution & Effects
       'is-im-environmental-chemistry-waste-management', // Environmental Chemistry: Waste Management
-    ], // SHS3 (29) + SHS2 (12) + SHS1 (16) + Science SHS1 (22) + Science SHS2 (10) + Science SHS3 (5) = 94 lessons total
+      // English Language SHS1 Lessons
+      'eng-ls-effective-listening', // Effective Listening Strategies
+    ], // SHS3 (29) + SHS2 (12) + SHS1 (16) + Science SHS1 (22) + Science SHS2 (10) + Science SHS3 (5) + English SHS1 (1) = 95 lessons total
   },
 };
 
