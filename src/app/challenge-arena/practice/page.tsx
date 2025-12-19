@@ -48,14 +48,8 @@ export default function PracticeModePage() {
   });
 
   const handleStartPractice = async () => {
-    if (!user) {
-      toast({
-        title: 'Authentication Required',
-        description: 'Please sign in to start practice.',
-        variant: 'destructive',
-      });
-      return;
-    }
+    // Use mock user ID for testing
+    const userId = user?.uid || 'test-user-1';
     
     setLoading(true);
     try {
@@ -71,8 +65,8 @@ export default function PracticeModePage() {
         difficulty: formData.difficulty as any,
         questionCount,
         timeLimit,
-        creatorId: user.uid,
-        creatorName: user.displayName || user.email || 'Player',
+        creatorId: userId,
+        creatorName: user?.displayName || user?.email || 'Player',
         creatorSchool: 'Practice Mode',
         opponents: [],
         maxPlayers: 1,

@@ -151,15 +151,15 @@ export default function Home() {
           )}
 
           {/* Main Title with Animation */}
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Sparkles className="h-10 w-10 md:h-12 md:w-12 text-violet-600 dark:text-violet-400 animate-pulse" />
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 dark:from-violet-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent animate-gradient">
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4">
+            <Sparkles className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-violet-600 dark:text-violet-400 animate-pulse" />
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 dark:from-violet-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent animate-gradient">
               SmartClass24
             </h1>
           </div>
 
           {/* Country-Specific Tagline */}
-          <p className="text-xl md:text-3xl font-bold text-gray-800 dark:text-gray-200 mb-3">
+          <p className="text-lg sm:text-xl md:text-3xl font-bold text-gray-800 dark:text-gray-200 mb-3">
             {country?.id === 'nigeria' ? (
               <>🇳🇬 Nigeria's Premier Learning Platform</>
             ) : country?.id === 'ghana' ? (
@@ -180,18 +180,18 @@ export default function Home() {
           </p>
           
           {/* Compact Inline Stats with Country Theme */}
-          <div className="flex flex-wrap gap-3 justify-center items-center mt-6 mb-8">
-            <div className={`flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r ${colors.primary} text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105`}>
-              <Users className="h-4 w-4" />
-              <span className="text-sm font-bold">27,000+ Students</span>
+          <div className="flex flex-wrap gap-2 sm:gap-3 justify-center items-center mt-6 mb-8">
+            <div className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full bg-gradient-to-r ${colors.primary} text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105`}>
+              <Users className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              <span className="text-xs sm:text-sm font-bold whitespace-nowrap">27,000+ Students</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-              <Trophy className="h-4 w-4" />
-              <span className="text-sm font-bold">96% Success Rate</span>
+            <div className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <Trophy className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              <span className="text-xs sm:text-sm font-bold whitespace-nowrap">96% Success</span>
             </div>
-            <div className={`flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r ${colors.accent} text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105`}>
-              <Brain className="h-4 w-4" />
-              <span className="text-sm font-bold">AI-Powered Learning</span>
+            <div className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full bg-gradient-to-r ${colors.accent} text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105`}>
+              <Brain className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              <span className="text-xs sm:text-sm font-bold whitespace-nowrap">AI-Powered</span>
             </div>
           </div>
         </div>

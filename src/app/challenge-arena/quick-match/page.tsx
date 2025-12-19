@@ -22,6 +22,7 @@ import {
   createChallenge,
   acceptChallenge,
   startChallenge,
+  createOrUpdatePlayer,
   Player,
 } from '@/lib/challenge';
 import { useFirebase } from '@/firebase/provider';
@@ -76,8 +77,9 @@ export default function QuickMatchPage() {
   const subjects = player ? getSubjectsForLevel(player.level || 'JHS') : [];
 
   useEffect(() => {
-    if (!user) return;
-    const playerProfile = getPlayerProfile(user.uid);
+    // Use mock user ID for testing
+    const userId = user?.uid || 'test-user-1';
+    const playerProfile = getPlayerProfile(userId);
     if (playerProfile) {
       setPlayer(playerProfile);
       // Set default subject based on player's level
@@ -86,8 +88,15 @@ export default function QuickMatchPage() {
         setSubject(defaultSubjects[0] || 'Mathematics');
       }
     } else {
-      // If profile doesn't exist, redirect to setup or arena main page
-      router.push('/challenge-arena');
+      // Create a test player profile
+      const newPlayer = createOrUpdatePlayer({
+        userId: userId,
+        userName: user?.displayName || 'Test Player',
+        school: 'Test School',
+        level: 'JHS',
+        rating: 1200,
+      });
+      setPlayer(newPlayer);
     }
   }, [user, router]);
 
@@ -119,9 +128,11 @@ export default function QuickMatchPage() {
   }, [opponent, countdown]);
 
   const findOpponent = () => {
-    if (!player || !user) return;
+    if (!player) return;
 
-    const allPlayers = getAllPlayers().filter(p => p.userId !== user.uid);
+    // Use mock user ID for testing
+    const userId = user?.uid || 'test-user-1';
+    const allPlayers = getAllPlayers().filter(p => p.userId !== userId);
     
     // Smart matching algorithm
     // 1. Try to find opponent within ±100 rating

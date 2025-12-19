@@ -78,32 +78,32 @@ export default function SHSHubPage() {
     <div className="container mx-auto px-4 py-8">
       {/* Hero Section */}
       <div className="mb-12 text-center">
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <GraduationCap className={`h-12 w-12 bg-gradient-to-br ${colors.primary} bg-clip-text text-transparent`} />
-          <h1 className={`text-4xl md:text-5xl font-bold bg-gradient-to-r ${colors.primary} bg-clip-text text-transparent`}>
+        <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4">
+          <GraduationCap className={`h-10 w-10 sm:h-12 sm:w-12 bg-gradient-to-br ${colors.primary} bg-clip-text text-transparent`} />
+          <h1 className={`text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r ${colors.primary} bg-clip-text text-transparent`}>
             {shsName} Campus
           </h1>
-          <span className="text-3xl">{colors.flag}</span>
+          <span className="text-2xl sm:text-3xl">{colors.flag}</span>
         </div>
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
           Master your core subjects and explore programme-specific electives for {country?.examSystem?.secondary || 'WASSCE'} excellence
         </p>
         
         {/* Quick Stats */}
-        <div className="flex flex-wrap gap-3 justify-center">
+        <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
           <Badge className={colors.badge}>
-            <BookOpen className="h-4 w-4 mr-2 inline" />
-            4 Core Subjects
+            <BookOpen className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2 inline" />
+            <span className="text-xs sm:text-sm">4 Core Subjects</span>
           </Badge>
           <Badge className={colors.badge}>
-            <GraduationCap className="h-4 w-4 mr-2 inline" />
-            8 Programmes
+            <GraduationCap className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2 inline" />
+            <span className="text-xs sm:text-sm">8 Programmes</span>
           </Badge>
           <Badge className={colors.badge}>
-            <Trophy className="h-4 w-4 mr-2 inline" />
-            {country?.examSystem?.secondary || 'WASSCE'} Prep
+            <Trophy className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2 inline" />
+            <span className="text-xs sm:text-sm">{country?.examSystem?.secondary || 'WASSCE'} Prep</span>
           </Badge>
-          <Badge className="inline-block px-3 py-1 bg-primary/10 text-primary text-sm">
+          <Badge className="inline-block px-2.5 sm:px-3 py-1 bg-primary/10 text-primary text-xs sm:text-sm">
             {country?.name || 'International'} Curriculum
           </Badge>
         </div>

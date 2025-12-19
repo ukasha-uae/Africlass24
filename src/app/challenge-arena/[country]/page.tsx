@@ -137,79 +137,61 @@ export default function LocalizedChallengeArenaPage() {
 
   const colors = getCountryColors();
 
+  // Mock user for development/testing
+  const mockUserId = user?.uid || 'test-user-1';
+  const mockUserProfile = userProfile || {
+    studentName: 'Test Student',
+    educationLevel: 'SHS' as const,
+  };
+
+  const loadData = useCallback(async () => {
+    const uid = mockUserId;
+    const profile = mockUserProfile;
+    
+    let existingPlayer = getPlayerProfile(uid);
+    
+    if (!existingPlayer) {
+      existingPlayer = createOrUpdatePlayer({
+        userId: uid,
+        userName: profile?.studentName || 'Student',
+        avatar: profile?.profilePictureUrl || `https://api.dicebear.com/7.x/avataaars/svg?seed=${uid}`,
+        school: profile?.schoolName || 'Test School',
+        rating: 1200,
+        winStreak: 0,
+        wins: 0,
+        losses: 0,
+        draws: 0,
+        totalGames: 0,
+        level: 'JHS',
+      });
+    }
+
+    setPlayer(existingPlayer);
+    setChallenges(getMyChallenges(uid));
+    setNotifications(getChallengeNotifications(uid));
+    setSchoolRankings(getSchoolRankings(country?.id));
+    setTopPlayers(getAllPlayers().sort((a, b) => b.rating - a.rating).slice(0, 10));
+    setMatchHistory(getMatchHistory(uid));
+  }, [mockUserId, mockUserProfile, country]);
+
   useEffect(() => {
-    if (!user || hasInitialized) return;
+    if (hasInitialized) return;
     
     initializeChallengeData();
     loadData();
     setHasInitialized(true);
-  }, [user, hasInitialized]);
+  }, [hasInitialized, loadData]);
 
   const handleLevelChange = useCallback((newLevel: 'Primary' | 'JHS' | 'SHS') => {
     setEducationLevel(newLevel);
-    if (player && user) {
+    if (player) {
       const updatedPlayer = createOrUpdatePlayer({
         ...player,
         level: newLevel
       });
       setPlayer(updatedPlayer);
     }
-  }, [player, user]);
-
-  const loadData = useCallback(() => {
-    if (!user) return;
-
-    const uid = user.uid;
-    
-    // Detect education level from user profile or stored data
-    let detectedLevel: 'Primary' | 'JHS' | 'SHS' = 'Primary';
-    
-    if (userProfile) {
-      const campus = userProfile.campus?.toLowerCase();
-      if (campus) {
-        if (campus.includes('primary')) {
-          detectedLevel = 'Primary';
-        } else if (campus.includes('jhs') || campus.includes('jss') || campus.includes('junior')) {
-          detectedLevel = 'JHS';
-        } else if (campus.includes('shs') || campus.includes('sss') || campus.includes('senior')) {
-          detectedLevel = 'SHS';
-        }
-      }
-    } else if (typeof window !== 'undefined') {
-      const storedLevel = localStorage.getItem('userEducationLevel');
-      if (storedLevel === 'Primary' || storedLevel === 'JHS' || storedLevel === 'SHS') {
-        detectedLevel = storedLevel;
-      } else if (storedLevel) {
-        detectedLevel = 'SHS';
-      }
-    }
-
-    // Update state with detected level
-    setEducationLevel(detectedLevel);
-
-    // Create or get player profile
-    const playerProfile = createOrUpdatePlayer({
-      userId: uid,
-      userName: userProfile?.studentName || 'Student',
-      school: userProfile?.schoolName || 'My School',
-      avatar: userProfile?.profilePictureUrl,
-      level: detectedLevel
-    });
-    
-    setPlayer(playerProfile);
-
-    setChallenges(getMyChallenges(uid));
-    setNotifications(getChallengeNotifications(uid));
-    setSchoolRankings(getSchoolRankings(country?.id));
-    setTopPlayers(getAllPlayers().sort((a, b) => b.rating - a.rating).slice(0, 10));
-    setMatchHistory(getMatchHistory(uid));
-  }, [user, userProfile, country]);
-
-  useEffect(() => {
-    if (user && hasInitialized) {
-      loadData();
-    }
-  }, [user, hasInitialized, loadData]);
+  }, [player]);
 
   const pendingChallenges = challenges.filter(c => 
     c.status === 'pending' && c.opponents.some(o => o.userId === (user?.uid || 'user-1') && o.status === 'invited')
@@ -237,23 +219,7 @@ export default function LocalizedChallengeArenaPage() {
     return 'text-muted-foreground';
   };
 
-  if (!user) {
-    return (
-      <div className="container mx-auto p-6 text-center">
-        <Card className="max-w-md mx-auto">
-          <CardHeader>
-            <CardTitle>Sign In Required</CardTitle>
-            <CardDescription>Please sign in to access the Challenge Arena</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button asChild>
-              <Link href="/auth/signin">Sign In</Link>
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
+  // Remove the sign-in requirement block - allow access without auth
 
   if (!player) {
     return (
@@ -414,7 +380,7 @@ export default function LocalizedChallengeArenaPage() {
           {/* Play Tab */}
           <TabsContent value="play" className="space-y-4">
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              <Link href={`/challenge-arena/${countryParam}/practice`}>
+              <Link href="/challenge-arena/practice">
                 <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
@@ -436,7 +402,7 @@ export default function LocalizedChallengeArenaPage() {
                 </Card>
               </Link>
 
-              <Link href={`/challenge-arena/${countryParam}/quick-match`}>
+              <Link href="/challenge-arena/quick-match">
                 <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
@@ -459,7 +425,7 @@ export default function LocalizedChallengeArenaPage() {
                 </Card>
               </Link>
 
-              <Link href={`/challenge-arena/${countryParam}/create`}>
+              <Link href="/challenge-arena/create">
                 <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
@@ -481,7 +447,7 @@ export default function LocalizedChallengeArenaPage() {
                 </Card>
               </Link>
 
-              <Link href={`/challenge-arena/${countryParam}/school-battle`}>
+              <Link href="/challenge-arena/school-battle">
                 <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
@@ -507,7 +473,7 @@ export default function LocalizedChallengeArenaPage() {
                 </Card>
               </Link>
 
-              <Link href={`/challenge-arena/${countryParam}/tournaments`}>
+              <Link href="/challenge-arena/tournaments">
                 <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
@@ -530,7 +496,7 @@ export default function LocalizedChallengeArenaPage() {
                 </Card>
               </Link>
 
-              <Link href={`/challenge-arena/${countryParam}/boss-battle`}>
+              <Link href="/challenge-arena/boss-battle">
                 <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-red-500 bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">

@@ -46,13 +46,33 @@ export default function StudentProfileSetup({ onSave }: { onSave?: () => void })
 
   // Profile setup form is now enabled
   
-  // If there's no user or profile yet not loaded, just return null for now.
-  if (!user) return null;
-  if (isLoading) return null; // Wait for doc check
-  // Always show the setup form for editing, even if profile exists
+  // Allow access without authentication for testing
+  if (isLoading) return null; // Wait for doc check if user exists
 
   const saveProfile = async () => {
-    if (!firestore || !user) return;
+    // Only save to Firestore if authenticated
+    if (!firestore || !user) {
+      // Save locally for testing
+      const localProfile = {
+        studentName,
+        studentClass,
+        schoolName,
+        city,
+        gender,
+        dateOfBirth,
+        profilePictureUrl: selectedAvatar,
+        educationLevel,
+        updatedAt: new Date().toISOString(),
+      };
+      localStorage.setItem('studentProfile', JSON.stringify(localProfile));
+      toast({ 
+        title: 'Profile Saved Locally', 
+        description: 'Sign in to sync your profile across devices.' 
+      });
+      if (onSave) onSave();
+      return;
+    }
+    
     setSaving(true);
     try {
       const payload = {

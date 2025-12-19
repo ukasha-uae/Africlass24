@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import { createChallenge, Challenge, getAllPlayers, Player } from '@/lib/challenge';
 import { useToast } from '@/hooks/use-toast';
+import { useFirebase } from '@/firebase/provider';
 
 const SUBJECTS = [
   { id: 'math', name: 'Maths', icon: Calculator, color: 'text-blue-500', bg: 'bg-blue-500/10' },
@@ -42,6 +43,7 @@ const DIFFICULTIES = [
 export default function CreateChallengePage() {
   const router = useRouter();
   const { toast } = useToast();
+  const { user } = useFirebase();
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [friends, setFriends] = useState<Player[]>([]);
@@ -55,9 +57,10 @@ export default function CreateChallengePage() {
   });
 
   useEffect(() => {
+    const userId = user?.uid || 'test-user-1';
     const allPlayers = getAllPlayers();
-    setFriends(allPlayers.filter(p => p.userId !== 'user-1'));
-  }, []);
+    setFriends(allPlayers.filter(p => p.userId !== userId));
+  }, [user]);
 
   const filteredFriends = friends.filter(friend => 
     friend.userName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -69,7 +72,8 @@ export default function CreateChallengePage() {
   const handleCreate = async () => {
     setLoading(true);
     try {
-      const currentUser = { id: 'user-1', name: 'Kwame Asante', school: 'Accra Community School' };
+      const userId = user?.uid || 'test-user-1';
+      const currentUser = { id: userId, name: user?.displayName || user?.email || 'Test Player', school: 'My School' };
       const questionCount = formData.difficulty === 'easy' ? 5 : formData.difficulty === 'medium' ? 10 : 15;
       const timeLimit = formData.difficulty === 'easy' ? 30 : formData.difficulty === 'medium' ? 45 : 60;
       

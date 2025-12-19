@@ -785,19 +785,43 @@ const generateGameQuestions = (
 ): GameQuestion[] => {
   // Handle legacy/lowercase subject names to prevent empty question sets
   let mappedSubject = subject;
-  if (subject === 'math') mappedSubject = level === 'JHS' ? 'Mathematics' : 'Core Mathematics';
-  if (subject === 'english') mappedSubject = 'English Language';
-  if (subject === 'science') mappedSubject = level === 'JHS' ? 'Science' : 'Integrated Science';
+  if (subject === 'math' || subject === 'Maths') mappedSubject = level === 'JHS' ? 'Mathematics' : 'Core Mathematics';
+  if (subject === 'english' || subject === 'English') mappedSubject = 'English Language';
+  if (subject === 'science' || subject === 'Science') mappedSubject = level === 'JHS' ? 'Science' : 'Integrated Science';
   if (subject === 'social') mappedSubject = 'Social Studies';
 
   // Use the new unified challenge questions system with anti-repeat logic
-  const challengeQuestions = getChallengeQuestions(
+  let challengeQuestions = getChallengeQuestions(
     level,
     subject === 'general' ? 'Mixed' : mappedSubject,
     difficulty as QuestionDifficulty,
     count,
     userId
   );
+  
+  // Fallback: If no questions found, try with 'Mixed' subject
+  if (challengeQuestions.length === 0) {
+    console.warn(`No questions found for ${level} ${mappedSubject}, falling back to mixed questions`);
+    challengeQuestions = getChallengeQuestions(
+      level,
+      'Mixed',
+      difficulty as QuestionDifficulty,
+      count,
+      userId
+    );
+  }
+  
+  // Last resort: If still no questions, try JHS Mathematics as a safe fallback
+  if (challengeQuestions.length === 0) {
+    console.warn('No mixed questions found, using Mathematics as fallback');
+    challengeQuestions = getChallengeQuestions(
+      'JHS',
+      'Mathematics',
+      'medium',
+      count,
+      userId
+    );
+  }
   
   return challengeQuestions.map(q => ({
     id: q.id,

@@ -58,18 +58,18 @@ export default function InstallPrompt() {
       >
         <div className="bg-primary text-primary-foreground p-4 rounded-lg shadow-lg flex items-center justify-between gap-4">
           <div className="flex-1">
-            <h3 className="font-semibold text-sm">Install SmartJHS</h3>
-            <p className="text-xs opacity-90">Add to your home screen for offline access and better performance.</p>
+            <h3 className="font-semibold text-base">Install SmartC24</h3>
+            <p className="text-sm opacity-90">Get quick access and work offline!</p>
           </div>
           <div className="flex items-center gap-2">
             <Button 
-              size="sm" 
+              size="default" 
               variant="secondary" 
-              className="h-8 px-3 text-xs"
+              className="px-4 font-medium"
               onClick={handleInstallClick}
             >
-              <Download className="w-3 h-3 mr-1.5" />
-              Install
+              <Download className="w-4 h-4 mr-2" />
+              Install Now
             </Button>
             <button 
               onClick={() => setShowPrompt(false)}

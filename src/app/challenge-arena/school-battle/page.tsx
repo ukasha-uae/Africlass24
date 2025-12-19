@@ -32,6 +32,7 @@ import { GHANA_SCHOOLS } from '@/lib/schools';
 import { getSchoolsByCountry, getAllMultiCountrySchools } from '@/lib/schools-multi-country';
 import { useLocalization } from '@/hooks/useLocalization';
 import { useToast } from '@/hooks/use-toast';
+import { useFirebase } from '@/firebase/provider';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 // Get subjects based on education level
@@ -49,6 +50,7 @@ export default function SchoolBattlePage() {
   const router = useRouter();
   const { toast } = useToast();
   const { country } = useLocalization();
+  const { user } = useFirebase();
   const [rankings, setRankings] = useState<SchoolRanking[]>([]);
   const [mySchool, setMySchool] = useState<SchoolRanking | null>(null);
   const [player, setPlayer] = useState<Player | null>(null);
@@ -59,8 +61,9 @@ export default function SchoolBattlePage() {
 
   useEffect(() => {
     // Load data
+    const userId = user?.uid || 'test-user-1';
     const allRankings = getSchoolRankings();
-    const currentPlayer = getPlayerProfile('user-1'); // Mock user
+    const currentPlayer = getPlayerProfile(userId);
     setPlayer(currentPlayer);
     
     if (currentPlayer && country) {
@@ -79,7 +82,7 @@ export default function SchoolBattlePage() {
       const subjects = getSubjectsForLevel(playerLevel);
       setSelectedSubject(subjects[0]);
     }
-  }, [country]);
+  }, [country, user]);
 
   const handleStartBattle = async () => {
     if (!player?.isVerified) {
@@ -121,7 +124,7 @@ export default function SchoolBattlePage() {
         difficulty: 'medium',
         questionCount: 10,
         timeLimit: 45,
-        creatorId: player?.userId || 'user-1',
+        creatorId: player?.userId || user?.uid || 'test-user-1',
         creatorName: player?.userName || 'Unknown',
         creatorSchool: player?.school || 'Unknown',
         opponents: [aiOpponent], // Add AI opponent

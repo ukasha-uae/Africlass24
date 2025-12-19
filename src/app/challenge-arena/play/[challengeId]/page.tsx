@@ -14,10 +14,11 @@ import {
   ChevronRight, Home, RotateCcw, BrainCircuit, Users,
   Volume2, VolumeX, Flame, Star, Sparkles, Medal,
   BookOpen, Lightbulb, TrendingDownIcon, BarChart3,
-  Share2, Download, Camera
+  Share2, Download, Camera, Globe
 } from 'lucide-react';
 import Link from 'next/link';
 import confetti from 'canvas-confetti';
+import html2canvas from 'html2canvas';
 import {
   getChallenge,
   getPlayerProfile,
@@ -30,12 +31,14 @@ import {
 } from '@/lib/challenge';
 import { useSoundEffects } from '@/hooks/use-sound-effects';
 import { useFirebase } from '@/firebase/provider';
+import { useToast } from '@/hooks/use-toast';
 
 export default function QuizBattlePage() {
   const params = useParams();
   const router = useRouter();
   const { playSound, isMuted, toggleMute } = useSoundEffects();
   const { user } = useFirebase();
+  const { toast } = useToast();
   const challengeId = params.challengeId as string;
   
   const [challenge, setChallenge] = useState<Challenge | null>(null);
@@ -48,16 +51,18 @@ export default function QuizBattlePage() {
   const [results, setResults] = useState<any>(null);
   const [startTime] = useState(Date.now());
   const [showDetailedStats, setShowDetailedStats] = useState(false);
+  const [isCapturing, setIsCapturing] = useState(false);
 
   useEffect(() => {
-    if (!user) return;
+    // Use mock user ID for testing
+    const userId = user?.uid || 'test-user-1';
     const challengeData = getChallenge(challengeId);
     if (!challengeData) {
       router.push('/challenge-arena');
       return;
     }
     setChallenge(challengeData);
-    setPlayer(getPlayerProfile(user.uid));
+    setPlayer(getPlayerProfile(userId));
     
     if (challengeData.status === 'pending') {
       setGamePhase('waiting');
@@ -128,7 +133,10 @@ export default function QuizBattlePage() {
   };
 
   const finishChallenge = (answersMap: Record<string, string>) => {
-    if (!challenge || gamePhase === 'results' || !user) return;
+    if (!challenge || gamePhase === 'results') return;
+
+    // Use mock user ID for testing
+    const userId = user?.uid || 'test-user-1';
 
     // Convert to PlayerAnswer[]
     const playerAnswers: PlayerAnswer[] = challenge.questions.map(q => {
@@ -147,13 +155,13 @@ export default function QuizBattlePage() {
     const totalTimeTaken = Date.now() - startTime;
 
     // Submit answers and get updated challenge directly
-    const updatedChallenge = submitChallengeAnswers(challengeId, user.uid, playerAnswers, totalTimeTaken);
+    const updatedChallenge = submitChallengeAnswers(challengeId, userId, playerAnswers, totalTimeTaken);
     
     if (updatedChallenge && updatedChallenge.results) {
       setResults(updatedChallenge.results);
       
       // Check for win and trigger confetti
-      const myResult = updatedChallenge.results.find(r => r.userId === user.uid);
+      const myResult = updatedChallenge.results.find(r => r.userId === userId);
       if (myResult?.rank === 1) {
         confetti({
           particleCount: 100,
@@ -165,6 +173,80 @@ export default function QuizBattlePage() {
     
     setGamePhase('results');
     playSound('complete');
+  };
+
+  const handleShare = async () => {
+    if (!challenge || !results || isCapturing) return;
+
+    setIsCapturing(true);
+    toast({ title: 'Preparing image...', description: 'Please wait' });
+
+    try {
+      // Find the results card element
+      const resultsCard = document.getElementById('results-card');
+      if (!resultsCard) {
+        throw new Error('Results card not found');
+      }
+
+      // Capture the element as canvas
+      const canvas = await html2canvas(resultsCard, {
+        scale: 2, // Higher quality
+        backgroundColor: '#ffffff',
+        logging: false,
+        useCORS: true,
+      });
+
+      // Convert canvas to blob
+      const blob = await new Promise<Blob>((resolve) => {
+        canvas.toBlob((blob) => {
+          resolve(blob!);
+        }, 'image/png');
+      });
+
+      const file = new File([blob], 'smartc24-results.png', { type: 'image/png' });
+
+      // Try Web Share API (mobile native share)
+      if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({
+            title: 'SmartC24 Challenge Results',
+            text: '🎯 Check out my results on SmartC24!',
+            files: [file],
+          });
+          toast({ title: 'Shared successfully!', description: 'Thanks for spreading the word!' });
+          return;
+        } catch (error) {
+          if ((error as Error).name === 'AbortError') {
+            return; // User cancelled
+          }
+          console.log('Share API failed, trying download:', error);
+        }
+      }
+
+      // Fallback: Download the image
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `smartc24-results-${Date.now()}.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      toast({ 
+        title: 'Image downloaded!', 
+        description: 'Share the image from your downloads folder.' 
+      });
+    } catch (error) {
+      console.error('Share failed:', error);
+      toast({ 
+        title: 'Could not create image', 
+        description: 'Please try again or screenshot your results.',
+        variant: 'destructive'
+      });
+    } finally {
+      setIsCapturing(false);
+    }
   };
 
   if (gamePhase === 'loading' || !challenge || !player) {
@@ -244,10 +326,15 @@ export default function QuizBattlePage() {
     );
   }
 
-  const progress = ((currentQuestionIndex + 1) / challenge.questions.length) * 100;
+  const progress = challenge.questions.length > 0 
+    ? ((currentQuestionIndex + 1) / challenge.questions.length) * 100 
+    : 0;
   const timeProgress = (timeLeft / 120) * 100;
 
   if (gamePhase === 'results' && results) {
+    // Use mock user ID for testing
+    const userId = user?.uid || 'test-user-1';
+    
     // Deduplicate results to prevent key collisions from legacy data
     const uniqueResults = results.reduce((acc: any[], current: any) => {
       if (!acc.find(item => item.userId === current.userId)) {
@@ -256,7 +343,7 @@ export default function QuizBattlePage() {
       return acc;
     }, []);
 
-    const myResult = uniqueResults.find((r: any) => r.userId === user?.uid);
+    const myResult = uniqueResults.find((r: any) => r.userId === userId);
     const ratingChange = myResult?.ratingChange || 0;
     const isWin = myResult?.rank === 1;
     const isPodium = myResult?.rank <= 3;
@@ -266,10 +353,12 @@ export default function QuizBattlePage() {
     const isQuickMatch = challenge.type === 'quick';
     const isTournament = challenge.type === 'tournament';
 
-    // Calculate performance metrics
-    const accuracy = Math.round((myResult?.correctAnswers / challenge.questions.length) * 100);
+    // Calculate performance metrics with fallback values
+    const correctAnswers = myResult?.correctAnswers || 0;
+    const totalQuestions = challenge.questions.length || 1; // Prevent division by zero
+    const accuracy = Math.round((correctAnswers / totalQuestions) * 100) || 0;
     const totalTimeSeconds = myResult?.totalTime ? Math.round(myResult.totalTime / 1000) : 0;
-    const avgTimePerQuestion = Math.round(totalTimeSeconds / challenge.questions.length);
+    const avgTimePerQuestion = totalQuestions > 0 ? Math.round(totalTimeSeconds / totalQuestions) : 0;
     
     // Generate motivational message and performance grade based on challenge type
     const getPerformanceInsight = () => {
@@ -387,7 +476,9 @@ export default function QuizBattlePage() {
       <div className="container mx-auto p-3 sm:p-6 pb-20">
         <div className="max-w-4xl mx-auto">
           {/* Epic Results Header with Performance Grade */}
-          <Card className={`mb-6 overflow-hidden border-2 ${
+          <Card 
+            id="results-card"
+            className={`mb-6 overflow-hidden border-2 ${
             isBossBattle ? 'border-purple-400 shadow-purple-200 shadow-xl' :
             isSchoolBattle ? 'border-blue-400 shadow-blue-200 shadow-xl' :
             isTournament ? 'border-pink-400 shadow-pink-200 shadow-xl' :
@@ -398,6 +489,17 @@ export default function QuizBattlePage() {
           }`}>
             <div className={`h-2 bg-gradient-to-r ${performance.color}`} />
             <CardContent className="p-6 sm:p-8 text-center relative overflow-hidden">
+              {/* App Branding Header - for sharing */}
+              <div className="mb-4 flex items-center justify-center gap-3">
+                <div className="bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">
+                  S24
+                </div>
+                <div className="text-left">
+                  <h2 className="font-bold text-lg leading-tight">SmartC24</h2>
+                  <p className="text-xs text-muted-foreground">Learn • Practice • Excel</p>
+                </div>
+              </div>
+              
               {/* Animated background elements */}
               <div className="absolute inset-0 opacity-5">
                 <div className="absolute top-10 left-10 text-6xl animate-pulse">✨</div>
@@ -573,6 +675,20 @@ export default function QuizBattlePage() {
                     </div>
                   </div>
                 )}
+                
+                {/* Call to Action Footer - for sharing */}
+                <div className="mt-6 pt-6 border-t border-border/50">
+                  <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 rounded-xl p-4">
+                    <p className="text-sm font-semibold mb-2">🎓 Join the Learning Revolution!</p>
+                    <div className="flex items-center justify-center gap-2 text-primary font-bold text-lg">
+                      <Globe className="h-5 w-5" />
+                      <span>{typeof window !== 'undefined' ? window.location.origin : 'smartc24.com'}</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-2">
+                      Practice • Compete • Excel in WASSCE & BECE
+                    </p>
+                  </div>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -749,7 +865,7 @@ export default function QuizBattlePage() {
                     <div
                       key={result.userId}
                       className={`flex items-center gap-3 p-3 rounded-lg transition-all ${
-                        result.userId === user?.uid 
+                        result.userId === userId 
                           ? 'bg-primary/10 border-2 border-primary shadow-lg scale-105' 
                           : 'bg-muted hover:bg-muted/80'
                       }`}
@@ -775,10 +891,10 @@ export default function QuizBattlePage() {
                       <div className="flex-1">
                         <div className="font-semibold flex items-center">
                           {isSchoolBattle ? result.school : result.userName}
-                          {result.userId === user?.uid && (
+                          {result.userId === userId && (
                             <Badge variant="secondary" className="ml-2">You</Badge>
                           )}
-                          {isBossBattle && result.userId !== user?.uid && (
+                          {isBossBattle && result.userId !== userId && (
                             <Badge variant="outline" className="ml-2 border-purple-500 text-purple-500">AI</Badge>
                           )}
                         </div>
@@ -857,8 +973,13 @@ export default function QuizBattlePage() {
                     </p>
                   </div>
                 </div>
-                <Button size="sm" variant="secondary">
-                  Share
+                <Button 
+                  size="sm" 
+                  variant="secondary" 
+                  onClick={handleShare}
+                  disabled={isCapturing}
+                >
+                  {isCapturing ? 'Preparing...' : 'Share'}
                 </Button>
               </div>
             </CardContent>
@@ -1068,7 +1189,7 @@ export default function QuizBattlePage() {
             </div>
 
             {/* Answer Options */}
-            <div className="space-y-3">
+            <div className="space-y-3" key={currentQuestionIndex}>
               {currentQuestion.options?.map((option, index) => {
                 const isSelected = selectedAnswer === option;
                 const isCorrect = option === currentQuestion.correctAnswer;

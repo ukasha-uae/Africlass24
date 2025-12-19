@@ -1,7 +1,7 @@
 "use client";
 
 import { virtualLabExperiments } from '@/lib/virtual-labs-data';
-import { ArrowLeft, FlaskConical, CheckCircle2, ArrowRight, Trophy } from 'lucide-react';
+import { ArrowLeft, FlaskConical, CheckCircle2, ArrowRight, Trophy, Star, Zap } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { useState, useEffect, use } from 'react';
@@ -9,6 +9,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { useLabProgress } from '@/stores/lab-progress-store';
+import confetti from 'canvas-confetti';
 
 interface QuizQuestion {
   question: string;
@@ -22,10 +24,14 @@ export default function VirtualLabPage({ params }: { params: Promise<{ labSlug: 
   const [experimentCompleted, setExperimentCompleted] = useState(false);
   const [showQuiz, setShowQuiz] = useState(false);
   const [quizAnswers, setQuizAnswers] = useState<number[]>([]);
+  const [startTime, setStartTime] = useState<number>(Date.now());
+  const [labCompleted, setLabCompleted] = useState(false);
+  const { markLabComplete, isLabCompleted } = useLabProgress();
   const resolvedParams = use(params);
 
   useEffect(() => {
     setMounted(true);
+    setStartTime(Date.now());
   }, []);
 
   if (!mounted) return null;
@@ -236,34 +242,92 @@ export default function VirtualLabPage({ params }: { params: Promise<{ labSlug: 
             ))}
 
             {/* Quiz Results */}
-            {quizAnswers.length === quizQuestions.length && (
-              <Card className="bg-violet-500/5 border-violet-200 dark:border-violet-800">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Trophy className="h-6 w-6 text-amber-600" />
-                    Quiz Complete!
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-lg mb-4">
-                    Your Score: {quizAnswers.filter((ans, idx) => ans === quizQuestions[idx].correctAnswer).length} / {quizQuestions.length}
-                  </p>
-                  <div className="flex gap-3">
-                    <Button onClick={() => setShowQuiz(false)} variant="outline">
-                      Back to Experiment
-                    </Button>
-                    <Button 
-                      onClick={() => {
-                        setQuizAnswers([]);
-                      }}
-                      className="bg-violet-600 hover:bg-violet-700"
-                    >
-                      Retry Quiz
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            )}
+            {quizAnswers.length === quizQuestions.length && !labCompleted && (() => {
+              const score = quizAnswers.filter((ans, idx) => ans === quizQuestions[idx].correctAnswer).length;
+              const timeSpent = Math.floor((Date.now() - startTime) / 60000); // minutes
+              const percentage = Math.round((score / quizQuestions.length) * 100);
+              
+              // Calculate and award XP
+              const earnedXP = markLabComplete(experiment.id, percentage, timeSpent);
+              
+              // Trigger completion state
+              setTimeout(() => {
+                setLabCompleted(true);
+                
+                // Trigger confetti celebration
+                confetti({
+                  particleCount: 100,
+                  spread: 70,
+                  origin: { y: 0.6 }
+                });
+              }, 0);
+              
+              return (
+                <Card className="bg-gradient-to-br from-violet-500/10 to-purple-500/10 border-violet-300 dark:border-violet-700">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-2xl">
+                      <Trophy className="h-7 w-7 text-amber-500" />
+                      Lab Complete! 🎉
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                      <div className="text-center p-3 bg-white dark:bg-gray-900 rounded-lg">
+                        <CheckCircle2 className="h-6 w-6 mx-auto text-green-600 mb-1" />
+                        <p className="text-2xl font-bold">{percentage}%</p>
+                        <p className="text-xs text-muted-foreground">Score</p>
+                      </div>
+                      <div className="text-center p-3 bg-white dark:bg-gray-900 rounded-lg">
+                        <Star className="h-6 w-6 mx-auto text-yellow-500 mb-1" />
+                        <p className="text-2xl font-bold">{score}/{quizQuestions.length}</p>
+                        <p className="text-xs text-muted-foreground">Correct</p>
+                      </div>
+                      <div className="text-center p-3 bg-white dark:bg-gray-900 rounded-lg">
+                        <Zap className="h-6 w-6 mx-auto text-violet-600 mb-1" />
+                        <p className="text-2xl font-bold">+{earnedXP}</p>
+                        <p className="text-xs text-muted-foreground">XP Earned</p>
+                      </div>
+                      <div className="text-center p-3 bg-white dark:bg-gray-900 rounded-lg">
+                        <FlaskConical className="h-6 w-6 mx-auto text-blue-600 mb-1" />
+                        <p className="text-2xl font-bold">{timeSpent}</p>
+                        <p className="text-xs text-muted-foreground">Minutes</p>
+                      </div>
+                    </div>
+                    
+                    {percentage === 100 && (
+                      <Alert className="bg-amber-500/10 border-amber-500">
+                        <Trophy className="h-4 w-4 text-amber-600" />
+                        <AlertDescription className="text-amber-900 dark:text-amber-100">
+                          <strong>Perfect Score!</strong> You've mastered this lab. Bonus XP awarded! 🏆
+                        </AlertDescription>
+                      </Alert>
+                    )}
+                    
+                    <div className="flex gap-3 flex-wrap">
+                      <Button onClick={() => setShowQuiz(false)} variant="outline">
+                        Review Experiment
+                      </Button>
+                      <Button 
+                        onClick={() => {
+                          setQuizAnswers([]);
+                          setLabCompleted(false);
+                          setStartTime(Date.now());
+                        }}
+                        variant="outline"
+                      >
+                        Retry Quiz
+                      </Button>
+                      <Link href="/virtual-labs" className="flex-1">
+                        <Button className="w-full bg-violet-600 hover:bg-violet-700">
+                          Back to Virtual Labs
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </Link>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })()}
           </CardContent>
         </Card>
       )}

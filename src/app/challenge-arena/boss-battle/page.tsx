@@ -58,26 +58,24 @@ export default function BossBattlePage() {
       return;
     }
     
-    if (!user) {
-      toast({ title: 'Sign In Required', description: 'Please sign in to start a battle.', variant: 'destructive' });
-      return;
-    }
-    
     setIsStarting(true);
     
+    // Use mock user ID for testing
+    const userId = user?.uid || 'test-user-1';
+    
     // Ensure player profile exists
-    let player = getPlayerProfile(user.uid);
+    let player = getPlayerProfile(userId);
     if (!player) {
       // Create a player profile if it doesn't exist
       player = createOrUpdatePlayer({
-        userId: user.uid, 
-        userName: user.displayName || user.email || 'Player',
+        userId: userId, 
+        userName: user?.displayName || user?.email || 'Test Player',
         school: 'My School',
         level: 'JHS'
       });
     }
     
-    const challenge = createBossChallenge(user.uid, selectedBoss.id, subject);
+    const challenge = createBossChallenge(userId, selectedBoss.id, subject);
     
     if (challenge) {
       toast({ title: 'Battle Started!', description: `You are battling ${selectedBoss.name}!` });

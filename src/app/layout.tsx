@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { FirebaseClientProvider } from '@/firebase';
 import StudentProfileSetup from '@/components/StudentProfileSetup';
 import InstallPrompt from '@/components/InstallPrompt';
+import { PWAInstallPrompt, PWAUpdatePrompt } from '@/components/PWAPrompts';
 import { LocalizationProvider } from '@/lib/localization/localization-context';
 
 export const metadata: Metadata = {
@@ -40,6 +41,8 @@ export default function RootLayout({
               <main className="flex-1 pb-20 md:pb-8 pt-16">{children}</main>
               <Footer />
               <InstallPrompt />
+              <PWAInstallPrompt />
+              <PWAUpdatePrompt />
               <BottomNav />
               <Toaster />
             </div>
