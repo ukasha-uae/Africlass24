@@ -1,5 +1,5 @@
 # Carousel Migration Strategy
-*Safe conversion plan for transforming SmartJHS to carousel-based learning*
+*Safe conversion plan for transforming SmartClass24 to carousel-based learning*
 
 **Last Updated**: December 14, 2025  
 **Status**: Phase 1 Complete - Chemistry & Integrated Science Migrated

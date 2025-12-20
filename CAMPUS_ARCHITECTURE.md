@@ -1,7 +1,7 @@
 # 🏫 Campus Architecture - Scalability Guide
 
 ## Overview
-This document explains the scalable campus architecture for SmartJHS/SHS and future campus additions.
+This document explains the scalable campus architecture for SmartClass24 JHS/SHS and future campus additions.
 
 ## Architecture Summary
 

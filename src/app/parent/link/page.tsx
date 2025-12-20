@@ -152,7 +152,7 @@ export default function LinkStudentPage() {
                 How it works:
               </h3>
               <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
-                <li>Ask your child to log in to their SmartJHS account</li>
+                <li>Ask your child to log in to their SmartClass24 account</li>
                 <li>Have them go to their Profile page</li>
                 <li>Find the "Link to Parent/Guardian" section</li>
                 <li>Copy the 6-digit code shown there</li>

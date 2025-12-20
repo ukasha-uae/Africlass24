@@ -227,4 +227,4 @@ When adding new features:
 
 **Last Updated:** 2025
 **Version:** 1.0
-**Author:** SmartJHS Development Team
+**Author:** SmartClass24 Development Team

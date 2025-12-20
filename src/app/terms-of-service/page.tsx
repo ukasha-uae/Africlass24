@@ -34,7 +34,7 @@ export default function TermsOfServicePage() {
           </CardHeader>
           <CardContent className="text-sm space-y-3">
             <p>
-              By accessing and using SmartJHS ("the Platform"), you agree to be bound by these Terms of Service. 
+              By accessing and using SmartClass24 ("the Platform"), you agree to be bound by these Terms of Service. 
               If you are a student under 18, your parent or guardian must review and accept these terms on your behalf.
             </p>
           </CardContent>
@@ -73,7 +73,7 @@ export default function TermsOfServicePage() {
             <CardTitle>Acceptable Use</CardTitle>
           </CardHeader>
           <CardContent className="text-sm space-y-3">
-            <p className="font-semibold">You agree to use SmartJHS only for lawful educational purposes. Prohibited activities include:</p>
+            <p className="font-semibold">You agree to use SmartClass24 only for lawful educational purposes. Prohibited activities include:</p>
             <ul className="list-disc list-inside space-y-1 text-muted-foreground ml-4">
               <li>Harassment, bullying, or threatening other users</li>
               <li>Sharing inappropriate or offensive content</li>
@@ -111,7 +111,7 @@ export default function TermsOfServicePage() {
             <div>
               <h3 className="font-semibold mb-2">Platform Content</h3>
               <p className="text-muted-foreground">
-                All lessons, quizzes, questions, and educational materials are owned by SmartJHS or licensed from 
+                All lessons, quizzes, questions, and educational materials are owned by SmartClass24 or licensed from 
                 third parties. You may not copy, distribute, or reproduce this content without permission.
               </p>
             </div>
@@ -119,7 +119,7 @@ export default function TermsOfServicePage() {
             <div>
               <h3 className="font-semibold mb-2 mt-3">User Content</h3>
               <p className="text-muted-foreground">
-                Content you create (study group posts, questions, achievements) remains yours, but you grant SmartJHS 
+                Content you create (study group posts, questions, achievements) remains yours, but you grant SmartClass24 
                 a license to display and use this content within the platform. You retain the right to delete your content.
               </p>
             </div>
@@ -146,7 +146,7 @@ export default function TermsOfServicePage() {
           </CardHeader>
           <CardContent className="text-sm space-y-3">
             <p className="text-muted-foreground">
-              SmartJHS reserves the right to modify, suspend, or discontinue any part of the service with or without 
+              SmartClass24 reserves the right to modify, suspend, or discontinue any part of the service with or without 
               notice. We will not be liable for any modification or discontinuation of services.
             </p>
           </CardContent>
@@ -171,7 +171,7 @@ export default function TermsOfServicePage() {
           </CardHeader>
           <CardContent className="text-sm space-y-3">
             <p className="text-muted-foreground">
-              SmartJHS is provided "as is" without warranties of any kind. While we strive for accuracy, we do not 
+              SmartClass24 is provided "as is" without warranties of any kind. While we strive for accuracy, we do not 
               guarantee that content is error-free or that it will guarantee BECE success. Your use of the platform 
               is at your own risk.
             </p>
@@ -184,7 +184,7 @@ export default function TermsOfServicePage() {
           </CardHeader>
           <CardContent className="text-sm space-y-3">
             <p className="text-muted-foreground">
-              SmartJHS and its operators shall not be liable for any indirect, incidental, or consequential damages 
+              SmartClass24 and its operators shall not be liable for any indirect, incidental, or consequential damages 
               arising from your use of the platform, including but not limited to data loss, exam performance, or 
               device issues.
             </p>
@@ -210,14 +210,14 @@ export default function TermsOfServicePage() {
           <CardContent className="text-sm">
             <p className="mb-3">For questions about these terms:</p>
             <div className="space-y-2 text-muted-foreground">
-              <p>Email: <a href="mailto:legal@smartjhs.edu.gh" className="text-primary hover:underline">legal@smartjhs.edu.gh</a></p>
+              <p>Email: <a href="mailto:legal@smartclass24.edu.gh" className="text-primary hover:underline">legal@smartclass24.edu.gh</a></p>
               <p>Phone: +233 30 000 0000</p>
             </div>
           </CardContent>
         </Card>
 
         <div className="text-center text-sm text-muted-foreground">
-          <p>By continuing to use SmartJHS, you acknowledge that you have read and agree to these Terms of Service.</p>
+          <p>By continuing to use SmartClass24, you acknowledge that you have read and agree to these Terms of Service.</p>
         </div>
       </div>
     </div>

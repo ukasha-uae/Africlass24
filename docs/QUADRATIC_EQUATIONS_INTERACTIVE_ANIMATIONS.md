@@ -323,4 +323,4 @@ These interactive animations transform abstract algebraic processes into concret
 ---
 
 *Last Updated: December 12, 2025*  
-*Created by: SmartJHS Development Team*
+*Created by: SmartClass24 Development Team*

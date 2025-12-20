@@ -2,7 +2,7 @@
 
 ## What We Built
 
-A **scalable, unified campus system** that merges SmartJHS and SmartSHS into a single application with the ability to easily add unlimited campuses in the future.
+A **scalable, unified campus system** that merges SmartClass24 JHS and SHS into a single application with the ability to easily add unlimited campuses in the future.
 
 ---
 

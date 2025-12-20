@@ -1,5 +1,5 @@
 /**
- * Feature Flag System for SmartJHS
+ * Feature Flag System for SmartClass24
  * Provides granular control over feature rollout
  */
 

@@ -658,7 +658,7 @@ export default function CourseBuilderPage() {
             <CardContent>
               <div className="space-y-4">
                 <p className="text-sm">
-                  SmartJHS includes an <code className="bg-muted px-1 py-0.5 rounded">InteractiveDiagrams</code> component for subjects like Science, Math, and Social Studies.
+                  SmartClass24 includes an <code className="bg-muted px-1 py-0.5 rounded">InteractiveDiagrams</code> component for subjects like Science, Math, and Social Studies.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

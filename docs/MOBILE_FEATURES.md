@@ -1,7 +1,7 @@
 # Mobile App Features Documentation
 
 ## Overview
-SmartJHS now includes advanced mobile app features including push notifications, enhanced dark mode, and gesture navigation for an optimal mobile learning experience.
+SmartClass24 now includes advanced mobile app features including push notifications, enhanced dark mode, and gesture navigation for an optimal mobile learning experience.
 
 ---
 
@@ -241,7 +241,7 @@ useSwipeGesture(handlers, {
 - **Update Strategy**: Network-first for pages, cache-first for assets
 
 ### Installation
-SmartJHS can be installed as a Progressive Web App:
+SmartClass24 can be installed as a Progressive Web App:
 
 **iOS (Safari):**
 1. Tap Share button
@@ -256,8 +256,8 @@ SmartJHS can be installed as a Progressive Web App:
 ### Manifest
 ```json
 {
-  "name": "SmartJHS",
-  "short_name": "SmartJHS",
+  "name": "SmartClass24",
+  "short_name": "SmartC24",
   "theme_color": "#3b82f6",
   "background_color": "#0f172a",
   "display": "standalone",
@@ -389,7 +389,7 @@ const { swipeProgress, swipeDirection, isActive } = useSwipeNavigation();
 ### Planned Features
 1. **Haptic Feedback API**: Richer vibration patterns
 2. **Badge API**: Show unread notifications count on app icon
-3. **Share Target**: Share content to SmartJHS from other apps
+3. **Share Target**: Share content to SmartClass24 from other apps
 4. **Shortcuts API**: Quick actions from home screen
 5. **Periodic Background Sync**: Auto-update content
 

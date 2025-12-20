@@ -1,7 +1,7 @@
 # Social Features Documentation
 
 ## Overview
-SmartJHS now includes comprehensive social features that enable students to collaborate, share achievements, and help each other learn.
+SmartClass24 now includes comprehensive social features that enable students to collaborate, share achievements, and help each other learn.
 
 ## Features
 

@@ -286,7 +286,7 @@ export default function SettingsPage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `smartjhs-data-${Date.now()}.json`;
+    a.download = `smartclass24-data-${Date.now()}.json`;
     a.click();
     URL.revokeObjectURL(url);
 

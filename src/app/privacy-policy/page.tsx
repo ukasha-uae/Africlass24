@@ -35,7 +35,7 @@ export default function PrivacyPolicyPage() {
           </CardHeader>
           <CardContent className="prose prose-sm max-w-none space-y-4">
             <p>
-              At SmartJHS, we are committed to protecting the privacy and security of our students, parents, 
+              At SmartClass24, we are committed to protecting the privacy and security of our students, parents, 
               and educators. This Privacy Policy explains how we collect, use, and safeguard your information.
             </p>
           </CardContent>
@@ -178,7 +178,7 @@ export default function PrivacyPolicyPage() {
               If you have questions or concerns about our Privacy Policy, please contact us:
             </p>
             <div className="space-y-2 text-muted-foreground">
-              <p>Email: <a href="mailto:privacy@smartjhs.edu.gh" className="text-primary hover:underline">privacy@smartjhs.edu.gh</a></p>
+              <p>Email: <a href="mailto:privacy@smartclass24.edu.gh" className="text-primary hover:underline">privacy@smartclass24.edu.gh</a></p>
               <p>Phone: +233 30 000 0000</p>
               <p>Address: Accra Digital Centre, Accra, Ghana</p>
             </div>
