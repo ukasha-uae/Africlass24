@@ -15,6 +15,12 @@ const CashPettyCashBookIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
   
   const countryName = country?.name || 'Ghana';
   const currencySymbol = country?.currency?.symbol || '₵';
+  // Extract the currency unit name from the full name (e.g., "Sierra Leonean Leone" -> "Leone", "Cedis" -> "Cedis")
+  const fullCurrencyName = country?.currency?.name || 'Cedis';
+  const currencyName = fullCurrencyName.includes('Leone') ? 'Leone' : 
+                       fullCurrencyName.includes('Naira') ? 'Naira' :
+                       fullCurrencyName.includes('Cedis') ? 'Cedis' :
+                       fullCurrencyName;
 
   // Interactive states
   const [bookChoice, setBookChoice] = useState<'cash' | 'petty' | null>(null);
@@ -93,7 +99,7 @@ const CashPettyCashBookIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
       title: "🪙 The Petty Cash Book",
       icon: Coins,
       content: `Small expenses like transport, stationery, and tea—they all go in the Petty Cash Book using the Imprest System!`,
-      narration: `Now let's talk about the Petty Cash Book - a very practical tool for managing small expenses. Imagine you're running a business. Every day, you have small expenses - transport fare for the messenger, stationery for the office, tea and biscuits for visitors, postage stamps, cleaning supplies. These are PETTY expenses - small, routine expenses. If you recorded each of these tiny amounts in the main Cash Book, it would become cluttered and messy! That's why we have the Petty Cash Book. The Petty Cash Book is maintained by a Petty Cashier - a junior employee who handles these small payments. The main Cashier gives the Petty Cashier a fixed amount at the beginning of each period - let's say five hundred cedis. This fixed amount is called the IMPREST. The Petty Cashier pays out small expenses during the period and records them in the Petty Cash Book with ANALYSIS COLUMNS - different columns for different types of expenses like transport, stationery, refreshments, cleaning, postage. At the end of the period, let's say the Petty Cashier spent three hundred cedis. The main Cashier gives the Petty Cashier exactly three hundred cedis to restore the imprest back to five hundred cedis. That's the IMPREST SYSTEM! It's brilliant because the Petty Cashier always starts each period with the same fixed amount, making cash control easy. Most businesses in ${countryName} use this system to manage small expenses efficiently while keeping the main Cash Book clean and focused on bigger transactions!`,
+      narration: `Now let's talk about the Petty Cash Book - a very practical tool for managing small expenses. Imagine you're running a business. Every day, you have small expenses - transport fare for the messenger, stationery for the office, tea and biscuits for visitors, postage stamps, cleaning supplies. These are PETTY expenses - small, routine expenses. If you recorded each of these tiny amounts in the main Cash Book, it would become cluttered and messy! That's why we have the Petty Cash Book. The Petty Cash Book is maintained by a Petty Cashier - a junior employee who handles these small payments. The main Cashier gives the Petty Cashier a fixed amount at the beginning of each period - let's say five hundred ${currencyName}. This fixed amount is called the IMPREST. The Petty Cashier pays out small expenses during the period and records them in the Petty Cash Book with ANALYSIS COLUMNS - different columns for different types of expenses like transport, stationery, refreshments, cleaning, postage. At the end of the period, let's say the Petty Cashier spent three hundred ${currencyName}. The main Cashier gives the Petty Cashier exactly three hundred ${currencyName} to restore the imprest back to five hundred ${currencyName}. That's the IMPREST SYSTEM! It's brilliant because the Petty Cashier always starts each period with the same fixed amount, making cash control easy. Most businesses in ${countryName} use this system to manage small expenses efficiently while keeping the main Cash Book clean and focused on bigger transactions!`,
       highlightWords: [countryName, currencySymbol, 'Petty Cash Book', 'Imprest System', 'analysis columns', 'Petty Cashier'],
       color: "from-orange-500 to-red-600",
       expenses: [
@@ -102,7 +108,7 @@ const CashPettyCashBookIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
           icon: ShoppingBag,
           date: 'Jan 3',
           description: 'Transport for messenger',
-          amount: 'twenty cedis',
+          amount: `twenty ${currencyName}`,
           category: 'Transport'
         },
         { 
@@ -110,7 +116,7 @@ const CashPettyCashBookIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
           icon: BookOpen,
           date: 'Jan 5',
           description: 'Office stationery',
-          amount: 'fifty cedis',
+          amount: `fifty ${currencyName}`,
           category: 'Stationery'
         },
         { 
@@ -118,7 +124,7 @@ const CashPettyCashBookIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
           icon: Coins,
           date: 'Jan 8',
           description: 'Tea and biscuits for visitors',
-          amount: 'thirty cedis',
+          amount: `thirty ${currencyName}`,
           category: 'Refreshments'
         }
       ],

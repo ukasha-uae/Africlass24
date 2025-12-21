@@ -7,7 +7,7 @@ import { useLocalization } from '@/hooks/useLocalization';
 import { useLocalizedLesson } from '@/hooks/useLocalizedLesson';
 import AccountingDefinitionIntro from '@/components/lesson-intros/financial-accounting/shs1/AccountingDefinitionIntro';
 import SalesPurchasesJournalsIntro from '@/components/lesson-intros/financial-accounting/shs1/SalesPurchasesJournalsIntro';
-import CashPettyCashBookIntro from '@/components/lesson-intros/financial-accounting/shs1/CashPettyCashBookIntro';
+import CashPettyCashBookWorkshop from '@/components/lesson-intros/financial-accounting/shs1/CashPettyCashBookWorkshop';
 import UsersOfInformationIntro from '@/components/lesson-intros/financial-accounting/shs1/UsersOfInformationIntro';
 import BranchesOfAccountingIntro from '@/components/lesson-intros/financial-accounting/shs1/BranchesOfAccountingIntro';
 import BusinessEntityIntro from '@/components/lesson-intros/financial-accounting/shs1/BusinessEntityIntro';
@@ -202,7 +202,7 @@ export default function ElectiveLessonPage({
       return <SalesPurchasesJournalsIntro onComplete={() => {}} />;
     }
     if (resolvedParams.lessonSlug === 'facc-shs1-boe-cash-petty-cash-book') {
-      return <CashPettyCashBookIntro onComplete={() => {}} />;
+      return <CashPettyCashBookWorkshop onComplete={() => {}} />;
     }
     
     // Add more custom intros here as they're created

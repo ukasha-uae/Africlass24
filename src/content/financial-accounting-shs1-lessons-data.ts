@@ -4,28 +4,28 @@
 import type { Lesson } from '@/lib/types';
 
 export const financialAccountingSHS1Lessons: Lesson[] = [
-  // Lesson 1: Definition and Objectives of Accounting
-  {
-    id: 'facc-shs1-intro-1',
-    slug: 'facc-shs1-intro-definition-objectives',
-    title: 'Definition and Objectives of Accounting',
-    objectives: [
-      'Define accounting and explain its importance in business',
-      'Distinguish between book-keeping and accounting',
-      'Identify and explain the main objectives of accounting',
-      'List and describe the users of accounting information',
-      'Understand the different branches of accounting',
-      'Explain the accounting equation and its components',
-      'Describe the steps in the accounting cycle',
-      'Recognize the role of ICAG and {{business:tax-authority}} in {{country}}\'s accounting profession',
-      'Appreciate the importance of IFRS in global accounting standards',
-      'Apply basic accounting concepts to everyday business situations'
-    ],
-    introduction: "Welcome to Financial Accounting! This is the language of business—a skill that will serve you throughout your career whether you become an entrepreneur, work in a bank, or manage any organization. Every successful business, from small provision shops in the local market to large corporations like {{business:company:1}} and {{business:bank:1}}, relies on accounting to track money, make decisions, and grow. Today, we'll discover what accounting really means, why it matters, and how it helps businesses succeed in {{country}} and worldwide. By the end of this lesson, you'll understand why accounting is considered the backbone of every business!",
-    keyConcepts: [
-      {
-        title: 'What is Accounting?',
-        content: `**Accounting** is the systematic process of recording, classifying, summarizing, analyzing, and interpreting financial transactions to provide useful information for decision-making.
+ // Lesson 1: Definition and Objectives of Accounting
+ {
+  id: 'facc-shs1-intro-1',
+  slug: 'facc-shs1-intro-definition-objectives',
+  title: 'Definition and Objectives of Accounting',
+  objectives: [
+   'Define accounting and explain its importance in business',
+   'Distinguish between book-keeping and accounting',
+   'Identify and explain the main objectives of accounting',
+   'List and describe the users of accounting information',
+   'Understand the different branches of accounting',
+   'Explain the accounting equation and its components',
+   'Describe the steps in the accounting cycle',
+   'Recognize the role of ICAG and {{business:tax-authority}} in {{country}}\'s accounting profession',
+   'Appreciate the importance of IFRS in global accounting standards',
+   'Apply basic accounting concepts to everyday business situations'
+  ],
+  introduction: "Welcome to Financial Accounting! This is the language of business—a skill that will serve you throughout your career whether you become an entrepreneur, work in a bank, or manage any organization. Every successful business, from small provision shops in the local market to large corporations like {{business:company:1}} and {{business:bank:1}}, relies on accounting to track money, make decisions, and grow. Today, we'll discover what accounting really means, why it matters, and how it helps businesses succeed in {{country}} and worldwide. By the end of this lesson, you'll understand why accounting is considered the backbone of every business!",
+  keyConcepts: [
+   {
+    title: 'What is Accounting?',
+    content: `**Accounting** is the systematic process of recording, classifying, summarizing, analyzing, and interpreting financial transactions to provide useful information for decision-making.
 
 **The AICPA Definition:**
 "Accounting is the art of recording, classifying, and summarizing in a significant manner and in terms of money, transactions and events which are, in part at least, of a financial character, and interpreting the results thereof."
@@ -33,19 +33,19 @@ export const financialAccountingSHS1Lessons: Lesson[] = [
 **Breaking Down the Definition:**
 
 1️⃣ **Recording** – Writing down every business transaction
-   - Example: When a shopkeeper sells {{currency}}100 of provisions, she records this sale
+  - Example: When a shopkeeper sells {{currency}}100 of provisions, she records this sale
 
 2️⃣ **Classifying** – Organizing transactions into categories
-   - Example: Grouping all sales together, all purchases together, all expenses together
+  - Example: Grouping all sales together, all purchases together, all expenses together
 
 3️⃣ **Summarizing** – Creating totals and summaries
-   - Example: Total sales for January = {{currency}}5,000
+  - Example: Total sales for January = {{currency}}5,000
 
 4️⃣ **Analyzing** – Examining the data to find meaning
-   - Example: Sales increased by 15% compared to last month
+  - Example: Sales increased by 15% compared to last month
 
 5️⃣ **Interpreting** – Explaining what the numbers mean
-   - Example: "The increase shows our new products are popular"
+  - Example: "The increase shows our new products are popular"
 
 **Why is Accounting Called the "Language of Business"?**
 - Just as Twi or English helps people communicate, accounting helps businesses communicate their financial health
@@ -60,10 +60,10 @@ Imagine an entrepreneur opens a small phone accessories shop at the city center.
 - Can he afford to buy more stock?
 - How much tax does he owe {{business:tax-authority}}?
 Accounting answers ALL these questions!`
-      },
-      {
-        title: 'Book-keeping vs Accounting',
-        content: `Many students confuse book-keeping and accounting. Let's clear this up!
+   },
+   {
+    title: 'Book-keeping vs Accounting',
+    content: `Many students confuse book-keeping and accounting. Let's clear this up!
 
 **📚 BOOK-KEEPING:**
 The systematic recording of day-to-day financial transactions in the books of account.
@@ -102,20 +102,16 @@ Think of it like cooking:
 - **Accounting** = Cooking the full meal AND presenting it beautifully to guests
 
 
-
-## 📊 BOOK-KEEPING VS ACCOUNTING COMPARISON
-
-<table><thead><tr><th>Aspect</th><th>Book-keeping</th><th>Accounting</th></tr></thead><tbody><tr><td><strong>Definition</strong></td><td>Recording financial transactions</td><td>Recording + Analyzing + Interpreting</td></tr><tr><td><strong>Scope</strong></td><td>Narrow (recording only)</td><td>Wider (includes book-keeping + analysis)</td></tr><tr><td><strong>Nature of Work</strong></td><td>Clerical & Routine</td><td>Analytical & Professional</td></tr><tr><td><strong>Decision Making</strong></td><td>❌ Does NOT assist</td><td>✅ Provides basis for decisions</td></tr><tr><td><strong>Financial Statements</strong></td><td>❌ Does NOT prepare</td><td>✅ Prepares & interprets</td></tr><tr><td><strong>Skills Required</strong></td><td>Basic numerical skills</td><td>Professional qualification (ICAG)</td></tr><tr><td><strong>Analogy</strong></td><td>📝 Gathering ingredients</td><td>🍳 Cooking the full meal</td></tr></tbody></table>
-
-
-
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 BOOK-KEEPING VS ACCOUNTING COMPARISON
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Aspect</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Book-keeping</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Accounting</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Definition</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Recording financial transactions</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Recording + Analyzing + Interpreting</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Scope</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Narrow (recording only)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Wider (includes book-keeping + analysis)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Nature of Work</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Clerical & Routine</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Analytical & Professional</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Decision Making</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">❌ Does NOT assist</td><td style="padding: 8px; border: 1px solid #e5e7eb;">✅ Provides basis for decisions</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Financial Statements</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">❌ Does NOT prepare</td><td style="padding: 8px; border: 1px solid #e5e7eb;">✅ Prepares & interprets</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Skills Required</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Basic numerical skills</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Professional qualification (ICAG)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Analogy</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">📝 Gathering ingredients</td><td style="padding: 8px; border: 1px solid #e5e7eb;">🍳 Cooking the full meal</td></tr></tbody></table>
 **{{country:flag}} In {{country}}:**
 - A shop assistant recording daily sales = Book-keeping
 - A Chartered Accountant (CA {{country}}) preparing audit reports = Accounting`
-      },
-      {
-        title: 'Objectives of Accounting',
-        content: `Accounting serves many important purposes. Here are the main objectives:
+   },
+   {
+    title: 'Objectives of Accounting',
+    content: `Accounting serves many important purposes. Here are the main objectives:
 
 **1️⃣ Recording Financial Transactions**
 - Maintain a systematic, complete record of ALL business transactions
@@ -156,14 +152,13 @@ Think of it like cooking:
 - Segregation of duties prevents one person from controlling everything
 
 
-
-## 🎯 SUMMARY OF OBJECTIVES
-
-<table><thead><tr><th>Objective</th><th>Purpose</th><th>Report Used</th></tr></thead><tbody><tr><td><strong>📝 Record transactions</strong></td><td>Complete history of business activities</td><td>Journals, Ledgers</td></tr><tr><td><strong>📈 Determine profit/loss</strong></td><td>Measure business performance</td><td>Income Statement</td></tr><tr><td><strong>⚖️ Show financial position</strong></td><td>Assess wealth & debt status</td><td>Balance Sheet</td></tr><tr><td><strong>🎯 Aid decisions</strong></td><td>Guide management choices</td><td>All financial reports</td></tr><tr><td><strong>🏛️ Legal compliance</strong></td><td>Follow {{business:companies-act}} & {{business:tax-authority}}</td><td>Tax returns, Annual reports</td></tr><tr><td><strong>🛡️ Prevent fraud</strong></td><td>Protect business assets</td><td>Internal controls, Audits</td></tr></tbody></table>`
-      },
-      {
-        title: 'Users of Accounting Information',
-        content: `Different people and groups need accounting information for different reasons. These are called "stakeholders."
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🎯 SUMMARY OF OBJECTIVES
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Objective</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Purpose</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Report Used</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>📝 Record transactions</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Complete history of business activities</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Journals, Ledgers</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>📈 Determine profit/loss</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Measure business performance</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Income Statement</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>⚖️ Show financial position</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Assess wealth & debt status</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Balance Sheet</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>🎯 Aid decisions</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Guide management choices</td><td style="padding: 8px; border: 1px solid #e5e7eb;">All financial reports</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>🏛️ Legal compliance</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Follow {{business:companies-act}} & {{business:tax-authority}}</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Tax returns, Annual reports</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>🛡️ Prevent fraud</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Protect business assets</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Internal controls, Audits</td></tr></tbody></table>`
+   },
+   {
+    title: 'Users of Accounting Information',
+    content: `Different people and groups need accounting information for different reasons. These are called "stakeholders."
 
 **🏠 INTERNAL USERS (Inside the business):**
 
@@ -220,14 +215,13 @@ Think of it like cooking:
 - Example: Economists studying {{country}}'s retail sector
 
 
-
-## 👥 USERS OF ACCOUNTING INFORMATION
-
-<table><thead><tr><th>User</th><th>Classification</th><th>Main Interest</th></tr></thead><tbody><tr><td><strong>Owners/Shareholders</strong></td><td>Internal</td><td>Profitability & Returns</td></tr><tr><td><strong>Managers</strong></td><td>Internal</td><td>Operations & Decision-making</td></tr><tr><td><strong>Employees</strong></td><td>Internal</td><td>Job Security & Fair Pay</td></tr><tr><td><strong>Banks/Creditors</strong></td><td>External</td><td>Loan Repayment Ability</td></tr><tr><td><strong>Tax Authority</strong></td><td>External</td><td>Tax Collection</td></tr><tr><td><strong>Investors</strong></td><td>External</td><td>Growth Potential & Dividends</td></tr><tr><td><strong>Suppliers</strong></td><td>External</td><td>Credit Worthiness</td></tr><tr><td><strong>Customers</strong></td><td>External</td><td>Business Continuity</td></tr></tbody></table>`
-      },
-      {
-        title: 'Branches of Accounting',
-        content: `Accounting is a broad field with several specialized branches. Each serves a different purpose:
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">👥 USERS OF ACCOUNTING INFORMATION
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">User</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Classification</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Main Interest</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Owners/Shareholders</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Internal</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Profitability & Returns</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Managers</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Internal</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Operations & Decision-making</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Employees</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Internal</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Job Security & Fair Pay</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Banks/Creditors</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">External</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Loan Repayment Ability</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Tax Authority</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">External</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Tax Collection</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Investors</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">External</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Growth Potential & Dividends</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Suppliers</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">External</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Credit Worthiness</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Customers</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">External</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Business Continuity</td></tr></tbody></table>`
+   },
+   {
+    title: 'Branches of Accounting',
+    content: `Accounting is a broad field with several specialized branches. Each serves a different purpose:
 
 **1️⃣ FINANCIAL ACCOUNTING** (What we're studying!)
 - Prepares financial statements for EXTERNAL users
@@ -278,14 +272,13 @@ Think of it like cooking:
 - **CIMA** (Chartered Institute of Management Accountants) - Management accounting
 
 
-
-## 🏢 BRANCHES OF ACCOUNTING & CAREER PATHS
-
-<table><thead><tr><th>Branch</th><th>Focus Area</th><th>Career Opportunities in {{country}}</th></tr></thead><tbody><tr><td><strong>📊 Financial Accounting</strong></td><td>External reporting, IFRS</td><td>Bank Accountant, Auditor, Financial Analyst</td></tr><tr><td><strong>📈 Management Accounting</strong></td><td>Internal decisions, costs</td><td>Cost Accountant, Budget Analyst</td></tr><tr><td><strong>🧾 Tax Accounting</strong></td><td>Tax Authority compliance</td><td>Tax Consultant, Tax Authority Officer</td></tr><tr><td><strong>🔍 Auditing</strong></td><td>Verification & assurance</td><td>External Auditor, Internal Auditor</td></tr><tr><td><strong>🕵️ Forensic Accounting</strong></td><td>Fraud investigation</td><td>Fraud Investigator, EOCO Officer</td></tr><tr><td><strong>🏛️ Government Accounting</strong></td><td>Public sector funds</td><td>Auditor General Staff, CAGD Officer</td></tr></tbody></table>`
-      },
-      {
-        title: 'The Accounting Equation',
-        content: `This is the GOLDEN RULE of accounting! Every transaction must keep this equation balanced:
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🏢 BRANCHES OF ACCOUNTING & CAREER PATHS
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Branch</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Focus Area</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Career Opportunities in {{country}}</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>📊 Financial Accounting</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">External reporting, IFRS</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Bank Accountant, Auditor, Financial Analyst</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>📈 Management Accounting</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Internal decisions, costs</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Cost Accountant, Budget Analyst</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>🧾 Tax Accounting</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Tax Authority compliance</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Tax Consultant, Tax Authority Officer</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>🔍 Auditing</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Verification & assurance</td><td style="padding: 8px; border: 1px solid #e5e7eb;">External Auditor, Internal Auditor</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>🕵️ Forensic Accounting</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Fraud investigation</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Fraud Investigator, EOCO Officer</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>🏛️ Government Accounting</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Public sector funds</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Auditor General Staff, CAGD Officer</td></tr></tbody></table>`
+   },
+   {
+    title: 'The Accounting Equation',
+    content: `This is the GOLDEN RULE of accounting! Every transaction must keep this equation balanced:
 
 **⚖️ ASSETS = LIABILITIES + CAPITAL**
 
@@ -298,21 +291,21 @@ Or written another way:
 - Items of value that benefit the business
 - Can be used to generate income or pay debts
 - Examples:
-  💵 Cash in hand or at bank
-  📦 Inventory/Stock
-  🏢 Buildings and land
-  🚗 Vehicles
-  💻 Equipment and machinery
-  📝 Accounts receivable (money owed by customers)
+ 💵 Cash in hand or at bank
+ 📦 Inventory/Stock
+ 🏢 Buildings and land
+ 🚗 Vehicles
+ 💻 Equipment and machinery
+ 📝 Accounts receivable (money owed by customers)
 
 **LIABILITIES (L)** - What the business OWES
 - Obligations to pay others
 - Debts that must be settled
 - Examples:
-  🏦 Bank loans
-  📝 Accounts payable (money owed to suppliers)
-  💰 Accrued expenses (wages owed, rent due)
-  📊 Taxes payable
+ 🏦 Bank loans
+ 📝 Accounts payable (money owed to suppliers)
+ 💰 Accrued expenses (wages owed, rent due)
+ 📊 Taxes payable
 
 **CAPITAL/EQUITY (C)** - Owner's claim on the business
 - What belongs to the owner after paying all debts
@@ -328,37 +321,37 @@ Or written another way:
 **{{country:flag}} Practical Example:**
 An entrepreneur starts a provision shop:
 1. **Invests {{currency}}5,000 cash**
-   - Assets (Cash): {{currency}}5,000
-   - Liabilities: {{currency}}0
-   - Capital: {{currency}}5,000
-   - ✅ {{currency}}5,000 = {{currency}}0 + {{currency}}5,000
+  - Assets (Cash): {{currency}}5,000
+  - Liabilities: {{currency}}0
+  - Capital: {{currency}}5,000
+  - ✅ {{currency}}5,000 = {{currency}}0 + {{currency}}5,000
 
 2. **Takes a bank loan of {{currency}}3,000**
-   - Assets (Cash): {{currency}}8,000
-   - Liabilities (Loan): {{currency}}3,000
-   - Capital: {{currency}}5,000
-   - ✅ {{currency}}8,000 = {{currency}}3,000 + {{currency}}5,000
+  - Assets (Cash): {{currency}}8,000
+  - Liabilities (Loan): {{currency}}3,000
+  - Capital: {{currency}}5,000
+  - ✅ {{currency}}8,000 = {{currency}}3,000 + {{currency}}5,000
 
 3. **Buys inventory for {{currency}}4,000 cash**
-   - Assets: Cash {{currency}}4,000 + Inventory {{currency}}4,000 = {{currency}}8,000
-   - Liabilities: {{currency}}3,000
-   - Capital: {{currency}}5,000
-   - ✅ {{currency}}8,000 = {{currency}}3,000 + {{currency}}5,000
+  - Assets: Cash {{currency}}4,000 + Inventory {{currency}}4,000 = {{currency}}8,000
+  - Liabilities: {{currency}}3,000
+  - Capital: {{currency}}5,000
+  - ✅ {{currency}}8,000 = {{currency}}3,000 + {{currency}}5,000
 
 4. **Sells goods for {{currency}}2,000 (cost {{currency}}1,200) = Profit {{currency}}800**
-   - Assets: Cash {{currency}}6,000 + Inventory {{currency}}2,800 = {{currency}}8,800
-   - Liabilities: {{currency}}3,000
-   - Capital: {{currency}}5,000 + {{currency}}800 profit = {{currency}}5,800
-   - ✅ {{currency}}8,800 = {{currency}}3,000 + {{currency}}5,800
+  - Assets: Cash {{currency}}6,000 + Inventory {{currency}}2,800 = {{currency}}8,800
+  - Liabilities: {{currency}}3,000
+  - Capital: {{currency}}5,000 + {{currency}}800 profit = {{currency}}5,800
+  - ✅ {{currency}}8,800 = {{currency}}3,000 + {{currency}}5,800
 
 **⚠️ Remember:**
 - Capital increases with PROFIT
 - Capital decreases with LOSS
 - Capital decreases with DRAWINGS (owner taking money out)`
-      },
-      {
-        title: 'The Accounting Cycle',
-        content: `The accounting cycle is the step-by-step process accountants follow to record and report financial information. It repeats every accounting period (usually one year).
+   },
+   {
+    title: 'The Accounting Cycle',
+    content: `The accounting cycle is the step-by-step process accountants follow to record and report financial information. It repeats every accounting period (usually one year).
 
 **🔄 THE 7 STEPS OF THE ACCOUNTING CYCLE:**
 
@@ -406,53 +399,45 @@ An entrepreneur starts a provision shop:
 - Reset for the new period
 - Example: Starting fresh on January 1st
 
-**Visual Summary:**
-\`\`\`
-    ┌───────────────┐
-    │ 1. Identify   │
-    │  Transactions │
-    └───────┬───────┘
-            ↓
-    ┌───────────────┐
-    │ 2. Record in  │
-    │    Journals   │
-    └───────┬───────┘
-            ↓
-    ┌───────────────┐
-    │ 3. Post to    │
-    │    Ledgers    │
-    └───────┬───────┘
-            ↓
-    ┌───────────────┐
-    │ 4. Trial      │
-    │    Balance    │
-    └───────┬───────┘
-            ↓
-    ┌───────────────┐
-    │ 5. Adjusting  │
-    │    Entries    │
-    └───────┬───────┘
-            ↓
-    ┌───────────────┐
-    │ 6. Financial  │
-    │   Statements  │
-    └───────┬───────┘
-            ↓
-    ┌───────────────┐
-    │ 7. Close the  │
-    │     Books     │
-    └───────────────┘
-\`\`\`
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-top: 16px; margin-bottom: 8px; color: #1e40af;">The Accounting Cycle Flow</h3>
+<div style='all: revert;'><div style="display: flex; flex-direction: column; align-items: center; padding: 20px; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: 8px;">
+<div style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 16px 24px; border-radius: 8px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+<strong>1. Identify Transactions</strong>
+</div>
+<div style="color: #3b82f6; font-size: 24px; font-weight: bold;">↓</div>
+<div style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; padding: 16px 24px; border-radius: 8px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+<strong>2. Record in Journals</strong>
+</div>
+<div style="color: #8b5cf6; font-size: 24px; font-weight: bold;">↓</div>
+<div style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 16px 24px; border-radius: 8px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+<strong>3. Post to Ledgers</strong>
+</div>
+<div style="color: #3b82f6; font-size: 24px; font-weight: bold;">↓</div>
+<div style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; padding: 16px 24px; border-radius: 8px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+<strong>4. Trial Balance</strong>
+</div>
+<div style="color: #8b5cf6; font-size: 24px; font-weight: bold;">↓</div>
+<div style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 16px 24px; border-radius: 8px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+<strong>5. Adjusting Entries</strong>
+</div>
+<div style="color: #3b82f6; font-size: 24px; font-weight: bold;">↓</div>
+<div style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; padding: 16px 24px; border-radius: 8px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+<strong>6. Financial Statements</strong>
+</div>
+<div style="color: #8b5cf6; font-size: 24px; font-weight: bold;">↓</div>
+<div style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white; padding: 16px 24px; border-radius: 8px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+<strong>7. Close the Books</strong>
+</div>
+</div></div>
 **{{country:flag}} Why This Matters:**
 - Following this cycle ensures nothing is missed
 - Creates consistent, reliable records
 - Required for {{business:tax-authority}} tax submissions
 - Makes auditing easier`
-      },
-      {
-        title: 'Financial Statements Overview',
-        content: `Financial statements are the final reports that summarize a business's financial activities. Think of them as the "report card" for a business!
+   },
+   {
+    title: 'Financial Statements Overview',
+    content: `Financial statements are the final reports that summarize a business's financial activities. Think of them as the "report card" for a business!
 
 **📊 THE THREE MAIN FINANCIAL STATEMENTS:**
 
@@ -471,20 +456,21 @@ Revenue - Expenses = Net Profit (or Loss)
 - Net Profit: Final profit after ALL expenses
 
 **Example Structure:**
-\`\`\`
+<div style='all: revert;'><div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #22c55e; border-radius: 8px; padding: 20px; font-family: monospace;">
+<div style="text-align: center; font-weight: bold; font-size: 1.1rem; color: #166534; border-bottom: 2px solid #22c55e; padding-bottom: 8px; margin-bottom: 12px;">
 INCOME STATEMENT for Year Ended 31 Dec 2024
-                                    ₵
-Sales Revenue                   100,000
-Less: Cost of Sales             (60,000)
-                               ─────────
-Gross Profit                     40,000
-Less: Operating Expenses
-  - Rent                         (5,000)
-  - Salaries                    (15,000)
-  - Utilities                    (3,000)
-                               ─────────
-Net Profit                       17,000
-\`\`\`
+</div>
+<table style="width: 100%; border-collapse: collapse;">
+<tr><td style="padding: 8px; font-weight: 600;">Sales Revenue</td><td style="padding: 8px; text-align: right;">{{currency}}100,000</td></tr>
+<tr><td style="padding: 8px; padding-left: 20px; color: #dc2626;">Less: Cost of Sales</td><td style="padding: 8px; text-align: right; color: #dc2626;">({{currency}}60,000)</td></tr>
+<tr style="border-top: 2px solid #22c55e; background-color: #f0fdf4;"><td style="padding: 8px; font-weight: bold;">Gross Profit</td><td style="padding: 8px; text-align: right; font-weight: bold; color: #16a34a;">{{currency}}40,000</td></tr>
+<tr><td colspan="2" style="padding: 12px 8px 4px 8px; font-weight: 600;">Less: Operating Expenses</td></tr>
+<tr><td style="padding: 4px 8px 4px 32px; color: #dc2626;">- Rent</td><td style="padding: 4px 8px; text-align: right; color: #dc2626;">({{currency}}5,000)</td></tr>
+<tr><td style="padding: 4px 8px 4px 32px; color: #dc2626;">- Salaries</td><td style="padding: 4px 8px; text-align: right; color: #dc2626;">({{currency}}15,000)</td></tr>
+<tr><td style="padding: 4px 8px 8px 32px; color: #dc2626;">- Utilities</td><td style="padding: 4px 8px 8px; text-align: right; color: #dc2626;">({{currency}}3,000)</td></tr>
+<tr style="border-top: 3px double #22c55e; background: linear-gradient(135deg, #22c55e, #16a34a);"><td style="padding: 12px 8px; font-weight: bold; color: white; font-size: 1.1rem;">Net Profit</td><td style="padding: 12px 8px; text-align: right; font-weight: bold; color: white; font-size: 1.1rem;">{{currency}}17,000</td></tr>
+</table>
+</div></div>
 
 **2️⃣ BALANCE SHEET (Statement of Financial Position)**
 
@@ -499,27 +485,34 @@ Assets = Liabilities + Capital
 - Capital: Owner's stake in the business
 
 **Example Structure:**
-\`\`\`
+<div style='all: revert;'><div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 2px solid #3b82f6; border-radius: 8px; padding: 20px; font-family: monospace;">
+<div style="text-align: center; font-weight: bold; font-size: 1.1rem; color: #1e40af; border-bottom: 2px solid #3b82f6; padding-bottom: 8px; margin-bottom: 12px;">
 BALANCE SHEET as at 31 December 2024
-ASSETS                              ₵
-Non-Current Assets
-  Equipment                     20,000
-Current Assets
-  Inventory                      8,000
-  Cash                         12,000
-                              ─────────
-Total Assets                    40,000
-
-LIABILITIES & CAPITAL
-Liabilities
-  Bank Loan                     10,000
-Capital
-  Opening Capital               25,000
-  Add: Net Profit               17,000
-  Less: Drawings               (12,000)
-                              ─────────
-Total Liabilities & Capital     40,000
-\`\`\`
+</div>
+<div style="background: white; border-radius: 6px; padding: 12px; margin-bottom: 12px;">
+<div style="font-weight: bold; color: #1e40af; margin-bottom: 8px; font-size: 1.05rem;">ASSETS</div>
+<table style="width: 100%; border-collapse: collapse;">
+<tr><td colspan="2" style="padding: 6px 8px; font-weight: 600; background-color: #f0f9ff;">Non-Current Assets</td></tr>
+<tr><td style="padding: 4px 8px 4px 24px;">Equipment</td><td style="padding: 4px 8px; text-align: right;">{{currency}}20,000</td></tr>
+<tr><td colspan="2" style="padding: 6px 8px; font-weight: 600; background-color: #f0f9ff;">Current Assets</td></tr>
+<tr><td style="padding: 4px 8px 4px 24px;">Inventory</td><td style="padding: 4px 8px; text-align: right;">{{currency}}8,000</td></tr>
+<tr><td style="padding: 4px 8px 8px 24px;">Cash</td><td style="padding: 4px 8px 8px; text-align: right;">{{currency}}12,000</td></tr>
+<tr style="border-top: 2px solid #3b82f6; background-color: #dbeafe;"><td style="padding: 8px; font-weight: bold;">Total Assets</td><td style="padding: 8px; text-align: right; font-weight: bold; color: #1e40af;">{{currency}}40,000</td></tr>
+</table>
+</div>
+<div style="background: white; border-radius: 6px; padding: 12px;">
+<div style="font-weight: bold; color: #1e40af; margin-bottom: 8px; font-size: 1.05rem;">LIABILITIES & CAPITAL</div>
+<table style="width: 100%; border-collapse: collapse;">
+<tr><td colspan="2" style="padding: 6px 8px; font-weight: 600; background-color: #fef2f2;">Liabilities</td></tr>
+<tr><td style="padding: 4px 8px 8px 24px;">Bank Loan</td><td style="padding: 4px 8px 8px; text-align: right;">{{currency}}10,000</td></tr>
+<tr><td colspan="2" style="padding: 6px 8px; font-weight: 600; background-color: #f0fdf4;">Capital</td></tr>
+<tr><td style="padding: 4px 8px 4px 24px;">Opening Capital</td><td style="padding: 4px 8px; text-align: right;">{{currency}}25,000</td></tr>
+<tr><td style="padding: 4px 8px 4px 24px; color: #16a34a;">Add: Net Profit</td><td style="padding: 4px 8px; text-align: right; color: #16a34a;">{{currency}}17,000</td></tr>
+<tr><td style="padding: 4px 8px 8px 24px; color: #dc2626;">Less: Drawings</td><td style="padding: 4px 8px 8px; text-align: right; color: #dc2626;">({{currency}}12,000)</td></tr>
+<tr style="border-top: 3px double #3b82f6; background: linear-gradient(135deg, #3b82f6, #2563eb);"><td style="padding: 12px 8px; font-weight: bold; color: white; font-size: 1.1rem;">Total Liabilities & Capital</td><td style="padding: 12px 8px; text-align: right; font-weight: bold; color: white; font-size: 1.1rem;">{{currency}}40,000</td></tr>
+</table>
+</div>
+</div></div>
 
 **3️⃣ CASH FLOW STATEMENT**
 
@@ -531,14 +524,13 @@ Total Liabilities & Capital     40,000
 3. Financing Activities: Cash from loans/owner investments
 
 
-
-## 📋 FINANCIAL STATEMENTS COMPARISON
-
-<table><thead><tr><th>Feature</th><th>Income Statement</th><th>Balance Sheet</th></tr></thead><tbody><tr><td><strong>Time Frame</strong></td><td>Period (e.g., 1 year)</td><td>Point in time (e.g., Dec 31)</td></tr><tr><td><strong>What It Shows</strong></td><td>Performance (profit/loss)</td><td>Position (assets/liabilities)</td></tr><tr><td><strong>Focus</strong></td><td>Revenues & Expenses</td><td>What is owned & owed</td></tr><tr><td><strong>Key Question</strong></td><td>"Did we make money?"</td><td>"What do we have?"</td></tr><tr><td><strong>Also Called</strong></td><td>Profit & Loss Account</td><td>Statement of Financial Position</td></tr></tbody></table>`
-      },
-      {
-        title: 'Accounting in {{country}}',
-        content: `Understanding how accounting works in {{country}} helps you apply your knowledge in the local context!
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 FINANCIAL STATEMENTS COMPARISON
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Feature</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Income Statement</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Balance Sheet</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Time Frame</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Period (e.g., 1 year)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Point in time (e.g., Dec 31)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>What It Shows</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Performance (profit/loss)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Position (assets/liabilities)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Focus</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Revenues & Expenses</td><td style="padding: 8px; border: 1px solid #e5e7eb;">What is owned & owed</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Key Question</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">"Did we make money?"</td><td style="padding: 8px; border: 1px solid #e5e7eb;">"What do we have?"</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Also Called</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Profit & Loss Account</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Statement of Financial Position</td></tr></tbody></table>`
+   },
+   {
+    title: 'Accounting in {{country}}',
+    content: `Understanding how accounting works in {{country}} helps you apply your knowledge in the local context!
 
 **🏛️ KEY REGULATORY BODIES:**
 
@@ -576,10 +568,9 @@ Total Liabilities & Capital     40,000
 - Foreign investors understand {{country:adjective}} company reports
 - {{country:adjective}} accountants can work internationally
 
-## 💼 ACCOUNTING CAREERS IN {{country}}
-
-<table><thead><tr><th>Career</th><th>Description</th><th>Employer Examples</th></tr></thead><tbody><tr><td><strong>Bank Accountant</strong></td><td>Handles bank finances</td><td>GCB, Ecobank, Access Bank</td></tr><tr><td><strong>Tax Consultant</strong></td><td>Advises on tax matters</td><td>Big Four firms, Tax companies</td></tr><tr><td><strong>Auditor</strong></td><td>Verifies financial records</td><td>KPMG, PwC, Deloitte, EY</td></tr><tr><td><strong>Government Accountant</strong></td><td>Public sector accounting</td><td>CAGD, Ministries, MMDAs</td></tr><tr><td><strong>Management Accountant</strong></td><td>Internal business analysis</td><td>Manufacturing companies</td></tr><tr><td><strong>Forensic Accountant</strong></td><td>Investigates fraud</td><td>EOCO, Private practice</td></tr></tbody></table>
-
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">💼 ACCOUNTING CAREERS IN {{country}}
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Career</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Description</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Employer Examples</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Bank Accountant</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Handles bank finances</td><td style="padding: 8px; border: 1px solid #e5e7eb;">GCB, Ecobank, Access Bank</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Tax Consultant</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Advises on tax matters</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Big Four firms, Tax companies</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Auditor</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Verifies financial records</td><td style="padding: 8px; border: 1px solid #e5e7eb;">KPMG, PwC, Deloitte, EY</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Government Accountant</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Public sector accounting</td><td style="padding: 8px; border: 1px solid #e5e7eb;">CAGD, Ministries, MMDAs</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Management Accountant</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Internal business analysis</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Manufacturing companies</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Forensic Accountant</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Investigates fraud</td><td style="padding: 8px; border: 1px solid #e5e7eb;">EOCO, Private practice</td></tr></tbody></table>
 **🎓 QUALIFICATIONS:**
 
 To become a professional accountant in {{country}}:
@@ -595,10 +586,10 @@ To become a professional accountant in {{country}}:
 
 **{{country:flag}} Fun Fact:**
 The first accountant in {{country}} ({{resource:mineral}} Coast) was certified in 1913! ICAG was established in 1963, just six years after independence.`
-      },
-      {
-        title: 'Key Terms Summary',
-        content: `Master these important accounting terms for your {{exam:secondary}} exams!
+   },
+   {
+    title: 'Key Terms Summary',
+    content: `Master these important accounting terms for your {{exam:secondary}} exams!
 
 **📚 ESSENTIAL VOCABULARY:**
 
@@ -668,248 +659,249 @@ These terms appear frequently in {{exam:secondary}} questions. Make sure you can
 1. Define each term clearly
 2. Give examples where appropriate
 3. Explain their importance in accounting`
-      }
+   }
+  ],
+  summary: "Congratulations! You've completed the foundation of Financial Accounting! You now understand that accounting is the systematic process of recording, classifying, summarizing, and interpreting financial transactions—the language of business. You can distinguish between book-keeping (recording) and accounting (analysis and interpretation). You know the six main objectives: recording transactions, determining profit/loss, showing financial position, aiding decisions, meeting legal requirements, and preventing fraud. You've learned about different users of accounting information (owners, managers, creditors, tax authorities, investors, employees) and the various branches of accounting. Most importantly, you understand the accounting equation (Assets = Liabilities + Capital) and the seven steps of the accounting cycle. In {{country}}, professional accounting bodies regulate accountants, {{business:tax-authority}} handles taxes, and we follow IFRS standards. This foundation will serve you throughout your accounting studies and career!",
+  endOfLessonQuiz: [
+   {
+    id: 'facc-q1',
+    type: 'mcq',
+    question: "What is the primary difference between book-keeping and accounting?",
+    options: [
+     "Book-keeping deals with large businesses only",
+     "Accounting only involves recording transactions",
+     "Book-keeping records transactions; accounting analyzes and interprets them",
+     "There is no difference between them"
     ],
-    summary: "Congratulations! You've completed the foundation of Financial Accounting! You now understand that accounting is the systematic process of recording, classifying, summarizing, and interpreting financial transactions—the language of business. You can distinguish between book-keeping (recording) and accounting (analysis and interpretation). You know the six main objectives: recording transactions, determining profit/loss, showing financial position, aiding decisions, meeting legal requirements, and preventing fraud. You've learned about different users of accounting information (owners, managers, creditors, tax authorities, investors, employees) and the various branches of accounting. Most importantly, you understand the accounting equation (Assets = Liabilities + Capital) and the seven steps of the accounting cycle. In {{country}}, professional accounting bodies regulate accountants, {{business:tax-authority}} handles taxes, and we follow IFRS standards. This foundation will serve you throughout your accounting studies and career!",
-    endOfLessonQuiz: [
-      {
-        id: 'facc-q1',
-        type: 'mcq',
-        question: "What is the primary difference between book-keeping and accounting?",
-        options: [
-          "Book-keeping deals with large businesses only",
-          "Accounting only involves recording transactions",
-          "Book-keeping records transactions; accounting analyzes and interprets them",
-          "There is no difference between them"
-        ],
-        answer: "Book-keeping records transactions; accounting analyzes and interprets them",
-        explanation: "Book-keeping is the foundation (recording), while accounting builds on it with analysis, interpretation, and reporting. Book-keeping gathers the data; accounting makes sense of it."
-      },
-      {
-        id: 'facc-q2',
-        type: 'mcq',
-        question: "Which objective of accounting helps business owners know if they made money?",
-        options: [
-          "Meeting legal requirements",
-          "Determining profit or loss",
-          "Preventing fraud",
-          "Recording transactions"
-        ],
-        answer: "Determining profit or loss",
-        explanation: "Determining profit or loss is the objective that shows whether income exceeds expenses (profit) or vice versa (loss)."
-      },
-      {
-        id: 'facc-q3',
-        type: 'mcq',
-        question: "The accounting equation is:",
-        options: [
-          "Assets = Liabilities - Capital",
-          "Assets = Liabilities + Capital",
-          "Assets + Liabilities = Capital",
-          "Capital = Assets + Liabilities"
-        ],
-        answer: "Assets = Liabilities + Capital",
-        explanation: "The fundamental accounting equation is Assets = Liabilities + Capital. This equation must always balance."
-      },
-      {
-        id: 'facc-q4',
-        type: 'mcq',
-        question: "Which financial statement shows the financial position of a business at a specific date?",
-        options: [
-          "Income Statement",
-          "Cash Flow Statement",
-          "Balance Sheet",
-          "Trial Balance"
-        ],
-        answer: "Balance Sheet",
-        explanation: "The Balance Sheet (Statement of Financial Position) shows assets, liabilities, and capital at a specific point in time."
-      },
-      {
-        id: 'facc-q5',
-        type: 'mcq',
-        question: "Why is accounting called 'the language of business'?",
-        options: [
-          "Because accountants speak a special language",
-          "Because it communicates financial information in a standardized way",
-          "Because only business people understand it",
-          "Because it uses only English"
-        ],
-        answer: "Because it communicates financial information in a standardized way",
-        explanation: "Accounting is the 'language of business' because it communicates financial information in a standardized way that everyone (investors, managers, creditors) can understand."
-      },
-      {
-        id: 'facc-q6',
-        type: 'mcq',
-        question: "The {{business:tax-authority}} needs accounting information primarily for:",
-        options: [
-          "Planning business expansion",
-          "Calculating taxes owed",
-          "Deciding on employee salaries",
-          "Determining market prices"
-        ],
-        answer: "Calculating taxes owed",
-        explanation: "The tax authority uses accounting records to assess and collect taxes owed by businesses."
-      },
-      {
-        id: 'facc-q7',
-        type: 'mcq',
-        question: "Which branch of accounting focuses on investigating fraud?",
-        options: [
-          "Financial Accounting",
-          "Management Accounting",
-          "Forensic Accounting",
-          "Tax Accounting"
-        ],
-        answer: "Forensic Accounting",
-        explanation: "Forensic Accounting specializes in investigating financial crimes, fraud, and embezzlement, often working with law enforcement."
-      },
-      {
-        id: 'facc-q8',
-        type: 'mcq',
-        question: "In the accounting cycle, what comes immediately after recording in journals?",
-        options: [
-          "Preparing financial statements",
-          "Posting to ledgers",
-          "Closing the books",
-          "Making adjustments"
-        ],
-        answer: "Posting to ledgers",
-        explanation: "The accounting cycle follows: Identify → Record in journals → Post to ledgers → Trial balance → Adjustments → Financial statements → Close books."
-      },
-      {
-        id: 'facc-q9',
-        type: 'mcq',
-        question: "What is capital in accounting?",
-        options: [
-          "Money borrowed from banks",
-          "All the money in the business",
-          "Owner's claim on assets after paying liabilities",
-          "The total expenses of the business"
-        ],
-        answer: "Owner's claim on assets after paying liabilities",
-        explanation: "Capital (Owner's Equity) is the owner's claim on business assets after all liabilities are paid. It represents the owner's investment plus accumulated profits."
-      },
-      {
-        id: 'facc-q10',
-        type: 'mcq',
-        question: "Which professional body regulates accountants in {{country}}?",
-        options: [
-          "{{country}} Revenue Authority",
-          "Bank of {{country}}",
-          "Institute of Chartered Accountants {{country}} (ICAG)",
-          "Securities and Exchange Commission"
-        ],
-        answer: "Institute of Chartered Accountants {{country}} (ICAG)",
-        explanation: "The Institute of Chartered Accountants {{country}} (ICAG) is the professional body that regulates and certifies accountants in {{country}}."
-      },
-      {
-        id: 'facc-q11',
-        type: 'mcq',
-        question: "An example of an asset is:",
-        options: [
-          "Bank loan",
-          "Accounts payable",
-          "Inventory",
-          "Salaries owed to employees"
-        ],
-        answer: "Inventory",
-        explanation: "Inventory (stock) is an asset—something the business owns that has value. Bank loans, accounts payable, and salaries owed are all liabilities."
-      },
-      {
-        id: 'facc-q12',
-        type: 'mcq',
-        question: "Which financial statement shows revenues and expenses?",
-        options: [
-          "Balance Sheet",
-          "Income Statement",
-          "Cash Flow Statement",
-          "Statement of Changes in Equity"
-        ],
-        answer: "Income Statement",
-        explanation: "The Income Statement (Profit and Loss Account) shows revenues and expenses over a period, calculating whether the business made profit or loss."
-      },
-      {
-        id: 'facc-q13',
-        type: 'mcq',
-        question: "What does IFRS stand for?",
-        options: [
-          "International Financial Recording System",
-          "International Financial Reporting Standards",
-          "Internal Financial Reporting System",
-          "Integrated Financial Recording Standards"
-        ],
-        answer: "International Financial Reporting Standards",
-        explanation: "IFRS stands for International Financial Reporting Standards—global accounting standards ensuring consistency and comparability of financial statements."
-      },
-      {
-        id: 'facc-q14',
-        type: 'mcq',
-        question: "Recording daily sales in a sales journal is an example of:",
-        options: [
-          "Accounting",
-          "Book-keeping",
-          "Auditing",
-          "Tax planning"
-        ],
-        answer: "Book-keeping",
-        explanation: "Recording transactions in journals is a book-keeping activity. Book-keeping focuses on the systematic recording of daily financial transactions."
-      },
-      {
-        id: 'facc-q15',
-        type: 'mcq',
-        question: "If Assets = {{currency}}50,000 and Liabilities = {{currency}}20,000, what is Capital?",
-        options: [
-          "{{currency}}70,000",
-          "{{currency}}30,000",
-          "{{currency}}20,000",
-          "{{currency}}50,000"
-        ],
-        answer: "{{currency}}30,000",
-        explanation: "Using the accounting equation: Assets = Liabilities + Capital. So {{currency}}50,000 = {{currency}}20,000 + Capital. Capital = {{currency}}50,000 - {{currency}}20,000 = {{currency}}30,000."
-      }
+    answer: "Book-keeping records transactions; accounting analyzes and interprets them",
+    explanation: "Book-keeping is the foundation (recording), while accounting builds on it with analysis, interpretation, and reporting. Book-keeping gathers the data; accounting makes sense of it."
+   },
+   {
+    id: 'facc-q2',
+    type: 'mcq',
+    question: "Which objective of accounting helps business owners know if they made money?",
+    options: [
+     "Meeting legal requirements",
+     "Determining profit or loss",
+     "Preventing fraud",
+     "Recording transactions"
     ],
-    activities: [],
-    pastQuestions: [
-      {
-        question: "{{exam:secondary}} 2019: (a) Define accounting. (b) State FOUR objectives of accounting.",
-        year: "2019",
-        solution: "(a) Accounting is the systematic process of recording, classifying, summarizing, analyzing, and interpreting financial transactions to provide useful information for decision-making by various users.\n\n(b) Four objectives of accounting:\n1. Recording financial transactions – Maintaining systematic records of all business activities\n2. Determining profit or loss – Calculating whether income exceeds expenses\n3. Showing financial position – Revealing assets, liabilities, and capital through the Balance Sheet\n4. Providing information for decision-making – Helping managers, investors, and creditors make informed choices"
-      },
-      {
-        question: "{{exam:secondary}} 2021: Distinguish between book-keeping and accounting. Give TWO examples of activities under each.",
-        year: "2021",
-        solution: "Distinction:\nBook-keeping is the systematic recording of daily financial transactions in the books of account. It is the foundation of the accounting process.\n\nAccounting goes beyond recording to include analyzing, interpreting, summarizing, and communicating financial information to users for decision-making.\n\nExamples of Book-keeping Activities:\n1. Recording daily sales in the sales journal\n2. Entering purchases in the purchases book\n\nExamples of Accounting Activities:\n1. Preparing financial statements (Income Statement, Balance Sheet)\n2. Analyzing profitability ratios to assess business performance"
-      },
-      {
-        question: "{{exam:secondary}} 2020: List FIVE users of accounting information and state ONE reason why each needs the information.",
-        year: "2020",
-        solution: "1. Owners/Shareholders – Need to assess whether their investment is profitable and whether dividends can be paid\n\n2. Managers – Require information to plan operations, control costs, and make daily business decisions\n\n3. Creditors/Banks – Want to evaluate the ability of the business to repay loans and meet credit obligations\n\n4. Government ({{business:tax-authority}}) – Needs accurate records to assess and collect taxes owed by the business\n\n5. Employees – Interested in the financial stability of the business to ensure job security and fair wages"
-      }
+    answer: "Determining profit or loss",
+    explanation: "Determining profit or loss is the objective that shows whether income exceeds expenses (profit) or vice versa (loss)."
+   },
+   {
+    id: 'facc-q3',
+    type: 'mcq',
+    question: "The accounting equation is:",
+    options: [
+     "Assets = Liabilities - Capital",
+     "Assets = Liabilities + Capital",
+     "Assets + Liabilities = Capital",
+     "Capital = Assets + Liabilities"
     ],
-  },
+    answer: "Assets = Liabilities + Capital",
+    explanation: "The fundamental accounting equation is Assets = Liabilities + Capital. This equation must always balance."
+   },
+   {
+    id: 'facc-q4',
+    type: 'mcq',
+    question: "Which financial statement shows the financial position of a business at a specific date?",
+    options: [
+     "Income Statement",
+     "Cash Flow Statement",
+     "Balance Sheet",
+     "Trial Balance"
+    ],
+    answer: "Balance Sheet",
+    explanation: "The Balance Sheet (Statement of Financial Position) shows assets, liabilities, and capital at a specific point in time."
+   },
+   {
+    id: 'facc-q5',
+    type: 'mcq',
+    question: "Why is accounting called 'the language of business'?",
+    options: [
+     "Because accountants speak a special language",
+     "Because it communicates financial information in a standardized way",
+     "Because only business people understand it",
+     "Because it uses only English"
+    ],
+    answer: "Because it communicates financial information in a standardized way",
+    explanation: "Accounting is the 'language of business' because it communicates financial information in a standardized way that everyone (investors, managers, creditors) can understand."
+   },
+   {
+    id: 'facc-q6',
+    type: 'mcq',
+    question: "The {{business:tax-authority}} needs accounting information primarily for:",
+    options: [
+     "Planning business expansion",
+     "Calculating taxes owed",
+     "Deciding on employee salaries",
+     "Determining market prices"
+    ],
+    answer: "Calculating taxes owed",
+    explanation: "The tax authority uses accounting records to assess and collect taxes owed by businesses."
+   },
+   {
+    id: 'facc-q7',
+    type: 'mcq',
+    question: "Which branch of accounting focuses on investigating fraud?",
+    options: [
+     "Financial Accounting",
+     "Management Accounting",
+     "Forensic Accounting",
+     "Tax Accounting"
+    ],
+    answer: "Forensic Accounting",
+    explanation: "Forensic Accounting specializes in investigating financial crimes, fraud, and embezzlement, often working with law enforcement."
+   },
+   {
+    id: 'facc-q8',
+    type: 'mcq',
+    question: "In the accounting cycle, what comes immediately after recording in journals?",
+    options: [
+     "Preparing financial statements",
+     "Posting to ledgers",
+     "Closing the books",
+     "Making adjustments"
+    ],
+    answer: "Posting to ledgers",
+    explanation: "The accounting cycle follows: Identify → Record in journals → Post to ledgers → Trial balance → Adjustments → Financial statements → Close books."
+   },
+   {
+    id: 'facc-q9',
+    type: 'mcq',
+    question: "What is capital in accounting?",
+    options: [
+     "Money borrowed from banks",
+     "All the money in the business",
+     "Owner's claim on assets after paying liabilities",
+     "The total expenses of the business"
+    ],
+    answer: "Owner's claim on assets after paying liabilities",
+    explanation: "Capital (Owner's Equity) is the owner's claim on business assets after all liabilities are paid. It represents the owner's investment plus accumulated profits."
+   },
+   {
+    id: 'facc-q10',
+    type: 'mcq',
+    question: "Which professional body regulates accountants in {{country}}?",
+    options: [
+     "{{country}} Revenue Authority",
+     "Bank of {{country}}",
+     "Institute of Chartered Accountants {{country}} (ICAG)",
+     "Securities and Exchange Commission"
+    ],
+    answer: "Institute of Chartered Accountants {{country}} (ICAG)",
+    explanation: "The Institute of Chartered Accountants {{country}} (ICAG) is the professional body that regulates and certifies accountants in {{country}}."
+   },
+   {
+    id: 'facc-q11',
+    type: 'mcq',
+    question: "An example of an asset is:",
+    options: [
+     "Bank loan",
+     "Accounts payable",
+     "Inventory",
+     "Salaries owed to employees"
+    ],
+    answer: "Inventory",
+    explanation: "Inventory (stock) is an asset—something the business owns that has value. Bank loans, accounts payable, and salaries owed are all liabilities."
+   },
+   {
+    id: 'facc-q12',
+    type: 'mcq',
+    question: "Which financial statement shows revenues and expenses?",
+    options: [
+     "Balance Sheet",
+     "Income Statement",
+     "Cash Flow Statement",
+     "Statement of Changes in Equity"
+    ],
+    answer: "Income Statement",
+    explanation: "The Income Statement (Profit and Loss Account) shows revenues and expenses over a period, calculating whether the business made profit or loss."
+   },
+   {
+    id: 'facc-q13',
+    type: 'mcq',
+    question: "What does IFRS stand for?",
+    options: [
+     "International Financial Recording System",
+     "International Financial Reporting Standards",
+     "Internal Financial Reporting System",
+     "Integrated Financial Recording Standards"
+    ],
+    answer: "International Financial Reporting Standards",
+    explanation: "IFRS stands for International Financial Reporting Standards—global accounting standards ensuring consistency and comparability of financial statements."
+   },
+   {
+    id: 'facc-q14',
+    type: 'mcq',
+    question: "Recording daily sales in a sales journal is an example of:",
+    options: [
+     "Accounting",
+     "Book-keeping",
+     "Auditing",
+     "Tax planning"
+    ],
+    answer: "Book-keeping",
+    explanation: "Recording transactions in journals is a book-keeping activity. Book-keeping focuses on the systematic recording of daily financial transactions."
+   },
+   {
+    id: 'facc-q15',
+    type: 'mcq',
+    question: "If Assets = {{currency}}50,000 and Liabilities = {{currency}}20,000, what is Capital?",
+    options: [
+     "{{currency}}70,000",
+     "{{currency}}30,000",
+     "{{currency}}20,000",
+     "{{currency}}50,000"
+    ],
+    answer: "{{currency}}30,000",
+    explanation: "Using the accounting equation: Assets = Liabilities + Capital. So {{currency}}50,000 = {{currency}}20,000 + Capital. Capital = {{currency}}50,000 - {{currency}}20,000 = {{currency}}30,000."
+   }
+  ],
+  activities: [],
+  pastQuestions: [
+   {
+    question: "{{exam:secondary}} 2019: (a) Define accounting. (b) State FOUR objectives of accounting.",
+    year: "2019",
+    solution: "(a) Accounting is the systematic process of recording, classifying, summarizing, analyzing, and interpreting financial transactions to provide useful information for decision-making by various users.\n\n(b) Four objectives of accounting:\n1. Recording financial transactions – Maintaining systematic records of all business activities\n2. Determining profit or loss – Calculating whether income exceeds expenses\n3. Showing financial position – Revealing assets, liabilities, and capital through the Balance Sheet\n4. Providing information for decision-making – Helping managers, investors, and creditors make informed choices"
+   },
+   {
+    question: "{{exam:secondary}} 2021: Distinguish between book-keeping and accounting. Give TWO examples of activities under each.",
+    year: "2021",
+    solution: "Distinction:\nBook-keeping is the systematic recording of daily financial transactions in the books of account. It is the foundation of the accounting process.\n\nAccounting goes beyond recording to include analyzing, interpreting, summarizing, and communicating financial information to users for decision-making.\n\nExamples of Book-keeping Activities:\n1. Recording daily sales in the sales journal\n2. Entering purchases in the purchases book\n\nExamples of Accounting Activities:\n1. Preparing financial statements (Income Statement, Balance Sheet)\n2. Analyzing profitability ratios to assess business performance"
+   },
+   {
+    question: "{{exam:secondary}} 2020: List FIVE users of accounting information and state ONE reason why each needs the information.",
+    year: "2020",
+    solution: "1. Owners/Shareholders – Need to assess whether their investment is profitable and whether dividends can be paid\n\n2. Managers – Require information to plan operations, control costs, and make daily business decisions\n\n3. Creditors/Banks – Want to evaluate the ability of the business to repay loans and meet credit obligations\n\n4. Government ({{business:tax-authority}}) – Needs accurate records to assess and collect taxes owed by the business\n\n5. Employees – Interested in the financial stability of the business to ensure job security and fair wages"
+   }
+  ],
+ },
 
-  // Lesson 2: Users of Accounting Information
-  {
-    id: 'facc-shs1-intro-2',
-    slug: 'facc-shs1-intro-users-information',
-    title: 'Users of Accounting Information',
-    objectives: [
-      'Identify the different users of accounting information',
-      'Classify users into internal and external categories',
-      'Explain the specific information needs of each user group',
-      'Describe how each user group uses accounting information for decision-making',
-      'Understand why different users require different types of financial information',
-      'Recognize the importance of accurate and timely accounting information',
-      'Apply knowledge of user needs to real-world business scenarios in {{country}}',
-      'Appreciate the role of accounting in serving multiple stakeholders'
-    ],
-    introduction: "Every business generates accounting information, but who actually uses this information and why? From the owner of a small kiosk at the market district to investors in companies listed on the {{country}} Stock Exchange, many different people and organizations need financial data to make important decisions. Today, we'll explore the fascinating world of accounting information users—internal users like managers and employees, and external users like banks, {{business:tax-authority}}, investors, and customers. Understanding who needs accounting information and why will help you appreciate why accurate record-keeping is so crucial for every business in {{country}}!",
-    keyConcepts: [
-      {
-        title: 'What is Accounting Information?',
-        content: `**Accounting Information** refers to the financial data and reports produced by the accounting system that helps various stakeholders make informed decisions.
+ // Lesson 2: Users of Accounting Information
+ {
+  id: 'facc-shs1-intro-2',
+  slug: 'facc-shs1-intro-users-information',
+  title: 'Users of Accounting Information',
+  objectives: [
+   'Identify the different users of accounting information',
+   'Classify users into internal and external categories',
+   'Explain the specific information needs of each user group',
+   'Describe how each user group uses accounting information for decision-making',
+   'Understand why different users require different types of financial information',
+   'Recognize the importance of accurate and timely accounting information',
+   'Apply knowledge of user needs to real-world business scenarios in {{country}}',
+   'Appreciate the role of accounting in serving multiple stakeholders'
+  ],
+  introduction: "Every business generates accounting information, but who actually uses this information and why? From the owner of a small kiosk at the market district to investors in companies listed on the {{country}} Stock Exchange, many different people and organizations need financial data to make important decisions. Today, we'll explore the fascinating world of accounting information users—internal users like managers and employees, and external users like banks, {{business:tax-authority}}, investors, and customers. Understanding who needs accounting information and why will help you appreciate why accurate record-keeping is so crucial for every business in {{country}}!",
+  keyConcepts: [
+   {
+    title: 'What is Accounting Information?',
+    content: `**Accounting Information** refers to the financial data and reports produced by the accounting system that helps various stakeholders make informed decisions.
 
-## 📊 TYPES OF ACCOUNTING INFORMATION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 TYPES OF ACCOUNTING INFORMATION
+</h2>
 
 **1️⃣ Financial Statements**
 - Income Statement (Trading, Profit & Loss Account)
@@ -935,25 +927,21 @@ These terms appear frequently in {{exam:secondary}} questions. Make sure you can
 - Annual Returns
 
 
-
-## 🎯 WHY IS ACCOUNTING INFORMATION IMPORTANT?
-
-<table><thead><tr><th>Purpose</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><strong>Decision Making</strong></td><td>Helps users make informed choices</td><td>Bank decides on loan approval</td></tr><tr><td><strong>Performance Evaluation</strong></td><td>Measures how well business is doing</td><td>Compare this year to last year</td></tr><tr><td><strong>Planning & Control</strong></td><td>Helps set targets and monitor progress</td><td>Creating annual budgets</td></tr><tr><td><strong>Legal Compliance</strong></td><td>Meets regulatory requirements</td><td>Filing tax returns with {{business:tax-authority}}</td></tr><tr><td><strong>Accountability</strong></td><td>Shows how resources were used</td><td>Reporting to shareholders</td></tr></tbody></table>
-
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🎯 WHY IS ACCOUNTING INFORMATION IMPORTANT?
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Purpose</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Description</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Example</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Decision Making</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Helps users make informed choices</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Bank decides on loan approval</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Performance Evaluation</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Measures how well business is doing</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Compare this year to last year</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Planning & Control</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Helps set targets and monitor progress</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Creating annual budgets</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Legal Compliance</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Meets regulatory requirements</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Filing tax returns with {{business:tax-authority}}</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Accountability</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Shows how resources were used</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Reporting to shareholders</td></tr></tbody></table>
 **{{country:flag}} {{country}} Context:**
 Every registered business in {{country}} must maintain proper accounting records. The {{business:companies-act}} and {{business:tax-authority}} regulations require businesses to keep records for at least {{business:record-retention}}!`
-      },
-      {
-        title: 'Classification of Users',
-        content: `Accounting information users are broadly classified into two main categories based on their relationship with the business.
+   },
+   {
+    title: 'Classification of Users',
+    content: `Accounting information users are broadly classified into two main categories based on their relationship with the business.
 
-## 🏢 INTERNAL vs EXTERNAL USERS
-
-<table><thead><tr><th>Aspect</th><th>Internal Users</th><th>External Users</th></tr></thead><tbody><tr><td><strong>Definition</strong></td><td>People within the organization</td><td>People outside the organization</td></tr><tr><td><strong>Access Level</strong></td><td>Full access to all records</td><td>Limited to published reports</td></tr><tr><td><strong>Information Type</strong></td><td>Detailed, day-to-day data</td><td>Summarized financial statements</td></tr><tr><td><strong>Primary Concern</strong></td><td>Running the business efficiently</td><td>Evaluating performance/safety</td></tr><tr><td><strong>Frequency of Access</strong></td><td>Continuous, real-time</td><td>Periodic (quarterly/annually)</td></tr></tbody></table>
-
-
-
-## 👤 INTERNAL USERS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🏢 INTERNAL vs EXTERNAL USERS
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Aspect</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Internal Users</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">External Users</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Definition</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">People within the organization</td><td style="padding: 8px; border: 1px solid #e5e7eb;">People outside the organization</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Access Level</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Full access to all records</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Limited to published reports</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Information Type</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Detailed, day-to-day data</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Summarized financial statements</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Primary Concern</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Running the business efficiently</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Evaluating performance/safety</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Frequency of Access</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Continuous, real-time</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Periodic (quarterly/annually)</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">👤 INTERNAL USERS
+</h2>
 
 **1. Owners/Proprietors**
 - In sole proprietorships, the owner is involved daily
@@ -976,8 +964,8 @@ Every registered business in {{country}} must maintain proper accounting records
 - Accountable to shareholders
 
 
-
-## 🌍 EXTERNAL USERS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🌍 EXTERNAL USERS
+</h2>
 
 **1. Shareholders/Investors**
 - Own shares but don't manage daily operations
@@ -998,12 +986,13 @@ Every registered business in {{country}} must maintain proper accounting records
 - Business partners in the value chain
 - Need assurance of business continuity
 - May require credit terms`
-      },
-      {
-        title: 'Internal Users - Detailed Analysis',
-        content: `Let's examine each internal user group in detail, understanding their specific needs and how they use accounting information.
+   },
+   {
+    title: 'Internal Users - Detailed Analysis',
+    content: `Let's examine each internal user group in detail, understanding their specific needs and how they use accounting information.
 
-## 👨‍💼 1. OWNERS/PROPRIETORS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">👨‍💼 1. OWNERS/PROPRIETORS
+</h2>
 
 **Who are they?**
 The individuals who have invested capital in the business and bear the risk of ownership.
@@ -1018,11 +1007,9 @@ The individuals who have invested capital in the business and bear the risk of o
 **{{country}} Example:**
 A business owner operates a printing business in the city. The owner reviews monthly accounts to see if profits are enough to expand to a second location.
 
-<table><thead><tr><th>Question Owners Ask</th><th>Accounting Information Needed</th></tr></thead><tbody><tr><td>Did I make profit this month?</td><td>Income Statement / Profit & Loss</td></tr><tr><td>How much cash is available?</td><td>Cash Flow Statement / Bank Balance</td></tr><tr><td>What do I own vs owe?</td><td>Balance Sheet</td></tr><tr><td>Is my investment growing?</td><td>Capital Account / Equity Statement</td></tr><tr><td>Can I take drawings?</td><td>Cash Position & Profit Level</td></tr></tbody></table>
-
-
-
-## 👩‍💼 2. MANAGERS
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Question Owners Ask</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Accounting Information Needed</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Did I make profit this month?</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Income Statement / Profit & Loss</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">How much cash is available?</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Cash Flow Statement / Bank Balance</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">What do I own vs owe?</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Balance Sheet</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Is my investment growing?</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Capital Account / Equity Statement</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Can I take drawings?</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Cash Position & Profit Level</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">👩‍💼 2. MANAGERS
+</h2>
 
 **Who are they?**
 Professional employees responsible for running the business operations.
@@ -1045,8 +1032,8 @@ An Operations Manager at a {{resource:cash_crop}} processing company uses cost r
 ✅ Annual strategic reports
 
 
-
-## 👷 3. EMPLOYEES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">👷 3. EMPLOYEES
+</h2>
 
 **Who are they?**
 All workers from junior staff to senior executives (excluding top management/owners).
@@ -1062,8 +1049,8 @@ All workers from junior staff to senior executives (excluding top management/own
 Workers at a manufacturing plant in Spintex want to know if the company made enough profit to pay the promised annual bonus. They also check that SSNIT contributions are being made.
 
 
-
-## 📋 4. BOARD OF DIRECTORS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 4. BOARD OF DIRECTORS
+</h2>
 
 **Who are they?**
 Elected representatives who oversee company management on behalf of shareholders.
@@ -1077,12 +1064,13 @@ Elected representatives who oversee company management on behalf of shareholders
 
 **{{country}} Example:**
 The Board of a company listed on the {{country}} Stock Exchange reviews quarterly reports before approving dividend payments to shareholders.`
-      },
-      {
-        title: 'External Users - Detailed Analysis',
-        content: `External users don't have direct access to internal records, so they rely on published financial statements and reports.
+   },
+   {
+    title: 'External Users - Detailed Analysis',
+    content: `External users don't have direct access to internal records, so they rely on published financial statements and reports.
 
-## 💰 1. SHAREHOLDERS/INVESTORS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">💰 1. SHAREHOLDERS/INVESTORS
+</h2>
 
 **Who are they?**
 People who own shares in a company but are not involved in daily management.
@@ -1102,11 +1090,9 @@ People who own shares in a company but are not involved in daily management.
 **{{country}} Example:**
 Before buying shares of {{business:company:1}} or {{business:bank:1}} on the {{business:stock-exchange}}, investors analyze their annual reports to assess profitability and growth potential.
 
-<table><thead><tr><th>Key Ratios Investors Check</th><th>What It Shows</th></tr></thead><tbody><tr><td>Earnings Per Share (EPS)</td><td>Profit allocated to each share</td></tr><tr><td>Dividend Yield</td><td>Return from dividends</td></tr><tr><td>Price-to-Earnings (P/E)</td><td>Market confidence in the company</td></tr><tr><td>Return on Equity (ROE)</td><td>How well company uses shareholder funds</td></tr><tr><td>Debt-to-Equity Ratio</td><td>Financial risk level</td></tr></tbody></table>
-
-
-
-## 🏦 2. CREDITORS & BANKS
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Key Ratios Investors Check</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">What It Shows</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Earnings Per Share (EPS)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Profit allocated to each share</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Dividend Yield</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Return from dividends</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Price-to-Earnings (P/E)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Market confidence in the company</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Return on Equity (ROE)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">How well company uses shareholder funds</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Debt-to-Equity Ratio</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Financial risk level</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🏦 2. CREDITORS & BANKS
+</h2>
 
 **Who are they?**
 Financial institutions and individuals who lend money to the business.
@@ -1129,11 +1115,9 @@ When ABC Construction Ltd applies for a {{currency}}500,000 loan from Stanbic Ba
 
 **Key Ratios Banks Analyze:**
 
-<table><thead><tr><th>Ratio</th><th>Formula</th><th>What Banks Look For</th></tr></thead><tbody><tr><td>Current Ratio</td><td>Current Assets ÷ Current Liabilities</td><td>Above 1.5 (comfortable)</td></tr><tr><td>Quick Ratio</td><td>(CA - Inventory) ÷ CL</td><td>Above 1.0 (liquid)</td></tr><tr><td>Debt Service Coverage</td><td>Operating Income ÷ Debt Payments</td><td>Above 1.25 (can service debt)</td></tr><tr><td>Gearing Ratio</td><td>Total Debt ÷ Total Equity</td><td>Below 1.0 (not over-leveraged)</td></tr></tbody></table>
-
-
-
-## 🏛️ 3. GOVERNMENT AGENCIES
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Ratio</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Formula</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">What Banks Look For</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Current Ratio</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Current Assets ÷ Current Liabilities</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Above 1.5 (comfortable)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Quick Ratio</td><td style="padding: 8px; border: 1px solid #e5e7eb;">(CA - Inventory) ÷ CL</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Above 1.0 (liquid)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Debt Service Coverage</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Operating Income ÷ Debt Payments</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Above 1.25 (can service debt)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Gearing Ratio</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Total Debt ÷ Total Equity</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Below 1.0 (not over-leveraged)</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🏛️ 3. GOVERNMENT AGENCIES
+</h2>
 
 **Who are they?**
 Various government bodies that require accounting information for regulatory and tax purposes.
@@ -1169,8 +1153,8 @@ Various government bodies that require accounting information for regulatory and
 ✅ Withholding tax certificates
 
 
-
-## 🤝 4. CUSTOMERS & SUPPLIERS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🤝 4. CUSTOMERS & SUPPLIERS
+</h2>
 
 **Who are they?**
 Business partners who buy from or sell to the company.
@@ -1189,12 +1173,13 @@ Business partners who buy from or sell to the company.
 
 **{{country}} Example:**
 A Chinese supplier of electronic goods wants to give 90-day credit terms to a {{country:adjective}} importer. They request financial statements to verify the importer can pay.`
-      },
-      {
-        title: 'Other External Users',
-        content: `Beyond the main categories, several other groups use accounting information for various purposes.
+   },
+   {
+    title: 'Other External Users',
+    content: `Beyond the main categories, several other groups use accounting information for various purposes.
 
-## 📰 5. RESEARCHERS & ACADEMICS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📰 5. RESEARCHERS & ACADEMICS
+</h2>
 
 **Who are they?**
 University researchers, students, and analysts studying business trends.
@@ -1209,8 +1194,8 @@ University researchers, students, and analysts studying business trends.
 A PhD student at {{institution:university:premier}} Business School researches profitability trends in {{country}}'s banking sector using published financial statements.
 
 
-
-## 🏭 6. TRADE UNIONS & LABOR ORGANIZATIONS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🏭 6. TRADE UNIONS & LABOR ORGANIZATIONS
+</h2>
 
 **Who are they?**
 Organizations representing workers' interests.
@@ -1225,8 +1210,8 @@ Organizations representing workers' interests.
 The Industrial and Commercial Workers Union (ICU) uses financial data when negotiating salary increases for workers in manufacturing companies.
 
 
-
-## 🌐 7. GENERAL PUBLIC & COMMUNITY
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🌐 7. GENERAL PUBLIC & COMMUNITY
+</h2>
 
 **Who are they?**
 The broader society affected by business operations.
@@ -1241,8 +1226,8 @@ The broader society affected by business operations.
 Local communities near mining areas want to know how much mining companies contribute to community development as stated in their annual reports.
 
 
-
-## 📊 8. FINANCIAL ANALYSTS & RATING AGENCIES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 8. FINANCIAL ANALYSTS & RATING AGENCIES
+</h2>
 
 **Who are they?**
 Professionals who evaluate and rate businesses for investors.
@@ -1257,28 +1242,22 @@ Professionals who evaluate and rate businesses for investors.
 Databank Brokerage provides analysis and recommendations on {{country}} Stock Exchange listed companies based on their financial statements.
 
 
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 SUMMARY TABLE: ALL USERS
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">User Category</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Type</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Primary Interest</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Key Information Used</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Owners/Proprietors</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Internal</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Profitability & Growth</td><td style="padding: 8px; border: 1px solid #e5e7eb;">All financial statements</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Managers</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Internal</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Operational Efficiency</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Management reports, budgets</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Employees</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Internal</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Job Security & Wages</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Profitability, stability</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Board of Directors</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Internal</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Strategic Oversight</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Summary reports, KPIs</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Shareholders/Investors</td><td style="padding: 8px; border: 1px solid #e5e7eb;">External</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Returns & Dividends</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Annual reports, ratios</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Banks/Creditors</td><td style="padding: 8px; border: 1px solid #e5e7eb;">External</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Repayment Ability</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Balance sheet, cash flow</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">{{business:tax-authority}} & Government</td><td style="padding: 8px; border: 1px solid #e5e7eb;">External</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Tax Collection</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Tax computations, returns</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Customers & Suppliers</td><td style="padding: 8px; border: 1px solid #e5e7eb;">External</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Business Continuity</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Financial stability</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Trade Unions</td><td style="padding: 8px; border: 1px solid #e5e7eb;">External</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Worker Welfare</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Profitability data</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Researchers</td><td style="padding: 8px; border: 1px solid #e5e7eb;">External</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Academic Studies</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Published statements</td></tr></tbody></table>`
+   },
+   {
+    title: 'Information Needs Comparison',
+    content: `Different users need different types of information. Let's compare their specific requirements.
 
-## 📋 SUMMARY TABLE: ALL USERS
-
-<table><thead><tr><th>User Category</th><th>Type</th><th>Primary Interest</th><th>Key Information Used</th></tr></thead><tbody><tr><td>Owners/Proprietors</td><td>Internal</td><td>Profitability & Growth</td><td>All financial statements</td></tr><tr><td>Managers</td><td>Internal</td><td>Operational Efficiency</td><td>Management reports, budgets</td></tr><tr><td>Employees</td><td>Internal</td><td>Job Security & Wages</td><td>Profitability, stability</td></tr><tr><td>Board of Directors</td><td>Internal</td><td>Strategic Oversight</td><td>Summary reports, KPIs</td></tr><tr><td>Shareholders/Investors</td><td>External</td><td>Returns & Dividends</td><td>Annual reports, ratios</td></tr><tr><td>Banks/Creditors</td><td>External</td><td>Repayment Ability</td><td>Balance sheet, cash flow</td></tr><tr><td>{{business:tax-authority}} & Government</td><td>External</td><td>Tax Collection</td><td>Tax computations, returns</td></tr><tr><td>Customers & Suppliers</td><td>External</td><td>Business Continuity</td><td>Financial stability</td></tr><tr><td>Trade Unions</td><td>External</td><td>Worker Welfare</td><td>Profitability data</td></tr><tr><td>Researchers</td><td>External</td><td>Academic Studies</td><td>Published statements</td></tr></tbody></table>`
-      },
-      {
-        title: 'Information Needs Comparison',
-        content: `Different users need different types of information. Let's compare their specific requirements.
-
-## 🔍 WHAT EACH USER WANTS TO KNOW
-
-<table><thead><tr><th>User</th><th>Key Question</th><th>Specific Information Needed</th></tr></thead><tbody><tr><td><strong>Owner</strong></td><td>"Am I making money?"</td><td>Net profit, ROI, business value</td></tr><tr><td><strong>Manager</strong></td><td>"How can we do better?"</td><td>Cost data, variances, efficiency metrics</td></tr><tr><td><strong>Employee</strong></td><td>"Is my job safe?"</td><td>Profitability, growth plans</td></tr><tr><td><strong>Investor</strong></td><td>"Should I invest more?"</td><td>EPS, dividends, growth potential</td></tr><tr><td><strong>Bank</strong></td><td>"Will they repay the loan?"</td><td>Cash flow, collateral, debt levels</td></tr><tr><td><strong>{{business:tax-authority}}</strong></td><td>"How much tax is owed?"</td><td>Taxable income, deductions, reliefs</td></tr><tr><td><strong>Supplier</strong></td><td>"Will they pay me?"</td><td>Liquidity, payment history</td></tr><tr><td><strong>Customer</strong></td><td>"Will they stay in business?"</td><td>Stability, going concern status</td></tr></tbody></table>
-
-
-
-## 📈 FREQUENCY OF INFORMATION ACCESS
-
-<table><thead><tr><th>User</th><th>Frequency</th><th>Format</th></tr></thead><tbody><tr><td>Managers</td><td>Daily/Weekly</td><td>Detailed internal reports</td></tr><tr><td>Owners (SMEs)</td><td>Weekly/Monthly</td><td>Summary reports</td></tr><tr><td>Board of Directors</td><td>Monthly/Quarterly</td><td>Board papers, dashboards</td></tr><tr><td>Shareholders</td><td>Quarterly/Annually</td><td>Published statements</td></tr><tr><td>Banks</td><td>Annually (loan review)</td><td>Audited statements</td></tr><tr><td>{{business:tax-authority}}</td><td>Monthly (VAT) / Annually</td><td>Tax returns</td></tr><tr><td>Investors</td><td>Quarterly/Annually</td><td>Annual reports, interim reports</td></tr></tbody></table>
-
-
-
-## ⚖️ CONFLICTING INTERESTS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔍 WHAT EACH USER WANTS TO KNOW
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">User</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Key Question</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Specific Information Needed</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Owner</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">"Am I making money?"</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Net profit, ROI, business value</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Manager</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">"How can we do better?"</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Cost data, variances, efficiency metrics</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Employee</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">"Is my job safe?"</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Profitability, growth plans</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Investor</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">"Should I invest more?"</td><td style="padding: 8px; border: 1px solid #e5e7eb;">EPS, dividends, growth potential</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Bank</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">"Will they repay the loan?"</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Cash flow, collateral, debt levels</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>{{business:tax-authority}}</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">"How much tax is owed?"</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Taxable income, deductions, reliefs</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Supplier</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">"Will they pay me?"</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Liquidity, payment history</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Customer</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">"Will they stay in business?"</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Stability, going concern status</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📈 FREQUENCY OF INFORMATION ACCESS
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">User</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Frequency</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Format</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Managers</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Daily/Weekly</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Detailed internal reports</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Owners (SMEs)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Weekly/Monthly</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Summary reports</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Board of Directors</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Monthly/Quarterly</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Board papers, dashboards</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Shareholders</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Quarterly/Annually</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Published statements</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Banks</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Annually (loan review)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Audited statements</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">{{business:tax-authority}}</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Monthly (VAT) / Annually</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Tax returns</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Investors</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Quarterly/Annually</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Annual reports, interim reports</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚖️ CONFLICTING INTERESTS
+</h2>
 
 Sometimes different users have opposing interests regarding accounting information:
 
@@ -1305,12 +1284,13 @@ A profitable company must balance:
 - Meeting {{business:tax-authority}} tax obligations
 
 Accounting information helps find this balance!`
-      },
-      {
-        title: 'Qualitative Characteristics of Useful Information',
-        content: `For accounting information to be useful to all these users, it must possess certain qualities.
+   },
+   {
+    title: 'Qualitative Characteristics of Useful Information',
+    content: `For accounting information to be useful to all these users, it must possess certain qualities.
 
-## ✅ FUNDAMENTAL CHARACTERISTICS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">✅ FUNDAMENTAL CHARACTERISTICS
+</h2>
 
 **1. RELEVANCE**
 Information must be capable of making a difference in decisions.
@@ -1322,7 +1302,6 @@ Components:
 
 **Example:**
 Knowing last month's sales figures helps predict next month's sales (predictive) and confirms whether your marketing strategy worked (confirmatory).
-
 
 
 **2. FAITHFUL REPRESENTATION**
@@ -1337,8 +1316,8 @@ Components:
 Financial statements must include all assets and liabilities, not just favorable ones.
 
 
-
-## 🔧 ENHANCING CHARACTERISTICS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔧 ENHANCING CHARACTERISTICS
+</h2>
 
 **3. COMPARABILITY**
 Users should be able to compare:
@@ -1354,7 +1333,6 @@ Users should be able to compare:
 Comparing MTN {{country}}'s 2024 results with 2023, or comparing MTN {{country}} with Vodafone {{country}}.
 
 
-
 **4. VERIFIABILITY**
 Different knowledgeable users should reach similar conclusions.
 
@@ -1367,7 +1345,6 @@ Different knowledgeable users should reach similar conclusions.
 An auditor should be able to verify all figures in the financial statements.
 
 
-
 **5. TIMELINESS**
 Information available when needed for decisions.
 
@@ -1376,7 +1353,6 @@ Year-end financial statements released 2 years late are useless for investors ma
 
 **{{country:flag}} {{country}} Requirement:**
 Companies must file annual returns {{regulation:annual-return-deadline}}.
-
 
 
 **6. UNDERSTANDABILITY**
@@ -1389,21 +1365,20 @@ Information presented clearly for users with reasonable business knowledge.
 - Avoiding unnecessary complexity
 
 
-
-## 📊 SUMMARY TABLE
-
-<table><thead><tr><th>Characteristic</th><th>Meaning</th><th>Example</th></tr></thead><tbody><tr><td><strong>Relevance</strong></td><td>Makes a difference in decisions</td><td>Profit figures help dividend decisions</td></tr><tr><td><strong>Faithful Representation</strong></td><td>Accurately depicts reality</td><td>All debts properly recorded</td></tr><tr><td><strong>Comparability</strong></td><td>Consistent across time/companies</td><td>Same depreciation method used yearly</td></tr><tr><td><strong>Verifiability</strong></td><td>Can be independently confirmed</td><td>Auditor can check bank balances</td></tr><tr><td><strong>Timeliness</strong></td><td>Available when needed</td><td>Monthly reports by 5th of next month</td></tr><tr><td><strong>Understandability</strong></td><td>Clear and comprehensible</td><td>Notes explain complex items</td></tr></tbody></table>
-
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 SUMMARY TABLE
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Characteristic</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Meaning</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Example</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Relevance</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Makes a difference in decisions</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Profit figures help dividend decisions</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Faithful Representation</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Accurately depicts reality</td><td style="padding: 8px; border: 1px solid #e5e7eb;">All debts properly recorded</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Comparability</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Consistent across time/companies</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Same depreciation method used yearly</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Verifiability</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Can be independently confirmed</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Auditor can check bank balances</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Timeliness</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Available when needed</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Monthly reports by 5th of next month</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Understandability</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Clear and comprehensible</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Notes explain complex items</td></tr></tbody></table>
 **⚠️ {{exam:secondary}} TIP:**
 The qualitative characteristics are frequently tested! Remember:
 - 2 Fundamental: Relevance + Faithful Representation
 - 4 Enhancing: Comparability, Verifiability, Timeliness, Understandability`
-      },
-      {
-        title: '{{country}}-Specific Context',
-        content: `Understanding users of accounting information in the {{country:adjective}} business environment.
+   },
+   {
+    title: '{{country}}-Specific Context',
+    content: `Understanding users of accounting information in the {{country:adjective}} business environment.
 
-## {{country:flag}} REGULATORY FRAMEWORK IN {{country}}
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} REGULATORY FRAMEWORK IN {{country}}
+</h2>
 
 **Key Regulatory Bodies:**
 
@@ -1417,10 +1392,10 @@ The qualitative characteristics are frequently tested! Remember:
 - Tax collection and administration
 - Audits business tax records
 - Requires specific financial information:
-  - Income Tax Returns
-  - VAT Returns
-  - PAYE Records
-  - Withholding Tax Records
+ - Income Tax Returns
+ - VAT Returns
+ - PAYE Records
+ - Withholding Tax Records
 
 **3. Securities and Exchange Commission (SEC)**
 - Regulates listed companies
@@ -1433,14 +1408,11 @@ The qualitative characteristics are frequently tested! Remember:
 - Maintains company records
 
 
-
-## 📋 REPORTING REQUIREMENTS
-
-<table><thead><tr><th>Report Type</th><th>Submitted To</th><th>Frequency</th><th>Deadline</th></tr></thead><tbody><tr><td>Income Tax Return</td><td>{{business:tax-authority}}</td><td>Annually</td><td>4 months after year-end</td></tr><tr><td>VAT Return</td><td>{{business:tax-authority}}</td><td>Monthly</td><td>Last working day of next month</td></tr><tr><td>PAYE Return</td><td>{{business:tax-authority}}</td><td>Monthly</td><td>15th of next month</td></tr><tr><td>Annual Return</td><td>Registrar General</td><td>Annually</td><td>Within 28 days of AGM</td></tr><tr><td>Audited Accounts</td><td>Shareholders/Registrar</td><td>Annually</td><td>6 months after year-end</td></tr><tr><td>Quarterly Reports</td><td>SEC (listed companies)</td><td>Quarterly</td><td>1 month after quarter end</td></tr></tbody></table>
-
-
-
-## 💼 SMALL BUSINESS vs LARGE COMPANY USERS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 REPORTING REQUIREMENTS
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Report Type</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Submitted To</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Frequency</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Deadline</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Income Tax Return</td><td style="padding: 8px; border: 1px solid #e5e7eb;">{{business:tax-authority}}</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Annually</td><td style="padding: 8px; border: 1px solid #e5e7eb;">4 months after year-end</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">VAT Return</td><td style="padding: 8px; border: 1px solid #e5e7eb;">{{business:tax-authority}}</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Monthly</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Last working day of next month</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">PAYE Return</td><td style="padding: 8px; border: 1px solid #e5e7eb;">{{business:tax-authority}}</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Monthly</td><td style="padding: 8px; border: 1px solid #e5e7eb;">15th of next month</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Annual Return</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Registrar General</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Annually</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Within 28 days of AGM</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Audited Accounts</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Shareholders/Registrar</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Annually</td><td style="padding: 8px; border: 1px solid #e5e7eb;">6 months after year-end</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Quarterly Reports</td><td style="padding: 8px; border: 1px solid #e5e7eb;">SEC (listed companies)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Quarterly</td><td style="padding: 8px; border: 1px solid #e5e7eb;">1 month after quarter end</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">💼 SMALL BUSINESS vs LARGE COMPANY USERS
+</h2>
 
 **Small Business (Sole Proprietor/Partnership):**
 - Fewer external users
@@ -1458,8 +1430,8 @@ The qualitative characteristics are frequently tested! Remember:
 - Potential stock exchange listing
 
 
-
-## 🏦 BANKING SECTOR REQUIREMENTS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🏦 BANKING SECTOR REQUIREMENTS
+</h2>
 
 Banks in {{country}} face additional requirements:
 
@@ -1477,8 +1449,8 @@ Banks in {{country}} face additional requirements:
 - Other banks (interbank dealings)
 
 
-
-## 📱 EMERGING TRENDS IN {{country}}
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📱 EMERGING TRENDS IN {{country}}
+</h2>
 
 **Digital Financial Reporting:**
 - Online tax filing with {{business:tax-authority}}
@@ -1497,12 +1469,13 @@ Banks in {{country}} face additional requirements:
 - Greater transparency
 - Real-time compliance monitoring
 - Reduced paperwork`
-      },
-      {
-        title: 'Key Terms Summary',
-        content: `Master these important terms related to users of accounting information!
+   },
+   {
+    title: 'Key Terms Summary',
+    content: `Master these important terms related to users of accounting information!
 
-## 📚 ESSENTIAL VOCABULARY
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📚 ESSENTIAL VOCABULARY
+</h2>
 
 **Accounting Information**
 Definition: Financial data and reports produced by the accounting system to help stakeholders make informed decisions.
@@ -1547,14 +1520,11 @@ Definition: Information that accurately reflects economic reality (complete, neu
 Definition: Information significant enough to influence user decisions.
 
 
-
-## 📋 USER CATEGORIES AT A GLANCE
-
-<table><thead><tr><th>Internal Users</th><th>External Users</th></tr></thead><tbody><tr><td>Owners/Proprietors</td><td>Shareholders/Investors</td></tr><tr><td>Managers</td><td>Banks/Creditors</td></tr><tr><td>Employees</td><td>{{business:tax-authority}}/Government</td></tr><tr><td>Board of Directors</td><td>Customers</td></tr><tr><td></td><td>Suppliers</td></tr><tr><td></td><td>Trade Unions</td></tr><tr><td></td><td>Researchers</td></tr><tr><td></td><td>General Public</td></tr></tbody></table>
-
-
-
-## ⚠️ {{exam:secondary}} TIP
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 USER CATEGORIES AT A GLANCE
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Internal Users</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">External Users</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Owners/Proprietors</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Shareholders/Investors</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Managers</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Banks/Creditors</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Employees</td><td style="padding: 8px; border: 1px solid #e5e7eb;">{{business:tax-authority}}/Government</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Board of Directors</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Customers</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Suppliers</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Trade Unions</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Researchers</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"></td><td style="padding: 8px; border: 1px solid #e5e7eb;">General Public</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚠️ {{exam:secondary}} TIP
+</h2>
 
 These are frequently tested concepts:
 1. **Distinguish** between internal and external users
@@ -1562,263 +1532,262 @@ These are frequently tested concepts:
 3. **Give examples** of how each user uses accounting information
 4. **Explain** qualitative characteristics of useful information
 5. **Apply** to {{country:adjective}} business scenarios`
-      }
+   }
+  ],
+  summary: "Excellent work! You've mastered the important topic of Users of Accounting Information! You now understand that accounting information serves many stakeholders, broadly classified as internal users (owners, managers, employees, board of directors) and external users (shareholders, banks/creditors, government agencies like {{business:tax-authority}}, customers, suppliers, and others). Each user group has specific information needs—owners focus on profitability, managers on efficiency, banks on repayment ability, and {{business:tax-authority}} on tax compliance. You've learned that useful accounting information must possess qualitative characteristics: the fundamental ones (relevance and faithful representation) and enhancing ones (comparability, verifiability, timeliness, and understandability). In {{country}}, key regulatory bodies include ICAG, {{business:tax-authority}}, SEC, and the Registrar General's Department, each requiring specific financial reports. This knowledge will help you understand why accurate record-keeping is crucial for serving all stakeholders!",
+  endOfLessonQuiz: [
+   {
+    id: 'facc-users-q1',
+    type: 'mcq',
+    question: "Which of the following is an INTERNAL user of accounting information?",
+    options: [
+     "{{country}} Revenue Authority",
+     "Bank of {{country}}",
+     "Factory Manager",
+     "Trade Creditor"
     ],
-    summary: "Excellent work! You've mastered the important topic of Users of Accounting Information! You now understand that accounting information serves many stakeholders, broadly classified as internal users (owners, managers, employees, board of directors) and external users (shareholders, banks/creditors, government agencies like {{business:tax-authority}}, customers, suppliers, and others). Each user group has specific information needs—owners focus on profitability, managers on efficiency, banks on repayment ability, and {{business:tax-authority}} on tax compliance. You've learned that useful accounting information must possess qualitative characteristics: the fundamental ones (relevance and faithful representation) and enhancing ones (comparability, verifiability, timeliness, and understandability). In {{country}}, key regulatory bodies include ICAG, {{business:tax-authority}}, SEC, and the Registrar General's Department, each requiring specific financial reports. This knowledge will help you understand why accurate record-keeping is crucial for serving all stakeholders!",
-    endOfLessonQuiz: [
-      {
-        id: 'facc-users-q1',
-        type: 'mcq',
-        question: "Which of the following is an INTERNAL user of accounting information?",
-        options: [
-          "{{country}} Revenue Authority",
-          "Bank of {{country}}",
-          "Factory Manager",
-          "Trade Creditor"
-        ],
-        answer: "Factory Manager",
-        explanation: "Internal users are people within the organization. A factory manager works inside the business, while {{business:tax-authority}}, Bank of {{country}}, and trade creditors are external parties."
-      },
-      {
-        id: 'facc-users-q2',
-        type: 'mcq',
-        question: "Banks require accounting information primarily to:",
-        options: [
-          "Calculate taxes owed",
-          "Determine employee bonuses",
-          "Assess loan repayment ability",
-          "Plan production schedules"
-        ],
-        answer: "Assess loan repayment ability",
-        explanation: "Banks are creditors who lend money. They need accounting information to assess whether the business can repay loans (creditworthiness and liquidity)."
-      },
-      {
-        id: 'facc-users-q3',
-        type: 'mcq',
-        question: "The {{country}} Revenue Authority ({{business:tax-authority}}) uses accounting information for:",
-        options: [
-          "Making investment decisions",
-          "Calculating and collecting taxes",
-          "Approving loan applications",
-          "Setting product prices"
-        ],
-        answer: "Calculating and collecting taxes",
-        explanation: "{{business:tax-authority}} is the government tax authority. They use accounting records to assess income tax, VAT, and other taxes owed by businesses."
-      },
-      {
-        id: 'facc-users-q4',
-        type: 'mcq',
-        question: "Which qualitative characteristic ensures that information can be compared across different periods?",
-        options: [
-          "Relevance",
-          "Comparability",
-          "Timeliness",
-          "Verifiability"
-        ],
-        answer: "Comparability",
-        explanation: "Comparability allows users to compare financial information across different time periods (year-to-year) and across different entities (company-to-company)."
-      },
-      {
-        id: 'facc-users-q5',
-        type: 'mcq',
-        question: "Employees are interested in accounting information mainly to assess:",
-        options: [
-          "Tax liability of the company",
-          "Job security and fair wages",
-          "Market share of products",
-          "Dividend payments"
-        ],
-        answer: "Job security and fair wages",
-        explanation: "Employees need to know if the company is financially stable (job security) and profitable enough to pay fair wages and bonuses."
-      },
-      {
-        id: 'facc-users-q6',
-        type: 'mcq',
-        question: "Which of the following is a fundamental qualitative characteristic of useful accounting information?",
-        options: [
-          "Comparability",
-          "Timeliness",
-          "Relevance",
-          "Verifiability"
-        ],
-        answer: "Relevance",
-        explanation: "The two fundamental characteristics are Relevance and Faithful Representation. Comparability, timeliness, and verifiability are enhancing characteristics."
-      },
-      {
-        id: 'facc-users-q7',
-        type: 'mcq',
-        question: "Shareholders who don't manage the business are classified as:",
-        options: [
-          "Internal users",
-          "External users",
-          "Managers",
-          "Directors"
-        ],
-        answer: "External users",
-        explanation: "Shareholders who don't participate in daily management are external users. They rely on published financial statements for information."
-      },
-      {
-        id: 'facc-users-q8',
-        type: 'mcq',
-        question: "Which body regulates accountants in {{country}}?",
-        options: [
-          "{{country}} Revenue Authority",
-          "Bank of {{country}}",
-          "Institute of Chartered Accountants {{country}} (ICAG)",
-          "Securities and Exchange Commission"
-        ],
-        answer: "Institute of Chartered Accountants {{country}} (ICAG)",
-        explanation: "ICAG is the professional body that regulates accountants in {{country}}, sets ethical standards, and conducts professional examinations."
-      },
-      {
-        id: 'facc-users-q9',
-        type: 'mcq',
-        question: "Which characteristic means accounting information is available when needed for decision-making?",
-        options: [
-          "Relevance",
-          "Comparability",
-          "Timeliness",
-          "Neutrality"
-        ],
-        answer: "Timeliness",
-        explanation: "Timeliness means information is available to users in time to influence their decisions. Late information may lose its usefulness."
-      },
-      {
-        id: 'facc-users-q10',
-        type: 'mcq',
-        question: "Trade unions use accounting information primarily for:",
-        options: [
-          "Making investment decisions",
-          "Wage negotiations on behalf of workers",
-          "Calculating company taxes",
-          "Approving loans"
-        ],
-        answer: "Wage negotiations on behalf of workers",
-        explanation: "Trade unions represent workers' interests. They use company profitability data to negotiate better wages and working conditions."
-      },
-      {
-        id: 'facc-users-q11',
-        type: 'mcq',
-        question: "A supplier giving credit terms to a business would check the business's:",
-        options: [
-          "Employee qualifications",
-          "Liquidity and creditworthiness",
-          "Marketing strategies",
-          "Production techniques"
-        ],
-        answer: "Liquidity and creditworthiness",
-        explanation: "Suppliers want to know if the business can pay for goods supplied on credit. They assess liquidity (ability to pay short-term debts) and creditworthiness."
-      },
-      {
-        id: 'facc-users-q12',
-        type: 'mcq',
-        question: "Which financial statement shows a company's assets, liabilities, and capital at a specific date?",
-        options: [
-          "Income Statement",
-          "Cash Flow Statement",
-          "Balance Sheet",
-          "Trial Balance"
-        ],
-        answer: "Balance Sheet",
-        explanation: "The Balance Sheet (Statement of Financial Position) shows what the business owns (assets), owes (liabilities), and the owner's stake (capital) at a specific point in time."
-      },
-      {
-        id: 'facc-users-q13',
-        type: 'mcq',
-        question: "The SEC in {{country}} regulates:",
-        options: [
-          "All small businesses",
-          "Companies listed on the {{country}} Stock Exchange",
-          "Individual taxpayers",
-          "Import and export businesses"
-        ],
-        answer: "Companies listed on the {{country}} Stock Exchange",
-        explanation: "The Securities and Exchange Commission (SEC) regulates listed companies, ensuring they file quarterly and annual reports to protect investor interests."
-      },
-      {
-        id: 'facc-users-q14',
-        type: 'mcq',
-        question: "'Faithful Representation' in accounting means information that is:",
-        options: [
-          "Available on time",
-          "Easy to compare",
-          "Complete, neutral, and free from error",
-          "Relevant to decisions"
-        ],
-        answer: "Complete, neutral, and free from error",
-        explanation: "Faithful Representation means information accurately depicts economic reality. It must be complete, unbiased (neutral), and as accurate as possible."
-      },
-      {
-        id: 'facc-users-q15',
-        type: 'mcq',
-        question: "Managers are considered internal users because they:",
-        options: [
-          "Own shares in the company",
-          "Work within the organization and have access to detailed records",
-          "Provide loans to the business",
-          "Buy products from the business"
-        ],
-        answer: "Work within the organization and have access to detailed records",
-        explanation: "Managers are internal users because they work inside the business and have access to detailed, day-to-day operational and financial information."
-      }
+    answer: "Factory Manager",
+    explanation: "Internal users are people within the organization. A factory manager works inside the business, while {{business:tax-authority}}, Bank of {{country}}, and trade creditors are external parties."
+   },
+   {
+    id: 'facc-users-q2',
+    type: 'mcq',
+    question: "Banks require accounting information primarily to:",
+    options: [
+     "Calculate taxes owed",
+     "Determine employee bonuses",
+     "Assess loan repayment ability",
+     "Plan production schedules"
     ],
-    activities: [],
-    pastQuestions: [
-      {
-        question: "{{exam:secondary}} 2020: List FIVE users of accounting information and state ONE reason why each needs the information.",
-        year: "2020",
-        solution: "1. Owners/Shareholders – Need to assess whether their investment is profitable and whether dividends can be paid\n\n2. Managers – Require information to plan operations, control costs, and make daily business decisions\n\n3. Creditors/Banks – Want to evaluate the ability of the business to repay loans and meet credit obligations\n\n4. Government ({{business:tax-authority}}) – Needs accurate records to assess and collect taxes owed by the business\n\n5. Employees – Interested in the financial stability of the business to ensure job security and fair wages"
-      },
-      {
-        question: "{{exam:secondary}} 2018: Distinguish between internal and external users of accounting information. Give TWO examples of each.",
-        year: "2018",
-        solution: "Internal Users:\nDefinition: Users of accounting information who are within the organization and have direct access to detailed financial records.\n\nExamples:\n1. Managers – Use information for planning, control, and decision-making\n2. Owners/Proprietors – Use information to assess profitability and make investment decisions\n\nExternal Users:\nDefinition: Users of accounting information who are outside the organization and rely on published financial statements.\n\nExamples:\n1. Banks/Creditors – Use information to assess creditworthiness before granting loans\n2. Government ({{business:tax-authority}}) – Uses information to calculate and collect taxes"
-      },
-      {
-        question: "{{exam:secondary}} 2019: Explain FOUR qualitative characteristics of useful accounting information.",
-        year: "2019",
-        solution: "1. Relevance – Information must be capable of making a difference in decisions. It should have predictive value (helps forecast future) or confirmatory value (confirms past expectations).\n\n2. Faithful Representation – Information must accurately reflect economic reality. It should be complete, neutral (unbiased), and free from material error.\n\n3. Comparability – Users should be able to compare information across different periods of the same entity and across different entities. This requires consistent accounting policies.\n\n4. Understandability – Information should be presented clearly so that users with reasonable knowledge of business and accounting can comprehend it. Complex items should have explanatory notes."
-      },
-      {
-        question: "{{exam:secondary}} 2022: (a) What is accounting information? (b) State THREE ways in which shareholders use accounting information.",
-        year: "2022",
-        solution: "(a) Accounting information refers to the financial data and reports produced by the accounting system that helps various stakeholders make informed decisions. It includes financial statements, management reports, and compliance documents.\n\n(b) Three ways shareholders use accounting information:\n\n1. Assessing Profitability – Shareholders analyze the Income Statement to see if the company is making profits that could result in dividend payments.\n\n2. Evaluating Investment Returns – They use ratios like Earnings Per Share (EPS) and Return on Equity (ROE) to assess the returns on their investment.\n\n3. Making Investment Decisions – Based on financial health shown in statements, shareholders decide whether to buy more shares, sell existing shares, or hold their current position."
-      }
+    answer: "Assess loan repayment ability",
+    explanation: "Banks are creditors who lend money. They need accounting information to assess whether the business can repay loans (creditworthiness and liquidity)."
+   },
+   {
+    id: 'facc-users-q3',
+    type: 'mcq',
+    question: "The {{country}} Revenue Authority ({{business:tax-authority}}) uses accounting information for:",
+    options: [
+     "Making investment decisions",
+     "Calculating and collecting taxes",
+     "Approving loan applications",
+     "Setting product prices"
     ],
-  },
+    answer: "Calculating and collecting taxes",
+    explanation: "{{business:tax-authority}} is the government tax authority. They use accounting records to assess income tax, VAT, and other taxes owed by businesses."
+   },
+   {
+    id: 'facc-users-q4',
+    type: 'mcq',
+    question: "Which qualitative characteristic ensures that information can be compared across different periods?",
+    options: [
+     "Relevance",
+     "Comparability",
+     "Timeliness",
+     "Verifiability"
+    ],
+    answer: "Comparability",
+    explanation: "Comparability allows users to compare financial information across different time periods (year-to-year) and across different entities (company-to-company)."
+   },
+   {
+    id: 'facc-users-q5',
+    type: 'mcq',
+    question: "Employees are interested in accounting information mainly to assess:",
+    options: [
+     "Tax liability of the company",
+     "Job security and fair wages",
+     "Market share of products",
+     "Dividend payments"
+    ],
+    answer: "Job security and fair wages",
+    explanation: "Employees need to know if the company is financially stable (job security) and profitable enough to pay fair wages and bonuses."
+   },
+   {
+    id: 'facc-users-q6',
+    type: 'mcq',
+    question: "Which of the following is a fundamental qualitative characteristic of useful accounting information?",
+    options: [
+     "Comparability",
+     "Timeliness",
+     "Relevance",
+     "Verifiability"
+    ],
+    answer: "Relevance",
+    explanation: "The two fundamental characteristics are Relevance and Faithful Representation. Comparability, timeliness, and verifiability are enhancing characteristics."
+   },
+   {
+    id: 'facc-users-q7',
+    type: 'mcq',
+    question: "Shareholders who don't manage the business are classified as:",
+    options: [
+     "Internal users",
+     "External users",
+     "Managers",
+     "Directors"
+    ],
+    answer: "External users",
+    explanation: "Shareholders who don't participate in daily management are external users. They rely on published financial statements for information."
+   },
+   {
+    id: 'facc-users-q8',
+    type: 'mcq',
+    question: "Which body regulates accountants in {{country}}?",
+    options: [
+     "{{country}} Revenue Authority",
+     "Bank of {{country}}",
+     "Institute of Chartered Accountants {{country}} (ICAG)",
+     "Securities and Exchange Commission"
+    ],
+    answer: "Institute of Chartered Accountants {{country}} (ICAG)",
+    explanation: "ICAG is the professional body that regulates accountants in {{country}}, sets ethical standards, and conducts professional examinations."
+   },
+   {
+    id: 'facc-users-q9',
+    type: 'mcq',
+    question: "Which characteristic means accounting information is available when needed for decision-making?",
+    options: [
+     "Relevance",
+     "Comparability",
+     "Timeliness",
+     "Neutrality"
+    ],
+    answer: "Timeliness",
+    explanation: "Timeliness means information is available to users in time to influence their decisions. Late information may lose its usefulness."
+   },
+   {
+    id: 'facc-users-q10',
+    type: 'mcq',
+    question: "Trade unions use accounting information primarily for:",
+    options: [
+     "Making investment decisions",
+     "Wage negotiations on behalf of workers",
+     "Calculating company taxes",
+     "Approving loans"
+    ],
+    answer: "Wage negotiations on behalf of workers",
+    explanation: "Trade unions represent workers' interests. They use company profitability data to negotiate better wages and working conditions."
+   },
+   {
+    id: 'facc-users-q11',
+    type: 'mcq',
+    question: "A supplier giving credit terms to a business would check the business's:",
+    options: [
+     "Employee qualifications",
+     "Liquidity and creditworthiness",
+     "Marketing strategies",
+     "Production techniques"
+    ],
+    answer: "Liquidity and creditworthiness",
+    explanation: "Suppliers want to know if the business can pay for goods supplied on credit. They assess liquidity (ability to pay short-term debts) and creditworthiness."
+   },
+   {
+    id: 'facc-users-q12',
+    type: 'mcq',
+    question: "Which financial statement shows a company's assets, liabilities, and capital at a specific date?",
+    options: [
+     "Income Statement",
+     "Cash Flow Statement",
+     "Balance Sheet",
+     "Trial Balance"
+    ],
+    answer: "Balance Sheet",
+    explanation: "The Balance Sheet (Statement of Financial Position) shows what the business owns (assets), owes (liabilities), and the owner's stake (capital) at a specific point in time."
+   },
+   {
+    id: 'facc-users-q13',
+    type: 'mcq',
+    question: "The SEC in {{country}} regulates:",
+    options: [
+     "All small businesses",
+     "Companies listed on the {{country}} Stock Exchange",
+     "Individual taxpayers",
+     "Import and export businesses"
+    ],
+    answer: "Companies listed on the {{country}} Stock Exchange",
+    explanation: "The Securities and Exchange Commission (SEC) regulates listed companies, ensuring they file quarterly and annual reports to protect investor interests."
+   },
+   {
+    id: 'facc-users-q14',
+    type: 'mcq',
+    question: "'Faithful Representation' in accounting means information that is:",
+    options: [
+     "Available on time",
+     "Easy to compare",
+     "Complete, neutral, and free from error",
+     "Relevant to decisions"
+    ],
+    answer: "Complete, neutral, and free from error",
+    explanation: "Faithful Representation means information accurately depicts economic reality. It must be complete, unbiased (neutral), and as accurate as possible."
+   },
+   {
+    id: 'facc-users-q15',
+    type: 'mcq',
+    question: "Managers are considered internal users because they:",
+    options: [
+     "Own shares in the company",
+     "Work within the organization and have access to detailed records",
+     "Provide loans to the business",
+     "Buy products from the business"
+    ],
+    answer: "Work within the organization and have access to detailed records",
+    explanation: "Managers are internal users because they work inside the business and have access to detailed, day-to-day operational and financial information."
+   }
+  ],
+  activities: [],
+  pastQuestions: [
+   {
+    question: "{{exam:secondary}} 2020: List FIVE users of accounting information and state ONE reason why each needs the information.",
+    year: "2020",
+    solution: "1. Owners/Shareholders – Need to assess whether their investment is profitable and whether dividends can be paid\n\n2. Managers – Require information to plan operations, control costs, and make daily business decisions\n\n3. Creditors/Banks – Want to evaluate the ability of the business to repay loans and meet credit obligations\n\n4. Government ({{business:tax-authority}}) – Needs accurate records to assess and collect taxes owed by the business\n\n5. Employees – Interested in the financial stability of the business to ensure job security and fair wages"
+   },
+   {
+    question: "{{exam:secondary}} 2018: Distinguish between internal and external users of accounting information. Give TWO examples of each.",
+    year: "2018",
+    solution: "Internal Users:\nDefinition: Users of accounting information who are within the organization and have direct access to detailed financial records.\n\nExamples:\n1. Managers – Use information for planning, control, and decision-making\n2. Owners/Proprietors – Use information to assess profitability and make investment decisions\n\nExternal Users:\nDefinition: Users of accounting information who are outside the organization and rely on published financial statements.\n\nExamples:\n1. Banks/Creditors – Use information to assess creditworthiness before granting loans\n2. Government ({{business:tax-authority}}) – Uses information to calculate and collect taxes"
+   },
+   {
+    question: "{{exam:secondary}} 2019: Explain FOUR qualitative characteristics of useful accounting information.",
+    year: "2019",
+    solution: "1. Relevance – Information must be capable of making a difference in decisions. It should have predictive value (helps forecast future) or confirmatory value (confirms past expectations).\n\n2. Faithful Representation – Information must accurately reflect economic reality. It should be complete, neutral (unbiased), and free from material error.\n\n3. Comparability – Users should be able to compare information across different periods of the same entity and across different entities. This requires consistent accounting policies.\n\n4. Understandability – Information should be presented clearly so that users with reasonable knowledge of business and accounting can comprehend it. Complex items should have explanatory notes."
+   },
+   {
+    question: "{{exam:secondary}} 2022: (a) What is accounting information? (b) State THREE ways in which shareholders use accounting information.",
+    year: "2022",
+    solution: "(a) Accounting information refers to the financial data and reports produced by the accounting system that helps various stakeholders make informed decisions. It includes financial statements, management reports, and compliance documents.\n\n(b) Three ways shareholders use accounting information:\n\n1. Assessing Profitability – Shareholders analyze the Income Statement to see if the company is making profits that could result in dividend payments.\n\n2. Evaluating Investment Returns – They use ratios like Earnings Per Share (EPS) and Return on Equity (ROE) to assess the returns on their investment.\n\n3. Making Investment Decisions – Based on financial health shown in statements, shareholders decide whether to buy more shares, sell existing shares, or hold their current position."
+   }
+  ],
+ },
 
-  // Lesson 3: Branches of Accounting
-  {
-    id: 'facc-shs1-intro-3',
-    slug: 'facc-shs1-intro-branches',
-    title: 'Branches of Accounting',
-    objectives: [
-      'Identify and explain the main branches of accounting',
-      'Distinguish between financial accounting and management accounting',
-      'Understand the role of cost accounting in manufacturing businesses',
-      'Explain the importance of tax accounting and its relationship with {{business:tax-authority}}',
-      'Describe the functions of auditing (internal and external)',
-      'Understand the specialized field of forensic accounting',
-      'Recognize career opportunities in different accounting branches',
-      'Apply knowledge of accounting branches to real-world scenarios in {{country}}',
-      'Appreciate the interconnection between different accounting branches',
-      'Identify relevant professional bodies for each accounting branch'
-    ],
-    introduction: "Accounting is not a single field—it's a diverse profession with many specialized branches, each serving different purposes! Just as medicine has cardiologists, surgeons, and pediatricians, accounting has financial accountants, tax consultants, auditors, and more. In {{country}}, you'll find accountants working at banks like GCB and Ecobank, advising businesses on taxes with {{business:tax-authority}}, investigating fraud at EOCO, or helping manufacturers like Kasapreko control costs. Today, we'll explore these exciting branches and discover the many career paths available to aspiring accountants. Whether you dream of working for a Big Four firm like KPMG or starting your own practice, understanding these branches is your first step!",
-    keyConcepts: [
-      {
-        title: 'Overview of Accounting Branches',
-        content: `Accounting has evolved into several specialized branches, each focusing on specific aspects of financial information and serving different user needs.
+ // Lesson 3: Branches of Accounting
+ {
+  id: 'facc-shs1-intro-3',
+  slug: 'facc-shs1-intro-branches',
+  title: 'Branches of Accounting',
+  objectives: [
+   'Identify and explain the main branches of accounting',
+   'Distinguish between financial accounting and management accounting',
+   'Understand the role of cost accounting in manufacturing businesses',
+   'Explain the importance of tax accounting and its relationship with {{business:tax-authority}}',
+   'Describe the functions of auditing (internal and external)',
+   'Understand the specialized field of forensic accounting',
+   'Recognize career opportunities in different accounting branches',
+   'Apply knowledge of accounting branches to real-world scenarios in {{country}}',
+   'Appreciate the interconnection between different accounting branches',
+   'Identify relevant professional bodies for each accounting branch'
+  ],
+  introduction: "Accounting is not a single field—it's a diverse profession with many specialized branches, each serving different purposes! Just as medicine has cardiologists, surgeons, and pediatricians, accounting has financial accountants, tax consultants, auditors, and more. In {{country}}, you'll find accountants working at banks like GCB and Ecobank, advising businesses on taxes with {{business:tax-authority}}, investigating fraud at EOCO, or helping manufacturers like Kasapreko control costs. Today, we'll explore these exciting branches and discover the many career paths available to aspiring accountants. Whether you dream of working for a Big Four firm like KPMG or starting your own practice, understanding these branches is your first step!",
+  keyConcepts: [
+   {
+    title: 'Overview of Accounting Branches',
+    content: `Accounting has evolved into several specialized branches, each focusing on specific aspects of financial information and serving different user needs.
 
-## 🌳 THE ACCOUNTING FAMILY TREE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🌳 THE ACCOUNTING FAMILY TREE
+</h2>
 
 Think of accounting as a large tree with many branches. The trunk represents basic accounting principles, and each branch specializes in a particular area.
 
-<table><thead><tr><th>Branch</th><th>Primary Focus</th><th>Main Users</th><th>Career Example</th></tr></thead><tbody><tr><td><strong>Financial Accounting</strong></td><td>External reporting</td><td>Shareholders, Banks, {{business:tax-authority}}</td><td>Chief Financial Officer</td></tr><tr><td><strong>Management Accounting</strong></td><td>Internal decision-making</td><td>Managers, Directors</td><td>Management Accountant</td></tr><tr><td><strong>Cost Accounting</strong></td><td>Product/Service costing</td><td>Production Managers</td><td>Cost Accountant</td></tr><tr><td><strong>Tax Accounting</strong></td><td>Tax compliance & planning</td><td>Business Owners, {{business:tax-authority}}</td><td>Tax Consultant</td></tr><tr><td><strong>Auditing</strong></td><td>Verification of records</td><td>Shareholders, Regulators</td><td>External Auditor</td></tr><tr><td><strong>Forensic Accounting</strong></td><td>Fraud investigation</td><td>Courts, Police, EOCO</td><td>Forensic Accountant</td></tr><tr><td><strong>Government Accounting</strong></td><td>Public sector finances</td><td>Citizens, Parliament</td><td>Government Accountant</td></tr></tbody></table>
-
-
-
-## 🎯 WHY DO WE HAVE DIFFERENT BRANCHES?
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Branch</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Primary Focus</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Main Users</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Career Example</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Financial Accounting</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">External reporting</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Shareholders, Banks, {{business:tax-authority}}</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Chief Financial Officer</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Management Accounting</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Internal decision-making</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Managers, Directors</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Management Accountant</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Cost Accounting</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Product/Service costing</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Production Managers</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Cost Accountant</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Tax Accounting</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Tax compliance & planning</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Business Owners, {{business:tax-authority}}</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Tax Consultant</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Auditing</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Verification of records</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Shareholders, Regulators</td><td style="padding: 8px; border: 1px solid #e5e7eb;">External Auditor</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Forensic Accounting</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Fraud investigation</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Courts, Police, EOCO</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Forensic Accountant</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Government Accounting</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Public sector finances</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Citizens, Parliament</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Government Accountant</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🎯 WHY DO WE HAVE DIFFERENT BRANCHES?
+</h2>
 
 **1. Different Users Have Different Needs**
 - External users need standardized reports (Financial Accounting)
@@ -1838,12 +1807,13 @@ Think of accounting as a large tree with many branches. The trunk represents bas
 
 **{{country:flag}} {{country}} Context:**
 In {{country}}, ICAG (Institute of Chartered Accountants {{country}}) certifies accountants across all branches, while specialized bodies like the {{country}} Institute of Management Accountants focus on specific areas.`
-      },
-      {
-        title: 'Financial Accounting',
-        content: `**Financial Accounting** is the branch that records, summarizes, and reports financial transactions to external users through standardized financial statements.
+   },
+   {
+    title: 'Financial Accounting',
+    content: `**Financial Accounting** is the branch that records, summarizes, and reports financial transactions to external users through standardized financial statements.
 
-## 📊 WHAT IS FINANCIAL ACCOUNTING?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 WHAT IS FINANCIAL ACCOUNTING?
+</h2>
 
 This is the branch we're studying in this course! It focuses on preparing financial statements for people OUTSIDE the business.
 
@@ -1855,8 +1825,8 @@ This is the branch we're studying in this course! It focuses on preparing financ
 - Audited for accuracy
 
 
-
-## 📋 OUTPUTS OF FINANCIAL ACCOUNTING
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 OUTPUTS OF FINANCIAL ACCOUNTING
+</h2>
 
 **1. Income Statement (Trading, Profit & Loss Account)**
 - Shows revenues and expenses
@@ -1878,14 +1848,11 @@ This is the branch we're studying in this course! It focuses on preparing financ
 - Includes profits, dividends, new investments
 
 
-
-## 👥 WHO USES FINANCIAL ACCOUNTING INFORMATION?
-
-<table><thead><tr><th>User</th><th>What They Look For</th><th>Why</th></tr></thead><tbody><tr><td>Shareholders</td><td>Profitability, Dividends</td><td>Assess investment returns</td></tr><tr><td>Banks/Creditors</td><td>Liquidity, Solvency</td><td>Loan approval decisions</td></tr><tr><td>{{business:tax-authority}}</td><td>Taxable Income</td><td>Calculate taxes owed</td></tr><tr><td>Potential Investors</td><td>Growth, Stability</td><td>Decide whether to invest</td></tr><tr><td>Suppliers</td><td>Payment Ability</td><td>Grant credit terms</td></tr></tbody></table>
-
-
-
-## {{country:flag}} FINANCIAL ACCOUNTING IN {{country}}
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">👥 WHO USES FINANCIAL ACCOUNTING INFORMATION?
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">User</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">What They Look For</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Why</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Shareholders</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Profitability, Dividends</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Assess investment returns</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Banks/Creditors</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Liquidity, Solvency</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Loan approval decisions</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">{{business:tax-authority}}</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Taxable Income</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Calculate taxes owed</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Potential Investors</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Growth, Stability</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Decide whether to invest</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Suppliers</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Payment Ability</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Grant credit terms</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} FINANCIAL ACCOUNTING IN {{country}}
+</h2>
 
 **Regulatory Framework:**
 - {{business:companies-act}} requires financial statements
@@ -1910,12 +1877,13 @@ This is the branch we're studying in this course! It focuses on preparing financ
 - Manufacturing (Unilever, Nestlé, Kasapreko)
 - Telecommunications (MTN, Vodafone, AirtelTigo)
 - Big Four Firms (KPMG, PwC, Deloitte, EY)`
-      },
-      {
-        title: 'Management Accounting',
-        content: `**Management Accounting** (also called Managerial Accounting) provides financial and non-financial information to INTERNAL users for planning, control, and decision-making.
+   },
+   {
+    title: 'Management Accounting',
+    content: `**Management Accounting** (also called Managerial Accounting) provides financial and non-financial information to INTERNAL users for planning, control, and decision-making.
 
-## 📈 WHAT IS MANAGEMENT ACCOUNTING?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📈 WHAT IS MANAGEMENT ACCOUNTING?
+</h2>
 
 While financial accounting looks backward at what happened, management accounting looks forward to help managers make better decisions.
 
@@ -1929,14 +1897,11 @@ While financial accounting looks backward at what happened, management accountin
 - Confidential (not published)
 
 
-
-## 🔄 FINANCIAL vs MANAGEMENT ACCOUNTING
-
-<table><thead><tr><th>Aspect</th><th>Financial Accounting</th><th>Management Accounting</th></tr></thead><tbody><tr><td><strong>Users</strong></td><td>External (shareholders, banks)</td><td>Internal (managers)</td></tr><tr><td><strong>Rules</strong></td><td>Must follow IFRS</td><td>No mandatory rules</td></tr><tr><td><strong>Time Focus</strong></td><td>Historical (past)</td><td>Future-oriented</td></tr><tr><td><strong>Reports</strong></td><td>Standardized statements</td><td>Flexible, customized</td></tr><tr><td><strong>Frequency</strong></td><td>Annual/Quarterly</td><td>As needed (daily/weekly)</td></tr><tr><td><strong>Precision</strong></td><td>Must be accurate</td><td>Can use estimates</td></tr><tr><td><strong>Legal Requirement</strong></td><td>Required by law</td><td>Not required</td></tr><tr><td><strong>Publication</strong></td><td>Published publicly</td><td>Kept confidential</td></tr></tbody></table>
-
-
-
-## 🛠️ MANAGEMENT ACCOUNTING TOOLS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔄 FINANCIAL vs MANAGEMENT ACCOUNTING
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Aspect</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Financial Accounting</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Management Accounting</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Users</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">External (shareholders, banks)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Internal (managers)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Rules</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Must follow IFRS</td><td style="padding: 8px; border: 1px solid #e5e7eb;">No mandatory rules</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Time Focus</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Historical (past)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Future-oriented</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Reports</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Standardized statements</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Flexible, customized</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Frequency</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Annual/Quarterly</td><td style="padding: 8px; border: 1px solid #e5e7eb;">As needed (daily/weekly)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Precision</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Must be accurate</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Can use estimates</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Legal Requirement</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Required by law</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Not required</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Publication</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Published publicly</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Kept confidential</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🛠️ MANAGEMENT ACCOUNTING TOOLS
+</h2>
 
 **1. Budgeting**
 - Planning future income and expenses
@@ -1964,8 +1929,8 @@ While financial accounting looks backward at what happened, management accountin
 - Capital investment appraisal
 
 
-
-## {{country:flag}} MANAGEMENT ACCOUNTING IN {{country}}
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} MANAGEMENT ACCOUNTING IN {{country}}
+</h2>
 
 **Professional Body:**
 - CIMA (Chartered Institute of Management Accountants)
@@ -1984,12 +1949,13 @@ The management accountant at Guinness {{country}} prepares monthly budget report
 - Production costs per bottle
 - Variances to investigate
 - Recommendations for improvement`
-      },
-      {
-        title: 'Cost Accounting',
-        content: `**Cost Accounting** is a specialized branch that focuses on recording, analyzing, and controlling the costs of products, services, or operations.
+   },
+   {
+    title: 'Cost Accounting',
+    content: `**Cost Accounting** is a specialized branch that focuses on recording, analyzing, and controlling the costs of products, services, or operations.
 
-## 💰 WHAT IS COST ACCOUNTING?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">💰 WHAT IS COST ACCOUNTING?
+</h2>
 
 Cost accounting helps businesses understand exactly how much it costs to make a product or provide a service. This is especially important for manufacturing companies.
 
@@ -2001,8 +1967,8 @@ Cost accounting helps businesses understand exactly how much it costs to make a 
 - Reducing waste
 
 
-
-## 🏭 COST ACCOUNTING IN MANUFACTURING
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🏭 COST ACCOUNTING IN MANUFACTURING
+</h2>
 
 **Example: Kasapreko Company (Beverage Manufacturer)**
 
@@ -2019,14 +1985,11 @@ To produce one bottle of Alomo Bitters, costs include:
 - Electricity for factory
 
 
-
-## 📊 TYPES OF COSTING METHODS
-
-<table><thead><tr><th>Method</th><th>Best Used For</th><th>{{country}} Example</th></tr></thead><tbody><tr><td><strong>Job Costing</strong></td><td>Unique, custom orders</td><td>Furniture maker (unique designs)</td></tr><tr><td><strong>Process Costing</strong></td><td>Continuous production</td><td>Cement factory (Ghacem)</td></tr><tr><td><strong>Batch Costing</strong></td><td>Groups of identical items</td><td>Bakery (batch of bread)</td></tr><tr><td><strong>Standard Costing</strong></td><td>Mass production</td><td>Bottling plant (Coca-Cola)</td></tr><tr><td><strong>Activity-Based Costing</strong></td><td>Complex operations</td><td>Bank services (Ecobank)</td></tr></tbody></table>
-
-
-
-## 🧮 COST ELEMENTS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 TYPES OF COSTING METHODS
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Method</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Best Used For</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">{{country}} Example</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Job Costing</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Unique, custom orders</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Furniture maker (unique designs)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Process Costing</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Continuous production</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Cement factory (Ghacem)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Batch Costing</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Groups of identical items</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Bakery (batch of bread)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Standard Costing</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Mass production</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Bottling plant (Coca-Cola)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Activity-Based Costing</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Complex operations</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Bank services (Ecobank)</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🧮 COST ELEMENTS
+</h2>
 
 **The Three Elements of Cost:**
 
@@ -2051,8 +2014,8 @@ To produce one bottle of Alomo Bitters, costs include:
 > **Total Cost** = Factory Cost + Admin + Selling Expenses
 
 
-
-## {{country:flag}} COST ACCOUNTING IN {{country}}
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} COST ACCOUNTING IN {{country}}
+</h2>
 
 **Industries Using Cost Accounting:**
 - Manufacturing (Unilever, Nestlé, Fan Milk)
@@ -2071,12 +2034,13 @@ Cost accounting concepts appear in {{exam:secondary}} exams, especially:
 - Classification of costs
 - Cost elements
 - Job and process costing basics`
-      },
-      {
-        title: 'Tax Accounting',
-        content: `**Tax Accounting** is the branch that deals with tax-related matters including tax computation, compliance, planning, and advisory services.
+   },
+   {
+    title: 'Tax Accounting',
+    content: `**Tax Accounting** is the branch that deals with tax-related matters including tax computation, compliance, planning, and advisory services.
 
-## 🏛️ WHAT IS TAX ACCOUNTING?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🏛️ WHAT IS TAX ACCOUNTING?
+</h2>
 
 Tax accounting ensures businesses and individuals meet their tax obligations while legally minimizing tax burden.
 
@@ -2088,14 +2052,11 @@ Tax accounting ensures businesses and individuals meet their tax obligations whi
 - Advising on tax implications of decisions
 
 
-
-## {{country:flag}} TYPES OF TAXES IN {{country}}
-
-<table><thead><tr><th>Tax Type</th><th>Rate</th><th>Who Pays</th><th>Administered By</th></tr></thead><tbody><tr><td><strong>Corporate Income Tax</strong></td><td>25%</td><td>Companies</td><td>{{business:tax-authority}}</td></tr><tr><td><strong>Personal Income Tax</strong></td><td>0-35% (graduated)</td><td>Individuals</td><td>{{business:tax-authority}}</td></tr><tr><td><strong>Value Added Tax (VAT)</strong></td><td>15%</td><td>Consumers (via businesses)</td><td>{{business:tax-authority}}</td></tr><tr><td><strong>NHIL</strong></td><td>2.5%</td><td>Consumers</td><td>{{business:tax-authority}}</td></tr><tr><td><strong>GETFund Levy</strong></td><td>2.5%</td><td>Consumers</td><td>{{business:tax-authority}}</td></tr><tr><td><strong>Withholding Tax</strong></td><td>Various</td><td>Payment recipients</td><td>{{business:tax-authority}}</td></tr><tr><td><strong>PAYE</strong></td><td>Based on income</td><td>Employees</td><td>Employers remit to {{business:tax-authority}}</td></tr></tbody></table>
-
-
-
-## 📋 TAX COMPLIANCE REQUIREMENTS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} TYPES OF TAXES IN {{country}}
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Tax Type</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Rate</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Who Pays</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Administered By</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Corporate Income Tax</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">25%</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Companies</td><td style="padding: 8px; border: 1px solid #e5e7eb;">{{business:tax-authority}}</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Personal Income Tax</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">0-35% (graduated)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Individuals</td><td style="padding: 8px; border: 1px solid #e5e7eb;">{{business:tax-authority}}</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Value Added Tax (VAT)</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">15%</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Consumers (via businesses)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">{{business:tax-authority}}</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>NHIL</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">2.5%</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Consumers</td><td style="padding: 8px; border: 1px solid #e5e7eb;">{{business:tax-authority}}</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>GETFund Levy</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">2.5%</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Consumers</td><td style="padding: 8px; border: 1px solid #e5e7eb;">{{business:tax-authority}}</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Withholding Tax</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Various</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Payment recipients</td><td style="padding: 8px; border: 1px solid #e5e7eb;">{{business:tax-authority}}</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>PAYE</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Based on income</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Employees</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Employers remit to {{business:tax-authority}}</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 TAX COMPLIANCE REQUIREMENTS
+</h2>
 
 **For Businesses in {{country}}:**
 
@@ -2115,8 +2076,8 @@ Tax accounting ensures businesses and individuals meet their tax obligations whi
 - Available for {{business:tax-authority}} audits
 
 
-
-## ⚖️ TAX PLANNING vs TAX EVASION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚖️ TAX PLANNING vs TAX EVASION
+</h2>
 
 **Tax Planning (Legal):**
 - Using legal methods to minimize tax
@@ -2138,8 +2099,8 @@ A business legally reduces tax by:
 ✅ Proper timing of major purchases
 
 
-
-## {{country:flag}} TAX ACCOUNTING IN {{country}}
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} TAX ACCOUNTING IN {{country}}
+</h2>
 
 **Regulatory Body:**
 - {{country}} Revenue Authority ({{business:tax-authority}})
@@ -2163,12 +2124,13 @@ A business legally reduces tax by:
 - {{business:tax-authority}} (government)
 - Corporate tax departments
 - Boutique tax advisory firms`
-      },
-      {
-        title: 'Auditing',
-        content: `**Auditing** is the independent examination and verification of financial statements and records to express an opinion on their fairness and compliance with standards.
+   },
+   {
+    title: 'Auditing',
+    content: `**Auditing** is the independent examination and verification of financial statements and records to express an opinion on their fairness and compliance with standards.
 
-## 🔍 WHAT IS AUDITING?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔍 WHAT IS AUDITING?
+</h2>
 
 Auditing provides assurance that financial statements are reliable and free from material misstatement.
 
@@ -2180,14 +2142,11 @@ Auditing provides assurance that financial statements are reliable and free from
 - Provides assurance to users
 
 
-
-## 🔄 TWO TYPES OF AUDITING
-
-<table><thead><tr><th>Aspect</th><th>External Audit</th><th>Internal Audit</th></tr></thead><tbody><tr><td><strong>Performed By</strong></td><td>Independent external auditors</td><td>Company employees (Internal Audit Dept)</td></tr><tr><td><strong>Reports To</strong></td><td>Shareholders</td><td>Board/Audit Committee</td></tr><tr><td><strong>Main Purpose</strong></td><td>Verify financial statements</td><td>Improve internal controls</td></tr><tr><td><strong>Required By Law?</strong></td><td>Yes (for companies)</td><td>No (but recommended)</td></tr><tr><td><strong>Frequency</strong></td><td>Annually</td><td>Ongoing throughout year</td></tr><tr><td><strong>Independence</strong></td><td>Must be independent</td><td>Reports independently within company</td></tr><tr><td><strong>Focus</strong></td><td>Financial statements accuracy</td><td>Operations, controls, efficiency</td></tr></tbody></table>
-
-
-
-## 📝 THE AUDIT PROCESS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔄 TWO TYPES OF AUDITING
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Aspect</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">External Audit</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Internal Audit</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Performed By</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Independent external auditors</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Company employees (Internal Audit Dept)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Reports To</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Shareholders</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Board/Audit Committee</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Main Purpose</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Verify financial statements</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Improve internal controls</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Required By Law?</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Yes (for companies)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">No (but recommended)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Frequency</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Annually</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Ongoing throughout year</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Independence</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Must be independent</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Reports independently within company</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Focus</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Financial statements accuracy</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Operations, controls, efficiency</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 THE AUDIT PROCESS
+</h2>
 
 **External Audit Steps:**
 
@@ -2213,14 +2172,11 @@ Auditing provides assurance that financial statements are reliable and free from
 - May include management letter
 
 
-
-## 📋 TYPES OF AUDIT OPINIONS
-
-<table><thead><tr><th>Opinion</th><th>Meaning</th><th>Implication</th></tr></thead><tbody><tr><td><strong>Unqualified (Clean)</strong></td><td>Statements are fair in all material respects</td><td>Good - no problems</td></tr><tr><td><strong>Qualified</strong></td><td>Except for specific issues, statements are fair</td><td>Concern - limited issues</td></tr><tr><td><strong>Adverse</strong></td><td>Statements do NOT fairly represent</td><td>Serious - major problems</td></tr><tr><td><strong>Disclaimer</strong></td><td>Unable to form an opinion</td><td>Serious - insufficient evidence</td></tr></tbody></table>
-
-
-
-## {{country:flag}} AUDITING IN {{country}}
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 TYPES OF AUDIT OPINIONS
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Opinion</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Meaning</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Implication</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Unqualified (Clean)</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Statements are fair in all material respects</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Good - no problems</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Qualified</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Except for specific issues, statements are fair</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Concern - limited issues</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Adverse</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Statements do NOT fairly represent</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Serious - major problems</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Disclaimer</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Unable to form an opinion</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Serious - insufficient evidence</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} AUDITING IN {{country}}
+</h2>
 
 **Regulatory Framework:**
 - {{business:companies-act}} requires annual audit
@@ -2249,12 +2205,13 @@ Auditing provides assurance that financial statements are reliable and free from
 
 **Career Path:**
 Audit Associate → Senior Associate → Manager → Senior Manager → Partner`
-      },
-      {
-        title: 'Forensic Accounting',
-        content: `**Forensic Accounting** is the specialized branch that investigates financial crimes, fraud, disputes, and provides litigation support using accounting and investigative skills.
+   },
+   {
+    title: 'Forensic Accounting',
+    content: `**Forensic Accounting** is the specialized branch that investigates financial crimes, fraud, disputes, and provides litigation support using accounting and investigative skills.
 
-## 🕵️ WHAT IS FORENSIC ACCOUNTING?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🕵️ WHAT IS FORENSIC ACCOUNTING?
+</h2>
 
 Forensic accountants are financial detectives who investigate fraud, embezzlement, corruption, and other financial crimes.
 
@@ -2267,14 +2224,11 @@ Forensic accountants are financial detectives who investigate fraud, embezzlemen
 - Dispute resolution
 
 
-
-## 🔍 TYPES OF FRAUD INVESTIGATED
-
-<table><thead><tr><th>Fraud Type</th><th>Description</th><th>{{country}} Example</th></tr></thead><tbody><tr><td><strong>Embezzlement</strong></td><td>Employee stealing company funds</td><td>Cashier diverting collections</td></tr><tr><td><strong>Financial Statement Fraud</strong></td><td>Falsifying company accounts</td><td>Inflating revenues to get loans</td></tr><tr><td><strong>Bribery & Corruption</strong></td><td>Illegal payments for favors</td><td>Contract kickbacks</td></tr><tr><td><strong>Money Laundering</strong></td><td>Hiding illegal money sources</td><td>Layering through businesses</td></tr><tr><td><strong>Tax Fraud</strong></td><td>Evading tax obligations</td><td>Underreporting income to {{business:tax-authority}}</td></tr><tr><td><strong>Asset Misappropriation</strong></td><td>Stealing company assets</td><td>Inventory theft</td></tr></tbody></table>
-
-
-
-## 🛠️ FORENSIC ACCOUNTING TECHNIQUES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔍 TYPES OF FRAUD INVESTIGATED
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Fraud Type</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Description</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">{{country}} Example</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Embezzlement</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Employee stealing company funds</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Cashier diverting collections</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Financial Statement Fraud</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Falsifying company accounts</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Inflating revenues to get loans</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Bribery & Corruption</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Illegal payments for favors</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Contract kickbacks</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Money Laundering</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Hiding illegal money sources</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Layering through businesses</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Tax Fraud</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Evading tax obligations</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Underreporting income to {{business:tax-authority}}</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Asset Misappropriation</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Stealing company assets</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Inventory theft</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🛠️ FORENSIC ACCOUNTING TECHNIQUES
+</h2>
 
 **Investigation Methods:**
 
@@ -2304,8 +2258,8 @@ Forensic accountants are financial detectives who investigate fraud, embezzlemen
 - Supporting legal proceedings
 
 
-
-## {{country:flag}} FORENSIC ACCOUNTING IN {{country}}
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} FORENSIC ACCOUNTING IN {{country}}
+</h2>
 
 **Where Forensic Accountants Work:**
 
@@ -2326,8 +2280,8 @@ Forensic accountants are financial detectives who investigate fraud, embezzlemen
 - Large corporations
 
 
-
-## 📰 NOTABLE CASES IN {{country}}
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📰 NOTABLE CASES IN {{country}}
+</h2>
 
 **Forensic accounting has been crucial in:**
 - Bank fraud investigations
@@ -2352,12 +2306,13 @@ Audit Background → Fraud Examiner → Forensic Accountant → Forensic Manager
 - CFE (Certified Fraud Examiner)
 - CA ({{country}}) with forensic specialization
 - ACFE membership`
-      },
-      {
-        title: 'Government/Public Sector Accounting',
-        content: `**Government Accounting** (Public Sector Accounting) deals with recording, reporting, and management of financial resources in government and public sector organizations.
+   },
+   {
+    title: 'Government/Public Sector Accounting',
+    content: `**Government Accounting** (Public Sector Accounting) deals with recording, reporting, and management of financial resources in government and public sector organizations.
 
-## 🏛️ WHAT IS GOVERNMENT ACCOUNTING?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🏛️ WHAT IS GOVERNMENT ACCOUNTING?
+</h2>
 
 Government accounting tracks how public funds (taxpayer money) are collected and spent. It ensures accountability to citizens.
 
@@ -2369,14 +2324,11 @@ Government accounting tracks how public funds (taxpayer money) are collected and
 - Different objectives from private sector
 
 
-
-## 🔄 PRIVATE vs GOVERNMENT ACCOUNTING
-
-<table><thead><tr><th>Aspect</th><th>Private Sector</th><th>Government Sector</th></tr></thead><tbody><tr><td><strong>Main Objective</strong></td><td>Profit maximization</td><td>Service delivery, accountability</td></tr><tr><td><strong>Source of Funds</strong></td><td>Sales, investments</td><td>Taxes, grants, loans</td></tr><tr><td><strong>Standards</strong></td><td>IFRS</td><td>IPSAS</td></tr><tr><td><strong>Budget Role</strong></td><td>Internal planning tool</td><td>Legal authorization</td></tr><tr><td><strong>Profit</strong></td><td>Primary goal</td><td>Not applicable (surplus/deficit)</td></tr><tr><td><strong>Users</strong></td><td>Shareholders, creditors</td><td>Citizens, Parliament, donors</td></tr><tr><td><strong>Audit</strong></td><td>External auditors</td><td>Auditor General</td></tr></tbody></table>
-
-
-
-## {{country:flag}} GOVERNMENT ACCOUNTING IN {{country}}
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔄 PRIVATE vs GOVERNMENT ACCOUNTING
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Aspect</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Private Sector</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Government Sector</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Main Objective</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Profit maximization</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Service delivery, accountability</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Source of Funds</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Sales, investments</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Taxes, grants, loans</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Standards</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">IFRS</td><td style="padding: 8px; border: 1px solid #e5e7eb;">IPSAS</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Budget Role</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Internal planning tool</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Legal authorization</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Profit</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Primary goal</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Not applicable (surplus/deficit)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Users</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Shareholders, creditors</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Citizens, Parliament, donors</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Audit</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">External auditors</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Auditor General</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} GOVERNMENT ACCOUNTING IN {{country}}
+</h2>
 
 **Key Institutions:**
 
@@ -2401,8 +2353,8 @@ Government accounting tracks how public funds (taxpayer money) are collected and
 - Prevents corruption
 
 
-
-## 📋 KEY GOVERNMENT REPORTS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 KEY GOVERNMENT REPORTS
+</h2>
 
 **1. Annual Budget Statement**
 - Revenue projections
@@ -2420,8 +2372,8 @@ Government accounting tracks how public funds (taxpayer money) are collected and
 - Recommendations for improvement
 
 
-
-## 💼 CAREER OPPORTUNITIES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">💼 CAREER OPPORTUNITIES
+</h2>
 
 **Government Positions:**
 - Accountant (Ministries, Departments, Agencies)
@@ -2450,12 +2402,13 @@ Government accounting tracks how public funds (taxpayer money) are collected and
 - Job security
 - Pension (SSNIT)
 - End of service benefits`
-      },
-      {
-        title: 'Other Specialized Branches',
-        content: `Beyond the main branches, accounting has several other specialized areas serving specific industries or needs.
+   },
+   {
+    title: 'Other Specialized Branches',
+    content: `Beyond the main branches, accounting has several other specialized areas serving specific industries or needs.
 
-## 📱 EMERGING AND SPECIALIZED BRANCHES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📱 EMERGING AND SPECIALIZED BRANCHES
+</h2>
 
 **1. ENVIRONMENTAL ACCOUNTING**
 - Tracks environmental costs and benefits
@@ -2482,14 +2435,11 @@ Government accounting tracks how public funds (taxpayer money) are collected and
 - Accountability to donors
 
 
-
-## 🏦 INDUSTRY-SPECIFIC ACCOUNTING
-
-<table><thead><tr><th>Industry</th><th>Specialized Area</th><th>Key Features</th></tr></thead><tbody><tr><td><strong>Banking</strong></td><td>Bank Accounting</td><td>Loan provisions, capital adequacy, BoG regulations</td></tr><tr><td><strong>Insurance</strong></td><td>Insurance Accounting</td><td>Policy reserves, claims provisions, NIC regulations</td></tr><tr><td><strong>Oil & Gas</strong></td><td>Petroleum Accounting</td><td>Exploration costs, depletion, GNPC requirements</td></tr><tr><td><strong>Mining</strong></td><td>Mining Accounting</td><td>Depletion, environmental provisions, royalties</td></tr><tr><td><strong>Agriculture</strong></td><td>Agricultural Accounting</td><td>Biological assets, fair value, seasonal factors</td></tr><tr><td><strong>Construction</strong></td><td>Contract Accounting</td><td>Percentage completion, retention, variations</td></tr></tbody></table>
-
-
-
-## 💻 TECHNOLOGY IN ACCOUNTING
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🏦 INDUSTRY-SPECIFIC ACCOUNTING
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Industry</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Specialized Area</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Key Features</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Banking</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Bank Accounting</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Loan provisions, capital adequacy, BoG regulations</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Insurance</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Insurance Accounting</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Policy reserves, claims provisions, NIC regulations</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Oil & Gas</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Petroleum Accounting</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Exploration costs, depletion, GNPC requirements</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Mining</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Mining Accounting</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Depletion, environmental provisions, royalties</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Agriculture</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Agricultural Accounting</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Biological assets, fair value, seasonal factors</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Construction</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Contract Accounting</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Percentage completion, retention, variations</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">💻 TECHNOLOGY IN ACCOUNTING
+</h2>
 
 **IT/Systems Accounting:**
 - Accounting software implementation
@@ -2504,39 +2454,37 @@ Government accounting tracks how public funds (taxpayer money) are collected and
 - Continuous auditing
 
 
-
-## {{country:flag}} PROFESSIONAL BODIES IN {{country}}
-
-<table><thead><tr><th>Body</th><th>Focus Area</th><th>Designation</th></tr></thead><tbody><tr><td><strong>ICAG</strong></td><td>General accounting, audit</td><td>CA ({{country}})</td></tr><tr><td><strong>ACCA</strong></td><td>International certification</td><td>ACCA</td></tr><tr><td><strong>CIMA</strong></td><td>Management accounting</td><td>CGMA, ACMA</td></tr><tr><td><strong>IIA</strong></td><td>Internal auditing</td><td>CIA</td></tr><tr><td><strong>ACFE</strong></td><td>Fraud examination</td><td>CFE</td></tr><tr><td><strong>ICAGH</strong></td><td>Cost accounting</td><td>CCA</td></tr></tbody></table>
-
-
-
-## 🎯 CHOOSING YOUR ACCOUNTING CAREER PATH
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} PROFESSIONAL BODIES IN {{country}}
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Body</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Focus Area</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Designation</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>ICAG</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">General accounting, audit</td><td style="padding: 8px; border: 1px solid #e5e7eb;">CA ({{country}})</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>ACCA</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">International certification</td><td style="padding: 8px; border: 1px solid #e5e7eb;">ACCA</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>CIMA</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Management accounting</td><td style="padding: 8px; border: 1px solid #e5e7eb;">CGMA, ACMA</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>IIA</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Internal auditing</td><td style="padding: 8px; border: 1px solid #e5e7eb;">CIA</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>ACFE</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Fraud examination</td><td style="padding: 8px; border: 1px solid #e5e7eb;">CFE</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>ICAGH</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Cost accounting</td><td style="padding: 8px; border: 1px solid #e5e7eb;">CCA</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🎯 CHOOSING YOUR ACCOUNTING CAREER PATH
+</h2>
 
 **Questions to Consider:**
 
 1. **Do you prefer numbers or investigation?**
-   - Numbers → Financial/Cost Accounting
-   - Investigation → Forensic/Auditing
+  - Numbers → Financial/Cost Accounting
+  - Investigation → Forensic/Auditing
 
 2. **Internal or External focus?**
-   - Internal → Management Accounting
-   - External → Financial Accounting/Auditing
+  - Internal → Management Accounting
+  - External → Financial Accounting/Auditing
 
 3. **Public or Private sector?**
-   - Public → Government Accounting
-   - Private → Corporate Accounting
+  - Public → Government Accounting
+  - Private → Corporate Accounting
 
 4. **Specialization preference?**
-   - Tax lover → Tax Accounting
-   - Detective mindset → Forensic Accounting
-   - Technology enthusiast → IT Audit/Systems`
-      },
-      {
-        title: 'Key Terms Summary',
-        content: `Master these important terms related to branches of accounting!
+  - Tax lover → Tax Accounting
+  - Detective mindset → Forensic Accounting
+  - Technology enthusiast → IT Audit/Systems`
+   },
+   {
+    title: 'Key Terms Summary',
+    content: `Master these important terms related to branches of accounting!
 
-## 📚 ESSENTIAL VOCABULARY
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📚 ESSENTIAL VOCABULARY
+</h2>
 
 **Financial Accounting**
 Definition: Branch that records and reports financial information to external users through standardized financial statements following IFRS.
@@ -2575,14 +2523,11 @@ Definition: International Public Sector Accounting Standards - standards for gov
 Definition: The auditor's conclusion about whether financial statements are fairly presented.
 
 
-
-## 📋 BRANCHES AT A GLANCE
-
-<table><thead><tr><th>Branch</th><th>Main Focus</th><th>Key User</th></tr></thead><tbody><tr><td>Financial Accounting</td><td>External reporting</td><td>Shareholders, Banks</td></tr><tr><td>Management Accounting</td><td>Internal decisions</td><td>Managers</td></tr><tr><td>Cost Accounting</td><td>Product costing</td><td>Production managers</td></tr><tr><td>Tax Accounting</td><td>Tax compliance</td><td>Business owners, {{business:tax-authority}}</td></tr><tr><td>Auditing</td><td>Verification</td><td>Shareholders, Regulators</td></tr><tr><td>Forensic Accounting</td><td>Fraud investigation</td><td>Courts, Police</td></tr><tr><td>Government Accounting</td><td>Public funds</td><td>Citizens, Parliament</td></tr></tbody></table>
-
-
-
-## ⚠️ {{exam:secondary}} TIP
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 BRANCHES AT A GLANCE
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Branch</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Main Focus</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Key User</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Financial Accounting</td><td style="padding: 8px; border: 1px solid #e5e7eb;">External reporting</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Shareholders, Banks</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Management Accounting</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Internal decisions</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Managers</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Cost Accounting</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Product costing</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Production managers</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Tax Accounting</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Tax compliance</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Business owners, {{business:tax-authority}}</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Auditing</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Verification</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Shareholders, Regulators</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Forensic Accounting</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Fraud investigation</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Courts, Police</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Government Accounting</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Public funds</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Citizens, Parliament</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚠️ {{exam:secondary}} TIP
+</h2>
 
 Frequently tested concepts:
 1. **Define** each major branch of accounting
@@ -2590,262 +2535,263 @@ Frequently tested concepts:
 3. **Explain** the role of auditing
 4. **Identify** users of each branch
 5. **Apply** to {{country:adjective}} business scenarios`
-      }
+   }
+  ],
+  summary: "Excellent work! You've now mastered the Branches of Accounting! You understand that accounting is a diverse profession with specialized branches serving different needs. Financial Accounting reports to external users using IFRS standards. Management Accounting helps internal managers make decisions. Cost Accounting determines product costs for manufacturing businesses. Tax Accounting ensures compliance with {{business:tax-authority}} requirements. Auditing verifies financial statements through external audits (for shareholders) and internal audits (for management). Forensic Accounting investigates fraud and financial crimes. Government Accounting tracks public sector finances following IPSAS standards. In {{country}}, ICAG is the main professional body, while specialized fields have their own certifications. Each branch offers exciting career opportunities, from working at Big Four firms like KPMG to investigating fraud at EOCO. This knowledge will help you understand the diverse career paths available in accounting!",
+  endOfLessonQuiz: [
+   {
+    id: 'facc-branches-q1',
+    type: 'mcq',
+    question: "Which branch of accounting prepares financial statements for external users?",
+    options: [
+     "Management Accounting",
+     "Cost Accounting",
+     "Financial Accounting",
+     "Forensic Accounting"
     ],
-    summary: "Excellent work! You've now mastered the Branches of Accounting! You understand that accounting is a diverse profession with specialized branches serving different needs. Financial Accounting reports to external users using IFRS standards. Management Accounting helps internal managers make decisions. Cost Accounting determines product costs for manufacturing businesses. Tax Accounting ensures compliance with {{business:tax-authority}} requirements. Auditing verifies financial statements through external audits (for shareholders) and internal audits (for management). Forensic Accounting investigates fraud and financial crimes. Government Accounting tracks public sector finances following IPSAS standards. In {{country}}, ICAG is the main professional body, while specialized fields have their own certifications. Each branch offers exciting career opportunities, from working at Big Four firms like KPMG to investigating fraud at EOCO. This knowledge will help you understand the diverse career paths available in accounting!",
-    endOfLessonQuiz: [
-      {
-        id: 'facc-branches-q1',
-        type: 'mcq',
-        question: "Which branch of accounting prepares financial statements for external users?",
-        options: [
-          "Management Accounting",
-          "Cost Accounting",
-          "Financial Accounting",
-          "Forensic Accounting"
-        ],
-        answer: "Financial Accounting",
-        explanation: "Financial Accounting prepares standardized financial statements (Income Statement, Balance Sheet, Cash Flow) for external users like shareholders, banks, and {{business:tax-authority}}."
-      },
-      {
-        id: 'facc-branches-q2',
-        type: 'mcq',
-        question: "Management accounting differs from financial accounting in that it:",
-        options: [
-          "Must follow IFRS standards",
-          "Provides information for internal decision-making",
-          "Is required by law",
-          "Reports to external shareholders"
-        ],
-        answer: "Provides information for internal decision-making",
-        explanation: "Management accounting serves internal users (managers) and is not bound by IFRS rules. It's future-oriented and helps with planning and decision-making."
-      },
-      {
-        id: 'facc-branches-q3',
-        type: 'mcq',
-        question: "Cost accounting is primarily concerned with:",
-        options: [
-          "Preparing tax returns",
-          "Auditing financial statements",
-          "Determining and controlling product costs",
-          "Investigating fraud"
-        ],
-        answer: "Determining and controlling product costs",
-        explanation: "Cost accounting focuses on determining how much it costs to make products or provide services, and helps control and reduce costs."
-      },
-      {
-        id: 'facc-branches-q4',
-        type: 'mcq',
-        question: "Which branch of accounting deals with compliance with {{business:tax-authority}} requirements?",
-        options: [
-          "Financial Accounting",
-          "Management Accounting",
-          "Tax Accounting",
-          "Auditing"
-        ],
-        answer: "Tax Accounting",
-        explanation: "Tax Accounting deals with tax computation, compliance with {{business:tax-authority}} regulations, tax planning, and filing tax returns."
-      },
-      {
-        id: 'facc-branches-q5',
-        type: 'mcq',
-        question: "External auditing is performed by:",
-        options: [
-          "Company employees",
-          "Independent auditors from outside the company",
-          "Management accountants",
-          "Tax consultants"
-        ],
-        answer: "Independent auditors from outside the company",
-        explanation: "External audits are performed by independent auditors (like Big Four firms) who are not employees of the company they audit."
-      },
-      {
-        id: 'facc-branches-q6',
-        type: 'mcq',
-        question: "Forensic accounting is best described as:",
-        options: [
-          "Preparing financial statements",
-          "Budgeting for the future",
-          "Investigating fraud and financial crimes",
-          "Filing tax returns"
-        ],
-        answer: "Investigating fraud and financial crimes",
-        explanation: "Forensic accounting investigates fraud, embezzlement, and financial crimes, and provides litigation support in legal proceedings."
-      },
-      {
-        id: 'facc-branches-q7',
-        type: 'mcq',
-        question: "Government accounting follows which standards?",
-        options: [
-          "IFRS",
-          "GAAP",
-          "IPSAS",
-          "ACCA Standards"
-        ],
-        answer: "IPSAS",
-        explanation: "Government (public sector) accounting follows IPSAS - International Public Sector Accounting Standards, not IFRS which is for private sector."
-      },
-      {
-        id: 'facc-branches-q8',
-        type: 'mcq',
-        question: "Which organization audits government accounts in {{country}}?",
-        options: [
-          "ICAG",
-          "{{country}} Audit Service",
-          "{{business:tax-authority}}",
-          "Bank of {{country}}"
-        ],
-        answer: "{{country}} Audit Service",
-        explanation: "The {{country}} Audit Service, headed by the Auditor General, audits all government accounts and reports to Parliament."
-      },
-      {
-        id: 'facc-branches-q9',
-        type: 'mcq',
-        question: "An unqualified audit opinion means:",
-        options: [
-          "The auditor found serious problems",
-          "The auditor could not complete the audit",
-          "The financial statements are fairly presented",
-          "The company needs to restate its accounts"
-        ],
-        answer: "The financial statements are fairly presented",
-        explanation: "An unqualified (clean) opinion means the auditor is satisfied that the financial statements are fair in all material respects."
-      },
-      {
-        id: 'facc-branches-q10',
-        type: 'mcq',
-        question: "Which professional body regulates accountants in {{country}}?",
-        options: [
-          "ACCA",
-          "CIMA",
-          "ICAG",
-          "IIA"
-        ],
-        answer: "ICAG",
-        explanation: "ICAG (Institute of Chartered Accountants {{country}}) is the professional body that regulates accountants in {{country}}, awarding the CA ({{country}}) designation."
-      },
-      {
-        id: 'facc-branches-q11',
-        type: 'mcq',
-        question: "The 'Big Four' accounting firms include all EXCEPT:",
-        options: [
-          "KPMG",
-          "PwC",
-          "{{business:tax-authority}}",
-          "Deloitte"
-        ],
-        answer: "{{business:tax-authority}}",
-        explanation: "The Big Four are KPMG, PwC, Deloitte, and EY (Ernst & Young). {{business:tax-authority}} is the {{country}} Revenue Authority, a government tax agency."
-      },
-      {
-        id: 'facc-branches-q12',
-        type: 'mcq',
-        question: "Internal auditing reports to:",
-        options: [
-          "External shareholders",
-          "The Board of Directors/Audit Committee",
-          "{{country}} Revenue Authority",
-          "The general public"
-        ],
-        answer: "The Board of Directors/Audit Committee",
-        explanation: "Internal auditors report to the Board of Directors or Audit Committee, not to external parties. They evaluate internal controls and operations."
-      },
-      {
-        id: 'facc-branches-q13',
-        type: 'mcq',
-        question: "Which cost element includes raw materials that become part of the finished product?",
-        options: [
-          "Direct labor",
-          "Factory overhead",
-          "Direct materials",
-          "Administrative expenses"
-        ],
-        answer: "Direct materials",
-        explanation: "Direct materials are raw materials that can be directly traced to the finished product (e.g., wood in furniture, flour in bread)."
-      },
-      {
-        id: 'facc-branches-q14',
-        type: 'mcq',
-        question: "EOCO in {{country}} uses forensic accounting for:",
-        options: [
-          "Preparing government budgets",
-          "Investigating financial crimes and fraud",
-          "Filing company tax returns",
-          "Auditing financial statements"
-        ],
-        answer: "Investigating financial crimes and fraud",
-        explanation: "EOCO (Economic and Organised Crime Office) uses forensic accountants to investigate fraud, corruption, and financial crimes in {{country}}."
-      },
-      {
-        id: 'facc-branches-q15',
-        type: 'mcq',
-        question: "The Controller and Accountant General's Department (CAGD) is responsible for:",
-        options: [
-          "Auditing private companies",
-          "Managing government payments and accounts",
-          "Collecting taxes",
-          "Setting accounting standards"
-        ],
-        answer: "Managing government payments and accounts",
-        explanation: "CAGD is the government's chief accountant, responsible for managing government payments and preparing consolidated government accounts."
-      }
+    answer: "Financial Accounting",
+    explanation: "Financial Accounting prepares standardized financial statements (Income Statement, Balance Sheet, Cash Flow) for external users like shareholders, banks, and {{business:tax-authority}}."
+   },
+   {
+    id: 'facc-branches-q2',
+    type: 'mcq',
+    question: "Management accounting differs from financial accounting in that it:",
+    options: [
+     "Must follow IFRS standards",
+     "Provides information for internal decision-making",
+     "Is required by law",
+     "Reports to external shareholders"
     ],
-    activities: [],
-    pastQuestions: [
-      {
-        question: "{{exam:secondary}} 2021: Distinguish between financial accounting and management accounting. Give TWO points.",
-        year: "2021",
-        solution: "Financial Accounting vs Management Accounting:\n\n1. Users:\n- Financial Accounting serves external users (shareholders, banks, {{business:tax-authority}}, investors)\n- Management Accounting serves internal users (managers, directors, employees)\n\n2. Standards:\n- Financial Accounting must follow IFRS/IAS standards\n- Management Accounting has no mandatory standards; format is flexible\n\n3. Time Focus:\n- Financial Accounting is historical (reports past performance)\n- Management Accounting is future-oriented (budgets, forecasts)\n\n4. Legal Requirement:\n- Financial Accounting is required by law (Companies Act)\n- Management Accounting is optional, done for internal use"
-      },
-      {
-        question: "{{exam:secondary}} 2019: List FOUR branches of accounting and explain the function of each.",
-        year: "2019",
-        solution: "Four Branches of Accounting:\n\n1. Financial Accounting\nFunction: Records, summarizes, and reports financial transactions to external users through standardized statements (Income Statement, Balance Sheet). Follows IFRS standards.\n\n2. Management Accounting\nFunction: Provides internal information for planning, control, and decision-making. Includes budgeting, variance analysis, and performance measurement for managers.\n\n3. Tax Accounting\nFunction: Handles tax computation, compliance with tax laws, tax planning, and advisory services. Ensures businesses meet {{business:tax-authority}} requirements.\n\n4. Auditing\nFunction: Independent examination of financial records to verify accuracy and compliance. External auditors express opinions on financial statements for shareholders."
-      },
-      {
-        question: "{{exam:secondary}} 2020: (a) What is auditing? (b) Distinguish between internal and external auditing.",
-        year: "2020",
-        solution: "(a) Auditing is the independent examination and verification of financial statements and records to express an opinion on their fairness and compliance with accounting standards.\n\n(b) Internal vs External Auditing:\n\nInternal Audit:\n- Performed by company employees (Internal Audit Department)\n- Reports to Board of Directors/Audit Committee\n- Focus on evaluating internal controls, operations, and efficiency\n- Not required by law but recommended\n- Ongoing throughout the year\n\nExternal Audit:\n- Performed by independent external auditors\n- Reports to shareholders (via audit report)\n- Focus on verifying financial statements accuracy\n- Required by law for companies\n- Conducted annually"
-      },
-      {
-        question: "{{exam:secondary}} 2018: Explain the term 'forensic accounting' and state TWO situations where it may be applied.",
-        year: "2018",
-        solution: "Forensic Accounting:\nForensic accounting is a specialized branch that investigates financial crimes, fraud, disputes, and provides litigation support using accounting and investigative skills. Forensic accountants act as financial detectives.\n\nTwo Situations Where Applied:\n\n1. Fraud Investigation:\nWhen an employee is suspected of embezzling company funds, a forensic accountant investigates by examining financial records, tracing fund movements, and gathering evidence for possible prosecution.\n\n2. Litigation Support:\nIn business disputes involving financial claims (e.g., breach of contract, insurance claims), forensic accountants analyze financial data, calculate damages, and provide expert testimony in court."
-      }
+    answer: "Provides information for internal decision-making",
+    explanation: "Management accounting serves internal users (managers) and is not bound by IFRS rules. It's future-oriented and helps with planning and decision-making."
+   },
+   {
+    id: 'facc-branches-q3',
+    type: 'mcq',
+    question: "Cost accounting is primarily concerned with:",
+    options: [
+     "Preparing tax returns",
+     "Auditing financial statements",
+     "Determining and controlling product costs",
+     "Investigating fraud"
     ],
-  },
+    answer: "Determining and controlling product costs",
+    explanation: "Cost accounting focuses on determining how much it costs to make products or provide services, and helps control and reduce costs."
+   },
+   {
+    id: 'facc-branches-q4',
+    type: 'mcq',
+    question: "Which branch of accounting deals with compliance with {{business:tax-authority}} requirements?",
+    options: [
+     "Financial Accounting",
+     "Management Accounting",
+     "Tax Accounting",
+     "Auditing"
+    ],
+    answer: "Tax Accounting",
+    explanation: "Tax Accounting deals with tax computation, compliance with {{business:tax-authority}} regulations, tax planning, and filing tax returns."
+   },
+   {
+    id: 'facc-branches-q5',
+    type: 'mcq',
+    question: "External auditing is performed by:",
+    options: [
+     "Company employees",
+     "Independent auditors from outside the company",
+     "Management accountants",
+     "Tax consultants"
+    ],
+    answer: "Independent auditors from outside the company",
+    explanation: "External audits are performed by independent auditors (like Big Four firms) who are not employees of the company they audit."
+   },
+   {
+    id: 'facc-branches-q6',
+    type: 'mcq',
+    question: "Forensic accounting is best described as:",
+    options: [
+     "Preparing financial statements",
+     "Budgeting for the future",
+     "Investigating fraud and financial crimes",
+     "Filing tax returns"
+    ],
+    answer: "Investigating fraud and financial crimes",
+    explanation: "Forensic accounting investigates fraud, embezzlement, and financial crimes, and provides litigation support in legal proceedings."
+   },
+   {
+    id: 'facc-branches-q7',
+    type: 'mcq',
+    question: "Government accounting follows which standards?",
+    options: [
+     "IFRS",
+     "GAAP",
+     "IPSAS",
+     "ACCA Standards"
+    ],
+    answer: "IPSAS",
+    explanation: "Government (public sector) accounting follows IPSAS - International Public Sector Accounting Standards, not IFRS which is for private sector."
+   },
+   {
+    id: 'facc-branches-q8',
+    type: 'mcq',
+    question: "Which organization audits government accounts in {{country}}?",
+    options: [
+     "ICAG",
+     "{{country}} Audit Service",
+     "{{business:tax-authority}}",
+     "Bank of {{country}}"
+    ],
+    answer: "{{country}} Audit Service",
+    explanation: "The {{country}} Audit Service, headed by the Auditor General, audits all government accounts and reports to Parliament."
+   },
+   {
+    id: 'facc-branches-q9',
+    type: 'mcq',
+    question: "An unqualified audit opinion means:",
+    options: [
+     "The auditor found serious problems",
+     "The auditor could not complete the audit",
+     "The financial statements are fairly presented",
+     "The company needs to restate its accounts"
+    ],
+    answer: "The financial statements are fairly presented",
+    explanation: "An unqualified (clean) opinion means the auditor is satisfied that the financial statements are fair in all material respects."
+   },
+   {
+    id: 'facc-branches-q10',
+    type: 'mcq',
+    question: "Which professional body regulates accountants in {{country}}?",
+    options: [
+     "ACCA",
+     "CIMA",
+     "ICAG",
+     "IIA"
+    ],
+    answer: "ICAG",
+    explanation: "ICAG (Institute of Chartered Accountants {{country}}) is the professional body that regulates accountants in {{country}}, awarding the CA ({{country}}) designation."
+   },
+   {
+    id: 'facc-branches-q11',
+    type: 'mcq',
+    question: "The 'Big Four' accounting firms include all EXCEPT:",
+    options: [
+     "KPMG",
+     "PwC",
+     "{{business:tax-authority}}",
+     "Deloitte"
+    ],
+    answer: "{{business:tax-authority}}",
+    explanation: "The Big Four are KPMG, PwC, Deloitte, and EY (Ernst & Young). {{business:tax-authority}} is the {{country}} Revenue Authority, a government tax agency."
+   },
+   {
+    id: 'facc-branches-q12',
+    type: 'mcq',
+    question: "Internal auditing reports to:",
+    options: [
+     "External shareholders",
+     "The Board of Directors/Audit Committee",
+     "{{country}} Revenue Authority",
+     "The general public"
+    ],
+    answer: "The Board of Directors/Audit Committee",
+    explanation: "Internal auditors report to the Board of Directors or Audit Committee, not to external parties. They evaluate internal controls and operations."
+   },
+   {
+    id: 'facc-branches-q13',
+    type: 'mcq',
+    question: "Which cost element includes raw materials that become part of the finished product?",
+    options: [
+     "Direct labor",
+     "Factory overhead",
+     "Direct materials",
+     "Administrative expenses"
+    ],
+    answer: "Direct materials",
+    explanation: "Direct materials are raw materials that can be directly traced to the finished product (e.g., wood in furniture, flour in bread)."
+   },
+   {
+    id: 'facc-branches-q14',
+    type: 'mcq',
+    question: "EOCO in {{country}} uses forensic accounting for:",
+    options: [
+     "Preparing government budgets",
+     "Investigating financial crimes and fraud",
+     "Filing company tax returns",
+     "Auditing financial statements"
+    ],
+    answer: "Investigating financial crimes and fraud",
+    explanation: "EOCO (Economic and Organised Crime Office) uses forensic accountants to investigate fraud, corruption, and financial crimes in {{country}}."
+   },
+   {
+    id: 'facc-branches-q15',
+    type: 'mcq',
+    question: "The Controller and Accountant General's Department (CAGD) is responsible for:",
+    options: [
+     "Auditing private companies",
+     "Managing government payments and accounts",
+     "Collecting taxes",
+     "Setting accounting standards"
+    ],
+    answer: "Managing government payments and accounts",
+    explanation: "CAGD is the government's chief accountant, responsible for managing government payments and preparing consolidated government accounts."
+   }
+  ],
+  activities: [],
+  pastQuestions: [
+   {
+    question: "{{exam:secondary}} 2021: Distinguish between financial accounting and management accounting. Give TWO points.",
+    year: "2021",
+    solution: "Financial Accounting vs Management Accounting:\n\n1. Users:\n- Financial Accounting serves external users (shareholders, banks, {{business:tax-authority}}, investors)\n- Management Accounting serves internal users (managers, directors, employees)\n\n2. Standards:\n- Financial Accounting must follow IFRS/IAS standards\n- Management Accounting has no mandatory standards; format is flexible\n\n3. Time Focus:\n- Financial Accounting is historical (reports past performance)\n- Management Accounting is future-oriented (budgets, forecasts)\n\n4. Legal Requirement:\n- Financial Accounting is required by law (Companies Act)\n- Management Accounting is optional, done for internal use"
+   },
+   {
+    question: "{{exam:secondary}} 2019: List FOUR branches of accounting and explain the function of each.",
+    year: "2019",
+    solution: "Four Branches of Accounting:\n\n1. Financial Accounting\nFunction: Records, summarizes, and reports financial transactions to external users through standardized statements (Income Statement, Balance Sheet). Follows IFRS standards.\n\n2. Management Accounting\nFunction: Provides internal information for planning, control, and decision-making. Includes budgeting, variance analysis, and performance measurement for managers.\n\n3. Tax Accounting\nFunction: Handles tax computation, compliance with tax laws, tax planning, and advisory services. Ensures businesses meet {{business:tax-authority}} requirements.\n\n4. Auditing\nFunction: Independent examination of financial records to verify accuracy and compliance. External auditors express opinions on financial statements for shareholders."
+   },
+   {
+    question: "{{exam:secondary}} 2020: (a) What is auditing? (b) Distinguish between internal and external auditing.",
+    year: "2020",
+    solution: "(a) Auditing is the independent examination and verification of financial statements and records to express an opinion on their fairness and compliance with accounting standards.\n\n(b) Internal vs External Auditing:\n\nInternal Audit:\n- Performed by company employees (Internal Audit Department)\n- Reports to Board of Directors/Audit Committee\n- Focus on evaluating internal controls, operations, and efficiency\n- Not required by law but recommended\n- Ongoing throughout the year\n\nExternal Audit:\n- Performed by independent external auditors\n- Reports to shareholders (via audit report)\n- Focus on verifying financial statements accuracy\n- Required by law for companies\n- Conducted annually"
+   },
+   {
+    question: "{{exam:secondary}} 2018: Explain the term 'forensic accounting' and state TWO situations where it may be applied.",
+    year: "2018",
+    solution: "Forensic Accounting:\nForensic accounting is a specialized branch that investigates financial crimes, fraud, disputes, and provides litigation support using accounting and investigative skills. Forensic accountants act as financial detectives.\n\nTwo Situations Where Applied:\n\n1. Fraud Investigation:\nWhen an employee is suspected of embezzling company funds, a forensic accountant investigates by examining financial records, tracing fund movements, and gathering evidence for possible prosecution.\n\n2. Litigation Support:\nIn business disputes involving financial claims (e.g., breach of contract, insurance claims), forensic accountants analyze financial data, calculate damages, and provide expert testimony in court."
+   }
+  ],
+ },
 
-  // Lesson 4: Business Entity Concept
-  {
-    id: 'facc-shs1-concepts-1',
-    slug: 'facc-shs1-concepts-business-entity',
-    title: 'Business Entity Concept',
-    objectives: [
-      'Define and explain the business entity concept',
-      'Understand the separation between business and owner affairs',
-      'Distinguish between business transactions and personal transactions',
-      'Apply the business entity concept to different types of businesses',
-      'Record transactions correctly using the entity concept',
-      'Identify violations of the business entity concept',
-      'Explain the importance of the concept for accurate financial reporting',
-      'Understand how the concept applies to sole proprietorships, partnerships, and companies',
-      'Recognize the legal implications of the business entity concept',
-      'Apply the concept to real-world {{country:adjective}} business scenarios'
-    ],
-    introduction: "Imagine a business owner operates a provision shop at the local market. One day, he takes {{currency}}500 from the shop's cash register to pay his children's school fees. Should this be recorded as a business expense? Absolutely not! This is where the Business Entity Concept comes in—one of the most fundamental principles in accounting. This concept tells us that the business and its owner are SEPARATE entities, even if the same person controls both. Today, we'll learn why keeping business and personal affairs separate is crucial for accurate accounting, legal compliance, and business success. By the end, you'll understand why mixing business and personal finances is a recipe for disaster!",
-    keyConcepts: [
-      {
-        title: 'What is the Business Entity Concept?',
-        content: `The **Business Entity Concept** (also called the Separate Entity Concept) states that a business is treated as a separate entity from its owner(s), and only transactions affecting the business should be recorded in the business books.
+ // Lesson 4: Business Entity Concept
+ {
+  id: 'facc-shs1-concepts-1',
+  slug: 'facc-shs1-concepts-business-entity',
+  title: 'Business Entity Concept',
+  objectives: [
+   'Define and explain the business entity concept',
+   'Understand the separation between business and owner affairs',
+   'Distinguish between business transactions and personal transactions',
+   'Apply the business entity concept to different types of businesses',
+   'Record transactions correctly using the entity concept',
+   'Identify violations of the business entity concept',
+   'Explain the importance of the concept for accurate financial reporting',
+   'Understand how the concept applies to sole proprietorships, partnerships, and companies',
+   'Recognize the legal implications of the business entity concept',
+   'Apply the concept to real-world {{country:adjective}} business scenarios'
+  ],
+  introduction: "Imagine a business owner operates a provision shop at the local market. One day, he takes {{currency}}500 from the shop's cash register to pay his children's school fees. Should this be recorded as a business expense? Absolutely not! This is where the Business Entity Concept comes in—one of the most fundamental principles in accounting. This concept tells us that the business and its owner are SEPARATE entities, even if the same person controls both. Today, we'll learn why keeping business and personal affairs separate is crucial for accurate accounting, legal compliance, and business success. By the end, you'll understand why mixing business and personal finances is a recipe for disaster!",
+  keyConcepts: [
+   {
+    title: 'What is the Business Entity Concept?',
+    content: `The **Business Entity Concept** (also called the Separate Entity Concept) states that a business is treated as a separate entity from its owner(s), and only transactions affecting the business should be recorded in the business books.
 
-## 📋 DEFINITION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 DEFINITION
+</h2>
 
 **Business Entity Concept:**
 The business is considered a separate economic unit, distinct from its owners. Business transactions must be recorded separately from the personal transactions of the owner(s).
 
 
-
-## 🔑 KEY PRINCIPLES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔑 KEY PRINCIPLES
+</h2>
 
 **1. Separation of Records**
 - Business has its OWN books of accounts
@@ -2864,26 +2810,24 @@ The business is considered a separate economic unit, distinct from its owners. B
 - Money taken out by owner = Drawings (reducing capital)
 
 
-
-## 🎯 WHY IS THIS CONCEPT IMPORTANT?
-
-<table><thead><tr><th>Reason</th><th>Explanation</th><th>Example</th></tr></thead><tbody><tr><td><strong>Accurate Financial Statements</strong></td><td>Shows true business performance</td><td>Profit reflects only business activities</td></tr><tr><td><strong>Legal Compliance</strong></td><td>Tax authorities need business-only records</td><td>{{business:tax-authority}} assesses tax on business income only</td></tr><tr><td><strong>Decision Making</strong></td><td>Owners can evaluate business properly</td><td>Is the shop profitable or not?</td></tr><tr><td><strong>Creditor Protection</strong></td><td>Shows what belongs to the business</td><td>Banks assess business assets for loans</td></tr><tr><td><strong>Performance Measurement</strong></td><td>Compare business results fairly</td><td>Compare this year to last year</td></tr></tbody></table>
-
-
-
-## {{country:flag}} {{country}} CONTEXT
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🎯 WHY IS THIS CONCEPT IMPORTANT?
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Reason</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Explanation</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Example</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Accurate Financial Statements</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Shows true business performance</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Profit reflects only business activities</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Legal Compliance</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Tax authorities need business-only records</td><td style="padding: 8px; border: 1px solid #e5e7eb;">{{business:tax-authority}} assesses tax on business income only</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Decision Making</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Owners can evaluate business properly</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Is the shop profitable or not?</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Creditor Protection</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Shows what belongs to the business</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Banks assess business assets for loans</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Performance Measurement</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Compare business results fairly</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Compare this year to last year</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} {{country}} CONTEXT
+</h2>
 
 In {{country}}, the Business Entity Concept is crucial because:
 - {{business:tax-authority}} taxes business income separately from personal income
 - {{business:companies-act}} requires proper separation of company affairs
 - Banks require business financial statements for loans
 - ICAG professional standards demand adherence to this concept`
-      },
-      {
-        title: 'Business vs Personal Transactions',
-        content: `Understanding which transactions belong to the business versus personal affairs is essential for correct recording.
+   },
+   {
+    title: 'Business vs Personal Transactions',
+    content: `Understanding which transactions belong to the business versus personal affairs is essential for correct recording.
 
-## ✅ BUSINESS TRANSACTIONS (Record in Business Books)
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">✅ BUSINESS TRANSACTIONS (Record in Business Books)
+</h2>
 
 **Definition:** Transactions that affect the business's assets, liabilities, capital, income, or expenses.
 
@@ -2898,8 +2842,8 @@ In {{country}}, the Business Entity Concept is crucial because:
 - Advertising expenses
 
 
-
-## ❌ PERSONAL TRANSACTIONS (Do NOT Record in Business Books)
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">❌ PERSONAL TRANSACTIONS (Do NOT Record in Business Books)
+</h2>
 
 **Definition:** Transactions related to the owner's private life that have nothing to do with the business.
 
@@ -2914,16 +2858,14 @@ In {{country}}, the Business Entity Concept is crucial because:
 - Personal entertainment expenses
 
 
-
-## ⚠️ THE TRICKY CASES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚠️ THE TRICKY CASES
+</h2>
 
 Sometimes transactions seem unclear. Here's how to handle them:
 
-<table><thead><tr><th>Situation</th><th>Correct Treatment</th><th>Explanation</th></tr></thead><tbody><tr><td>Owner pays for business goods with personal money</td><td>Record as Capital Introduction</td><td>Owner is putting money INTO the business</td></tr><tr><td>Owner takes business money for personal use</td><td>Record as Drawings</td><td>Owner is taking money OUT of the business</td></tr><tr><td>Owner uses personal car for business deliveries</td><td>Record fuel/maintenance as business expense</td><td>The portion used for business is deductible</td></tr><tr><td>Owner's house is used partly as office</td><td>Record proportionate rent as expense</td><td>Only business portion is an expense</td></tr><tr><td>Owner takes business goods for personal use</td><td>Record as Drawings at cost/selling price</td><td>Reduces inventory, increases drawings</td></tr></tbody></table>
-
-
-
-## 📝 PRACTICAL EXAMPLE
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Situation</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Correct Treatment</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Explanation</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Owner pays for business goods with personal money</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Record as Capital Introduction</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Owner is putting money INTO the business</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Owner takes business money for personal use</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Record as Drawings</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Owner is taking money OUT of the business</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Owner uses personal car for business deliveries</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Record fuel/maintenance as business expense</td><td style="padding: 8px; border: 1px solid #e5e7eb;">The portion used for business is deductible</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Owner's house is used partly as office</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Record proportionate rent as expense</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Only business portion is an expense</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Owner takes business goods for personal use</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Record as Drawings at cost/selling price</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Reduces inventory, increases drawings</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 PRACTICAL EXAMPLE
+</h2>
 
 **Scenario:** A business owner operates a hairdressing salon.
 
@@ -2938,12 +2880,13 @@ Sometimes transactions seem unclear. Here's how to handle them:
 | Paid home electricity {{currency}}400 | ❌ Personal | Do NOT record (or Drawings) |
 | Used {{currency}}800 of products on herself | ❌ Personal | Record as Drawings |
 | Put extra {{currency}}2,000 into business | ✅ Business | Credit Capital |`
-      },
-      {
-        title: 'Capital and Drawings',
-        content: `Understanding Capital and Drawings is essential for applying the Business Entity Concept correctly.
+   },
+   {
+    title: 'Capital and Drawings',
+    content: `Understanding Capital and Drawings is essential for applying the Business Entity Concept correctly.
 
-## 💰 CAPITAL
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">💰 CAPITAL
+</h2>
 
 **Definition:** Money or assets introduced into the business by the owner(s).
 
@@ -2955,8 +2898,8 @@ Sometimes transactions seem unclear. Here's how to handle them:
 **Recording Capital:**
 \`\`\`
 When the owner starts the shop with {{currency}}10,000:
-   Debit: Cash/Bank      {{currency}}10,000  (asset increases)
-   Credit: Capital       {{currency}}10,000  (liability to owner increases)
+  Debit: Cash/Bank   {{currency}}10,000 (asset increases)
+  Credit: Capital    {{currency}}10,000 (liability to owner increases)
 \`\`\`
 
 **Types of Capital Introduction:**
@@ -2965,8 +2908,8 @@ When the owner starts the shop with {{currency}}10,000:
 3. **Additional Capital** - Extra money added later
 
 
-
-## 📤 DRAWINGS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📤 DRAWINGS
+</h2>
 
 **Definition:** Money, goods, or assets taken OUT of the business by the owner for personal use.
 
@@ -2978,8 +2921,8 @@ When the owner starts the shop with {{currency}}10,000:
 **Recording Drawings:**
 \`\`\`
 When the owner takes {{currency}}500 for personal use:
-   Debit: Drawings       {{currency}}500  (reduces owner's equity)
-   Credit: Cash/Bank     {{currency}}500  (asset decreases)
+  Debit: Drawings    {{currency}}500 (reduces owner's equity)
+  Credit: Cash/Bank   {{currency}}500 (asset decreases)
 \`\`\`
 
 **Types of Drawings:**
@@ -2988,14 +2931,11 @@ When the owner takes {{currency}}500 for personal use:
 3. **Asset Drawings** - Using business assets personally
 
 
-
-## 📊 CAPITAL vs DRAWINGS COMPARISON
-
-<table><thead><tr><th>Aspect</th><th>Capital</th><th>Drawings</th></tr></thead><tbody><tr><td><strong>Direction</strong></td><td>INTO the business</td><td>OUT OF the business</td></tr><tr><td><strong>Effect on Owner's Equity</strong></td><td>Increases</td><td>Decreases</td></tr><tr><td><strong>Recording</strong></td><td>Credit Capital account</td><td>Debit Drawings account</td></tr><tr><td><strong>Example</strong></td><td>Owner invests {{currency}}20,000</td><td>Owner takes {{currency}}1,000 for rent</td></tr><tr><td><strong>Balance Sheet</strong></td><td>Added to Owner's Equity</td><td>Deducted from Owner's Equity</td></tr></tbody></table>
-
-
-
-## 📋 CALCULATING CLOSING CAPITAL
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 CAPITAL vs DRAWINGS COMPARISON
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Aspect</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Capital</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Drawings</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Direction</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">INTO the business</td><td style="padding: 8px; border: 1px solid #e5e7eb;">OUT OF the business</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Effect on Owner's Equity</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Increases</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Decreases</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Recording</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Credit Capital account</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Debit Drawings account</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Example</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Owner invests {{currency}}20,000</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Owner takes {{currency}}1,000 for rent</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Balance Sheet</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Added to Owner's Equity</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Deducted from Owner's Equity</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 CALCULATING CLOSING CAPITAL
+</h2>
 
 At the end of the accounting period:
 
@@ -3010,8 +2950,8 @@ At the end of the accounting period:
 **Closing Capital = {{currency}}50,000 + {{currency}}15,000 - {{currency}}8,000 + {{currency}}5,000 = {{currency}}62,000**
 
 
-
-## ⚠️ COMMON MISTAKES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚠️ COMMON MISTAKES
+</h2>
 
 **1. Recording Drawings as Expense**
 ❌ Wrong: Debit Expenses, Credit Cash
@@ -3024,12 +2964,13 @@ At the end of the accounting period:
 **3. Treating Capital as Income**
 ❌ Wrong: Recording capital as revenue
 ✅ Correct: Recording as increase in Capital account`
-      },
-      {
-        title: 'Application to Different Business Types',
-        content: `The Business Entity Concept applies differently depending on the type of business organization.
+   },
+   {
+    title: 'Application to Different Business Types',
+    content: `The Business Entity Concept applies differently depending on the type of business organization.
 
-## 🏪 SOLE PROPRIETORSHIP
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🏪 SOLE PROPRIETORSHIP
+</h2>
 
 **Legal Status:** Business and owner are LEGALLY the same person.
 **Accounting Treatment:** Business and owner are SEPARATE for accounting purposes.
@@ -3047,8 +2988,8 @@ A business owner operates a provision shop in the market:
 - If the owner takes {{currency}}200 for lunch, it's Drawings, not expense
 
 
-
-## 👥 PARTNERSHIP
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">👥 PARTNERSHIP
+</h2>
 
 **Legal Status:** Partners and partnership are LEGALLY connected.
 **Accounting Treatment:** Partnership is SEPARATE from each partner.
@@ -3066,8 +3007,8 @@ Two partners run a pharmacy partnership:
 - Personal expenses by either partner = Drawings from their account
 
 
-
-## 🏢 LIMITED LIABILITY COMPANY
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🏢 LIMITED LIABILITY COMPANY
+</h2>
 
 **Legal Status:** Company is a SEPARATE LEGAL ENTITY from shareholders.
 **Accounting Treatment:** Strongest application of entity concept.
@@ -3085,14 +3026,11 @@ MTN {{country}} Ltd:
 - Profits belong to company until dividends declared
 
 
-
-## 📊 COMPARISON TABLE
-
-<table><thead><tr><th>Aspect</th><th>Sole Proprietor</th><th>Partnership</th><th>Company</th></tr></thead><tbody><tr><td><strong>Legal Separation</strong></td><td>No</td><td>Partial</td><td>Yes (complete)</td></tr><tr><td><strong>Accounting Separation</strong></td><td>Yes</td><td>Yes</td><td>Yes</td></tr><tr><td><strong>Owner's Liability</strong></td><td>Unlimited</td><td>Unlimited (usually)</td><td>Limited to shares</td></tr><tr><td><strong>Owner's Investment Called</strong></td><td>Capital</td><td>Partners' Capital</td><td>Share Capital</td></tr><tr><td><strong>Money Taken Out</strong></td><td>Drawings</td><td>Drawings</td><td>Dividends</td></tr><tr><td><strong>Taxed As</strong></td><td>Personal income</td><td>Partners' income</td><td>Corporate tax</td></tr></tbody></table>
-
-
-
-## {{country:flag}} LEGAL FRAMEWORK IN {{country}}
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 COMPARISON TABLE
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Aspect</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Sole Proprietor</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Partnership</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Company</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Legal Separation</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">No</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Partial</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Yes (complete)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Accounting Separation</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Yes</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Yes</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Yes</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Owner's Liability</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Unlimited</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Unlimited (usually)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Limited to shares</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Owner's Investment Called</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Capital</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Partners' Capital</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Share Capital</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Money Taken Out</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Drawings</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Drawings</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Dividends</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Taxed As</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Personal income</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Partners' income</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Corporate tax</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} LEGAL FRAMEWORK IN {{country}}
+</h2>
 
 **Sole Proprietorship:**
 - Registered with Registrar General (Business Name Registration)
@@ -3107,74 +3045,73 @@ MTN {{country}} Ltd:
 - Company is a separate legal person
 - Pays corporate tax (25%)
 - Must keep proper books of accounts`
-      },
-      {
-        title: 'Practical Applications',
-        content: `Let's apply the Business Entity Concept to real-world scenarios you might encounter in {{exam:secondary}} exams or professional practice.
+   },
+   {
+    title: 'Practical Applications',
+    content: `Let's apply the Business Entity Concept to real-world scenarios you might encounter in {{exam:secondary}} exams or professional practice.
 
-## 📝 SCENARIO 1: Mixed Payments
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 SCENARIO 1: Mixed Payments
+</h2>
 
 **Situation:** The owner uses the business cheque book to pay {{currency}}1,200 for electricity. {{currency}}800 is for the shop, {{currency}}400 is for his home.
 
 **Correct Treatment:**
 \`\`\`
-Debit: Electricity Expense    {{currency}}800   (Business portion)
-Debit: Drawings               {{currency}}400   (Personal portion)
-Credit: Bank                  {{currency}}1,200 (Total paid)
+Debit: Electricity Expense  {{currency}}800  (Business portion)
+Debit: Drawings        {{currency}}400  (Personal portion)
+Credit: Bank         {{currency}}1,200 (Total paid)
 \`\`\`
 
 
-
-## 📝 SCENARIO 2: Owner Takes Goods
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 SCENARIO 2: Owner Takes Goods
+</h2>
 
 **Situation:** Madam Esi owns a grocery shop. She takes goods costing {{currency}}300 (selling price {{currency}}450) for her family.
 
 **Correct Treatment (at cost):**
 \`\`\`
-Debit: Drawings               {{currency}}300
-Credit: Purchases             {{currency}}300
+Debit: Drawings        {{currency}}300
+Credit: Purchases       {{currency}}300
 \`\`\`
 
 **Note:** Some businesses record at selling price. Either is acceptable if consistent.
 
 
-
-## 📝 SCENARIO 3: Personal Asset for Business
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 SCENARIO 3: Personal Asset for Business
+</h2>
 
 **Situation:** Kweku uses his personal car (worth {{currency}}80,000) for his delivery business. He wants to bring it into the business.
 
 **Correct Treatment:**
 \`\`\`
-Debit: Motor Vehicle          {{currency}}80,000
-Credit: Capital               {{currency}}80,000
+Debit: Motor Vehicle     {{currency}}80,000
+Credit: Capital        {{currency}}80,000
 \`\`\`
 
 
-
-## 📝 SCENARIO 4: Business Pays Personal Debt
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 SCENARIO 4: Business Pays Personal Debt
+</h2>
 
 **Situation:** The business pays {{currency}}5,000 to settle the owner's personal loan from a friend.
 
 **Correct Treatment:**
 \`\`\`
-Debit: Drawings               {{currency}}5,000
-Credit: Bank/Cash             {{currency}}5,000
+Debit: Drawings        {{currency}}5,000
+Credit: Bank/Cash       {{currency}}5,000
 \`\`\`
 
 **NOT:**
 ~~Debit: Loan Expense {{currency}}5,000~~ (This would be WRONG!)
 
 
-
-## 📋 {{exam:secondary}}-STYLE QUESTION ANALYSIS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 {{exam:secondary}}-STYLE QUESTION ANALYSIS
+</h2>
 
 **Question:** State whether each transaction should be recorded in the business books. If yes, show the journal entry.
 
-<table><thead><tr><th>Transaction</th><th>Record?</th><th>Journal Entry</th></tr></thead><tbody><tr><td>Owner pays business rent from personal funds</td><td>Yes</td><td>Dr Rent ₵X, Cr Capital ₵X</td></tr><tr><td>Owner's child receives school fees from business</td><td>Yes</td><td>Dr Drawings ₵X, Cr Cash ₵X</td></tr><tr><td>Owner buys personal TV with own money</td><td>No</td><td>Not recorded</td></tr><tr><td>Owner takes cash from till for personal use</td><td>Yes</td><td>Dr Drawings ₵X, Cr Cash ₵X</td></tr><tr><td>Business receives sales revenue</td><td>Yes</td><td>Dr Cash ₵X, Cr Sales ₵X</td></tr><tr><td>Owner inherits money personally</td><td>No</td><td>Not recorded</td></tr></tbody></table>
-
-
-
-## ⚠️ VIOLATIONS OF THE ENTITY CONCEPT
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Transaction</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Record?</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Journal Entry</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Owner pays business rent from personal funds</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Yes</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Dr Rent ₵X, Cr Capital ₵X</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Owner's child receives school fees from business</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Yes</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Dr Drawings ₵X, Cr Cash ₵X</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Owner buys personal TV with own money</td><td style="padding: 8px; border: 1px solid #e5e7eb;">No</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Not recorded</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Owner takes cash from till for personal use</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Yes</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Dr Drawings ₵X, Cr Cash ₵X</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Business receives sales revenue</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Yes</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Dr Cash ₵X, Cr Sales ₵X</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Owner inherits money personally</td><td style="padding: 8px; border: 1px solid #e5e7eb;">No</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Not recorded</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚠️ VIOLATIONS OF THE ENTITY CONCEPT
+</h2>
 
 **What happens when the concept is violated?**
 
@@ -3183,12 +3120,13 @@ Credit: Bank/Cash             {{currency}}5,000
 3. **Misleading Stakeholders** - Banks/investors get wrong picture
 4. **Legal Issues** - Companies Act violations for limited companies
 5. **Poor Decision Making** - Can't tell if business is truly profitable`
-      },
-      {
-        title: 'Relationship with Other Concepts',
-        content: `The Business Entity Concept works alongside other accounting concepts to form the foundation of accounting practice.
+   },
+   {
+    title: 'Relationship with Other Concepts',
+    content: `The Business Entity Concept works alongside other accounting concepts to form the foundation of accounting practice.
 
-## 🔗 RELATED CONCEPTS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔗 RELATED CONCEPTS
+</h2>
 
 **1. GOING CONCERN CONCEPT**
 - Connection: Entity concept assumes the business will continue operating
@@ -3216,14 +3154,11 @@ Credit: Bank/Cash             {{currency}}5,000
 - Drawings are period reductions of capital, not expenses
 
 
-
-## 📊 HOW CONCEPTS WORK TOGETHER
-
-<table><thead><tr><th>Concept</th><th>Rule</th><th>Entity Concept Connection</th></tr></thead><tbody><tr><td>Going Concern</td><td>Business continues indefinitely</td><td>Separate entity has continuous existence</td></tr><tr><td>Accruals</td><td>Record when earned/incurred</td><td>Only entity's income/expenses accrued</td></tr><tr><td>Consistency</td><td>Same methods year to year</td><td>Entity's policies applied consistently</td></tr><tr><td>Prudence</td><td>Don't overstate assets/income</td><td>Only entity's verifiable items recorded</td></tr><tr><td>Materiality</td><td>Record significant items</td><td>Material to the entity, not owner personally</td></tr></tbody></table>
-
-
-
-## 🎯 IFRS/IAS FRAMEWORK
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 HOW CONCEPTS WORK TOGETHER
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Concept</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Rule</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Entity Concept Connection</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Going Concern</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Business continues indefinitely</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Separate entity has continuous existence</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Accruals</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Record when earned/incurred</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Only entity's income/expenses accrued</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Consistency</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Same methods year to year</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Entity's policies applied consistently</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Prudence</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Don't overstate assets/income</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Only entity's verifiable items recorded</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Materiality</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Record significant items</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Material to the entity, not owner personally</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🎯 IFRS/IAS FRAMEWORK
+</h2>
 
 The Business Entity Concept is fundamental in IFRS:
 
@@ -3238,8 +3173,8 @@ The Business Entity Concept is fundamental in IFRS:
 - Internal transactions eliminated
 
 
-
-## {{country:flag}} REGULATORY REQUIREMENTS IN {{country}}
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} REGULATORY REQUIREMENTS IN {{country}}
+</h2>
 
 **{{business:companies-act}}:**
 - Companies must maintain proper accounting records
@@ -3255,12 +3190,13 @@ The Business Entity Concept is fundamental in IFRS:
 - Professional accountants must ensure entity concept compliance
 - Audit procedures verify separation
 - Ethical requirements prohibit facilitating breaches`
-      },
-      {
-        title: 'Key Terms Summary',
-        content: `Master these important terms related to the Business Entity Concept!
+   },
+   {
+    title: 'Key Terms Summary',
+    content: `Master these important terms related to the Business Entity Concept!
 
-## 📚 ESSENTIAL VOCABULARY
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📚 ESSENTIAL VOCABULARY
+</h2>
 
 **Business Entity Concept**
 Definition: The accounting principle that treats a business as separate from its owner(s), requiring only business transactions to be recorded in the business books.
@@ -3296,14 +3232,11 @@ Definition: Shareholders' personal assets are protected from business debts (app
 Definition: Owner is personally responsible for all business debts (applies to sole proprietors/partnerships).
 
 
-
-## 📋 QUICK REFERENCE
-
-<table><thead><tr><th>Term</th><th>Effect on Business</th><th>Where Recorded</th></tr></thead><tbody><tr><td>Capital</td><td>Increases owner's equity</td><td>Credit Capital account</td></tr><tr><td>Drawings (cash)</td><td>Decreases owner's equity</td><td>Debit Drawings account</td></tr><tr><td>Drawings (goods)</td><td>Decreases owner's equity</td><td>Debit Drawings, Credit Purchases</td></tr><tr><td>Additional Capital</td><td>Increases owner's equity</td><td>Credit Capital account</td></tr><tr><td>Business Expense</td><td>Decreases profit</td><td>Debit relevant expense</td></tr><tr><td>Personal Expense</td><td>No effect on profit</td><td>Record as Drawings or not at all</td></tr></tbody></table>
-
-
-
-## ⚠️ {{exam:secondary}} TIP
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 QUICK REFERENCE
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Term</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Effect on Business</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Where Recorded</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Capital</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Increases owner's equity</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Credit Capital account</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Drawings (cash)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Decreases owner's equity</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Debit Drawings account</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Drawings (goods)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Decreases owner's equity</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Debit Drawings, Credit Purchases</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Additional Capital</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Increases owner's equity</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Credit Capital account</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Business Expense</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Decreases profit</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Debit relevant expense</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Personal Expense</td><td style="padding: 8px; border: 1px solid #e5e7eb;">No effect on profit</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Record as Drawings or not at all</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚠️ {{exam:secondary}} TIP
+</h2>
 
 Key points examiners look for:
 1. **Define** the business entity concept clearly
@@ -3311,262 +3244,263 @@ Key points examiners look for:
 3. **Distinguish** business from personal transactions
 4. **Apply** correct treatment (Capital, Drawings, Expenses)
 5. **Show** journal entries where required`
-      }
+   }
+  ],
+  summary: "Excellent work! You've mastered the Business Entity Concept—one of the most fundamental principles in accounting! You now understand that a business is treated as SEPARATE from its owner(s) for accounting purposes, even if they're legally the same person (like a sole proprietor). Only business transactions should be recorded in the business books. Money put IN by the owner is Capital, and money taken OUT is Drawings (not an expense!). This concept is crucial for accurate financial reporting, proper tax assessment by {{business:tax-authority}}, and meaningful business performance measurement. Remember: when the owner uses business money for personal expenses, it's Drawings, not an expense! The concept applies to all business types—sole proprietorships, partnerships, and companies—though companies have the strongest legal separation. Understanding this concept will help you record transactions correctly throughout your accounting studies!",
+  endOfLessonQuiz: [
+   {
+    id: 'facc-entity-q1',
+    type: 'mcq',
+    question: "The Business Entity Concept states that:",
+    options: [
+     "The business and owner share the same bank account",
+     "The business is treated as separate from its owner for accounting purposes",
+     "All owner's expenses are business expenses",
+     "The owner cannot take money from the business"
     ],
-    summary: "Excellent work! You've mastered the Business Entity Concept—one of the most fundamental principles in accounting! You now understand that a business is treated as SEPARATE from its owner(s) for accounting purposes, even if they're legally the same person (like a sole proprietor). Only business transactions should be recorded in the business books. Money put IN by the owner is Capital, and money taken OUT is Drawings (not an expense!). This concept is crucial for accurate financial reporting, proper tax assessment by {{business:tax-authority}}, and meaningful business performance measurement. Remember: when the owner uses business money for personal expenses, it's Drawings, not an expense! The concept applies to all business types—sole proprietorships, partnerships, and companies—though companies have the strongest legal separation. Understanding this concept will help you record transactions correctly throughout your accounting studies!",
-    endOfLessonQuiz: [
-      {
-        id: 'facc-entity-q1',
-        type: 'mcq',
-        question: "The Business Entity Concept states that:",
-        options: [
-          "The business and owner share the same bank account",
-          "The business is treated as separate from its owner for accounting purposes",
-          "All owner's expenses are business expenses",
-          "The owner cannot take money from the business"
-        ],
-        answer: "The business is treated as separate from its owner for accounting purposes",
-        explanation: "The Business Entity Concept treats the business as a separate economic unit from its owner(s). Only business transactions are recorded in the business books."
-      },
-      {
-        id: 'facc-entity-q2',
-        type: 'mcq',
-        question: "When the owner takes cash from the business for personal use, it is recorded as:",
-        options: [
-          "An expense",
-          "A liability",
-          "Drawings",
-          "Revenue"
-        ],
-        answer: "Drawings",
-        explanation: "When the owner takes money out of the business for personal use, it is recorded as Drawings, which reduces the owner's capital. It is NOT an expense."
-      },
-      {
-        id: 'facc-entity-q3',
-        type: 'mcq',
-        question: "Capital in accounting represents:",
-        options: [
-          "Money the business owes to suppliers",
-          "The owner's investment in the business",
-          "The business's total expenses",
-          "Cash in the bank"
-        ],
-        answer: "The owner's investment in the business",
-        explanation: "Capital represents the money or assets introduced into the business by the owner. From the business's perspective, it's what the business 'owes' to the owner."
-      },
-      {
-        id: 'facc-entity-q4',
-        type: 'mcq',
-        question: "If the owner pays her children's school fees using business funds, this should be:",
-        options: [
-          "Recorded as education expense",
-          "Recorded as drawings",
-          "Not recorded at all",
-          "Recorded as a loan"
-        ],
-        answer: "Recorded as drawings",
-        explanation: "Paying personal expenses (like school fees) with business funds is not a business expense. It must be recorded as Drawings—money taken out by the owner."
-      },
-      {
-        id: 'facc-entity-q5',
-        type: 'mcq',
-        question: "Which of the following is a BUSINESS transaction?",
-        options: [
-          "Owner pays home rent",
-          "Owner buys inventory for resale",
-          "Owner pays family medical bills",
-          "Owner buys personal groceries"
-        ],
-        answer: "Owner buys inventory for resale",
-        explanation: "Buying inventory for resale is a business transaction because it directly relates to the business operations. Personal expenses like rent, medical bills, and groceries are not business transactions."
-      },
-      {
-        id: 'facc-entity-q6',
-        type: 'mcq',
-        question: "When the owner introduces additional money into the business, it is:",
-        options: [
-          "Debited to Capital account",
-          "Credited to Capital account",
-          "Debited to Drawings account",
-          "Credited to Sales account"
-        ],
-        answer: "Credited to Capital account",
-        explanation: "When the owner puts money INTO the business, Capital increases. Capital is credited (it has a credit balance), and Cash/Bank is debited."
-      },
-      {
-        id: 'facc-entity-q7',
-        type: 'mcq',
-        question: "The business entity concept is MOST strongly applied in:",
-        options: [
-          "Sole proprietorships",
-          "Partnerships",
-          "Limited liability companies",
-          "All businesses equally"
-        ],
-        answer: "Limited liability companies",
-        explanation: "Limited liability companies have complete legal separation between the company and shareholders. The company is a separate legal person that can sue, be sued, and own assets."
-      },
-      {
-        id: 'facc-entity-q8',
-        type: 'mcq',
-        question: "If the owner takes goods worth {{currency}}500 from the shop for personal use, the entry is:",
-        options: [
-          "Debit Purchases {{currency}}500, Credit Cash {{currency}}500",
-          "Debit Drawings {{currency}}500, Credit Purchases {{currency}}500",
-          "Debit Sales {{currency}}500, Credit Drawings {{currency}}500",
-          "Debit Expenses {{currency}}500, Credit Stock {{currency}}500"
-        ],
-        answer: "Debit Drawings {{currency}}500, Credit Purchases {{currency}}500",
-        explanation: "When the owner takes goods for personal use, Drawings is debited (increases) and Purchases is credited (reduces cost of goods). This is called 'goods for own use.'"
-      },
-      {
-        id: 'facc-entity-q9',
-        type: 'mcq',
-        question: "Why is the business entity concept important for {{business:tax-authority}}?",
-        options: [
-          "{{business:tax-authority}} doesn't need the entity concept",
-          "It helps separate taxable business income from personal income",
-          "It allows owners to avoid paying taxes",
-          "It combines business and personal taxes"
-        ],
-        answer: "It helps separate taxable business income from personal income",
-        explanation: "{{business:tax-authority}} needs the entity concept to assess taxes correctly. Business income is taxed differently from personal income, and personal expenses are not deductible from business profits."
-      },
-      {
-        id: 'facc-entity-q10',
-        type: 'mcq',
-        question: "In a sole proprietorship, the owner:",
-        options: [
-          "Has limited liability",
-          "Is legally the same as the business but separate for accounting",
-          "Cannot take drawings",
-          "Is completely separate from the business legally and for accounting"
-        ],
-        answer: "Is legally the same as the business but separate for accounting",
-        explanation: "In a sole proprietorship, the owner and business are legally the same (unlimited liability), but for ACCOUNTING purposes, they are treated as separate entities."
-      },
-      {
-        id: 'facc-entity-q11',
-        type: 'mcq',
-        question: "Drawings are:",
-        options: [
-          "An expense that reduces profit",
-          "A reduction of owner's capital, not an expense",
-          "Added to calculate gross profit",
-          "The same as purchases"
-        ],
-        answer: "A reduction of owner's capital, not an expense",
-        explanation: "Drawings reduce the owner's capital but are NOT an expense. They don't affect profit calculation—they're shown as a deduction from capital in the Balance Sheet."
-      },
-      {
-        id: 'facc-entity-q12',
-        type: 'mcq',
-        question: "If the owner pays business electricity of {{currency}}800 from personal funds, the entry is:",
-        options: [
-          "Debit Electricity {{currency}}800, Credit Cash {{currency}}800",
-          "Debit Electricity {{currency}}800, Credit Capital {{currency}}800",
-          "Debit Drawings {{currency}}800, Credit Cash {{currency}}800",
-          "No entry needed"
-        ],
-        answer: "Debit Electricity {{currency}}800, Credit Capital {{currency}}800",
-        explanation: "When the owner pays a business expense from personal funds, it's treated as the owner putting money INTO the business. Debit the expense, credit Capital."
-      },
-      {
-        id: 'facc-entity-q13',
-        type: 'mcq',
-        question: "The formula for closing capital is:",
-        options: [
-          "Opening Capital + Drawings - Profit",
-          "Opening Capital + Profit - Drawings",
-          "Opening Capital - Profit - Drawings",
-          "Opening Capital + Profit + Drawings"
-        ],
-        answer: "Opening Capital + Profit - Drawings",
-        explanation: "Closing Capital = Opening Capital + Net Profit - Drawings (+ any Additional Capital). Profit increases capital, drawings decrease it."
-      },
-      {
-        id: 'facc-entity-q14',
-        type: 'mcq',
-        question: "Which is a violation of the business entity concept?",
-        options: [
-          "Recording sales made by the business",
-          "Recording business rent expense",
-          "Recording owner's personal expenses as business expenses",
-          "Recording owner's capital introduction"
-        ],
-        answer: "Recording owner's personal expenses as business expenses",
-        explanation: "Recording personal expenses as business expenses violates the entity concept because it mixes personal and business affairs, distorting profit and tax liability."
-      },
-      {
-        id: 'facc-entity-q15',
-        type: 'mcq',
-        question: "In accounting, capital is considered a liability because:",
-        options: [
-          "The owner must pay it back to the bank",
-          "It represents what the business owes to the owner",
-          "It decreases when profits are made",
-          "It is the same as drawings"
-        ],
-        answer: "It represents what the business owes to the owner",
-        explanation: "From the business entity's perspective, capital is a 'liability' to the owner—it's what the business owes back to the owner. This treats the owner as a separate party."
-      }
+    answer: "The business is treated as separate from its owner for accounting purposes",
+    explanation: "The Business Entity Concept treats the business as a separate economic unit from its owner(s). Only business transactions are recorded in the business books."
+   },
+   {
+    id: 'facc-entity-q2',
+    type: 'mcq',
+    question: "When the owner takes cash from the business for personal use, it is recorded as:",
+    options: [
+     "An expense",
+     "A liability",
+     "Drawings",
+     "Revenue"
     ],
-    activities: [],
-    pastQuestions: [
-      {
-        question: "{{exam:secondary}} 2020: (a) Define the business entity concept. (b) Give TWO reasons why this concept is important in accounting.",
-        year: "2020",
-        solution: "(a) The Business Entity Concept states that a business is treated as a separate entity from its owner(s) for accounting purposes. Only transactions affecting the business are recorded in the business books, and personal transactions of the owner are excluded.\n\n(b) Two reasons why this concept is important:\n\n1. Accurate Financial Reporting: By separating business and personal transactions, the financial statements show the true performance of the business. This helps owners, investors, and creditors make informed decisions based on actual business results.\n\n2. Tax Compliance: {{business:tax-authority}} requires business income to be reported separately from personal income. The concept ensures that only legitimate business expenses are deducted, preventing tax evasion and ensuring correct tax assessment."
-      },
-      {
-        question: "{{exam:secondary}} 2019: Explain how the business entity concept applies to (a) a sole proprietorship and (b) a limited liability company.",
-        year: "2019",
-        solution: "(a) Sole Proprietorship:\nIn a sole proprietorship, the owner and business are legally the SAME person—the owner has unlimited liability for business debts. However, for ACCOUNTING purposes, the business is treated as separate from the owner. All business transactions are recorded separately, and when the owner takes money or goods for personal use, it is recorded as Drawings, not as an expense.\n\n(b) Limited Liability Company:\nIn a limited company, the business entity concept applies both LEGALLY and for accounting purposes. The company is a separate legal person that can:\n- Own assets in its own name\n- Sue and be sued\n- Enter contracts\nShareholders' liability is limited to their investment. Money taken by shareholders is called Dividends, not Drawings. Directors who are also shareholders must keep personal and company affairs strictly separate."
-      },
-      {
-        question: "{{exam:secondary}} 2018: Mr. Mensah owns a shop. During the month, he took {{currency}}2,000 cash and goods worth {{currency}}800 from the business for personal use. (a) What is this called? (b) Show the journal entries to record these transactions.",
-        year: "2018",
-        solution: "(a) This is called DRAWINGS. Drawings refer to money, goods, or assets taken from the business by the owner for personal use.\n\n(b) Journal entries:\n\nFor cash taken:\n```\nDate:  Drawings Account               Dr    {{currency}}2,000\n           Cash Account                     Cr    {{currency}}2,000\n       (Being cash taken by owner for personal use)\n```\n\nFor goods taken:\n```\nDate:  Drawings Account               Dr    {{currency}}800\n           Purchases Account               Cr    {{currency}}800\n       (Being goods taken by owner for own use)\n```\n\nTotal Drawings: {{currency}}2,000 + {{currency}}800 = {{currency}}2,800\n\nNote: Drawings reduce the owner's capital but are NOT expenses of the business."
-      },
-      {
-        question: "{{exam:secondary}} 2021: State THREE effects of not following the business entity concept.",
-        year: "2021",
-        solution: "Three effects of not following the business entity concept:\n\n1. Inaccurate Profit/Loss Calculation:\nIf personal expenses are recorded as business expenses, the profit will be understated. This gives a misleading picture of the business's actual performance and affects decision-making.\n\n2. Incorrect Tax Assessment:\nGRA relies on proper separation to calculate taxes. Mixing personal and business transactions could lead to:\n- Understated taxes (if personal expenses are deducted illegally)\n- Tax penalties and legal action\n- Difficulties during tax audits\n\n3. Misleading Financial Statements:\nStakeholders (banks, investors, creditors) make decisions based on financial statements. Mixed records would:\n- Make it difficult for banks to assess loan applications\n- Mislead potential investors about true business value\n- Confuse creditors about the business's ability to pay debts"
-      }
+    answer: "Drawings",
+    explanation: "When the owner takes money out of the business for personal use, it is recorded as Drawings, which reduces the owner's capital. It is NOT an expense."
+   },
+   {
+    id: 'facc-entity-q3',
+    type: 'mcq',
+    question: "Capital in accounting represents:",
+    options: [
+     "Money the business owes to suppliers",
+     "The owner's investment in the business",
+     "The business's total expenses",
+     "Cash in the bank"
     ],
-  },
+    answer: "The owner's investment in the business",
+    explanation: "Capital represents the money or assets introduced into the business by the owner. From the business's perspective, it's what the business 'owes' to the owner."
+   },
+   {
+    id: 'facc-entity-q4',
+    type: 'mcq',
+    question: "If the owner pays her children's school fees using business funds, this should be:",
+    options: [
+     "Recorded as education expense",
+     "Recorded as drawings",
+     "Not recorded at all",
+     "Recorded as a loan"
+    ],
+    answer: "Recorded as drawings",
+    explanation: "Paying personal expenses (like school fees) with business funds is not a business expense. It must be recorded as Drawings—money taken out by the owner."
+   },
+   {
+    id: 'facc-entity-q5',
+    type: 'mcq',
+    question: "Which of the following is a BUSINESS transaction?",
+    options: [
+     "Owner pays home rent",
+     "Owner buys inventory for resale",
+     "Owner pays family medical bills",
+     "Owner buys personal groceries"
+    ],
+    answer: "Owner buys inventory for resale",
+    explanation: "Buying inventory for resale is a business transaction because it directly relates to the business operations. Personal expenses like rent, medical bills, and groceries are not business transactions."
+   },
+   {
+    id: 'facc-entity-q6',
+    type: 'mcq',
+    question: "When the owner introduces additional money into the business, it is:",
+    options: [
+     "Debited to Capital account",
+     "Credited to Capital account",
+     "Debited to Drawings account",
+     "Credited to Sales account"
+    ],
+    answer: "Credited to Capital account",
+    explanation: "When the owner puts money INTO the business, Capital increases. Capital is credited (it has a credit balance), and Cash/Bank is debited."
+   },
+   {
+    id: 'facc-entity-q7',
+    type: 'mcq',
+    question: "The business entity concept is MOST strongly applied in:",
+    options: [
+     "Sole proprietorships",
+     "Partnerships",
+     "Limited liability companies",
+     "All businesses equally"
+    ],
+    answer: "Limited liability companies",
+    explanation: "Limited liability companies have complete legal separation between the company and shareholders. The company is a separate legal person that can sue, be sued, and own assets."
+   },
+   {
+    id: 'facc-entity-q8',
+    type: 'mcq',
+    question: "If the owner takes goods worth {{currency}}500 from the shop for personal use, the entry is:",
+    options: [
+     "Debit Purchases {{currency}}500, Credit Cash {{currency}}500",
+     "Debit Drawings {{currency}}500, Credit Purchases {{currency}}500",
+     "Debit Sales {{currency}}500, Credit Drawings {{currency}}500",
+     "Debit Expenses {{currency}}500, Credit Stock {{currency}}500"
+    ],
+    answer: "Debit Drawings {{currency}}500, Credit Purchases {{currency}}500",
+    explanation: "When the owner takes goods for personal use, Drawings is debited (increases) and Purchases is credited (reduces cost of goods). This is called 'goods for own use.'"
+   },
+   {
+    id: 'facc-entity-q9',
+    type: 'mcq',
+    question: "Why is the business entity concept important for {{business:tax-authority}}?",
+    options: [
+     "{{business:tax-authority}} doesn't need the entity concept",
+     "It helps separate taxable business income from personal income",
+     "It allows owners to avoid paying taxes",
+     "It combines business and personal taxes"
+    ],
+    answer: "It helps separate taxable business income from personal income",
+    explanation: "{{business:tax-authority}} needs the entity concept to assess taxes correctly. Business income is taxed differently from personal income, and personal expenses are not deductible from business profits."
+   },
+   {
+    id: 'facc-entity-q10',
+    type: 'mcq',
+    question: "In a sole proprietorship, the owner:",
+    options: [
+     "Has limited liability",
+     "Is legally the same as the business but separate for accounting",
+     "Cannot take drawings",
+     "Is completely separate from the business legally and for accounting"
+    ],
+    answer: "Is legally the same as the business but separate for accounting",
+    explanation: "In a sole proprietorship, the owner and business are legally the same (unlimited liability), but for ACCOUNTING purposes, they are treated as separate entities."
+   },
+   {
+    id: 'facc-entity-q11',
+    type: 'mcq',
+    question: "Drawings are:",
+    options: [
+     "An expense that reduces profit",
+     "A reduction of owner's capital, not an expense",
+     "Added to calculate gross profit",
+     "The same as purchases"
+    ],
+    answer: "A reduction of owner's capital, not an expense",
+    explanation: "Drawings reduce the owner's capital but are NOT an expense. They don't affect profit calculation—they're shown as a deduction from capital in the Balance Sheet."
+   },
+   {
+    id: 'facc-entity-q12',
+    type: 'mcq',
+    question: "If the owner pays business electricity of {{currency}}800 from personal funds, the entry is:",
+    options: [
+     "Debit Electricity {{currency}}800, Credit Cash {{currency}}800",
+     "Debit Electricity {{currency}}800, Credit Capital {{currency}}800",
+     "Debit Drawings {{currency}}800, Credit Cash {{currency}}800",
+     "No entry needed"
+    ],
+    answer: "Debit Electricity {{currency}}800, Credit Capital {{currency}}800",
+    explanation: "When the owner pays a business expense from personal funds, it's treated as the owner putting money INTO the business. Debit the expense, credit Capital."
+   },
+   {
+    id: 'facc-entity-q13',
+    type: 'mcq',
+    question: "The formula for closing capital is:",
+    options: [
+     "Opening Capital + Drawings - Profit",
+     "Opening Capital + Profit - Drawings",
+     "Opening Capital - Profit - Drawings",
+     "Opening Capital + Profit + Drawings"
+    ],
+    answer: "Opening Capital + Profit - Drawings",
+    explanation: "Closing Capital = Opening Capital + Net Profit - Drawings (+ any Additional Capital). Profit increases capital, drawings decrease it."
+   },
+   {
+    id: 'facc-entity-q14',
+    type: 'mcq',
+    question: "Which is a violation of the business entity concept?",
+    options: [
+     "Recording sales made by the business",
+     "Recording business rent expense",
+     "Recording owner's personal expenses as business expenses",
+     "Recording owner's capital introduction"
+    ],
+    answer: "Recording owner's personal expenses as business expenses",
+    explanation: "Recording personal expenses as business expenses violates the entity concept because it mixes personal and business affairs, distorting profit and tax liability."
+   },
+   {
+    id: 'facc-entity-q15',
+    type: 'mcq',
+    question: "In accounting, capital is considered a liability because:",
+    options: [
+     "The owner must pay it back to the bank",
+     "It represents what the business owes to the owner",
+     "It decreases when profits are made",
+     "It is the same as drawings"
+    ],
+    answer: "It represents what the business owes to the owner",
+    explanation: "From the business entity's perspective, capital is a 'liability' to the owner—it's what the business owes back to the owner. This treats the owner as a separate party."
+   }
+  ],
+  activities: [],
+  pastQuestions: [
+   {
+    question: "{{exam:secondary}} 2020: (a) Define the business entity concept. (b) Give TWO reasons why this concept is important in accounting.",
+    year: "2020",
+    solution: "(a) The Business Entity Concept states that a business is treated as a separate entity from its owner(s) for accounting purposes. Only transactions affecting the business are recorded in the business books, and personal transactions of the owner are excluded.\n\n(b) Two reasons why this concept is important:\n\n1. Accurate Financial Reporting: By separating business and personal transactions, the financial statements show the true performance of the business. This helps owners, investors, and creditors make informed decisions based on actual business results.\n\n2. Tax Compliance: {{business:tax-authority}} requires business income to be reported separately from personal income. The concept ensures that only legitimate business expenses are deducted, preventing tax evasion and ensuring correct tax assessment."
+   },
+   {
+    question: "{{exam:secondary}} 2019: Explain how the business entity concept applies to (a) a sole proprietorship and (b) a limited liability company.",
+    year: "2019",
+    solution: "(a) Sole Proprietorship:\nIn a sole proprietorship, the owner and business are legally the SAME person—the owner has unlimited liability for business debts. However, for ACCOUNTING purposes, the business is treated as separate from the owner. All business transactions are recorded separately, and when the owner takes money or goods for personal use, it is recorded as Drawings, not as an expense.\n\n(b) Limited Liability Company:\nIn a limited company, the business entity concept applies both LEGALLY and for accounting purposes. The company is a separate legal person that can:\n- Own assets in its own name\n- Sue and be sued\n- Enter contracts\nShareholders' liability is limited to their investment. Money taken by shareholders is called Dividends, not Drawings. Directors who are also shareholders must keep personal and company affairs strictly separate."
+   },
+   {
+    question: "{{exam:secondary}} 2018: Mr. Mensah owns a shop. During the month, he took {{currency}}2,000 cash and goods worth {{currency}}800 from the business for personal use. (a) What is this called? (b) Show the journal entries to record these transactions.",
+    year: "2018",
+    solution: "(a) This is called DRAWINGS. Drawings refer to money, goods, or assets taken from the business by the owner for personal use.\n\n(b) Journal entries:\n\n<div style='all: revert;'><div style='background: #f9fafb; border: 2px solid #3b82f6; border-radius: 8px; padding: 20px; margin: 0;'>\n<div style='font-weight: bold; color: #1e40af; font-size: 1.1em;'>For cash taken:</div>\n<table style='width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1);'>\n<thead>\n<tr style='background: linear-gradient(135deg, #3b82f6, #2563eb); color: white;'>\n<th style='padding: 12px; text-align: left; border: 1px solid #1e40af;'>Date</th>\n<th style='padding: 12px; text-align: left; border: 1px solid #1e40af;'>Account</th>\n<th style='padding: 12px; text-align: right; border: 1px solid #1e40af;'>Dr</th>\n<th style='padding: 12px; text-align: right; border: 1px solid #1e40af;'>Cr</th>\n</tr>\n</thead>\n<tbody>\n<tr style='background: #f0f9ff;'>\n<td style='padding: 10px; border: 1px solid #e5e7eb;'>&nbsp;</td>\n<td style='padding: 10px; border: 1px solid #e5e7eb;'><strong>Drawings Account</strong></td>\n<td style='padding: 10px; text-align: right; border: 1px solid #e5e7eb; color: #22c55e; font-weight: bold;'>{{currency}}2,000</td>\n<td style='padding: 10px; text-align: right; border: 1px solid #e5e7eb;'>&nbsp;</td>\n</tr>\n<tr style='background: white;'>\n<td style='padding: 10px; border: 1px solid #e5e7eb;'>&nbsp;</td>\n<td style='padding: 10px; padding-left: 30px; border: 1px solid #e5e7eb;'><strong>Cash Account</strong></td>\n<td style='padding: 10px; text-align: right; border: 1px solid #e5e7eb;'>&nbsp;</td>\n<td style='padding: 10px; text-align: right; border: 1px solid #e5e7eb; color: #dc2626; font-weight: bold;'>{{currency}}2,000</td>\n</tr>\n<tr style='background: #fef3c7;'>\n<td colspan='4' style='padding: 10px; font-style: italic; border: 1px solid #e5e7eb;'>(Being cash taken by owner for personal use)</td>\n</tr>\n</tbody>\n</table>\n</div>\n\n<div style='all: revert;'><div style='background: #f9fafb; border: 2px solid #8b5cf6; border-radius: 8px; padding: 20px; margin: 0;'>\n<div style='font-weight: bold; color: #6d28d9; font-size: 1.1em;'>For goods taken:</div>\n<table style='width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1);'>\n<thead>\n<tr style='background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white;'>\n<th style='padding: 12px; text-align: left; border: 1px solid #6d28d9;'>Date</th>\n<th style='padding: 12px; text-align: left; border: 1px solid #6d28d9;'>Account</th>\n<th style='padding: 12px; text-align: right; border: 1px solid #6d28d9;'>Dr</th>\n<th style='padding: 12px; text-align: right; border: 1px solid #6d28d9;'>Cr</th>\n</tr>\n</thead>\n<tbody>\n<tr style='background: #faf5ff;'>\n<td style='padding: 10px; border: 1px solid #e5e7eb;'>&nbsp;</td>\n<td style='padding: 10px; border: 1px solid #e5e7eb;'><strong>Drawings Account</strong></td>\n<td style='padding: 10px; text-align: right; border: 1px solid #e5e7eb; color: #22c55e; font-weight: bold;'>{{currency}}800</td>\n<td style='padding: 10px; text-align: right; border: 1px solid #e5e7eb;'>&nbsp;</td>\n</tr>\n<tr style='background: white;'>\n<td style='padding: 10px; border: 1px solid #e5e7eb;'>&nbsp;</td>\n<td style='padding: 10px; padding-left: 30px; border: 1px solid #e5e7eb;'><strong>Purchases Account</strong></td>\n<td style='padding: 10px; text-align: right; border: 1px solid #e5e7eb;'>&nbsp;</td>\n<td style='padding: 10px; text-align: right; border: 1px solid #e5e7eb; color: #dc2626; font-weight: bold;'>{{currency}}800</td>\n</tr>\n<tr style='background: #fef3c7;'>\n<td colspan='4' style='padding: 10px; font-style: italic; border: 1px solid #e5e7eb;'>(Being goods taken by owner for own use)</td>\n</tr>\n</tbody>\n</table>\n</div>\n\n<div style='all: revert;'><div style='background: linear-gradient(135deg, #22c55e, #16a34a); color: white; padding: 16px; border-radius: 8px; margin: 0; font-weight: bold; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);'>\nTotal Drawings: {{currency}}2,000 + {{currency}}800 = {{currency}}2,800\n</div>\n\n<div style='background: #fef3c7; border-left: 4px solid #f59e0b; padding: 12px; margin: 0; border-radius: 4px;'>\n<strong>⚠️ Note:</strong> Drawings reduce the owner's capital but are NOT expenses of the business.\n</div>"
+   },
+   {
+    question: "{{exam:secondary}} 2021: State THREE effects of not following the business entity concept.",
+    year: "2021",
+    solution: "Three effects of not following the business entity concept:\n\n1. Inaccurate Profit/Loss Calculation:\nIf personal expenses are recorded as business expenses, the profit will be understated. This gives a misleading picture of the business's actual performance and affects decision-making.\n\n2. Incorrect Tax Assessment:\nGRA relies on proper separation to calculate taxes. Mixing personal and business transactions could lead to:\n- Understated taxes (if personal expenses are deducted illegally)\n- Tax penalties and legal action\n- Difficulties during tax audits\n\n3. Misleading Financial Statements:\nStakeholders (banks, investors, creditors) make decisions based on financial statements. Mixed records would:\n- Make it difficult for banks to assess loan applications\n- Mislead potential investors about true business value\n- Confuse creditors about the business's ability to pay debts"
+   }
+  ],
+ },
 
-  // Lesson 5: Going Concern Concept
-  {
-    id: 'facc-shs1-concepts-2',
-    slug: 'facc-shs1-concepts-going-concern',
-    title: 'Going Concern Concept',
-    objectives: [
-      'Define and explain the going concern concept',
-      'Understand why the going concern assumption is fundamental to accounting',
-      'Explain the implications of the going concern concept on asset valuation',
-      'Distinguish between going concern and break-up/liquidation values',
-      'Identify indicators that a business may NOT be a going concern',
-      'Understand how the concept affects depreciation and prepayments',
-      'Apply the going concern concept to financial statement preparation',
-      'Explain the auditor\'s role in assessing going concern',
-      'Recognize situations where going concern may be in doubt',
-      'Apply the concept to real-world {{country:adjective}} business scenarios'
-    ],
-    introduction: "Imagine you're buying a provision shop from the previous owner. Would you pay the same price if she tells you the shop will close next month versus if it will continue operating for many years? Of course not! This is the essence of the Going Concern Concept—one of the most fundamental assumptions in accounting. This concept assumes that a business will continue operating into the foreseeable future, not close down or liquidate. Why does this matter? Because it affects how we value assets, record expenses, and prepare financial statements. Today, we'll discover why accountants assume businesses will keep going, and what happens when this assumption fails!",
-    keyConcepts: [
-      {
-        title: 'What is the Going Concern Concept?',
-        content: `The **Going Concern Concept** assumes that a business will continue to operate for the foreseeable future and has no intention or need to liquidate or significantly reduce its operations.
+ // Lesson 5: Going Concern Concept
+ {
+  id: 'facc-shs1-concepts-2',
+  slug: 'facc-shs1-concepts-going-concern',
+  title: 'Going Concern Concept',
+  objectives: [
+   'Define and explain the going concern concept',
+   'Understand why the going concern assumption is fundamental to accounting',
+   'Explain the implications of the going concern concept on asset valuation',
+   'Distinguish between going concern and break-up/liquidation values',
+   'Identify indicators that a business may NOT be a going concern',
+   'Understand how the concept affects depreciation and prepayments',
+   'Apply the going concern concept to financial statement preparation',
+   'Explain the auditor\'s role in assessing going concern',
+   'Recognize situations where going concern may be in doubt',
+   'Apply the concept to real-world {{country:adjective}} business scenarios'
+  ],
+  introduction: "Imagine you're buying a provision shop from the previous owner. Would you pay the same price if she tells you the shop will close next month versus if it will continue operating for many years? Of course not! This is the essence of the Going Concern Concept—one of the most fundamental assumptions in accounting. This concept assumes that a business will continue operating into the foreseeable future, not close down or liquidate. Why does this matter? Because it affects how we value assets, record expenses, and prepare financial statements. Today, we'll discover why accountants assume businesses will keep going, and what happens when this assumption fails!",
+  keyConcepts: [
+   {
+    title: 'What is the Going Concern Concept?',
+    content: `The **Going Concern Concept** assumes that a business will continue to operate for the foreseeable future and has no intention or need to liquidate or significantly reduce its operations.
 
-## 📋 DEFINITION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 DEFINITION
+</h2>
 
 **Going Concern Concept:**
 The assumption that a business entity will continue its operations indefinitely, or at least for a period long enough to carry out its objectives and fulfill its commitments.
 
 
-
-## 🔑 KEY PRINCIPLES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔑 KEY PRINCIPLES
+</h2>
 
 **1. Continuity Assumption**
 - Business will operate into the foreseeable future
@@ -3584,14 +3518,11 @@ The assumption that a business entity will continue its operations indefinitely,
 - Normal selling conditions apply
 
 
-
-## 🎯 WHY IS THIS CONCEPT IMPORTANT?
-
-<table><thead><tr><th>Area Affected</th><th>With Going Concern</th><th>Without Going Concern</th></tr></thead><tbody><tr><td><strong>Asset Valuation</strong></td><td>Historical cost or fair value</td><td>Liquidation/break-up value</td></tr><tr><td><strong>Depreciation</strong></td><td>Spread over useful life</td><td>May not be relevant</td></tr><tr><td><strong>Prepayments</strong></td><td>Recorded as assets</td><td>Written off immediately</td></tr><tr><td><strong>Long-term Contracts</strong></td><td>Recognized over time</td><td>May need immediate settlement</td></tr><tr><td><strong>Classification</strong></td><td>Current vs Non-current</td><td>All may become current</td></tr></tbody></table>
-
-
-
-## 🏢 THE "FORESEEABLE FUTURE"
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🎯 WHY IS THIS CONCEPT IMPORTANT?
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Area Affected</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">With Going Concern</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Without Going Concern</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Asset Valuation</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Historical cost or fair value</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Liquidation/break-up value</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Depreciation</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Spread over useful life</td><td style="padding: 8px; border: 1px solid #e5e7eb;">May not be relevant</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Prepayments</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Recorded as assets</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Written off immediately</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Long-term Contracts</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Recognized over time</td><td style="padding: 8px; border: 1px solid #e5e7eb;">May need immediate settlement</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Classification</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Current vs Non-current</td><td style="padding: 8px; border: 1px solid #e5e7eb;">All may become current</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🏢 THE "FORESEEABLE FUTURE"
+</h2>
 
 In accounting terms, "foreseeable future" means:
 - At least **12 months** from the balance sheet date
@@ -3599,20 +3530,21 @@ In accounting terms, "foreseeable future" means:
 - When auditors can reasonably assess continuity
 
 
-
-## {{country:flag}} {{country}} CONTEXT
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} {{country}} CONTEXT
+</h2>
 
 The Going Concern Concept is critical in {{country}} because:
 - {{business:companies-act}} requires directors to assess going concern
 - ICAG auditing standards require going concern evaluation
 - Banks assess going concern before lending
 - {{business:tax-authority}} assumes business continuity for tax purposes`
-      },
-      {
-        title: 'Going Concern vs Break-Up Value',
-        content: `Understanding the difference between going concern value and break-up (liquidation) value is crucial for applying this concept.
+   },
+   {
+    title: 'Going Concern vs Break-Up Value',
+    content: `Understanding the difference between going concern value and break-up (liquidation) value is crucial for applying this concept.
 
-## 📊 GOING CONCERN VALUE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 GOING CONCERN VALUE
+</h2>
 
 **Definition:** The value of assets when the business continues to operate normally.
 
@@ -3628,8 +3560,8 @@ The Going Concern Concept is critical in {{country}} because:
 - **Going Concern Value: {{currency}}80,000**
 
 
-
-## 💔 BREAK-UP (LIQUIDATION) VALUE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">💔 BREAK-UP (LIQUIDATION) VALUE
+</h2>
 
 **Definition:** The value of assets if the business must sell everything quickly to pay off debts.
 
@@ -3645,14 +3577,11 @@ The Going Concern Concept is critical in {{country}} because:
 - **Break-Up Value: {{currency}}45,000** (only 56% of going concern!)
 
 
-
-## 📋 COMPARISON TABLE
-
-<table><thead><tr><th>Aspect</th><th>Going Concern</th><th>Break-Up/Liquidation</th></tr></thead><tbody><tr><td><strong>Business Status</strong></td><td>Continuing operations</td><td>Closing down</td></tr><tr><td><strong>Time Pressure</strong></td><td>No urgency to sell</td><td>Must sell quickly</td></tr><tr><td><strong>Asset Values</strong></td><td>Higher (normal prices)</td><td>Lower (distress prices)</td></tr><tr><td><strong>Goodwill</strong></td><td>May have value</td><td>Usually zero</td></tr><tr><td><strong>Inventory</strong></td><td>At cost or NRV</td><td>Clearance prices</td></tr><tr><td><strong>Receivables</strong></td><td>Full expected collection</td><td>Heavy discounts</td></tr><tr><td><strong>Fixed Assets</strong></td><td>Cost less depreciation</td><td>Auction/forced sale value</td></tr></tbody></table>
-
-
-
-## 📝 PRACTICAL EXAMPLE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 COMPARISON TABLE
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Aspect</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Going Concern</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Break-Up/Liquidation</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Business Status</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Continuing operations</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Closing down</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Time Pressure</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">No urgency to sell</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Must sell quickly</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Asset Values</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Higher (normal prices)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Lower (distress prices)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Goodwill</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">May have value</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Usually zero</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Inventory</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">At cost or NRV</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Clearance prices</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Receivables</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Full expected collection</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Heavy discounts</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Fixed Assets</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Cost less depreciation</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Auction/forced sale value</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 PRACTICAL EXAMPLE
+</h2>
 
 **the Electronics Shop:**
 
@@ -3665,12 +3594,13 @@ The Going Concern Concept is critical in {{country}} because:
 | **Total** | **{{currency}}200,000** | **{{currency}}83,000** | **-58.5%** |
 
 This shows why the going concern assumption matters—the difference can be HUGE!`
-      },
-      {
-        title: 'Impact on Financial Statements',
-        content: `The going concern assumption has profound effects on how we prepare and present financial statements.
+   },
+   {
+    title: 'Impact on Financial Statements',
+    content: `The going concern assumption has profound effects on how we prepare and present financial statements.
 
-## 📈 IMPACT ON ASSET VALUATION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📈 IMPACT ON ASSET VALUATION
+</h2>
 
 **1. Fixed Assets (Property, Plant & Equipment)**
 
@@ -3681,14 +3611,14 @@ Under Going Concern:
 
 **Example - Office Building:**
 \`\`\`
-Cost:                    {{currency}}500,000
+Cost:          {{currency}}500,000
 Less: Depreciation (10 years): {{currency}}100,000
-Carrying Value:          {{currency}}400,000
+Carrying Value:     {{currency}}400,000
 \`\`\`
 
 
-
-## 📊 IMPACT ON DEPRECIATION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 IMPACT ON DEPRECIATION
+</h2>
 
 **Why Depreciation Assumes Going Concern:**
 
@@ -3703,8 +3633,8 @@ Depreciation spreads the cost of an asset over its USEFUL LIFE. This only makes 
 - No future periods to allocate costs to
 
 
-
-## 💰 IMPACT ON PREPAYMENTS & ACCRUALS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">💰 IMPACT ON PREPAYMENTS & ACCRUALS
+</h2>
 
 **Prepaid Expenses (e.g., Insurance, Rent):**
 
@@ -3724,26 +3654,24 @@ If NOT Going Concern:
 - Becomes a LOSS, not an asset
 
 
-
-## 📋 FINANCIAL STATEMENT EFFECTS
-
-<table><thead><tr><th>Item</th><th>Going Concern Treatment</th><th>Non-Going Concern Treatment</th></tr></thead><tbody><tr><td><strong>Fixed Assets</strong></td><td>Cost less depreciation</td><td>Net realizable value (lower)</td></tr><tr><td><strong>Inventory</strong></td><td>Lower of cost or NRV</td><td>Forced sale value</td></tr><tr><td><strong>Prepayments</strong></td><td>Current asset</td><td>Written off as expense</td></tr><tr><td><strong>Long-term Loans</strong></td><td>Non-current liability</td><td>Current liability (due now)</td></tr><tr><td><strong>Goodwill</strong></td><td>Intangible asset</td><td>Written off completely</td></tr><tr><td><strong>Deferred Income</strong></td><td>Liability (future obligation)</td><td>May need refunding</td></tr></tbody></table>
-
-
-
-## 📄 DISCLOSURE REQUIREMENTS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 FINANCIAL STATEMENT EFFECTS
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Item</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Going Concern Treatment</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Non-Going Concern Treatment</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Fixed Assets</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Cost less depreciation</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Net realizable value (lower)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Inventory</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Lower of cost or NRV</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Forced sale value</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Prepayments</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Current asset</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Written off as expense</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Long-term Loans</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Non-current liability</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Current liability (due now)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Goodwill</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Intangible asset</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Written off completely</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Deferred Income</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Liability (future obligation)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">May need refunding</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📄 DISCLOSURE REQUIREMENTS
+</h2>
 
 If going concern is in doubt, financial statements must disclose:
 - Material uncertainties about going concern
 - Key assumptions made by management
 - Actions being taken to address problems
 - Potential impact on asset values`
-      },
-      {
-        title: 'Indicators of Going Concern Problems',
-        content: `Accountants and auditors must watch for warning signs that a business may NOT be a going concern.
+   },
+   {
+    title: 'Indicators of Going Concern Problems',
+    content: `Accountants and auditors must watch for warning signs that a business may NOT be a going concern.
 
-## 🚨 FINANCIAL INDICATORS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🚨 FINANCIAL INDICATORS
+</h2>
 
 **1. Negative Working Capital**
 - Current liabilities exceed current assets
@@ -3771,8 +3699,8 @@ If going concern is in doubt, financial statements must disclose:
 - Banks demanding repayment
 
 
-
-## ⚙️ OPERATIONAL INDICATORS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚙️ OPERATIONAL INDICATORS
+</h2>
 
 **1. Loss of Key Personnel**
 - Management leaving
@@ -3790,8 +3718,8 @@ If going concern is in doubt, financial statements must disclose:
 - License revocations
 
 
-
-## 🌍 EXTERNAL INDICATORS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🌍 EXTERNAL INDICATORS
+</h2>
 
 **1. Economic Conditions**
 - Industry in decline
@@ -3804,14 +3732,11 @@ If going concern is in doubt, financial statements must disclose:
 - Environmental regulations
 
 
-
-## 📋 SUMMARY TABLE OF INDICATORS
-
-<table><thead><tr><th>Category</th><th>Warning Sign</th><th>Severity</th></tr></thead><tbody><tr><td><strong>Financial</strong></td><td>Negative working capital</td><td>High</td></tr><tr><td><strong>Financial</strong></td><td>Continuous losses</td><td>High</td></tr><tr><td><strong>Financial</strong></td><td>Loan defaults</td><td>Critical</td></tr><tr><td><strong>Financial</strong></td><td>Negative shareholders' funds</td><td>Critical</td></tr><tr><td><strong>Operational</strong></td><td>Loss of major customer</td><td>High</td></tr><tr><td><strong>Operational</strong></td><td>Key staff leaving</td><td>Medium</td></tr><tr><td><strong>External</strong></td><td>Industry decline</td><td>Medium</td></tr><tr><td><strong>External</strong></td><td>Regulatory problems</td><td>High</td></tr></tbody></table>
-
-
-
-## {{country:flag}} {{country}} EXAMPLES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 SUMMARY TABLE OF INDICATORS
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Category</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Warning Sign</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Severity</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Financial</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Negative working capital</td><td style="padding: 8px; border: 1px solid #e5e7eb;">High</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Financial</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Continuous losses</td><td style="padding: 8px; border: 1px solid #e5e7eb;">High</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Financial</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Loan defaults</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Critical</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Financial</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Negative shareholders' funds</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Critical</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Operational</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Loss of major customer</td><td style="padding: 8px; border: 1px solid #e5e7eb;">High</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Operational</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Key staff leaving</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Medium</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>External</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Industry decline</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Medium</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>External</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Regulatory problems</td><td style="padding: 8px; border: 1px solid #e5e7eb;">High</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} {{country}} EXAMPLES
+</h2>
 
 **Signs a {{country:adjective}} business may NOT be a going concern:**
 - Unable to pay {{business:tax-authority}} taxes (facing prosecution)
@@ -3820,12 +3745,13 @@ If going concern is in doubt, financial statements must disclose:
 - Bank accounts frozen
 - Court judgments against the business
 - Unable to renew business operating license`
-      },
-      {
-        title: 'The Auditor\'s Role',
-        content: `Auditors play a crucial role in assessing and reporting on going concern status.
+   },
+   {
+    title: 'The Auditor\'s Role',
+    content: `Auditors play a crucial role in assessing and reporting on going concern status.
 
-## 👨‍💼 AUDITOR'S RESPONSIBILITIES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">👨‍💼 AUDITOR'S RESPONSIBILITIES
+</h2>
 
 **1. Assess Going Concern**
 - Evaluate management's assessment
@@ -3849,60 +3775,58 @@ If going concern is in doubt, financial statements must disclose:
 - Warn users of financial statements
 
 
-
-## 📝 AUDIT PROCEDURES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 AUDIT PROCEDURES
+</h2>
 
 **What auditors do to assess going concern:**
 
 1. **Analytical Review**
-   - Compare current vs prior periods
-   - Calculate key ratios
-   - Identify negative trends
+  - Compare current vs prior periods
+  - Calculate key ratios
+  - Identify negative trends
 
 2. **Cash Flow Analysis**
-   - Review management's forecasts
-   - Test assumptions
-   - Consider alternative scenarios
+  - Review management's forecasts
+  - Test assumptions
+  - Consider alternative scenarios
 
 3. **Inquiries**
-   - Ask management about plans
-   - Query unusual transactions
-   - Understand contingencies
+  - Ask management about plans
+  - Query unusual transactions
+  - Understand contingencies
 
 4. **External Confirmation**
-   - Bank confirmations
-   - Lawyer letters
-   - Customer/supplier inquiries
+  - Bank confirmations
+  - Lawyer letters
+  - Customer/supplier inquiries
 
 
-
-## 📋 TYPES OF AUDIT OPINIONS
-
-<table><thead><tr><th>Situation</th><th>Audit Opinion</th><th>Action</th></tr></thead><tbody><tr><td>No going concern issues</td><td>Unqualified (Clean)</td><td>Standard report</td></tr><tr><td>Material uncertainty exists but disclosed</td><td>Unqualified with Emphasis of Matter</td><td>Draw attention to disclosure</td></tr><tr><td>Material uncertainty not adequately disclosed</td><td>Qualified or Adverse</td><td>Modify opinion</td></tr><tr><td>Going concern inappropriate but used</td><td>Adverse</td><td>Financial statements misleading</td></tr><tr><td>Unable to obtain sufficient evidence</td><td>Disclaimer</td><td>Cannot form opinion</td></tr></tbody></table>
-
-
-
-## 📄 EXAMPLE AUDIT PARAGRAPH
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 TYPES OF AUDIT OPINIONS
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Situation</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Audit Opinion</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Action</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">No going concern issues</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Unqualified (Clean)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Standard report</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Material uncertainty exists but disclosed</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Unqualified with Emphasis of Matter</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Draw attention to disclosure</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Material uncertainty not adequately disclosed</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Qualified or Adverse</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Modify opinion</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Going concern inappropriate but used</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Adverse</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Financial statements misleading</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Unable to obtain sufficient evidence</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Disclaimer</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Cannot form opinion</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📄 EXAMPLE AUDIT PARAGRAPH
+</h2>
 
 **Material Uncertainty Related to Going Concern:**
 
 *"We draw attention to Note 2 in the financial statements, which indicates that the company incurred a net loss of {{currency}}500,000 during the year ended 31 December 2024 and, as of that date, the company's current liabilities exceeded its current assets by {{currency}}200,000. These events or conditions indicate that a material uncertainty exists that may cast significant doubt on the company's ability to continue as a going concern. Our opinion is not modified in respect of this matter."*
 
 
-
-## {{country:flag}} ICAG REQUIREMENTS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} ICAG REQUIREMENTS
+</h2>
 
 The Institute of Chartered Accountants {{country}} (ICAG) requires:
 - Compliance with ISA 570 (Going Concern)
 - Professional skepticism
 - Adequate documentation
 - Clear communication with those charged with governance`
-      },
-      {
-        title: 'Relationship with Other Concepts',
-        content: `The Going Concern Concept works alongside other accounting concepts and provides the foundation for many accounting treatments.
+   },
+   {
+    title: 'Relationship with Other Concepts',
+    content: `The Going Concern Concept works alongside other accounting concepts and provides the foundation for many accounting treatments.
 
-## 🔗 CONNECTED CONCEPTS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔗 CONNECTED CONCEPTS
+</h2>
 
 **1. ACCRUALS CONCEPT (Matching)**
 
@@ -3914,7 +3838,6 @@ Connection:
 Example:
 - Prepaid rent for 2 years requires going concern for 2 years
 - Without going concern, entire amount becomes immediate expense
-
 
 
 **2. HISTORICAL COST CONCEPT**
@@ -3930,7 +3853,6 @@ Example:
 - Liquidation: value at {{currency}}30,000 (forced sale price)
 
 
-
 **3. PRUDENCE CONCEPT**
 
 Connection:
@@ -3943,7 +3865,6 @@ Example:
 - This is applying prudence when going concern fails
 
 
-
 **4. CONSISTENCY CONCEPT**
 
 Connection:
@@ -3952,14 +3873,11 @@ Connection:
 - Basis of preparation must be stated
 
 
-
-## 📊 HOW CONCEPTS INTERACT
-
-<table><thead><tr><th>Concept</th><th>Requires Going Concern?</th><th>Reason</th></tr></thead><tbody><tr><td>Accruals</td><td>Yes</td><td>Need future periods for matching</td></tr><tr><td>Depreciation</td><td>Yes</td><td>Spreads cost over future periods</td></tr><tr><td>Prepayments</td><td>Yes</td><td>Expects future benefits</td></tr><tr><td>Historical Cost</td><td>Yes</td><td>Values based on continued use</td></tr><tr><td>Materiality</td><td>Partial</td><td>Still applies in liquidation</td></tr><tr><td>Business Entity</td><td>Partial</td><td>Entity exists until wound up</td></tr></tbody></table>
-
-
-
-## 🏛️ REGULATORY FRAMEWORK
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 HOW CONCEPTS INTERACT
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Concept</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Requires Going Concern?</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Reason</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Accruals</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Yes</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Need future periods for matching</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Depreciation</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Yes</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Spreads cost over future periods</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Prepayments</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Yes</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Expects future benefits</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Historical Cost</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Yes</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Values based on continued use</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Materiality</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Partial</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Still applies in liquidation</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Business Entity</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Partial</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Entity exists until wound up</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🏛️ REGULATORY FRAMEWORK
+</h2>
 
 **IFRS Requirements:**
 - IAS 1: Presentation of Financial Statements
@@ -3975,12 +3893,13 @@ Connection:
 - Auditor's responsibilities
 - Evaluation procedures
 - Reporting requirements`
-      },
-      {
-        title: 'Key Terms Summary',
-        content: `Master these important terms related to the Going Concern Concept!
+   },
+   {
+    title: 'Key Terms Summary',
+    content: `Master these important terms related to the Going Concern Concept!
 
-## 📚 ESSENTIAL VOCABULARY
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📚 ESSENTIAL VOCABULARY
+</h2>
 
 **Going Concern**
 Definition: The assumption that a business will continue operating for the foreseeable future, without any intention or necessity to liquidate or significantly curtail operations.
@@ -4013,14 +3932,11 @@ Definition: The auditor's formal expression of their conclusion on whether the f
 Definition: A paragraph in the audit report that draws users' attention to a matter appropriately disclosed in the financial statements that is fundamental to their understanding.
 
 
-
-## 📋 QUICK REFERENCE
-
-<table><thead><tr><th>Term</th><th>Key Point</th><th>{{exam:secondary}} Relevance</th></tr></thead><tbody><tr><td>Going Concern</td><td>Business continues indefinitely</td><td>Definition question common</td></tr><tr><td>Break-Up Value</td><td>Forced sale prices</td><td>Comparison questions</td></tr><tr><td>12 Months</td><td>Minimum foreseeable future</td><td>Remember this period</td></tr><tr><td>Depreciation</td><td>Only relevant under going concern</td><td>Impact questions</td></tr><tr><td>Prepayments</td><td>Asset only if business continues</td><td>Application questions</td></tr></tbody></table>
-
-
-
-## ⚠️ {{exam:secondary}} TIP
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 QUICK REFERENCE
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Term</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Key Point</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">{{exam:secondary}} Relevance</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Going Concern</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Business continues indefinitely</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Definition question common</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Break-Up Value</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Forced sale prices</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Comparison questions</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">12 Months</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Minimum foreseeable future</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Remember this period</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Depreciation</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Only relevant under going concern</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Impact questions</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Prepayments</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Asset only if business continues</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Application questions</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚠️ {{exam:secondary}} TIP
+</h2>
 
 Key points examiners look for:
 1. **Define** the going concern concept clearly
@@ -4029,262 +3945,263 @@ Key points examiners look for:
 4. **Identify** indicators of going concern problems
 5. **Describe** impact on asset valuation and depreciation
 6. **State** the auditor's role in going concern assessment`
-      }
+   }
+  ],
+  summary: "Excellent work! You've mastered the Going Concern Concept—the fundamental assumption that a business will continue operating into the foreseeable future! You now understand that this assumption affects EVERYTHING in financial statements: how we value assets (at cost, not forced-sale prices), why we spread depreciation over useful life, and why prepayments are assets (expecting future benefit). When going concern is in doubt, asset values can drop dramatically—sometimes by 50% or more! Remember the warning signs: negative working capital, recurring losses, loan defaults, and loss of key customers. Auditors must assess going concern and may modify their opinion if material uncertainties exist. The concept works hand-in-hand with accruals, historical cost, and other concepts to form the foundation of financial reporting. Without going concern, accounting as we know it would be impossible!",
+  endOfLessonQuiz: [
+   {
+    id: 'facc-going-q1',
+    type: 'mcq',
+    question: "The Going Concern Concept assumes that:",
+    options: [
+     "The business will close down soon",
+     "The business will continue operating for the foreseeable future",
+     "The business will only operate for one year",
+     "The business will be sold immediately"
     ],
-    summary: "Excellent work! You've mastered the Going Concern Concept—the fundamental assumption that a business will continue operating into the foreseeable future! You now understand that this assumption affects EVERYTHING in financial statements: how we value assets (at cost, not forced-sale prices), why we spread depreciation over useful life, and why prepayments are assets (expecting future benefit). When going concern is in doubt, asset values can drop dramatically—sometimes by 50% or more! Remember the warning signs: negative working capital, recurring losses, loan defaults, and loss of key customers. Auditors must assess going concern and may modify their opinion if material uncertainties exist. The concept works hand-in-hand with accruals, historical cost, and other concepts to form the foundation of financial reporting. Without going concern, accounting as we know it would be impossible!",
-    endOfLessonQuiz: [
-      {
-        id: 'facc-going-q1',
-        type: 'mcq',
-        question: "The Going Concern Concept assumes that:",
-        options: [
-          "The business will close down soon",
-          "The business will continue operating for the foreseeable future",
-          "The business will only operate for one year",
-          "The business will be sold immediately"
-        ],
-        answer: "The business will continue operating for the foreseeable future",
-        explanation: "The Going Concern Concept assumes the business will continue its operations indefinitely, or at least long enough to fulfill its objectives and commitments."
-      },
-      {
-        id: 'facc-going-q2',
-        type: 'mcq',
-        question: "In accounting, 'foreseeable future' typically means at least:",
-        options: [
-          "6 months",
-          "12 months",
-          "24 months",
-          "5 years"
-        ],
-        answer: "12 months",
-        explanation: "The foreseeable future in going concern assessment typically means at least 12 months from the balance sheet date."
-      },
-      {
-        id: 'facc-going-q3',
-        type: 'mcq',
-        question: "Under the going concern assumption, fixed assets are valued at:",
-        options: [
-          "Liquidation value",
-          "Cost less accumulated depreciation",
-          "Forced sale price",
-          "Zero value"
-        ],
-        answer: "Cost less accumulated depreciation",
-        explanation: "Under going concern, fixed assets are valued at cost (or revalued amount) less accumulated depreciation, reflecting their continued use in the business."
-      },
-      {
-        id: 'facc-going-q4',
-        type: 'mcq',
-        question: "Break-up value is typically:",
-        options: [
-          "Higher than going concern value",
-          "Equal to going concern value",
-          "Lower than going concern value",
-          "Not related to asset value"
-        ],
-        answer: "Lower than going concern value",
-        explanation: "Break-up (liquidation) value is typically much LOWER than going concern value because assets must be sold quickly under distressed conditions."
-      },
-      {
-        id: 'facc-going-q5',
-        type: 'mcq',
-        question: "Depreciation is based on the going concern concept because:",
-        options: [
-          "It increases asset values",
-          "It spreads cost over the useful life, assuming the business continues",
-          "It reduces tax immediately",
-          "It has nothing to do with going concern"
-        ],
-        answer: "It spreads cost over the useful life, assuming the business continues",
-        explanation: "Depreciation spreads the cost of an asset over its useful life. This only makes sense if the business will continue operating to USE the asset over those future periods."
-      },
-      {
-        id: 'facc-going-q6',
-        type: 'mcq',
-        question: "If a business is NOT a going concern, prepaid expenses should be:",
-        options: [
-          "Kept as assets",
-          "Written off immediately as expenses",
-          "Increased in value",
-          "Transferred to capital"
-        ],
-        answer: "Written off immediately as expenses",
-        explanation: "If a business is not a going concern, there are no future periods to benefit from prepayments, so they must be written off immediately."
-      },
-      {
-        id: 'facc-going-q7',
-        type: 'mcq',
-        question: "Which is a financial indicator of going concern problems?",
-        options: [
-          "Increasing profits",
-          "Strong cash reserves",
-          "Negative working capital",
-          "Growing customer base"
-        ],
-        answer: "Negative working capital",
-        explanation: "Negative working capital (current liabilities exceeding current assets) indicates the business may struggle to pay its short-term debts—a major going concern warning sign."
-      },
-      {
-        id: 'facc-going-q8',
-        type: 'mcq',
-        question: "The auditor's role regarding going concern includes:",
-        options: [
-          "Ignoring going concern issues",
-          "Evaluating management's going concern assessment",
-          "Guaranteeing the business will continue",
-          "Deciding whether to close the business"
-        ],
-        answer: "Evaluating management's going concern assessment",
-        explanation: "Auditors must evaluate management's assessment of going concern, gather evidence, and report appropriately if material uncertainties exist."
-      },
-      {
-        id: 'facc-going-q9',
-        type: 'mcq',
-        question: "When going concern is doubtful, goodwill is usually:",
-        options: [
-          "Increased significantly",
-          "Valued at zero",
-          "Unchanged",
-          "Doubled"
-        ],
-        answer: "Valued at zero",
-        explanation: "Goodwill has value only if the business continues as a going concern. In liquidation, goodwill typically has ZERO value since there's no ongoing business to generate future benefits."
-      },
-      {
-        id: 'facc-going-q10',
-        type: 'mcq',
-        question: "Under {{country}}'s {{business:companies-act}}, who must assess going concern?",
-        options: [
-          "Employees",
-          "Customers",
-          "Directors",
-          "Competitors"
-        ],
-        answer: "Directors",
-        explanation: "Under the {{business:companies-act}}, directors are responsible for assessing whether the going concern assumption is appropriate when preparing financial statements."
-      },
-      {
-        id: 'facc-going-q11',
-        type: 'mcq',
-        question: "Which audit opinion is given when going concern is appropriate with no issues?",
-        options: [
-          "Adverse opinion",
-          "Disclaimer of opinion",
-          "Unqualified (clean) opinion",
-          "Qualified opinion"
-        ],
-        answer: "Unqualified (clean) opinion",
-        explanation: "When there are no going concern issues and the financial statements are fairly presented, the auditor issues an unqualified (clean) opinion."
-      },
-      {
-        id: 'facc-going-q12',
-        type: 'mcq',
-        question: "Which concept is MOST dependent on the going concern assumption?",
-        options: [
-          "Business entity concept",
-          "Money measurement concept",
-          "Accruals (matching) concept",
-          "Dual aspect concept"
-        ],
-        answer: "Accruals (matching) concept",
-        explanation: "The accruals concept matches income and expenses to the periods they relate to. This requires future periods to exist—which depends on going concern."
-      },
-      {
-        id: 'facc-going-q13',
-        type: 'mcq',
-        question: "If a business cannot pay its debts as they fall due, this is called:",
-        options: [
-          "Profitability",
-          "Liquidity",
-          "Insolvency",
-          "Efficiency"
-        ],
-        answer: "Insolvency",
-        explanation: "Insolvency occurs when a business cannot pay its debts when due (cash flow insolvency) or when liabilities exceed assets (balance sheet insolvency)."
-      },
-      {
-        id: 'facc-going-q14',
-        type: 'mcq',
-        question: "Long-term loans become current liabilities when:",
-        options: [
-          "Interest rates increase",
-          "The business is profitable",
-          "Going concern assumption no longer applies",
-          "The loan is fully repaid"
-        ],
-        answer: "Going concern assumption no longer applies",
-        explanation: "If going concern no longer applies, all liabilities may become due immediately, converting long-term loans to current liabilities."
-      },
-      {
-        id: 'facc-going-q15',
-        type: 'mcq',
-        question: "An 'Emphasis of Matter' paragraph in an audit report means:",
-        options: [
-          "The financial statements are wrong",
-          "The auditor draws attention to a properly disclosed significant matter",
-          "The business must close immediately",
-          "The auditor refuses to give an opinion"
-        ],
-        answer: "The auditor draws attention to a properly disclosed significant matter",
-        explanation: "An Emphasis of Matter paragraph draws users' attention to a matter (like material going concern uncertainty) that is appropriately disclosed in the financial statements."
-      }
+    answer: "The business will continue operating for the foreseeable future",
+    explanation: "The Going Concern Concept assumes the business will continue its operations indefinitely, or at least long enough to fulfill its objectives and commitments."
+   },
+   {
+    id: 'facc-going-q2',
+    type: 'mcq',
+    question: "In accounting, 'foreseeable future' typically means at least:",
+    options: [
+     "6 months",
+     "12 months",
+     "24 months",
+     "5 years"
     ],
-    activities: [],
-    pastQuestions: [
-      {
-        question: "{{exam:secondary}} 2020: (a) Define the going concern concept. (b) Explain TWO effects of the going concern concept on the preparation of financial statements.",
-        year: "2020",
-        solution: "(a) The Going Concern Concept is the accounting assumption that a business will continue to operate for the foreseeable future (at least 12 months) and has no intention or need to liquidate or significantly reduce its operations.\n\n(b) Two effects on financial statement preparation:\n\n1. Asset Valuation: Under the going concern assumption, assets are valued at cost less depreciation (historical cost basis) rather than at liquidation or forced-sale values. This is because the business intends to continue using the assets to generate future income, not to sell them immediately.\n\n2. Depreciation Treatment: The going concern concept allows depreciation to be spread over the useful life of an asset. This matches the cost of the asset with the revenue it helps generate over multiple periods. Without going concern, depreciation would be meaningless as there would be no future periods to allocate costs to."
-      },
-      {
-        question: "{{exam:secondary}} 2019: Distinguish between 'going concern value' and 'break-up value' of assets.",
-        year: "2019",
-        solution: "Going Concern Value:\n- This is the value of assets when the business continues to operate normally\n- Assets are valued at cost less accumulated depreciation\n- Values reflect the earning potential and continued use of assets\n- Normal market prices apply since there's no urgency to sell\n- Example: A machine worth {{currency}}80,000 (cost {{currency}}100,000 less depreciation {{currency}}20,000)\n\nBreak-Up Value (Liquidation Value):\n- This is the value of assets when the business must sell everything quickly\n- Assets are valued at forced-sale or auction prices\n- Values are typically much LOWER than going concern values\n- Buyers know the seller is desperate, so they negotiate hard\n- Example: The same machine might fetch only {{currency}}40,000 in liquidation\n\nKey Differences:\n1. Break-up value is usually 40-60% lower than going concern value\n2. Goodwill has zero value in break-up but may have significant value as going concern\n3. Going concern assumes normal trading; break-up assumes distressed sale"
-      },
-      {
-        question: "{{exam:secondary}} 2018: State FOUR indicators that may suggest a business is NOT a going concern.",
-        year: "2018",
-        solution: "Four indicators that a business may NOT be a going concern:\n\n1. Negative Working Capital:\nWhen current liabilities consistently exceed current assets, the business cannot pay its short-term debts. This indicates serious liquidity problems and potential inability to continue operations.\n\n2. Recurring Net Losses:\nConsistent losses over several accounting periods erode the capital base and suggest the business model is not sustainable. Without profits, the business cannot survive long-term.\n\n3. Loan Defaults and Covenant Breaches:\nFailure to make loan repayments or breaching loan conditions may result in banks demanding immediate repayment, potentially forcing the business to close.\n\n4. Loss of Major Customers or Suppliers:\nIf a business loses its main customer or if key suppliers refuse to provide credit, operations may become impossible to sustain, threatening continuity."
-      },
-      {
-        question: "{{exam:secondary}} 2021: Explain how the going concern concept affects the treatment of (a) depreciation and (b) prepaid expenses.",
-        year: "2021",
-        solution: "(a) Effect on Depreciation:\n\nThe going concern concept is fundamental to depreciation because:\n- Depreciation spreads the cost of a fixed asset over its useful life\n- This 'spreading' assumes the business will EXIST for those future periods\n- It matches the asset's cost with the revenue it helps generate over time\n\nIf going concern doesn't apply:\n- There are no future periods to allocate costs to\n- The asset should be valued at liquidation value instead\n- Depreciation calculations become meaningless\n- The entire remaining value may need to be written off\n\n(b) Effect on Prepaid Expenses:\n\nUnder going concern:\n- Prepaid expenses are recorded as CURRENT ASSETS\n- They represent future economic benefits to be received\n- Example: Rent paid for 12 months in advance is an asset that will benefit future periods\n\nIf going concern doesn't apply:\n- There are no future periods to receive the benefit\n- Prepayments must be written off immediately as expenses\n- They cannot remain as assets since no future benefit will be received\n- This increases the loss for the current period"
-      }
+    answer: "12 months",
+    explanation: "The foreseeable future in going concern assessment typically means at least 12 months from the balance sheet date."
+   },
+   {
+    id: 'facc-going-q3',
+    type: 'mcq',
+    question: "Under the going concern assumption, fixed assets are valued at:",
+    options: [
+     "Liquidation value",
+     "Cost less accumulated depreciation",
+     "Forced sale price",
+     "Zero value"
     ],
-  },
+    answer: "Cost less accumulated depreciation",
+    explanation: "Under going concern, fixed assets are valued at cost (or revalued amount) less accumulated depreciation, reflecting their continued use in the business."
+   },
+   {
+    id: 'facc-going-q4',
+    type: 'mcq',
+    question: "Break-up value is typically:",
+    options: [
+     "Higher than going concern value",
+     "Equal to going concern value",
+     "Lower than going concern value",
+     "Not related to asset value"
+    ],
+    answer: "Lower than going concern value",
+    explanation: "Break-up (liquidation) value is typically much LOWER than going concern value because assets must be sold quickly under distressed conditions."
+   },
+   {
+    id: 'facc-going-q5',
+    type: 'mcq',
+    question: "Depreciation is based on the going concern concept because:",
+    options: [
+     "It increases asset values",
+     "It spreads cost over the useful life, assuming the business continues",
+     "It reduces tax immediately",
+     "It has nothing to do with going concern"
+    ],
+    answer: "It spreads cost over the useful life, assuming the business continues",
+    explanation: "Depreciation spreads the cost of an asset over its useful life. This only makes sense if the business will continue operating to USE the asset over those future periods."
+   },
+   {
+    id: 'facc-going-q6',
+    type: 'mcq',
+    question: "If a business is NOT a going concern, prepaid expenses should be:",
+    options: [
+     "Kept as assets",
+     "Written off immediately as expenses",
+     "Increased in value",
+     "Transferred to capital"
+    ],
+    answer: "Written off immediately as expenses",
+    explanation: "If a business is not a going concern, there are no future periods to benefit from prepayments, so they must be written off immediately."
+   },
+   {
+    id: 'facc-going-q7',
+    type: 'mcq',
+    question: "Which is a financial indicator of going concern problems?",
+    options: [
+     "Increasing profits",
+     "Strong cash reserves",
+     "Negative working capital",
+     "Growing customer base"
+    ],
+    answer: "Negative working capital",
+    explanation: "Negative working capital (current liabilities exceeding current assets) indicates the business may struggle to pay its short-term debts—a major going concern warning sign."
+   },
+   {
+    id: 'facc-going-q8',
+    type: 'mcq',
+    question: "The auditor's role regarding going concern includes:",
+    options: [
+     "Ignoring going concern issues",
+     "Evaluating management's going concern assessment",
+     "Guaranteeing the business will continue",
+     "Deciding whether to close the business"
+    ],
+    answer: "Evaluating management's going concern assessment",
+    explanation: "Auditors must evaluate management's assessment of going concern, gather evidence, and report appropriately if material uncertainties exist."
+   },
+   {
+    id: 'facc-going-q9',
+    type: 'mcq',
+    question: "When going concern is doubtful, goodwill is usually:",
+    options: [
+     "Increased significantly",
+     "Valued at zero",
+     "Unchanged",
+     "Doubled"
+    ],
+    answer: "Valued at zero",
+    explanation: "Goodwill has value only if the business continues as a going concern. In liquidation, goodwill typically has ZERO value since there's no ongoing business to generate future benefits."
+   },
+   {
+    id: 'facc-going-q10',
+    type: 'mcq',
+    question: "Under {{country}}'s {{business:companies-act}}, who must assess going concern?",
+    options: [
+     "Employees",
+     "Customers",
+     "Directors",
+     "Competitors"
+    ],
+    answer: "Directors",
+    explanation: "Under the {{business:companies-act}}, directors are responsible for assessing whether the going concern assumption is appropriate when preparing financial statements."
+   },
+   {
+    id: 'facc-going-q11',
+    type: 'mcq',
+    question: "Which audit opinion is given when going concern is appropriate with no issues?",
+    options: [
+     "Adverse opinion",
+     "Disclaimer of opinion",
+     "Unqualified (clean) opinion",
+     "Qualified opinion"
+    ],
+    answer: "Unqualified (clean) opinion",
+    explanation: "When there are no going concern issues and the financial statements are fairly presented, the auditor issues an unqualified (clean) opinion."
+   },
+   {
+    id: 'facc-going-q12',
+    type: 'mcq',
+    question: "Which concept is MOST dependent on the going concern assumption?",
+    options: [
+     "Business entity concept",
+     "Money measurement concept",
+     "Accruals (matching) concept",
+     "Dual aspect concept"
+    ],
+    answer: "Accruals (matching) concept",
+    explanation: "The accruals concept matches income and expenses to the periods they relate to. This requires future periods to exist—which depends on going concern."
+   },
+   {
+    id: 'facc-going-q13',
+    type: 'mcq',
+    question: "If a business cannot pay its debts as they fall due, this is called:",
+    options: [
+     "Profitability",
+     "Liquidity",
+     "Insolvency",
+     "Efficiency"
+    ],
+    answer: "Insolvency",
+    explanation: "Insolvency occurs when a business cannot pay its debts when due (cash flow insolvency) or when liabilities exceed assets (balance sheet insolvency)."
+   },
+   {
+    id: 'facc-going-q14',
+    type: 'mcq',
+    question: "Long-term loans become current liabilities when:",
+    options: [
+     "Interest rates increase",
+     "The business is profitable",
+     "Going concern assumption no longer applies",
+     "The loan is fully repaid"
+    ],
+    answer: "Going concern assumption no longer applies",
+    explanation: "If going concern no longer applies, all liabilities may become due immediately, converting long-term loans to current liabilities."
+   },
+   {
+    id: 'facc-going-q15',
+    type: 'mcq',
+    question: "An 'Emphasis of Matter' paragraph in an audit report means:",
+    options: [
+     "The financial statements are wrong",
+     "The auditor draws attention to a properly disclosed significant matter",
+     "The business must close immediately",
+     "The auditor refuses to give an opinion"
+    ],
+    answer: "The auditor draws attention to a properly disclosed significant matter",
+    explanation: "An Emphasis of Matter paragraph draws users' attention to a matter (like material going concern uncertainty) that is appropriately disclosed in the financial statements."
+   }
+  ],
+  activities: [],
+  pastQuestions: [
+   {
+    question: "{{exam:secondary}} 2020: (a) Define the going concern concept. (b) Explain TWO effects of the going concern concept on the preparation of financial statements.",
+    year: "2020",
+    solution: "(a) The Going Concern Concept is the accounting assumption that a business will continue to operate for the foreseeable future (at least 12 months) and has no intention or need to liquidate or significantly reduce its operations.\n\n(b) Two effects on financial statement preparation:\n\n1. Asset Valuation: Under the going concern assumption, assets are valued at cost less depreciation (historical cost basis) rather than at liquidation or forced-sale values. This is because the business intends to continue using the assets to generate future income, not to sell them immediately.\n\n2. Depreciation Treatment: The going concern concept allows depreciation to be spread over the useful life of an asset. This matches the cost of the asset with the revenue it helps generate over multiple periods. Without going concern, depreciation would be meaningless as there would be no future periods to allocate costs to."
+   },
+   {
+    question: "{{exam:secondary}} 2019: Distinguish between 'going concern value' and 'break-up value' of assets.",
+    year: "2019",
+    solution: "Going Concern Value:\n- This is the value of assets when the business continues to operate normally\n- Assets are valued at cost less accumulated depreciation\n- Values reflect the earning potential and continued use of assets\n- Normal market prices apply since there's no urgency to sell\n- Example: A machine worth {{currency}}80,000 (cost {{currency}}100,000 less depreciation {{currency}}20,000)\n\nBreak-Up Value (Liquidation Value):\n- This is the value of assets when the business must sell everything quickly\n- Assets are valued at forced-sale or auction prices\n- Values are typically much LOWER than going concern values\n- Buyers know the seller is desperate, so they negotiate hard\n- Example: The same machine might fetch only {{currency}}40,000 in liquidation\n\nKey Differences:\n1. Break-up value is usually 40-60% lower than going concern value\n2. Goodwill has zero value in break-up but may have significant value as going concern\n3. Going concern assumes normal trading; break-up assumes distressed sale"
+   },
+   {
+    question: "{{exam:secondary}} 2018: State FOUR indicators that may suggest a business is NOT a going concern.",
+    year: "2018",
+    solution: "Four indicators that a business may NOT be a going concern:\n\n1. Negative Working Capital:\nWhen current liabilities consistently exceed current assets, the business cannot pay its short-term debts. This indicates serious liquidity problems and potential inability to continue operations.\n\n2. Recurring Net Losses:\nConsistent losses over several accounting periods erode the capital base and suggest the business model is not sustainable. Without profits, the business cannot survive long-term.\n\n3. Loan Defaults and Covenant Breaches:\nFailure to make loan repayments or breaching loan conditions may result in banks demanding immediate repayment, potentially forcing the business to close.\n\n4. Loss of Major Customers or Suppliers:\nIf a business loses its main customer or if key suppliers refuse to provide credit, operations may become impossible to sustain, threatening continuity."
+   },
+   {
+    question: "{{exam:secondary}} 2021: Explain how the going concern concept affects the treatment of (a) depreciation and (b) prepaid expenses.",
+    year: "2021",
+    solution: "(a) Effect on Depreciation:\n\nThe going concern concept is fundamental to depreciation because:\n- Depreciation spreads the cost of a fixed asset over its useful life\n- This 'spreading' assumes the business will EXIST for those future periods\n- It matches the asset's cost with the revenue it helps generate over time\n\nIf going concern doesn't apply:\n- There are no future periods to allocate costs to\n- The asset should be valued at liquidation value instead\n- Depreciation calculations become meaningless\n- The entire remaining value may need to be written off\n\n(b) Effect on Prepaid Expenses:\n\nUnder going concern:\n- Prepaid expenses are recorded as CURRENT ASSETS\n- They represent future economic benefits to be received\n- Example: Rent paid for 12 months in advance is an asset that will benefit future periods\n\nIf going concern doesn't apply:\n- There are no future periods to receive the benefit\n- Prepayments must be written off immediately as expenses\n- They cannot remain as assets since no future benefit will be received\n- This increases the loss for the current period"
+   }
+  ],
+ },
 
-  // Lesson 6: Accrual Concept (Matching Concept)
-  {
-    id: 'facc-shs1-concepts-3',
-    slug: 'facc-shs1-concepts-accrual',
-    title: 'Accrual Concept (Matching Principle)',
-    objectives: [
-      'Define and explain the accrual concept',
-      'Understand the difference between accrual and cash basis accounting',
-      'Explain the matching principle and its importance',
-      'Identify and record accrued expenses (accruals)',
-      'Identify and record prepaid expenses (prepayments)',
-      'Identify and record accrued income',
-      'Identify and record income received in advance (deferred income)',
-      'Prepare adjusting entries for accruals and prepayments',
-      'Understand how accruals affect the Income Statement and Balance Sheet',
-      'Apply the accrual concept to real-world {{country:adjective}} business scenarios'
-    ],
-    introduction: "Imagine an entrepreneur's shop uses electricity throughout December, but the bill only arrives in January. Should the owner ignore this expense in December just because he hasn't paid yet? What about rent paid in advance for 3 months - should all of it be an expense in month 1? The Accrual Concept answers these questions! It's the principle that says: record income when EARNED and expenses when INCURRED - not when cash changes hands. This concept ensures financial statements show the TRUE picture of business performance for each period. Today, we'll learn how to match income with expenses properly, making you a smarter accountant!",
-    keyConcepts: [
-      {
-        title: 'What is the Accrual Concept?',
-        content: `The **Accrual Concept** (also known as the Matching Principle) states that revenue should be recognized when earned and expenses should be recognized when incurred, regardless of when cash is received or paid.
+ // Lesson 6: Accrual Concept (Matching Concept)
+ {
+  id: 'facc-shs1-concepts-3',
+  slug: 'facc-shs1-concepts-accrual',
+  title: 'Accrual Concept (Matching Principle)',
+  objectives: [
+   'Define and explain the accrual concept',
+   'Understand the difference between accrual and cash basis accounting',
+   'Explain the matching principle and its importance',
+   'Identify and record accrued expenses (accruals)',
+   'Identify and record prepaid expenses (prepayments)',
+   'Identify and record accrued income',
+   'Identify and record income received in advance (deferred income)',
+   'Prepare adjusting entries for accruals and prepayments',
+   'Understand how accruals affect the Income Statement and Balance Sheet',
+   'Apply the accrual concept to real-world {{country:adjective}} business scenarios'
+  ],
+  introduction: "Imagine an entrepreneur's shop uses electricity throughout December, but the bill only arrives in January. Should the owner ignore this expense in December just because he hasn't paid yet? What about rent paid in advance for 3 months - should all of it be an expense in month 1? The Accrual Concept answers these questions! It's the principle that says: record income when EARNED and expenses when INCURRED - not when cash changes hands. This concept ensures financial statements show the TRUE picture of business performance for each period. Today, we'll learn how to match income with expenses properly, making you a smarter accountant!",
+  keyConcepts: [
+   {
+    title: 'What is the Accrual Concept?',
+    content: `The **Accrual Concept** (also known as the Matching Principle) states that revenue should be recognized when earned and expenses should be recognized when incurred, regardless of when cash is received or paid.
 
-## 📋 DEFINITION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 DEFINITION
+</h2>
 
 **Accrual Concept:**
 Income and expenses are recorded in the accounting period to which they relate, NOT when cash is received or paid. Revenue is matched with the expenses incurred to generate it.
 
 
-
-## 🔑 KEY PRINCIPLES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔑 KEY PRINCIPLES
+</h2>
 
 **1. Revenue Recognition**
 - Record income when EARNED (goods delivered/services rendered)
@@ -4302,53 +4219,51 @@ Income and expenses are recorded in the accounting period to which they relate, 
 - Provides accurate profit measurement
 
 
-
-## ⚖️ ACCRUAL vs CASH BASIS
-
-<table><thead><tr><th>Aspect</th><th>Accrual Basis</th><th>Cash Basis</th></tr></thead><tbody><tr><td><strong>Revenue</strong></td><td>When earned</td><td>When cash received</td></tr><tr><td><strong>Expenses</strong></td><td>When incurred</td><td>When cash paid</td></tr><tr><td><strong>Accuracy</strong></td><td>More accurate profit</td><td>Less accurate</td></tr><tr><td><strong>Complexity</strong></td><td>More complex</td><td>Simpler</td></tr><tr><td><strong>Who uses it</strong></td><td>Most businesses, required by IFRS</td><td>Small cash businesses</td></tr><tr><td><strong>Financial Statements</strong></td><td>Shows true position</td><td>May be misleading</td></tr></tbody></table>
-
-
-
-## 🎯 WHY IS THIS CONCEPT IMPORTANT?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚖️ ACCRUAL vs CASH BASIS
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Aspect</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Accrual Basis</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Cash Basis</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Revenue</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">When earned</td><td style="padding: 8px; border: 1px solid #e5e7eb;">When cash received</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Expenses</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">When incurred</td><td style="padding: 8px; border: 1px solid #e5e7eb;">When cash paid</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Accuracy</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">More accurate profit</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Less accurate</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Complexity</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">More complex</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Simpler</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Who uses it</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Most businesses, required by IFRS</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Small cash businesses</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Financial Statements</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Shows true position</td><td style="padding: 8px; border: 1px solid #e5e7eb;">May be misleading</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🎯 WHY IS THIS CONCEPT IMPORTANT?
+</h2>
 
 1. **Accurate Profit Measurement**
-   - Shows true profit for each period
-   - Expenses matched with related revenue
+  - Shows true profit for each period
+  - Expenses matched with related revenue
 
 2. **Better Decision Making**
-   - Realistic picture of performance
-   - Can compare periods fairly
+  - Realistic picture of performance
+  - Can compare periods fairly
 
 3. **Regulatory Compliance**
-   - Required by IFRS and {{business:tax-authority}}
-   - {{business:companies-act}} requirements
+  - Required by IFRS and {{business:tax-authority}}
+  - {{business:companies-act}} requirements
 
 4. **Stakeholder Confidence**
-   - Investors get reliable information
-   - Banks can assess creditworthiness
+  - Investors get reliable information
+  - Banks can assess creditworthiness
 
 
-
-## {{country:flag}} {{country}} CONTEXT
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} {{country}} CONTEXT
+</h2>
 
 The Accrual Concept is mandatory in {{country}} because:
 - {{business:companies-act}} requires accrual accounting
 - {{business:tax-authority}} accepts accrual-based financial statements
 - ICAG standards follow IFRS (accrual basis)
 - Only very small businesses may use cash basis`
-      },
-      {
-        title: 'Accrued Expenses (Accruals)',
-        content: `Accrued expenses are costs that have been INCURRED but NOT YET PAID by the end of the accounting period.
+   },
+   {
+    title: 'Accrued Expenses (Accruals)',
+    content: `Accrued expenses are costs that have been INCURRED but NOT YET PAID by the end of the accounting period.
 
-## 📋 DEFINITION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 DEFINITION
+</h2>
 
 **Accrued Expenses:**
 Expenses that have been used or consumed during the accounting period but payment has not yet been made. Also called "Accruals" or "Outstanding Expenses."
 
 
-
-## 📝 COMMON EXAMPLES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 COMMON EXAMPLES
+</h2>
 
 **1. Accrued Salaries/Wages**
 - Employees worked in December
@@ -4371,8 +4286,8 @@ Expenses that have been used or consumed during the accounting period but paymen
 - Interest incurred = Current expense
 
 
-
-## 📊 ACCOUNTING TREATMENT
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 ACCOUNTING TREATMENT
+</h2>
 
 **At Year End (Adjusting Entry):**
 \`\`\`
@@ -4385,20 +4300,17 @@ Electricity used in December but not yet paid = {{currency}}800
 
 \`\`\`
 Dec 31:
-   Debit: Electricity Expense    {{currency}}800
-   Credit: Accrued Expenses      {{currency}}800
-   (Being electricity accrued for December)
+  Debit: Electricity Expense  {{currency}}800
+  Credit: Accrued Expenses   {{currency}}800
+  (Being electricity accrued for December)
 \`\`\`
 
 
-
-## 📋 EFFECT ON FINANCIAL STATEMENTS
-
-<table><thead><tr><th>Financial Statement</th><th>Item Affected</th><th>Effect</th></tr></thead><tbody><tr><td><strong>Income Statement</strong></td><td>Expenses</td><td>Increases (reduces profit)</td></tr><tr><td><strong>Balance Sheet</strong></td><td>Current Liabilities</td><td>Increases (Accruals)</td></tr></tbody></table>
-
-
-
-## 🧮 PRACTICAL CALCULATION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 EFFECT ON FINANCIAL STATEMENTS
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Financial Statement</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Item Affected</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Effect</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Income Statement</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Expenses</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Increases (reduces profit)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Balance Sheet</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Current Liabilities</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Increases (Accruals)</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🧮 PRACTICAL CALCULATION
+</h2>
 
 **Scenario:** Madam Esi's shop has the following at December 31:
 - Wages owed to workers: {{currency}}2,500
@@ -4410,19 +4322,20 @@ Dec 31:
 This {{currency}}4,300 will:
 - Appear as expense in the Income Statement
 - Appear as Current Liability in the Balance Sheet`
-      },
-      {
-        title: 'Prepaid Expenses (Prepayments)',
-        content: `Prepaid expenses are costs that have been PAID but NOT YET USED/CONSUMED by the end of the accounting period.
+   },
+   {
+    title: 'Prepaid Expenses (Prepayments)',
+    content: `Prepaid expenses are costs that have been PAID but NOT YET USED/CONSUMED by the end of the accounting period.
 
-## 📋 DEFINITION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 DEFINITION
+</h2>
 
 **Prepaid Expenses:**
 Expenses that have been paid in advance but the benefit extends into future accounting periods. Also called "Prepayments" or "Unexpired Expenses."
 
 
-
-## 📝 COMMON EXAMPLES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 COMMON EXAMPLES
+</h2>
 
 **1. Prepaid Rent**
 - Paid 3 months' rent in advance
@@ -4445,8 +4358,8 @@ Expenses that have been paid in advance but the benefit extends into future acco
 - {{currency}}2,000 remains as prepaid/asset
 
 
-
-## 📊 ACCOUNTING TREATMENT
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 ACCOUNTING TREATMENT
+</h2>
 
 **Initial Payment:**
 \`\`\`
@@ -4466,20 +4379,17 @@ At Nov 30 year-end, December rent ({{currency}}2,000) is prepaid.
 
 \`\`\`
 Nov 30:
-   Debit: Prepaid Rent          {{currency}}2,000
-   Credit: Rent Expense         {{currency}}2,000
-   (Being rent prepaid for December)
+  Debit: Prepaid Rent     {{currency}}2,000
+  Credit: Rent Expense     {{currency}}2,000
+  (Being rent prepaid for December)
 \`\`\`
 
 
-
-## 📋 EFFECT ON FINANCIAL STATEMENTS
-
-<table><thead><tr><th>Financial Statement</th><th>Item Affected</th><th>Effect</th></tr></thead><tbody><tr><td><strong>Income Statement</strong></td><td>Expenses</td><td>Decreases (increases profit)</td></tr><tr><td><strong>Balance Sheet</strong></td><td>Current Assets</td><td>Increases (Prepayments)</td></tr></tbody></table>
-
-
-
-## 🧮 PRACTICAL CALCULATION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 EFFECT ON FINANCIAL STATEMENTS
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Financial Statement</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Item Affected</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Effect</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Income Statement</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Expenses</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Decreases (increases profit)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Balance Sheet</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Current Assets</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Increases (Prepayments)</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🧮 PRACTICAL CALCULATION
+</h2>
 
 **Scenario:** On October 1, a business paid:
 - 6 months' rent: {{currency}}12,000 (Oct - March)
@@ -4498,19 +4408,20 @@ Nov 30:
 - **Prepaid (Jan-Sept): 9 months = {{currency}}2,700**
 
 **Total Prepayments = {{currency}}6,000 + {{currency}}2,700 = {{currency}}8,700**`
-      },
-      {
-        title: 'Accrued Income',
-        content: `Accrued income is revenue that has been EARNED but NOT YET RECEIVED by the end of the accounting period.
+   },
+   {
+    title: 'Accrued Income',
+    content: `Accrued income is revenue that has been EARNED but NOT YET RECEIVED by the end of the accounting period.
 
-## 📋 DEFINITION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 DEFINITION
+</h2>
 
 **Accrued Income:**
 Income that has been earned during the accounting period but payment has not yet been received. Also called "Accrued Revenue" or "Outstanding Income."
 
 
-
-## 📝 COMMON EXAMPLES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 COMMON EXAMPLES
+</h2>
 
 **1. Accrued Interest Income**
 - Interest earned on fixed deposit
@@ -4533,8 +4444,8 @@ Income that has been earned during the accounting period but payment has not yet
 - Work done = income earned
 
 
-
-## 📊 ACCOUNTING TREATMENT
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 ACCOUNTING TREATMENT
+</h2>
 
 **At Year End (Adjusting Entry):**
 \`\`\`
@@ -4548,20 +4459,17 @@ Not yet credited by the bank at December 31.
 
 \`\`\`
 Dec 31:
-   Debit: Accrued Income         {{currency}}1,500
-   Credit: Interest Income       {{currency}}1,500
-   (Being interest income accrued for Oct-Dec)
+  Debit: Accrued Income     {{currency}}1,500
+  Credit: Interest Income    {{currency}}1,500
+  (Being interest income accrued for Oct-Dec)
 \`\`\`
 
 
-
-## 📋 EFFECT ON FINANCIAL STATEMENTS
-
-<table><thead><tr><th>Financial Statement</th><th>Item Affected</th><th>Effect</th></tr></thead><tbody><tr><td><strong>Income Statement</strong></td><td>Income/Revenue</td><td>Increases (increases profit)</td></tr><tr><td><strong>Balance Sheet</strong></td><td>Current Assets</td><td>Increases (Accrued Income)</td></tr></tbody></table>
-
-
-
-## 🧮 PRACTICAL CALCULATION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 EFFECT ON FINANCIAL STATEMENTS
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Financial Statement</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Item Affected</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Effect</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Income Statement</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Income/Revenue</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Increases (increases profit)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Balance Sheet</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Current Assets</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Increases (Accrued Income)</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🧮 PRACTICAL CALCULATION
+</h2>
 
 **Scenario:** At December 31, the previous owner has:
 - Interest earned but not received: {{currency}}2,000
@@ -4575,27 +4483,28 @@ This {{currency}}7,300 will:
 - Appear as Current Asset in the Balance Sheet
 
 
-
-## ⚠️ IMPORTANT NOTE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚠️ IMPORTANT NOTE
+</h2>
 
 **Accrued Income vs Trade Receivables:**
 - Both are amounts owed to the business
 - Trade Receivables = from normal sales on credit
 - Accrued Income = from OTHER income sources (interest, rent, commissions, etc.)
 - Sometimes grouped together, but conceptually different`
-      },
-      {
-        title: 'Income Received in Advance (Deferred Income)',
-        content: `Income received in advance is money RECEIVED but NOT YET EARNED by the end of the accounting period.
+   },
+   {
+    title: 'Income Received in Advance (Deferred Income)',
+    content: `Income received in advance is money RECEIVED but NOT YET EARNED by the end of the accounting period.
 
-## 📋 DEFINITION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 DEFINITION
+</h2>
 
 **Income Received in Advance:**
 Money received from customers for goods/services that will be provided in FUTURE periods. Also called "Deferred Income," "Unearned Revenue," or "Prepaid Income."
 
 
-
-## 📝 COMMON EXAMPLES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 COMMON EXAMPLES
+</h2>
 
 **1. Rent Received in Advance**
 - Tenant pays 3 months' rent upfront
@@ -4618,8 +4527,8 @@ Money received from customers for goods/services that will be provided in FUTURE
 - Deposit is unearned income
 
 
-
-## 📊 ACCOUNTING TREATMENT
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 ACCOUNTING TREATMENT
+</h2>
 
 **Initial Receipt:**
 \`\`\`
@@ -4639,20 +4548,17 @@ At December 31 year-end, January rent ({{currency}}3,000) is unearned.
 
 \`\`\`
 Dec 31:
-   Debit: Rent Income            {{currency}}3,000
-   Credit: Income Received in Advance  {{currency}}3,000
-   (Being rent received in advance for January)
+  Debit: Rent Income      {{currency}}3,000
+  Credit: Income Received in Advance {{currency}}3,000
+  (Being rent received in advance for January)
 \`\`\`
 
 
-
-## 📋 EFFECT ON FINANCIAL STATEMENTS
-
-<table><thead><tr><th>Financial Statement</th><th>Item Affected</th><th>Effect</th></tr></thead><tbody><tr><td><strong>Income Statement</strong></td><td>Income/Revenue</td><td>Decreases (reduces profit)</td></tr><tr><td><strong>Balance Sheet</strong></td><td>Current Liabilities</td><td>Increases (Deferred Income)</td></tr></tbody></table>
-
-
-
-## 🧮 WHY IS IT A LIABILITY?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 EFFECT ON FINANCIAL STATEMENTS
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Financial Statement</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Item Affected</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Effect</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Income Statement</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Income/Revenue</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Decreases (reduces profit)</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Balance Sheet</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Current Liabilities</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Increases (Deferred Income)</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🧮 WHY IS IT A LIABILITY?
+</h2>
 
 Income received in advance is a LIABILITY because:
 - The business OWES something to the customer
@@ -4661,8 +4567,8 @@ Income received in advance is a LIABILITY because:
 - It's an OBLIGATION, not yet earned
 
 
-
-## 📝 PRACTICAL EXAMPLE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 PRACTICAL EXAMPLE
+</h2>
 
 **Scenario:** SmartLearn Academy received:
 - Annual fees from 50 students on September 1
@@ -4678,21 +4584,19 @@ Income received in advance is a LIABILITY because:
 **Adjusting Entry:**
 \`\`\`
 Dec 31:
-   Debit: School Fees Income     {{currency}}200,000
-   Credit: Fees Received in Advance  {{currency}}200,000
+  Debit: School Fees Income   {{currency}}200,000
+  Credit: Fees Received in Advance {{currency}}200,000
 \`\`\``
-      },
-      {
-        title: 'Summary of Accruals and Prepayments',
-        content: `Let's consolidate everything with a comprehensive comparison and summary!
+   },
+   {
+    title: 'Summary of Accruals and Prepayments',
+    content: `Let's consolidate everything with a comprehensive comparison and summary!
 
-## 📊 THE FOUR TYPES AT A GLANCE
-
-<table><thead><tr><th>Type</th><th>Definition</th><th>Dr/Cr</th><th>Balance Sheet</th></tr></thead><tbody><tr><td><strong>Accrued Expenses</strong></td><td>Incurred, not paid</td><td>Dr Expense, Cr Accruals</td><td>Current Liability</td></tr><tr><td><strong>Prepaid Expenses</strong></td><td>Paid, not incurred</td><td>Dr Prepaid, Cr Expense</td><td>Current Asset</td></tr><tr><td><strong>Accrued Income</strong></td><td>Earned, not received</td><td>Dr Accrued Inc, Cr Income</td><td>Current Asset</td></tr><tr><td><strong>Income in Advance</strong></td><td>Received, not earned</td><td>Dr Income, Cr Deferred Inc</td><td>Current Liability</td></tr></tbody></table>
-
-
-
-## 🧠 MEMORY TRICK
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 THE FOUR TYPES AT A GLANCE
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Type</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Definition</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Dr/Cr</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Balance Sheet</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Accrued Expenses</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Incurred, not paid</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Dr Expense, Cr Accruals</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Current Liability</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Prepaid Expenses</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Paid, not incurred</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Dr Prepaid, Cr Expense</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Current Asset</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Accrued Income</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Earned, not received</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Dr Accrued Inc, Cr Income</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Current Asset</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Income in Advance</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Received, not earned</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Dr Income, Cr Deferred Inc</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Current Liability</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🧠 MEMORY TRICK
+</h2>
 
 **EXPENSE side:**
 - **Accrued** expense = Owed (Liability) = "I OWE for what I USED"
@@ -4703,14 +4607,11 @@ Dec 31:
 - **Income in advance** = Liability = "I OWE THEM services/goods"
 
 
-
-## 📋 EFFECT ON PROFIT SUMMARY
-
-<table><thead><tr><th>Adjustment</th><th>Effect on Expenses</th><th>Effect on Income</th><th>Effect on Profit</th></tr></thead><tbody><tr><td>Accrued Expenses</td><td>Increases ↑</td><td>No effect</td><td>Decreases ↓</td></tr><tr><td>Prepaid Expenses</td><td>Decreases ↓</td><td>No effect</td><td>Increases ↑</td></tr><tr><td>Accrued Income</td><td>No effect</td><td>Increases ↑</td><td>Increases ↑</td></tr><tr><td>Income in Advance</td><td>No effect</td><td>Decreases ↓</td><td>Decreases ↓</td></tr></tbody></table>
-
-
-
-## 📝 COMPREHENSIVE EXAMPLE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 EFFECT ON PROFIT SUMMARY
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Adjustment</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Effect on Expenses</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Effect on Income</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Effect on Profit</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Accrued Expenses</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Increases ↑</td><td style="padding: 8px; border: 1px solid #e5e7eb;">No effect</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Decreases ↓</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Prepaid Expenses</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Decreases ↓</td><td style="padding: 8px; border: 1px solid #e5e7eb;">No effect</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Increases ↑</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Accrued Income</td><td style="padding: 8px; border: 1px solid #e5e7eb;">No effect</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Increases ↑</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Increases ↑</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Income in Advance</td><td style="padding: 8px; border: 1px solid #e5e7eb;">No effect</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Decreases ↓</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Decreases ↓</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 COMPREHENSIVE EXAMPLE
+</h2>
 
 **Business Status at December 31:**
 
@@ -4734,20 +4635,21 @@ Dec 31:
 4. Accrued Commission: {{currency}}2,500 (Asset)
 
 
-
-## ⚠️ {{exam:secondary}} TIP
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚠️ {{exam:secondary}} TIP
+</h2>
 
 In exam questions:
 1. **Identify** the type (accrual or prepayment, expense or income)
 2. **Calculate** the amount relating to the period
 3. **Show** the adjusting journal entry
 4. **State** the effect on Income Statement AND Balance Sheet`
-      },
-      {
-        title: 'Key Terms Summary',
-        content: `Master these important terms related to the Accrual Concept!
+   },
+   {
+    title: 'Key Terms Summary',
+    content: `Master these important terms related to the Accrual Concept!
 
-## 📚 ESSENTIAL VOCABULARY
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📚 ESSENTIAL VOCABULARY
+</h2>
 
 **Accrual Concept**
 Definition: The accounting principle that requires recording revenue when earned and expenses when incurred, regardless of when cash is received or paid.
@@ -4780,14 +4682,11 @@ Definition: Journal entries made at the end of an accounting period to allocate 
 Definition: The time frame for which financial statements are prepared (usually one year).
 
 
-
-## 📋 QUICK REFERENCE TABLE
-
-<table><thead><tr><th>Term</th><th>Cash Position</th><th>Recognition</th><th>Balance Sheet</th></tr></thead><tbody><tr><td>Accrued Expense</td><td>Not yet paid</td><td>Already incurred</td><td>Current Liability</td></tr><tr><td>Prepaid Expense</td><td>Already paid</td><td>Not yet incurred</td><td>Current Asset</td></tr><tr><td>Accrued Income</td><td>Not yet received</td><td>Already earned</td><td>Current Asset</td></tr><tr><td>Deferred Income</td><td>Already received</td><td>Not yet earned</td><td>Current Liability</td></tr></tbody></table>
-
-
-
-## ⚠️ {{exam:secondary}} TIP
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 QUICK REFERENCE TABLE
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Term</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Cash Position</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Recognition</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Balance Sheet</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Accrued Expense</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Not yet paid</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Already incurred</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Current Liability</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Prepaid Expense</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Already paid</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Not yet incurred</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Current Asset</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Accrued Income</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Not yet received</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Already earned</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Current Asset</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Deferred Income</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Already received</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Not yet earned</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Current Liability</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚠️ {{exam:secondary}} TIP
+</h2>
 
 Key points examiners look for:
 1. **Define** the accrual concept clearly
@@ -4796,259 +4695,261 @@ Key points examiners look for:
 4. **Prepare** adjusting journal entries
 5. **State** effects on financial statements
 6. **Apply** to practical scenarios`
-      }
+   }
+  ],
+  summary: "Congratulations! You've mastered the Accrual Concept—one of the most important principles in accounting! You now understand that revenue should be recorded when EARNED (not when cash received) and expenses when INCURRED (not when cash paid). This matching principle ensures accurate profit measurement. You can now identify and record the four types of adjustments: Accrued Expenses (incurred but not paid - liability), Prepaid Expenses (paid but not incurred - asset), Accrued Income (earned but not received - asset), and Income Received in Advance (received but not earned - liability). Remember: Accrual accounting is required by IFRS, {{country}}'s Companies Act, and {{business:tax-authority}}. Cash basis is only for very small businesses. Master these adjusting entries and you'll ace your {{exam:secondary}}!",
+  endOfLessonQuiz: [
+   {
+    id: 'facc-accrual-q1',
+    type: 'mcq',
+    question: "The accrual concept states that:",
+    options: [
+     "Income is recorded when cash is received",
+     "Expenses are recorded when cash is paid",
+     "Income is recorded when earned and expenses when incurred",
+     "All transactions are recorded at year end only"
     ],
-    summary: "Congratulations! You've mastered the Accrual Concept—one of the most important principles in accounting! You now understand that revenue should be recorded when EARNED (not when cash received) and expenses when INCURRED (not when cash paid). This matching principle ensures accurate profit measurement. You can now identify and record the four types of adjustments: Accrued Expenses (incurred but not paid - liability), Prepaid Expenses (paid but not incurred - asset), Accrued Income (earned but not received - asset), and Income Received in Advance (received but not earned - liability). Remember: Accrual accounting is required by IFRS, {{country}}'s Companies Act, and {{business:tax-authority}}. Cash basis is only for very small businesses. Master these adjusting entries and you'll ace your {{exam:secondary}}!",
-    endOfLessonQuiz: [
-      {
-        id: 'facc-accrual-q1',
-        type: 'mcq',
-        question: "The accrual concept states that:",
-        options: [
-          "Income is recorded when cash is received",
-          "Expenses are recorded when cash is paid",
-          "Income is recorded when earned and expenses when incurred",
-          "All transactions are recorded at year end only"
-        ],
-        answer: "Income is recorded when earned and expenses when incurred",
-        explanation: "The accrual concept states that income should be recognized when EARNED and expenses when INCURRED, regardless of when cash is received or paid."
-      },
-      {
-        id: 'facc-accrual-q2',
-        type: 'mcq',
-        question: "Accrued expenses are:",
-        options: [
-          "Expenses paid in advance",
-          "Expenses incurred but not yet paid",
-          "Expenses that will never be paid",
-          "Capital expenditure"
-        ],
-        answer: "Expenses incurred but not yet paid",
-        explanation: "Accrued expenses are costs that have been INCURRED (benefit received) during the period but payment has NOT YET been made."
-      },
-      {
-        id: 'facc-accrual-q3',
-        type: 'mcq',
-        question: "Prepaid expenses appear in the Balance Sheet as:",
-        options: [
-          "Current liability",
-          "Non-current asset",
-          "Current asset",
-          "Owner's equity"
-        ],
-        answer: "Current asset",
-        explanation: "Prepaid expenses are CURRENT ASSETS because they represent future economic benefits - the business has paid for something it will use/consume in the next period."
-      },
-      {
-        id: 'facc-accrual-q4',
-        type: 'mcq',
-        question: "Rent paid in advance for 3 months totaling {{currency}}9,000. At year-end, 1 month has passed. The prepaid rent is:",
-        options: [
-          "{{currency}}9,000",
-          "{{currency}}6,000",
-          "{{currency}}3,000",
-          "{{currency}}0"
-        ],
-        answer: "{{currency}}6,000",
-        explanation: "Total rent = {{currency}}9,000 for 3 months = {{currency}}3,000/month. If 1 month has passed ({{currency}}3,000 used), then 2 months ({{currency}}6,000) remain prepaid."
-      },
-      {
-        id: 'facc-accrual-q5',
-        type: 'mcq',
-        question: "The adjusting entry for accrued expenses is:",
-        options: [
-          "Debit Cash, Credit Expense",
-          "Debit Expense, Credit Accruals",
-          "Debit Accruals, Credit Expense",
-          "Debit Expense, Credit Cash"
-        ],
-        answer: "Debit Expense, Credit Accruals",
-        explanation: "For accrued expenses: Debit Expense (increases expense) and Credit Accruals (creates liability). This recognizes the expense and the obligation to pay."
-      },
-      {
-        id: 'facc-accrual-q6',
-        type: 'mcq',
-        question: "Income received in advance is recorded as:",
-        options: [
-          "A current asset",
-          "A current liability",
-          "Revenue in the Income Statement",
-          "An expense"
-        ],
-        answer: "A current liability",
-        explanation: "Income received in advance is a CURRENT LIABILITY because the business owes the customer either the goods/services or a refund. It's an obligation, not yet earned income."
-      },
-      {
-        id: 'facc-accrual-q7',
-        type: 'mcq',
-        question: "Accrued income is:",
-        options: [
-          "Income received but not earned",
-          "Income earned but not yet received",
-          "Income that will never be received",
-          "The same as sales revenue"
-        ],
-        answer: "Income earned but not yet received",
-        explanation: "Accrued income is revenue that has been EARNED during the period (e.g., interest earned, rent due) but the cash has NOT YET been RECEIVED."
-      },
-      {
-        id: 'facc-accrual-q8',
-        type: 'mcq',
-        question: "Which statement about accrual vs cash basis is TRUE?",
-        options: [
-          "Cash basis is required by IFRS",
-          "Accrual basis gives more accurate profit measurement",
-          "Cash basis is more complex",
-          "Large companies must use cash basis"
-        ],
-        answer: "Accrual basis gives more accurate profit measurement",
-        explanation: "Accrual basis provides more accurate profit measurement because it matches expenses with related revenue in the same period, showing the true economic performance."
-      },
-      {
-        id: 'facc-accrual-q9',
-        type: 'mcq',
-        question: "The matching principle requires:",
-        options: [
-          "All income to be received before expenses are paid",
-          "Expenses to be matched with revenue they help generate",
-          "Assets to equal liabilities",
-          "Cash receipts to equal cash payments"
-        ],
-        answer: "Expenses to be matched with revenue they help generate",
-        explanation: "The matching principle requires that expenses be recognized in the SAME period as the revenue they help generate, ensuring accurate profit calculation."
-      },
-      {
-        id: 'facc-accrual-q10',
-        type: 'mcq',
-        question: "Insurance premium of {{currency}}12,000 paid on April 1 for one year. At December 31, the prepaid insurance is:",
-        options: [
-          "{{currency}}12,000",
-          "{{currency}}9,000",
-          "{{currency}}3,000",
-          "{{currency}}0"
-        ],
-        answer: "{{currency}}3,000",
-        explanation: "Insurance covers April 1 to March 31 (12 months). At Dec 31, 9 months have passed (April-Dec), so 3 months remain prepaid. {{currency}}12,000 × 3/12 = {{currency}}3,000."
-      },
-      {
-        id: 'facc-accrual-q11',
-        type: 'mcq',
-        question: "Accruing expenses will:",
-        options: [
-          "Increase profit",
-          "Decrease profit",
-          "Have no effect on profit",
-          "Increase assets"
-        ],
-        answer: "Decrease profit",
-        explanation: "Accruing expenses INCREASES the expenses in the Income Statement, which DECREASES the net profit. The expense is recognized even though not yet paid."
-      },
-      {
-        id: 'facc-accrual-q12',
-        type: 'mcq',
-        question: "Prepaying expenses will:",
-        options: [
-          "Decrease profit",
-          "Increase profit",
-          "Have no effect on profit",
-          "Increase liabilities"
-        ],
-        answer: "Increase profit",
-        explanation: "Recording prepaid expenses REDUCES expenses in the Income Statement (transfers to asset), which INCREASES net profit for the current period."
-      },
-      {
-        id: 'facc-accrual-q13',
-        type: 'mcq',
-        question: "School fees received in advance of {{currency}}50,000. By year-end, {{currency}}30,000 is earned. The liability is:",
-        options: [
-          "{{currency}}50,000",
-          "{{currency}}30,000",
-          "{{currency}}20,000",
-          "{{currency}}0"
-        ],
-        answer: "{{currency}}20,000",
-        explanation: "Total received = {{currency}}50,000. Earned = {{currency}}30,000 (recognized as income). Unearned = {{currency}}50,000 - {{currency}}30,000 = {{currency}}20,000 (remains as liability)."
-      },
-      {
-        id: 'facc-accrual-q14',
-        type: 'mcq',
-        question: "The entry Debit Prepaid Rent, Credit Rent Expense is made to:",
-        options: [
-          "Record payment of rent",
-          "Record rent owing",
-          "Transfer unexpired rent to asset",
-          "Write off rent expense"
-        ],
-        answer: "Transfer unexpired rent to asset",
-        explanation: "This entry removes the unexpired (prepaid) portion from expense and transfers it to an asset account, to be expensed in future periods when used."
-      },
-      {
-        id: 'facc-accrual-q15',
-        type: 'mcq',
-        question: "Which is classified as a current LIABILITY?",
-        options: [
-          "Prepaid insurance",
-          "Accrued commission income",
-          "Income received in advance",
-          "Prepaid rent"
-        ],
-        answer: "Income received in advance",
-        explanation: "Income received in advance is a current LIABILITY because the business owes the customer goods/services or a refund. Prepaid items and accrued income are ASSETS."
-      }
+    answer: "Income is recorded when earned and expenses when incurred",
+    explanation: "The accrual concept states that income should be recognized when EARNED and expenses when INCURRED, regardless of when cash is received or paid."
+   },
+   {
+    id: 'facc-accrual-q2',
+    type: 'mcq',
+    question: "Accrued expenses are:",
+    options: [
+     "Expenses paid in advance",
+     "Expenses incurred but not yet paid",
+     "Expenses that will never be paid",
+     "Capital expenditure"
     ],
-    activities: [],
-    pastQuestions: [
-      {
-        question: "{{exam:secondary}} 2020: (a) Define the accrual concept. (b) Distinguish between accrued expenses and prepaid expenses.",
-        year: "2020",
-        solution: "(a) Definition of Accrual Concept:\nThe accrual concept is the accounting principle that requires income to be recognized when EARNED (not when cash is received) and expenses to be recognized when INCURRED (not when cash is paid). This ensures that financial statements reflect the true economic activity of a period.\n\n(b) Distinction between Accrued Expenses and Prepaid Expenses:\n\nAccrued Expenses:\n- Definition: Expenses that have been INCURRED but NOT YET PAID by the end of the accounting period\n- Example: Electricity used in December but bill not paid until January\n- Balance Sheet: Appears as a CURRENT LIABILITY\n- Effect: Increases expenses, decreases profit\n- Entry: Dr Expense, Cr Accruals\n\nPrepaid Expenses:\n- Definition: Expenses that have been PAID but NOT YET INCURRED/USED by the end of the accounting period\n- Example: Rent paid in advance for 3 months but only 1 month has passed\n- Balance Sheet: Appears as a CURRENT ASSET\n- Effect: Decreases expenses, increases profit\n- Entry: Dr Prepaid Expense, Cr Expense Account"
-      },
-      {
-        question: "{{exam:secondary}} 2019: On 1 October 2019, Kofi paid rent of {{currency}}18,000 for 6 months. His accounting year ends on 31 December. Calculate: (a) the rent expense for the year (b) the prepaid rent at year-end.",
-        year: "2019",
-        solution: "Given Information:\n- Rent paid: {{currency}}18,000\n- Period covered: 6 months (October 2019 to March 2020)\n- Year end: 31 December 2019\n\n(a) Rent Expense for the Year:\n\nMonthly rent = {{currency}}18,000 ÷ 6 months = {{currency}}3,000 per month\n\nMonths falling within the year (Oct, Nov, Dec) = 3 months\n\nRent Expense = {{currency}}3,000 × 3 months = {{currency}}9,000\n\n(b) Prepaid Rent at Year-End:\n\nMonths falling in next year (Jan, Feb, Mar) = 3 months\n\nPrepaid Rent = {{currency}}3,000 × 3 months = {{currency}}9,000\n\nVerification: Rent Expense + Prepaid Rent = {{currency}}9,000 + {{currency}}9,000 = {{currency}}18,000 ✓\n\nJournal Entry at Dec 31:\nDebit: Prepaid Rent    {{currency}}9,000\nCredit: Rent Expense   {{currency}}9,000\n(Being transfer of unexpired rent to prepayment)"
-      },
-      {
-        question: "{{exam:secondary}} 2018: Explain with examples: (a) Accrued income (b) Income received in advance.",
-        year: "2018",
-        solution: "(a) Accrued Income:\n\nDefinition: Income that has been EARNED during the accounting period but has NOT YET been RECEIVED in cash.\n\nCharacteristics:\n- Service has been rendered or goods delivered\n- Customer owes the business\n- Cash not yet collected\n- Recorded as CURRENT ASSET\n\nExamples:\n1. Interest earned on fixed deposit for October-December but not yet credited by the bank at year-end\n2. Rent due from a tenant for December but not yet collected\n3. Commission earned on sales made but payment pending from the principal\n\nEntry: Debit Accrued Income, Credit Income Account\n\n(b) Income Received in Advance:\n\nDefinition: Money that has been RECEIVED but has NOT YET been EARNED because the goods/services will be provided in future periods.\n\nCharacteristics:\n- Cash already received from customer\n- Service not yet rendered or goods not delivered\n- Business owes the customer\n- Recorded as CURRENT LIABILITY\n\nExamples:\n1. Rent collected from tenant for January-March in December\n2. School fees received in September for the entire academic year\n3. Magazine subscription received for 12 months when only 3 issues delivered\n\nEntry: Debit Income Account, Credit Income Received in Advance"
-      },
-      {
-        question: "{{exam:secondary}} 2021: At 31 December 2020, Ama Enterprises had the following: Electricity owing {{currency}}800, Rent paid in advance {{currency}}2,400, Commission earned but not received {{currency}}1,500, Subscription received in advance {{currency}}3,000. Show how these items will appear in the financial statements.",
-        year: "2021",
-        solution: "Classification and Presentation:\n\n1. ELECTRICITY OWING ({{currency}}800)\n- Type: Accrued Expense\n- Income Statement: Add to Electricity Expense (increases expenses)\n- Balance Sheet: Current Liability under \"Accruals\" or \"Accrued Expenses\"\n\n2. RENT PAID IN ADVANCE ({{currency}}2,400)\n- Type: Prepaid Expense\n- Income Statement: Deduct from Rent Expense (decreases expenses)\n- Balance Sheet: Current Asset under \"Prepayments\" or \"Prepaid Rent\"\n\n3. COMMISSION EARNED BUT NOT RECEIVED ({{currency}}1,500)\n- Type: Accrued Income\n- Income Statement: Add to Commission Income (increases income)\n- Balance Sheet: Current Asset under \"Accrued Income\"\n\n4. SUBSCRIPTION RECEIVED IN ADVANCE ({{currency}}3,000)\n- Type: Deferred Income\n- Income Statement: Deduct from Subscription Income (decreases income)\n- Balance Sheet: Current Liability under \"Income Received in Advance\"\n\nSUMMARY:\n\nBalance Sheet Extract:\nCurrent Assets:\n- Prepayments (Rent): {{currency}}2,400\n- Accrued Income (Commission): {{currency}}1,500\nTotal: {{currency}}3,900\n\nCurrent Liabilities:\n- Accruals (Electricity): {{currency}}800\n- Income Received in Advance: {{currency}}3,000\nTotal: {{currency}}3,800"
-      }
+    answer: "Expenses incurred but not yet paid",
+    explanation: "Accrued expenses are costs that have been INCURRED (benefit received) during the period but payment has NOT YET been made."
+   },
+   {
+    id: 'facc-accrual-q3',
+    type: 'mcq',
+    question: "Prepaid expenses appear in the Balance Sheet as:",
+    options: [
+     "Current liability",
+     "Non-current asset",
+     "Current asset",
+     "Owner's equity"
     ],
-  },
+    answer: "Current asset",
+    explanation: "Prepaid expenses are CURRENT ASSETS because they represent future economic benefits - the business has paid for something it will use/consume in the next period."
+   },
+   {
+    id: 'facc-accrual-q4',
+    type: 'mcq',
+    question: "Rent paid in advance for 3 months totaling {{currency}}9,000. At year-end, 1 month has passed. The prepaid rent is:",
+    options: [
+     "{{currency}}9,000",
+     "{{currency}}6,000",
+     "{{currency}}3,000",
+     "{{currency}}0"
+    ],
+    answer: "{{currency}}6,000",
+    explanation: "Total rent = {{currency}}9,000 for 3 months = {{currency}}3,000/month. If 1 month has passed ({{currency}}3,000 used), then 2 months ({{currency}}6,000) remain prepaid."
+   },
+   {
+    id: 'facc-accrual-q5',
+    type: 'mcq',
+    question: "The adjusting entry for accrued expenses is:",
+    options: [
+     "Debit Cash, Credit Expense",
+     "Debit Expense, Credit Accruals",
+     "Debit Accruals, Credit Expense",
+     "Debit Expense, Credit Cash"
+    ],
+    answer: "Debit Expense, Credit Accruals",
+    explanation: "For accrued expenses: Debit Expense (increases expense) and Credit Accruals (creates liability). This recognizes the expense and the obligation to pay."
+   },
+   {
+    id: 'facc-accrual-q6',
+    type: 'mcq',
+    question: "Income received in advance is recorded as:",
+    options: [
+     "A current asset",
+     "A current liability",
+     "Revenue in the Income Statement",
+     "An expense"
+    ],
+    answer: "A current liability",
+    explanation: "Income received in advance is a CURRENT LIABILITY because the business owes the customer either the goods/services or a refund. It's an obligation, not yet earned income."
+   },
+   {
+    id: 'facc-accrual-q7',
+    type: 'mcq',
+    question: "Accrued income is:",
+    options: [
+     "Income received but not earned",
+     "Income earned but not yet received",
+     "Income that will never be received",
+     "The same as sales revenue"
+    ],
+    answer: "Income earned but not yet received",
+    explanation: "Accrued income is revenue that has been EARNED during the period (e.g., interest earned, rent due) but the cash has NOT YET been RECEIVED."
+   },
+   {
+    id: 'facc-accrual-q8',
+    type: 'mcq',
+    question: "Which statement about accrual vs cash basis is TRUE?",
+    options: [
+     "Cash basis is required by IFRS",
+     "Accrual basis gives more accurate profit measurement",
+     "Cash basis is more complex",
+     "Large companies must use cash basis"
+    ],
+    answer: "Accrual basis gives more accurate profit measurement",
+    explanation: "Accrual basis provides more accurate profit measurement because it matches expenses with related revenue in the same period, showing the true economic performance."
+   },
+   {
+    id: 'facc-accrual-q9',
+    type: 'mcq',
+    question: "The matching principle requires:",
+    options: [
+     "All income to be received before expenses are paid",
+     "Expenses to be matched with revenue they help generate",
+     "Assets to equal liabilities",
+     "Cash receipts to equal cash payments"
+    ],
+    answer: "Expenses to be matched with revenue they help generate",
+    explanation: "The matching principle requires that expenses be recognized in the SAME period as the revenue they help generate, ensuring accurate profit calculation."
+   },
+   {
+    id: 'facc-accrual-q10',
+    type: 'mcq',
+    question: "Insurance premium of {{currency}}12,000 paid on April 1 for one year. At December 31, the prepaid insurance is:",
+    options: [
+     "{{currency}}12,000",
+     "{{currency}}9,000",
+     "{{currency}}3,000",
+     "{{currency}}0"
+    ],
+    answer: "{{currency}}3,000",
+    explanation: "Insurance covers April 1 to March 31 (12 months). At Dec 31, 9 months have passed (April-Dec), so 3 months remain prepaid. {{currency}}12,000 × 3/12 = {{currency}}3,000."
+   },
+   {
+    id: 'facc-accrual-q11',
+    type: 'mcq',
+    question: "Accruing expenses will:",
+    options: [
+     "Increase profit",
+     "Decrease profit",
+     "Have no effect on profit",
+     "Increase assets"
+    ],
+    answer: "Decrease profit",
+    explanation: "Accruing expenses INCREASES the expenses in the Income Statement, which DECREASES the net profit. The expense is recognized even though not yet paid."
+   },
+   {
+    id: 'facc-accrual-q12',
+    type: 'mcq',
+    question: "Prepaying expenses will:",
+    options: [
+     "Decrease profit",
+     "Increase profit",
+     "Have no effect on profit",
+     "Increase liabilities"
+    ],
+    answer: "Increase profit",
+    explanation: "Recording prepaid expenses REDUCES expenses in the Income Statement (transfers to asset), which INCREASES net profit for the current period."
+   },
+   {
+    id: 'facc-accrual-q13',
+    type: 'mcq',
+    question: "School fees received in advance of {{currency}}50,000. By year-end, {{currency}}30,000 is earned. The liability is:",
+    options: [
+     "{{currency}}50,000",
+     "{{currency}}30,000",
+     "{{currency}}20,000",
+     "{{currency}}0"
+    ],
+    answer: "{{currency}}20,000",
+    explanation: "Total received = {{currency}}50,000. Earned = {{currency}}30,000 (recognized as income). Unearned = {{currency}}50,000 - {{currency}}30,000 = {{currency}}20,000 (remains as liability)."
+   },
+   {
+    id: 'facc-accrual-q14',
+    type: 'mcq',
+    question: "The entry Debit Prepaid Rent, Credit Rent Expense is made to:",
+    options: [
+     "Record payment of rent",
+     "Record rent owing",
+     "Transfer unexpired rent to asset",
+     "Write off rent expense"
+    ],
+    answer: "Transfer unexpired rent to asset",
+    explanation: "This entry removes the unexpired (prepaid) portion from expense and transfers it to an asset account, to be expensed in future periods when used."
+   },
+   {
+    id: 'facc-accrual-q15',
+    type: 'mcq',
+    question: "Which is classified as a current LIABILITY?",
+    options: [
+     "Prepaid insurance",
+     "Accrued commission income",
+     "Income received in advance",
+     "Prepaid rent"
+    ],
+    answer: "Income received in advance",
+    explanation: "Income received in advance is a current LIABILITY because the business owes the customer goods/services or a refund. Prepaid items and accrued income are ASSETS."
+   }
+  ],
+  activities: [],
+  pastQuestions: [
+   {
+    question: "{{exam:secondary}} 2020: (a) Define the accrual concept. (b) Distinguish between accrued expenses and prepaid expenses.",
+    year: "2020",
+    solution: "(a) Definition of Accrual Concept:\nThe accrual concept is the accounting principle that requires income to be recognized when EARNED (not when cash is received) and expenses to be recognized when INCURRED (not when cash is paid). This ensures that financial statements reflect the true economic activity of a period.\n\n(b) Distinction between Accrued Expenses and Prepaid Expenses:\n\nAccrued Expenses:\n- Definition: Expenses that have been INCURRED but NOT YET PAID by the end of the accounting period\n- Example: Electricity used in December but bill not paid until January\n- Balance Sheet: Appears as a CURRENT LIABILITY\n- Effect: Increases expenses, decreases profit\n- Entry: Dr Expense, Cr Accruals\n\nPrepaid Expenses:\n- Definition: Expenses that have been PAID but NOT YET INCURRED/USED by the end of the accounting period\n- Example: Rent paid in advance for 3 months but only 1 month has passed\n- Balance Sheet: Appears as a CURRENT ASSET\n- Effect: Decreases expenses, increases profit\n- Entry: Dr Prepaid Expense, Cr Expense Account"
+   },
+   {
+    question: "{{exam:secondary}} 2019: On 1 October 2019, Kofi paid rent of {{currency}}18,000 for 6 months. His accounting year ends on 31 December. Calculate: (a) the rent expense for the year (b) the prepaid rent at year-end.",
+    year: "2019",
+    solution: "Given Information:\n- Rent paid: {{currency}}18,000\n- Period covered: 6 months (October 2019 to March 2020)\n- Year end: 31 December 2019\n\n(a) Rent Expense for the Year:\n\nMonthly rent = {{currency}}18,000 ÷ 6 months = {{currency}}3,000 per month\n\nMonths falling within the year (Oct, Nov, Dec) = 3 months\n\nRent Expense = {{currency}}3,000 × 3 months = {{currency}}9,000\n\n(b) Prepaid Rent at Year-End:\n\nMonths falling in next year (Jan, Feb, Mar) = 3 months\n\nPrepaid Rent = {{currency}}3,000 × 3 months = {{currency}}9,000\n\nVerification: Rent Expense + Prepaid Rent = {{currency}}9,000 + {{currency}}9,000 = {{currency}}18,000 ✓\n\nJournal Entry at Dec 31:\nDebit: Prepaid Rent  {{currency}}9,000\nCredit: Rent Expense  {{currency}}9,000\n(Being transfer of unexpired rent to prepayment)"
+   },
+   {
+    question: "{{exam:secondary}} 2018: Explain with examples: (a) Accrued income (b) Income received in advance.",
+    year: "2018",
+    solution: "(a) Accrued Income:\n\nDefinition: Income that has been EARNED during the accounting period but has NOT YET been RECEIVED in cash.\n\nCharacteristics:\n- Service has been rendered or goods delivered\n- Customer owes the business\n- Cash not yet collected\n- Recorded as CURRENT ASSET\n\nExamples:\n1. Interest earned on fixed deposit for October-December but not yet credited by the bank at year-end\n2. Rent due from a tenant for December but not yet collected\n3. Commission earned on sales made but payment pending from the principal\n\nEntry: Debit Accrued Income, Credit Income Account\n\n(b) Income Received in Advance:\n\nDefinition: Money that has been RECEIVED but has NOT YET been EARNED because the goods/services will be provided in future periods.\n\nCharacteristics:\n- Cash already received from customer\n- Service not yet rendered or goods not delivered\n- Business owes the customer\n- Recorded as CURRENT LIABILITY\n\nExamples:\n1. Rent collected from tenant for January-March in December\n2. School fees received in September for the entire academic year\n3. Magazine subscription received for 12 months when only 3 issues delivered\n\nEntry: Debit Income Account, Credit Income Received in Advance"
+   },
+   {
+    question: "{{exam:secondary}} 2021: At 31 December 2020, Ama Enterprises had the following: Electricity owing {{currency}}800, Rent paid in advance {{currency}}2,400, Commission earned but not received {{currency}}1,500, Subscription received in advance {{currency}}3,000. Show how these items will appear in the financial statements.",
+    year: "2021",
+    solution: "Classification and Presentation:\n\n1. ELECTRICITY OWING ({{currency}}800)\n- Type: Accrued Expense\n- Income Statement: Add to Electricity Expense (increases expenses)\n- Balance Sheet: Current Liability under \"Accruals\" or \"Accrued Expenses\"\n\n2. RENT PAID IN ADVANCE ({{currency}}2,400)\n- Type: Prepaid Expense\n- Income Statement: Deduct from Rent Expense (decreases expenses)\n- Balance Sheet: Current Asset under \"Prepayments\" or \"Prepaid Rent\"\n\n3. COMMISSION EARNED BUT NOT RECEIVED ({{currency}}1,500)\n- Type: Accrued Income\n- Income Statement: Add to Commission Income (increases income)\n- Balance Sheet: Current Asset under \"Accrued Income\"\n\n4. SUBSCRIPTION RECEIVED IN ADVANCE ({{currency}}3,000)\n- Type: Deferred Income\n- Income Statement: Deduct from Subscription Income (decreases income)\n- Balance Sheet: Current Liability under \"Income Received in Advance\"\n\nSUMMARY:\n\nBalance Sheet Extract:\nCurrent Assets:\n- Prepayments (Rent): {{currency}}2,400\n- Accrued Income (Commission): {{currency}}1,500\nTotal: {{currency}}3,900\n\nCurrent Liabilities:\n- Accruals (Electricity): {{currency}}800\n- Income Received in Advance: {{currency}}3,000\nTotal: {{currency}}3,800"
+   }
+  ],
+ },
 
-  // Lesson 7: Consistency and Prudence Concepts
-  {
-    id: 'facc-shs1-concepts-4',
-    slug: 'facc-shs1-concepts-consistency-prudence',
-    title: 'Consistency and Prudence Concepts',
-    objectives: [
-      'Define and explain the consistency concept',
-      'Understand the importance of consistency in financial reporting',
-      'Identify when changes in accounting policies are acceptable',
-      'Define and explain the prudence (conservatism) concept',
-      'Apply prudence in valuing assets and liabilities',
-      'Understand the treatment of provisions and contingencies',
-      'Distinguish between consistency and prudence',
-      'Apply both concepts to practical {{country:adjective}} business scenarios',
-      'Prepare for {{exam:secondary}} questions on these concepts'
-    ],
-    introduction: "Imagine two business owners operating similar shops in {{city:capital}}. Owner A changes their method of valuing stock every year - sometimes FIFO, sometimes LIFO, sometimes weighted average. Owner B sticks to one method throughout. Whose financial statements would you trust more? That's the consistency concept! Now imagine a business owner expects to make {{currency}}10,000 profit on a deal, but there's a chance he might lose {{currency}}5,000 instead. Should they record the profit now or wait? Should they recognize the potential loss? That's where prudence comes in! Today we'll learn these two important concepts that make financial statements reliable and trustworthy.",
-    keyConcepts: [
-      {
-        title: 'The Consistency Concept',
-        content: `The **Consistency Concept** requires that once an accounting method or policy is chosen, it should be applied consistently from one period to another.
+ // Lesson 7: Consistency and Prudence Concepts
+ {
+  id: 'facc-shs1-concepts-4',
+  slug: 'facc-shs1-concepts-consistency-prudence',
+  title: 'Consistency and Prudence Concepts',
+  objectives: [
+   'Define and explain the consistency concept',
+   'Understand the importance of consistency in financial reporting',
+   'Identify when changes in accounting policies are acceptable',
+   'Define and explain the prudence (conservatism) concept',
+   'Apply prudence in valuing assets and liabilities',
+   'Understand the treatment of provisions and contingencies',
+   'Distinguish between consistency and prudence',
+   'Apply both concepts to practical {{country:adjective}} business scenarios',
+   'Prepare for {{exam:secondary}} questions on these concepts'
+  ],
+  introduction: "Imagine two business owners operating similar shops in {{city:capital}}. Owner A changes their method of valuing stock every year - sometimes FIFO, sometimes LIFO, sometimes weighted average. Owner B sticks to one method throughout. Whose financial statements would you trust more? That's the consistency concept! Now imagine a business owner expects to make {{currency}}10,000 profit on a deal, but there's a chance he might lose {{currency}}5,000 instead. Should they record the profit now or wait? Should they recognize the potential loss? That's where prudence comes in! Today we'll learn these two important concepts that make financial statements reliable and trustworthy.",
+  keyConcepts: [
+   {
+    title: 'The Consistency Concept',
+    content: `The **Consistency Concept** requires that once an accounting method or policy is chosen, it should be applied consistently from one period to another.
 
-## 📋 DEFINITION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 DEFINITION
+</h2>
 
 **Consistency Concept:**
 A business should use the SAME accounting methods, policies, and procedures from one accounting period to the next, unless there is a valid reason to change.
 
-## 🔑 KEY PRINCIPLES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔑 KEY PRINCIPLES
+</h2>
 
 **1. Same Treatment Over Time**
 - Apply the same method year after year
@@ -5067,7 +4968,8 @@ Changes are acceptable ONLY when:
 - The new method gives more accurate information
 - The change is properly disclosed in the notes
 
-## 📝 EXAMPLES OF CONSISTENCY
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 EXAMPLES OF CONSISTENCY
+</h2>
 
 **Stock Valuation:**
 If you use FIFO (First In, First Out) to value closing stock:
@@ -5089,19 +4991,21 @@ If a business uses Straight Line Method for vehicles:
 - Year 3: Vehicle depreciation = {{currency}}10,000
 ✅ CONSISTENT
 
-## {{country:flag}} {{country}} CONTEXT
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} {{country}} CONTEXT
+</h2>
 
 In {{country}}, consistency is enforced through:
 - {{business:companies-act}} requirements
 - IFRS/IAS standards adopted by ICAG
 - {{business:tax-authority}} ({{country}} Revenue Authority) regulations
 - Audit requirements for registered companies`
-      },
-      {
-        title: 'Why Consistency Matters',
-        content: `Consistency is crucial for financial statements to be useful. Let's explore why.
+   },
+   {
+    title: 'Why Consistency Matters',
+    content: `Consistency is crucial for financial statements to be useful. Let's explore why.
 
-## 🎯 IMPORTANCE OF CONSISTENCY
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🎯 IMPORTANCE OF CONSISTENCY
+</h2>
 
 **1. Comparability**
 Users can compare:
@@ -5124,7 +5028,8 @@ Users can compare:
 - Stops businesses from choosing methods to inflate profits
 - Ensures honest reporting
 
-## 📊 ILLUSTRATION: IMPACT OF INCONSISTENCY
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 ILLUSTRATION: IMPACT OF INCONSISTENCY
+</h2>
 
 **Scenario:** Kwame's Trading has closing stock worth {{currency}}100,000 at cost. Market value is {{currency}}90,000.
 
@@ -5146,24 +5051,27 @@ Always value at Lower of Cost or Net Realizable Value:
 
 ✅ Now trends are meaningful and reliable!
 
-## ⚠️ DISCLOSURE REQUIREMENTS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚠️ DISCLOSURE REQUIREMENTS
+</h2>
 
 When a change in method IS necessary:
 1. State the nature of the change
 2. Explain the reason for the change
 3. Show the financial effect of the change
 4. Restate prior year figures if material`
-      },
-      {
-        title: 'The Prudence (Conservatism) Concept',
-        content: `The **Prudence Concept** (also called Conservatism) requires accountants to exercise caution when making judgments under uncertainty.
+   },
+   {
+    title: 'The Prudence (Conservatism) Concept',
+    content: `The **Prudence Concept** (also called Conservatism) requires accountants to exercise caution when making judgments under uncertainty.
 
-## 📋 DEFINITION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 DEFINITION
+</h2>
 
 **Prudence Concept:**
 When there is uncertainty, choose the option that does NOT overstate assets or income, and does NOT understate liabilities or expenses. In simple terms: "Anticipate no profit, but provide for all possible losses."
 
-## 🔑 KEY PRINCIPLES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔑 KEY PRINCIPLES
+</h2>
 
 **1. Don't Anticipate Profits**
 - Record profits ONLY when they are REALIZED
@@ -5180,7 +5088,8 @@ When there is uncertainty, choose the option that does NOT overstate assets or i
 - Value liabilities prudently (don't undervalue)
 - When in doubt, choose the lower figure for assets
 
-## 📝 PRACTICAL APPLICATIONS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 PRACTICAL APPLICATIONS
+</h2>
 
 **Stock Valuation:**
 "Lower of Cost or Net Realizable Value (NRV)"
@@ -5198,7 +5107,8 @@ When there is uncertainty, choose the option that does NOT overstate assets or i
 - Possible warranty claims? Create a provision
 - Likely to lose money on a contract? Recognize the loss
 
-## {{country:flag}} GHANA EXAMPLE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} GHANA EXAMPLE
+</h2>
 
 **Ama's Cloth Shop:**
 - Bought fabric for {{currency}}5,000
@@ -5210,12 +5120,13 @@ NRV = Selling Price - Selling Costs = {{currency}}4,500 - {{currency}}500 = {{cu
 Value stock at {{currency}}4,000 (lower of cost {{currency}}5,000 or NRV {{currency}}4,000)
 
 This immediately recognizes the {{currency}}1,000 loss in value.`
-      },
-      {
-        title: 'Applying Prudence in Practice',
-        content: `Let's see how prudence applies to various accounting situations.
+   },
+   {
+    title: 'Applying Prudence in Practice',
+    content: `Let's see how prudence applies to various accounting situations.
 
-## 📊 PRUDENCE IN ASSET VALUATION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 PRUDENCE IN ASSET VALUATION
+</h2>
 
 **1. Inventory/Stock**
 Rule: Lower of Cost or Net Realizable Value
@@ -5239,7 +5150,8 @@ Test for impairment:
 - Write down the asset immediately
 - But don't write UP if value increases
 
-## 📊 PRUDENCE IN INCOME RECOGNITION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 PRUDENCE IN INCOME RECOGNITION
+</h2>
 
 **DON'T record income until:**
 ✅ Sale is complete
@@ -5254,7 +5166,8 @@ A business owner has a verbal agreement to sell goods for {{currency}}20,000.
 - Should they record the sale? **NO!**
 - Wait until sale is finalized
 
-## 📊 PRUDENCE IN EXPENSE RECOGNITION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 PRUDENCE IN EXPENSE RECOGNITION
+</h2>
 
 **DO record expenses/losses immediately when:**
 ✅ Loss is probable (more likely than not)
@@ -5266,7 +5179,8 @@ A business owner has a verbal agreement to sell goods for {{currency}}20,000.
 - Create provision of {{currency}}100,000 immediately
 - Don't wait for court judgment
 
-## ⚠️ IMPORTANT NOTE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚠️ IMPORTANT NOTE
+</h2>
 
 **Prudence does NOT mean:**
 ❌ Being overly pessimistic
@@ -5278,12 +5192,13 @@ A business owner has a verbal agreement to sell goods for {{currency}}20,000.
 ✅ Being cautious under uncertainty
 ✅ Realistic valuation
 ✅ Honest assessment of risks`
-      },
-      {
-        title: 'Consistency vs Prudence: Key Differences',
-        content: `Both concepts help make financial statements reliable, but they work differently.
+   },
+   {
+    title: 'Consistency vs Prudence: Key Differences',
+    content: `Both concepts help make financial statements reliable, but they work differently.
 
-## 📊 COMPARISON TABLE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 COMPARISON TABLE
+</h2>
 
 | Aspect | Consistency | Prudence |
 |--------|-------------|----------|
@@ -5293,7 +5208,8 @@ A business owner has a verbal agreement to sell goods for {{currency}}20,000.
 | **Key question** | "Same as last year?" | "What if things go wrong?" |
 | **Example** | Same depreciation method | Provision for bad debts |
 
-## 🔄 HOW THEY WORK TOGETHER
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔄 HOW THEY WORK TOGETHER
+</h2>
 
 **Scenario:** Valuing Closing Stock
 
@@ -5311,7 +5227,8 @@ A business owner has a verbal agreement to sell goods for {{currency}}20,000.
 - Consistently apply "Lower of Cost or NRV" every year
 - Both concepts are satisfied!
 
-## 📝 {{exam:secondary}} FOCUS POINTS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 {{exam:secondary}} FOCUS POINTS
+</h2>
 
 **When asked to distinguish:**
 
@@ -5327,7 +5244,8 @@ A business owner has a verbal agreement to sell goods for {{currency}}20,000.
 3. Provide for possible losses
 4. Prevents overstatement of position
 
-## {{country:flag}} PRACTICAL EXAMPLE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} PRACTICAL EXAMPLE
+</h2>
 
 **Madam Akua's Fashion Shop:**
 
@@ -5341,12 +5259,13 @@ A business owner has a verbal agreement to sell goods for {{currency}}20,000.
 - Provision made for slow-moving items
 - Doubtful debts provided for immediately
 - Pending lawsuit provision created`
-      },
-      {
-        title: 'Provisions and Contingencies',
-        content: `Prudence requires creating provisions for possible losses. Let's understand this better.
+   },
+   {
+    title: 'Provisions and Contingencies',
+    content: `Prudence requires creating provisions for possible losses. Let's understand this better.
 
-## 📋 WHAT IS A PROVISION?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 WHAT IS A PROVISION?
+</h2>
 
 **Definition:**
 A liability of uncertain timing or amount. It is recognized when:
@@ -5354,7 +5273,8 @@ A liability of uncertain timing or amount. It is recognized when:
 2. It is PROBABLE that payment will be required
 3. A reliable estimate can be made
 
-## 📝 COMMON TYPES OF PROVISIONS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 COMMON TYPES OF PROVISIONS
+</h2>
 
 **1. Provision for Bad Debts**
 - Some customers may not pay
@@ -5376,7 +5296,8 @@ A liability of uncertain timing or amount. It is recognized when:
 - Redundancy costs expected
 - Create provision for costs
 
-## 📊 ACCOUNTING TREATMENT
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 ACCOUNTING TREATMENT
+</h2>
 
 **To Create a Provision:**
 Debit: Expense (Income Statement)
@@ -5388,15 +5309,16 @@ Provision rate = 5%
 Provision = {{currency}}5,000
 
 Journal Entry:
-Debit: Bad Debts Expense    {{currency}}5,000
-Credit: Provision for Bad Debts    {{currency}}5,000
+Debit: Bad Debts Expense  {{currency}}5,000
+Credit: Provision for Bad Debts  {{currency}}5,000
 
 **Balance Sheet shows:**
 Trade Receivables: {{currency}}100,000
 Less: Provision: ({{currency}}5,000)
 Net Receivables: {{currency}}95,000
 
-## ⚠️ CONTINGENT LIABILITIES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚠️ CONTINGENT LIABILITIES
+</h2>
 
 **Definition:**
 A POSSIBLE obligation depending on uncertain future events.
@@ -5411,12 +5333,13 @@ Company is being sued for {{currency}}500,000:
 - Lawyers say 70% chance of losing → CREATE PROVISION
 - Lawyers say 40% chance of losing → DISCLOSE only
 - Lawyers say 5% chance of losing → No action`
-      },
-      {
-        title: 'Key Terms Summary',
-        content: `Master these important terms related to Consistency and Prudence!
+   },
+   {
+    title: 'Key Terms Summary',
+    content: `Master these important terms related to Consistency and Prudence!
 
-## 📚 ESSENTIAL VOCABULARY
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📚 ESSENTIAL VOCABULARY
+</h2>
 
 **Consistency Concept**
 The principle requiring use of the same accounting methods and policies from one period to another to enable meaningful comparison.
@@ -5442,7 +5365,8 @@ A possible obligation depending on uncertain future events, disclosed but not re
 **Impairment**
 A reduction in the recoverable amount of an asset below its carrying value.
 
-## 📋 QUICK REFERENCE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 QUICK REFERENCE
+</h2>
 
 **Consistency requires:**
 ✅ Same methods period to period
@@ -5455,7 +5379,8 @@ A reduction in the recoverable amount of an asset below its carrying value.
 ✅ Provisions for probable losses
 ✅ No anticipation of profits
 
-## ⚠️ {{exam:secondary}} TIP
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚠️ {{exam:secondary}} TIP
+</h2>
 
 Key points examiners look for:
 1. Clear definitions of both concepts
@@ -5463,313 +5388,450 @@ Key points examiners look for:
 3. Understanding of when each applies
 4. Ability to calculate provisions
 5. Knowledge of disclosure requirements`
-      }
+   }
+  ],
+  summary: "Excellent work! You've mastered two more essential accounting concepts. The Consistency Concept ensures that financial statements can be compared over time by using the same accounting methods year after year. Any changes must be disclosed and explained. The Prudence (Conservatism) Concept ensures we don't overstate assets or income, and we provide for all possible losses. Remember: 'Anticipate no profit, but provide for all possible losses.' Together, these concepts make financial statements reliable and trustworthy. In {{country}}, both are required by the {{business:companies-act}} and IFRS standards. Apply consistency in your methods, exercise prudence in your valuations, and you'll produce accurate financial statements that stakeholders can trust!",
+  endOfLessonQuiz: [
+   {
+    id: 'facc-consistency-q1',
+    type: 'mcq',
+    question: "The consistency concept requires that:",
+    options: [
+     "Different methods should be used each year for variety",
+     "The same accounting methods should be used from period to period",
+     "Methods should change whenever profits fall",
+     "Only one accounting method exists for each item"
     ],
-    summary: "Excellent work! You've mastered two more essential accounting concepts. The Consistency Concept ensures that financial statements can be compared over time by using the same accounting methods year after year. Any changes must be disclosed and explained. The Prudence (Conservatism) Concept ensures we don't overstate assets or income, and we provide for all possible losses. Remember: 'Anticipate no profit, but provide for all possible losses.' Together, these concepts make financial statements reliable and trustworthy. In {{country}}, both are required by the {{business:companies-act}} and IFRS standards. Apply consistency in your methods, exercise prudence in your valuations, and you'll produce accurate financial statements that stakeholders can trust!",
-    endOfLessonQuiz: [
-      {
-        id: 'facc-consistency-q1',
-        type: 'mcq',
-        question: "The consistency concept requires that:",
-        options: [
-          "Different methods should be used each year for variety",
-          "The same accounting methods should be used from period to period",
-          "Methods should change whenever profits fall",
-          "Only one accounting method exists for each item"
-        ],
-        answer: "The same accounting methods should be used from period to period",
-        explanation: "Consistency requires using the SAME accounting methods and policies from one period to another to enable meaningful comparison of financial statements over time."
-      },
-      {
-        id: 'facc-consistency-q2',
-        type: 'mcq',
-        question: "The main purpose of the consistency concept is to:",
-        options: [
-          "Increase profits",
-          "Reduce taxation",
-          "Enable comparison of financial statements over time",
-          "Simplify accounting work"
-        ],
-        answer: "Enable comparison of financial statements over time",
-        explanation: "Consistency enables users to compare financial statements over time. Without consistency, changes in figures could be due to method changes rather than actual performance."
-      },
-      {
-        id: 'facc-consistency-q3',
-        type: 'mcq',
-        question: "The prudence concept is also known as:",
-        options: [
-          "The matching concept",
-          "The conservatism concept",
-          "The accruals concept",
-          "The materiality concept"
-        ],
-        answer: "The conservatism concept",
-        explanation: "Prudence is also called conservatism because it requires a cautious approach - being conservative in recognizing profits and liberal in recognizing losses."
-      },
-      {
-        id: 'facc-consistency-q4',
-        type: 'mcq',
-        question: "According to prudence, stock should be valued at:",
-        options: [
-          "Cost only",
-          "Market value only",
-          "Lower of cost or net realizable value",
-          "Higher of cost or market value"
-        ],
-        answer: "Lower of cost or net realizable value",
-        explanation: "Prudence requires valuing stock at the LOWER of cost or NRV. This ensures any fall in value is recognized immediately, but gains are not anticipated."
-      },
-      {
-        id: 'facc-consistency-q5',
-        type: 'mcq',
-        question: "Stock cost {{currency}}15,000 and has a net realizable value of {{currency}}12,000. Under prudence, it should be valued at:",
-        options: [
-          "{{currency}}15,000",
-          "{{currency}}12,000",
-          "{{currency}}13,500",
-          "{{currency}}27,000"
-        ],
-        answer: "{{currency}}12,000",
-        explanation: "Under prudence, stock is valued at the LOWER of cost ({{currency}}15,000) or NRV ({{currency}}12,000). Therefore, value at {{currency}}12,000 and recognize the {{currency}}3,000 loss immediately."
-      },
-      {
-        id: 'facc-consistency-q6',
-        type: 'mcq',
-        question: "A provision for doubtful debts is an application of:",
-        options: [
-          "The consistency concept",
-          "The prudence concept",
-          "The going concern concept",
-          "The business entity concept"
-        ],
-        answer: "The prudence concept",
-        explanation: "Creating a provision for doubtful debts is prudence in action - we anticipate the possible loss (some debtors won't pay) and provide for it immediately."
-      },
-      {
-        id: 'facc-consistency-q7',
-        type: 'mcq',
-        question: "When can an accounting method be changed?",
-        options: [
-          "Whenever management wishes",
-          "Only when required by new accounting standards or when it gives better information",
-          "Every 5 years automatically",
-          "Never under any circumstances"
-        ],
-        answer: "Only when required by new accounting standards or when it gives better information",
-        explanation: "Changes in accounting methods are allowed only when required by new standards (like IFRS) or when the new method provides more accurate and relevant information."
-      },
-      {
-        id: 'facc-consistency-q8',
-        type: 'mcq',
-        question: "The phrase 'anticipate no profit but provide for all possible losses' describes:",
-        options: [
-          "The consistency concept",
-          "The prudence concept",
-          "The accruals concept",
-          "The matching concept"
-        ],
-        answer: "The prudence concept",
-        explanation: "This phrase perfectly captures prudence - don't record profits until realized, but recognize possible losses immediately through provisions."
-      },
-      {
-        id: 'facc-consistency-q9',
-        type: 'mcq',
-        question: "If a company changes its depreciation method, it should:",
-        options: [
-          "Keep it secret",
-          "Disclose the change and its effect in the financial statements",
-          "Backdate all previous years",
-          "Ignore the change"
-        ],
-        answer: "Disclose the change and its effect in the financial statements",
-        explanation: "Any change in accounting policy must be disclosed in the notes to the financial statements, including the reason for change and the financial effect."
-      },
-      {
-        id: 'facc-consistency-q10',
-        type: 'mcq',
-        question: "A contingent liability that is PROBABLE should be:",
-        options: [
-          "Ignored completely",
-          "Recognized as a provision",
-          "Only disclosed in notes",
-          "Recorded as an asset"
-        ],
-        answer: "Recognized as a provision",
-        explanation: "If a contingent liability is probable (likely to occur) and can be estimated reliably, it should be recognized as a provision (liability) in the balance sheet."
-      },
-      {
-        id: 'facc-consistency-q11',
-        type: 'mcq',
-        question: "Debtors are {{currency}}80,000 and provision for bad debts is 5%. The net debtors figure is:",
-        options: [
-          "{{currency}}80,000",
-          "{{currency}}76,000",
-          "{{currency}}84,000",
-          "{{currency}}4,000"
-        ],
-        answer: "{{currency}}76,000",
-        explanation: "Provision = {{currency}}80,000 × 5% = {{currency}}4,000. Net debtors = {{currency}}80,000 - {{currency}}4,000 = {{currency}}76,000. This is prudence - recognizing possible losses."
-      },
-      {
-        id: 'facc-consistency-q12',
-        type: 'mcq',
-        question: "Which statement about consistency is TRUE?",
-        options: [
-          "It prevents any comparison between years",
-          "It allows businesses to change methods freely",
-          "It makes financial statements more comparable",
-          "It only applies to large companies"
-        ],
-        answer: "It makes financial statements more comparable",
-        explanation: "Consistency makes financial statements comparable over time because the same methods are used, so changes in figures represent real changes, not method changes."
-      },
-      {
-        id: 'facc-consistency-q13',
-        type: 'mcq',
-        question: "Under prudence, gains should be recognized:",
-        options: [
-          "As soon as they are expected",
-          "Only when they are realized",
-          "At the beginning of the year",
-          "Never"
-        ],
-        answer: "Only when they are realized",
-        explanation: "Prudence says don't anticipate profits - recognize gains only when they are REALIZED (sale complete, goods delivered, payment received or reasonably certain)."
-      },
-      {
-        id: 'facc-consistency-q14',
-        type: 'mcq',
-        question: "A provision is:",
-        options: [
-          "An asset of uncertain value",
-          "A liability of uncertain timing or amount",
-          "Income received in advance",
-          "An expense already paid"
-        ],
-        answer: "A liability of uncertain timing or amount",
-        explanation: "A provision is a liability where the timing or amount is uncertain, but it is probable that payment will be required. Examples include provisions for bad debts or warranty claims."
-      },
-      {
-        id: 'facc-consistency-q15',
-        type: 'mcq',
-        question: "Which concept prevents 'window dressing' of accounts?",
-        options: [
-          "Going concern only",
-          "Business entity only",
-          "Both consistency and prudence",
-          "Accruals only"
-        ],
-        answer: "Both consistency and prudence",
-        explanation: "Both concepts prevent manipulation: Consistency stops switching methods to inflate profits; Prudence stops overvaluing assets or understating liabilities."
-      }
+    answer: "The same accounting methods should be used from period to period",
+    explanation: "Consistency requires using the SAME accounting methods and policies from one period to another to enable meaningful comparison of financial statements over time."
+   },
+   {
+    id: 'facc-consistency-q2',
+    type: 'mcq',
+    question: "The main purpose of the consistency concept is to:",
+    options: [
+     "Increase profits",
+     "Reduce taxation",
+     "Enable comparison of financial statements over time",
+     "Simplify accounting work"
     ],
-    activities: [],
-    pastQuestions: [
-      {
-        question: "{{exam:secondary}} 2020: (a) Explain the consistency concept. (b) State THREE reasons why consistency is important in accounting.",
-        year: "2020",
-        solution: "(a) Explanation of Consistency Concept:\n\nThe consistency concept requires that once an accounting method, policy, or procedure is chosen, it should be applied consistently from one accounting period to another. This means using the same:\n- Depreciation methods\n- Stock valuation methods\n- Revenue recognition policies\n- Expense classification methods\n\nChanges are only allowed when required by new accounting standards or when the new method provides more accurate information. Any change must be disclosed in the notes to the accounts.\n\n(b) THREE Reasons Why Consistency is Important:\n\n1. COMPARABILITY\nConsistency enables users to compare financial statements over time. Without it, changes in profit could be due to method changes rather than actual performance.\n\n2. RELIABILITY\nConsistent application of methods makes financial statements more reliable. Stakeholders can trust that figures are calculated the same way each year.\n\n3. PREVENTS MANIPULATION\nConsistency prevents businesses from 'window dressing' accounts by switching methods to artificially inflate or deflate profits when it suits them."
-      },
-      {
-        question: "{{exam:secondary}} 2019: Define the prudence concept and explain how it applies to: (a) Valuation of stock (b) Provision for bad debts.",
-        year: "2019",
-        solution: "Definition of Prudence Concept:\n\nThe prudence (conservatism) concept requires accountants to exercise caution when making judgments under uncertainty. It states that profits should not be anticipated but all possible losses should be provided for. In essence: don't overstate assets or income, and don't understate liabilities or expenses.\n\n(a) Application to Stock Valuation:\n\nUnder prudence, stock must be valued at the LOWER of cost or Net Realizable Value (NRV).\n\nExample:\nStock cost = {{currency}}10,000\nNet Realizable Value = {{currency}}8,000\nValuation = {{currency}}8,000 (the lower amount)\n\nThis means:\n- If NRV is lower, recognize the loss immediately\n- If NRV is higher, don't anticipate the profit (keep at cost)\n- This ensures stock is not overvalued in the Balance Sheet\n\n(b) Application to Provision for Bad Debts:\n\nUnder prudence, businesses must create a provision for debts that may not be collected.\n\nExample:\nTotal Debtors = {{currency}}50,000\nEstimated uncollectable = 5%\nProvision = {{currency}}50,000 × 5% = {{currency}}2,500\n\nThis means:\n- Recognize the possible loss NOW, not when it actually happens\n- Debtors are shown at realistic collectible value ({{currency}}47,500)\n- Profit is not overstated by including doubtful debts as assets"
-      },
-      {
-        question: "{{exam:secondary}} 2018: Distinguish between the consistency concept and the prudence concept.",
-        year: "2018",
-        solution: "Distinction between Consistency and Prudence Concepts:\n\nCONSISTENCY CONCEPT:\n\n1. Definition: Requires using the same accounting methods and policies from one period to another\n\n2. Focus: Time comparison - ensuring methods stay the same over periods\n\n3. Purpose: To enable meaningful comparison of financial statements over time\n\n4. Application: Depreciation methods, stock valuation methods, revenue recognition policies\n\n5. Key Question: \"Am I using the same method as last year?\"\n\n6. Example: Using Straight Line depreciation for vehicles every year, not switching to Reducing Balance\n\nPRUDENCE CONCEPT:\n\n1. Definition: Requires caution when making judgments under uncertainty - don't overstate assets/income\n\n2. Focus: Uncertainty handling - being cautious about gains and losses\n\n3. Purpose: To prevent overstatement of the financial position and performance\n\n4. Application: Stock valuation at lower of cost/NRV, provisions for bad debts, contingent liabilities\n\n5. Key Question: \"What if things go wrong? Have I provided for possible losses?\"\n\n6. Example: Creating a provision for doubtful debts even though we're not certain they won't pay\n\nSUMMARY:\n- Consistency deals with TIME (same method period to period)\n- Prudence deals with UNCERTAINTY (cautious valuations)"
-      },
-      {
-        question: "{{exam:secondary}} 2021: At December 31, 2020, Mensah Enterprises has the following: Stock cost {{currency}}25,000, NRV {{currency}}22,000; Debtors {{currency}}40,000 with 5% provision for bad debts. Show how these items would appear in the Balance Sheet, applying the prudence concept.",
-        year: "2021",
-        solution: "Application of Prudence Concept:\n\n1. STOCK VALUATION:\n\nCost = {{currency}}25,000\nNet Realizable Value (NRV) = {{currency}}22,000\n\nUnder prudence, value at LOWER of cost or NRV:\nStock valuation = {{currency}}22,000 ✓\n\nLoss recognized = {{currency}}25,000 - {{currency}}22,000 = {{currency}}3,000\n(This loss goes to Income Statement)\n\n2. DEBTORS (TRADE RECEIVABLES):\n\nGross Debtors = {{currency}}40,000\nProvision for Bad Debts = {{currency}}40,000 × 5% = {{currency}}2,000\n\nNet Debtors = {{currency}}40,000 - {{currency}}2,000 = {{currency}}38,000 ✓\n\nBALANCE SHEET EXTRACT (Current Assets):\n\nCurrent Assets:\n                                    ₵           ₵\nStock (at NRV)                              22,000\nTrade Receivables              40,000\nLess: Provision for Bad Debts  (2,000)\nNet Trade Receivables                       38,000\n                                           -------\nTotal Current Assets                        60,000\n                                           =======\n\nEXPLANATION:\n\nPrudence is applied by:\n1. Valuing stock at the lower value (NRV {{currency}}22,000) to avoid overstating assets\n2. Creating a provision for possible bad debts ({{currency}}2,000) to recognize potential losses\n3. Both adjustments reduce the value of current assets to a more realistic figure\n4. Related expenses are recognized in the Income Statement"
-      }
+    answer: "Enable comparison of financial statements over time",
+    explanation: "Consistency enables users to compare financial statements over time. Without consistency, changes in figures could be due to method changes rather than actual performance."
+   },
+   {
+    id: 'facc-consistency-q3',
+    type: 'mcq',
+    question: "The prudence concept is also known as:",
+    options: [
+     "The matching concept",
+     "The conservatism concept",
+     "The accruals concept",
+     "The materiality concept"
     ],
-  },
-  // Lesson 8: Sales and Purchases Journals (Books of Original Entry)
-  {
-    id: 'facc-shs1-boe-1',
-    title: 'Sales and Purchases Journals',
-    slug: 'facc-shs1-boe-sales-purchases-journals',
-    introduction: `Welcome to Books of Original Entry! Every business transaction must be recorded somewhere first before going to the ledger. These first records are called Books of Original Entry (or Day Books).
+    answer: "The conservatism concept",
+    explanation: "Prudence is also called conservatism because it requires a cautious approach - being conservative in recognizing profits and liberal in recognizing losses."
+   },
+   {
+    id: 'facc-consistency-q4',
+    type: 'mcq',
+    question: "According to prudence, stock should be valued at:",
+    options: [
+     "Cost only",
+     "Market value only",
+     "Lower of cost or net realizable value",
+     "Higher of cost or market value"
+    ],
+    answer: "Lower of cost or net realizable value",
+    explanation: "Prudence requires valuing stock at the LOWER of cost or NRV. This ensures any fall in value is recognized immediately, but gains are not anticipated."
+   },
+   {
+    id: 'facc-consistency-q5',
+    type: 'mcq',
+    question: "Stock cost {{currency}}15,000 and has a net realizable value of {{currency}}12,000. Under prudence, it should be valued at:",
+    options: [
+     "{{currency}}15,000",
+     "{{currency}}12,000",
+     "{{currency}}13,500",
+     "{{currency}}27,000"
+    ],
+    answer: "{{currency}}12,000",
+    explanation: "Under prudence, stock is valued at the LOWER of cost ({{currency}}15,000) or NRV ({{currency}}12,000). Therefore, value at {{currency}}12,000 and recognize the {{currency}}3,000 loss immediately."
+   },
+   {
+    id: 'facc-consistency-q6',
+    type: 'mcq',
+    question: "A provision for doubtful debts is an application of:",
+    options: [
+     "The consistency concept",
+     "The prudence concept",
+     "The going concern concept",
+     "The business entity concept"
+    ],
+    answer: "The prudence concept",
+    explanation: "Creating a provision for doubtful debts is prudence in action - we anticipate the possible loss (some debtors won't pay) and provide for it immediately."
+   },
+   {
+    id: 'facc-consistency-q7',
+    type: 'mcq',
+    question: "When can an accounting method be changed?",
+    options: [
+     "Whenever management wishes",
+     "Only when required by new accounting standards or when it gives better information",
+     "Every 5 years automatically",
+     "Never under any circumstances"
+    ],
+    answer: "Only when required by new accounting standards or when it gives better information",
+    explanation: "Changes in accounting methods are allowed only when required by new standards (like IFRS) or when the new method provides more accurate and relevant information."
+   },
+   {
+    id: 'facc-consistency-q8',
+    type: 'mcq',
+    question: "The phrase 'anticipate no profit but provide for all possible losses' describes:",
+    options: [
+     "The consistency concept",
+     "The prudence concept",
+     "The accruals concept",
+     "The matching concept"
+    ],
+    answer: "The prudence concept",
+    explanation: "This phrase perfectly captures prudence - don't record profits until realized, but recognize possible losses immediately through provisions."
+   },
+   {
+    id: 'facc-consistency-q9',
+    type: 'mcq',
+    question: "If a company changes its depreciation method, it should:",
+    options: [
+     "Keep it secret",
+     "Disclose the change and its effect in the financial statements",
+     "Backdate all previous years",
+     "Ignore the change"
+    ],
+    answer: "Disclose the change and its effect in the financial statements",
+    explanation: "Any change in accounting policy must be disclosed in the notes to the financial statements, including the reason for change and the financial effect."
+   },
+   {
+    id: 'facc-consistency-q10',
+    type: 'mcq',
+    question: "A contingent liability that is PROBABLE should be:",
+    options: [
+     "Ignored completely",
+     "Recognized as a provision",
+     "Only disclosed in notes",
+     "Recorded as an asset"
+    ],
+    answer: "Recognized as a provision",
+    explanation: "If a contingent liability is probable (likely to occur) and can be estimated reliably, it should be recognized as a provision (liability) in the balance sheet."
+   },
+   {
+    id: 'facc-consistency-q11',
+    type: 'mcq',
+    question: "Debtors are {{currency}}80,000 and provision for bad debts is 5%. The net debtors figure is:",
+    options: [
+     "{{currency}}80,000",
+     "{{currency}}76,000",
+     "{{currency}}84,000",
+     "{{currency}}4,000"
+    ],
+    answer: "{{currency}}76,000",
+    explanation: "Provision = {{currency}}80,000 × 5% = {{currency}}4,000. Net debtors = {{currency}}80,000 - {{currency}}4,000 = {{currency}}76,000. This is prudence - recognizing possible losses."
+   },
+   {
+    id: 'facc-consistency-q12',
+    type: 'mcq',
+    question: "Which statement about consistency is TRUE?",
+    options: [
+     "It prevents any comparison between years",
+     "It allows businesses to change methods freely",
+     "It makes financial statements more comparable",
+     "It only applies to large companies"
+    ],
+    answer: "It makes financial statements more comparable",
+    explanation: "Consistency makes financial statements comparable over time because the same methods are used, so changes in figures represent real changes, not method changes."
+   },
+   {
+    id: 'facc-consistency-q13',
+    type: 'mcq',
+    question: "Under prudence, gains should be recognized:",
+    options: [
+     "As soon as they are expected",
+     "Only when they are realized",
+     "At the beginning of the year",
+     "Never"
+    ],
+    answer: "Only when they are realized",
+    explanation: "Prudence says don't anticipate profits - recognize gains only when they are REALIZED (sale complete, goods delivered, payment received or reasonably certain)."
+   },
+   {
+    id: 'facc-consistency-q14',
+    type: 'mcq',
+    question: "A provision is:",
+    options: [
+     "An asset of uncertain value",
+     "A liability of uncertain timing or amount",
+     "Income received in advance",
+     "An expense already paid"
+    ],
+    answer: "A liability of uncertain timing or amount",
+    explanation: "A provision is a liability where the timing or amount is uncertain, but it is probable that payment will be required. Examples include provisions for bad debts or warranty claims."
+   },
+   {
+    id: 'facc-consistency-q15',
+    type: 'mcq',
+    question: "Which concept prevents 'window dressing' of accounts?",
+    options: [
+     "Going concern only",
+     "Business entity only",
+     "Both consistency and prudence",
+     "Accruals only"
+    ],
+    answer: "Both consistency and prudence",
+    explanation: "Both concepts prevent manipulation: Consistency stops switching methods to inflate profits; Prudence stops overvaluing assets or understating liabilities."
+   }
+  ],
+  activities: [],
+  pastQuestions: [
+   {
+    question: "{{exam:secondary}} 2020: (a) Explain the consistency concept. (b) State THREE reasons why consistency is important in accounting.",
+    year: "2020",
+    solution: "(a) Explanation of Consistency Concept:\n\nThe consistency concept requires that once an accounting method, policy, or procedure is chosen, it should be applied consistently from one accounting period to another. This means using the same:\n- Depreciation methods\n- Stock valuation methods\n- Revenue recognition policies\n- Expense classification methods\n\nChanges are only allowed when required by new accounting standards or when the new method provides more accurate information. Any change must be disclosed in the notes to the accounts.\n\n(b) THREE Reasons Why Consistency is Important:\n\n1. COMPARABILITY\nConsistency enables users to compare financial statements over time. Without it, changes in profit could be due to method changes rather than actual performance.\n\n2. RELIABILITY\nConsistent application of methods makes financial statements more reliable. Stakeholders can trust that figures are calculated the same way each year.\n\n3. PREVENTS MANIPULATION\nConsistency prevents businesses from 'window dressing' accounts by switching methods to artificially inflate or deflate profits when it suits them."
+   },
+   {
+    question: "{{exam:secondary}} 2019: Define the prudence concept and explain how it applies to: (a) Valuation of stock (b) Provision for bad debts.",
+    year: "2019",
+    solution: "Definition of Prudence Concept:\n\nThe prudence (conservatism) concept requires accountants to exercise caution when making judgments under uncertainty. It states that profits should not be anticipated but all possible losses should be provided for. In essence: don't overstate assets or income, and don't understate liabilities or expenses.\n\n(a) Application to Stock Valuation:\n\nUnder prudence, stock must be valued at the LOWER of cost or Net Realizable Value (NRV).\n\nExample:\nStock cost = {{currency}}10,000\nNet Realizable Value = {{currency}}8,000\nValuation = {{currency}}8,000 (the lower amount)\n\nThis means:\n- If NRV is lower, recognize the loss immediately\n- If NRV is higher, don't anticipate the profit (keep at cost)\n- This ensures stock is not overvalued in the Balance Sheet\n\n(b) Application to Provision for Bad Debts:\n\nUnder prudence, businesses must create a provision for debts that may not be collected.\n\nExample:\nTotal Debtors = {{currency}}50,000\nEstimated uncollectable = 5%\nProvision = {{currency}}50,000 × 5% = {{currency}}2,500\n\nThis means:\n- Recognize the possible loss NOW, not when it actually happens\n- Debtors are shown at realistic collectible value ({{currency}}47,500)\n- Profit is not overstated by including doubtful debts as assets"
+   },
+   {
+    question: "{{exam:secondary}} 2018: Distinguish between the consistency concept and the prudence concept.",
+    year: "2018",
+    solution: "Distinction between Consistency and Prudence Concepts:\n\nCONSISTENCY CONCEPT:\n\n1. Definition: Requires using the same accounting methods and policies from one period to another\n\n2. Focus: Time comparison - ensuring methods stay the same over periods\n\n3. Purpose: To enable meaningful comparison of financial statements over time\n\n4. Application: Depreciation methods, stock valuation methods, revenue recognition policies\n\n5. Key Question: \"Am I using the same method as last year?\"\n\n6. Example: Using Straight Line depreciation for vehicles every year, not switching to Reducing Balance\n\nPRUDENCE CONCEPT:\n\n1. Definition: Requires caution when making judgments under uncertainty - don't overstate assets/income\n\n2. Focus: Uncertainty handling - being cautious about gains and losses\n\n3. Purpose: To prevent overstatement of the financial position and performance\n\n4. Application: Stock valuation at lower of cost/NRV, provisions for bad debts, contingent liabilities\n\n5. Key Question: \"What if things go wrong? Have I provided for possible losses?\"\n\n6. Example: Creating a provision for doubtful debts even though we're not certain they won't pay\n\nSUMMARY:\n- Consistency deals with TIME (same method period to period)\n- Prudence deals with UNCERTAINTY (cautious valuations)"
+   },
+   {
+    question: "{{exam:secondary}} 2021: At December 31, 2020, Mensah Enterprises has the following: Stock cost {{currency}}25,000, NRV {{currency}}22,000; Debtors {{currency}}40,000 with 5% provision for bad debts. Show how these items would appear in the Balance Sheet, applying the prudence concept.",
+    year: "2021",
+    solution: "Application of Prudence Concept:\n\n1. STOCK VALUATION:\n\nCost = {{currency}}25,000\nNet Realizable Value (NRV) = {{currency}}22,000\n\nUnder prudence, value at LOWER of cost or NRV:\nStock valuation = {{currency}}22,000 ✓\n\nLoss recognized = {{currency}}25,000 - {{currency}}22,000 = {{currency}}3,000\n(This loss goes to Income Statement)\n\n2. DEBTORS (TRADE RECEIVABLES):\n\nGross Debtors = {{currency}}40,000\nProvision for Bad Debts = {{currency}}40,000 × 5% = {{currency}}2,000\n\nNet Debtors = {{currency}}40,000 - {{currency}}2,000 = {{currency}}38,000 ✓\n\nBALANCE SHEET EXTRACT (Current Assets):\n\nCurrent Assets:\n                  ₵      ₵\nStock (at NRV)               22,000\nTrade Receivables       40,000\nLess: Provision for Bad Debts (2,000)\nNet Trade Receivables            38,000\n                      -------\nTotal Current Assets            60,000\n                      =======\n\nEXPLANATION:\n\nPrudence is applied by:\n1. Valuing stock at the lower value (NRV {{currency}}22,000) to avoid overstating assets\n2. Creating a provision for possible bad debts ({{currency}}2,000) to recognize potential losses\n3. Both adjustments reduce the value of current assets to a more realistic figure\n4. Related expenses are recognized in the Income Statement"
+   }
+  ],
+ },
+ // Lesson 8: Sales and Purchases Journals (Books of Original Entry)
+ {
+  id: 'facc-shs1-boe-1',
+  title: 'Sales and Purchases Journals',
+  slug: 'facc-shs1-boe-sales-purchases-journals',
+  introduction: `Welcome to Books of Original Entry! Every business transaction must be recorded somewhere first before going to the ledger. These first records are called Books of Original Entry (or Day Books).
 
 Today, we focus on two very important books: the **Sales Journal** (or Sales Day Book) and the **Purchases Journal** (or Purchases Day Book). These books save time by recording similar transactions together.
 
 In {{country}}, businesses like Melcom, Shoprite, and thousands of shops use these systems daily. By the end of this lesson, you'll know exactly when and how to use each book!`,
-    objectives: [
-      'Define Books of Original Entry and explain their purpose',
-      'Identify and explain the different types of books of original entry',
-      'Prepare a Sales Journal (Sales Day Book) correctly',
-      'Prepare a Purchases Journal (Purchases Day Book) correctly',
-      'Distinguish between credit and cash transactions',
-      'Post entries from journals to ledger accounts',
-      'Explain the relationship between source documents and journals',
-      'Apply journal entries to real business scenarios'
-    ],
-    keyConcepts: [
-      {
-        title: 'What Are Books of Original Entry?',
-        content: `# 📚 BOOKS OF ORIGINAL ENTRY
+  objectives: [
+   'Define Books of Original Entry and explain their purpose',
+   'Identify and explain the different types of books of original entry',
+   'Prepare a Sales Journal (Sales Day Book) correctly',
+   'Prepare a Purchases Journal (Purchases Day Book) correctly',
+   'Distinguish between credit and cash transactions',
+   'Post entries from journals to ledger accounts',
+   'Explain the relationship between source documents and journals',
+   'Apply journal entries to real business scenarios'
+  ],
+  keyConcepts: [
+   {
+    title: 'What Are Books of Original Entry?',
+    content: `<h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 16px; color: #1e3a8a; display: flex; align-items: center; gap: 12px;">📚 BOOKS OF ORIGINAL ENTRY</h1>
 
-## Definition
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Definition
+</h2>
 
 Books of Original Entry (also called Day Books or Journals) are accounting books where transactions are FIRST recorded before being transferred to the ledger.
 
-## Why "Original Entry"?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Why "Original Entry"?
+</h2>
 
-They are the ORIGINAL (first) place a transaction is recorded in the accounting system.
+<div style='all: revert;'><div style="background: linear-gradient(135deg, #fef3c7, #fde68a); border-left: 6px solid #f59e0b; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+<div style="display: flex; align-items: center; margin-bottom: 12px;">
+<div style="background: #f59e0b; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; margin-right: 12px;">1</div>
+<div style="font-size: 1.1rem; font-weight: bold; color: #92400e;">They are the ORIGINAL (first) place a transaction is recorded in the accounting system.</div>
+</div>
+<div style="background: white; padding: 12px; border-radius: 6px; font-style: italic; color: #78350f;">
+💡 Think of it as the "birth certificate" of every transaction – the very first official record!
+</div>
+</div></div>
 
-**Transaction Flow:**
-\`\`\`
-Source Document → Book of Original Entry → Ledger → Trial Balance
-(Invoice, Receipt)    (Journal)            (Accounts)
-\`\`\`
+<h3 style="font-size: 1.5rem; font-weight: 600; margin-top: 24px; margin-bottom: 12px; color: #1e40af;">📊 Transaction Flow</h3>
 
-## Types of Books of Original Entry
+<div style='all: revert;'><div style="display: flex; flex-direction: column; align-items: center; padding: 24px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+<div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 16px; width: 100%;">
+<div style="text-align: center;">
+<div style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white; padding: 16px 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.15); min-width: 150px;">
+<div style="font-weight: bold; font-size: 1.1rem; margin-bottom: 4px;">Source Document</div>
+<div style="font-size: 0.85rem; opacity: 0.9;">(Invoice, Receipt)</div>
+</div>
+</div>
+<div style="color: #3b82f6; font-size: 28px; font-weight: bold;">→</div>
+<div style="text-align: center;">
+<div style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 16px 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.15); min-width: 150px;">
+<div style="font-weight: bold; font-size: 1.1rem; margin-bottom: 4px;">Book of Original Entry</div>
+<div style="font-size: 0.85rem; opacity: 0.9;">(Journal)</div>
+</div>
+</div>
+<div style="color: #8b5cf6; font-size: 28px; font-weight: bold;">→</div>
+<div style="text-align: center;">
+<div style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; padding: 16px 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.15); min-width: 150px;">
+<div style="font-weight: bold; font-size: 1.1rem; margin-bottom: 4px;">Ledger</div>
+<div style="font-size: 0.85rem; opacity: 0.9;">(Accounts)</div>
+</div>
+</div>
+<div style="color: #ec4899; font-size: 28px; font-weight: bold;">→</div>
+<div style="text-align: center;">
+<div style="background: linear-gradient(135deg, #ec4899, #db2777); color: white; padding: 16px 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.15); min-width: 150px;">
+<div style="font-weight: bold; font-size: 1.1rem; margin-bottom: 4px;">Trial Balance</div>
+<div style="font-size: 0.85rem; opacity: 0.9;">(Summary)</div>
+</div>
+</div>
+</div>
+</div></div>
 
-| Book | Purpose | Records |
-|------|---------|---------|
-| Sales Journal | Credit sales | Goods sold on credit |
-| Purchases Journal | Credit purchases | Goods bought on credit |
-| Sales Returns Journal | Goods returned by customers | Returns inwards |
-| Purchases Returns Journal | Goods returned to suppliers | Returns outwards |
-| Cash Book | Cash transactions | All cash receipts/payments |
-| Petty Cash Book | Small expenses | Minor office expenses |
-| General Journal | Other transactions | Opening entries, corrections |
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Types of Books of Original Entry
+</h2>
 
-## Benefits of Using Journals
+<div style='all: revert;'><table style="width: 100%; border-collapse: collapse; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;">
+<thead>
+<tr style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;">
+<th style="padding: 14px 16px; text-align: left; font-weight: bold; font-size: 1.05rem; border-right: 1px solid rgba(255,255,255,0.2);">📚 Book</th>
+<th style="padding: 14px 16px; text-align: left; font-weight: bold; font-size: 1.05rem; border-right: 1px solid rgba(255,255,255,0.2);">🎯 Purpose</th>
+<th style="padding: 14px 16px; text-align: left; font-weight: bold; font-size: 1.05rem;">📝 Records</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: #f0f9ff;">
+<td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600; color: #1e40af;">Sales Journal</td>
+<td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb;">Credit sales</td>
+<td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb;">Goods sold on credit</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600; color: #1e40af;">Purchases Journal</td>
+<td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb;">Credit purchases</td>
+<td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb;">Goods bought on credit</td>
+</tr>
+<tr style="background: #f0f9ff;">
+<td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;">Sales Returns Journal</td>
+<td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb;">Goods returned by customers</td>
+<td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb;">Returns inwards</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;">Purchases Returns Journal</td>
+<td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb;">Goods returned to suppliers</td>
+<td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb;">Returns outwards</td>
+</tr>
+<tr style="background: #f0fdf4;">
+<td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600; color: #16a34a;">Cash Book</td>
+<td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb;">Cash transactions</td>
+<td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb;">All cash receipts/payments</td>
+</tr>
+<tr style="background: #fef3c7;">
+<td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb; font-weight: 600; color: #f59e0b;">Petty Cash Book</td>
+<td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb;">Small expenses</td>
+<td style="padding: 12px 16px; border-bottom: 1px solid #e5e7eb;">Minor office expenses</td>
+</tr>
+<tr style="background: #faf5ff;">
+<td style="padding: 12px 16px; font-weight: 600; color: #7c3aed;">General Journal</td>
+<td style="padding: 12px 16px;">Other transactions</td>
+<td style="padding: 12px 16px;">Opening entries, corrections</td>
+</tr>
+</tbody>
+</table></div>
 
-1. **Saves Time**: Similar transactions grouped together
-2. **Reduces Errors**: Fewer entries in main ledger
-3. **Better Organization**: Easy to trace transactions
-4. **Supports Audit**: Clear transaction trail`
-      },
-      {
-        title: 'The Sales Journal (Sales Day Book)',
-        content: `# 📗 THE SALES JOURNAL
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Benefits of Using Journals
+</h2>
 
-## Definition
+<div style='all: revert;'><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 16px;">
+<div style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); border-left: 5px solid #3b82f6; border-radius: 8px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+<div style="font-size: 2rem; margin-bottom: 8px;">⚡</div>
+<div style="font-weight: bold; font-size: 1.1rem; color: #1e40af; margin-bottom: 6px;">Saves Time</div>
+<div style="color: #1e3a8a; font-size: 0.95rem;">Similar transactions grouped together</div>
+</div>
+<div style="background: linear-gradient(135deg, #fce7f3, #fbcfe8); border-left: 5px solid #ec4899; border-radius: 8px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+<div style="font-size: 2rem; margin-bottom: 8px;">✅</div>
+<div style="font-weight: bold; font-size: 1.1rem; color: #be185d; margin-bottom: 6px;">Reduces Errors</div>
+<div style="color: #831843; font-size: 0.95rem;">Fewer entries in main ledger</div>
+</div>
+<div style="background: linear-gradient(135deg, #dcfce7, #bbf7d0); border-left: 5px solid #22c55e; border-radius: 8px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+<div style="font-size: 2rem; margin-bottom: 8px;">📁</div>
+<div style="font-weight: bold; font-size: 1.1rem; color: #16a34a; margin-bottom: 6px;">Better Organization</div>
+<div style="color: #15803d; font-size: 0.95rem;">Easy to trace transactions</div>
+</div>
+<div style="background: linear-gradient(135deg, #fef3c7, #fde68a); border-left: 5px solid #f59e0b; border-radius: 8px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+<div style="font-size: 2rem; margin-bottom: 8px;">🔍</div>
+<div style="font-weight: bold; font-size: 1.1rem; color: #d97706; margin-bottom: 6px;">Supports Audit</div>
+<div style="color: #92400e; font-size: 0.95rem;">Clear transaction trail</div>
+</div>
+</div></div>`
+   },
+   {
+    title: 'The Sales Journal (Sales Day Book)',
+    content: `<h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 16px; color: #1e3a8a; display: flex; align-items: center; gap: 12px;">📗 THE SALES JOURNAL</h1>
+
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Definition
+</h2>
 
 The Sales Journal (Sales Day Book) records ALL credit sales of goods in the ordinary course of business.
 
-## Important Points
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Important Points
+</h2>
 
 ✅ **ONLY credit sales** - Cash sales go to Cash Book
 ✅ **ONLY goods sold** - Not assets or other items
 ✅ Records sales made to customers who will pay later
 
-## Format of Sales Journal
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Format of Sales Journal
+</h2>
 
-| Date | Customer | Invoice No. | Folio | Amount (₵) |
-|------|----------|-------------|-------|------------|
-| Jan 3 | Kofi Stores | 001 | SL1 | 5,000 |
-| Jan 5 | Ama Enterprises | 002 | SL2 | 3,500 |
-| Jan 8 | Mensah Trading | 003 | SL3 | 7,200 |
-| Jan 15 | Kofi Stores | 004 | SL1 | 2,800 |
-| | **TOTAL** | | | **18,500** |
+<div style='all: revert;'><table style="width: 100%; border-collapse: collapse; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;">
+<thead>
+<tr style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white;">
+<th style="padding: 12px; text-align: left; font-weight: bold; border-right: 1px solid rgba(255,255,255,0.2);">Date</th>
+<th style="padding: 12px; text-align: left; font-weight: bold; border-right: 1px solid rgba(255,255,255,0.2);">Customer</th>
+<th style="padding: 12px; text-align: left; font-weight: bold; border-right: 1px solid rgba(255,255,255,0.2);">Invoice No.</th>
+<th style="padding: 12px; text-align: left; font-weight: bold; border-right: 1px solid rgba(255,255,255,0.2);">Folio</th>
+<th style="padding: 12px; text-align: right; font-weight: bold;">Amount (₵)</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: #f0fdf4;">
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Jan 3</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Kofi Stores</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">001</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">SL1</td>
+<td style="padding: 10px; text-align: right; border-bottom: 1px solid #e5e7eb;">5,000</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Jan 5</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Ama Enterprises</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">002</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">SL2</td>
+<td style="padding: 10px; text-align: right; border-bottom: 1px solid #e5e7eb;">3,500</td>
+</tr>
+<tr style="background: #f0fdf4;">
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Jan 8</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Mensah Trading</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">003</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">SL3</td>
+<td style="padding: 10px; text-align: right; border-bottom: 1px solid #e5e7eb;">7,200</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Jan 15</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Kofi Stores</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">004</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">SL1</td>
+<td style="padding: 10px; text-align: right; border-bottom: 1px solid #e5e7eb;">2,800</td>
+</tr>
+<tr style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white;">
+<td colspan="4" style="padding: 12px; font-weight: bold; font-size: 1.05rem;">TOTAL</td>
+<td style="padding: 12px; text-align: right; font-weight: bold; font-size: 1.05rem;">18,500</td>
+</tr>
+</tbody>
+</table></div>
 
-## Column Explanations
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Column Explanations
+</h2>
 
 - **Date**: When the sale was made
 - **Customer**: Who bought the goods (debtor)
@@ -5777,11 +5839,13 @@ The Sales Journal (Sales Day Book) records ALL credit sales of goods in the ordi
 - **Folio**: Ledger page reference
 - **Amount**: Value of goods sold
 
-## Source Document
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Source Document
+</h2>
 
 The **Sales Invoice** is the source document for the Sales Journal.
 
-## Example - Akua's Fashion Store
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Example - Akua's Fashion Store
+</h2>
 
 Akua sells clothes to shops on credit:
 - Jan 2: Sold to Grace Boutique {{currency}}4,000
@@ -5790,28 +5854,59 @@ Akua sells clothes to shops on credit:
 
 **Sales Journal:**
 
-| Date | Customer | Inv. No. | Amount (₵) |
-|------|----------|----------|------------|
-| Jan 2 | Grace Boutique | 101 | 4,000 |
-| Jan 5 | Mary's Shop | 102 | 2,500 |
-| Jan 8 | Fashion Hub | 103 | 6,000 |
-| | Total | | 12,500 |`
-      },
-      {
-        title: 'The Purchases Journal (Purchases Day Book)',
-        content: `# 📕 THE PURCHASES JOURNAL
+<div style='all: revert;'><table style="width: 100%; border-collapse: collapse; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; margin: 16px 0;">
+<thead>
+<tr style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white;">
+<th style="padding: 12px; text-align: left; font-weight: bold;">Date</th>
+<th style="padding: 12px; text-align: left; font-weight: bold;">Customer</th>
+<th style="padding: 12px; text-align: left; font-weight: bold;">Inv. No.</th>
+<th style="padding: 12px; text-align: right; font-weight: bold;">Amount (₵)</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: #f0fdf4;">
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Jan 2</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Grace Boutique</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">101</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: right;">4,000</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Jan 5</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Mary's Shop</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">102</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: right;">2,500</td>
+</tr>
+<tr style="background: #f0fdf4;">
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Jan 8</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">Fashion Hub</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">103</td>
+<td style="padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: right;">6,000</td>
+</tr>
+<tr style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white;">
+<td colspan="3" style="padding: 12px; font-weight: bold; font-size: 1.05rem;">Total</td>
+<td style="padding: 12px; text-align: right; font-weight: bold; font-size: 1.05rem;">12,500</td>
+</tr>
+</tbody>
+</table></div>`
+   },
+   {
+    title: 'The Purchases Journal (Purchases Day Book)',
+    content: `<h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 16px; color: #1e3a8a; display: flex; align-items: center; gap: 12px;">📕 THE PURCHASES JOURNAL</h1>
 
-## Definition
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Definition
+</h2>
 
 The Purchases Journal (Purchases Day Book) records ALL credit purchases of goods for resale.
 
-## Important Points
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Important Points
+</h2>
 
 ✅ **ONLY credit purchases** - Cash purchases go to Cash Book
 ✅ **ONLY goods for resale** - Not fixed assets or expenses
 ✅ Records purchases from suppliers we will pay later
 
-## Format of Purchases Journal
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Format of Purchases Journal
+</h2>
 
 | Date | Supplier | Invoice No. | Folio | Amount (₵) |
 |------|----------|-------------|-------|------------|
@@ -5821,7 +5916,8 @@ The Purchases Journal (Purchases Day Book) records ALL credit purchases of goods
 | Jan 20 | ABC Wholesalers | PV-204 | PL1 | 6,000 |
 | | **TOTAL** | | | **41,500** |
 
-## Column Explanations
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Column Explanations
+</h2>
 
 - **Date**: When the purchase was made
 - **Supplier**: Who we bought from (creditor)
@@ -5829,11 +5925,13 @@ The Purchases Journal (Purchases Day Book) records ALL credit purchases of goods
 - **Folio**: Purchase Ledger page reference
 - **Amount**: Value of goods bought
 
-## Source Document
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Source Document
+</h2>
 
 The **Purchase Invoice** (received from supplier) is the source document.
 
-## Example - the Electronics Shop
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Example - the Electronics Shop
+</h2>
 
 A business buys electronics from suppliers on credit:
 - Jan 3: Bought from Tech {{country}} {{currency}}20,000
@@ -5848,16 +5946,18 @@ A business buys electronics from suppliers on credit:
 | Jan 10 | Phone World | PW-112 | 15,000 |
 | Jan 18 | Samsung GH | SG-089 | 30,000 |
 | | Total | | 65,000 |`
-      },
-      {
-        title: 'Credit vs Cash Transactions',
-        content: `# 💳 CREDIT vs CASH TRANSACTIONS
+   },
+   {
+    title: 'Credit vs Cash Transactions',
+    content: `# 💳 CREDIT vs CASH TRANSACTIONS
 
-## Understanding the Difference
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Understanding the Difference
+</h2>
 
 This is CRUCIAL for knowing which book to use!
 
-## Cash Transactions
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Cash Transactions
+</h2>
 
 **Definition**: Payment made immediately at the time of transaction.
 
@@ -5867,7 +5967,8 @@ This is CRUCIAL for knowing which book to use!
 
 **Where to Record**: Cash Book (NOT Sales/Purchases Journal)
 
-## Credit Transactions
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Credit Transactions
+</h2>
 
 **Definition**: Payment to be made at a future date.
 
@@ -5877,7 +5978,8 @@ This is CRUCIAL for knowing which book to use!
 
 **Where to Record**: Sales Journal (credit sales) or Purchases Journal (credit purchases)
 
-## Quick Decision Guide
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Quick Decision Guide
+</h2>
 
 | Transaction | Book of Original Entry |
 |-------------|----------------------|
@@ -5888,38 +5990,42 @@ This is CRUCIAL for knowing which book to use!
 | Customer returned goods (credit) | Returns Inwards Journal |
 | Returned goods to supplier (credit) | Returns Outwards Journal |
 
-## Example Scenario
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Example Scenario
+</h2>
 
 **Mensah Stores - January Transactions:**
 
 1. Jan 2: Sold goods to Ama {{currency}}5,000 (to pay in 14 days)
-   → **Sales Journal** ✓
+  → **Sales Journal** ✓
 
 2. Jan 3: Sold goods to Kofi {{currency}}2,000 (cash)
-   → **Cash Book** ✓
+  → **Cash Book** ✓
 
 3. Jan 5: Bought goods from ABC Ltd {{currency}}10,000 (credit)
-   → **Purchases Journal** ✓
+  → **Purchases Journal** ✓
 
 4. Jan 7: Bought goods from XYZ Ltd {{currency}}3,000 (cash)
-   → **Cash Book** ✓
+  → **Cash Book** ✓
 
-## Why This Matters
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Why This Matters
+</h2>
 
 Recording in the wrong book will:
 ❌ Cause incorrect ledger balances
 ❌ Lead to errors in Trial Balance
 ❌ Result in wrong financial statements`
-      },
-      {
-        title: 'Posting to Ledger Accounts',
-        content: `# 📊 POSTING FROM JOURNALS TO LEDGER
+   },
+   {
+    title: 'Posting to Ledger Accounts',
+    content: `# 📊 POSTING FROM JOURNALS TO LEDGER
 
-## The Posting Process
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">The Posting Process
+</h2>
 
 After recording in the journal, entries must be POSTED (transferred) to the ledger.
 
-## Posting from Sales Journal
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Posting from Sales Journal
+</h2>
 
 **Double Entry for Credit Sales:**
 - **Debit**: Individual Customer Account (in Sales Ledger)
@@ -5950,7 +6056,8 @@ Sales Journal shows:
 |------|---------|--------|
 | Jan | Total Sales Journal | 8,000 |
 
-## Posting from Purchases Journal
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Posting from Purchases Journal
+</h2>
 
 **Double Entry for Credit Purchases:**
 - **Debit**: Purchases Account (in General Ledger)
@@ -5981,22 +6088,25 @@ Purchases Journal shows:
 |------|---------|--------|
 | Jan | Purchases | 8,000 |
 
-## Summary of Posting
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Summary of Posting
+</h2>
 
 | Journal | Individual Accounts | Control Account |
 |---------|--------------------|-----------------| 
 | Sales Journal | Debit each customer | Credit Sales Total |
 | Purchases Journal | Credit each supplier | Debit Purchases Total |`
-      },
-      {
-        title: 'Source Documents',
-        content: `# 📄 SOURCE DOCUMENTS
+   },
+   {
+    title: 'Source Documents',
+    content: `<h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 16px; color: #1e3a8a; display: flex; align-items: center; gap: 12px;">📄 SOURCE DOCUMENTS</h1>
 
-## What Are Source Documents?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">What Are Source Documents?
+</h2>
 
 Source documents are the ORIGINAL evidence of a business transaction. They prove that a transaction occurred.
 
-## Types of Source Documents
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Types of Source Documents
+</h2>
 
 | Source Document | Used For | Information Contained |
 |-----------------|----------|----------------------|
@@ -6007,7 +6117,8 @@ Source documents are the ORIGINAL evidence of a business transaction. They prove
 | **Credit Note** | Returns | Goods returned, value, reason |
 | **Debit Note** | Errors, adjustments | Amount to be charged |
 
-## Sales Invoice (When We Sell)
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Sales Invoice (When We Sell)
+</h2>
 
 **Contains:**
 - Our business name and address
@@ -6037,7 +6148,8 @@ Total: {{currency}}4,000
 Terms: Net 30 days
 \`\`\`
 
-## Purchase Invoice (When We Buy)
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Purchase Invoice (When We Buy)
+</h2>
 
 This is the invoice we RECEIVE from our supplier.
 It becomes our evidence for the purchases journal.
@@ -6046,12 +6158,13 @@ It becomes our evidence for the purchases journal.
 - Keep all invoices for at least 6 years
 - Number invoices sequentially
 - Store safely for tax and audit purposes`
-      },
-      {
-        title: 'Complete Worked Example',
-        content: `# ✍️ COMPLETE WORKED EXAMPLE
+   },
+   {
+    title: 'Complete Worked Example',
+    content: `# ✍️ COMPLETE WORKED EXAMPLE
 
-## Scenario: Mensah Trading Enterprise - January 2024
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Scenario: Mensah Trading Enterprise - January 2024
+</h2>
 
 **Credit Sales during January:**
 - Jan 3: Sold goods to Afia Stores {{currency}}8,000 (Inv. 201)
@@ -6065,7 +6178,8 @@ It becomes our evidence for the purchases journal.
 - Jan 18: Bought from Metro Supplies {{currency}}7,000 (Inv. MS-115)
 - Jan 25: Bought from Kweku Wholesale {{currency}}12,000 (Inv. KW-089)
 
-## Sales Journal
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Sales Journal
+</h2>
 
 **Mensah Trading Enterprise - Sales Journal (January 2024)**
 
@@ -6077,7 +6191,8 @@ It becomes our evidence for the purchases journal.
 | Jan 22 | Comfort Ent. | 204 | SL3 | 6,500 |
 | Jan 31 | **TOTAL** | | GL1 | **23,000** |
 
-## Purchases Journal
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Purchases Journal
+</h2>
 
 **Mensah Trading Enterprise - Purchases Journal (January 2024)**
 
@@ -6089,7 +6204,8 @@ It becomes our evidence for the purchases journal.
 | Jan 25 | Kweku Wholesale | KW-089 | PL3 | 12,000 |
 | Jan 31 | **TOTAL** | | GL2 | **43,000** |
 
-## Posting to Ledgers
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Posting to Ledgers
+</h2>
 
 **Sales Ledger:**
 - Afia Stores: Dr {{currency}}8,000 + {{currency}}3,000 = {{currency}}11,000
@@ -6105,16 +6221,18 @@ It becomes our evidence for the purchases journal.
 - Sales Account: Cr {{currency}}23,000
 - Purchases Account: Dr {{currency}}43,000
 
-## Key Insight
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Key Insight
+</h2>
 
 Total Debtors = {{currency}}23,000 (customers who owe us)
 Total Creditors = {{currency}}43,000 (suppliers we owe)`
-      },
-      {
-        title: 'Key Terms and Summary',
-        content: `# 📝 KEY TERMS AND SUMMARY
+   },
+   {
+    title: 'Key Terms and Summary',
+    content: `# 📝 KEY TERMS AND SUMMARY
 
-## Important Terms
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Important Terms
+</h2>
 
 | Term | Definition |
 |------|-----------|
@@ -6128,7 +6246,8 @@ Total Creditors = {{currency}}43,000 (suppliers we owe)`
 | **Creditor** | Person we owe money to (supplier) |
 | **Day Book** | Another name for journal |
 
-## What Goes Where?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">What Goes Where?
+</h2>
 
 | Transaction | Where to Record | Why |
 |-------------|-----------------|-----|
@@ -6138,7 +6257,8 @@ Total Creditors = {{currency}}43,000 (suppliers we owe)`
 | Cash purchase of goods | Cash Book | Immediate payment |
 | Sale of fixed asset | General Journal | Not regular trading |
 
-## Common Mistakes to Avoid
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Common Mistakes to Avoid
+</h2>
 
 ❌ Recording cash sales in Sales Journal
 ❌ Recording credit purchases of fixed assets in Purchases Journal
@@ -6146,7 +6266,8 @@ Total Creditors = {{currency}}43,000 (suppliers we owe)`
 ❌ Using wrong invoice numbers
 ❌ Not totaling the journals at month-end
 
-## Key Points to Remember
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Key Points to Remember
+</h2>
 
 1. **Sales Journal** = CREDIT sales ONLY
 2. **Purchases Journal** = CREDIT purchases ONLY
@@ -6156,278 +6277,275 @@ Total Creditors = {{currency}}43,000 (suppliers we owe)`
 6. Total journals at the **end of each period**
 7. Folio references help **trace** entries
 
-## {{country}} Context
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country}} Context
+</h2>
 
 In {{country}}:
 - Most businesses use computerized systems (QuickBooks, Sage)
 - But understanding manual journals is essential for:
-  - Small businesses
-  - {{exam:secondary}} exams
-  - Professional accounting exams (ICAG)
-  - Understanding how systems work`
-      }
+ - Small businesses
+ - {{exam:secondary}} exams
+ - Professional accounting exams (ICAG)
+ - Understanding how systems work`
+   }
+  ],
+  summary: "Excellent work! You've mastered the Books of Original Entry! You now understand that transactions are first recorded in Day Books (Journals) before being posted to the ledger. The Sales Journal records ONLY credit sales—when customers buy goods and promise to pay later. The Purchases Journal records ONLY credit purchases of goods for resale—when we buy stock from suppliers on credit. Cash transactions go to the Cash Book. Source documents (invoices, receipts) provide evidence for every entry. After recording, we POST to ledgers: debit customer accounts for credit sales, credit supplier accounts for credit purchases. Remember: the key is distinguishing between cash and credit transactions, and knowing that only goods (not fixed assets) go in the Sales/Purchases Journals!",
+  endOfLessonQuiz: [
+   {
+    id: 'facc-boe-q1',
+    type: 'mcq',
+    question: "Books of Original Entry are also known as:",
+    options: [
+     "Ledger accounts",
+     "Day Books or Journals",
+     "Trial Balance",
+     "Financial Statements"
     ],
-    summary: "Excellent work! You've mastered the Books of Original Entry! You now understand that transactions are first recorded in Day Books (Journals) before being posted to the ledger. The Sales Journal records ONLY credit sales—when customers buy goods and promise to pay later. The Purchases Journal records ONLY credit purchases of goods for resale—when we buy stock from suppliers on credit. Cash transactions go to the Cash Book. Source documents (invoices, receipts) provide evidence for every entry. After recording, we POST to ledgers: debit customer accounts for credit sales, credit supplier accounts for credit purchases. Remember: the key is distinguishing between cash and credit transactions, and knowing that only goods (not fixed assets) go in the Sales/Purchases Journals!",
-    endOfLessonQuiz: [
-      {
-        id: 'facc-boe-q1',
-        type: 'mcq',
-        question: "Books of Original Entry are also known as:",
-        options: [
-          "Ledger accounts",
-          "Day Books or Journals",
-          "Trial Balance",
-          "Financial Statements"
-        ],
-        answer: "Day Books or Journals",
-        explanation: "Books of Original Entry are also called Day Books or Journals because transactions are recorded daily before being posted to the ledger."
-      },
-      {
-        id: 'facc-boe-q2',
-        type: 'mcq',
-        question: "The Sales Journal records:",
-        options: [
-          "All sales transactions",
-          "Cash sales only",
-          "Credit sales only",
-          "Sales returns only"
-        ],
-        answer: "Credit sales only",
-        explanation: "The Sales Journal records ONLY credit sales. Cash sales are recorded in the Cash Book."
-      },
-      {
-        id: 'facc-boe-q3',
-        type: 'mcq',
-        question: "What is the source document for entries in the Sales Journal?",
-        options: [
-          "Purchase invoice",
-          "Sales invoice",
-          "Receipt",
-          "Credit note"
-        ],
-        answer: "Sales invoice",
-        explanation: "The Sales Invoice is the source document for the Sales Journal. It provides evidence of goods sold on credit."
-      },
-      {
-        id: 'facc-boe-q4',
-        type: 'mcq',
-        question: "Kwame sold goods on credit to Ama for {{currency}}5,000. Which book should this be recorded in?",
-        options: [
-          "Cash Book",
-          "General Journal",
-          "Sales Journal",
-          "Purchases Journal"
-        ],
-        answer: "Sales Journal",
-        explanation: "Credit sales are recorded in the Sales Journal. The key phrase is 'on credit' - no immediate cash payment."
-      },
-      {
-        id: 'facc-boe-q5',
-        type: 'mcq',
-        question: "The Purchases Journal records:",
-        options: [
-          "All purchases including fixed assets",
-          "Cash purchases of goods only",
-          "Credit purchases of goods for resale only",
-          "Returns to suppliers"
-        ],
-        answer: "Credit purchases of goods for resale only",
-        explanation: "The Purchases Journal records only credit purchases of goods for resale. Fixed asset purchases and cash purchases go elsewhere."
-      },
-      {
-        id: 'facc-boe-q6',
-        type: 'mcq',
-        question: "When posting from the Sales Journal, customer accounts are:",
-        options: [
-          "Credited individually",
-          "Debited individually",
-          "Not posted at all",
-          "Posted to Cash Book"
-        ],
-        answer: "Debited individually",
-        explanation: "Each customer account is DEBITED because they owe us money (they are debtors). Debit what comes in or who owes."
-      },
-      {
-        id: 'facc-boe-q7',
-        type: 'mcq',
-        question: "A business bought goods for cash {{currency}}8,000. Where should this be recorded?",
-        options: [
-          "Purchases Journal",
-          "Sales Journal",
-          "Cash Book",
-          "General Journal"
-        ],
-        answer: "Cash Book",
-        explanation: "Cash purchases are recorded in the Cash Book, not the Purchases Journal. The Purchases Journal is only for credit purchases."
-      },
-      {
-        id: 'facc-boe-q8',
-        type: 'mcq',
-        question: "What does 'Folio' mean in a journal?",
-        options: [
-          "The date of transaction",
-          "The total amount",
-          "The page reference in the ledger",
-          "The customer's name"
-        ],
-        answer: "The page reference in the ledger",
-        explanation: "Folio is the page reference showing where the entry has been posted in the ledger. It helps in tracing transactions."
-      },
-      {
-        id: 'facc-boe-q9',
-        type: 'mcq',
-        question: "The total of the Purchases Journal is posted to:",
-        options: [
-          "Sales Account (Cr)",
-          "Purchases Account (Dr)",
-          "Cash Account (Dr)",
-          "Bank Account (Cr)"
-        ],
-        answer: "Purchases Account (Dr)",
-        explanation: "The total of the Purchases Journal is debited to the Purchases Account in the General Ledger. Purchases increase with debits."
-      },
-      {
-        id: 'facc-boe-q10',
-        type: 'mcq',
-        question: "ABC Ltd bought a motor vehicle on credit for {{currency}}50,000. This should be recorded in:",
-        options: [
-          "Purchases Journal",
-          "Sales Journal",
-          "General Journal",
-          "Cash Book"
-        ],
-        answer: "General Journal",
-        explanation: "Fixed assets like motor vehicles are NOT recorded in the Purchases Journal. They go to the General Journal as they are not goods for resale."
-      },
-      {
-        id: 'facc-boe-q11',
-        type: 'mcq',
-        question: "When posting from the Purchases Journal, supplier accounts are:",
-        options: [
-          "Debited individually",
-          "Credited individually",
-          "Posted as totals only",
-          "Not posted"
-        ],
-        answer: "Credited individually",
-        explanation: "Each supplier account is CREDITED because we owe them money (they are creditors). Credit what goes out or who we owe."
-      },
-      {
-        id: 'facc-boe-q12',
-        type: 'mcq',
-        question: "The Sales Journal total for January is {{currency}}45,000. The entry in the General Ledger is:",
-        options: [
-          "Dr Sales {{currency}}45,000",
-          "Cr Sales {{currency}}45,000",
-          "Dr Purchases {{currency}}45,000",
-          "Cr Debtors {{currency}}45,000"
-        ],
-        answer: "Cr Sales {{currency}}45,000",
-        explanation: "The total from Sales Journal is CREDITED to Sales Account. Sales is income, which increases with credits."
-      },
-      {
-        id: 'facc-boe-q13',
-        type: 'mcq',
-        question: "Which is NOT a book of original entry?",
-        options: [
-          "Sales Journal",
-          "Purchases Journal",
-          "Trial Balance",
-          "Cash Book"
-        ],
-        answer: "Trial Balance",
-        explanation: "Trial Balance is NOT a book of original entry. It's a summary of all ledger balances used to check accuracy."
-      },
-      {
-        id: 'facc-boe-q14',
-        type: 'mcq',
-        question: "A credit note received from a supplier relates to:",
-        options: [
-          "Goods we sold on credit",
-          "Goods we returned to supplier",
-          "Cash we received",
-          "Goods customer returned"
-        ],
-        answer: "Goods we returned to supplier",
-        explanation: "A credit note from a supplier shows they are crediting our account because we returned goods to them (returns outwards)."
-      },
-      {
-        id: 'facc-boe-q15',
-        type: 'mcq',
-        question: "Why are Books of Original Entry important?",
-        options: [
-          "They replace the ledger completely",
-          "They provide organized first recording and reduce ledger entries",
-          "They are only used for cash transactions",
-          "They are the final books in accounting"
-        ],
-        answer: "They provide organized first recording and reduce ledger entries",
-        explanation: "Books of Original Entry organize transactions by type, provide clear records, and reduce the number of entries directly in the ledger."
-      }
+    answer: "Day Books or Journals",
+    explanation: "Books of Original Entry are also called Day Books or Journals because transactions are recorded daily before being posted to the ledger."
+   },
+   {
+    id: 'facc-boe-q2',
+    type: 'mcq',
+    question: "The Sales Journal records:",
+    options: [
+     "All sales transactions",
+     "Cash sales only",
+     "Credit sales only",
+     "Sales returns only"
     ],
-    activities: [],
-    pastQuestions: [
-      {
-        question: "{{exam:secondary}} 2020: (a) Define Books of Original Entry. (b) State FOUR examples of Books of Original Entry. (c) Explain why the Sales Journal records only credit sales.",
-        year: "2020",
-        solution: "(a) Definition of Books of Original Entry:\n\nBooks of Original Entry (also called Day Books or Journals) are accounting books in which business transactions are first recorded before being transferred (posted) to the ledger accounts. They serve as the initial point of entry for all transactions.\n\n(b) FOUR Examples of Books of Original Entry:\n\n1. SALES JOURNAL (Sales Day Book)\n   - Records credit sales of goods only\n   - Source document: Sales invoice\n\n2. PURCHASES JOURNAL (Purchases Day Book)\n   - Records credit purchases of goods for resale\n   - Source document: Purchase invoice\n\n3. CASH BOOK\n   - Records all cash receipts and payments\n   - Also serves as cash ledger account\n\n4. GENERAL JOURNAL\n   - Records transactions not in other books\n   - Opening entries, corrections, adjustments\n\n(Other acceptable answers: Sales Returns Journal, Purchases Returns Journal, Petty Cash Book)\n\n(c) Why Sales Journal Records Only Credit Sales:\n\nThe Sales Journal records only credit sales because:\n\n1. SPECIALIZATION: Each journal specializes in one type of transaction to improve organization and efficiency.\n\n2. CASH SALES have their own book - the Cash Book - which records all cash transactions including cash sales.\n\n3. DIFFERENT LEDGER TREATMENT:\n   - Credit sales affect Debtors (customers owe money)\n   - Cash sales affect Cash Account directly\n\n4. CONTROL: Separating credit and cash sales allows better control over debtors and monitoring of credit policies.\n\n5. SIMPLICITY: Keeping similar transactions together makes posting to ledger easier and reduces errors."
-      },
-      {
-        question: "{{exam:secondary}} 2019: Prepare a Sales Journal from the following transactions of Mensah Enterprises for March 2019:\nMarch 3: Sold goods to Kofi Ltd {{currency}}12,000\nMarch 8: Cash sales {{currency}}5,000\nMarch 12: Sold goods on credit to Ama Trading {{currency}}8,500\nMarch 18: Sold goods to Kofi Ltd {{currency}}6,000\nMarch 25: Sold goods on credit to Benson & Sons {{currency}}9,500\nMarch 28: Cash sales {{currency}}3,000",
-        year: "2019",
-        solution: "MENSAH ENTERPRISES\nSALES JOURNAL\nFor the month of March 2019\n\n| Date | Customer | Invoice No. | Folio | Amount (₵) |\n|------|----------|-------------|-------|------------|\n| Mar 3 | Kofi Ltd | 001 | SL1 | 12,000 |\n| Mar 12 | Ama Trading | 002 | SL2 | 8,500 |\n| Mar 18 | Kofi Ltd | 003 | SL1 | 6,000 |\n| Mar 25 | Benson & Sons | 004 | SL3 | 9,500 |\n| Mar 31 | TOTAL | | GL | 36,000 |\n\nNOTE: The cash sales of March 8 ({{currency}}5,000) and March 28 ({{currency}}3,000) are NOT included in the Sales Journal.\n\nReason: Cash sales are recorded in the Cash Book, not the Sales Journal. The Sales Journal is exclusively for credit sales.\n\nPOSTING:\n\nSales Ledger (Debit entries):\n- Kofi Ltd: {{currency}}12,000 + {{currency}}6,000 = {{currency}}18,000\n- Ama Trading: {{currency}}8,500\n- Benson & Sons: {{currency}}9,500\n\nGeneral Ledger (Credit entry):\n- Sales Account: {{currency}}36,000 (total for the month)"
-      },
-      {
-        question: "{{exam:secondary}} 2018: Distinguish between the Sales Journal and the Purchases Journal. State the double entry for posting totals from each journal.",
-        year: "2018",
-        solution: "DISTINCTION BETWEEN SALES JOURNAL AND PURCHASES JOURNAL:\n\nSALES JOURNAL:\n\n1. PURPOSE: Records credit sales of goods to customers\n\n2. SOURCE DOCUMENT: Sales Invoice (issued by the business)\n\n3. PARTIES: Records transactions with customers (debtors)\n\n4. EFFECT: Increases sales revenue and debtors\n\n5. LEDGER POSTED TO: Sales Ledger (individual customers) and Sales Account\n\nPURCHASES JOURNAL:\n\n1. PURPOSE: Records credit purchases of goods for resale\n\n2. SOURCE DOCUMENT: Purchase Invoice (received from supplier)\n\n3. PARTIES: Records transactions with suppliers (creditors)\n\n4. EFFECT: Increases purchases and creditors\n\n5. LEDGER POSTED TO: Purchases Ledger (individual suppliers) and Purchases Account\n\nDOUBLE ENTRY FOR POSTING TOTALS:\n\nFROM SALES JOURNAL:\n- Debit: Individual Customer Accounts (each customer debited separately)\n- Credit: Sales Account (total of journal)\n\nExample: If Sales Journal total is {{currency}}50,000\n   Dr Sundry Debtors (individual accounts) {{currency}}50,000\n   Cr Sales Account {{currency}}50,000\n\nFROM PURCHASES JOURNAL:\n- Debit: Purchases Account (total of journal)\n- Credit: Individual Supplier Accounts (each supplier credited separately)\n\nExample: If Purchases Journal total is {{currency}}35,000\n   Dr Purchases Account {{currency}}35,000\n   Cr Sundry Creditors (individual accounts) {{currency}}35,000"
-      },
-      {
-        question: "{{exam:secondary}} 2021: State the book of original entry in which each of the following transactions would be recorded:\n(a) Goods sold on credit to a customer\n(b) Cash purchases of goods\n(c) Return of goods to supplier\n(d) Purchase of office equipment on credit\n(e) Cash received from a debtor",
-        year: "2021",
-        solution: "BOOKS OF ORIGINAL ENTRY FOR EACH TRANSACTION:\n\n(a) Goods sold on credit to a customer\n   ANSWER: SALES JOURNAL (Sales Day Book)\n   Reason: This is a credit sale of goods, which is the specific purpose of the Sales Journal.\n\n(b) Cash purchases of goods\n   ANSWER: CASH BOOK\n   Reason: Any transaction involving immediate cash payment goes to the Cash Book, not the Purchases Journal.\n\n(c) Return of goods to supplier\n   ANSWER: PURCHASES RETURNS JOURNAL (Returns Outwards Book)\n   Reason: Goods returned to suppliers are called returns outwards and have their own journal.\n\n(d) Purchase of office equipment on credit\n   ANSWER: GENERAL JOURNAL\n   Reason: Office equipment is a fixed asset, NOT goods for resale. Fixed asset purchases do not go in the Purchases Journal.\n\n(e) Cash received from a debtor\n   ANSWER: CASH BOOK\n   Reason: All cash receipts, including money from debtors, are recorded in the Cash Book.\n\nKEY PRINCIPLE: The book used depends on:\n1. Whether the transaction is cash or credit\n2. Whether it involves goods (for resale) or other items\n3. Whether it's a sale, purchase, or return"
-      }
+    answer: "Credit sales only",
+    explanation: "The Sales Journal records ONLY credit sales. Cash sales are recorded in the Cash Book."
+   },
+   {
+    id: 'facc-boe-q3',
+    type: 'mcq',
+    question: "What is the source document for entries in the Sales Journal?",
+    options: [
+     "Purchase invoice",
+     "Sales invoice",
+     "Receipt",
+     "Credit note"
     ],
-  },
-  // Lesson 9: Cash Book and Petty Cash Book
-  {
-    id: 'facc-shs1-boe-2',
-    title: 'Cash Book and Petty Cash Book',
-    slug: 'facc-shs1-boe-cash-petty-cash-book',
-    introduction: `Welcome to the Cash Book and Petty Cash Book! These are perhaps the most important books in any business because they track the lifeblood of business—CASH!
+    answer: "Sales invoice",
+    explanation: "The Sales Invoice is the source document for the Sales Journal. It provides evidence of goods sold on credit."
+   },
+   {
+    id: 'facc-boe-q4',
+    type: 'mcq',
+    question: "Kwame sold goods on credit to Ama for {{currency}}5,000. Which book should this be recorded in?",
+    options: [
+     "Cash Book",
+     "General Journal",
+     "Sales Journal",
+     "Purchases Journal"
+    ],
+    answer: "Sales Journal",
+    explanation: "Credit sales are recorded in the Sales Journal. The key phrase is 'on credit' - no immediate cash payment."
+   },
+   {
+    id: 'facc-boe-q5',
+    type: 'mcq',
+    question: "The Purchases Journal records:",
+    options: [
+     "All purchases including fixed assets",
+     "Cash purchases of goods only",
+     "Credit purchases of goods for resale only",
+     "Returns to suppliers"
+    ],
+    answer: "Credit purchases of goods for resale only",
+    explanation: "The Purchases Journal records only credit purchases of goods for resale. Fixed asset purchases and cash purchases go elsewhere."
+   },
+   {
+    id: 'facc-boe-q6',
+    type: 'mcq',
+    question: "When posting from the Sales Journal, customer accounts are:",
+    options: [
+     "Credited individually",
+     "Debited individually",
+     "Not posted at all",
+     "Posted to Cash Book"
+    ],
+    answer: "Debited individually",
+    explanation: "Each customer account is DEBITED because they owe us money (they are debtors). Debit what comes in or who owes."
+   },
+   {
+    id: 'facc-boe-q7',
+    type: 'mcq',
+    question: "A business bought goods for cash {{currency}}8,000. Where should this be recorded?",
+    options: [
+     "Purchases Journal",
+     "Sales Journal",
+     "Cash Book",
+     "General Journal"
+    ],
+    answer: "Cash Book",
+    explanation: "Cash purchases are recorded in the Cash Book, not the Purchases Journal. The Purchases Journal is only for credit purchases."
+   },
+   {
+    id: 'facc-boe-q8',
+    type: 'mcq',
+    question: "What does 'Folio' mean in a journal?",
+    options: [
+     "The date of transaction",
+     "The total amount",
+     "The page reference in the ledger",
+     "The customer's name"
+    ],
+    answer: "The page reference in the ledger",
+    explanation: "Folio is the page reference showing where the entry has been posted in the ledger. It helps in tracing transactions."
+   },
+   {
+    id: 'facc-boe-q9',
+    type: 'mcq',
+    question: "The total of the Purchases Journal is posted to:",
+    options: [
+     "Sales Account (Cr)",
+     "Purchases Account (Dr)",
+     "Cash Account (Dr)",
+     "Bank Account (Cr)"
+    ],
+    answer: "Purchases Account (Dr)",
+    explanation: "The total of the Purchases Journal is debited to the Purchases Account in the General Ledger. Purchases increase with debits."
+   },
+   {
+    id: 'facc-boe-q10',
+    type: 'mcq',
+    question: "ABC Ltd bought a motor vehicle on credit for {{currency}}50,000. This should be recorded in:",
+    options: [
+     "Purchases Journal",
+     "Sales Journal",
+     "General Journal",
+     "Cash Book"
+    ],
+    answer: "General Journal",
+    explanation: "Fixed assets like motor vehicles are NOT recorded in the Purchases Journal. They go to the General Journal as they are not goods for resale."
+   },
+   {
+    id: 'facc-boe-q11',
+    type: 'mcq',
+    question: "When posting from the Purchases Journal, supplier accounts are:",
+    options: [
+     "Debited individually",
+     "Credited individually",
+     "Posted as totals only",
+     "Not posted"
+    ],
+    answer: "Credited individually",
+    explanation: "Each supplier account is CREDITED because we owe them money (they are creditors). Credit what goes out or who we owe."
+   },
+   {
+    id: 'facc-boe-q12',
+    type: 'mcq',
+    question: "The Sales Journal total for January is {{currency}}45,000. The entry in the General Ledger is:",
+    options: [
+     "Dr Sales {{currency}}45,000",
+     "Cr Sales {{currency}}45,000",
+     "Dr Purchases {{currency}}45,000",
+     "Cr Debtors {{currency}}45,000"
+    ],
+    answer: "Cr Sales {{currency}}45,000",
+    explanation: "The total from Sales Journal is CREDITED to Sales Account. Sales is income, which increases with credits."
+   },
+   {
+    id: 'facc-boe-q13',
+    type: 'mcq',
+    question: "Which is NOT a book of original entry?",
+    options: [
+     "Sales Journal",
+     "Purchases Journal",
+     "Trial Balance",
+     "Cash Book"
+    ],
+    answer: "Trial Balance",
+    explanation: "Trial Balance is NOT a book of original entry. It's a summary of all ledger balances used to check accuracy."
+   },
+   {
+    id: 'facc-boe-q14',
+    type: 'mcq',
+    question: "A credit note received from a supplier relates to:",
+    options: [
+     "Goods we sold on credit",
+     "Goods we returned to supplier",
+     "Cash we received",
+     "Goods customer returned"
+    ],
+    answer: "Goods we returned to supplier",
+    explanation: "A credit note from a supplier shows they are crediting our account because we returned goods to them (returns outwards)."
+   },
+   {
+    id: 'facc-boe-q15',
+    type: 'mcq',
+    question: "Why are Books of Original Entry important?",
+    options: [
+     "They replace the ledger completely",
+     "They provide organized first recording and reduce ledger entries",
+     "They are only used for cash transactions",
+     "They are the final books in accounting"
+    ],
+    answer: "They provide organized first recording and reduce ledger entries",
+    explanation: "Books of Original Entry organize transactions by type, provide clear records, and reduce the number of entries directly in the ledger."
+   }
+  ],
+  activities: [],
+  pastQuestions: [
+   {
+    question: "{{exam:secondary}} 2020: (a) Define Books of Original Entry. (b) State FOUR examples of Books of Original Entry. (c) Explain why the Sales Journal records only credit sales.",
+    year: "2020",
+    solution: "(a) Definition of Books of Original Entry:\n\nBooks of Original Entry (also called Day Books or Journals) are accounting books in which business transactions are first recorded before being transferred (posted) to the ledger accounts. They serve as the initial point of entry for all transactions.\n\n(b) FOUR Examples of Books of Original Entry:\n\n1. SALES JOURNAL (Sales Day Book)\n  - Records credit sales of goods only\n  - Source document: Sales invoice\n\n2. PURCHASES JOURNAL (Purchases Day Book)\n  - Records credit purchases of goods for resale\n  - Source document: Purchase invoice\n\n3. CASH BOOK\n  - Records all cash receipts and payments\n  - Also serves as cash ledger account\n\n4. GENERAL JOURNAL\n  - Records transactions not in other books\n  - Opening entries, corrections, adjustments\n\n(Other acceptable answers: Sales Returns Journal, Purchases Returns Journal, Petty Cash Book)\n\n(c) Why Sales Journal Records Only Credit Sales:\n\nThe Sales Journal records only credit sales because:\n\n1. SPECIALIZATION: Each journal specializes in one type of transaction to improve organization and efficiency.\n\n2. CASH SALES have their own book - the Cash Book - which records all cash transactions including cash sales.\n\n3. DIFFERENT LEDGER TREATMENT:\n  - Credit sales affect Debtors (customers owe money)\n  - Cash sales affect Cash Account directly\n\n4. CONTROL: Separating credit and cash sales allows better control over debtors and monitoring of credit policies.\n\n5. SIMPLICITY: Keeping similar transactions together makes posting to ledger easier and reduces errors."
+   },
+   {
+    question: "{{exam:secondary}} 2019: Prepare a Sales Journal from the following transactions of Mensah Enterprises for March 2019:\nMarch 3: Sold goods to Kofi Ltd {{currency}}12,000\nMarch 8: Cash sales {{currency}}5,000\nMarch 12: Sold goods on credit to Ama Trading {{currency}}8,500\nMarch 18: Sold goods to Kofi Ltd {{currency}}6,000\nMarch 25: Sold goods on credit to Benson & Sons {{currency}}9,500\nMarch 28: Cash sales {{currency}}3,000",
+    year: "2019",
+    solution: "MENSAH ENTERPRISES\nSALES JOURNAL\nFor the month of March 2019\n\n| Date | Customer | Invoice No. | Folio | Amount (₵) |\n|------|----------|-------------|-------|------------|\n| Mar 3 | Kofi Ltd | 001 | SL1 | 12,000 |\n| Mar 12 | Ama Trading | 002 | SL2 | 8,500 |\n| Mar 18 | Kofi Ltd | 003 | SL1 | 6,000 |\n| Mar 25 | Benson & Sons | 004 | SL3 | 9,500 |\n| Mar 31 | TOTAL | | GL | 36,000 |\n\nNOTE: The cash sales of March 8 ({{currency}}5,000) and March 28 ({{currency}}3,000) are NOT included in the Sales Journal.\n\nReason: Cash sales are recorded in the Cash Book, not the Sales Journal. The Sales Journal is exclusively for credit sales.\n\nPOSTING:\n\nSales Ledger (Debit entries):\n- Kofi Ltd: {{currency}}12,000 + {{currency}}6,000 = {{currency}}18,000\n- Ama Trading: {{currency}}8,500\n- Benson & Sons: {{currency}}9,500\n\nGeneral Ledger (Credit entry):\n- Sales Account: {{currency}}36,000 (total for the month)"
+   },
+   {
+    question: "{{exam:secondary}} 2018: Distinguish between the Sales Journal and the Purchases Journal. State the double entry for posting totals from each journal.",
+    year: "2018",
+    solution: "DISTINCTION BETWEEN SALES JOURNAL AND PURCHASES JOURNAL:\n\nSALES JOURNAL:\n\n1. PURPOSE: Records credit sales of goods to customers\n\n2. SOURCE DOCUMENT: Sales Invoice (issued by the business)\n\n3. PARTIES: Records transactions with customers (debtors)\n\n4. EFFECT: Increases sales revenue and debtors\n\n5. LEDGER POSTED TO: Sales Ledger (individual customers) and Sales Account\n\nPURCHASES JOURNAL:\n\n1. PURPOSE: Records credit purchases of goods for resale\n\n2. SOURCE DOCUMENT: Purchase Invoice (received from supplier)\n\n3. PARTIES: Records transactions with suppliers (creditors)\n\n4. EFFECT: Increases purchases and creditors\n\n5. LEDGER POSTED TO: Purchases Ledger (individual suppliers) and Purchases Account\n\nDOUBLE ENTRY FOR POSTING TOTALS:\n\nFROM SALES JOURNAL:\n- Debit: Individual Customer Accounts (each customer debited separately)\n- Credit: Sales Account (total of journal)\n\nExample: If Sales Journal total is {{currency}}50,000\n  Dr Sundry Debtors (individual accounts) {{currency}}50,000\n  Cr Sales Account {{currency}}50,000\n\nFROM PURCHASES JOURNAL:\n- Debit: Purchases Account (total of journal)\n- Credit: Individual Supplier Accounts (each supplier credited separately)\n\nExample: If Purchases Journal total is {{currency}}35,000\n  Dr Purchases Account {{currency}}35,000\n  Cr Sundry Creditors (individual accounts) {{currency}}35,000"
+   },
+   {
+    question: "{{exam:secondary}} 2021: State the book of original entry in which each of the following transactions would be recorded:\n(a) Goods sold on credit to a customer\n(b) Cash purchases of goods\n(c) Return of goods to supplier\n(d) Purchase of office equipment on credit\n(e) Cash received from a debtor",
+    year: "2021",
+    solution: "BOOKS OF ORIGINAL ENTRY FOR EACH TRANSACTION:\n\n(a) Goods sold on credit to a customer\n  ANSWER: SALES JOURNAL (Sales Day Book)\n  Reason: This is a credit sale of goods, which is the specific purpose of the Sales Journal.\n\n(b) Cash purchases of goods\n  ANSWER: CASH BOOK\n  Reason: Any transaction involving immediate cash payment goes to the Cash Book, not the Purchases Journal.\n\n(c) Return of goods to supplier\n  ANSWER: PURCHASES RETURNS JOURNAL (Returns Outwards Book)\n  Reason: Goods returned to suppliers are called returns outwards and have their own journal.\n\n(d) Purchase of office equipment on credit\n  ANSWER: GENERAL JOURNAL\n  Reason: Office equipment is a fixed asset, NOT goods for resale. Fixed asset purchases do not go in the Purchases Journal.\n\n(e) Cash received from a debtor\n  ANSWER: CASH BOOK\n  Reason: All cash receipts, including money from debtors, are recorded in the Cash Book.\n\nKEY PRINCIPLE: The book used depends on:\n1. Whether the transaction is cash or credit\n2. Whether it involves goods (for resale) or other items\n3. Whether it's a sale, purchase, or return"
+   }
+  ],
+ },
+ // Lesson 9: Cash Book and Petty Cash Book
+ {
+  id: 'facc-shs1-boe-2',
+  title: 'Cash Book and Petty Cash Book',
+  slug: 'facc-shs1-boe-cash-petty-cash-book',
+  introduction: `Welcome to the Cash Book and Petty Cash Book! These are perhaps the most important books in any business because they track the lifeblood of business—CASH!
 
 The Cash Book is unique—it's BOTH a book of original entry AND a ledger account. Every cedi that comes in or goes out passes through this book. The Petty Cash Book handles small, everyday expenses like transport fares, office supplies, and refreshments.
 
 In {{country}}, from street vendors to banks, every business needs to track cash carefully. By the end of this lesson, you'll be able to prepare different types of cash books and operate a petty cash system!`,
-    objectives: [
-      'Define the Cash Book and explain its dual function',
-      'Prepare a Single Column Cash Book',
-      'Prepare a Two-Column (Double Column) Cash Book with discount columns',
-      'Prepare a Three-Column Cash Book with cash, bank, and discount columns',
-      'Understand contra entries between cash and bank',
-      'Define and explain the Petty Cash Book',
-      'Operate the Imprest System for petty cash',
-      'Prepare a Petty Cash Book with analysis columns',
-      'Balance cash books and petty cash books correctly'
-    ],
-    keyConcepts: [
-      {
-        title: 'What is the Cash Book?',
-        content: `# 💰 THE CASH BOOK
-
-## Definition
-
+  objectives: [
+   'Define the Cash Book and explain its dual function',
+   'Prepare a Single Column Cash Book',
+   'Prepare a Two-Column (Double Column) Cash Book with discount columns',
+   'Prepare a Three-Column Cash Book with cash, bank, and discount columns',
+   'Understand contra entries between cash and bank',
+   'Define and explain the Petty Cash Book',
+   'Operate the Imprest System for petty cash',
+   'Prepare a Petty Cash Book with analysis columns',
+   'Balance cash books and petty cash books correctly'
+  ],
+  keyConcepts: [
+   {
+    title: 'What is the Cash Book?',
+    content: `<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">💰 THE CASH BOOK</h2>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Definition</h3>
 The Cash Book is a book of original entry that records ALL cash and bank transactions. It is unique because it serves as BOTH:
 1. A **Book of Original Entry** (journal)
 2. A **Ledger Account** (Cash Account and/or Bank Account)
 
-## Why Is It Special?
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Why Is It Special?</h3>
 Other journals (Sales Journal, Purchases Journal) require posting to the ledger.
 The Cash Book IS already the ledger for cash transactions!
 
-## What Goes in the Cash Book?
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">What Goes in the Cash Book?</h3>
 **RECEIPTS (Debit Side - Left):**
 - Cash sales
 - Money received from debtors
@@ -6443,107 +6561,91 @@ The Cash Book IS already the ledger for cash transactions!
 - Drawings by owner
 - Any other cash/cheque paid out
 
-## Types of Cash Book
-
-<table style="width:100%; border-collapse: collapse; margin: 16px 0;">
-<tr style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;">
-<th style="padding: 12px; text-align: left; border: 1px solid #e5e7eb;">Type</th>
-<th style="padding: 12px; text-align: left; border: 1px solid #e5e7eb;">Columns</th>
-<th style="padding: 12px; text-align: left; border: 1px solid #e5e7eb;">Used For</th>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Types of Cash Book</h3>
+<table style="width:100%; border-collapse: collapse;">
+<tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;">
+<th style="padding: 4px; text-align: left; border: 1px solid #e5e7eb;">Type</th>
+<th style="padding: 4px; text-align: left; border: 1px solid #e5e7eb;">Columns</th>
+<th style="padding: 4px; text-align: left; border: 1px solid #e5e7eb;">Used For</th>
 </tr>
 <tr style="background-color: #f9fafb;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Single Column</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Cash only</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Small businesses with only cash</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Single Column</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Cash only</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Small businesses with only cash</td>
 </tr>
 <tr style="background-color: #ffffff;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Two-Column</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Cash + Discount</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Businesses offering/receiving discounts</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Two-Column</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Cash + Discount</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Businesses offering/receiving discounts</td>
 </tr>
 <tr style="background-color: #f9fafb;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Three-Column</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Cash + Bank + Discount</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Businesses using both cash and bank</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Three-Column</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Cash + Bank + Discount</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Businesses using both cash and bank</td>
 </tr>
 </table>
-
-## The Golden Rule
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">The Golden Rule</h3>
 **Left side (Debit)** = Money COMING IN
 **Right side (Credit)** = Money GOING OUT`
-      },
-      {
-        title: 'Single Column Cash Book',
-        content: `# 📗 SINGLE COLUMN CASH BOOK
-
-## Format
-
-The simplest form—records only cash transactions (no bank).
-
-**CASH BOOK (Single Column)**
-
-<div style="display: flex; gap: 8px; flex-wrap: wrap;">
-<table style="flex: 1; min-width: 280px; border-collapse: collapse; margin: 8px 0;">
-<tr style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white;">
-<th colspan="3" style="padding: 10px; text-align: center; border: 1px solid #e5e7eb;">DEBIT SIDE (Receipts)</th>
+   },
+   {
+    title: 'Single Column Cash Book',
+    content: `<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📗 SINGLE COLUMN CASH BOOK</h2>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Format</h3>
+<div style="display: flex; margin: 0; gap: 8px; flex-wrap: wrap">
+<table style="flex: 1; min-width: 280px; border-collapse: collapse;">
+<tr style=" background: linear-gradient(135deg, #22c55e, #16a34a); color: white;">
+<th colspan="4" style="padding: 6px; text-align: center; border: 1px solid #e5e7eb;">DEBIT SIDE (Receipts)</th>
 </tr>
 <tr style="background-color: #dcfce7;">
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Date</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Details</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Amount (₵)</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Date</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Details</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Amount (₵)</th>
 </tr>
-<tr><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 1</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Capital</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">50,000</td></tr>
-<tr style="background-color: #f0fdf4;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 5</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Sales</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">8,000</td></tr>
-<tr><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 10</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Kofi (Debtor)</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">5,000</td></tr>
-<tr style="background-color: #f0fdf4;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 15</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Sales</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">12,000</td></tr>
-<tr style="background-color: #bbf7d0; font-weight: bold;"><td colspan="2" style="padding: 8px; border: 1px solid #e5e7eb;">Total</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">75,000</td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 1</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Capital</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">50,000</td></tr>
+<tr style="background-color: #f0fdf4;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 5</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Sales</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">8,000</td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 10</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Kofi (Debtor)</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">5,000</td></tr>
+<tr style="background-color: #f0fdf4;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 15</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Sales</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">12,000</td></tr>
+<tr style="background-color: #bbf7d0; font-weight: bold;"><td colspan="2" style="padding: 4px; border: 1px solid #e5e7eb;">Total</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">75,000</td></tr>
 </table>
-
-<table style="flex: 1; min-width: 280px; border-collapse: collapse; margin: 8px 0;">
-<tr style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white;">
-<th colspan="3" style="padding: 10px; text-align: center; border: 1px solid #e5e7eb;">CREDIT SIDE (Payments)</th>
+<table style="flex: 1; min-width: 280px; border-collapse: collapse;">
+<tr style=" background: linear-gradient(135deg, #ef4444, #dc2626); color: white;">
+<th colspan="3" style="padding: 6px; text-align: center; border: 1px solid #e5e7eb;">CREDIT SIDE (Payments)</th>
 </tr>
 <tr style="background-color: #fee2e2;">
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Date</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Details</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Amount (₵)</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Date</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Details</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Amount (₵)</th>
 </tr>
-<tr><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 2</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Purchases</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">15,000</td></tr>
-<tr style="background-color: #fef2f2;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 3</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Rent</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">3,000</td></tr>
-<tr><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 7</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Wages</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">4,000</td></tr>
-<tr style="background-color: #fef2f2;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 12</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Electricity</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">1,500</td></tr>
-<tr><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 20</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Drawings</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">2,000</td></tr>
-<tr style="background-color: #fecaca;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 31</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Balance c/d</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">49,500</td></tr>
-<tr style="background-color: #fca5a5; font-weight: bold;"><td colspan="2" style="padding: 8px; border: 1px solid #e5e7eb;">Total</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">75,000</td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 2</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Purchases</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">15,000</td></tr>
+<tr style="background-color: #fef2f2;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 3</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Rent</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">3,000</td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 7</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Wages</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">4,000</td></tr>
+<tr style="background-color: #fef2f2;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 12</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Electricity</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">1,500</td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 20</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Drawings</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">2,000</td></tr>
+<tr style="background-color: #fecaca;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 31</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Balance c/d</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">49,500</td></tr>
+<tr style="background-color: #fca5a5; font-weight: bold;"><td colspan="2" style="padding: 4px; border: 1px solid #e5e7eb;">Total</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">75,000</td></tr>
 </table>
 </div>
-
-<div style="background: #dbeafe; padding: 10px; border-radius: 8px; margin-top: 8px;">
+<div style=" background: #dbeafe; padding: 4px; border-radius: 8px;">
 <strong>Feb 1:</strong> Balance b/d {{currency}}49,500
 </div>
-
-## Key Points
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Key Points</h3>
 1. **Folio**: Reference to ledger page (SL = Sales Ledger)
 2. **Balance c/d**: Balance carried down (closing balance)
 3. **Balance b/d**: Balance brought down (opening balance for next period)
 4. **Both sides must equal** when balanced
 
-## Steps to Balance
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Steps to Balance</h3>
 1. Total both sides
 2. Find the difference (this is your balance)
 3. Enter balance c/d on the SMALLER side
 4. Draw double lines under totals
 5. Bring balance down on the opposite side`
-      },
-      {
-        title: 'Two-Column Cash Book (with Discount)',
-        content: `# 📘 TWO-COLUMN CASH BOOK
-
-## What Are Discounts?
-
+   },
+   {
+    title: 'Two-Column Cash Book (with Discount)',
+    content: `<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📘 TWO-COLUMN CASH BOOK</h2>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">What Are Discounts?</h3>
 **Discount Allowed**: Discount WE give to customers who pay quickly
 - Example: "Pay within 7 days, get 5% off"
 - This is an EXPENSE to us
@@ -6552,137 +6654,119 @@ The simplest form—records only cash transactions (no bank).
 - Example: Supplier gives us 3% for early payment
 - This is an INCOME to us
 
-## Format
-
-**TWO-COLUMN CASH BOOK**
-
-<div style="display: flex; gap: 8px; flex-wrap: wrap;">
-<table style="flex: 1; min-width: 300px; border-collapse: collapse; margin: 8px 0;">
-<tr style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white;">
-<th colspan="4" style="padding: 10px; text-align: center; border: 1px solid #e5e7eb;">DEBIT SIDE (Receipts)</th>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Format</h3>
+<div style="display: flex; margin: 0; gap: 8px; flex-wrap: wrap">
+<table style="flex: 1; min-width: 300px; border-collapse: collapse;">
+<tr style=" background: linear-gradient(135deg, #22c55e, #16a34a); color: white;">
+<th colspan="4" style="padding: 6px; text-align: center; border: 1px solid #e5e7eb;">DEBIT SIDE (Receipts)</th>
 </tr>
 <tr style="background-color: #dcfce7;">
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Date</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Details</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Disc. (₵)</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Cash (₵)</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Date</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Details</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Disc. (₵)</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Cash (₵)</th>
 </tr>
-<tr><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 5</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Kofi</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right; color: #dc2626;">200</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">3,800</td></tr>
-<tr style="background-color: #f0fdf4;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 12</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Ama</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right; color: #dc2626;">100</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">1,900</td></tr>
-<tr><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 20</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Sales</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">-</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">5,000</td></tr>
-<tr style="background-color: #bbf7d0; font-weight: bold;"><td colspan="2" style="padding: 8px; border: 1px solid #e5e7eb;">Total</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right; color: #dc2626;">300</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">10,700</td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 5</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Kofi</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right; color: #dc2626;">200</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">3,800</td></tr>
+<tr style="background-color: #f0fdf4;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 12</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Ama</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right; color: #dc2626;">100</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">1,900</td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 20</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Sales</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">-</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">5,000</td></tr>
+<tr style="background-color: #bbf7d0; font-weight: bold;"><td colspan="2" style="padding: 4px; border: 1px solid #e5e7eb;">Total</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right; color: #dc2626;">300</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">10,700</td></tr>
 </table>
-
-<table style="flex: 1; min-width: 300px; border-collapse: collapse; margin: 8px 0;">
-<tr style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white;">
-<th colspan="4" style="padding: 10px; text-align: center; border: 1px solid #e5e7eb;">CREDIT SIDE (Payments)</th>
+<table style="flex: 1; min-width: 300px; border-collapse: collapse;">
+<tr style=" background: linear-gradient(135deg, #ef4444, #dc2626); color: white;">
+<th colspan="4" style="padding: 6px; text-align: center; border: 1px solid #e5e7eb;">CREDIT SIDE (Payments)</th>
 </tr>
 <tr style="background-color: #fee2e2;">
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Date</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Details</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Disc. (₵)</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Cash (₵)</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Date</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Details</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Disc. (₵)</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Cash (₵)</th>
 </tr>
-<tr><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 8</td><td style="padding: 8px; border: 1px solid #e5e7eb;">ABC Ltd</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right; color: #16a34a;">150</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">4,850</td></tr>
-<tr style="background-color: #fef2f2;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 15</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Rent</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">-</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">2,000</td></tr>
-<tr><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 25</td><td style="padding: 8px; border: 1px solid #e5e7eb;">XYZ Ltd</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right; color: #16a34a;">100</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">2,900</td></tr>
-<tr style="background-color: #fca5a5; font-weight: bold;"><td colspan="2" style="padding: 8px; border: 1px solid #e5e7eb;">Total</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right; color: #16a34a;">250</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">9,750</td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 8</td><td style="padding: 4px; border: 1px solid #e5e7eb;">ABC Ltd</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right; color: #16a34a;">150</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">4,850</td></tr>
+<tr style="background-color: #fef2f2;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 15</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Rent</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">-</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">2,000</td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 25</td><td style="padding: 4px; border: 1px solid #e5e7eb;">XYZ Ltd</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right; color: #16a34a;">100</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">2,900</td></tr>
+<tr style="background-color: #fca5a5; font-weight: bold;"><td colspan="2" style="padding: 4px; border: 1px solid #e5e7eb;">Total</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right; color: #16a34a;">250</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">9,750</td></tr>
 </table>
 </div>
-
-<div style="background: #fef3c7; padding: 10px; border-radius: 8px; margin-top: 8px; border-left: 4px solid #f59e0b;">
+<div style=" background: #fef3c7; padding: 4px; border-radius: 8px; border-left: 4px solid #f59e0b;">
 <strong>Note:</strong> Discount Allowed ({{currency}}300) is an EXPENSE | Discount Received ({{currency}}250) is INCOME
 </div>
-
-## Important Notes
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Important Notes</h3>
 1. **Discount columns are NOT balanced**—they are just totals
 2. Discount columns are **memorandum columns** (for information)
 3. Only the CASH column is balanced
 4. Discount Allowed total → Posted to Debit of Discount Allowed Account
 5. Discount Received total → Posted to Credit of Discount Received Account
 
-## Example Calculation
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Example Calculation</h3>
 Kofi owes {{currency}}4,000. We offer 5% discount for early payment.
 - Discount = {{currency}}4,000 × 5% = {{currency}}200
 - Cash received = {{currency}}4,000 - {{currency}}200 = {{currency}}3,800
 - Entry: Discount column {{currency}}200, Cash column {{currency}}3,800`
-      },
-      {
-        title: 'Three-Column Cash Book',
-        content: `# 📙 THREE-COLUMN CASH BOOK
-
-## Definition
-
+   },
+   {
+    title: 'Three-Column Cash Book',
+    content: `<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📙 THREE-COLUMN CASH BOOK</h2>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Definition</h3>
 The most comprehensive cash book with columns for:
 1. **Discount** (Allowed on debit side, Received on credit side)
 2. **Cash** (physical cash transactions)
 3. **Bank** (cheque and bank transfer transactions)
 
-## Format
-
-<div style="display: flex; gap: 8px; flex-wrap: wrap;">
-<table style="flex: 1; min-width: 320px; border-collapse: collapse; margin: 8px 0; font-size: 13px;">
-<tr style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white;">
-<th colspan="5" style="padding: 10px; text-align: center; border: 1px solid #e5e7eb;">DEBIT SIDE (Receipts)</th>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Format</h3>
+<div style="display: flex; margin: 0; gap: 8px; flex-wrap: wrap">
+<table style="flex: 1; min-width: 320px; border-collapse: collapse; margin: 0; font-size: 13px;">
+<tr style=" background: linear-gradient(135deg, #22c55e, #16a34a); color: white;">
+<th colspan="4" style="padding: 6px; text-align: center; border: 1px solid #e5e7eb;">DEBIT SIDE (Receipts)</th>
 </tr>
 <tr style="background-color: #dcfce7;">
-<th style="padding: 6px; border: 1px solid #e5e7eb;">Date</th>
-<th style="padding: 6px; border: 1px solid #e5e7eb;">Details</th>
-<th style="padding: 6px; border: 1px solid #e5e7eb;">Fo</th>
-<th style="padding: 6px; border: 1px solid #e5e7eb;">Disc</th>
-<th style="padding: 6px; border: 1px solid #e5e7eb;">Cash</th>
-<th style="padding: 6px; border: 1px solid #e5e7eb;">Bank</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Date</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Details</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Fo</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Disc</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Cash</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Bank</th>
 </tr>
-<tr><td style="padding: 5px; border: 1px solid #e5e7eb;">Jan 1</td><td style="padding: 5px; border: 1px solid #e5e7eb;">Capital</td><td style="padding: 5px; border: 1px solid #e5e7eb;"></td><td style="padding: 5px; border: 1px solid #e5e7eb;">-</td><td style="padding: 5px; border: 1px solid #e5e7eb; text-align: right;">20,000</td><td style="padding: 5px; border: 1px solid #e5e7eb; text-align: right;">80,000</td></tr>
-<tr style="background-color: #f0fdf4;"><td style="padding: 5px; border: 1px solid #e5e7eb;">Jan 5</td><td style="padding: 5px; border: 1px solid #e5e7eb;">Sales</td><td style="padding: 5px; border: 1px solid #e5e7eb;"></td><td style="padding: 5px; border: 1px solid #e5e7eb;">-</td><td style="padding: 5px; border: 1px solid #e5e7eb; text-align: right;">5,000</td><td style="padding: 5px; border: 1px solid #e5e7eb;">-</td></tr>
-<tr><td style="padding: 5px; border: 1px solid #e5e7eb;">Jan 8</td><td style="padding: 5px; border: 1px solid #e5e7eb;">Kofi</td><td style="padding: 5px; border: 1px solid #e5e7eb;">SL</td><td style="padding: 5px; border: 1px solid #e5e7eb; text-align: right; color: #dc2626;">300</td><td style="padding: 5px; border: 1px solid #e5e7eb;">-</td><td style="padding: 5px; border: 1px solid #e5e7eb; text-align: right;">5,700</td></tr>
-<tr style="background-color: #f0fdf4;"><td style="padding: 5px; border: 1px solid #e5e7eb;">Jan 12</td><td style="padding: 5px; border: 1px solid #e5e7eb;">Sales</td><td style="padding: 5px; border: 1px solid #e5e7eb;"></td><td style="padding: 5px; border: 1px solid #e5e7eb;">-</td><td style="padding: 5px; border: 1px solid #e5e7eb;">-</td><td style="padding: 5px; border: 1px solid #e5e7eb; text-align: right;">8,000</td></tr>
-<tr style="background-color: #e9d5ff;"><td style="padding: 5px; border: 1px solid #e5e7eb;">Jan 15</td><td style="padding: 5px; border: 1px solid #e5e7eb;">Bank</td><td style="padding: 5px; border: 1px solid #e5e7eb; font-weight: bold; color: #7c3aed;">C</td><td style="padding: 5px; border: 1px solid #e5e7eb;">-</td><td style="padding: 5px; border: 1px solid #e5e7eb;">-</td><td style="padding: 5px; border: 1px solid #e5e7eb; text-align: right;">10,000</td></tr>
+<tr><td style="padding: 3px; border: 1px solid #e5e7eb;">Jan 1</td><td style="padding: 3px; border: 1px solid #e5e7eb;">Capital</td><td style="padding: 3px; border: 1px solid #e5e7eb;"></td><td style="padding: 3px; border: 1px solid #e5e7eb;">-</td><td style="padding: 3px; border: 1px solid #e5e7eb; text-align: right;">20,000</td><td style="padding: 3px; border: 1px solid #e5e7eb; text-align: right;">80,000</td></tr>
+<tr style="background-color: #f0fdf4;"><td style="padding: 3px; border: 1px solid #e5e7eb;">Jan 5</td><td style="padding: 3px; border: 1px solid #e5e7eb;">Sales</td><td style="padding: 3px; border: 1px solid #e5e7eb;"></td><td style="padding: 3px; border: 1px solid #e5e7eb;">-</td><td style="padding: 3px; border: 1px solid #e5e7eb; text-align: right;">5,000</td><td style="padding: 3px; border: 1px solid #e5e7eb;">-</td></tr>
+<tr><td style="padding: 3px; border: 1px solid #e5e7eb;">Jan 8</td><td style="padding: 3px; border: 1px solid #e5e7eb;">Kofi</td><td style="padding: 3px; border: 1px solid #e5e7eb;">SL</td><td style="padding: 3px; border: 1px solid #e5e7eb; text-align: right; color: #dc2626;">300</td><td style="padding: 3px; border: 1px solid #e5e7eb;">-</td><td style="padding: 3px; border: 1px solid #e5e7eb; text-align: right;">5,700</td></tr>
+<tr style="background-color: #f0fdf4;"><td style="padding: 3px; border: 1px solid #e5e7eb;">Jan 12</td><td style="padding: 3px; border: 1px solid #e5e7eb;">Sales</td><td style="padding: 3px; border: 1px solid #e5e7eb;"></td><td style="padding: 3px; border: 1px solid #e5e7eb;">-</td><td style="padding: 3px; border: 1px solid #e5e7eb;">-</td><td style="padding: 3px; border: 1px solid #e5e7eb; text-align: right;">8,000</td></tr>
+<tr style="background-color: #e9d5ff;"><td style="padding: 3px; border: 1px solid #e5e7eb;">Jan 15</td><td style="padding: 3px; border: 1px solid #e5e7eb;">Bank</td><td style="padding: 3px; border: 1px solid #e5e7eb; font-weight: bold; color: #7c3aed;">C</td><td style="padding: 3px; border: 1px solid #e5e7eb;">-</td><td style="padding: 3px; border: 1px solid #e5e7eb;">-</td><td style="padding: 3px; border: 1px solid #e5e7eb; text-align: right;">10,000</td></tr>
 </table>
-
-<table style="flex: 1; min-width: 320px; border-collapse: collapse; margin: 8px 0; font-size: 13px;">
-<tr style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white;">
-<th colspan="5" style="padding: 10px; text-align: center; border: 1px solid #e5e7eb;">CREDIT SIDE (Payments)</th>
+<table style="flex: 1; min-width: 320px; border-collapse: collapse; margin: 0; font-size: 13px;">
+<tr style=" background: linear-gradient(135deg, #ef4444, #dc2626); color: white;">
+<th colspan="6" style="padding: 6px; text-align: center; border: 1px solid #e5e7eb;">CREDIT SIDE (Payments)</th>
 </tr>
 <tr style="background-color: #fee2e2;">
-<th style="padding: 6px; border: 1px solid #e5e7eb;">Date</th>
-<th style="padding: 6px; border: 1px solid #e5e7eb;">Details</th>
-<th style="padding: 6px; border: 1px solid #e5e7eb;">Fo</th>
-<th style="padding: 6px; border: 1px solid #e5e7eb;">Disc</th>
-<th style="padding: 6px; border: 1px solid #e5e7eb;">Cash</th>
-<th style="padding: 6px; border: 1px solid #e5e7eb;">Bank</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Date</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Details</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Fo</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Disc</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Cash</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Bank</th>
 </tr>
-<tr><td style="padding: 5px; border: 1px solid #e5e7eb;">Jan 3</td><td style="padding: 5px; border: 1px solid #e5e7eb;">Purchases</td><td style="padding: 5px; border: 1px solid #e5e7eb;"></td><td style="padding: 5px; border: 1px solid #e5e7eb;">-</td><td style="padding: 5px; border: 1px solid #e5e7eb; text-align: right;">8,000</td><td style="padding: 5px; border: 1px solid #e5e7eb;">-</td></tr>
-<tr style="background-color: #fef2f2;"><td style="padding: 5px; border: 1px solid #e5e7eb;">Jan 6</td><td style="padding: 5px; border: 1px solid #e5e7eb;">ABC Ltd</td><td style="padding: 5px; border: 1px solid #e5e7eb;">PL</td><td style="padding: 5px; border: 1px solid #e5e7eb; text-align: right; color: #16a34a;">200</td><td style="padding: 5px; border: 1px solid #e5e7eb;">-</td><td style="padding: 5px; border: 1px solid #e5e7eb; text-align: right;">3,800</td></tr>
-<tr><td style="padding: 5px; border: 1px solid #e5e7eb;">Jan 10</td><td style="padding: 5px; border: 1px solid #e5e7eb;">Wages</td><td style="padding: 5px; border: 1px solid #e5e7eb;"></td><td style="padding: 5px; border: 1px solid #e5e7eb;">-</td><td style="padding: 5px; border: 1px solid #e5e7eb; text-align: right;">4,000</td><td style="padding: 5px; border: 1px solid #e5e7eb;">-</td></tr>
-<tr style="background-color: #e9d5ff;"><td style="padding: 5px; border: 1px solid #e5e7eb;">Jan 15</td><td style="padding: 5px; border: 1px solid #e5e7eb;">Cash</td><td style="padding: 5px; border: 1px solid #e5e7eb; font-weight: bold; color: #7c3aed;">C</td><td style="padding: 5px; border: 1px solid #e5e7eb;">-</td><td style="padding: 5px; border: 1px solid #e5e7eb; text-align: right;">10,000</td><td style="padding: 5px; border: 1px solid #e5e7eb;">-</td></tr>
-<tr style="background-color: #fef2f2;"><td style="padding: 5px; border: 1px solid #e5e7eb;">Jan 20</td><td style="padding: 5px; border: 1px solid #e5e7eb;">Rent</td><td style="padding: 5px; border: 1px solid #e5e7eb;"></td><td style="padding: 5px; border: 1px solid #e5e7eb;">-</td><td style="padding: 5px; border: 1px solid #e5e7eb;">-</td><td style="padding: 5px; border: 1px solid #e5e7eb; text-align: right;">3,000</td></tr>
+<tr><td style="padding: 3px; border: 1px solid #e5e7eb;">Jan 3</td><td style="padding: 3px; border: 1px solid #e5e7eb;">Purchases</td><td style="padding: 3px; border: 1px solid #e5e7eb;"></td><td style="padding: 3px; border: 1px solid #e5e7eb;">-</td><td style="padding: 3px; border: 1px solid #e5e7eb; text-align: right;">8,000</td><td style="padding: 3px; border: 1px solid #e5e7eb;">-</td></tr>
+<tr style="background-color: #fef2f2;"><td style="padding: 3px; border: 1px solid #e5e7eb;">Jan 6</td><td style="padding: 3px; border: 1px solid #e5e7eb;">ABC Ltd</td><td style="padding: 3px; border: 1px solid #e5e7eb;">PL</td><td style="padding: 3px; border: 1px solid #e5e7eb; text-align: right; color: #16a34a;">200</td><td style="padding: 3px; border: 1px solid #e5e7eb;">-</td><td style="padding: 3px; border: 1px solid #e5e7eb; text-align: right;">3,800</td></tr>
+<tr><td style="padding: 3px; border: 1px solid #e5e7eb;">Jan 10</td><td style="padding: 3px; border: 1px solid #e5e7eb;">Wages</td><td style="padding: 3px; border: 1px solid #e5e7eb;"></td><td style="padding: 3px; border: 1px solid #e5e7eb;">-</td><td style="padding: 3px; border: 1px solid #e5e7eb; text-align: right;">4,000</td><td style="padding: 3px; border: 1px solid #e5e7eb;">-</td></tr>
+<tr style="background-color: #e9d5ff;"><td style="padding: 3px; border: 1px solid #e5e7eb;">Jan 15</td><td style="padding: 3px; border: 1px solid #e5e7eb;">Cash</td><td style="padding: 3px; border: 1px solid #e5e7eb; font-weight: bold; color: #7c3aed;">C</td><td style="padding: 3px; border: 1px solid #e5e7eb;">-</td><td style="padding: 3px; border: 1px solid #e5e7eb; text-align: right;">10,000</td><td style="padding: 3px; border: 1px solid #e5e7eb;">-</td></tr>
+<tr style="background-color: #fef2f2;"><td style="padding: 3px; border: 1px solid #e5e7eb;">Jan 20</td><td style="padding: 3px; border: 1px solid #e5e7eb;">Rent</td><td style="padding: 3px; border: 1px solid #e5e7eb;"></td><td style="padding: 3px; border: 1px solid #e5e7eb;">-</td><td style="padding: 3px; border: 1px solid #e5e7eb;">-</td><td style="padding: 3px; border: 1px solid #e5e7eb; text-align: right;">3,000</td></tr>
 </table>
 </div>
-
-<div style="background: #e9d5ff; padding: 10px; border-radius: 8px; margin-top: 8px; border-left: 4px solid #7c3aed;">
+<div style=" background: #e9d5ff; padding: 4px; border-radius: 8px; border-left: 4px solid #7c3aed;">
 <strong>🔄 Contra Entry (Jan 15):</strong> {{currency}}10,000 cash deposited into bank — appears on BOTH sides, marked "C"
 </div>
-
-## Key Features
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Key Features</h3>
 1. **Cash and Bank columns are balanced separately**
 2. Discount columns show totals only (not balanced)
 3. Most businesses in {{country}} use this format
 4. Allows tracking of both cash-in-hand and bank balance`
-      },
-      {
-        title: 'Contra Entries',
-        content: `# 🔄 CONTRA ENTRIES
-
-## What is a Contra Entry?
-
+   },
+   {
+    title: 'Contra Entries',
+    content: `<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔄 CONTRA ENTRIES</h2>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">What is a Contra Entry?</h3>
 A contra entry occurs when cash is transferred between the cash box and the bank account. It appears on BOTH sides of the same cash book.
 
-## Types of Contra Entries
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Types of Contra Entries</h3>
 **1. Cash Deposited into Bank (Cash → Bank)**
 - Credit Cash column (money leaving cash box)
 - Debit Bank column (money entering bank)
@@ -6693,38 +6777,32 @@ A contra entry occurs when cash is transferred between the cash box and the bank
 - Debit Cash column (money entering cash box)
 - Marked with "C" in folio column
 
-## Example
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Example</h3>
 **January 15: Deposited {{currency}}10,000 cash into the bank**
 
 **DEBIT SIDE:** Bank column shows {{currency}}10,000 (money entering bank)
 **CREDIT SIDE:** Cash column shows {{currency}}10,000 (money leaving cash box)
 **Folio:** Both entries marked "C" for Contra
 
-## Why "C" in Folio?
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Why "C" in Folio?</h3>
 - "C" stands for **Contra**
 - It shows this is an internal transfer, NOT a transaction with outside parties
 - No posting to other ledger accounts is needed
 - The double entry is COMPLETE within the Cash Book
 
-## Common Scenarios in {{country}}
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Common Scenarios in {{country}}</h3>
 1. Depositing daily sales into bank account
 2. Withdrawing cash for wages payment
 3. Moving money from bank for petty cash
 4. Depositing large cheques received`
-      },
-      {
-        title: 'The Petty Cash Book',
-        content: `# 🪙 THE PETTY CASH BOOK
-
-## Definition
-
+   },
+   {
+    title: 'The Petty Cash Book',
+    content: `<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🪙 THE PETTY CASH BOOK</h2>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Definition</h3>
 The Petty Cash Book records small, routine cash payments that are too minor to go through the main Cash Book.
 
-## What is "Petty"?
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">What is "Petty"?</h3>
 "Petty" means small or minor. Petty cash handles:
 - Transport fares (trotro, taxi)
 - Postage and stamps
@@ -6733,15 +6811,13 @@ The Petty Cash Book records small, routine cash payments that are too minor to g
 - Small repairs
 - Tips and miscellaneous expenses
 
-## Why Use Petty Cash?
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Why Use Petty Cash?</h3>
 1. **Saves time**: Main cashier not disturbed for small items
 2. **Better control**: One person handles small expenses
 3. **Easier recording**: Small items grouped together
 4. **Convenience**: Cash available for urgent small needs
 
-## The Imprest System
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">The Imprest System</h3>
 **Definition**: A fixed amount given to the petty cashier at the start of each period.
 
 **How It Works:**
@@ -6756,82 +6832,72 @@ The Petty Cash Book records small, routine cash payments that are too minor to g
 - Cash remaining: {{currency}}120
 - Reimbursement: {{currency}}380 (to restore to {{currency}}500)
 
-## Advantages of Imprest System
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Advantages of Imprest System</h3>
 ✅ Easy to check (balance + vouchers = imprest amount)
 ✅ Prevents fraud
 ✅ Limits petty cash spending
 ✅ Clear accountability`
-      },
-      {
-        title: 'Petty Cash Book Format',
-        content: `# 📋 PETTY CASH BOOK FORMAT
-
-## Columnar (Analytical) Petty Cash Book
-
-The Petty Cash Book uses **analysis columns** to categorize expenses.
-
-<table style="width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px;">
-<tr style="background: linear-gradient(135deg, #8b5cf6, #6366f1); color: white;">
-<th colspan="8" style="padding: 12px; text-align: center; border: 1px solid #e5e7eb;">PETTY CASH BOOK - January</th>
+   },
+   {
+    title: 'Petty Cash Book Format',
+    content: `<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 PETTY CASH BOOK FORMAT</h2>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Columnar (Analytical) Petty Cash Book</h3>
+<table style=" width: 100%; border-collapse: collapse; font-size: 14px;">
+<tr style=" background: linear-gradient(135deg, #8b5cf6, #6366f1); color: white;">
+<th colspan="4" style="padding: 6px; text-align: center; border: 1px solid #e5e7eb;">PETTY CASH BOOK - January</th>
 </tr>
 <tr style="background-color: #ede9fe;">
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Date</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Details</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb; background: #dcfce7;">Receipts (₵)</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb; background: #fee2e2;">Total (₵)</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Transport</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Postage</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Office</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Refresh.</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb;">Sundry</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Date</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Details</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb; background: #dcfce7;">Receipts (₵)</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb; background: #fee2e2;">Total (₵)</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Transport</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Postage</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Office</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Refresh.</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb;">Sundry</th>
 </tr>
-<tr style="background-color: #f0fdf4; font-weight: bold;"><td style="padding: 6px; border: 1px solid #e5e7eb;">Jan 1</td><td style="padding: 6px; border: 1px solid #e5e7eb;">Imprest</td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right; color: #16a34a;">500</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td></tr>
-<tr><td style="padding: 6px; border: 1px solid #e5e7eb;">Jan 3</td><td style="padding: 6px; border: 1px solid #e5e7eb;">Taxi fare</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">25</td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">25</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td></tr>
-<tr style="background-color: #f9fafb;"><td style="padding: 6px; border: 1px solid #e5e7eb;">Jan 5</td><td style="padding: 6px; border: 1px solid #e5e7eb;">Stamps</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">30</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">30</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td></tr>
-<tr><td style="padding: 6px; border: 1px solid #e5e7eb;">Jan 8</td><td style="padding: 6px; border: 1px solid #e5e7eb;">Pens & paper</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">45</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">45</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td></tr>
-<tr style="background-color: #f9fafb;"><td style="padding: 6px; border: 1px solid #e5e7eb;">Jan 10</td><td style="padding: 6px; border: 1px solid #e5e7eb;">Water</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">20</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">20</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td></tr>
-<tr><td style="padding: 6px; border: 1px solid #e5e7eb;">Jan 12</td><td style="padding: 6px; border: 1px solid #e5e7eb;">Trotro fare</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">15</td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">15</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td></tr>
-<tr style="background-color: #f9fafb;"><td style="padding: 6px; border: 1px solid #e5e7eb;">Jan 15</td><td style="padding: 6px; border: 1px solid #e5e7eb;">Envelopes</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">18</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">18</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td></tr>
-<tr><td style="padding: 6px; border: 1px solid #e5e7eb;">Jan 18</td><td style="padding: 6px; border: 1px solid #e5e7eb;">Biscuits</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">35</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">35</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td></tr>
-<tr style="background-color: #f9fafb;"><td style="padding: 6px; border: 1px solid #e5e7eb;">Jan 22</td><td style="padding: 6px; border: 1px solid #e5e7eb;">Repairs</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">60</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">60</td></tr>
-<tr><td style="padding: 6px; border: 1px solid #e5e7eb;">Jan 25</td><td style="padding: 6px; border: 1px solid #e5e7eb;">Taxi fare</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">30</td><td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">30</td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td><td style="padding: 6px; border: 1px solid #e5e7eb;"></td></tr>
-<tr style="background: linear-gradient(135deg, #fbbf24, #f59e0b); font-weight: bold;">
-<td colspan="2" style="padding: 8px; border: 1px solid #e5e7eb;">TOTALS</td>
-<td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right; color: #16a34a;">500</td>
-<td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right; color: #dc2626;">278</td>
-<td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">70</td>
-<td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">48</td>
-<td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">45</td>
-<td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">55</td>
-<td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">60</td>
+<tr style="background-color: #f0fdf4; font-weight: bold;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 1</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Imprest</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right; color: #16a34a;">500</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 3</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Taxi fare</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">25</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">25</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td></tr>
+<tr style="background-color: #f9fafb;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 5</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Stamps</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">30</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">30</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 8</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Pens & paper</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">45</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">45</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td></tr>
+<tr style="background-color: #f9fafb;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 10</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Water</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">20</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">20</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 12</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Trotro fare</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">15</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">15</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td></tr>
+<tr style="background-color: #f9fafb;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 15</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Envelopes</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">18</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">18</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 18</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Biscuits</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">35</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">35</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td></tr>
+<tr style="background-color: #f9fafb;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 22</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Repairs</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">60</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">60</td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 25</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Taxi fare</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">30</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">30</td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td><td style="padding: 4px; border: 1px solid #e5e7eb;"></td></tr>
+<tr style=" background: linear-gradient(135deg, #fbbf24, #f59e0b); font-weight: bold;">
+<td colspan="2" style="padding: 4px; border: 1px solid #e5e7eb;">TOTALS</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right; color: #16a34a;">500</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right; color: #dc2626;">278</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">70</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">48</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">45</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">55</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">60</td>
 </tr>
-<tr style="background-color: #dbeafe;"><td colspan="2" style="padding: 8px; border: 1px solid #e5e7eb; font-weight: bold;">Balance c/d</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right; font-weight: bold;">222</td><td colspan="6" style="padding: 8px; border: 1px solid #e5e7eb;"></td></tr>
+<tr style="background-color: #dbeafe;"><td colspan="2" style="padding: 4px; border: 1px solid #e5e7eb; font-weight: bold;">Balance c/d</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right; font-weight: bold;">222</td><td colspan="6" style="padding: 4px; border: 1px solid #e5e7eb;"></td></tr>
 </table>
-
-<div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
-<div style="flex: 1; min-width: 200px; background: #dcfce7; padding: 10px; border-radius: 8px; border-left: 4px solid #22c55e;">
+<div style="display: flex; margin: 0; gap: 8px; flex-wrap: wrap;">
+<div style="flex: 1; min-width: 200px; background: #dcfce7; padding: 4px; border-radius: 8px; border-left: 4px solid #22c55e;">
 <strong>Feb 1:</strong><br/>
 Balance b/d: {{currency}}222<br/>
 Reimbursement: {{currency}}278<br/>
 <strong>Total: {{currency}}500</strong> ✅
 </div>
 </div>
-
-## Key Points
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Key Points</h3>
 1. **Receipts column**: Shows cash received (imprest and reimbursements)
 2. **Total column**: Total amount of each payment
 3. **Analysis columns**: Break down expenses by type
 4. **Cross-check**: Total of analysis columns = Total column sum
 5. **Vouchers**: Every payment needs a voucher/receipt`
-      },
-      {
-        title: 'Balancing and Posting',
-        content: `# ⚖️ BALANCING AND POSTING
-
-## Balancing the Cash Book
-
+   },
+   {
+    title: 'Balancing and Posting',
+    content: `<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚖️ BALANCING AND POSTING</h2>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Balancing the Cash Book</h3>
 **Steps:**
 1. Add up all entries on BOTH debit and credit sides
 2. Find the difference between the two totals
@@ -6841,16 +6907,14 @@ Reimbursement: {{currency}}278<br/>
 6. Rule off with double lines
 7. Bring balance down (b/d) on the opposite side
 
-## Balancing Three-Column Cash Book
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Balancing Three-Column Cash Book</h3>
 **Remember:** Balance Cash and Bank columns SEPARATELY!
 
 - Cash balance = Physical cash in hand
 - Bank balance = Money in bank account
 - Both should match physical count/bank statement
 
-## Posting from Cash Book
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Posting from Cash Book</h3>
 **Debit Side (Receipts):**
 - Individual entries → Credit their respective accounts
 - Example: Received from Kofi → Cr Kofi's Account (Sales Ledger)
@@ -6863,70 +6927,61 @@ Reimbursement: {{currency}}278<br/>
 - Total Discount Allowed → Dr Discount Allowed Account
 - Total Discount Received → Cr Discount Received Account
 
-## Posting from Petty Cash Book
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Posting from Petty Cash Book</h3>
 At the end of the period:
 1. Total each analysis column
 2. Post totals to respective expense accounts:
-   - Transport total → Dr Transport Account
-   - Postage total → Dr Postage Account
-   - Office Supplies total → Dr Office Supplies Account
-   - etc.
+  - Transport total → Dr Transport Account
+  - Postage total → Dr Postage Account
+  - Office Supplies total → Dr Office Supplies Account
+  - etc.
 
-## {{country}} Business Practice
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">{{country}} Business Practice</h3>
 - Balance cash book DAILY in banks
 - Balance weekly/monthly in small businesses
 - Reconcile with bank statement monthly
 - Physical cash count should match book balance`
-      },
-      {
-        title: 'Key Terms and Summary',
-        content: `# 📝 KEY TERMS AND SUMMARY
-
-## Important Terms
-
-<table style="width: 100%; border-collapse: collapse; margin: 12px 0;">
-<tr style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;">
-<th colspan="2" style="padding: 12px; text-align: center; border: 1px solid #e5e7eb;">📚 Important Terms</th>
+   },
+   {
+    title: 'Key Terms and Summary',
+    content: `<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 KEY TERMS AND SUMMARY</h2>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Important Terms</h3>
+<table style=" width: 100%; border-collapse: collapse;">
+<tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;">
+<th colspan="4" style="padding: 6px; text-align: center; border: 1px solid #e5e7eb;">📚 Important Terms</th>
 </tr>
-<tr style="background-color: #f9fafb;"><td style="padding: 10px; border: 1px solid #e5e7eb; font-weight: bold; width: 30%;">Cash Book</td><td style="padding: 10px; border: 1px solid #e5e7eb;">Book recording all cash and bank transactions</td></tr>
-<tr><td style="padding: 10px; border: 1px solid #e5e7eb; font-weight: bold;">Petty Cash Book</td><td style="padding: 10px; border: 1px solid #e5e7eb;">Book for small, routine expenses</td></tr>
-<tr style="background-color: #f9fafb;"><td style="padding: 10px; border: 1px solid #e5e7eb; font-weight: bold;">Imprest System</td><td style="padding: 10px; border: 1px solid #e5e7eb;">Fixed amount given to petty cashier, restored each period</td></tr>
-<tr><td style="padding: 10px; border: 1px solid #e5e7eb; font-weight: bold;">Contra Entry</td><td style="padding: 10px; border: 1px solid #e5e7eb;">Transfer between cash and bank within same business</td></tr>
-<tr style="background-color: #f9fafb;"><td style="padding: 10px; border: 1px solid #e5e7eb; font-weight: bold; color: #dc2626;">Discount Allowed</td><td style="padding: 10px; border: 1px solid #e5e7eb;">Discount given to customers (our expense)</td></tr>
-<tr><td style="padding: 10px; border: 1px solid #e5e7eb; font-weight: bold; color: #16a34a;">Discount Received</td><td style="padding: 10px; border: 1px solid #e5e7eb;">Discount from suppliers (our income)</td></tr>
-<tr style="background-color: #f9fafb;"><td style="padding: 10px; border: 1px solid #e5e7eb; font-weight: bold;">Balance c/d</td><td style="padding: 10px; border: 1px solid #e5e7eb;">Closing balance carried to next period</td></tr>
-<tr><td style="padding: 10px; border: 1px solid #e5e7eb; font-weight: bold;">Balance b/d</td><td style="padding: 10px; border: 1px solid #e5e7eb;">Opening balance brought from previous period</td></tr>
-<tr style="background-color: #f9fafb;"><td style="padding: 10px; border: 1px solid #e5e7eb; font-weight: bold;">Folio</td><td style="padding: 10px; border: 1px solid #e5e7eb;">Reference number to ledger page</td></tr>
-<tr><td style="padding: 10px; border: 1px solid #e5e7eb; font-weight: bold;">Voucher</td><td style="padding: 10px; border: 1px solid #e5e7eb;">Receipt/document supporting petty cash payment</td></tr>
+<tr style="background-color: #f9fafb;"><td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: bold; width: 30%;">Cash Book</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Book recording all cash and bank transactions</td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: bold;">Petty Cash Book</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Book for small, routine expenses</td></tr>
+<tr style="background-color: #f9fafb;"><td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: bold;">Imprest System</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Fixed amount given to petty cashier, restored each period</td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: bold;">Contra Entry</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Transfer between cash and bank within same business</td></tr>
+<tr style="background-color: #f9fafb;"><td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: bold; color: #dc2626;">Discount Allowed</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Discount given to customers (our expense)</td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: bold; color: #16a34a;">Discount Received</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Discount from suppliers (our income)</td></tr>
+<tr style="background-color: #f9fafb;"><td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: bold;">Balance c/d</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Closing balance carried to next period</td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: bold;">Balance b/d</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Opening balance brought from previous period</td></tr>
+<tr style="background-color: #f9fafb;"><td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: bold;">Folio</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Reference number to ledger page</td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: bold;">Voucher</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Receipt/document supporting petty cash payment</td></tr>
 </table>
-
-## Quick Reference
-
-<table style="width: 100%; border-collapse: collapse; margin: 12px 0;">
-<tr style="background: linear-gradient(135deg, #f59e0b, #ea580c); color: white;">
-<th style="padding: 10px; text-align: center; border: 1px solid #e5e7eb;">Transaction</th>
-<th style="padding: 10px; text-align: center; border: 1px solid #e5e7eb;">Entry</th>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Quick Reference</h3>
+<table style=" width: 100%; border-collapse: collapse;">
+<tr style=" background: linear-gradient(135deg, #f59e0b, #ea580c); color: white;">
+<th style="padding: 4px; text-align: center; border: 1px solid #e5e7eb;">Transaction</th>
+<th style="padding: 4px; text-align: center; border: 1px solid #e5e7eb;">Entry</th>
 </tr>
-<tr style="background-color: #dcfce7;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Cash sale</td><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Dr</strong> Cash Book (Cash column)</td></tr>
-<tr style="background-color: #dbeafe;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Cheque received</td><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Dr</strong> Cash Book (Bank column)</td></tr>
-<tr style="background-color: #fee2e2;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Cash purchase</td><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Cr</strong> Cash Book (Cash column)</td></tr>
-<tr style="background-color: #fef3c7;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Cheque payment</td><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Cr</strong> Cash Book (Bank column)</td></tr>
-<tr style="background-color: #e9d5ff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Cash to bank</td><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Contra entry</strong> (Cr Cash, Dr Bank)</td></tr>
-<tr style="background-color: #f0fdf4;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Small office expense</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Petty Cash Book</td></tr>
+<tr style="background-color: #dcfce7;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Cash sale</td><td style="padding: 4px; border: 1px solid #e5e7eb;"><strong>Dr</strong> Cash Book (Cash column)</td></tr>
+<tr style="background-color: #dbeafe;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Cheque received</td><td style="padding: 4px; border: 1px solid #e5e7eb;"><strong>Dr</strong> Cash Book (Bank column)</td></tr>
+<tr style="background-color: #fee2e2;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Cash purchase</td><td style="padding: 4px; border: 1px solid #e5e7eb;"><strong>Cr</strong> Cash Book (Cash column)</td></tr>
+<tr style="background-color: #fef3c7;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Cheque payment</td><td style="padding: 4px; border: 1px solid #e5e7eb;"><strong>Cr</strong> Cash Book (Bank column)</td></tr>
+<tr style="background-color: #e9d5ff;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Cash to bank</td><td style="padding: 4px; border: 1px solid #e5e7eb;"><strong>Contra entry</strong> (Cr Cash, Dr Bank)</td></tr>
+<tr style="background-color: #f0fdf4;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Small office expense</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Petty Cash Book</td></tr>
 </table>
-
-## Common {{exam:secondary}} Questions
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Common {{exam:secondary}} Questions</h3>
 1. Prepare a Three-Column Cash Book from given transactions
 2. Balance a Cash Book and show posting
 3. Prepare a Petty Cash Book using Imprest System
 4. Explain contra entries
 5. Calculate discount allowed/received
 
-## Key Points to Remember
-
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Key Points to Remember</h3>
 1. Cash Book is BOTH a journal AND a ledger
 2. Three types: Single, Two-column, Three-column
 3. Left side = Receipts (Debit), Right side = Payments (Credit)
@@ -6935,265 +6990,268 @@ At the end of the period:
 6. Petty Cash uses the Imprest System
 7. Analysis columns in Petty Cash Book for expense categories
 8. Always balance Cash and Bank separately`
-      }
+   }
+  ],
+  summary: "Excellent work! You've mastered the Cash Book and Petty Cash Book! The Cash Book is unique—it's both a book of original entry AND a ledger account. You can now prepare Single Column (cash only), Two-Column (cash + discount), and Three-Column (cash + bank + discount) cash books. You understand that Discount Allowed is an expense (given to customers) while Discount Received is income (from suppliers). Contra entries transfer money between cash and bank within the same business—marked with 'C' in the folio. The Petty Cash Book handles small expenses using the Imprest System—a fixed float restored each period. Analysis columns categorize petty expenses for easy posting. Remember: always balance cash and bank columns separately, and discount columns show totals only!",
+  endOfLessonQuiz: [
+   {
+    id: 'facc-cashbook-q1',
+    type: 'mcq',
+    question: "The Cash Book is unique because it serves as:",
+    options: [
+     "Only a book of original entry",
+     "Only a ledger account",
+     "Both a book of original entry and a ledger account",
+     "Neither a journal nor a ledger"
     ],
-    summary: "Excellent work! You've mastered the Cash Book and Petty Cash Book! The Cash Book is unique—it's both a book of original entry AND a ledger account. You can now prepare Single Column (cash only), Two-Column (cash + discount), and Three-Column (cash + bank + discount) cash books. You understand that Discount Allowed is an expense (given to customers) while Discount Received is income (from suppliers). Contra entries transfer money between cash and bank within the same business—marked with 'C' in the folio. The Petty Cash Book handles small expenses using the Imprest System—a fixed float restored each period. Analysis columns categorize petty expenses for easy posting. Remember: always balance cash and bank columns separately, and discount columns show totals only!",
-    endOfLessonQuiz: [
-      {
-        id: 'facc-cashbook-q1',
-        type: 'mcq',
-        question: "The Cash Book is unique because it serves as:",
-        options: [
-          "Only a book of original entry",
-          "Only a ledger account",
-          "Both a book of original entry and a ledger account",
-          "Neither a journal nor a ledger"
-        ],
-        answer: "Both a book of original entry and a ledger account",
-        explanation: "The Cash Book is special because it functions as both a journal (book of original entry) where transactions are first recorded, and as a ledger account (Cash Account/Bank Account)."
-      },
-      {
-        id: 'facc-cashbook-q2',
-        type: 'mcq',
-        question: "In a Cash Book, money received is recorded on the:",
-        options: [
-          "Credit side (right)",
-          "Debit side (left)",
-          "Both sides equally",
-          "Neither side"
-        ],
-        answer: "Debit side (left)",
-        explanation: "Money received (receipts) is always recorded on the DEBIT (left) side of the Cash Book. Remember: Debit = money coming IN."
-      },
-      {
-        id: 'facc-cashbook-q3',
-        type: 'mcq',
-        question: "Discount Allowed is:",
-        options: [
-          "Income we receive from suppliers",
-          "Discount we give to customers - an expense",
-          "Discount on fixed assets",
-          "A liability"
-        ],
-        answer: "Discount we give to customers - an expense",
-        explanation: "Discount Allowed is the discount WE give to customers for prompt payment. It's an expense to us (reduces our income)."
-      },
-      {
-        id: 'facc-cashbook-q4',
-        type: 'mcq',
-        question: "A Three-Column Cash Book has columns for:",
-        options: [
-          "Cash, Sales, and Purchases",
-          "Debit, Credit, and Balance",
-          "Cash, Bank, and Discount",
-          "Date, Details, and Amount"
-        ],
-        answer: "Cash, Bank, and Discount",
-        explanation: "A Three-Column Cash Book has columns for Cash (physical cash), Bank (cheque transactions), and Discount (allowed/received)."
-      },
-      {
-        id: 'facc-cashbook-q5',
-        type: 'mcq',
-        question: "A contra entry occurs when:",
-        options: [
-          "Money is received from a debtor",
-          "Cash is transferred between cash and bank",
-          "Goods are sold on credit",
-          "Expenses are paid"
-        ],
-        answer: "Cash is transferred between cash and bank",
-        explanation: "A contra entry records the transfer of money between cash box and bank account. It appears on both sides of the Cash Book and is marked 'C' in the folio."
-      },
-      {
-        id: 'facc-cashbook-q6',
-        type: 'mcq',
-        question: "The 'C' in the folio column of a contra entry stands for:",
-        options: [
-          "Credit",
-          "Cash",
-          "Contra",
-          "Cheque"
-        ],
-        answer: "Contra",
-        explanation: "'C' stands for Contra, indicating this is an internal transfer between cash and bank. No external posting is needed."
-      },
-      {
-        id: 'facc-cashbook-q7',
-        type: 'mcq',
-        question: "The Imprest System for petty cash means:",
-        options: [
-          "Unlimited petty cash spending",
-          "A fixed amount restored at the start of each period",
-          "No record keeping needed",
-          "Only the owner can handle petty cash"
-        ],
-        answer: "A fixed amount restored at the start of each period",
-        explanation: "The Imprest System gives the petty cashier a fixed float (e.g., {{currency}}500). At period end, they are reimbursed for what they spent, restoring the original amount."
-      },
-      {
-        id: 'facc-cashbook-q8',
-        type: 'mcq',
-        question: "Which is NOT typically a petty cash expense?",
-        options: [
-          "Taxi fare",
-          "Office stationery",
-          "Monthly rent payment",
-          "Postage stamps"
-        ],
-        answer: "Monthly rent payment",
-        explanation: "Monthly rent is a large, regular expense that goes through the main Cash Book. Petty cash is for small, minor expenses like transport, stationery, and postage."
-      },
-      {
-        id: 'facc-cashbook-q9',
-        type: 'mcq',
-        question: "In the Cash Book, discount columns are:",
-        options: [
-          "Balanced like cash columns",
-          "Not balanced - only totaled",
-          "Ignored completely",
-          "Posted to Cash Account"
-        ],
-        answer: "Not balanced - only totaled",
-        explanation: "Discount columns are memorandum columns—they show totals for posting to Discount Allowed/Received accounts but are NOT balanced like cash/bank columns."
-      },
-      {
-        id: 'facc-cashbook-q10',
-        type: 'mcq',
-        question: "Kofi owes {{currency}}5,000 and pays within the discount period of 2%. How much cash do we receive?",
-        options: [
-          "{{currency}}5,000",
-          "{{currency}}4,900",
-          "{{currency}}5,100",
-          "{{currency}}4,800"
-        ],
-        answer: "{{currency}}4,900",
-        explanation: "Discount = {{currency}}5,000 × 2% = {{currency}}100. Cash received = {{currency}}5,000 - {{currency}}100 = {{currency}}4,900. The {{currency}}100 goes in the Discount Allowed column."
-      },
-      {
-        id: 'facc-cashbook-q11',
-        type: 'mcq',
-        question: "Analysis columns in the Petty Cash Book are used to:",
-        options: [
-          "Calculate profit",
-          "Categorize expenses by type",
-          "Record income",
-          "Balance the book"
-        ],
-        answer: "Categorize expenses by type",
-        explanation: "Analysis columns (Transport, Postage, Office Supplies, etc.) categorize petty cash expenses for easier posting to individual expense accounts."
-      },
-      {
-        id: 'facc-cashbook-q12',
-        type: 'mcq',
-        question: "When cash is deposited into the bank, in the Three-Column Cash Book:",
-        options: [
-          "Both entries are on the debit side",
-          "Both entries are on the credit side",
-          "Credit Cash column, Debit Bank column",
-          "Debit Cash column, Credit Bank column"
-        ],
-        answer: "Credit Cash column, Debit Bank column",
-        explanation: "Cash going OUT of cash box = Credit Cash. Cash going INTO bank = Debit Bank. This is a contra entry."
-      },
-      {
-        id: 'facc-cashbook-q13',
-        type: 'mcq',
-        question: "The total of Discount Received column is posted to:",
-        options: [
-          "Debit of Discount Received Account",
-          "Credit of Discount Received Account",
-          "Debit of Discount Allowed Account",
-          "Credit of Cash Account"
-        ],
-        answer: "Credit of Discount Received Account",
-        explanation: "Discount Received is income, so it's credited. The total from the credit side discount column goes to the Credit of Discount Received Account."
-      },
-      {
-        id: 'facc-cashbook-q14',
-        type: 'mcq',
-        question: "If petty cash imprest is {{currency}}600 and {{currency}}450 was spent, the reimbursement is:",
-        options: [
-          "{{currency}}600",
-          "{{currency}}450",
-          "{{currency}}150",
-          "{{currency}}1,050"
-        ],
-        answer: "{{currency}}450",
-        explanation: "Reimbursement equals amount spent ({{currency}}450) to restore the imprest to {{currency}}600. Cash remaining ({{currency}}150) + Reimbursement ({{currency}}450) = Imprest ({{currency}}600)."
-      },
-      {
-        id: 'facc-cashbook-q15',
-        type: 'mcq',
-        question: "Balance c/d means:",
-        options: [
-          "Balance cancelled",
-          "Balance carried down (closing balance)",
-          "Balance credited",
-          "Balance confirmed"
-        ],
-        answer: "Balance carried down (closing balance)",
-        explanation: "Balance c/d (carried down) is the closing balance at the end of a period, which becomes the opening balance (b/d - brought down) for the next period."
-      }
+    answer: "Both a book of original entry and a ledger account",
+    explanation: "The Cash Book is special because it functions as both a journal (book of original entry) where transactions are first recorded, and as a ledger account (Cash Account/Bank Account)."
+   },
+   {
+    id: 'facc-cashbook-q2',
+    type: 'mcq',
+    question: "In a Cash Book, money received is recorded on the:",
+    options: [
+     "Credit side (right)",
+     "Debit side (left)",
+     "Both sides equally",
+     "Neither side"
     ],
-    activities: [],
-    pastQuestions: [
-      {
-        question: "{{exam:secondary}} 2020: Prepare a Three-Column Cash Book from the following transactions of Mensah Enterprises for January 2020:\nJan 1: Balances: Cash {{currency}}15,000, Bank {{currency}}45,000\nJan 3: Received cheque from Kofi {{currency}}8,000, discount allowed {{currency}}400\nJan 5: Paid rent by cheque {{currency}}5,000\nJan 8: Cash sales {{currency}}12,000\nJan 10: Deposited {{currency}}10,000 cash into bank\nJan 15: Paid Ama by cheque {{currency}}6,000, discount received {{currency}}300\nJan 20: Withdrew {{currency}}8,000 from bank for office use\nJan 25: Received cash from Benson {{currency}}4,500, discount allowed {{currency}}225\nJan 28: Paid wages in cash {{currency}}7,000\nBalance the Cash Book.",
-        year: "2020",
-        solution: "MENSAH ENTERPRISES\nTHREE-COLUMN CASH BOOK\nFor January 2020\n\nDEBIT SIDE (Receipts):\n| Date | Details | Fo | Disc | Cash | Bank |\n|------|---------|-----|------|------|------|\n| Jan 1 | Balances b/d | | - | 15,000 | 45,000 |\n| Jan 3 | Kofi | SL | 400 | - | 8,000 |\n| Jan 8 | Sales | | - | 12,000 | - |\n| Jan 10 | Bank | C | - | - | 10,000 |\n| Jan 20 | Cash | C | - | 8,000 | - |\n| Jan 25 | Benson | SL | 225 | 4,500 | - |\n| | | | 625 | 39,500 | 63,000 |\n\nCREDIT SIDE (Payments):\n| Date | Details | Fo | Disc | Cash | Bank |\n|------|---------|-----|------|------|------|\n| Jan 5 | Rent | | - | - | 5,000 |\n| Jan 10 | Cash | C | - | 10,000 | - |\n| Jan 15 | Ama | PL | 300 | - | 6,000 |\n| Jan 20 | Bank | C | - | - | 8,000 |\n| Jan 28 | Wages | | - | 7,000 | - |\n| Jan 31 | Balance c/d | | - | 22,500 | 44,000 |\n| | | | 300 | 39,500 | 63,000 |\n\nFeb 1: Balances b/d: Cash {{currency}}22,500, Bank {{currency}}44,000\n\nNOTES:\n1. Contra entries (Jan 10 & Jan 20) are marked with 'C'\n2. Discount columns show totals only (not balanced)\n3. Discount Allowed ({{currency}}625) → Dr Discount Allowed Account\n4. Discount Received ({{currency}}300) → Cr Discount Received Account"
-      },
-      {
-        question: "{{exam:secondary}} 2019: (a) What is the Imprest System? (b) State THREE advantages of the Imprest System. (c) Prepare a Petty Cash Book with analysis columns from the following: Imprest {{currency}}400. Payments: Transport {{currency}}45, Postage {{currency}}30, Stationery {{currency}}55, Refreshments {{currency}}40, Cleaning {{currency}}35, Transport {{currency}}25, Postage {{currency}}20.",
-        year: "2019",
-        solution: "(a) THE IMPREST SYSTEM:\n\nThe Imprest System is a method of controlling petty cash where a fixed sum of money (called the imprest or float) is given to the petty cashier at the beginning of each period. At the end of the period, the petty cashier is reimbursed for the exact amount spent, restoring the float to its original amount.\n\n(b) THREE ADVANTAGES OF THE IMPREST SYSTEM:\n\n1. EASY CONTROL: At any time, cash in hand plus vouchers should equal the imprest amount. This makes checking simple.\n\n2. PREVENTS FRAUD: The fixed amount limits how much can be misused, and regular reimbursement means regular checking.\n\n3. CLEAR ACCOUNTABILITY: The petty cashier is responsible for a specific amount, making it easy to identify any discrepancies.\n\n(c) PETTY CASH BOOK:\n\n| Receipts | Date | Details | Vou | Total | Transport | Postage | Stationery | Refresh | Cleaning |\n|----------|------|---------|-----|-------|-----------|---------|------------|---------|----------|\n| ₵ | | | | ₵ | ₵ | ₵ | ₵ | ₵ | ₵ |\n| 400 | | Imprest | | | | | | | |\n| | | Transport | 1 | 45 | 45 | | | | |\n| | | Postage | 2 | 30 | | 30 | | | |\n| | | Stationery | 3 | 55 | | | 55 | | |\n| | | Refreshments | 4 | 40 | | | | 40 | |\n| | | Cleaning | 5 | 35 | | | | | 35 |\n| | | Transport | 6 | 25 | 25 | | | | |\n| | | Postage | 7 | 20 | | 20 | | | |\n| | | TOTALS | | 250 | 70 | 50 | 55 | 40 | 35 |\n| | | Balance c/d | | 150 | | | | | |\n| | | | | 400 | | | | | |\n| 250 | | Reimbursement | | | | | | | |\n| 150 | | Balance b/d | | | | | | | |\n| 400 | | | | | | | | | |\n\nCross-check: 70 + 50 + 55 + 40 + 35 = 250 ✓"
-      },
-      {
-        question: "{{exam:secondary}} 2018: Explain the following terms as used in the Cash Book: (a) Discount Allowed (b) Discount Received (c) Contra Entry (d) Balance c/d",
-        year: "2018",
-        solution: "(a) DISCOUNT ALLOWED:\n\nDiscount Allowed is a cash discount given by a business to its customers (debtors) to encourage prompt payment.\n\nExample: If a customer owes {{currency}}1,000 and we offer 5% discount for payment within 7 days:\n- Discount Allowed = {{currency}}1,000 × 5% = {{currency}}50\n- Cash received = {{currency}}950\n\nAccounting Treatment:\n- It is an EXPENSE to the business (reduces our income)\n- Recorded in the Discount Allowed column on the DEBIT side of Cash Book\n- Posted to DEBIT of Discount Allowed Account in General Ledger\n\n(b) DISCOUNT RECEIVED:\n\nDiscount Received is a cash discount obtained from suppliers (creditors) for making prompt payment.\n\nExample: If we owe a supplier {{currency}}2,000 and they offer 3% discount for early payment:\n- Discount Received = {{currency}}2,000 × 3% = {{currency}}60\n- Cash paid = {{currency}}1,940\n\nAccounting Treatment:\n- It is INCOME to the business (reduces our expenses)\n- Recorded in the Discount Received column on the CREDIT side of Cash Book\n- Posted to CREDIT of Discount Received Account in General Ledger\n\n(c) CONTRA ENTRY:\n\nA Contra Entry is an entry that appears on BOTH the debit and credit sides of the Cash Book, recording the transfer of funds between cash and bank within the same business.\n\nExamples:\n1. Depositing cash into bank: Credit Cash, Debit Bank\n2. Withdrawing cash from bank: Credit Bank, Debit Cash\n\nFeatures:\n- Marked with 'C' (for Contra) in the folio column\n- No posting to other ledger accounts is required\n- The double entry is complete within the Cash Book itself\n\n(d) BALANCE c/d:\n\nBalance c/d (carried down) is the closing balance of the Cash Book at the end of an accounting period.\n\nPurpose:\n- Shows the amount of cash/bank balance at period end\n- Entered on the smaller side to make both sides equal\n- Becomes the opening balance (Balance b/d - brought down) for the next period\n\nExample:\n- If receipts total {{currency}}50,000 and payments total {{currency}}35,000\n- Balance c/d = {{currency}}15,000 (entered on credit side)\n- This {{currency}}15,000 is brought down as Balance b/d on debit side for next period"
-      },
-      {
-        question: "{{exam:secondary}} 2021: The following information relates to the Petty Cash Book of Asante Ltd for March 2021. The imprest is {{currency}}800.\nMarch 1: Balance b/d {{currency}}200\nMarch 1: Received cash to restore imprest\nMarch 5: Paid for stamps {{currency}}60\nMarch 8: Taxi fares {{currency}}45\nMarch 12: Bought office supplies {{currency}}85\nMarch 15: Refreshments for meeting {{currency}}70\nMarch 20: Postage {{currency}}35\nMarch 25: Transport for staff {{currency}}55\nMarch 28: Cleaning materials {{currency}}40\nPrepare the Petty Cash Book with analysis columns for: Postage, Transport, Office Supplies, Refreshments, and Sundry.",
-        year: "2021",
-        solution: "ASANTE LTD\nPETTY CASH BOOK\nMarch 2021\n\n| Receipts | Date | Details | Vou | Total | Postage | Transport | Office | Refresh | Sundry |\n|----------|------|---------|-----|-------|---------|-----------|--------|---------|--------|\n| ₵ | | | | ₵ | ₵ | ₵ | ₵ | ₵ | ₵ |\n| 200 | Mar 1 | Bal b/d | | | | | | | |\n| 600 | Mar 1 | Cash (Reimb) | | | | | | | |\n| **800** | | | | | | | | | |\n| | Mar 5 | Stamps | 1 | 60 | 60 | | | | |\n| | Mar 8 | Taxi fares | 2 | 45 | | 45 | | | |\n| | Mar 12 | Office supplies | 3 | 85 | | | 85 | | |\n| | Mar 15 | Refreshments | 4 | 70 | | | | 70 | |\n| | Mar 20 | Postage | 5 | 35 | 35 | | | | |\n| | Mar 25 | Transport | 6 | 55 | | 55 | | | |\n| | Mar 28 | Cleaning | 7 | 40 | | | | | 40 |\n| | | | | **390** | **95** | **100** | **85** | **70** | **40** |\n| | Mar 31 | Balance c/d | | 410 | | | | | |\n| | | | | **800** | | | | | |\n| 410 | Apr 1 | Bal b/d | | | | | | | |\n\nWORKINGS:\n\n1. Reimbursement on March 1:\n   Imprest required = {{currency}}800\n   Balance brought down = {{currency}}200\n   Cash needed = {{currency}}800 - {{currency}}200 = {{currency}}600\n\n2. Total Payments:\n   60 + 45 + 85 + 70 + 35 + 55 + 40 = {{currency}}390\n\n3. Cross-check Analysis Columns:\n   95 + 100 + 85 + 70 + 40 = {{currency}}390 ✓\n\n4. Balance c/d:\n   {{currency}}800 - {{currency}}390 = {{currency}}410\n\nPOSTING TO LEDGER:\n- Dr Postage Account: {{currency}}95\n- Dr Transport Account: {{currency}}100\n- Dr Office Supplies Account: {{currency}}85\n- Dr Refreshments Account: {{currency}}70\n- Dr Sundry Expenses Account: {{currency}}40"
-      }
+    answer: "Debit side (left)",
+    explanation: "Money received (receipts) is always recorded on the DEBIT (left) side of the Cash Book. Remember: Debit = money coming IN."
+   },
+   {
+    id: 'facc-cashbook-q3',
+    type: 'mcq',
+    question: "Discount Allowed is:",
+    options: [
+     "Income we receive from suppliers",
+     "Discount we give to customers - an expense",
+     "Discount on fixed assets",
+     "A liability"
     ],
-  },
-  // Lesson 10: General Journal
-  {
-    id: 'facc-shs1-boe-3',
-    slug: 'facc-shs1-boe-general-journal',
-    title: 'The General Journal',
-    objectives: [
-      'Define the General Journal and explain its purpose',
-      'Distinguish between specialized journals and the General Journal',
-      'Understand the format and columns of a General Journal',
-      'Write narrations for journal entries explaining the double entry',
-      'Record transactions in the General Journal with proper narration',
-      'Post General Journal entries to the General Ledger',
-      'Identify which transactions go to the General Journal',
-      'Explain the difference between journal entries and ledger postings',
-      'Prepare General Journal entries for non-routine transactions',
-      'Apply the General Journal to real-world business scenarios'
+    answer: "Discount we give to customers - an expense",
+    explanation: "Discount Allowed is the discount WE give to customers for prompt payment. It's an expense to us (reduces our income)."
+   },
+   {
+    id: 'facc-cashbook-q4',
+    type: 'mcq',
+    question: "A Three-Column Cash Book has columns for:",
+    options: [
+     "Cash, Sales, and Purchases",
+     "Debit, Credit, and Balance",
+     "Cash, Bank, and Discount",
+     "Date, Details, and Amount"
     ],
-    introduction: "The General Journal is the business equivalent of a personal diary—recording everything that doesn't fit into specialized books! While the Sales Journal records credit sales, the Purchases Journal records credit purchases, and the Cash Book records cash/bank transactions, the General Journal captures all the other important events. These include opening entries when starting a business, adjustments, corrections, returns, and special transactions. Understanding the General Journal is crucial because it's where non-routine transactions find their home. Every business needs this 'catch-all' book, and mastering it will make you a more complete accountant!",
-    keyConcepts: [
-      {
-        title: 'What is the General Journal?',
-        content: `# 📔 THE GENERAL JOURNAL
+    answer: "Cash, Bank, and Discount",
+    explanation: "A Three-Column Cash Book has columns for Cash (physical cash), Bank (cheque transactions), and Discount (allowed/received)."
+   },
+   {
+    id: 'facc-cashbook-q5',
+    type: 'mcq',
+    question: "A contra entry occurs when:",
+    options: [
+     "Money is received from a debtor",
+     "Cash is transferred between cash and bank",
+     "Goods are sold on credit",
+     "Expenses are paid"
+    ],
+    answer: "Cash is transferred between cash and bank",
+    explanation: "A contra entry records the transfer of money between cash box and bank account. It appears on both sides of the Cash Book and is marked 'C' in the folio."
+   },
+   {
+    id: 'facc-cashbook-q6',
+    type: 'mcq',
+    question: "The 'C' in the folio column of a contra entry stands for:",
+    options: [
+     "Credit",
+     "Cash",
+     "Contra",
+     "Cheque"
+    ],
+    answer: "Contra",
+    explanation: "'C' stands for Contra, indicating this is an internal transfer between cash and bank. No external posting is needed."
+   },
+   {
+    id: 'facc-cashbook-q7',
+    type: 'mcq',
+    question: "The Imprest System for petty cash means:",
+    options: [
+     "Unlimited petty cash spending",
+     "A fixed amount restored at the start of each period",
+     "No record keeping needed",
+     "Only the owner can handle petty cash"
+    ],
+    answer: "A fixed amount restored at the start of each period",
+    explanation: "The Imprest System gives the petty cashier a fixed float (e.g., {{currency}}500). At period end, they are reimbursed for what they spent, restoring the original amount."
+   },
+   {
+    id: 'facc-cashbook-q8',
+    type: 'mcq',
+    question: "Which is NOT typically a petty cash expense?",
+    options: [
+     "Taxi fare",
+     "Office stationery",
+     "Monthly rent payment",
+     "Postage stamps"
+    ],
+    answer: "Monthly rent payment",
+    explanation: "Monthly rent is a large, regular expense that goes through the main Cash Book. Petty cash is for small, minor expenses like transport, stationery, and postage."
+   },
+   {
+    id: 'facc-cashbook-q9',
+    type: 'mcq',
+    question: "In the Cash Book, discount columns are:",
+    options: [
+     "Balanced like cash columns",
+     "Not balanced - only totaled",
+     "Ignored completely",
+     "Posted to Cash Account"
+    ],
+    answer: "Not balanced - only totaled",
+    explanation: "Discount columns are memorandum columns—they show totals for posting to Discount Allowed/Received accounts but are NOT balanced like cash/bank columns."
+   },
+   {
+    id: 'facc-cashbook-q10',
+    type: 'mcq',
+    question: "Kofi owes {{currency}}5,000 and pays within the discount period of 2%. How much cash do we receive?",
+    options: [
+     "{{currency}}5,000",
+     "{{currency}}4,900",
+     "{{currency}}5,100",
+     "{{currency}}4,800"
+    ],
+    answer: "{{currency}}4,900",
+    explanation: "Discount = {{currency}}5,000 × 2% = {{currency}}100. Cash received = {{currency}}5,000 - {{currency}}100 = {{currency}}4,900. The {{currency}}100 goes in the Discount Allowed column."
+   },
+   {
+    id: 'facc-cashbook-q11',
+    type: 'mcq',
+    question: "Analysis columns in the Petty Cash Book are used to:",
+    options: [
+     "Calculate profit",
+     "Categorize expenses by type",
+     "Record income",
+     "Balance the book"
+    ],
+    answer: "Categorize expenses by type",
+    explanation: "Analysis columns (Transport, Postage, Office Supplies, etc.) categorize petty cash expenses for easier posting to individual expense accounts."
+   },
+   {
+    id: 'facc-cashbook-q12',
+    type: 'mcq',
+    question: "When cash is deposited into the bank, in the Three-Column Cash Book:",
+    options: [
+     "Both entries are on the debit side",
+     "Both entries are on the credit side",
+     "Credit Cash column, Debit Bank column",
+     "Debit Cash column, Credit Bank column"
+    ],
+    answer: "Credit Cash column, Debit Bank column",
+    explanation: "Cash going OUT of cash box = Credit Cash. Cash going INTO bank = Debit Bank. This is a contra entry."
+   },
+   {
+    id: 'facc-cashbook-q13',
+    type: 'mcq',
+    question: "The total of Discount Received column is posted to:",
+    options: [
+     "Debit of Discount Received Account",
+     "Credit of Discount Received Account",
+     "Debit of Discount Allowed Account",
+     "Credit of Cash Account"
+    ],
+    answer: "Credit of Discount Received Account",
+    explanation: "Discount Received is income, so it's credited. The total from the credit side discount column goes to the Credit of Discount Received Account."
+   },
+   {
+    id: 'facc-cashbook-q14',
+    type: 'mcq',
+    question: "If petty cash imprest is {{currency}}600 and {{currency}}450 was spent, the reimbursement is:",
+    options: [
+     "{{currency}}600",
+     "{{currency}}450",
+     "{{currency}}150",
+     "{{currency}}1,050"
+    ],
+    answer: "{{currency}}450",
+    explanation: "Reimbursement equals amount spent ({{currency}}450) to restore the imprest to {{currency}}600. Cash remaining ({{currency}}150) + Reimbursement ({{currency}}450) = Imprest ({{currency}}600)."
+   },
+   {
+    id: 'facc-cashbook-q15',
+    type: 'mcq',
+    question: "Balance c/d means:",
+    options: [
+     "Balance cancelled",
+     "Balance carried down (closing balance)",
+     "Balance credited",
+     "Balance confirmed"
+    ],
+    answer: "Balance carried down (closing balance)",
+    explanation: "Balance c/d (carried down) is the closing balance at the end of a period, which becomes the opening balance (b/d - brought down) for the next period."
+   }
+  ],
+  activities: [],
+  pastQuestions: [
+   {
+    question: "{{exam:secondary}} 2020: Prepare a Three-Column Cash Book from the following transactions of Mensah Enterprises for January 2020:\nJan 1: Balances: Cash {{currency}}15,000, Bank {{currency}}45,000\nJan 3: Received cheque from Kofi {{currency}}8,000, discount allowed {{currency}}400\nJan 5: Paid rent by cheque {{currency}}5,000\nJan 8: Cash sales {{currency}}12,000\nJan 10: Deposited {{currency}}10,000 cash into bank\nJan 15: Paid Ama by cheque {{currency}}6,000, discount received {{currency}}300\nJan 20: Withdrew {{currency}}8,000 from bank for office use\nJan 25: Received cash from Benson {{currency}}4,500, discount allowed {{currency}}225\nJan 28: Paid wages in cash {{currency}}7,000\nBalance the Cash Book.",
+    year: "2020",
+    solution: "MENSAH ENTERPRISES\nTHREE-COLUMN CASH BOOK\nFor January 2020\n\nDEBIT SIDE (Receipts):\n| Date | Details | Fo | Disc | Cash | Bank |\n|------|---------|-----|------|------|------|\n| Jan 1 | Balances b/d | | - | 15,000 | 45,000 |\n| Jan 3 | Kofi | SL | 400 | - | 8,000 |\n| Jan 8 | Sales | | - | 12,000 | - |\n| Jan 10 | Bank | C | - | - | 10,000 |\n| Jan 20 | Cash | C | - | 8,000 | - |\n| Jan 25 | Benson | SL | 225 | 4,500 | - |\n| | | | 625 | 39,500 | 63,000 |\n\nCREDIT SIDE (Payments):\n| Date | Details | Fo | Disc | Cash | Bank |\n|------|---------|-----|------|------|------|\n| Jan 5 | Rent | | - | - | 5,000 |\n| Jan 10 | Cash | C | - | 10,000 | - |\n| Jan 15 | Ama | PL | 300 | - | 6,000 |\n| Jan 20 | Bank | C | - | - | 8,000 |\n| Jan 28 | Wages | | - | 7,000 | - |\n| Jan 31 | Balance c/d | | - | 22,500 | 44,000 |\n| | | | 300 | 39,500 | 63,000 |\n\nFeb 1: Balances b/d: Cash {{currency}}22,500, Bank {{currency}}44,000\n\nNOTES:\n1. Contra entries (Jan 10 & Jan 20) are marked with 'C'\n2. Discount columns show totals only (not balanced)\n3. Discount Allowed ({{currency}}625) → Dr Discount Allowed Account\n4. Discount Received ({{currency}}300) → Cr Discount Received Account"
+   },
+   {
+    question: "{{exam:secondary}} 2019: (a) What is the Imprest System? (b) State THREE advantages of the Imprest System. (c) Prepare a Petty Cash Book with analysis columns from the following: Imprest {{currency}}400. Payments: Transport {{currency}}45, Postage {{currency}}30, Stationery {{currency}}55, Refreshments {{currency}}40, Cleaning {{currency}}35, Transport {{currency}}25, Postage {{currency}}20.",
+    year: "2019",
+    solution: "(a) THE IMPREST SYSTEM:\n\nThe Imprest System is a method of controlling petty cash where a fixed sum of money (called the imprest or float) is given to the petty cashier at the beginning of each period. At the end of the period, the petty cashier is reimbursed for the exact amount spent, restoring the float to its original amount.\n\n(b) THREE ADVANTAGES OF THE IMPREST SYSTEM:\n\n1. EASY CONTROL: At any time, cash in hand plus vouchers should equal the imprest amount. This makes checking simple.\n\n2. PREVENTS FRAUD: The fixed amount limits how much can be misused, and regular reimbursement means regular checking.\n\n3. CLEAR ACCOUNTABILITY: The petty cashier is responsible for a specific amount, making it easy to identify any discrepancies.\n\n(c) PETTY CASH BOOK:\n\n| Receipts | Date | Details | Vou | Total | Transport | Postage | Stationery | Refresh | Cleaning |\n|----------|------|---------|-----|-------|-----------|---------|------------|---------|----------|\n| ₵ | | | | ₵ | ₵ | ₵ | ₵ | ₵ | ₵ |\n| 400 | | Imprest | | | | | | | |\n| | | Transport | 1 | 45 | 45 | | | | |\n| | | Postage | 2 | 30 | | 30 | | | |\n| | | Stationery | 3 | 55 | | | 55 | | |\n| | | Refreshments | 4 | 40 | | | | 40 | |\n| | | Cleaning | 5 | 35 | | | | | 35 |\n| | | Transport | 6 | 25 | 25 | | | | |\n| | | Postage | 7 | 20 | | 20 | | | |\n| | | TOTALS | | 250 | 70 | 50 | 55 | 40 | 35 |\n| | | Balance c/d | | 150 | | | | | |\n| | | | | 400 | | | | | |\n| 250 | | Reimbursement | | | | | | | |\n| 150 | | Balance b/d | | | | | | | |\n| 400 | | | | | | | | | |\n\nCross-check: 70 + 50 + 55 + 40 + 35 = 250 ✓"
+   },
+   {
+    question: "{{exam:secondary}} 2018: Explain the following terms as used in the Cash Book: (a) Discount Allowed (b) Discount Received (c) Contra Entry (d) Balance c/d",
+    year: "2018",
+    solution: "(a) DISCOUNT ALLOWED:\n\nDiscount Allowed is a cash discount given by a business to its customers (debtors) to encourage prompt payment.\n\nExample: If a customer owes {{currency}}1,000 and we offer 5% discount for payment within 7 days:\n- Discount Allowed = {{currency}}1,000 × 5% = {{currency}}50\n- Cash received = {{currency}}950\n\nAccounting Treatment:\n- It is an EXPENSE to the business (reduces our income)\n- Recorded in the Discount Allowed column on the DEBIT side of Cash Book\n- Posted to DEBIT of Discount Allowed Account in General Ledger\n\n(b) DISCOUNT RECEIVED:\n\nDiscount Received is a cash discount obtained from suppliers (creditors) for making prompt payment.\n\nExample: If we owe a supplier {{currency}}2,000 and they offer 3% discount for early payment:\n- Discount Received = {{currency}}2,000 × 3% = {{currency}}60\n- Cash paid = {{currency}}1,940\n\nAccounting Treatment:\n- It is INCOME to the business (reduces our expenses)\n- Recorded in the Discount Received column on the CREDIT side of Cash Book\n- Posted to CREDIT of Discount Received Account in General Ledger\n\n(c) CONTRA ENTRY:\n\nA Contra Entry is an entry that appears on BOTH the debit and credit sides of the Cash Book, recording the transfer of funds between cash and bank within the same business.\n\nExamples:\n1. Depositing cash into bank: Credit Cash, Debit Bank\n2. Withdrawing cash from bank: Credit Bank, Debit Cash\n\nFeatures:\n- Marked with 'C' (for Contra) in the folio column\n- No posting to other ledger accounts is required\n- The double entry is complete within the Cash Book itself\n\n(d) BALANCE c/d:\n\nBalance c/d (carried down) is the closing balance of the Cash Book at the end of an accounting period.\n\nPurpose:\n- Shows the amount of cash/bank balance at period end\n- Entered on the smaller side to make both sides equal\n- Becomes the opening balance (Balance b/d - brought down) for the next period\n\nExample:\n- If receipts total {{currency}}50,000 and payments total {{currency}}35,000\n- Balance c/d = {{currency}}15,000 (entered on credit side)\n- This {{currency}}15,000 is brought down as Balance b/d on debit side for next period"
+   },
+   {
+    question: "{{exam:secondary}} 2021: The following information relates to the Petty Cash Book of Asante Ltd for March 2021. The imprest is {{currency}}800.\nMarch 1: Balance b/d {{currency}}200\nMarch 1: Received cash to restore imprest\nMarch 5: Paid for stamps {{currency}}60\nMarch 8: Taxi fares {{currency}}45\nMarch 12: Bought office supplies {{currency}}85\nMarch 15: Refreshments for meeting {{currency}}70\nMarch 20: Postage {{currency}}35\nMarch 25: Transport for staff {{currency}}55\nMarch 28: Cleaning materials {{currency}}40\nPrepare the Petty Cash Book with analysis columns for: Postage, Transport, Office Supplies, Refreshments, and Sundry.",
+    year: "2021",
+    solution: "ASANTE LTD\nPETTY CASH BOOK\nMarch 2021\n\n| Receipts | Date | Details | Vou | Total | Postage | Transport | Office | Refresh | Sundry |\n|----------|------|---------|-----|-------|---------|-----------|--------|---------|--------|\n| ₵ | | | | ₵ | ₵ | ₵ | ₵ | ₵ | ₵ |\n| 200 | Mar 1 | Bal b/d | | | | | | | |\n| 600 | Mar 1 | Cash (Reimb) | | | | | | | |\n| **800** | | | | | | | | | |\n| | Mar 5 | Stamps | 1 | 60 | 60 | | | | |\n| | Mar 8 | Taxi fares | 2 | 45 | | 45 | | | |\n| | Mar 12 | Office supplies | 3 | 85 | | | 85 | | |\n| | Mar 15 | Refreshments | 4 | 70 | | | | 70 | |\n| | Mar 20 | Postage | 5 | 35 | 35 | | | | |\n| | Mar 25 | Transport | 6 | 55 | | 55 | | | |\n| | Mar 28 | Cleaning | 7 | 40 | | | | | 40 |\n| | | | | **390** | **95** | **100** | **85** | **70** | **40** |\n| | Mar 31 | Balance c/d | | 410 | | | | | |\n| | | | | **800** | | | | | |\n| 410 | Apr 1 | Bal b/d | | | | | | | |\n\nWORKINGS:\n\n1. Reimbursement on March 1:\n  Imprest required = {{currency}}800\n  Balance brought down = {{currency}}200\n  Cash needed = {{currency}}800 - {{currency}}200 = {{currency}}600\n\n2. Total Payments:\n  60 + 45 + 85 + 70 + 35 + 55 + 40 = {{currency}}390\n\n3. Cross-check Analysis Columns:\n  95 + 100 + 85 + 70 + 40 = {{currency}}390 ✓\n\n4. Balance c/d:\n  {{currency}}800 - {{currency}}390 = {{currency}}410\n\nPOSTING TO LEDGER:\n- Dr Postage Account: {{currency}}95\n- Dr Transport Account: {{currency}}100\n- Dr Office Supplies Account: {{currency}}85\n- Dr Refreshments Account: {{currency}}70\n- Dr Sundry Expenses Account: {{currency}}40"
+   }
+  ],
+ },
+ // Lesson 10: General Journal
+ {
+  id: 'facc-shs1-boe-3',
+  slug: 'facc-shs1-boe-general-journal',
+  title: 'The General Journal',
+  objectives: [
+   'Define the General Journal and explain its purpose',
+   'Distinguish between specialized journals and the General Journal',
+   'Understand the format and columns of a General Journal',
+   'Write narrations for journal entries explaining the double entry',
+   'Record transactions in the General Journal with proper narration',
+   'Post General Journal entries to the General Ledger',
+   'Identify which transactions go to the General Journal',
+   'Explain the difference between journal entries and ledger postings',
+   'Prepare General Journal entries for non-routine transactions',
+   'Apply the General Journal to real-world business scenarios'
+  ],
+  introduction: "The General Journal is the business equivalent of a personal diary—recording everything that doesn't fit into specialized books! While the Sales Journal records credit sales, the Purchases Journal records credit purchases, and the Cash Book records cash/bank transactions, the General Journal captures all the other important events. These include opening entries when starting a business, adjustments, corrections, returns, and special transactions. Understanding the General Journal is crucial because it's where non-routine transactions find their home. Every business needs this 'catch-all' book, and mastering it will make you a more complete accountant!",
+  keyConcepts: [
+   {
+    title: 'What is the General Journal?',
+    content: `# 📔 THE GENERAL JOURNAL
 
-## Definition
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Definition
+</h2>
 
 The **General Journal** (also called the Journal Proper) is a book of original entry that records ALL transactions NOT recorded in specialized journals (Sales Journal, Purchases Journal, Cash Book, and Petty Cash Book).
 
-## Key Purpose
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Key Purpose
+</h2>
 
 - To record non-routine, miscellaneous, or special transactions
 - To maintain a complete record of all business transactions
 - To provide an audit trail for unusual events
 - To serve as the final recording place for transactions that don't fit categories
 
-## Real-Life Example from {{country}}
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Real-Life Example from {{country}}
+</h2>
 
 Imagine **Osei Enterprises Ltd** during the year:
 
@@ -7207,48 +7265,55 @@ Imagine **Osei Enterprises Ltd** during the year:
 - Accrued expenses {{currency}}1,500 → **General Journal** ✅
 
 Notice: All the "special" transactions go to the General Journal!`
-      },
-      {
-        title: 'Format and Structure',
-        content: `# 📋 GENERAL JOURNAL FORMAT
+   },
+   {
+    title: 'Format and Structure',
+    content: `# 📋 GENERAL JOURNAL FORMAT
 
-## The Two-Column General Journal
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">The Two-Column General Journal
+</h2>
 
 The General Journal has columns for Date, Account Names/Narration, Folio, and Amount.
 
-## Breaking Down Each Column
-
-### 1. **Date Column**
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Breaking Down Each Column
+</h2>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">1. **Date Column**
+</h3>
 - Shows when the transaction occurred
 - Month name written only once per month
 
-### 2. **Account Names and Narration**
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">2. **Account Names and Narration**
+</h3>
 - **First line**: Account name to be DEBITED (at left margin)
 - **Second line**: Account name to be CREDITED (indented)
 - **Third line**: Narration — explains the REASON for entry
 
-### 3. **Folio Column**
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">3. **Folio Column**
+</h3>
 - Shows page reference in ledger where entry is posted
 - Used AFTER posting is complete
 
-### 4. **Amount Column**
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">4. **Amount Column**
+</h3>
 - Shows debit amount on debit line
 - Shows credit amount on credit line
 - Amounts are equal (double entry principle)`
-      },
-      {
-        title: 'Recording Transactions',
-        content: `# ✍️ RECORDING TRANSACTIONS IN THE GENERAL JOURNAL
+   },
+   {
+    title: 'Recording Transactions',
+    content: `# ✍️ RECORDING TRANSACTIONS IN THE GENERAL JOURNAL
 
-## Step-by-Step Process
-
-### Step 1: Identify the Transaction
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Step-by-Step Process
+</h2>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Step 1: Identify the Transaction
+</h3>
 - Is it routine cash? → Cash Book
 - Is it credit sale? → Sales Journal
 - Is it credit purchase? → Purchases Journal
 - Doesn't fit any? → General Journal ✅
 
-### Step 2: Write the Entry
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Step 2: Write the Entry
+</h3>
 
 **Format:**
 - Date on left
@@ -7257,125 +7322,137 @@ The General Journal has columns for Date, Account Names/Narration, Folio, and Am
 - Amount in amount column
 - Narration below (indented)
 
-## Common Transactions
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Common Transactions
+</h2>
 
 **Depreciation:**
-Depreciation Expense | 1,500  
-Accumulated Depreciation | 1,500  
+Depreciation Expense | 1,500 
+Accumulated Depreciation | 1,500 
 (Depreciation on office equipment for January)
 
 **Sales Return:**
-Sales Returns | 500  
-Accounts Receivable | 500  
+Sales Returns | 500 
+Accounts Receivable | 500 
 (Goods returned by Kofi)
 
 **Purchase Return:**
-Accounts Payable | 800  
-Purchases Returns | 800  
+Accounts Payable | 800 
+Purchases Returns | 800 
 (Faulty stock returned)`
-      },
-      {
-        title: 'The Narration Explained',
-        content: `# 💬 WRITING EFFECTIVE NARRATIONS
+   },
+   {
+    title: 'The Narration Explained',
+    content: `# 💬 WRITING EFFECTIVE NARRATIONS
 
-## What is a Narration?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">What is a Narration?
+</h2>
 
 A **narration** is a brief explanation that explains:
 - WHY the journal entry was made
 - WHAT transaction it represents
 - HOW it relates to source documents
 
-## Why Write Narrations?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Why Write Narrations?
+</h2>
 
 ✅ Provides context for future readers
 ✅ Creates audit trail
 ✅ Professional standard
 ✅ Helps identify incorrect entries
 
-## Good Narration Guidelines
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Good Narration Guidelines
+</h2>
 
-✅ GOOD: Specific, concise, action-oriented, referenced  
+✅ GOOD: Specific, concise, action-oriented, referenced 
 ❌ BAD: Vague, too long, obvious, no reference
 
-## Common Phrases
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Common Phrases
+</h2>
 
 - "To record depreciation on [asset] for [period]"
 - "Goods returned by [customer] (Invoice #)"
 - "To accrue [expense] for [period]"
 - "Correction of error in [account]"`
-      },
-      {
-        title: 'Posting to the Ledger',
-        content: `# 📚 POSTING GENERAL JOURNAL TO LEDGER
+   },
+   {
+    title: 'Posting to the Ledger',
+    content: `# 📚 POSTING GENERAL JOURNAL TO LEDGER
 
-## What is Posting?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">What is Posting?
+</h2>
 
 **Posting** is transferring information from the General Journal to individual accounts in the General Ledger.
 
-## Why Post?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Why Post?
+</h2>
 
 - Journal records transactions chronologically
 - Ledger groups transactions by account
 - Together they provide complete history
 
-## Posting Rules
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Posting Rules
+</h2>
 
 ✓ Post all debits and credits
 ✓ Complete both sides of entry
 ✓ Fill folio AFTER posting complete
 ✓ Post to correct account side
 
-## Posting Process
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Posting Process
+</h2>
 
 1. Identify accounts in entry
 2. Post debit to ledger account debit side
 3. Post credit to ledger account credit side
 4. Fill folio references
 5. Verify balance in ledger`
-      },
-      {
-        title: 'Common Journal Entries',
-        content: `# 📝 COMMON ENTRIES IN THE GENERAL JOURNAL
+   },
+   {
+    title: 'Common Journal Entries',
+    content: `# 📝 COMMON ENTRIES IN THE GENERAL JOURNAL
 
-## Adjustment Entries
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Adjustment Entries
+</h2>
 
 **Depreciation:**
-Depreciation Expense | 4,500  
-Accumulated Depreciation | 4,500  
+Depreciation Expense | 4,500 
+Accumulated Depreciation | 4,500 
 (Depreciation on equipment at 15% p.a.)
 
 **Accrued Expenses:**
-Salaries Expense | 5,000  
-Salaries Payable | 5,000  
+Salaries Expense | 5,000 
+Salaries Payable | 5,000 
 (Accrued salaries for December)
 
-## Return Entries
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Return Entries
+</h2>
 
 **Sales Returns:**
-Sales Returns | 1,200  
-Accounts Receivable – Grace | 1,200  
+Sales Returns | 1,200 
+Accounts Receivable – Grace | 1,200 
 (Defective goods returned)
 
 **Purchase Returns:**
-Accounts Payable – ABS Ltd | 800  
-Purchases Returns | 800  
+Accounts Payable – ABS Ltd | 800 
+Purchases Returns | 800 
 (Faulty stock returned)
 
-## Other Entries
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Other Entries
+</h2>
 
 **Opening Entry:**
-Cash | 50,000  
-Capital Account | 50,000  
+Cash | 50,000 
+Capital Account | 50,000 
 (Opening entries as at Jan 1)
 
 **Correction:**
-Rent Expense | 500  
-Cash | 500  
+Rent Expense | 500 
+Cash | 500 
 (Correction: Rent should be {{currency}}2,500)`
-      },
-      {
-        title: 'Key Terms and Summary',
-        content: `# 📚 KEY TERMS & QUICK REFERENCE
+   },
+   {
+    title: 'Key Terms and Summary',
+    content: `# 📚 KEY TERMS & QUICK REFERENCE
 
 **General Journal** - Book of original entry for non-routine transactions
 
@@ -7395,7 +7472,8 @@ Cash | 500
 
 **Depreciation** - Reduction in asset value over time
 
-## Key Procedure
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Key Procedure
+</h2>
 
 1. **Analyze** – Is this routine?
 2. **Identify** – Which accounts affected?
@@ -7404,162 +7482,164 @@ Cash | 500
 5. **Narrate** – Explain why
 6. **Post** – Transfer to ledger
 7. **Verify** – Check folio match`
-      }
-    ],
-    summary: "Excellent! You've mastered the General Journal—the 'catch-all' book for all non-routine transactions! The General Journal captures everything that doesn't fit into specialized journals: adjustments, returns, corrections, accruals, and opening entries. The key differentiator is the NARRATION—a brief explanation of why the entry was made. Every entry must be POSTED to the ledger, transferring information from chronological records to account-based records. Remember: all debits and credits must be equal, narrations must be clear and referenced to documents, and posting must be complete!",
-    endOfLessonQuiz: [
-      {
-        id: 'facc-genjournal-q1',
-        type: 'mcq',
-        question: "The General Journal is also known as:",
-        options: ["Book of Accounts", "Journal Proper", "Special Journal", "Subsidiary Record"],
-        answer: "Journal Proper",
-        explanation: "The General Journal is often called the Journal Proper to distinguish it from specialized journals."
-      },
-      {
-        id: 'facc-genjournal-q2',
-        type: 'mcq',
-        question: "Which transaction would be recorded in the General Journal?",
-        options: ["Cash sales of {{currency}}5,000", "Credit sales to Kofi {{currency}}3,000", "Goods returned by customer {{currency}}500", "Payment of rent by cheque {{currency}}2,000"],
-        answer: "Goods returned by customer {{currency}}500",
-        explanation: "Sales returns are recorded in the General Journal because they're special transactions."
-      },
-      {
-        id: 'facc-genjournal-q3',
-        type: 'mcq',
-        question: "What is the main purpose of a narration?",
-        options: ["To show the date", "To explain WHY the entry was made", "To show the amount", "To list accounts"],
-        answer: "To explain WHY the entry was made",
-        explanation: "The narration provides context and explanation for the journal entry."
-      },
-      {
-        id: 'facc-genjournal-q4',
-        type: 'mcq',
-        question: "In the General Journal, the credit account is usually:",
-        options: ["At left margin", "In bold", "Indented 4-6 spaces", "Above debit"],
-        answer: "Indented 4-6 spaces",
-        explanation: "Proper accounting format requires credit accounts to be indented."
-      },
-      {
-        id: 'facc-genjournal-q5',
-        type: 'mcq',
-        question: "What happens AFTER a journal entry is recorded?",
-        options: ["Entry is complete", "Entry is posted to ledger", "Entry sent to tax office", "Entry recorded again"],
-        answer: "Entry is posted to ledger",
-        explanation: "After recording, entries must be posted to the individual ledger accounts."
-      },
-      {
-        id: 'facc-genjournal-q6',
-        type: 'mcq',
-        question: "Depreciation is recorded as:",
-        options: ["Dr Cash, Cr Equipment", "Dr Depreciation Expense, Cr Accumulated Depreciation", "Dr Equipment, Cr Accumulated Depreciation", "Dr Accumulated Depreciation, Cr Depreciation"],
-        answer: "Dr Depreciation Expense, Cr Accumulated Depreciation",
-        explanation: "Depreciation Expense is debited and Accumulated Depreciation is credited."
-      },
-      {
-        id: 'facc-genjournal-q7',
-        type: 'mcq',
-        question: "The folio column should be filled in:",
-        options: ["BEFORE recording", "Left blank forever", "AFTER posting complete", "Only with letters"],
-        answer: "AFTER posting complete",
-        explanation: "The folio column is filled in only after posting is complete."
-      },
-      {
-        id: 'facc-genjournal-q8',
-        type: 'mcq',
-        question: "For goods returned by customer worth {{currency}}800, the entry would be:",
-        options: ["Dr Cash, Cr Sales", "Dr Sales Returns, Cr Accounts Receivable", "Dr Accounts Receivable, Cr Sales Returns", "Dr Sales, Cr Cash"],
-        answer: "Dr Sales Returns, Cr Accounts Receivable",
-        explanation: "Sales Returns reduces revenue, and Accounts Receivable reduces what customer owes."
-      },
-      {
-        id: 'facc-genjournal-q9',
-        type: 'mcq',
-        question: "Which is an example of an accrual entry?",
-        options: ["Recording cash received", "Recording salaries owed but not paid", "Recording items purchased", "Recording credit sale"],
-        answer: "Recording salaries owed but not paid",
-        explanation: "An accrual records an expense incurred but not yet paid."
-      },
-      {
-        id: 'facc-genjournal-q10',
-        type: 'mcq',
-        question: "For a {{currency}}2,000 depreciation entry, total debits must:",
-        options: ["Be greater than credits", "Be less than credits", "Equal total credits", "Be twice credits"],
-        answer: "Equal total credits",
-        explanation: "The double entry principle requires debits to equal credits."
-      },
-      {
-        id: 'facc-genjournal-q11',
-        type: 'mcq',
-        question: "A good narration should be:",
-        options: ["Very lengthy", "Avoid documents", "Brief and reference documents", "Only repeat account names"],
-        answer: "Brief and reference documents",
-        explanation: "Effective narrations are concise and include references to supporting documents."
-      },
-      {
-        id: 'facc-genjournal-q12',
-        type: 'mcq',
-        question: "Which would NOT be recorded in the General Journal?",
-        options: ["Correction of error", "Accrued expenses", "Daily cash sales", "Depreciation"],
-        answer: "Daily cash sales",
-        explanation: "Daily cash sales go to the Cash Book, not the General Journal."
-      },
-      {
-        id: 'facc-genjournal-q13',
-        type: 'mcq',
-        question: "The difference between Journal and Ledger is:",
-        options: ["No difference", "Journal by DATE, Ledger by ACCOUNT", "Ledger by DATE, Journal by ACCOUNT", "Journal for large, Ledger for small"],
-        answer: "Journal by DATE, Ledger by ACCOUNT",
-        explanation: "Journal is chronological, Ledger is organized by account."
-      },
-      {
-        id: 'facc-genjournal-q14',
-        type: 'mcq',
-        question: "Purchase returns recorded with which entry?",
-        options: ["Dr Purchases Returns, Cr Accounts Payable", "Dr Accounts Payable, Cr Purchases Returns", "Dr Cash, Cr Purchases", "Dr Purchases, Cr Accounts Payable"],
-        answer: "Dr Accounts Payable, Cr Purchases Returns",
-        explanation: "Debit Accounts Payable (reduces what we owe) and Credit Purchases Returns."
-      },
-      {
-        id: 'facc-genjournal-q15',
-        type: 'mcq',
-        question: "A good narration for depreciation should include:",
-        options: ["'Office furniture depreciation'", "'To record depreciation on office furniture at 10%'", "'Entry in General Journal'", "'Furniture decreased'"],
-        answer: "'To record depreciation on office furniture at 10%'",
-        explanation: "Good narrations explain the purpose, specify what, and include the basis."
-      }
-    ],
-    activities: [],
-    pastQuestions: [],
-  },
-  // Lesson 11: Ledger and Double Entry
-  {
-    id: 'facc-shs1-ledger-1',
-    slug: 'facc-shs1-ledger-double-entry',
-    title: 'The Ledger and Double Entry Principle',
-    objectives: [
-      'Define the ledger and explain its purpose in accounting',
-      'Understand the structure and format of ledger accounts',
-      'Explain the double entry principle as the foundation of accounting',
-      'Apply the rules of double entry (debit and credit)',
-      'Post transactions from journals to ledger accounts',
-      'Calculate account balances correctly',
-      'Distinguish between different types of ledgers',
-      'Understand the relationship between journal and ledger',
-      'Apply the accounting equation in ledger entries',
-      'Prepare ledger accounts for financial statement preparation'
-    ],
-    introduction: "The Ledger is the heart of accounting—it's where organized financial information lives! While journals record transactions chronologically, the ledger organizes them by account. Every business transaction affects at least two accounts (that's why it's called double entry!), and this principle ensures financial records are always balanced and verifiable. Understanding the ledger and double entry principle is absolutely fundamental to accounting. It's like learning to swim before diving deep—once you master these concepts, everything else becomes clear. In {{country}}'s business environment, from small traders to large corporations, the ledger principle remains constant. Let's explore how money flows through accounts and why the fundamental accounting equation Assets = Liabilities + Equity always stays balanced!",
-    keyConcepts: [
-      {
-        title: 'What is the Ledger?',
-        content: `# 📚 THE LEDGER
+   }
+  ],
+  summary: "Excellent! You've mastered the General Journal—the 'catch-all' book for all non-routine transactions! The General Journal captures everything that doesn't fit into specialized journals: adjustments, returns, corrections, accruals, and opening entries. The key differentiator is the NARRATION—a brief explanation of why the entry was made. Every entry must be POSTED to the ledger, transferring information from chronological records to account-based records. Remember: all debits and credits must be equal, narrations must be clear and referenced to documents, and posting must be complete!",
+  endOfLessonQuiz: [
+   {
+    id: 'facc-genjournal-q1',
+    type: 'mcq',
+    question: "The General Journal is also known as:",
+    options: ["Book of Accounts", "Journal Proper", "Special Journal", "Subsidiary Record"],
+    answer: "Journal Proper",
+    explanation: "The General Journal is often called the Journal Proper to distinguish it from specialized journals."
+   },
+   {
+    id: 'facc-genjournal-q2',
+    type: 'mcq',
+    question: "Which transaction would be recorded in the General Journal?",
+    options: ["Cash sales of {{currency}}5,000", "Credit sales to Kofi {{currency}}3,000", "Goods returned by customer {{currency}}500", "Payment of rent by cheque {{currency}}2,000"],
+    answer: "Goods returned by customer {{currency}}500",
+    explanation: "Sales returns are recorded in the General Journal because they're special transactions."
+   },
+   {
+    id: 'facc-genjournal-q3',
+    type: 'mcq',
+    question: "What is the main purpose of a narration?",
+    options: ["To show the date", "To explain WHY the entry was made", "To show the amount", "To list accounts"],
+    answer: "To explain WHY the entry was made",
+    explanation: "The narration provides context and explanation for the journal entry."
+   },
+   {
+    id: 'facc-genjournal-q4',
+    type: 'mcq',
+    question: "In the General Journal, the credit account is usually:",
+    options: ["At left margin", "In bold", "Indented 4-6 spaces", "Above debit"],
+    answer: "Indented 4-6 spaces",
+    explanation: "Proper accounting format requires credit accounts to be indented."
+   },
+   {
+    id: 'facc-genjournal-q5',
+    type: 'mcq',
+    question: "What happens AFTER a journal entry is recorded?",
+    options: ["Entry is complete", "Entry is posted to ledger", "Entry sent to tax office", "Entry recorded again"],
+    answer: "Entry is posted to ledger",
+    explanation: "After recording, entries must be posted to the individual ledger accounts."
+   },
+   {
+    id: 'facc-genjournal-q6',
+    type: 'mcq',
+    question: "Depreciation is recorded as:",
+    options: ["Dr Cash, Cr Equipment", "Dr Depreciation Expense, Cr Accumulated Depreciation", "Dr Equipment, Cr Accumulated Depreciation", "Dr Accumulated Depreciation, Cr Depreciation"],
+    answer: "Dr Depreciation Expense, Cr Accumulated Depreciation",
+    explanation: "Depreciation Expense is debited and Accumulated Depreciation is credited."
+   },
+   {
+    id: 'facc-genjournal-q7',
+    type: 'mcq',
+    question: "The folio column should be filled in:",
+    options: ["BEFORE recording", "Left blank forever", "AFTER posting complete", "Only with letters"],
+    answer: "AFTER posting complete",
+    explanation: "The folio column is filled in only after posting is complete."
+   },
+   {
+    id: 'facc-genjournal-q8',
+    type: 'mcq',
+    question: "For goods returned by customer worth {{currency}}800, the entry would be:",
+    options: ["Dr Cash, Cr Sales", "Dr Sales Returns, Cr Accounts Receivable", "Dr Accounts Receivable, Cr Sales Returns", "Dr Sales, Cr Cash"],
+    answer: "Dr Sales Returns, Cr Accounts Receivable",
+    explanation: "Sales Returns reduces revenue, and Accounts Receivable reduces what customer owes."
+   },
+   {
+    id: 'facc-genjournal-q9',
+    type: 'mcq',
+    question: "Which is an example of an accrual entry?",
+    options: ["Recording cash received", "Recording salaries owed but not paid", "Recording items purchased", "Recording credit sale"],
+    answer: "Recording salaries owed but not paid",
+    explanation: "An accrual records an expense incurred but not yet paid."
+   },
+   {
+    id: 'facc-genjournal-q10',
+    type: 'mcq',
+    question: "For a {{currency}}2,000 depreciation entry, total debits must:",
+    options: ["Be greater than credits", "Be less than credits", "Equal total credits", "Be twice credits"],
+    answer: "Equal total credits",
+    explanation: "The double entry principle requires debits to equal credits."
+   },
+   {
+    id: 'facc-genjournal-q11',
+    type: 'mcq',
+    question: "A good narration should be:",
+    options: ["Very lengthy", "Avoid documents", "Brief and reference documents", "Only repeat account names"],
+    answer: "Brief and reference documents",
+    explanation: "Effective narrations are concise and include references to supporting documents."
+   },
+   {
+    id: 'facc-genjournal-q12',
+    type: 'mcq',
+    question: "Which would NOT be recorded in the General Journal?",
+    options: ["Correction of error", "Accrued expenses", "Daily cash sales", "Depreciation"],
+    answer: "Daily cash sales",
+    explanation: "Daily cash sales go to the Cash Book, not the General Journal."
+   },
+   {
+    id: 'facc-genjournal-q13',
+    type: 'mcq',
+    question: "The difference between Journal and Ledger is:",
+    options: ["No difference", "Journal by DATE, Ledger by ACCOUNT", "Ledger by DATE, Journal by ACCOUNT", "Journal for large, Ledger for small"],
+    answer: "Journal by DATE, Ledger by ACCOUNT",
+    explanation: "Journal is chronological, Ledger is organized by account."
+   },
+   {
+    id: 'facc-genjournal-q14',
+    type: 'mcq',
+    question: "Purchase returns recorded with which entry?",
+    options: ["Dr Purchases Returns, Cr Accounts Payable", "Dr Accounts Payable, Cr Purchases Returns", "Dr Cash, Cr Purchases", "Dr Purchases, Cr Accounts Payable"],
+    answer: "Dr Accounts Payable, Cr Purchases Returns",
+    explanation: "Debit Accounts Payable (reduces what we owe) and Credit Purchases Returns."
+   },
+   {
+    id: 'facc-genjournal-q15',
+    type: 'mcq',
+    question: "A good narration for depreciation should include:",
+    options: ["'Office furniture depreciation'", "'To record depreciation on office furniture at 10%'", "'Entry in General Journal'", "'Furniture decreased'"],
+    answer: "'To record depreciation on office furniture at 10%'",
+    explanation: "Good narrations explain the purpose, specify what, and include the basis."
+   }
+  ],
+  activities: [],
+  pastQuestions: [],
+ },
+ // Lesson 11: Ledger and Double Entry
+ {
+  id: 'facc-shs1-ledger-1',
+  slug: 'facc-shs1-ledger-double-entry',
+  title: 'The Ledger and Double Entry Principle',
+  objectives: [
+   'Define the ledger and explain its purpose in accounting',
+   'Understand the structure and format of ledger accounts',
+   'Explain the double entry principle as the foundation of accounting',
+   'Apply the rules of double entry (debit and credit)',
+   'Post transactions from journals to ledger accounts',
+   'Calculate account balances correctly',
+   'Distinguish between different types of ledgers',
+   'Understand the relationship between journal and ledger',
+   'Apply the accounting equation in ledger entries',
+   'Prepare ledger accounts for financial statement preparation'
+  ],
+  introduction: "The Ledger is the heart of accounting—it's where organized financial information lives! While journals record transactions chronologically, the ledger organizes them by account. Every business transaction affects at least two accounts (that's why it's called double entry!), and this principle ensures financial records are always balanced and verifiable. Understanding the ledger and double entry principle is absolutely fundamental to accounting. It's like learning to swim before diving deep—once you master these concepts, everything else becomes clear. In {{country}}'s business environment, from small traders to large corporations, the ledger principle remains constant. Let's explore how money flows through accounts and why the fundamental accounting equation Assets = Liabilities + Equity always stays balanced!",
+  keyConcepts: [
+   {
+    title: 'What is the Ledger?',
+    content: `# 📚 THE LEDGER
 
-## Definition
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Definition
+</h2>
 
 The **Ledger** is a book of FINAL ENTRY that contains all the individual accounts of a business organized and classified in a logical manner.
 
-## Key Characteristics
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Key Characteristics
+</h2>
 
 - **Organized by Account**: Each account has its own page or record
 - **Second Book of Entry**: Receives information POSTED from journals
@@ -7567,7 +7647,8 @@ The **Ledger** is a book of FINAL ENTRY that contains all the individual account
 - **Source of Financial Statements**: Trial balance and financial statements come from ledger
 - **Permanent Record**: Kept for legal and historical reference
 
-## Why is the Ledger Important?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Why is the Ledger Important?
+</h2>
 
 | Journal | Ledger |
 |---------|--------|
@@ -7577,7 +7658,8 @@ The **Ledger** is a book of FINAL ENTRY that contains all the individual account
 | Audit trail of transactions | Basis for financial analysis |
 | First entry of transaction | Second entry of transaction |
 
-## Real {{country}} Example
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Real {{country}} Example
+</h2>
 
 **Imagine Ama's Provisions Store:**
 
@@ -7594,18 +7676,20 @@ The **Ledger** is a book of FINAL ENTRY that contains all the individual account
 - **Rent Account**: Shows rent expenses (-2,000)
 
 The ledger lets Ama ask: "How much cash do I have? What's my total stock value? How much rent did I pay?" The journal can't answer these questions easily!`
-      },
-      {
-        title: 'Understanding Double Entry',
-        content: `# ⚖️ THE DOUBLE ENTRY PRINCIPLE
+   },
+   {
+    title: 'Understanding Double Entry',
+    content: `# ⚖️ THE DOUBLE ENTRY PRINCIPLE
 
-## The Golden Rule of Accounting
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">The Golden Rule of Accounting
+</h2>
 
 **Every business transaction affects at LEAST TWO accounts.**
 
 One account is DEBITED and another is CREDITED by equal amounts.
 
-## Why Double Entry?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Why Double Entry?
+</h2>
 
 ✅ **Accuracy**: Double-checks are built in (debits = credits always)
 ✅ **Error Detection**: If trial balance doesn't balance, you know there's an error
@@ -7613,7 +7697,8 @@ One account is DEBITED and another is CREDITED by equal amounts.
 ✅ **Control**: Makes fraud harder (alterations would throw off balance)
 ✅ **Legal Requirement**: Most countries require double entry accounting
 
-## The Fundamental Accounting Equation
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">The Fundamental Accounting Equation
+</h2>
 
 \`\`\`
 ASSETS = LIABILITIES + EQUITY
@@ -7621,103 +7706,108 @@ ASSETS = LIABILITIES + EQUITY
 
 This equation MUST stay balanced at all times. Double entry ensures this!
 
-## Debit and Credit Concept
-
-### What is a Debit?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Debit and Credit Concept
+</h2>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">What is a Debit?
+</h3>
 - An entry on the LEFT side of an account
 - Increases: Assets, Expenses, Drawings
 - Decreases: Liabilities, Equity, Revenue
 
-### What is a Credit?
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">What is a Credit?
+</h3>
 - An entry on the RIGHT side of an account
 - Increases: Liabilities, Equity, Revenue
 - Decreases: Assets, Expenses, Drawings
 
-## The T-Account Format
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">The T-Account Format
+</h2>
 
 \`\`\`
-              ACCOUNT NAME
-    ____________|____________
-   |                          |
-   | Debit Side (LEFT)   Credit Side (RIGHT)
-   |                          |
-   | What increases:      What increases:
-   | Assets               Liabilities
-   | Expenses             Equity
-   | Drawings             Revenue
-   |                          |
+       ACCOUNT NAME
+  ____________|____________
+  |             |
+  | Debit Side (LEFT)  Credit Side (RIGHT)
+  |             |
+  | What increases:   What increases:
+  | Assets        Liabilities
+  | Expenses       Equity
+  | Drawings       Revenue
+  |             |
 \`\`\`
 
-## Double Entry Examples
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Double Entry Examples
+</h2>
 
 **Example 1: Owner invests {{currency}}100,000 cash**
 
-Cash Account                    Capital Account
-|        |                      |        |
-| 100,000| (Debit)             | (Credit)|100,000
-|        |                      |        |
+Cash Account          Capital Account
+|    |           |    |
+| 100,000| (Debit)       | (Credit)|100,000
+|    |           |    |
 
 Equation: Assets (Cash) ↑100,000 = Equity (Capital) ↑100,000 ✅
 
 **Example 2: Buy equipment for {{currency}}50,000 cash**
 
-Equipment Account              Cash Account
-|        |                      |        |
-| 50,000 | (Debit)             |50,000 | (Credit)
-|        |                      |        |
+Equipment Account       Cash Account
+|    |           |    |
+| 50,000 | (Debit)       |50,000 | (Credit)
+|    |           |    |
 
 Equation: Assets (Equipment) ↑50,000, Assets (Cash) ↓50,000, so still balanced ✅
 
 **Example 3: Owe supplier {{currency}}20,000 for goods**
 
-Purchases Account              Accounts Payable
-|        |                      |        |
-| 20,000 | (Debit)             | (Credit)|20,000
-|        |                      |        |
+Purchases Account       Accounts Payable
+|    |           |    |
+| 20,000 | (Debit)       | (Credit)|20,000
+|    |           |    |
 
 Equation: Expenses (Purchases) ↑20,000 = Liabilities (Payable) ↑20,000 ✅`
-      },
-      {
-        title: 'Ledger Account Format',
-        content: `# 📋 LEDGER ACCOUNT STRUCTURE
+   },
+   {
+    title: 'Ledger Account Format',
+    content: `# 📋 LEDGER ACCOUNT STRUCTURE
 
-## The T-Account (Simplified)
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">The T-Account (Simplified)
+</h2>
 
 The most common format for learning and analysis:
 
 \`\`\`
-                    ACCOUNT NAME
-            _________________|__________________
-           |                                    |
-           |      DEBIT SIDE     |  CREDIT SIDE |
-           |    (Left/Increase)  | (Right/Increase)|
-           |                     |               |
-           | Jan 1  1,000        | Jan 5  500    |
-           | Jan 10 2,000        | Jan 15 300    |
-           |___________________ |_______________|
+          ACCOUNT NAME
+      _________________|__________________
+      |                  |
+      |   DEBIT SIDE   | CREDIT SIDE |
+      |  (Left/Increase) | (Right/Increase)|
+      |           |        |
+      | Jan 1 1,000    | Jan 5 500  |
+      | Jan 10 2,000    | Jan 15 300  |
+      |___________________ |_______________|
 \`\`\`
 
-## The Full Ledger Account Format
-
-<table style="width: 100%; border-collapse: collapse; margin: 12px 0;">
-<tr style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;">
-<th colspan="6" style="padding: 12px; text-align: center; border: 1px solid #e5e7eb;">CASH ACCOUNT</th>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">The Full Ledger Account Format
+</h2>
+<table style=" width: 100%; border-collapse: collapse;">
+<tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;">
+<th colspan="4" style="padding: 6px; text-align: center; border: 1px solid #e5e7eb;">CASH ACCOUNT</th>
 </tr>
 <tr style="background-color: #e0e7ff;">
-<th style="padding: 8px; border: 1px solid #e5e7eb; width: 12%;">Date</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb; width: 20%;">Description</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb; width: 12%;">Folio</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb; width: 15%;">Debit (₵)</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb; width: 15%;">Credit (₵)</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb; width: 15%;">Balance (₵)</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb; width: 12%;">Date</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb; width: 20%;">Description</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb; width: 12%;">Folio</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb; width: 15%;">Debit (₵)</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb; width: 15%;">Credit (₵)</th>
+<th style="padding: 4px; border: 1px solid #e5e7eb; width: 15%;">Balance (₵)</th>
 </tr>
-<tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 1</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Capital</td><td style="padding: 8px; border: 1px solid #e5e7eb;">GJ1</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">50,000</td><td style="padding: 8px; border: 1px solid #e5e7eb;">-</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">50,000 Dr</td></tr>
-<tr><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 5</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Stock Purchase</td><td style="padding: 8px; border: 1px solid #e5e7eb;">PJ2</td><td style="padding: 8px; border: 1px solid #e5e7eb;">-</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">30,000</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">20,000 Dr</td></tr>
-<tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 8</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Sales</td><td style="padding: 8px; border: 1px solid #e5e7eb;">CB3</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">8,000</td><td style="padding: 8px; border: 1px solid #e5e7eb;">-</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">28,000 Dr</td></tr>
-<tr><td style="padding: 8px; border: 1px solid #e5e7eb;">Jan 12</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Rent Paid</td><td style="padding: 8px; border: 1px solid #e5e7eb;">CB4</td><td style="padding: 8px; border: 1px solid #e5e7eb;">-</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">2,000</td><td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right;">26,000 Dr</td></tr>
+<tr style="background-color: #f9fafb;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 1</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Capital</td><td style="padding: 4px; border: 1px solid #e5e7eb;">GJ1</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">50,000</td><td style="padding: 4px; border: 1px solid #e5e7eb;">-</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">50,000 Dr</td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 5</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Stock Purchase</td><td style="padding: 4px; border: 1px solid #e5e7eb;">PJ2</td><td style="padding: 4px; border: 1px solid #e5e7eb;">-</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">30,000</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">20,000 Dr</td></tr>
+<tr style="background-color: #f9fafb;"><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 8</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Sales</td><td style="padding: 4px; border: 1px solid #e5e7eb;">CB3</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">8,000</td><td style="padding: 4px; border: 1px solid #e5e7eb;">-</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">28,000 Dr</td></tr>
+<tr><td style="padding: 4px; border: 1px solid #e5e7eb;">Jan 12</td><td style="padding: 4px; border: 1px solid #e5e7eb;">Rent Paid</td><td style="padding: 4px; border: 1px solid #e5e7eb;">CB4</td><td style="padding: 4px; border: 1px solid #e5e7eb;">-</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">2,000</td><td style="padding: 4px; border: 1px solid #e5e7eb; text-align: right;">26,000 Dr</td></tr>
 </table>
-
-## Understanding Each Column
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Understanding Each Column
+</h2>
 
 - **Date**: When the transaction occurred
 - **Description**: What was the transaction (from journal)
@@ -7725,114 +7815,129 @@ The most common format for learning and analysis:
 - **Debit**: Money in, or what increases on debit side
 - **Credit**: Money out, or what increases on credit side
 - **Balance**: Running balance (cumulative total)`
-      },
-      {
-        title: 'Posting Process',
-        content: `# 📤 POSTING FROM JOURNAL TO LEDGER
+   },
+   {
+    title: 'Posting Process',
+    content: `# 📤 POSTING FROM JOURNAL TO LEDGER
 
-## What is Posting?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">What is Posting?
+</h2>
 
 **Posting** is the process of transferring entries from the Journal to the Ledger accounts.
 
-## Step-by-Step Posting
-
-### Step 1: Extract Information from Journal
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Step-by-Step Posting
+</h2>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Step 1: Extract Information from Journal
+</h3>
 - Find the account names (Debit and Credit)
 - Find the amounts
 - Find the date and reference
 
-### Step 2: Locate Ledger Account
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Step 2: Locate Ledger Account
+</h3>
 - Find the account page in the ledger
 - Is this account new? Create it
 - Is this account existing? Open its page
 
-### Step 3: Enter on Correct Side
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Step 3: Enter on Correct Side
+</h3>
 - Debit entries go to DEBIT column
 - Credit entries go to CREDIT column
 - Write date, description, folio, amount
 
-### Step 4: Calculate Balance
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Step 4: Calculate Balance
+</h3>
 - Add up all debits
 - Add up all credits
 - Balance = Debits - Credits (for asset/expense accounts)
 - Balance = Credits - Debits (for liability/equity/revenue accounts)
 
-### Step 5: Fill Folio Reference
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Step 5: Fill Folio Reference
+</h3>
 - In journal: Write the ledger page reference
 - In ledger: Write the journal page reference
 - This creates an audit trail
 
-## Real Example: Posting a Journal Entry
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Real Example: Posting a Journal Entry
+</h2>
 
 **Journal Entry (Jan 5):**
 \`\`\`
-Jan 5   Purchases Account              PJ2   20,000
-            Cash                       CB3              20,000
-        (Bought goods for cash)
+Jan 5  Purchases Account       PJ2  20,000
+      Cash            CB3       20,000
+    (Bought goods for cash)
 \`\`\`
 
 **Posting to Purchases Account:**
 \`\`\`
-Date    Desc.        Folio   Debit    Credit   Balance
-Jan 5   From Cash    CB3     20,000   -        20,000 Dr
+Date  Desc.    Folio  Debit  Credit  Balance
+Jan 5  From Cash  CB3   20,000  -    20,000 Dr
 \`\`\`
 
 **Posting to Cash Account:**
 \`\`\`
-Date    Desc.        Folio   Debit    Credit   Balance
-Jan 5   Purchases    PJ2     -        20,000   30,000 Dr
-        (assume previous balance was 50,000)
+Date  Desc.    Folio  Debit  Credit  Balance
+Jan 5  Purchases  PJ2   -    20,000  30,000 Dr
+    (assume previous balance was 50,000)
 \`\`\``
-      },
-      {
-        title: 'Types of Ledgers',
-        content: `# 📚 CLASSIFICATION OF LEDGERS
+   },
+   {
+    title: 'Types of Ledgers',
+    content: `# 📚 CLASSIFICATION OF LEDGERS
 
-## By Function
-
-### 1. General Ledger (Main Ledger)
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">By Function
+</h2>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">1. General Ledger (Main Ledger)
+</h3>
 - Contains ALL accounts of business
 - Assets, Liabilities, Equity, Revenue, Expenses
 - Basis for trial balance and financial statements
 - Every business must have this
 
-### 2. Subsidiary Ledgers
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">2. Subsidiary Ledgers
+</h3>
 - Special ledgers for specific purposes
 - Examples: Debtors' Ledger, Creditors' Ledger, Plant Register
 - Controlled by general ledger (totals match)
 
-## By Type of Account
-
-### Asset Accounts (Debit Balance)
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">By Type of Account
+</h2>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Asset Accounts (Debit Balance)
+</h3>
 - Cash, Bank, Equipment, Building, Stock, Debtors
 - Normal balance is DEBIT
 - Increases with debit, decreases with credit
 
-### Liability Accounts (Credit Balance)
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Liability Accounts (Credit Balance)
+</h3>
 - Accounts Payable, Bank Overdraft, Loans Payable
 - Normal balance is CREDIT
 - Increases with credit, decreases with debit
 
-### Equity Accounts (Credit Balance)
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Equity Accounts (Credit Balance)
+</h3>
 - Capital, Retained Earnings, Drawings (contra-equity)
 - Normal balance is CREDIT (except Drawings = Debit)
 - Increases with credit, decreases with debit
 
-### Revenue Accounts (Credit Balance)
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Revenue Accounts (Credit Balance)
+</h3>
 - Sales, Service Revenue, Rental Income
 - Normal balance is CREDIT
 - Increases with credit, decreases with debit
 
-### Expense Accounts (Debit Balance)
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Expense Accounts (Debit Balance)
+</h3>
 - Rent, Salaries, Utilities, Depreciation, Purchases
 - Normal balance is DEBIT
 - Increases with debit, decreases with credit`
-      },
-      {
-        title: 'The Accounting Equation',
-        content: `# ⚖️ ACCOUNTING EQUATION IN ACTION
+   },
+   {
+    title: 'The Accounting Equation',
+    content: `# ⚖️ ACCOUNTING EQUATION IN ACTION
 
-## The Fundamental Equation
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">The Fundamental Equation
+</h2>
 
 \`\`\`
 ASSETS = LIABILITIES + EQUITY
@@ -7840,7 +7945,8 @@ ASSETS = LIABILITIES + EQUITY
 
 This equation must ALWAYS be true. Double entry ensures this!
 
-## Expanded Form
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Expanded Form
+</h2>
 
 \`\`\`
 ASSETS = LIABILITIES + CAPITAL - DRAWINGS + REVENUE - EXPENSES
@@ -7854,7 +7960,8 @@ Where:
 - **Revenue**: Income from sales/services
 - **Expenses**: Costs of doing business
 
-## Applying the Equation
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Applying the Equation
+</h2>
 
 Let's trace Kwame's business through the month:
 
@@ -7880,18 +7987,20 @@ Let's trace Kwame's business through the month:
 - Expense decreases equity!
 - Equation: Assets (55,000) = Equity (100,000 + 60,000 - 5,000) ✅
 
-## Error Detection
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Error Detection
+</h2>
 
 If the accounting equation doesn't balance, there's an error! This is the power of double entry—it catches mistakes automatically.`
-      },
-      {
-        title: 'Common Ledger Accounts',
-        content: `# 📖 STANDARD LEDGER ACCOUNTS
+   },
+   {
+    title: 'Common Ledger Accounts',
+    content: `# 📖 STANDARD LEDGER ACCOUNTS
 
-## Asset Accounts
-<table style="width: 100%; border-collapse: collapse; margin: 0 0 16px 0; border: 2px solid #e5e7eb;">
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Asset Accounts
+</h2>
+<table style=" width: 100%; border-collapse: collapse; margin: 0 0 16px 0; border: 2px solid #e5e7eb;">
 <thead>
-<tr style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white;">
+<tr style=" background: linear-gradient(135deg, #22c55e, #16a34a); color: white;">
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Account</th>
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Debit</th>
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Credit</th>
@@ -7901,61 +8010,61 @@ If the accounting equation doesn't balance, there's an error! This is the power 
 </thead>
 <tbody>
 <tr style="background-color: #f9fafb;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Cash</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Current</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Daily sales, payments</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Cash</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Current</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Daily sales, payments</td>
 </tr>
 <tr style="background-color: #ffffff;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Bank</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Current</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Deposits, withdrawals</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Bank</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Current</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Deposits, withdrawals</td>
 </tr>
 <tr style="background-color: #f9fafb;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Accounts Receivable</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Current</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Customer owes money</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Accounts Receivable</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Current</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Customer owes money</td>
 </tr>
 <tr style="background-color: #ffffff;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Stock/Inventory</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Current</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Goods for sale</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Stock/Inventory</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Current</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Goods for sale</td>
 </tr>
 <tr style="background-color: #f9fafb;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Equipment</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Fixed</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Vehicles, furniture</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Equipment</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Fixed</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Vehicles, furniture</td>
 </tr>
 <tr style="background-color: #ffffff;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Building</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Fixed</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Property, office space</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Building</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Fixed</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Property, office space</td>
 </tr>
 <tr style="background-color: #f9fafb;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Land</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Fixed</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Real estate</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Land</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Fixed</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Real estate</td>
 </tr>
 </tbody>
 </table>
-
-## Liability Accounts
-<table style="width: 100%; border-collapse: collapse; margin: 0 0 16px 0; border: 2px solid #e5e7eb;">
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Liability Accounts
+</h2>
+<table style=" width: 100%; border-collapse: collapse; margin: 0 0 16px 0; border: 2px solid #e5e7eb;">
 <thead>
-<tr style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white;">
+<tr style=" background: linear-gradient(135deg, #ef4444, #dc2626); color: white;">
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Account</th>
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Debit</th>
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Credit</th>
@@ -7965,40 +8074,40 @@ If the accounting equation doesn't balance, there's an error! This is the power 
 </thead>
 <tbody>
 <tr style="background-color: #f9fafb;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Accounts Payable</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Current</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Money owed to suppliers</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Accounts Payable</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Current</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Money owed to suppliers</td>
 </tr>
 <tr style="background-color: #ffffff;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Bank Overdraft</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Current</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Negative bank balance</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Bank Overdraft</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Current</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Negative bank balance</td>
 </tr>
 <tr style="background-color: #f9fafb;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Loans Payable</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Long-term</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Bank loans</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Loans Payable</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Long-term</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Bank loans</td>
 </tr>
 <tr style="background-color: #ffffff;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Salaries Payable</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Current</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Unpaid wages</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Salaries Payable</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Current</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Unpaid wages</td>
 </tr>
 </tbody>
 </table>
-
-## Equity Accounts
-<table style="width: 100%; border-collapse: collapse; margin: 0 0 16px 0; border: 2px solid #e5e7eb;">
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Equity Accounts
+</h2>
+<table style=" width: 100%; border-collapse: collapse; margin: 0 0 16px 0; border: 2px solid #e5e7eb;">
 <thead>
-<tr style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white;">
+<tr style=" background: linear-gradient(135deg, #ef4444, #dc2626); color: white;">
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Account</th>
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Debit</th>
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Credit</th>
@@ -8008,33 +8117,33 @@ If the accounting equation doesn't balance, there's an error! This is the power 
 </thead>
 <tbody>
 <tr style="background-color: #f9fafb;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Capital</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Permanent</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Owner's investment</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Capital</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Permanent</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Owner's investment</td>
 </tr>
 <tr style="background-color: #ffffff;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Drawings</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Temporary</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Owner's withdrawals</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Drawings</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Temporary</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Owner's withdrawals</td>
 </tr>
 <tr style="background-color: #f9fafb;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Retained Earnings</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Permanent</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Profit from past years</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Retained Earnings</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Permanent</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Profit from past years</td>
 </tr>
 </tbody>
 </table>
-
-## Revenue Accounts
-<table style="width: 100%; border-collapse: collapse; margin: 0 0 16px 0; border: 2px solid #e5e7eb;">
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Revenue Accounts
+</h2>
+<table style=" width: 100%; border-collapse: collapse; margin: 0 0 16px 0; border: 2px solid #e5e7eb;">
 <thead>
-<tr style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white;">
+<tr style=" background: linear-gradient(135deg, #ef4444, #dc2626); color: white;">
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Account</th>
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Debit</th>
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Credit</th>
@@ -8044,33 +8153,33 @@ If the accounting equation doesn't balance, there's an error! This is the power 
 </thead>
 <tbody>
 <tr style="background-color: #f9fafb;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Sales</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Temporary</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Goods sold</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Sales</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Temporary</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Goods sold</td>
 </tr>
 <tr style="background-color: #ffffff;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Service Revenue</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Temporary</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Services provided</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Service Revenue</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Temporary</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Services provided</td>
 </tr>
 <tr style="background-color: #f9fafb;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Rental Income</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Temporary</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Property rented out</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Rental Income</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Temporary</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Property rented out</td>
 </tr>
 </tbody>
 </table>
-
-## Expense Accounts
-<table style="width: 100%; border-collapse: collapse; margin: 0 0 16px 0; border: 2px solid #e5e7eb;">
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Expense Accounts
+</h2>
+<table style=" width: 100%; border-collapse: collapse; margin: 0 0 16px 0; border: 2px solid #e5e7eb;">
 <thead>
-<tr style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white;">
+<tr style=" background: linear-gradient(135deg, #22c55e, #16a34a); color: white;">
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Account</th>
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Debit</th>
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Credit</th>
@@ -8080,46 +8189,46 @@ If the accounting equation doesn't balance, there's an error! This is the power 
 </thead>
 <tbody>
 <tr style="background-color: #f9fafb;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Purchases/Cost of Goods</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Temporary</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Stock bought</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Purchases/Cost of Goods</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Temporary</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Stock bought</td>
 </tr>
 <tr style="background-color: #ffffff;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Salaries Expense</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Temporary</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Wages paid</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Salaries Expense</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Temporary</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Wages paid</td>
 </tr>
 <tr style="background-color: #f9fafb;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Rent Expense</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Temporary</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Office rent</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Rent Expense</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Temporary</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Office rent</td>
 </tr>
 <tr style="background-color: #ffffff;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Utilities Expense</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Temporary</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Electricity, water</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Utilities Expense</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Temporary</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Electricity, water</td>
 </tr>
 <tr style="background-color: #f9fafb;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Depreciation Expense</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Temporary</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Equipment wear & tear</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Depreciation Expense</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Temporary</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Equipment wear & tear</td>
 </tr>
 </tbody>
 </table>`
-      },
-      {
-        title: 'Key Terms and Quick Reference',
-        content: `# 📚 KEY TERMS & QUICK REFERENCE
+   },
+   {
+    title: 'Key Terms and Quick Reference',
+    content: `# 📚 KEY TERMS & QUICK REFERENCE
 
 **Ledger** - Book containing all individual accounts organized by type
 
@@ -8141,7 +8250,8 @@ If the accounting equation doesn't balance, there's an error! This is the power 
 
 **Accounting Equation** - Assets = Liabilities + Equity
 
-## Quick Memory Aid
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Quick Memory Aid
+</h2>
 
 **Debits and Credits Quick Trick:**
 
@@ -8153,7 +8263,8 @@ For every account type, remember what increases it:
 - **Revenue**: Debit decreases, Credit increases
 - **Expense**: Debit increases, Credit decreases
 
-## Procedure Summary
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">Procedure Summary
+</h2>
 
 1. **Identify** - Which accounts are affected?
 2. **Classify** - Are they assets, liabilities, equity, revenue, or expense?
@@ -8162,165 +8273,166 @@ For every account type, remember what increases it:
 5. **Post** - Transfer from journal to ledger
 6. **Balance** - Calculate running balance
 7. **Verify** - Check that accounting equation balances`
-      }
-    ],
-    summary: "Excellent! You've mastered the Ledger and Double Entry Principle—the very foundation of accounting! The ledger organizes accounts and shows balances, while the journal records transactions chronologically. Double entry means every transaction affects at least two accounts—one debited and one credited—keeping the fundamental accounting equation balanced at all times. The T-Account format makes it easy to visualize debits and credits. When posting from journal to ledger, you transfer information while creating an audit trail through folio references. Understanding that Assets must equal Liabilities plus Equity, and how every business transaction affects this equation, is the key to all accounting. Remember: if your accounts don't balance, double entry helps you find the error quickly. This principle has been used for centuries and works the same way in {{country}} as it does worldwide!",
-    endOfLessonQuiz: [
-      {
-        id: 'facc-ledger-q1',
-        type: 'mcq',
-        question: "The Ledger is organized by:",
-        options: ["Date of transactions", "Account type", "Amount of money", "Journal reference"],
-        answer: "Account type",
-        explanation: "The ledger groups entries by account (Cash, Sales, Rent, etc.), unlike the journal which is organized chronologically by date."
-      },
-      {
-        id: 'facc-ledger-q2',
-        type: 'mcq',
-        question: "The double entry principle states that every transaction affects:",
-        options: ["Only one account", "At least two accounts", "Three or more accounts", "The cash account always"],
-        answer: "At least two accounts",
-        explanation: "Every transaction has two sides—one debit and one credit, affecting at least two different accounts."
-      },
-      {
-        id: 'facc-ledger-q3',
-        type: 'mcq',
-        question: "Which side of an account increases asset accounts?",
-        options: ["Credit side", "Left side", "Debit side", "Both sides equally"],
-        answer: "Debit side",
-        explanation: "Asset accounts have a normal debit balance, so debits increase them and credits decrease them."
-      },
-      {
-        id: 'facc-ledger-q4',
-        type: 'mcq',
-        question: "What does the folio column in a ledger account show?",
-        options: ["The date of posting", "Reference to source journal", "The account balance", "The person posting"],
-        answer: "Reference to source journal",
-        explanation: "Folio shows where the entry came from (journal page reference), creating an audit trail."
-      },
-      {
-        id: 'facc-ledger-q5',
-        type: 'mcq',
-        question: "When {{currency}}50,000 cash is received as capital, which entry is correct?",
-        options: ["Dr. Capital, Cr. Cash", "Dr. Cash, Cr. Drawings", "Dr. Cash, Cr. Capital", "Dr. Revenue, Cr. Cash"],
-        answer: "Dr. Cash, Cr. Capital",
-        explanation: "Cash (asset) increases with a debit. Capital (equity) increases with a credit."
-      },
-      {
-        id: 'facc-ledger-q6',
-        type: 'mcq',
-        question: "The fundamental accounting equation is:",
-        options: ["Assets - Liabilities = Equity", "Assets = Liabilities - Equity", "Assets = Liabilities + Equity", "Assets + Liabilities = Equity"],
-        answer: "Assets = Liabilities + Equity",
-        explanation: "This is the foundation of accounting and must always balance."
-      },
-      {
-        id: 'facc-ledger-q7',
-        type: 'mcq',
-        question: "Which type of account has a normal credit balance?",
-        options: ["Cash account", "Rent expense", "Accounts payable", "Stock account"],
-        answer: "Accounts payable",
-        explanation: "Liabilities (like Accounts Payable) have normal credit balances; they increase with credits."
-      },
-      {
-        id: 'facc-ledger-q8',
-        type: 'mcq',
-        question: "What is posting?",
-        options: ["Writing in the journal", "Balancing accounts", "Transferring entries from journal to ledger", "Paying invoices"],
-        answer: "Transferring entries from journal to ledger",
-        explanation: "Posting is the process of moving information from the chronological journal to organized ledger accounts."
-      },
-      {
-        id: 'facc-ledger-q9',
-        type: 'mcq',
-        question: "For a revenue account (like Sales), which side increases it?",
-        options: ["Debit side", "Credit side", "Both sides", "Neither side"],
-        answer: "Credit side",
-        explanation: "Revenue accounts have normal credit balances; they increase with credits and decrease with debits."
-      },
-      {
-        id: 'facc-ledger-q10',
-        type: 'mcq',
-        question: "If debits don't equal credits in your trial balance, it indicates:",
-        options: ["The business made a profit", "There's an error in the records", "Sales are higher than usual", "The business is successful"],
-        answer: "There's an error in the records",
-        explanation: "Double entry ensures debits must equal credits. If they don't, there's a posting or calculation error."
-      },
-      {
-        id: 'facc-ledger-q11',
-        type: 'mcq',
-        question: "When recording a purchase of equipment for {{currency}}30,000 cash, the correct entry is:",
-        options: ["Dr. Equipment 30,000, Cr. Cash 30,000", "Dr. Cash 30,000, Cr. Equipment 30,000", "Dr. Equipment 30,000, Cr. Capital 30,000", "Dr. Expense 30,000, Cr. Cash 30,000"],
-        answer: "Dr. Equipment 30,000, Cr. Cash 30,000",
-        explanation: "Equipment (asset) increases with debit. Cash (asset) decreases with credit."
-      },
-      {
-        id: 'facc-ledger-q12',
-        type: 'mcq',
-        question: "A T-Account format shows:",
-        options: ["Only debit entries", "Both debit and credit sides", "Only the balance", "Only transaction dates"],
-        answer: "Both debit and credit sides",
-        explanation: "The T-Account is shaped like a T with debits on the left and credits on the right."
-      },
-      {
-        id: 'facc-ledger-q13',
-        type: 'mcq',
-        question: "The difference between Journal and Ledger is:",
-        options: ["Journal is permanent, Ledger is temporary", "Journal records by date, Ledger by account", "They're the same thing", "Journal shows balances, Ledger shows transactions"],
-        answer: "Journal records by date, Ledger by account",
-        explanation: "Journal is chronological; Ledger is organized by account. Both are needed for complete records."
-      },
-      {
-        id: 'facc-ledger-q14',
-        type: 'mcq',
-        question: "Which statement about double entry is FALSE?",
-        options: ["It ensures accounting equation balances", "It provides built-in error checking", "It records only one side of transaction", "It creates audit trail"],
-        answer: "It records only one side of transaction",
-        explanation: "Double entry records BOTH sides of every transaction, ensuring completeness and accuracy."
-      },
-      {
-        id: 'facc-ledger-q15',
-        type: 'mcq',
-        question: "{{exam:secondary}}: If a business had these ledger balances: Cash {{currency}}80,000, Equipment {{currency}}50,000, Payables {{currency}}20,000, the owner's equity is:",
-        options: ["{{currency}}30,000", "{{currency}}110,000", "{{currency}}150,000", "{{currency}}210,000"],
-        answer: "{{currency}}110,000",
-        explanation: "Using Assets = Liabilities + Equity: 130,000 = 20,000 + Equity, so Equity = 110,000"
-      }
-    ],
-    activities: [],
-    pastQuestions: [],
-  },
-  // Lesson 11: Ledger and Double Entry System
-  {
-    id: 'facc-shs1-ledger-1',
-    slug: 'facc-shs1-ledger-double-entry',
-    title: 'The Ledger and Double Entry System',
-    objectives: [
-      'Explain what the ledger is and its purpose',
-      'Understand the difference between the journal and ledger',
-      'Define the double entry concept and its importance',
-      'Understand debits and credits and when they are used',
-      'Learn the T-Account format',
-      'Record transactions using the T-Account method',
-      'Post journal entries to ledger accounts',
-      'Balance T-Accounts and calculate balances',
-      'Understand the fundamental accounting equation in relation to debits and credits',
-      'Apply double entry to real-world {{country:adjective}} business transactions'
-    ],
-    introduction: "Imagine a busy shopkeeper with hundreds of transactions each day. How would she know how much cash she has, how much customers owe her, or how much she owes suppliers? The answer is the LEDGER - a master record that organizes all transactions by account. But before transactions reach the ledger, they're recorded in the JOURNAL first. And here's the crucial part: every transaction is recorded TWICE (once as a debit, once as a credit) - this is the DOUBLE ENTRY system! This genius system ensures that your books always balance and fraud is harder to hide. Today, you'll master this foundation of accounting - the most important system in the entire field!",
-    keyConcepts: [
-      {
-        title: 'What is the Ledger?',
-        content: `The **Ledger** is a book of accounts that summarizes and organizes transactions by account, showing the complete history and balance of each account.
+   }
+  ],
+  summary: "Excellent! You've mastered the Ledger and Double Entry Principle—the very foundation of accounting! The ledger organizes accounts and shows balances, while the journal records transactions chronologically. Double entry means every transaction affects at least two accounts—one debited and one credited—keeping the fundamental accounting equation balanced at all times. The T-Account format makes it easy to visualize debits and credits. When posting from journal to ledger, you transfer information while creating an audit trail through folio references. Understanding that Assets must equal Liabilities plus Equity, and how every business transaction affects this equation, is the key to all accounting. Remember: if your accounts don't balance, double entry helps you find the error quickly. This principle has been used for centuries and works the same way in {{country}} as it does worldwide!",
+  endOfLessonQuiz: [
+   {
+    id: 'facc-ledger-q1',
+    type: 'mcq',
+    question: "The Ledger is organized by:",
+    options: ["Date of transactions", "Account type", "Amount of money", "Journal reference"],
+    answer: "Account type",
+    explanation: "The ledger groups entries by account (Cash, Sales, Rent, etc.), unlike the journal which is organized chronologically by date."
+   },
+   {
+    id: 'facc-ledger-q2',
+    type: 'mcq',
+    question: "The double entry principle states that every transaction affects:",
+    options: ["Only one account", "At least two accounts", "Three or more accounts", "The cash account always"],
+    answer: "At least two accounts",
+    explanation: "Every transaction has two sides—one debit and one credit, affecting at least two different accounts."
+   },
+   {
+    id: 'facc-ledger-q3',
+    type: 'mcq',
+    question: "Which side of an account increases asset accounts?",
+    options: ["Credit side", "Left side", "Debit side", "Both sides equally"],
+    answer: "Debit side",
+    explanation: "Asset accounts have a normal debit balance, so debits increase them and credits decrease them."
+   },
+   {
+    id: 'facc-ledger-q4',
+    type: 'mcq',
+    question: "What does the folio column in a ledger account show?",
+    options: ["The date of posting", "Reference to source journal", "The account balance", "The person posting"],
+    answer: "Reference to source journal",
+    explanation: "Folio shows where the entry came from (journal page reference), creating an audit trail."
+   },
+   {
+    id: 'facc-ledger-q5',
+    type: 'mcq',
+    question: "When {{currency}}50,000 cash is received as capital, which entry is correct?",
+    options: ["Dr. Capital, Cr. Cash", "Dr. Cash, Cr. Drawings", "Dr. Cash, Cr. Capital", "Dr. Revenue, Cr. Cash"],
+    answer: "Dr. Cash, Cr. Capital",
+    explanation: "Cash (asset) increases with a debit. Capital (equity) increases with a credit."
+   },
+   {
+    id: 'facc-ledger-q6',
+    type: 'mcq',
+    question: "The fundamental accounting equation is:",
+    options: ["Assets - Liabilities = Equity", "Assets = Liabilities - Equity", "Assets = Liabilities + Equity", "Assets + Liabilities = Equity"],
+    answer: "Assets = Liabilities + Equity",
+    explanation: "This is the foundation of accounting and must always balance."
+   },
+   {
+    id: 'facc-ledger-q7',
+    type: 'mcq',
+    question: "Which type of account has a normal credit balance?",
+    options: ["Cash account", "Rent expense", "Accounts payable", "Stock account"],
+    answer: "Accounts payable",
+    explanation: "Liabilities (like Accounts Payable) have normal credit balances; they increase with credits."
+   },
+   {
+    id: 'facc-ledger-q8',
+    type: 'mcq',
+    question: "What is posting?",
+    options: ["Writing in the journal", "Balancing accounts", "Transferring entries from journal to ledger", "Paying invoices"],
+    answer: "Transferring entries from journal to ledger",
+    explanation: "Posting is the process of moving information from the chronological journal to organized ledger accounts."
+   },
+   {
+    id: 'facc-ledger-q9',
+    type: 'mcq',
+    question: "For a revenue account (like Sales), which side increases it?",
+    options: ["Debit side", "Credit side", "Both sides", "Neither side"],
+    answer: "Credit side",
+    explanation: "Revenue accounts have normal credit balances; they increase with credits and decrease with debits."
+   },
+   {
+    id: 'facc-ledger-q10',
+    type: 'mcq',
+    question: "If debits don't equal credits in your trial balance, it indicates:",
+    options: ["The business made a profit", "There's an error in the records", "Sales are higher than usual", "The business is successful"],
+    answer: "There's an error in the records",
+    explanation: "Double entry ensures debits must equal credits. If they don't, there's a posting or calculation error."
+   },
+   {
+    id: 'facc-ledger-q11',
+    type: 'mcq',
+    question: "When recording a purchase of equipment for {{currency}}30,000 cash, the correct entry is:",
+    options: ["Dr. Equipment 30,000, Cr. Cash 30,000", "Dr. Cash 30,000, Cr. Equipment 30,000", "Dr. Equipment 30,000, Cr. Capital 30,000", "Dr. Expense 30,000, Cr. Cash 30,000"],
+    answer: "Dr. Equipment 30,000, Cr. Cash 30,000",
+    explanation: "Equipment (asset) increases with debit. Cash (asset) decreases with credit."
+   },
+   {
+    id: 'facc-ledger-q12',
+    type: 'mcq',
+    question: "A T-Account format shows:",
+    options: ["Only debit entries", "Both debit and credit sides", "Only the balance", "Only transaction dates"],
+    answer: "Both debit and credit sides",
+    explanation: "The T-Account is shaped like a T with debits on the left and credits on the right."
+   },
+   {
+    id: 'facc-ledger-q13',
+    type: 'mcq',
+    question: "The difference between Journal and Ledger is:",
+    options: ["Journal is permanent, Ledger is temporary", "Journal records by date, Ledger by account", "They're the same thing", "Journal shows balances, Ledger shows transactions"],
+    answer: "Journal records by date, Ledger by account",
+    explanation: "Journal is chronological; Ledger is organized by account. Both are needed for complete records."
+   },
+   {
+    id: 'facc-ledger-q14',
+    type: 'mcq',
+    question: "Which statement about double entry is FALSE?",
+    options: ["It ensures accounting equation balances", "It provides built-in error checking", "It records only one side of transaction", "It creates audit trail"],
+    answer: "It records only one side of transaction",
+    explanation: "Double entry records BOTH sides of every transaction, ensuring completeness and accuracy."
+   },
+   {
+    id: 'facc-ledger-q15',
+    type: 'mcq',
+    question: "{{exam:secondary}}: If a business had these ledger balances: Cash {{currency}}80,000, Equipment {{currency}}50,000, Payables {{currency}}20,000, the owner's equity is:",
+    options: ["{{currency}}30,000", "{{currency}}110,000", "{{currency}}150,000", "{{currency}}210,000"],
+    answer: "{{currency}}110,000",
+    explanation: "Using Assets = Liabilities + Equity: 130,000 = 20,000 + Equity, so Equity = 110,000"
+   }
+  ],
+  activities: [],
+  pastQuestions: [],
+ },
+ // Lesson 11: Ledger and Double Entry System
+ {
+  id: 'facc-shs1-ledger-1',
+  slug: 'facc-shs1-ledger-double-entry',
+  title: 'The Ledger and Double Entry System',
+  objectives: [
+   'Explain what the ledger is and its purpose',
+   'Understand the difference between the journal and ledger',
+   'Define the double entry concept and its importance',
+   'Understand debits and credits and when they are used',
+   'Learn the T-Account format',
+   'Record transactions using the T-Account method',
+   'Post journal entries to ledger accounts',
+   'Balance T-Accounts and calculate balances',
+   'Understand the fundamental accounting equation in relation to debits and credits',
+   'Apply double entry to real-world {{country:adjective}} business transactions'
+  ],
+  introduction: "Imagine a busy shopkeeper with hundreds of transactions each day. How would she know how much cash she has, how much customers owe her, or how much she owes suppliers? The answer is the LEDGER - a master record that organizes all transactions by account. But before transactions reach the ledger, they're recorded in the JOURNAL first. And here's the crucial part: every transaction is recorded TWICE (once as a debit, once as a credit) - this is the DOUBLE ENTRY system! This genius system ensures that your books always balance and fraud is harder to hide. Today, you'll master this foundation of accounting - the most important system in the entire field!",
+  keyConcepts: [
+   {
+    title: 'What is the Ledger?',
+    content: `The **Ledger** is a book of accounts that summarizes and organizes transactions by account, showing the complete history and balance of each account.
 
-## 📋 DEFINITION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 DEFINITION
+</h2>
 
 **Ledger:**
 A book (physical or electronic) containing individual accounts for assets, liabilities, capital, income, and expenses. Each account shows all debits and credits affecting it.
 
 
-
-## 🔑 KEY FEATURES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔑 KEY FEATURES
+</h2>
 
 **1. One Account Per Item**
 - Cash Account (all cash transactions)
@@ -8344,10 +8456,11 @@ A book (physical or electronic) containing individual accounts for assets, liabi
 - Income Statement prepared from ledger data
 - Trial balance created from ledger accounts
 
-## 📊 JOURNAL VS LEDGER
-<table style="width: 100%; border-collapse: collapse; margin: 0 0 16px 0; border: 2px solid #e5e7eb;">
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 JOURNAL VS LEDGER
+</h2>
+<table style=" width: 100%; border-collapse: collapse; margin: 0 0 16px 0; border: 2px solid #e5e7eb;">
 <thead>
-<tr style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;">
+<tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;">
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Aspect</th>
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Journal</th>
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Ledger</th>
@@ -8355,59 +8468,59 @@ A book (physical or electronic) containing individual accounts for assets, liabi
 </thead>
 <tbody>
 <tr style="background-color: #f9fafb;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;"><strong>Organization</strong></td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">By DATE (chronological)</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">By ACCOUNT (systematic)</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;"><strong>Organization</strong></td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">By DATE (chronological)</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">By ACCOUNT (systematic)</td>
 </tr>
 <tr style="background-color: #ffffff;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;"><strong>Purpose</strong></td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">First record of transaction</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Summary by account</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;"><strong>Purpose</strong></td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">First record of transaction</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Summary by account</td>
 </tr>
 <tr style="background-color: #f9fafb;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;"><strong>Source</strong></td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Original transaction</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Posted from journal</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;"><strong>Source</strong></td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Original transaction</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Posted from journal</td>
 </tr>
 <tr style="background-color: #ffffff;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;"><strong>Question Answered</strong></td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">"What happened when?"</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">"What's the balance of each account?"</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;"><strong>Question Answered</strong></td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">"What happened when?"</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">"What's the balance of each account?"</td>
 </tr>
 <tr style="background-color: #f9fafb;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;"><strong>Book Name</strong></td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">"Books of Original Entry"</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">"Book of Final Entry"</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;"><strong>Book Name</strong></td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">"Books of Original Entry"</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">"Book of Final Entry"</td>
 </tr>
 <tr style="background-color: #ffffff;">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;"><strong>Example</strong></td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">All Jan transactions together</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">All Cash transactions together</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;"><strong>Example</strong></td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">All Jan transactions together</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">All Cash transactions together</td>
 </tr>
 </tbody>
 </table>
-
-
-
-## {{country:flag}} {{country}} CONTEXT
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">{{country:flag}} {{country}} CONTEXT
+</h2>
 
 In {{country}}, ledgers are required to be maintained by:
 - All registered companies ({{business:companies-act}})
 - All businesses paying taxes ({{business:tax-authority}} requirement)
 - Banks (regulatory requirement)
 - Any business audited by accountants`
-      },
-      {
-        title: 'Understanding Double Entry System',
-        content: `The **Double Entry System** is the principle that every transaction affects at least TWO accounts - one is DEBITED and one is CREDITED.
+   },
+   {
+    title: 'Understanding Double Entry System',
+    content: `The **Double Entry System** is the principle that every transaction affects at least TWO accounts - one is DEBITED and one is CREDITED.
 
-## 📋 THE GOLDEN RULE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 THE GOLDEN RULE
+</h2>
 
 **Every transaction has a DUAL EFFECT:**
 - Money/value comes FROM one account (Credit it)
 - Money/value goes TO another account (Debit it)
 
-## 🔑 KEY PRINCIPLE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔑 KEY PRINCIPLE
+</h2>
 
 **Debit = Left Side**
 **Credit = Right Side**
@@ -8419,11 +8532,11 @@ $$\\text{Assets} = \\text{Liabilities} + \\text{Capital}$$
 $$\\text{Debits} = \\text{Credits}$$
 (The accounting equation always balances!)
 
-## 📝 WHEN TO DEBIT / WHEN TO CREDIT
-
-<table><thead><tr><th>Account Type</th><th>Debit</th><th>Credit</th></tr></thead><tbody><tr><td><strong>ASSETS</strong></td><td>Increase ↑</td><td>Decrease ↓</td></tr><tr><td><strong>LIABILITIES</strong></td><td>Decrease ↓</td><td>Increase ↑</td></tr><tr><td><strong>CAPITAL/EQUITY</strong></td><td>Decrease ↓</td><td>Increase ↑</td></tr><tr><td><strong>INCOME/REVENUE</strong></td><td>Decrease ↓</td><td>Increase ↑</td></tr><tr><td><strong>EXPENSES</strong></td><td>Increase ↑</td><td>Decrease ↓</td></tr></tbody></table>
-
-## 📝 PRACTICAL EXAMPLES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 WHEN TO DEBIT / WHEN TO CREDIT
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Account Type</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Debit</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Credit</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>ASSETS</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Increase ↑</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Decrease ↓</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>LIABILITIES</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Decrease ↓</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Increase ↑</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>CAPITAL/EQUITY</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Decrease ↓</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Increase ↑</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>INCOME/REVENUE</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Decrease ↓</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Increase ↑</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>EXPENSES</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">Increase ↑</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Decrease ↓</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 PRACTICAL EXAMPLES
+</h2>
 
 **Example 1: Buy Equipment for Cash**
 - Cash decreases (asset decreases) → Credit Cash
@@ -8431,8 +8544,8 @@ $$\\text{Debits} = \\text{Credits}$$
 
 Journal Entry:
 \`\`\`
-Debit: Equipment          {{currency}}50,000
-    Credit: Cash                    {{currency}}50,000
+Debit: Equipment     {{currency}}50,000
+  Credit: Cash          {{currency}}50,000
 \`\`\`
 
 **Example 2: Make a Sale on Credit**
@@ -8441,8 +8554,8 @@ Debit: Equipment          {{currency}}50,000
 
 Journal Entry:
 \`\`\`
-Debit: Accounts Receivable   {{currency}}10,000
-    Credit: Sales                   {{currency}}10,000
+Debit: Accounts Receivable  {{currency}}10,000
+  Credit: Sales          {{currency}}10,000
 \`\`\`
 
 **Example 3: Buy Goods on Credit**
@@ -8451,72 +8564,96 @@ Debit: Accounts Receivable   {{currency}}10,000
 
 Journal Entry:
 \`\`\`
-Debit: Purchases          {{currency}}8,000
-    Credit: Accounts Payable         {{currency}}8,000
+Debit: Purchases     {{currency}}8,000
+  Credit: Accounts Payable     {{currency}}8,000
 \`\`\`
 
-## 🎯 WHY DOUBLE ENTRY?
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🎯 WHY DOUBLE ENTRY?
+</h2>
 
 1. **Ensures Accuracy** - Both sides of entry can be checked
 2. **Prevents Fraud** - Hard to hide fraudulent entries (both sides must match)
 3. **Complete Record** - All aspects of transaction captured
 4. **Trial Balance** - Can test if books balance (Debits = Credits)`
-      },
-      {
-        title: 'The T-Account Format',
-        content: `The **T-Account** is a visual format for showing how accounts work. It gets its name from looking like the letter "T"!
+   },
+   {
+    title: 'The T-Account Format',
+    content: `The **T-Account** is a visual format for showing how accounts work. It gets its name from looking like the letter "T"!
 
-## 📊 T-ACCOUNT STRUCTURE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 T-ACCOUNT STRUCTURE
+</h2>
 
-\`\`\`html
-<table style="width: 100%; border-collapse: collapse; margin: 12px 0;">
-<tr style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;">
-<th colspan="2" style="padding: 12px; text-align: center; border: 1px solid #e5e7eb;">ACCOUNT NAME</th>
+<div style='all: revert;'><table style=" width: 100%; border-collapse: collapse; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+<tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;">
+<th colspan="2" style="padding: 12px; text-align: center; border: 2px solid #1e40af; font-size: 1.1em; font-weight: bold;">ACCOUNT NAME</th>
+</tr>
+<tr style=" background: linear-gradient(135deg, #eff6ff, #e0e7ff);">
+<th style="padding: 10px; border: 2px solid #3b82f6; text-align: center; font-weight: bold; color: #1e40af;">DEBIT (Left Side)</th>
+<th style="padding: 10px; border: 2px solid #8b5cf6; text-align: center; font-weight: bold; color: #6d28d9;">CREDIT (Right Side)</th>
 </tr>
 <tr>
-<th style="padding: 8px; border: 1px solid #e5e7eb; text-align: center;">DEBIT (Left)</th>
-<th style="padding: 8px; border: 1px solid #e5e7eb; text-align: center;">CREDIT (Right)</th>
-</tr>
-<tr>
-<td style="padding: 6px; border: 1px solid #e5e7eb; text-align: right;">
-Amount 1 |<br/>
-Amount 2 |<br/>
-Amount 3 |<br/>
+<td style="padding: 12px; border: 2px solid #e5e7eb; text-align: right; background: white;">
+<div style="">Amount 1</div>
+<div style="">Amount 2</div>
+<div style="">Amount 3</div>
 </td>
-<td style="padding: 6px; border: 1px solid #e5e7eb; text-align: left;">
-| Amount A<br/>
-| Amount B<br/>
-| Amount C
+<td style="padding: 12px; border: 2px solid #e5e7eb; text-align: left; background: white;">
+<div style="">Amount A</div>
+<div style="">Amount B</div>
+<div style="">Amount C</div>
 </td>
 </tr>
 <tr style="background-color: #f3f4f6;">
-<td style="padding: 8px; border: 1px solid #e5e7eb; text-align: right; font-weight: bold;">
+<td style="padding: 12px; border: 2px solid #e5e7eb; text-align: right; font-weight: bold; color: #22c55e;">
 Total Debits: XX
 </td>
-<td style="padding: 8px; border: 1px solid #e5e7eb; text-align: left; font-weight: bold;">
+<td style="padding: 12px; border: 2px solid #e5e7eb; text-align: left; font-weight: bold; color: #dc2626;">
 Total Credits: XX
 </td>
 </tr>
-</table>
-\`\`\`
+</table></div>
 
-## 📝 EXAMPLE: CASH ACCOUNT
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 EXAMPLE: CASH ACCOUNT
+</h2>
 
-\`\`\`
-         CASH ACCOUNT
-    Debit (Left)  |  Credit (Right)
-                  |
-    1,000         |      500
-    2,000         |      300
-    500           |      200
-___________________
-    Total: 3,500  |   Total: 1,000
-    
-    Balance (c/d) = 3,500 - 1,000 = 2,500 Dr
-    (Balance goes to the SMALLER side when brought down)
-\`\`\`
+<div style='all: revert;'><table style=" width: 100%; max-width: 600px; margin: 0 auto; border-collapse: collapse; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+<tr style=" background: linear-gradient(135deg, #22c55e, #16a34a); color: white;">
+<th colspan="2" style="padding: 12px; text-align: center; border: 2px solid #15803d; font-size: 1.1em; font-weight: bold;">CASH ACCOUNT</th>
+</tr>
+<tr style=" background: linear-gradient(135deg, #f0fdf4, #dcfce7);">
+<th style="padding: 10px; border: 2px solid #22c55e; text-align: center; font-weight: bold; color: #15803d;">Debit (Left)</th>
+<th style="padding: 10px; border: 2px solid #22c55e; text-align: center; font-weight: bold; color: #15803d;">Credit (Right)</th>
+</tr>
+<tr>
+<td style="padding: 12px; border: 2px solid #e5e7eb; background: white;">
+<div style="display: flex; margin: 0; justify-content: space-between; "><span>Jan 1: Capital</span><span style="font-weight: bold; color: #22c55e;">{{currency}}1,000</span></div>
+<div style="display: flex; margin: 0; justify-content: space-between; "><span>Jan 5: Sales</span><span style="font-weight: bold; color: #22c55e;">{{currency}}2,000</span></div>
+<div style="display: flex; margin: 0; justify-content: space-between; "><span>Jan 20: Receipts</span><span style="font-weight: bold; color: #22c55e;">{{currency}}500</span></div>
+</td>
+<td style="padding: 12px; border: 2px solid #e5e7eb; background: white;">
+<div style="display: flex; margin: 0; justify-content: space-between; "><span>Jan 3: Rent</span><span style="font-weight: bold; color: #dc2626;">{{currency}}500</span></div>
+<div style="display: flex; margin: 0; justify-content: space-between; "><span>Jan 10: Purchases</span><span style="font-weight: bold; color: #dc2626;">{{currency}}300</span></div>
+<div style="display: flex; margin: 0; justify-content: space-between; "><span>Jan 25: Wages</span><span style="font-weight: bold; color: #dc2626;">{{currency}}200</span></div>
+</td>
+</tr>
+<tr style="background-color: #f3f4f6;">
+<td style="padding: 12px; border: 2px solid #e5e7eb; text-align: right; font-weight: bold;">
+<div style="border-top: 2px solid #22c55e; padding-top: 8px; color: #22c55e;">Total: {{currency}}3,500</div>
+</td>
+<td style="padding: 12px; border: 2px solid #e5e7eb; text-align: right; font-weight: bold;">
+<div style="border-top: 2px solid #dc2626; padding-top: 8px; color: #dc2626;">Total: {{currency}}1,000</div>
+</td>
+</tr>
+<tr style=" background: linear-gradient(135deg, #22c55e, #16a34a); color: white;">
+<td colspan="2" style="padding: 12px; text-align: center; border: 2px solid #15803d; font-weight: bold;">
+Balance c/d = {{currency}}3,500 - {{currency}}1,000 = {{currency}}2,500 Dr
+<div style="font-size: 0.9em; margin-top: 4px; font-style: italic;">(Balance goes to the SMALLER side when brought down)</div>
+</td>
+</tr>
+</table></div>
 
-## 🧮 DEBIT BALANCE vs CREDIT BALANCE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🧮 DEBIT BALANCE vs CREDIT BALANCE
+</h2>
 
 **DEBIT BALANCE:**
 - When total debits > total credits
@@ -8528,40 +8665,42 @@ ___________________
 - Shows LARGER amount on credit side
 - Example: Creditors (amount we owe) has credit balance
 
-## 📊 T-ACCOUNT FOR DIFFERENT ACCOUNTS
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 T-ACCOUNT FOR DIFFERENT ACCOUNTS
+</h2>
 
 **ASSET Account (Cash):**
 \`\`\`
-           CASH
-    Debit  |  Credit
-     3,500 |    1,000
-    ________________
-    Balance: 2,500 Dr
+      CASH
+  Debit | Credit
+   3,500 |  1,000
+  ________________
+  Balance: 2,500 Dr
 \`\`\`
 
 **LIABILITY Account (Creditors):**
 \`\`\`
-       CREDITORS
-    Debit  |  Credit
-       500 |    2,000
-    ________________
-    Balance: 1,500 Cr
+    CREDITORS
+  Debit | Credit
+    500 |  2,000
+  ________________
+  Balance: 1,500 Cr
 \`\`\`
 
 **INCOME Account (Sales):**
 \`\`\`
-          SALES
-    Debit  |  Credit
-       500 |   10,000
-    ________________
-    Balance: 9,500 Cr
+     SALES
+  Debit | Credit
+    500 |  10,000
+  ________________
+  Balance: 9,500 Cr
 \`\`\``
-      },
-      {
-        title: 'Debits and Credits: Rules and Application',
-        content: `Let's master the rules for debits and credits - this is ESSENTIAL for accounting!
+   },
+   {
+    title: 'Debits and Credits: Rules and Application',
+    content: `Let's master the rules for debits and credits - this is ESSENTIAL for accounting!
 
-## 🎯 GOLDEN RULES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🎯 GOLDEN RULES
+</h2>
 
 **Rule 1: DEBIT = LEFT, CREDIT = RIGHT**
 (Always! This never changes)
@@ -8573,10 +8712,11 @@ ___________________
 - To decrease an asset → CREDIT it
 - To decrease liability → DEBIT it
 
-## 📊 COMPLETE SUMMARY TABLE
-<table style="width: 100%; border-collapse: collapse; margin: 0 0 16px 0; border: 2px solid #e5e7eb;">
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 COMPLETE SUMMARY TABLE
+</h2>
+<table style=" width: 100%; border-collapse: collapse; margin: 0 0 16px 0; border: 2px solid #e5e7eb;">
 <thead>
-<tr style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;">
+<tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;">
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Account Type</th>
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Debit Effect</th>
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Credit Effect</th>
@@ -8584,78 +8724,78 @@ ___________________
 </tr>
 </thead>
 <tbody>
-<tr style="background: linear-gradient(90deg, #dcfce7, #f0fdf4);">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600; color: #16a34a;"><strong>ASSETS</strong></td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #22c55e;">Increase ↑</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease ↓</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600; color: #16a34a;">DEBIT</td>
+<tr style=" background: linear-gradient(90deg, #dcfce7, #f0fdf4);">
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600; color: #16a34a;"><strong>ASSETS</strong></td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #22c55e;">Increase ↑</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease ↓</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600; color: #16a34a;">DEBIT</td>
 </tr>
 <tr style="background-color: #ffffff;">
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Example: Cash</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Money IN</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Money OUT</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Usually Dr</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Example: Cash</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Money IN</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Money OUT</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Usually Dr</td>
 </tr>
-<tr style="background: linear-gradient(90deg, #fee2e2, #fef2f2);">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;"><strong>LIABILITIES</strong></td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease ↓</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #ef4444;">Increase ↑</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;">CREDIT</td>
-</tr>
-<tr style="background-color: #ffffff;">
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Example: Creditors</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Pay OFF debt</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Borrow more</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Usually Cr</td>
-</tr>
-<tr style="background: linear-gradient(90deg, #fee2e2, #fef2f2);">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;"><strong>CAPITAL</strong></td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease ↓</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #ef4444;">Increase ↑</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;">CREDIT</td>
+<tr style=" background: linear-gradient(90deg, #fee2e2, #fef2f2);">
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;"><strong>LIABILITIES</strong></td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease ↓</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #ef4444;">Increase ↑</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;">CREDIT</td>
 </tr>
 <tr style="background-color: #ffffff;">
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Example: Owner's Capital</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Withdrawals</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Investment</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Usually Cr</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Example: Creditors</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Pay OFF debt</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Borrow more</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Usually Cr</td>
 </tr>
-<tr style="background: linear-gradient(90deg, #fee2e2, #fef2f2);">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;"><strong>INCOME</strong></td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease ↓</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #ef4444;">Increase ↑</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;">CREDIT</td>
-</tr>
-<tr style="background-color: #ffffff;">
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Example: Sales</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Sales Return</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">New sale</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Usually Cr</td>
-</tr>
-<tr style="background: linear-gradient(90deg, #dcfce7, #f0fdf4);">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600; color: #16a34a;"><strong>EXPENSES</strong></td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #22c55e;">Increase ↑</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease ↓</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600; color: #16a34a;">DEBIT</td>
+<tr style=" background: linear-gradient(90deg, #fee2e2, #fef2f2);">
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;"><strong>CAPITAL</strong></td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease ↓</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #ef4444;">Increase ↑</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;">CREDIT</td>
 </tr>
 <tr style="background-color: #ffffff;">
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Example: Rent Expense</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">More rent paid</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Rent reversal</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Usually Dr</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Example: Owner's Capital</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Withdrawals</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Investment</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Usually Cr</td>
+</tr>
+<tr style=" background: linear-gradient(90deg, #fee2e2, #fef2f2);">
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;"><strong>INCOME</strong></td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease ↓</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #ef4444;">Increase ↑</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;">CREDIT</td>
+</tr>
+<tr style="background-color: #ffffff;">
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Example: Sales</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Sales Return</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">New sale</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Usually Cr</td>
+</tr>
+<tr style=" background: linear-gradient(90deg, #dcfce7, #f0fdf4);">
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600; color: #16a34a;"><strong>EXPENSES</strong></td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #22c55e;">Increase ↑</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease ↓</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600; color: #16a34a;">DEBIT</td>
+</tr>
+<tr style="background-color: #ffffff;">
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Example: Rent Expense</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">More rent paid</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Rent reversal</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Usually Dr</td>
 </tr>
 </tbody>
 </table>
-
-## 📝 PRACTICAL APPLICATION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 PRACTICAL APPLICATION
+</h2>
 
 **Transaction 1: Cash received from sales {{currency}}5,000**
 - Cash account (asset) increases → DEBIT
 - Sales account (income) increases → CREDIT
 
 \`\`\`
-Debit: Cash      {{currency}}5,000
-  Credit: Sales                {{currency}}5,000
+Debit: Cash   {{currency}}5,000
+ Credit: Sales        {{currency}}5,000
 \`\`\`
 
 **Transaction 2: Paid rent {{currency}}2,000 by cheque**
@@ -8663,8 +8803,8 @@ Debit: Cash      {{currency}}5,000
 - Cash account (asset) decreases → CREDIT
 
 \`\`\`
-Debit: Rent Expense    {{currency}}2,000
-  Credit: Cash                  {{currency}}2,000
+Debit: Rent Expense  {{currency}}2,000
+ Credit: Cash         {{currency}}2,000
 \`\`\`
 
 **Transaction 3: Bought stock on credit {{currency}}10,000**
@@ -8672,39 +8812,44 @@ Debit: Rent Expense    {{currency}}2,000
 - Creditors/Payable (liability) increases → CREDIT
 
 \`\`\`
-Debit: Purchases       {{currency}}10,000
-  Credit: Accounts Payable      {{currency}}10,000
+Debit: Purchases    {{currency}}10,000
+ Credit: Accounts Payable   {{currency}}10,000
 \`\`\`
 
-## ⚠️ MEMORY TRICK
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚠️ MEMORY TRICK
+</h2>
 
 **"DEAD"** = Debit Expenses And Drawings
 (These increase with debits)
 
 **Everything else** follows normal debit/credit for increases`
-      },
-      {
-        title: 'Recording Transactions in the Ledger',
-        content: `Now let's see how to actually record transactions in ledger accounts using T-Accounts.
+   },
+   {
+    title: 'Recording Transactions in the Ledger',
+    content: `Now let's see how to actually record transactions in ledger accounts using T-Accounts.
 
-## 📝 STEP-BY-STEP PROCESS
-
-### Step 1: Analyze the Transaction
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 STEP-BY-STEP PROCESS
+</h2>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Step 1: Analyze the Transaction
+</h3>
 - Identify accounts affected
 - Determine which account(s) to debit
 - Determine which account(s) to credit
 
-### Step 2: Write the Journal Entry
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Step 2: Write the Journal Entry
+</h3>
 - Debit entry on top
 - Credit entry indented below
 - Amounts equal
 
-### Step 3: Post to Ledger
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Step 3: Post to Ledger
+</h3>
 - Transfer debit to ledger account's debit side
 - Transfer credit to ledger account's credit side
 - Link back to journal for audit trail
 
-## 📝 COMPREHENSIVE EXAMPLE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 COMPREHENSIVE EXAMPLE
+</h2>
 
 **Transaction: On Jan 5, Kofi paid {{currency}}2,000 cash for equipment**
 
@@ -8714,86 +8859,88 @@ Debit: Purchases       {{currency}}10,000
 
 **Step 2: Journal Entry**
 \`\`\`
-Jan 5  Debit: Equipment        {{currency}}2,000
-         Credit: Cash                    {{currency}}2,000
-       (Purchased equipment for cash)
+Jan 5 Debit: Equipment    {{currency}}2,000
+     Credit: Cash          {{currency}}2,000
+    (Purchased equipment for cash)
 \`\`\`
 
 **Step 3: Post to Ledger**
 
 EQUIPMENT ACCOUNT:
 \`\`\`
-           EQUIPMENT
-    Debit      |    Credit
-    2,000 (J1) |
+      EQUIPMENT
+  Debit   |  Credit
+  2,000 (J1) |
 \`\`\`
 
 CASH ACCOUNT:
 \`\`\`
-             CASH
-    Debit      |    Credit
-               |    2,000 (J1)
+       CASH
+  Debit   |  Credit
+        |  2,000 (J1)
 \`\`\`
 
 (J1 means Journal page 1)
 
-## 📋 MULTIPLE TRANSACTIONS EXAMPLE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 MULTIPLE TRANSACTIONS EXAMPLE
+</h2>
 
 **the previous owner opens a shop with {{currency}}50,000 cash**
 
 **Transaction 1: January 1 - Capital Introduction**
 \`\`\`
-Debit: Cash            {{currency}}50,000
-  Credit: Capital                    {{currency}}50,000
+Debit: Cash      {{currency}}50,000
+ Credit: Capital          {{currency}}50,000
 \`\`\`
 
 **Transaction 2: January 3 - Buy Equipment {{currency}}15,000 cash**
 \`\`\`
-Debit: Equipment       {{currency}}15,000
-  Credit: Cash                       {{currency}}15,000
+Debit: Equipment    {{currency}}15,000
+ Credit: Cash            {{currency}}15,000
 \`\`\`
 
 **Transaction 3: January 5 - Buy Stock {{currency}}20,000 on credit**
 \`\`\`
-Debit: Purchases       {{currency}}20,000
-  Credit: Creditors                  {{currency}}20,000
+Debit: Purchases    {{currency}}20,000
+ Credit: Creditors         {{currency}}20,000
 \`\`\`
 
 **LEDGER ACCOUNTS AFTER POSTING:**
 
 \`\`\`
-        CASH ACCOUNT
-    Debit      |    Credit
-    50,000 (1) |   15,000 (2)
-    ________________
-    Balance: 35,000 Dr
+    CASH ACCOUNT
+  Debit   |  Credit
+  50,000 (1) |  15,000 (2)
+  ________________
+  Balance: 35,000 Dr
 
-        CAPITAL ACCOUNT
-    Debit      |    Credit
-               |   50,000 (1)
-    ________________
-    Balance: 50,000 Cr
+    CAPITAL ACCOUNT
+  Debit   |  Credit
+        |  50,000 (1)
+  ________________
+  Balance: 50,000 Cr
 
-        EQUIPMENT ACCOUNT
-    Debit      |    Credit
-    15,000 (2) |
-    ________________
-    Balance: 15,000 Dr
+    EQUIPMENT ACCOUNT
+  Debit   |  Credit
+  15,000 (2) |
+  ________________
+  Balance: 15,000 Dr
 
-        CREDITORS ACCOUNT
-    Debit      |    Credit
-               |   20,000 (3)
-    ________________
-    Balance: 20,000 Cr
+    CREDITORS ACCOUNT
+  Debit   |  Credit
+        |  20,000 (3)
+  ________________
+  Balance: 20,000 Cr
 
-        PURCHASES ACCOUNT
-    Debit      |    Credit
-    20,000 (3) |
-    ________________
-    Balance: 20,000 Dr
+    PURCHASES ACCOUNT
+  Debit   |  Credit
+  20,000 (3) |
+  ________________
+  Balance: 20,000 Dr
 \`\`\`
 
-## ✅ VERIFICATION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">✅ VERIFICATION
+</h2>
 
 **Total Assets:**
 - Cash: 35,000
@@ -8809,99 +8956,107 @@ Debit: Purchases       {{currency}}20,000
 - This becomes part of COST OF GOODS SOLD (expense)
 - It affects PROFIT, not directly balance sheet
 - True position: Assets 50,000 = Capital 50,000`
-      },
-      {
-        title: 'The Accounting Equation and Double Entry',
-        content: `Let's see how double entry maintains the accounting equation.
+   },
+   {
+    title: 'The Accounting Equation and Double Entry',
+    content: `Let's see how double entry maintains the accounting equation.
 
-## ⚖️ THE FUNDAMENTAL EQUATION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚖️ THE FUNDAMENTAL EQUATION
+</h2>
 
 $$\\text{ASSETS} = \\text{LIABILITIES} + \\text{CAPITAL}$$
 
-## 🔄 HOW DOUBLE ENTRY MAINTAINS BALANCE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🔄 HOW DOUBLE ENTRY MAINTAINS BALANCE
+</h2>
 
 **Each transaction affects the equation in balanced way:**
 
 **Example 1: Owner invests {{currency}}100,000**
 \`\`\`
-Before: A = 0,  L = 0,  C = 0 (A = L + C: 0 = 0 + 0 ✓)
-Entry:  Dr Cash 100,000, Cr Capital 100,000
-After:  A = 100,000,  L = 0,  C = 100,000
-        (A = L + C: 100,000 = 0 + 100,000 ✓)
+Before: A = 0, L = 0, C = 0 (A = L + C: 0 = 0 + 0 ✓)
+Entry: Dr Cash 100,000, Cr Capital 100,000
+After: A = 100,000, L = 0, C = 100,000
+    (A = L + C: 100,000 = 0 + 100,000 ✓)
 \`\`\`
 
 **Example 2: Buy equipment for cash {{currency}}20,000**
 \`\`\`
-Before: A = 100,000 (Cash),  L = 0,  C = 100,000
-Entry:  Dr Equipment 20,000, Cr Cash 20,000
-After:  A = 100,000 (Equipment 20 + Cash 80)
-        L = 0,  C = 100,000
-        (Still balanced: 100,000 = 0 + 100,000 ✓)
+Before: A = 100,000 (Cash), L = 0, C = 100,000
+Entry: Dr Equipment 20,000, Cr Cash 20,000
+After: A = 100,000 (Equipment 20 + Cash 80)
+    L = 0, C = 100,000
+    (Still balanced: 100,000 = 0 + 100,000 ✓)
 \`\`\`
 
 **Example 3: Buy goods on credit {{currency}}30,000**
 \`\`\`
-Before: A = 100,000,  L = 0,  C = 100,000
-Entry:  Dr Purchases 30,000, Cr Creditors 30,000
-After:  A = 130,000 (assets increased by purchase)
-        L = 30,000 (creditors),  C = 100,000
-        (Now A = L + C: 130,000 = 30,000 + 100,000 ✓)
+Before: A = 100,000, L = 0, C = 100,000
+Entry: Dr Purchases 30,000, Cr Creditors 30,000
+After: A = 130,000 (assets increased by purchase)
+    L = 30,000 (creditors), C = 100,000
+    (Now A = L + C: 130,000 = 30,000 + 100,000 ✓)
 \`\`\`
 
-## 📊 DOUBLE ENTRY GUARANTEES BALANCE
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📊 DOUBLE ENTRY GUARANTEES BALANCE
+</h2>
 
 Because EVERY transaction has equal debits and credits:
 - Total Debits MUST EQUAL Total Credits
 - The equation ALWAYS balances
 - If it doesn't balance, there's an ERROR!
 
-## 📋 DEBIT/CREDIT BALANCE RULES
-
-<table><thead><tr><th>Account</th><th>Normal Balance</th><th>Reason</th></tr></thead><tbody><tr><td>Cash (Asset)</td><td>Debit</td><td>Assets normally have debit balances</td></tr><tr><td>Creditors (Liability)</td><td>Credit</td><td>Liabilities normally have credit balances</td></tr><tr><td>Capital (Equity)</td><td>Credit</td><td>Capital normally has credit balance</td></tr><tr><td>Sales (Income)</td><td>Credit</td><td>Income normally has credit balance</td></tr><tr><td>Rent Expense</td><td>Debit</td><td>Expenses normally have debit balances</td></tr></tbody></table>
-
-## 🚨 UNUSUAL BALANCES
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 DEBIT/CREDIT BALANCE RULES
+</h2>
+<table style="width:100%; border-collapse: collapse;"><thead><tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Account</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Normal Balance</th><th style="padding: 8px; border: 1px solid #e5e7eb; text-align: left;">Reason</th></tr></thead><tbody><tr style="background-color: #f9fafb;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Cash (Asset)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Debit</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Assets normally have debit balances</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Creditors (Liability)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Credit</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Liabilities normally have credit balances</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Capital (Equity)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Credit</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Capital normally has credit balance</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Sales (Income)</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Credit</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Income normally has credit balance</td></tr><tr style="background-color: #ffffff;"><td style="padding: 8px; border: 1px solid #e5e7eb;">Rent Expense</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Debit</td><td style="padding: 8px; border: 1px solid #e5e7eb;">Expenses normally have debit balances</td></tr></tbody></table>
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🚨 UNUSUAL BALANCES
+</h2>
 
 Sometimes accounts have unusual balances:
 - Overdraft bank = CREDIT (you owe the bank)
 - Prepaid expenses = DEBIT (they're assets)
 - These are exceptions, not the rule`
-      },
-      {
-        title: 'Balancing Accounts',
-        content: `**Balancing an account** means finding the net total at the end of a period (usually the month or year).
+   },
+   {
+    title: 'Balancing Accounts',
+    content: `**Balancing an account** means finding the net total at the end of a period (usually the month or year).
 
-## 🧮 BALANCING PROCEDURE
-
-### Step 1: Total Both Sides
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">🧮 BALANCING PROCEDURE
+</h2>
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Step 1: Total Both Sides
+</h3>
 - Add up all debits
 - Add up all credits
 
-### Step 2: Find the Difference
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Step 2: Find the Difference
+</h3>
 - Subtract smaller total from larger
 - This is the balance
 
-### Step 3: Enter Balance on Smaller Side
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Step 3: Enter Balance on Smaller Side
+</h3>
 - Balance is entered on the side with SMALLER total
 - This makes both sides equal
 
-### Step 4: Bring Forward
+<h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; color: #1e40af;">Step 4: Bring Forward
+</h3>
 - Balance is "brought forward" (b/f) to next period
 - Becomes opening balance for new period
 
-## 📝 EXAMPLE: BALANCING A CASH ACCOUNT
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 EXAMPLE: BALANCING A CASH ACCOUNT
+</h2>
 
 **CASH ACCOUNT (January)**
 
 \`\`\`
-              CASH ACCOUNT
-    Debit           |      Credit
-    Opening B/d: 0  |
-    Jan 3: 5,000    |  Jan 5: 2,000
-    Jan 7: 3,000    |  Jan 10: 1,500
-    Jan 15: 2,000   |  Jan 20: 2,500
-    Jan 25: 4,000   |  Jan 28: 1,000
-    ________________|________________
-    Total: 14,000   |  Total: 7,000
+       CASH ACCOUNT
+  Debit      |   Credit
+  Opening B/d: 0 |
+  Jan 3: 5,000  | Jan 5: 2,000
+  Jan 7: 3,000  | Jan 10: 1,500
+  Jan 15: 2,000  | Jan 20: 2,500
+  Jan 25: 4,000  | Jan 28: 1,000
+  ________________|________________
+  Total: 14,000  | Total: 7,000
 \`\`\`
 
 **Step 1: Total Both Sides**
@@ -8918,41 +9073,43 @@ Place on credit side to balance it out
 **BALANCED ACCOUNT:**
 
 \`\`\`
-              CASH ACCOUNT
-    Debit           |      Credit
-    Opening B/d: 0  |
-    Jan 3: 5,000    |  Jan 5: 2,000
-    Jan 7: 3,000    |  Jan 10: 1,500
-    Jan 15: 2,000   |  Jan 20: 2,500
-    Jan 25: 4,000   |  Jan 28: 1,000
-                    |  Jan 31 Balance c/d: 7,000
-    ________________|________________
-    Total: 14,000   |  Total: 14,000
-    
-    Feb 1 Balance b/d: 7,000
+       CASH ACCOUNT
+  Debit      |   Credit
+  Opening B/d: 0 |
+  Jan 3: 5,000  | Jan 5: 2,000
+  Jan 7: 3,000  | Jan 10: 1,500
+  Jan 15: 2,000  | Jan 20: 2,500
+  Jan 25: 4,000  | Jan 28: 1,000
+          | Jan 31 Balance c/d: 7,000
+  ________________|________________
+  Total: 14,000  | Total: 14,000
+  
+  Feb 1 Balance b/d: 7,000
 \`\`\`
 
 Now both sides equal 14,000! ✓
 
-## 📋 BALANCE INTERPRETATION
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 BALANCE INTERPRETATION
+</h2>
 
 The Cash Account shows:
 - Started with {{currency}}0
 - Ended with {{currency}}7,000 cash on hand
 - This {{currency}}7,000 appears on the Balance Sheet
 
-## 📝 ANOTHER EXAMPLE: CREDITORS ACCOUNT
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📝 ANOTHER EXAMPLE: CREDITORS ACCOUNT
+</h2>
 
 **CREDITORS ACCOUNT (Supplier ABC)**
 
 \`\`\`
-         CREDITORS - ABC LTD
-    Debit           |      Credit
-    Jan 5: 1,000    |  Opening: 2,000
-    Jan 15: 500     |  Jan 8: 3,000
-                    |  Jan 20: 1,500
-    ________________|________________
-    Total: 1,500    |  Total: 6,500
+     CREDITORS - ABC LTD
+  Debit      |   Credit
+  Jan 5: 1,000  | Opening: 2,000
+  Jan 15: 500   | Jan 8: 3,000
+          | Jan 20: 1,500
+  ________________|________________
+  Total: 1,500  | Total: 6,500
 \`\`\`
 
 **Difference: 6,500 - 1,500 = 5,000 CREDIT**
@@ -8961,27 +9118,28 @@ The Cash Account shows:
 **BALANCED:**
 
 \`\`\`
-         CREDITORS - ABC LTD
-    Debit           |      Credit
-    Jan 5: 1,000    |  Opening: 2,000
-    Jan 15: 500     |  Jan 8: 3,000
-    Jan 31 Bal c/d: |  Jan 20: 1,500
-              5,000 |
-    ________________|________________
-    Total: 6,500    |  Total: 6,500
-    
-    Feb 1 Balance b/d (Cr): 5,000
+     CREDITORS - ABC LTD
+  Debit      |   Credit
+  Jan 5: 1,000  | Opening: 2,000
+  Jan 15: 500   | Jan 8: 3,000
+  Jan 31 Bal c/d: | Jan 20: 1,500
+       5,000 |
+  ________________|________________
+  Total: 6,500  | Total: 6,500
+  
+  Feb 1 Balance b/d (Cr): 5,000
 \`\`\`
 
 **What this means:**
 - We owe ABC Ltd {{currency}}5,000
 - This appears as Current Liability on Balance Sheet`
-      },
-      {
-        title: 'Key Terms Summary',
-        content: `Master these important terms for the Ledger and Double Entry System!
+   },
+   {
+    title: 'Key Terms Summary',
+    content: `Master these important terms for the Ledger and Double Entry System!
 
-## 📚 ESSENTIAL VOCABULARY
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📚 ESSENTIAL VOCABULARY
+</h2>
 
 **Ledger**
 The book of accounts that summarizes all transactions by account, showing the complete history of each account.
@@ -9020,11 +9178,11 @@ The side (debit or credit) on which an account normally has a balance.
 The book of original entry where transactions are first recorded chronologically.
 
 
-
-## 📋 QUICK REFERENCE TABLE
-<table style="width: 100%; border-collapse: collapse; margin: 0 0 16px 0; border: 2px solid #e5e7eb;">
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">📋 QUICK REFERENCE TABLE
+</h2>
+<table style=" width: 100%; border-collapse: collapse; margin: 0 0 16px 0; border: 2px solid #e5e7eb;">
 <thead>
-<tr style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;">
+<tr style=" background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;">
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Account Type</th>
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Debit</th>
 <th style="padding: 14px; text-align: left; font-weight: bold; border: 1px solid #e5e7eb;">Credit</th>
@@ -9032,40 +9190,40 @@ The book of original entry where transactions are first recorded chronologically
 </tr>
 </thead>
 <tbody>
-<tr style="background: linear-gradient(90deg, #dcfce7, #f0fdf4);">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Asset</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600; color: #16a34a;">Debit</td>
+<tr style=" background: linear-gradient(90deg, #dcfce7, #f0fdf4);">
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Asset</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600; color: #16a34a;">Debit</td>
 </tr>
-<tr style="background: linear-gradient(90deg, #fee2e2, #fef2f2);">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Liability</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;">Credit</td>
+<tr style=" background: linear-gradient(90deg, #fee2e2, #fef2f2);">
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Liability</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;">Credit</td>
 </tr>
-<tr style="background: linear-gradient(90deg, #fee2e2, #fef2f2);">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Capital</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;">Credit</td>
+<tr style=" background: linear-gradient(90deg, #fee2e2, #fef2f2);">
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Capital</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;">Credit</td>
 </tr>
-<tr style="background: linear-gradient(90deg, #fee2e2, #fef2f2);">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Income</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;">Credit</td>
+<tr style=" background: linear-gradient(90deg, #fee2e2, #fef2f2);">
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Income</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #ef4444;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600; color: #dc2626;">Credit</td>
 </tr>
-<tr style="background: linear-gradient(90deg, #dcfce7, #f0fdf4);">
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600;">Expense</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb;">Decrease</td>
-<td style="padding: 12px; border: 1px solid #e5e7eb; font-weight: 600; color: #16a34a;">Debit</td>
+<tr style=" background: linear-gradient(90deg, #dcfce7, #f0fdf4);">
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600;">Expense</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; color: #22c55e;">Increase</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb;">Decrease</td>
+<td style="padding: 4px; border: 1px solid #e5e7eb; font-weight: 600; color: #16a34a;">Debit</td>
 </tr>
 </tbody>
 </table>
-
-## ⚠️ {{exam:secondary}} TIP
+<h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 8px; color: #1e3a8a; display: flex; align-items: center; gap: 8px;">⚠️ {{exam:secondary}} TIP
+</h2>
 
 Key points examiners look for:
 1. Understanding of journal vs ledger
@@ -9073,135 +9231,143 @@ Key points examiners look for:
 3. T-Account balancing
 4. Double entry principle
 5. How double entry maintains equation`
-      }
+   }
+  ],
+  summary: "Congratulations! You've mastered the Ledger and Double Entry System—the heart of accounting! You now understand that the Journal records transactions chronologically (by date), while the Ledger organizes them by account. The revolutionary Double Entry System ensures that EVERY transaction is recorded TWICE—once as a debit and once as a credit—keeping the books in perfect balance. Remember: Debits always equal Credits, which means Assets always equal Liabilities plus Capital. The T-Account format helps visualize this: debits on the left, credits on the right. Master these concepts and you'll have the foundation for all accounting work. This system has been used successfully for over 500 years because it works!",
+  endOfLessonQuiz: [
+   {
+    id: 'facc-ledger-q1',
+    type: 'mcq',
+    question: "The main purpose of the ledger is to:",
+    options: [
+     "Record transactions chronologically",
+     "Organize transactions by account",
+     "Show only cash transactions",
+     "Replace the need for a journal"
     ],
-    summary: "Congratulations! You've mastered the Ledger and Double Entry System—the heart of accounting! You now understand that the Journal records transactions chronologically (by date), while the Ledger organizes them by account. The revolutionary Double Entry System ensures that EVERY transaction is recorded TWICE—once as a debit and once as a credit—keeping the books in perfect balance. Remember: Debits always equal Credits, which means Assets always equal Liabilities plus Capital. The T-Account format helps visualize this: debits on the left, credits on the right. Master these concepts and you'll have the foundation for all accounting work. This system has been used successfully for over 500 years because it works!",
-    endOfLessonQuiz: [
-      {
-        id: 'facc-ledger-q1',
-        type: 'mcq',
-        question: "The main purpose of the ledger is to:",
-        options: [
-          "Record transactions chronologically",
-          "Organize transactions by account",
-          "Show only cash transactions",
-          "Replace the need for a journal"
-        ],
-        answer: "Organize transactions by account",
-        explanation: "The ledger organizes transactions by account, showing all activity for each account. The journal records transactions chronologically (by date)."
-      },
-      {
-        id: 'facc-ledger-q2',
-        type: 'mcq',
-        question: "The double entry principle states that:",
-        options: [
-          "Each transaction is recorded once",
-          "Each account is recorded once",
-          "Each transaction affects at least two accounts",
-          "Debits and credits are never equal"
-        ],
-        answer: "Each transaction affects at least two accounts",
-        explanation: "Every transaction in double entry is recorded twice—once as a debit and once as a credit—affecting at least two accounts."
-      },
-      {
-        id: 'facc-ledger-q3',
-        type: 'mcq',
-        question: "In the T-Account format, debits are on the:",
-        options: [
-          "Right side",
-          "Bottom",
-          "Left side",
-          "Top"
-        ],
-        answer: "Left side",
-        explanation: "In the T-Account format, debits are always recorded on the LEFT side, and credits on the RIGHT side."
-      },
-      {
-        id: 'facc-ledger-q4',
-        type: 'mcq',
-        question: "When an asset increases, you:",
-        options: [
-          "Debit the asset account",
-          "Credit the asset account",
-          "Debit both sides",
-          "Credit both sides"
-        ],
-        answer: "Debit the asset account",
-        explanation: "To increase an asset account, you DEBIT it. For example, debit Cash when money comes in."
-      },
-      {
-        id: 'facc-ledger-q5',
-        type: 'mcq',
-        question: "When a liability increases, you:",
-        options: [
-          "Debit the liability account",
-          "Credit the liability account",
-          "Ignore it",
-          "Create a new account"
-        ],
-        answer: "Credit the liability account",
-        explanation: "To increase a liability (like Creditors), you CREDIT it. For example, credit Creditors when you buy goods on credit."
-      }
+    answer: "Organize transactions by account",
+    explanation: "The ledger organizes transactions by account, showing all activity for each account. The journal records transactions chronologically (by date)."
+   },
+   {
+    id: 'facc-ledger-q2',
+    type: 'mcq',
+    question: "The double entry principle states that:",
+    options: [
+     "Each transaction is recorded once",
+     "Each account is recorded once",
+     "Each transaction affects at least two accounts",
+     "Debits and credits are never equal"
     ],
-    activities: [],
-    pastQuestions: [
-      {
-        question: "The process of transferring information from the journal to the ledger is called:",
-        options: ["Balancing", "Posting", "Casting", "Journalizing"],
-        answer: "Posting",
-        explanation: "Posting is the process of transferring journal entries to their corresponding ledger accounts."
-      },
-      {
-        question: "Which of the following is NOT a characteristic of the double entry system?",
-        options: [
-          "Each transaction affects at least two accounts",
-          "Debits always equal credits",
-          "It ensures the trial balance balances",
-          "It records each transaction only once"
-        ],
-        answer: "It records each transaction only once",
-        explanation: "The double entry system records EACH transaction TWICE (once as debit, once as credit). Recording only once would be single entry."
-      },
-      {
-        question: "The normal balance of a revenue account is:",
-        options: ["Debit", "Credit", "Both debit and credit", "Neither debit nor credit"],
-        answer: "Credit",
-        explanation: "Revenue accounts (like Sales) normally have a CREDIT balance because they represent income earned, which increases capital."
-      },
-      {
-        question: "When balancing a T-account, the balance is entered on:",
-        options: [
-          "The side with the larger total",
-          "The side with the smaller total",
-          "Both sides equally",
-          "A new separate account"
-        ],
-        answer: "The side with the smaller total",
-        explanation: "When balancing, the balance (difference) is entered on the side with the smaller total to make both sides equal."
-      },
-      {
-        question: "According to the fundamental accounting equation, if assets increase by {{currency}}5,000 due to owner's capital injection, then:",
-        options: [
-          "Assets increase; Liabilities increase",
-          "Assets increase; Capital increases",
-          "Assets decrease; Liabilities decrease",
-          "Assets remain the same"
-        ],
-        answer: "Assets increase; Capital increases",
-        explanation: "When an owner invests cash, both Assets (Cash) and Capital (Owner's Equity) increase by the same amount, maintaining the equation."
-      },
-      {
-        question: "The difference between the journal and the ledger is primarily that:",
-        options: [
-          "The journal is more important than the ledger",
-          "The journal records by date; the ledger records by account",
-          "The journal contains final balances",
-          "The ledger is the book of original entry"
-        ],
-        answer: "The journal records by date; the ledger records by account",
-        explanation: "The Journal (Book of Original Entry) records transactions chronologically by DATE. The Ledger organizes transactions by ACCOUNT, making it easier to find the balance of each account."
-      }
+    answer: "Each transaction affects at least two accounts",
+    explanation: "Every transaction in double entry is recorded twice—once as a debit and once as a credit—affecting at least two accounts."
+   },
+   {
+    id: 'facc-ledger-q3',
+    type: 'mcq',
+    question: "In the T-Account format, debits are on the:",
+    options: [
+     "Right side",
+     "Bottom",
+     "Left side",
+     "Top"
     ],
-  },
+    answer: "Left side",
+    explanation: "In the T-Account format, debits are always recorded on the LEFT side, and credits on the RIGHT side."
+   },
+   {
+    id: 'facc-ledger-q4',
+    type: 'mcq',
+    question: "When an asset increases, you:",
+    options: [
+     "Debit the asset account",
+     "Credit the asset account",
+     "Debit both sides",
+     "Credit both sides"
+    ],
+    answer: "Debit the asset account",
+    explanation: "To increase an asset account, you DEBIT it. For example, debit Cash when money comes in."
+   },
+   {
+    id: 'facc-ledger-q5',
+    type: 'mcq',
+    question: "When a liability increases, you:",
+    options: [
+     "Debit the liability account",
+     "Credit the liability account",
+     "Ignore it",
+     "Create a new account"
+    ],
+    answer: "Credit the liability account",
+    explanation: "To increase a liability (like Creditors), you CREDIT it. For example, credit Creditors when you buy goods on credit."
+   }
+  ],
+  activities: [],
+  pastQuestions: [
+   {
+    question: "The process of transferring information from the journal to the ledger is called:",
+    options: ["Balancing", "Posting", "Casting", "Journalizing"],
+    answer: "Posting",
+    explanation: "Posting is the process of transferring journal entries to their corresponding ledger accounts."
+   },
+   {
+    question: "Which of the following is NOT a characteristic of the double entry system?",
+    options: [
+     "Each transaction affects at least two accounts",
+     "Debits always equal credits",
+     "It ensures the trial balance balances",
+     "It records each transaction only once"
+    ],
+    answer: "It records each transaction only once",
+    explanation: "The double entry system records EACH transaction TWICE (once as debit, once as credit). Recording only once would be single entry."
+   },
+   {
+    question: "The normal balance of a revenue account is:",
+    options: ["Debit", "Credit", "Both debit and credit", "Neither debit nor credit"],
+    answer: "Credit",
+    explanation: "Revenue accounts (like Sales) normally have a CREDIT balance because they represent income earned, which increases capital."
+   },
+   {
+    question: "When balancing a T-account, the balance is entered on:",
+    options: [
+     "The side with the larger total",
+     "The side with the smaller total",
+     "Both sides equally",
+     "A new separate account"
+    ],
+    answer: "The side with the smaller total",
+    explanation: "When balancing, the balance (difference) is entered on the side with the smaller total to make both sides equal."
+   },
+   {
+    question: "According to the fundamental accounting equation, if assets increase by {{currency}}5,000 due to owner's capital injection, then:",
+    options: [
+     "Assets increase; Liabilities increase",
+     "Assets increase; Capital increases",
+     "Assets decrease; Liabilities decrease",
+     "Assets remain the same"
+    ],
+    answer: "Assets increase; Capital increases",
+    explanation: "When an owner invests cash, both Assets (Cash) and Capital (Owner's Equity) increase by the same amount, maintaining the equation."
+   },
+   {
+    question: "The difference between the journal and the ledger is primarily that:",
+    options: [
+     "The journal is more important than the ledger",
+     "The journal records by date; the ledger records by account",
+     "The journal contains final balances",
+     "The ledger is the book of original entry"
+    ],
+    answer: "The journal records by date; the ledger records by account",
+    explanation: "The Journal (Book of Original Entry) records transactions chronologically by DATE. The Ledger organizes transactions by ACCOUNT, making it easier to find the balance of each account."
+   }
+  ],
+ },
 ];
+
+
+
+
+
+
+
+
 
