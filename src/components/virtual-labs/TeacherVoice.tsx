@@ -19,6 +19,7 @@ export function TeacherVoice({ message, autoPlay = true, onComplete }: TeacherVo
     const [voicesLoaded, setVoicesLoaded] = React.useState(false);
     const [userInteracted, setUserInteracted] = React.useState(false);
     const [showAudioPrompt, setShowAudioPrompt] = React.useState(false);
+    const [isDragging, setIsDragging] = React.useState(false);
     const utteranceRef = React.useRef<SpeechSynthesisUtterance | null>(null);
     const debounceTimerRef = React.useRef<NodeJS.Timeout | null>(null);
 
@@ -132,6 +133,12 @@ export function TeacherVoice({ message, autoPlay = true, onComplete }: TeacherVo
             x: position.x + info.offset.x,
             y: position.y + info.offset.y
         });
+        // Prevent click events after drag
+        setTimeout(() => setIsDragging(false), 100);
+    };
+    
+    const handleDragStart = () => {
+        setIsDragging(true);
     };
 
     return (
@@ -183,6 +190,7 @@ export function TeacherVoice({ message, autoPlay = true, onComplete }: TeacherVo
                         drag
                         dragMomentum={false}
                         dragElastic={0}
+                        onDragStart={handleDragStart}
                         onDragEnd={handleDragEnd}
                         style={{
                             x: position.x,
@@ -197,7 +205,13 @@ export function TeacherVoice({ message, autoPlay = true, onComplete }: TeacherVo
                     {isMinimized ? (
                         // Minimized state - just floating button
                         <motion.button
-                            onClick={() => setIsMinimized(false)}
+                            onClick={(e) => {
+                                if (isDragging) {
+                                    e.preventDefault();
+                                    return;
+                                }
+                                setIsMinimized(false);
+                            }}
                             className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-full shadow-2xl p-3 flex items-center gap-2 hover:scale-105 transition-transform"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -274,7 +288,11 @@ export function TeacherVoice({ message, autoPlay = true, onComplete }: TeacherVo
                                     <Button
                                         size="sm"
                                         variant="ghost"
-                                        onClick={() => {
+                                        onClick={(e) => {
+                                            if (isDragging) {
+                                                e.preventDefault();
+                                                return;
+                                            }
                                             if (!userInteracted) {
                                                 enableAudio();
                                             } else {
@@ -290,7 +308,13 @@ export function TeacherVoice({ message, autoPlay = true, onComplete }: TeacherVo
                                     <Button
                                         size="sm"
                                         variant="ghost"
-                                        onClick={() => setIsMinimized(true)}
+                                        onClick={(e) => {
+                                            if (isDragging) {
+                                                e.preventDefault();
+                                                return;
+                                            }
+                                            setIsMinimized(true);
+                                        }}
                                         className="h-8 w-8 p-0 hover:bg-white/20 text-white"
                                         title="Minimize"
                                     >

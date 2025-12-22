@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Droplets, CheckCircle, XCircle, Award, Trophy, TestTube, Sparkles, AlertTriangle, Beaker } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { useLabProgress } from '@/stores/lab-progress-store';
+import { TeacherVoice } from './TeacherVoice';
+import { useLocalization } from '@/hooks/useLocalization';
 
 type TestType = 'copper-sulfate' | 'cobalt-chloride' | 'none';
 
@@ -17,7 +19,7 @@ interface TestResult {
 }
 
 export function WaterTestLabEnhanced() {
-  const [step, setStep] = React.useState<'intro' | 'setup' | 'experiment' | 'results' | 'quiz' | 'complete'>('intro');
+  const [step, setStep] = React.useState<'intro' | 'collect-supplies' | 'setup' | 'experiment' | 'results' | 'quiz' | 'complete'>('intro');
   const [selectedTest, setSelectedTest] = React.useState<TestType>('none');
   const [isTesting, setIsTesting] = React.useState(false);
   const [testResults, setTestResults] = React.useState<TestResult[]>([]);
@@ -26,10 +28,18 @@ export function WaterTestLabEnhanced() {
   const [quizAnswers, setQuizAnswers] = React.useState<Record<number, number>>({});
   const [showQuizFeedback, setShowQuizFeedback] = React.useState(false);
   const [quizScore, setQuizScore] = React.useState(0);
+  const [teacherMessage, setTeacherMessage] = React.useState('');
+  const [currentObservation, setCurrentObservation] = React.useState('');
+  const [suppliesCollected, setSuppliesCollected] = React.useState<string[]>([]);
 
   const { markLabComplete, isLabCompleted } = useLabProgress();
+  const { country } = useLocalization();
   const labId = 'water-test';
   const isComplete = isLabCompleted(labId);
+
+  React.useEffect(() => {
+    setTeacherMessage(`Welcome to the Water Testing Lab! Today we'll learn two chemical tests that scientists in ${country.name} and worldwide use to detect water. These tests are important for quality control in industries, laboratories, and even in everyday products. Let's discover how chemical color changes can reveal the presence of water!`);
+  }, [country.name]);
 
   const tests = {
     'copper-sulfate': {
@@ -73,16 +83,29 @@ export function WaterTestLabEnhanced() {
     if (selectedTest === 'none') return;
 
     setIsTesting(true);
+    setCurrentObservation('Adding water to the sample...');
+
+    setTimeout(() => {
+      if (selectedTest === 'copper-sulfate') {
+        setCurrentObservation('The powder is absorbing water molecules...');
+      } else {
+        setCurrentObservation('Water droplets spreading on the paper...');
+      }
+    }, 800);
 
     setTimeout(() => {
       let observation = '';
       let conclusion = '';
 
       if (selectedTest === 'copper-sulfate') {
+        setTimeout(() => setTeacherMessage('Watch carefully as we add water to the white powder...'), 500);
+        setTimeout(() => setTeacherMessage('Excellent! The dramatic color change from white to blue is our chemical proof that water is present. This happens because the copper sulfate molecules are binding with water molecules!'), 1500);
         setCopperSulfateColor('blue');
         observation = 'The white anhydrous copper(II) sulfate powder immediately turns bright blue when water is added!';
         conclusion = 'The color change from white to blue confirms the presence of water. The anhydrous (water-free) form absorbs water and becomes hydrated copper(II) sulfate (CuSO₄·5H₂O).';
       } else if (selectedTest === 'cobalt-chloride') {
+        setTimeout(() => setTeacherMessage('Notice how sensitive this test is - even a single drop causes the color change...'), 500);
+        setTimeout(() => setTeacherMessage('Perfect! The blue paper turning pink is another reliable indicator of water. This test is so sensitive it can even detect moisture in the air!'), 1500);
         setCobaltPaperColor('pink');
         observation = 'The blue cobalt(II) chloride paper turns pink when touched with water droplets!';
         conclusion = 'The color change from blue to pink confirms water is present. Blue anhydrous cobalt chloride absorbs water to form pink hydrated cobalt chloride.';
@@ -94,8 +117,17 @@ export function WaterTestLabEnhanced() {
         conclusion,
       };
 
-      setTestResults((prev) => [...prev, result]);
+      setTestResults((prev) => {
+        const newResults = [...prev, result];
+        if (newResults.length === 1) {
+          setTimeout(() => setTeacherMessage('Great work on your first test! Now try the other test to see a different color change reaction.'), 2500);
+        } else if (newResults.length === 2) {
+          setTimeout(() => setTeacherMessage("Excellent! You've completed both water tests successfully. You now know two reliable methods chemists use to detect water. Let's analyze what we learned!"), 2500);
+        }
+        return newResults;
+      });
       setIsTesting(false);
+      setCurrentObservation('');
 
       confetti({
         particleCount: 50,
@@ -116,17 +148,23 @@ export function WaterTestLabEnhanced() {
     setShowQuizFeedback(true);
 
     if (score === quizQuestions.length) {
+      setTimeout(() => setTeacherMessage("Perfect score! You've mastered water testing methods. You understand both the practical techniques and the chemistry behind them. Excellent work!"), 500);
       confetti({
         particleCount: 100,
         spread: 70,
         origin: { y: 0.6 },
       });
+    } else if (score >= 2) {
+      setTimeout(() => setTeacherMessage('Good effort! You got most of the answers correct. Review the explanations to strengthen your understanding of water tests.'), 500);
+    } else {
+      setTimeout(() => setTeacherMessage('Keep learning! Review the color changes and chemical reactions. Understanding these tests takes practice.'), 500);
     }
   };
 
   const handleComplete = () => {
     markLabComplete(labId, 100, 0);
     setStep('complete');
+    setTeacherMessage(`Congratulations! You've successfully completed the Water Testing Lab. You now know how to detect water using chemical tests - skills that scientists and quality control experts in ${country.name} and around the world use every day. Well done!`);
     confetti({
       particleCount: 150,
       spread: 100,
@@ -144,6 +182,9 @@ export function WaterTestLabEnhanced() {
     setQuizAnswers({});
     setShowQuizFeedback(false);
     setQuizScore(0);
+    setCurrentObservation('');
+    setSuppliesCollected([]);
+    setTeacherMessage(`Welcome to the Water Testing Lab! Today we'll learn two chemical tests that scientists in ${country.name} and worldwide use to detect water. These tests are important for quality control in industries, laboratories, and even in everyday products. Let's discover how chemical color changes can reveal the presence of water!`);
   };
 
   const resetTest = () => {
@@ -154,6 +195,54 @@ export function WaterTestLabEnhanced() {
 
   return (
     <div className="max-w-5xl mx-auto p-4 space-y-6">
+      {/* Teacher Voice */}
+      {teacherMessage && (
+        <TeacherVoice message={teacherMessage} />
+      )}
+
+      {/* Progress Indicator */}
+      {step !== 'intro' && step !== 'complete' && (
+        <Card className="border">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between gap-2">
+              {[
+                { key: 'collect-supplies', label: 'Supplies', icon: Beaker },
+                { key: 'setup', label: 'Setup', icon: TestTube },
+                { key: 'experiment', label: 'Testing', icon: Droplets },
+                { key: 'results', label: 'Analysis', icon: Sparkles },
+                { key: 'quiz', label: 'Quiz', icon: Award },
+              ].map((s, idx) => {
+                const StepIcon = s.icon;
+                const isActive = step === s.key;
+                const isCompleted = ['collect-supplies', 'setup', 'experiment', 'results', 'quiz'].indexOf(step) > 
+                                   ['collect-supplies', 'setup', 'experiment', 'results', 'quiz'].indexOf(s.key);
+                return (
+                  <div key={s.key} className="flex items-center gap-2">
+                    <div className={`flex flex-col items-center gap-1 ${isActive ? 'scale-110' : ''} transition-transform`}>
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 ${
+                        isCompleted ? 'bg-green-500 border-green-500 text-white' :
+                        isActive ? 'bg-cyan-500 border-cyan-500 text-white' :
+                        'bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-400'
+                      }`}>
+                        {isCompleted ? <CheckCircle className="w-5 h-5" /> : <StepIcon className="w-5 h-5" />}
+                      </div>
+                      <span className={`text-xs font-medium ${isActive ? 'text-cyan-600 dark:text-cyan-400' : 'text-gray-500'}`}>
+                        {s.label}
+                      </span>
+                    </div>
+                    {idx < 4 && (
+                      <div className={`hidden md:block h-0.5 w-8 ${
+                        isCompleted ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'
+                      }`} />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+      
       <Card className="border-2">
         <CardHeader className="bg-gradient-to-r from-cyan-50 to-blue-50 dark:from-cyan-950 dark:to-blue-950">
           <CardTitle className="flex items-center gap-2 text-2xl">
@@ -247,12 +336,106 @@ export function WaterTestLabEnhanced() {
                 </div>
 
                 <Button
-                  onClick={() => setStep('setup')}
+                  onClick={() => {
+                    setStep('collect-supplies');
+                    setTeacherMessage("Before we begin testing, let's gather all the materials we'll need for both water tests. Click each item to collect it!");
+                  }}
                   size="lg"
                   className="w-full"
                 >
                   Begin Testing
                 </Button>
+              </motion.div>
+            )}
+
+            {/* COLLECT SUPPLIES STEP */}
+            {step === 'collect-supplies' && (
+              <motion.div
+                key="collect-supplies"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="space-y-6"
+              >
+                <div className="text-center space-y-2">
+                  <h3 className="text-xl font-semibold flex items-center justify-center gap-2">
+                    <Beaker className="w-6 h-6 text-cyan-500" />
+                    Gather Your Supplies
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Click on each item to collect it for your experiments
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {[
+                    { id: 'copper-sulfate', name: 'Anhydrous Copper Sulfate', icon: '⚗️', emoji: '🤍' },
+                    { id: 'cobalt-paper', name: 'Cobalt Chloride Paper', icon: '📄', emoji: '💙' },
+                    { id: 'dropper', name: 'Water Dropper', icon: '💧', emoji: '💧' },
+                    { id: 'test-tubes', name: 'Test Tubes', icon: '🧪', emoji: '🧪' },
+                    { id: 'water', name: 'Distilled Water', icon: '💦', emoji: '💦' },
+                    { id: 'goggles', name: 'Safety Goggles', icon: '🥽', emoji: '🥽' },
+                  ].map((supply) => {
+                    const collected = suppliesCollected.includes(supply.id);
+                    return (
+                      <motion.button
+                        key={supply.id}
+                        onClick={() => {
+                          if (!collected) {
+                            setSuppliesCollected((prev) => [...prev, supply.id]);
+                            confetti({
+                              particleCount: 30,
+                              spread: 50,
+                              origin: { y: 0.6 },
+                            });
+                          }
+                        }}
+                        disabled={collected}
+                        className={`p-6 rounded-xl border-2 transition-all ${
+                          collected
+                            ? 'border-green-500 bg-green-50 dark:bg-green-950'
+                            : 'border-gray-200 dark:border-gray-700 hover:border-cyan-300 hover:shadow-lg'
+                        }`}
+                        whileHover={{ scale: collected ? 1 : 1.05 }}
+                        whileTap={{ scale: collected ? 1 : 0.95 }}
+                      >
+                        <div className="text-4xl mb-2">{supply.emoji}</div>
+                        <h4 className="font-semibold text-sm mb-1">{supply.name}</h4>
+                        {collected && (
+                          <div className="flex items-center justify-center gap-1 text-green-600 text-sm mt-2">
+                            <CheckCircle className="w-4 h-4" />
+                            <span>Collected</span>
+                          </div>
+                        )}
+                      </motion.button>
+                    );
+                  })}
+                </div>
+
+                {suppliesCollected.length === 6 && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                  >
+                    <Button
+                      onClick={() => {
+                        setStep('setup');
+                        setTeacherMessage("Perfect! Now that we have all our supplies, let's review the testing procedures. Both tests rely on hydration - when water molecules bind to anhydrous chemicals, changing their structure and color.");
+                      }}
+                      size="lg"
+                      className="w-full bg-green-600 hover:bg-green-700"
+                    >
+                      <CheckCircle className="w-5 h-5 mr-2" />
+                      All Supplies Collected - Continue
+                    </Button>
+                  </motion.div>
+                )}
+
+                {suppliesCollected.length < 6 && (
+                  <div className="text-center text-sm text-muted-foreground">
+                    {suppliesCollected.length}/6 supplies collected
+                  </div>
+                )}
               </motion.div>
             )}
 
@@ -295,7 +478,10 @@ export function WaterTestLabEnhanced() {
                 </div>
 
                 <Button
-                  onClick={() => setStep('experiment')}
+                  onClick={() => {
+                    setStep('experiment');
+                    setTeacherMessage('Now for the exciting part! Select a test and add water to observe the chemical color change. Remember to observe carefully!');
+                  }}
                   size="lg"
                   className="w-full"
                 >
@@ -490,6 +676,22 @@ export function WaterTestLabEnhanced() {
                   </motion.div>
                 )}
 
+                {/* Current Observation Display */}
+                {currentObservation && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-blue-50 dark:bg-blue-950 border-2 border-blue-200 dark:border-blue-800 p-4 rounded-lg"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Sparkles className="w-5 h-5 text-blue-600 animate-pulse" />
+                      <p className="text-sm font-medium text-blue-900 dark:text-blue-100">
+                        {currentObservation}
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+
                 {/* Test Button */}
                 {selectedTest !== 'none' && !isTesting && !testResults.some(r => r.testType === selectedTest) && (
                   <div className="space-y-3">
@@ -546,7 +748,10 @@ export function WaterTestLabEnhanced() {
                 {/* Continue Button */}
                 {testResults.length >= 2 && (
                   <Button
-                    onClick={() => setStep('results')}
+                    onClick={() => {
+                      setStep('results');
+                      setTeacherMessage("Outstanding work! Let's dive deeper into the chemistry behind these tests and explore their real-world applications.");
+                    }}
                     size="lg"
                     className="w-full"
                   >
@@ -607,7 +812,7 @@ export function WaterTestLabEnhanced() {
                         gel has absorbed moisture and needs replacement.
                       </li>
                       <li>
-                        <strong>Quality Control:</strong> Industries use these tests to ensure products 
+                        <strong>Quality Control in {country.name}:</strong> Industries across {country.name} use these tests to ensure products 
                         are properly dried before packaging. Moisture can spoil electronics, medications, 
                         and food products.
                       </li>
@@ -647,7 +852,10 @@ export function WaterTestLabEnhanced() {
                 </div>
 
                 <Button
-                  onClick={() => setStep('quiz')}
+                  onClick={() => {
+                    setStep('quiz');
+                    setTeacherMessage('Time to test your understanding! These questions will check if you grasp the chemistry behind water detection.');
+                  }}
                   size="lg"
                   className="w-full"
                 >
@@ -747,26 +955,45 @@ export function WaterTestLabEnhanced() {
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="text-center space-y-4"
+                    className="space-y-4"
                   >
-                    <div className="p-6 bg-gradient-to-r from-cyan-50 to-blue-50 dark:from-cyan-950 dark:to-blue-950 rounded-lg border-2">
-                      <h3 className="text-2xl font-bold mb-2">
-                        Your Score: {quizScore} / {quizQuestions.length}
-                      </h3>
-                      <p className="text-muted-foreground">
-                        {quizScore === quizQuestions.length
-                          ? '🎉 Perfect! You mastered water testing!'
-                          : quizScore >= quizQuestions.length / 2
-                          ? '👍 Good job! Review the material to improve.'
-                          : '📚 Keep learning! Review the concepts and try again.'}
-                      </p>
-                    </div>
+                    <Card className={`border-2 ${
+                      quizScore === quizQuestions.length 
+                        ? 'border-green-500 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950'
+                        : quizScore >= 2
+                        ? 'border-blue-500 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950'
+                        : 'border-orange-500 bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-950 dark:to-amber-950'
+                    }`}>
+                      <CardContent className="p-6 text-center space-y-3">
+                        <div className="text-6xl mb-2">
+                          {quizScore === quizQuestions.length ? '🏆' : quizScore >= 2 ? '👍' : '📚'}
+                        </div>
+                        <h3 className="text-3xl font-bold">
+                          {quizScore} / {quizQuestions.length}
+                        </h3>
+                        <p className="text-lg font-medium">
+                          {quizScore === quizQuestions.length
+                            ? 'Perfect Score! Outstanding!'
+                            : quizScore >= 2
+                            ? 'Good Work! Almost There!'
+                            : 'Keep Practicing!'}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {quizScore === quizQuestions.length
+                            ? "You've mastered water testing methods and chemistry!"
+                            : quizScore >= 2
+                            ? 'Review the explanations to strengthen your understanding.'
+                            : 'Take time to review the concepts and try again.'}
+                        </p>
+                      </CardContent>
+                    </Card>
 
                     <Button
                       onClick={handleComplete}
                       size="lg"
                       className="w-full"
                     >
+                      <Trophy className="w-5 h-5 mr-2" />
                       Complete Lab
                     </Button>
                   </motion.div>

@@ -37,7 +37,6 @@ export function WorkEnergyLabEnhanced() {
   // Teacher voice
   const [teacherMessage, setTeacherMessage] = React.useState('');
   const [pendingTransition, setPendingTransition] = React.useState<(() => void) | null>(null);
-  const [teacherPosition, setTeacherPosition] = React.useState({ x: 0, y: 0 });
 
   // Supplies tracking
   const [rampCollected, setRampCollected] = React.useState(false);
@@ -271,34 +270,10 @@ export function WorkEnergyLabEnhanced() {
 
   return (
     <div className="max-w-5xl mx-auto p-4 space-y-6">
-      {/* Draggable Teacher Voice */}
-      <motion.div
-        drag
-        dragMomentum={false}
-        dragElastic={0}
-        dragConstraints={{ left: -300, right: 300, top: -100, bottom: 400 }}
-        onDragEnd={(_, info) => {
-          setTeacherPosition({ x: info.offset.x, y: info.offset.y });
-        }}
-        initial={{ x: 0, y: 0 }}
-        style={{ x: teacherPosition.x, y: teacherPosition.y }}
-        className="fixed bottom-16 left-2 right-2 md:left-auto md:right-4 md:w-96 max-w-md z-50 touch-none"
-      >
-        <Card className="shadow-2xl border-2 border-purple-400 dark:border-purple-600 cursor-move">
-          <CardHeader className="pb-2 py-2 md:py-4">
-            <div className="flex items-center gap-2">
-              <GripVertical className="h-4 w-4 text-muted-foreground" />
-              <CardTitle className="text-xs md:text-sm">Teacher Guide (Drag to Move)</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent className="pt-0">
-            <TeacherVoice 
-              message={teacherMessage}
-              onComplete={handleTeacherComplete}
-            />
-          </CardContent>
-        </Card>
-      </motion.div>
+      <TeacherVoice 
+        message={teacherMessage}
+        onComplete={handleTeacherComplete}
+      />
 
       <Card className="border-2">
         <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950 dark:to-blue-950">

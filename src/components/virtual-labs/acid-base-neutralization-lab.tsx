@@ -64,12 +64,11 @@ export function AcidBaseNeutralizationLabEnhanced() {
     const isCompleted = isLabCompleted(labId);
     const completion = getLabCompletion(labId);
 
-    // Draggable teacher
-    const [teacherPosition, setTeacherPosition] = React.useState({ x: 0, y: 0 });
-
     React.useEffect(() => {
         if (currentStep === 'intro') {
             setTeacherMessage("Welcome to Acid-Base Neutralization Lab! We'll perform titration - the process of adding one solution to another until they're perfectly balanced. This teaches us about acids, bases, and chemical equilibrium. Let's get started!");
+        } else if (currentStep === 'complete') {
+            setTeacherMessage("Fantastic work! You've mastered titration and neutralization reactions. This skill is fundamental in chemistry, used in medicine, environmental testing, and industrial processes. Your precision and understanding are impressive!");
         }
     }, [currentStep]);
 
@@ -124,11 +123,12 @@ export function AcidBaseNeutralizationLabEnhanced() {
         setBaseAdded(0);
         setCurrentColor('red');
         setPhValue(1);
-        setTeacherMessage(`Starting Titration ${titrationNum}... We have ${25}mL of HCl in the conical flask. We'll add NaOH from the burette until the color changes from red to colorless.`);
+        setTeacherMessage(`Starting Titration ${titrationNum}. We have 25mL of hydrochloric acid in the flask. Watch the indicator carefully as we add sodium hydroxide drop by drop. The color will change when we reach the equivalence point!`);
         
         setTimeout(() => {
             setTitrationStage(1);
-        }, 1500);
+            setTeacherMessage(`Now adding NaOH slowly from the burette. Notice how the red color shows the solution is acidic. Keep adding base gradually...`);
+        }, 4500);
     };
     
     const handleAddBase = () => {
@@ -142,18 +142,25 @@ export function AcidBaseNeutralizationLabEnhanced() {
             if (newBaseVolume < equivalencePoint - 5) {
                 setPhValue(Math.min(7 - ((equivalencePoint - newBaseVolume) / 20), 7));
                 setCurrentColor('red');
+                if (newBaseVolume === 10) {
+                    setTeacherMessage(`Good progress! We've added ${newBaseVolume}mL. The solution is still strongly acidic - notice the red color persists.`);
+                }
             } else if (newBaseVolume < equivalencePoint) {
                 setPhValue(Math.min(7, 1 + (newBaseVolume / 10)));
                 setCurrentColor('orange');
+                if (newBaseVolume === equivalencePoint - 3) {
+                    setTeacherMessage(`We're getting close! The color is starting to change to orange - approaching neutralization. Add carefully now!`);
+                }
             } else if (newBaseVolume === equivalencePoint) {
                 setPhValue(7);
                 setCurrentColor('yellow');
-                setTeacherMessage(`Perfect! Equivalence point reached at ${newBaseVolume}mL! The solution is now neutral (pH = 7).`);
+                setTeacherMessage(`Perfect! Equivalence point reached at ${newBaseVolume}mL! The solution is now perfectly neutral at pH 7. The acid and base have completely reacted to form salt and water!`);
                 setTitrationStage(2);
             } else {
                 setPhValue(Math.min(13, 7 + ((newBaseVolume - equivalencePoint) / 15)));
                 setCurrentColor('green');
                 if (newBaseVolume === equivalencePoint + 1) {
+                    setTeacherMessage(`Notice the solution turned green - we've gone past the equivalence point into basic territory. This shows us the importance of precision in titration!`);
                     setTitrationStage(3);
                 }
             }
@@ -220,16 +227,18 @@ export function AcidBaseNeutralizationLabEnhanced() {
             const earnedXP = markLabComplete(labId, score, 0);
             setXpEarned(earnedXP);
             setQuizFeedback(`Perfect! 🎉 You got all 3 correct! You understand acid-base chemistry! +${earnedXP} XP`);
+            setTeacherMessage(`Brilliant! All three answers correct! You've mastered titration and neutralization reactions. You earned ${earnedXP} XP! Understanding these concepts is crucial for pharmacy, environmental science, and industrial chemistry. Excellent work!`);
             setShowCelebration(true);
             confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-            setTimeout(() => {
-                setShowCelebration(false);
+            setPendingTransition(() => () => {
                 setCurrentStep('complete');
-            }, 2000);
+            });
         } else if (correctCount === 2) {
             setQuizFeedback(`Good job! You got ${correctCount} out of 3 correct. Remember the key concepts of neutralization.`);
+            setTeacherMessage(`Nice effort! You got ${correctCount} out of 3. You're close to mastering this! Remember: neutralization produces salt and water, and indicators help us detect the equivalence point. Review the titration process and try again!`);
         } else {
             setQuizFeedback(`You got ${correctCount} out of 3 correct. Acids and bases react to form salt and water.`);
+            setTeacherMessage(`Keep trying! You got ${correctCount} out of 3. The key concept: when acids and bases react, they neutralize each other forming salt and water. The indicator changes color at the equivalence point. Review your titrations and try again - you've got this!`);
         }
     };
 
@@ -258,39 +267,16 @@ export function AcidBaseNeutralizationLabEnhanced() {
         setQuizSubmitted(false);
         setShowCelebration(false);
         setPendingTransition(null);
-        setTeacherMessage("Ready to explore titration again!");
+        setTeacherMessage("Wonderful! Let's perform the titration again. Each repetition helps you understand the precision and technique needed for accurate neutralization. Watch how the color changes as you approach the equivalence point!");
     };
 
     return (
         <div className="space-y-6 pb-20">
-            {/* Draggable Teacher Voice */}
-            <motion.div
-                drag
-                dragMomentum={false}
-                dragElastic={0}
-                dragConstraints={{ left: -300, right: 300, top: -100, bottom: 400 }}
-                onDragEnd={(_, info) => {
-                    setTeacherPosition({ x: info.offset.x, y: info.offset.y });
-                }}
-                initial={{ x: 0, y: 0 }}
-                style={{ x: teacherPosition.x, y: teacherPosition.y }}
-                className="fixed bottom-16 left-2 right-2 md:left-auto md:right-4 md:w-96 max-w-md z-50 touch-none"
-            >
-                <Card className="shadow-2xl border-2 border-blue-400 dark:border-blue-600 cursor-move">
-                    <CardHeader className="pb-2 py-2 md:py-4">
-                        <div className="flex items-center gap-2">
-                            <GripVertical className="h-4 w-4 text-muted-foreground" />
-                            <CardTitle className="text-xs md:text-sm">Teacher Guide (Drag to Move)</CardTitle>
-                        </div>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                        <TeacherVoice 
-                            message={teacherMessage}
-                            onComplete={handleTeacherComplete}
-                        />
-                    </CardContent>
-                </Card>
-            </motion.div>
+            {/* Teacher Voice */}
+            <TeacherVoice 
+                message={teacherMessage}
+                onComplete={handleTeacherComplete}
+            />
 
             {isCompleted && (
                 <motion.div
@@ -317,9 +303,18 @@ export function AcidBaseNeutralizationLabEnhanced() {
                 <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
                     className="fixed inset-0 flex items-center justify-center z-50 bg-black/50 backdrop-blur-sm"
+                    onClick={() => {
+                        setShowCelebration(false);
+                        if (pendingTransition) {
+                            const transition = pendingTransition;
+                            setPendingTransition(null);
+                            transition();
+                        }
+                    }}
                 >
-                    <Card className="w-full max-w-md mx-4">
+                    <Card className="w-full max-w-md mx-4" onClick={(e) => e.stopPropagation()}>
                         <CardHeader className="text-center">
                             <motion.div
                                 animate={{ rotate: [0, -10, 10, -10, 10, 0], scale: [1, 1.2, 1] }}
@@ -340,6 +335,24 @@ export function AcidBaseNeutralizationLabEnhanced() {
                                 You understand neutralization reactions!
                             </p>
                         </CardContent>
+                        <CardFooter className="flex flex-col gap-2">
+                            <Button 
+                                onClick={() => {
+                                    setShowCelebration(false);
+                                    if (pendingTransition) {
+                                        const transition = pendingTransition;
+                                        setPendingTransition(null);
+                                        transition();
+                                    }
+                                }} 
+                                className="w-full"
+                            >
+                                Continue
+                            </Button>
+                            <p className="text-xs text-muted-foreground text-center">
+                                Click anywhere to continue
+                            </p>
+                        </CardFooter>
                     </Card>
                 </motion.div>
             )}
@@ -629,11 +642,16 @@ export function AcidBaseNeutralizationLabEnhanced() {
                                             </div>
                                             
                                             {/* Stage indicator */}
-                                            <div className="text-sm text-muted-foreground text-center">
+                                            <div className={cn("text-sm text-center p-3 rounded-lg border-2", 
+                                                titrationStage === 0 && "text-muted-foreground border-gray-300 dark:border-gray-700",
+                                                titrationStage === 1 && "text-blue-700 dark:text-blue-300 border-blue-300 dark:border-blue-700 bg-blue-50 dark:bg-blue-950/30",
+                                                titrationStage === 2 && "text-green-700 dark:text-green-300 border-green-300 dark:border-green-700 bg-green-50 dark:bg-green-950/30 font-semibold",
+                                                titrationStage === 3 && "text-orange-700 dark:text-orange-300 border-orange-300 dark:border-orange-700 bg-orange-50 dark:bg-orange-950/30 font-semibold"
+                                            )}>
                                                 {titrationStage === 0 && "Setting up..."}
                                                 {titrationStage === 1 && "Click 'Add Base' to continue - watch for color change!"}
-                                                {titrationStage === 2 && "Equivalence point reached! Color changed to yellow"}
-                                                {titrationStage === 3 && "Titration complete - solution is now basic"}
+                                                {titrationStage === 2 && "🎯 Perfect! Equivalence point reached! Click 'Complete Titration' button now →"}
+                                                {titrationStage === 3 && "⚠️ Past equivalence point! Click 'Complete Titration' to finish →"}
                                             </div>
                                         </div>
                         
@@ -641,8 +659,13 @@ export function AcidBaseNeutralizationLabEnhanced() {
                                             <Button onClick={handleAddBase} disabled={titrationStage !== 1} className="flex-1">
                                                 Add Base (1mL)
                                             </Button>
-                                            <Button onClick={handleCompleteTitration} disabled={titrationStage < 2} variant="outline" className="flex-1">
-                                                Complete
+                                            <Button 
+                                                onClick={handleCompleteTitration} 
+                                                disabled={titrationStage < 2} 
+                                                variant={titrationStage >= 2 ? "default" : "outline"}
+                                                className={cn("flex-1", titrationStage >= 2 && "animate-pulse bg-green-600 hover:bg-green-700")}
+                                            >
+                                                {titrationStage >= 2 ? "✓ Complete Titration" : "Complete"}
                                             </Button>
                                         </div>
                                     </motion.div>

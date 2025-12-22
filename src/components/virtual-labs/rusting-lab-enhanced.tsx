@@ -60,12 +60,11 @@ export function RustingLabEnhanced() {
     const isCompleted = isLabCompleted(labId);
     const completion = getLabCompletion(labId);
 
-    // Draggable teacher
-    const [teacherPosition, setTeacherPosition] = React.useState({ x: 0, y: 0 });
-
     React.useEffect(() => {
         if (currentStep === 'intro') {
             setTeacherMessage("Welcome to Rusting of Iron Lab! Rust is the common oxidation of iron that requires both water and oxygen. We'll test three different conditions to see what's needed for rust to form. Let's gather our supplies!");
+        } else if (currentStep === 'complete') {
+            setTeacherMessage("Congratulations on completing the Rusting of Iron Lab! You've learned one of chemistry's most important real-world processes. This knowledge helps us protect valuable materials and infrastructure. Keep up the excellent work, and feel free to restart the lab anytime to review!");
         }
     }, [currentStep]);
 
@@ -116,44 +115,79 @@ export function RustingLabEnhanced() {
         if (activeSimulation) return;
         
         setActiveSimulation(tubeId);
-        setTeacherMessage(`Setting up Tube ${tubeId}... ${conditions}`);
         
+        // Initial setup message
+        if (tubeId === 'A') {
+            setTeacherMessage(`Setting up Tube A - the control tube. We're placing an iron nail in water with air exposure. Both water and oxygen are present, so let's observe what happens over time...`);
+        } else if (tubeId === 'B') {
+            setTeacherMessage(`Setting up Tube B with boiled water and an oil layer on top. The oil will prevent oxygen from reaching the water. Let's see if rust forms without oxygen...`);
+        } else {
+            setTeacherMessage(`Setting up Tube C with a drying agent (calcium chloride). This will remove moisture from the air, leaving only oxygen. Can rust form without water?`);
+        }
+        
+        // Wait for initial message to complete, then start experiment
         setTimeout(() => {
             setTubeResults(prev => ({
                 ...prev,
                 [tubeId]: { ...prev[tubeId], collected: true }
             }));
             
-            // Start simulation
-            let day = 0;
-            const dayInterval = setInterval(() => {
-                day++;
-                setSimulationDay(day);
-                
-                if (day >= 5) {
-                    clearInterval(dayInterval);
+            setTeacherMessage(`Tube ${tubeId} is now set up. We're monitoring the nail over several days. Oxidation is a gradual process - watch carefully for any color changes...`);
+            
+            // Start simulation after setup message
+            setTimeout(() => {
+                let day = 0;
+                const dayInterval = setInterval(() => {
+                    day++;
+                    setSimulationDay(day);
                     
-                    // Determine rusting result
-                    const shouldRust = tubeId === 'A'; // Only Tube A has both water and oxygen
-                    setTubeResults(prev => ({
-                        ...prev,
-                        [tubeId]: { ...prev[tubeId], observed: true, rusted: shouldRust }
-                    }));
-                    
-                    setActiveSimulation(null);
-                    setSimulationDay(0);
-                    setCompletedTubes(prev => prev + 1);
-                    
-                    if (shouldRust) {
-                        toast({ title: `✅ Tube ${tubeId}: Rust Observed!` });
-                        setTeacherMessage(`Tube ${tubeId} shows rust formation! The nail has oxidized because both water and oxygen were present.`);
-                    } else {
-                        toast({ title: `✅ Tube ${tubeId}: No Rust` });
-                        setTeacherMessage(`Tube ${tubeId} shows no rusting! By removing one key condition, we prevented oxidation.`);
+                    // Progressive observations with proper timing
+                    if (day === 2) {
+                        if (tubeId === 'A') {
+                            setTeacherMessage(`Day ${day}: I'm starting to notice some changes in Tube A. The surface of the nail looks slightly different...`);
+                        } else {
+                            setTeacherMessage(`Day ${day}: So far, the nail in Tube ${tubeId} appears unchanged. No visible oxidation yet.`);
+                        }
+                    } else if (day === 4) {
+                        if (tubeId === 'A') {
+                            setTeacherMessage(`Day ${day}: The changes are becoming more obvious in Tube A! The nail is definitely changing color as oxidation occurs.`);
+                        } else {
+                            setTeacherMessage(`Day ${day}: Still no rust formation in Tube ${tubeId}. The nail remains in its original condition.`);
+                        }
                     }
-                }
-            }, 600);
-        }, 800);
+                    
+                    if (day >= 5) {
+                        clearInterval(dayInterval);
+                        
+                        // Determine rusting result
+                        const shouldRust = tubeId === 'A'; // Only Tube A has both water and oxygen
+                        setTubeResults(prev => ({
+                            ...prev,
+                            [tubeId]: { ...prev[tubeId], observed: true, rusted: shouldRust }
+                        }));
+                        
+                        setActiveSimulation(null);
+                        setSimulationDay(0);
+                        setCompletedTubes(prev => prev + 1);
+                        
+                        // Final observation with delay for smooth transition
+                        setTimeout(() => {
+                            if (shouldRust) {
+                                toast({ title: `✅ Tube ${tubeId}: Rust Observed!` });
+                                setTeacherMessage(`Excellent observation! Tube A shows clear rust formation - that reddish-brown coating is iron oxide. This proves that rust needs BOTH water and oxygen. The iron atoms combined with oxygen in the presence of water to form Fe₂O₃·nH₂O.`);
+                            } else {
+                                toast({ title: `✅ Tube ${tubeId}: No Rust` });
+                                if (tubeId === 'B') {
+                                    setTeacherMessage(`Perfect! Tube B shows no rusting at all. Even though water was present, the oil layer blocked oxygen from reaching the nail. This proves that oxygen is essential for rust formation.`);
+                                } else {
+                                    setTeacherMessage(`Exactly as expected! Tube C shows no rust formation. Even with oxygen present, the drying agent removed all moisture. This proves that water is essential for the rusting process.`);
+                                }
+                            }
+                        }, 1000);
+                    }
+                }, 3500);
+            }, 4500);
+        }, 5000);
     };
     
     const handleTeacherComplete = () => {
@@ -195,16 +229,18 @@ export function RustingLabEnhanced() {
             const earnedXP = markLabComplete(labId, score, 0);
             setXpEarned(earnedXP);
             setQuizFeedback(`Perfect! 🎉 You got all 3 correct! You understand rust formation! +${earnedXP} XP`);
+            setTeacherMessage(`Outstanding work! You answered all three questions correctly! You truly understand the rusting process and the conditions needed for oxidation. You've earned ${earnedXP} XP! This knowledge will help you understand corrosion in real life - from protecting cars to maintaining bridges. Well done, scientist!`);
             setShowCelebration(true);
             confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-            setTimeout(() => {
-                setShowCelebration(false);
+            setPendingTransition(() => () => {
                 setCurrentStep('complete');
-            }, 2000);
+            });
         } else if (correctCount === 2) {
             setQuizFeedback(`Good job! You got ${correctCount} out of 3 correct. Rust requires specific conditions.`);
+            setTeacherMessage(`Good effort! You got ${correctCount} out of 3 correct. You're very close to mastering this! Remember, rust formation requires BOTH water AND oxygen working together. Review the tube results and try again - you can do this!`);
         } else {
             setQuizFeedback(`You got ${correctCount} out of 3 correct. Remember: rust needs BOTH water and oxygen.`);
+            setTeacherMessage(`Don't worry - learning takes practice! You got ${correctCount} out of 3. The key concept is that rust needs BOTH conditions: water AND oxygen. Look back at Tube A (rusted) versus Tubes B and C (no rust). Each tube was missing one condition. Take your time, review the results, and try again!`);
         }
     };
 
@@ -230,39 +266,16 @@ export function RustingLabEnhanced() {
         setQuizSubmitted(false);
         setShowCelebration(false);
         setPendingTransition(null);
-        setTeacherMessage("Ready to explore rusting again!");
+        setTeacherMessage("Great! Let's explore the rusting process again. Repetition is an excellent way to reinforce your understanding. Notice how each tube teaches us something different about the conditions needed for oxidation. Ready when you are!");
     };
 
     return (
         <div className="space-y-6 pb-20">
-            {/* Draggable Teacher Voice */}
-            <motion.div
-                drag
-                dragMomentum={false}
-                dragElastic={0}
-                dragConstraints={{ left: -300, right: 300, top: -100, bottom: 400 }}
-                onDragEnd={(_, info) => {
-                    setTeacherPosition({ x: info.offset.x, y: info.offset.y });
-                }}
-                initial={{ x: 0, y: 0 }}
-                style={{ x: teacherPosition.x, y: teacherPosition.y }}
-                className="fixed bottom-16 left-2 right-2 md:left-auto md:right-4 md:w-96 max-w-md z-50 touch-none"
-            >
-                <Card className="shadow-2xl border-2 border-orange-400 dark:border-orange-600 cursor-move">
-                    <CardHeader className="pb-2 py-2 md:py-4">
-                        <div className="flex items-center gap-2">
-                            <GripVertical className="h-4 w-4 text-muted-foreground" />
-                            <CardTitle className="text-xs md:text-sm">Teacher Guide (Drag to Move)</CardTitle>
-                        </div>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                        <TeacherVoice 
-                            message={teacherMessage}
-                            onComplete={handleTeacherComplete}
-                        />
-                    </CardContent>
-                </Card>
-            </motion.div>
+            {/* Teacher Voice */}
+            <TeacherVoice 
+                message={teacherMessage}
+                onComplete={handleTeacherComplete}
+            />
 
             {isCompleted && (
                 <motion.div
@@ -289,9 +302,18 @@ export function RustingLabEnhanced() {
                 <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
                     className="fixed inset-0 flex items-center justify-center z-50 bg-black/50 backdrop-blur-sm"
+                    onClick={() => {
+                        setShowCelebration(false);
+                        if (pendingTransition) {
+                            const transition = pendingTransition;
+                            setPendingTransition(null);
+                            transition();
+                        }
+                    }}
                 >
-                    <Card className="w-full max-w-md mx-4">
+                    <Card className="w-full max-w-md mx-4" onClick={(e) => e.stopPropagation()}>
                         <CardHeader className="text-center">
                             <motion.div
                                 animate={{ rotate: [0, -10, 10, -10, 10, 0], scale: [1, 1.2, 1] }}
@@ -312,6 +334,24 @@ export function RustingLabEnhanced() {
                                 You understand corrosion and oxidation!
                             </p>
                         </CardContent>
+                        <CardFooter className="flex flex-col gap-2">
+                            <Button 
+                                onClick={() => {
+                                    setShowCelebration(false);
+                                    if (pendingTransition) {
+                                        const transition = pendingTransition;
+                                        setPendingTransition(null);
+                                        transition();
+                                    }
+                                }} 
+                                className="w-full"
+                            >
+                                Continue
+                            </Button>
+                            <p className="text-xs text-muted-foreground text-center">
+                                Click anywhere to continue
+                            </p>
+                        </CardFooter>
                     </Card>
                 </motion.div>
             )}
@@ -571,6 +611,43 @@ export function RustingLabEnhanced() {
                                 >
                                     <h3 className="font-semibold mb-2">Tube A: Water + Oxygen (CONTROL)</h3>
                                     <p className="text-sm text-muted-foreground mb-4">Iron nail in water, exposed to air - both water and oxygen present</p>
+                                    
+                                    {/* Visual Diagram for Tube A */}
+                                    <div className="flex items-center justify-center mb-4">
+                                        <div className="relative w-32 h-64 bg-gradient-to-b from-transparent via-sky-100/40 to-sky-200/60 border-4 border-gray-600 rounded-b-3xl shadow-lg">
+                                            {/* Air space */}
+                                            <div className="absolute top-0 left-0 right-0 h-20 flex items-center justify-center">
+                                                <div className="flex gap-1">
+                                                    <Wind className="h-4 w-4 text-blue-300 animate-pulse" />
+                                                    <span className="text-xs text-blue-600 font-medium">O₂</span>
+                                                </div>
+                                            </div>
+                                            {/* Water */}
+                                            <div className="absolute bottom-0 left-0 right-0 h-44 bg-gradient-to-b from-blue-200/70 to-blue-400/70 rounded-b-3xl">
+                                                <div className="absolute top-2 left-1/2 transform -translate-x-1/2">
+                                                    <Droplets className="h-6 w-6 text-blue-600" />
+                                                </div>
+                                                <span className="absolute top-10 left-1/2 transform -translate-x-1/2 text-xs text-blue-700 font-medium">H₂O</span>
+                                            </div>
+                                            {/* Iron Nail */}
+                                            <motion.div
+                                                className={cn("absolute bottom-4 left-1/2 transform -translate-x-1/2 w-2 h-24 rounded-full", 
+                                                    tubeResults.A.rusted ? "bg-gradient-to-b from-orange-800 to-red-700" : "bg-gradient-to-b from-gray-400 to-gray-600"
+                                                )}
+                                                animate={tubeResults.A.rusted ? { scale: [1, 1.05, 1] } : {}}
+                                                transition={{ duration: 2, repeat: Infinity }}
+                                            >
+                                                {tubeResults.A.rusted && (
+                                                    <motion.div
+                                                        className="absolute -top-1 -left-1 -right-1 -bottom-1 bg-red-500/30 rounded-full blur-sm"
+                                                        animate={{ opacity: [0.3, 0.6, 0.3] }}
+                                                        transition={{ duration: 1.5, repeat: Infinity }}
+                                                    />
+                                                )}
+                                            </motion.div>
+                                        </div>
+                                    </div>
+                                    
                                     {!tubeResults.A.collected ? (
                                         <Button onClick={() => handleSetupTube('A', 'Setting up tube with nail in water exposed to air...')} disabled={activeSimulation !== null}>
                                             Set Up Tube A
@@ -598,6 +675,46 @@ export function RustingLabEnhanced() {
                                 >
                                     <h3 className="font-semibold mb-2">Tube B: Water + Oil Layer (NO OXYGEN)</h3>
                                     <p className="text-sm text-muted-foreground mb-4">Boiled water with oil layer - oxygen removed, water present</p>
+                                    
+                                    {/* Visual Diagram for Tube B */}
+                                    <div className="flex items-center justify-center mb-4">
+                                        <div className="relative w-32 h-64 bg-gradient-to-b from-transparent via-sky-100/40 to-sky-200/60 border-4 border-gray-600 rounded-b-3xl shadow-lg">
+                                            {/* Air space (minimal) */}
+                                            <div className="absolute top-0 left-0 right-0 h-12 flex items-center justify-center">
+                                                <span className="text-xs text-gray-400">Air</span>
+                                            </div>
+                                            {/* Oil Layer */}
+                                            <motion.div 
+                                                className="absolute top-12 left-0 right-0 h-16 bg-gradient-to-b from-yellow-300/80 to-yellow-400/90 border-y-2 border-yellow-500/50"
+                                                animate={{ opacity: [0.8, 1, 0.8] }}
+                                                transition={{ duration: 2, repeat: Infinity }}
+                                            >
+                                                <div className="absolute top-1 left-1/2 transform -translate-x-1/2 flex items-center gap-1">
+                                                    <div className="w-3 h-3 bg-yellow-500 rounded-full" />
+                                                    <span className="text-xs text-yellow-800 font-medium">Oil</span>
+                                                </div>
+                                                <div className="absolute bottom-1 right-2 text-xs text-yellow-700 font-bold">🚫 O₂</div>
+                                            </motion.div>
+                                            {/* Water */}
+                                            <div className="absolute top-28 left-0 right-0 bottom-0 bg-gradient-to-b from-blue-200/70 to-blue-400/70 rounded-b-3xl">
+                                                <div className="absolute top-4 left-1/2 transform -translate-x-1/2">
+                                                    <Droplets className="h-6 w-6 text-blue-600" />
+                                                </div>
+                                                <span className="absolute top-12 left-1/2 transform -translate-x-1/2 text-xs text-blue-700 font-medium">H₂O</span>
+                                            </div>
+                                            {/* Iron Nail (not rusted) */}
+                                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-2 h-24 bg-gradient-to-b from-gray-400 to-gray-600 rounded-full">
+                                                {tubeResults.B.observed && !tubeResults.B.rusted && (
+                                                    <motion.div
+                                                        className="absolute -top-1 -left-1 -right-1 -bottom-1 bg-green-500/30 rounded-full blur-sm"
+                                                        animate={{ opacity: [0.3, 0.6, 0.3] }}
+                                                        transition={{ duration: 1.5, repeat: Infinity }}
+                                                    />
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                     {!tubeResults.B.collected ? (
                                         <Button onClick={() => handleSetupTube('B', 'Setting up tube with boiled water and oil layer...')} disabled={activeSimulation !== null}>
                                             Set Up Tube B
@@ -625,6 +742,45 @@ export function RustingLabEnhanced() {
                                 >
                                     <h3 className="font-semibold mb-2">Tube C: Dry Environment (NO WATER)</h3>
                                     <p className="text-sm text-muted-foreground mb-4">Drying agent present - water removed, oxygen present</p>
+                                    
+                                    {/* Visual Diagram for Tube C */}
+                                    <div className="flex items-center justify-center mb-4">
+                                        <div className="relative w-32 h-64 bg-gradient-to-b from-transparent via-gray-50 to-gray-100 border-4 border-gray-600 rounded-b-3xl shadow-lg">
+                                            {/* Air with oxygen */}
+                                            <div className="absolute top-0 left-0 right-0 h-32 flex flex-col items-center justify-center gap-1">
+                                                <Wind className="h-5 w-5 text-blue-400 animate-pulse" />
+                                                <span className="text-xs text-blue-600 font-medium">O₂ Present</span>
+                                            </div>
+                                            {/* Drying Agent (crystals) */}
+                                            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-purple-200/60 to-purple-400/70 rounded-b-3xl">
+                                                <div className="absolute inset-0 flex flex-wrap gap-1 p-2 justify-center items-end">
+                                                    {[0, 1, 2, 3, 4, 5].map((i) => (
+                                                        <motion.div
+                                                            key={i}
+                                                            className="w-3 h-3 bg-purple-600 rotate-45"
+                                                            animate={{ scale: [1, 1.1, 1] }}
+                                                            transition={{ duration: 1, delay: i * 0.2, repeat: Infinity }}
+                                                        />
+                                                    ))}
+                                                </div>
+                                                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 text-center">
+                                                    <span className="text-xs text-purple-900 font-medium">CaCl₂</span>
+                                                    <div className="text-xs text-purple-700 font-bold">🚫 H₂O</div>
+                                                </div>
+                                            </div>
+                                            {/* Iron Nail (dry, not rusted) */}
+                                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-2 h-24 bg-gradient-to-b from-gray-400 to-gray-600 rounded-full">
+                                                {tubeResults.C.observed && !tubeResults.C.rusted && (
+                                                    <motion.div
+                                                        className="absolute -top-1 -left-1 -right-1 -bottom-1 bg-green-500/30 rounded-full blur-sm"
+                                                        animate={{ opacity: [0.3, 0.6, 0.3] }}
+                                                        transition={{ duration: 1.5, repeat: Infinity }}
+                                                    />
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                     {!tubeResults.C.collected ? (
                                         <Button onClick={() => handleSetupTube('C', 'Setting up tube with drying agent...')} disabled={activeSimulation !== null}>
                                             Set Up Tube C

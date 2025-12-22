@@ -10,6 +10,7 @@ import { useLabProgress } from '@/stores/lab-progress-store';
 import { TeacherVoice } from './TeacherVoice';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
+import { useLocalization } from '@/hooks/useLocalization';
 
 type Technique = 'filtration' | 'evaporation' | 'decantation' | 'none';
 type MixtureType = 'muddy-water' | 'salt-water' | 'oil-water' | 'none';
@@ -23,12 +24,14 @@ interface ExperimentResult {
 
 export function SeparationTechniquesLabEnhanced() {
   const { toast } = useToast();
+  const { country } = useLocalization();
   // Enhanced with teacher voice and supply collection - Dec 21, 2025
   const [step, setStep] = React.useState<'intro' | 'collect-supplies' | 'setup' | 'experiment' | 'results' | 'quiz' | 'complete'>('intro');
   const [selectedTechnique, setSelectedTechnique] = React.useState<Technique>('none');
   const [selectedMixture, setSelectedMixture] = React.useState<MixtureType>('none');
   const [isSeparating, setIsSeparating] = React.useState(false);
   const [separationProgress, setSeparationProgress] = React.useState(0);
+  const [currentResult, setCurrentResult] = React.useState<ExperimentResult | null>(null);
   const [experimentResults, setExperimentResults] = React.useState<ExperimentResult[]>([]);
   const [quizAnswers, setQuizAnswers] = React.useState<Record<number, number>>({});
   const [showQuizFeedback, setShowQuizFeedback] = React.useState(false);
@@ -37,7 +40,6 @@ export function SeparationTechniquesLabEnhanced() {
   // Teacher voice
   const [teacherMessage, setTeacherMessage] = React.useState('');
   const [pendingTransition, setPendingTransition] = React.useState<(() => void) | null>(null);
-  const [teacherPosition, setTeacherPosition] = React.useState({ x: 0, y: 0 });
 
   // Supplies tracking
   const [filterPaperCollected, setFilterPaperCollected] = React.useState(false);
@@ -52,7 +54,7 @@ export function SeparationTechniquesLabEnhanced() {
   // Intro message
   React.useEffect(() => {
     if (step === 'intro') {
-      setTeacherMessage("Welcome to the Separation Techniques Lab! In Ghana and around the world, we often need to separate mixtures into their pure components - from purifying water to extracting salt. You'll learn three key techniques: filtration, evaporation, and decantation. Let's gather our equipment!");
+      setTeacherMessage(`Welcome to the Separation Techniques Lab! In ${country.name} and around the world, we often need to separate mixtures into their pure components - from purifying water to extracting salt. You'll learn three key techniques: filtration, evaporation, and decantation. Let's gather our equipment!`);
     }
   }, [step]);
 
@@ -181,6 +183,28 @@ export function SeparationTechniquesLabEnhanced() {
     },
   ];
 
+  const handleContinueAfterSeparation = () => {
+    if (!currentResult) return;
+
+    // Save the result to history
+    setExperimentResults((prev) => {
+      const newResults = [...prev, currentResult];
+      if (newResults.length === 1) {
+        setTeacherMessage("Good start! Try separating the other mixtures with different techniques to see which works best for each one!");
+      } else if (newResults.length === 2) {
+        setTeacherMessage("Excellent progress! Try one more combination. It's important to understand which technique suits which mixture!");
+      } else if (newResults.length >= 3) {
+        setTeacherMessage("Great work collecting data! You've tried multiple combinations. When ready, click 'View Analysis' to review which technique works best for each mixture!");
+      }
+      return newResults;
+    });
+
+    // Clear current result and reset selections
+    setCurrentResult(null);
+    setSelectedTechnique('none');
+    setSelectedMixture('none');
+  };
+
   const handleSeparate = () => {
     if (selectedTechnique === 'none' || selectedMixture === 'none') return;
 
@@ -227,30 +251,22 @@ export function SeparationTechniquesLabEnhanced() {
         separated,
       };
 
-      setExperimentResults((prev) => {
-        const newResults = [...prev, result];
-        if (newResults.length === 1) {
-          if (isCorrect) {
-            setTeacherMessage("Excellent choice! You matched the right technique to the mixture. Try the other combinations to see what works best for each mixture!");
-          } else {
-            setTeacherMessage("The separation wasn't optimal. Think about the properties of the mixture - is it soluble? Are the particles large or small? Try a different technique!");
-          }
-        } else if (newResults.length >= 3) {
-          setTeacherMessage("Great work collecting data! You've tried multiple combinations. When ready, click 'View Results' to analyze which technique works best for each mixture!");
-        }
-        return newResults;
-      });
+      // Show the current result and wait for user to continue
+      setCurrentResult(result);
       setIsSeparating(false);
       setSeparationProgress(0);
-      setSelectedTechnique('none');
-      setSelectedMixture('none');
 
+      // Provide feedback based on correctness
       if (isCorrect) {
+        setTeacherMessage(`Perfect! ${observation} This is the correct technique for this mixture. Take a moment to observe the separated components, then click 'Continue' to try another separation!`);
         confetti({
           particleCount: 50,
           spread: 60,
           origin: { y: 0.7 },
         });
+      } else {
+        const correctTech = mixture.correctTechnique as 'filtration' | 'evaporation' | 'decantation';
+        setTeacherMessage(`The separation wasn't optimal. ${mixture.name} works best with ${techniques[correctTech].name}. Study the result, then click 'Continue' to try a better technique!`);
       }
     }, 2500);
   };
@@ -282,7 +298,7 @@ export function SeparationTechniquesLabEnhanced() {
   const handleComplete = () => {
     markLabComplete(labId, 100, 0);
     setStep('complete');
-    setTeacherMessage("Congratulations! You've mastered separation techniques! These methods are used daily in Ghana - from water treatment plants to salt production. You now understand how to separate mixtures based on their physical properties!");
+    setTeacherMessage(`Congratulations! You've mastered separation techniques! These methods are used daily in ${country.name} - from water treatment plants to salt production. You now understand how to separate mixtures based on their physical properties!`);
     confetti({
       particleCount: 150,
       spread: 100,
@@ -310,45 +326,10 @@ export function SeparationTechniquesLabEnhanced() {
 
   return (
     <div className="max-w-5xl mx-auto p-4 space-y-6">
-      {/* Draggable Teacher Voice Panel */}
-      {teacherMessage && (
-        <motion.div
-          drag
-          dragMomentum={false}
-          dragElastic={0}
-          dragConstraints={{
-            left: -300,
-            right: 300,
-            top: -100,
-            bottom: 400,
-          }}
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="fixed bottom-16 right-4 z-[60] cursor-move touch-none"
-          style={{ x: teacherPosition.x, y: teacherPosition.y }}
-          onDragEnd={(_, info) => {
-            setTeacherPosition({
-              x: teacherPosition.x + info.offset.x,
-              y: teacherPosition.y + info.offset.y,
-            });
-          }}
-        >
-          <Card className="shadow-2xl border-2 border-purple-400 bg-white dark:bg-gray-900 max-w-md">
-            <CardHeader className="pb-3">
-              <div className="flex items-center gap-2">
-                <GripVertical className="h-4 w-4 text-muted-foreground" />
-                <CardTitle className="text-base">Teacher Guide (Drag to Move)</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="pt-0">
-              <TeacherVoice
-                message={teacherMessage}
-                onComplete={handleTeacherComplete}
-              />
-            </CardContent>
-          </Card>
-        </motion.div>
-      )}
+      <TeacherVoice
+        message={teacherMessage}
+        onComplete={handleTeacherComplete}
+      />
 
       <Card className="border-2">
         <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950 dark:to-blue-950">
@@ -758,7 +739,7 @@ export function SeparationTechniquesLabEnhanced() {
                               strokeWidth="1"
                             />
                             {/* Residue on filter */}
-                            {isSeparating && separationProgress > 20 && (
+                            {((isSeparating && separationProgress > 20) || (currentResult && currentResult.technique === 'filtration')) && (
                               <circle cx="100" cy="80" r="15" fill="#8B4513" opacity="0.7" />
                             )}
                             {/* Beaker below */}
@@ -773,12 +754,12 @@ export function SeparationTechniquesLabEnhanced() {
                               strokeWidth="2"
                             />
                             {/* Filtered water */}
-                            {isSeparating && separationProgress > 40 && (
+                            {((isSeparating && separationProgress > 40) || (currentResult && currentResult.technique === 'filtration')) && (
                               <rect
                                 x="65"
-                                y={240 - separationProgress * 0.6}
+                                y={currentResult && currentResult.technique === 'filtration' ? 180 : 240 - separationProgress * 0.6}
                                 width="70"
-                                height={separationProgress * 0.6}
+                                height={currentResult && currentResult.technique === 'filtration' ? 60 : separationProgress * 0.6}
                                 fill="#87CEEB"
                                 opacity="0.7"
                               />
@@ -831,7 +812,7 @@ export function SeparationTechniquesLabEnhanced() {
                               strokeWidth="2"
                             />
                             {/* Liquid in dish */}
-                            {isSeparating && separationProgress < 80 && (
+                            {isSeparating && separationProgress < 80 && !currentResult && (
                               <ellipse
                                 cx="100"
                                 cy="110"
@@ -842,7 +823,7 @@ export function SeparationTechniquesLabEnhanced() {
                               />
                             )}
                             {/* Salt crystals */}
-                            {isSeparating && separationProgress > 60 && (
+                            {((isSeparating && separationProgress > 60) || (currentResult && currentResult.technique === 'evaporation')) && (
                               <>
                                 {Array.from({ length: 12 }).map((_, i) => (
                                   <motion.rect
@@ -854,7 +835,7 @@ export function SeparationTechniquesLabEnhanced() {
                                     fill="white"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
-                                    transition={{ delay: i * 0.1 }}
+                                    transition={{ delay: currentResult ? 0 : i * 0.1 }}
                                   />
                                 ))}
                               </>
@@ -957,14 +938,14 @@ export function SeparationTechniquesLabEnhanced() {
                             {/* Water layer (bottom) */}
                             <rect
                               x="43"
-                              y={isSeparating && separationProgress > 50 ? 140 : 160}
+                              y={(isSeparating && separationProgress > 50) || (currentResult && currentResult.technique === 'decantation') ? 140 : 160}
                               width="114"
-                              height={isSeparating && separationProgress > 50 ? 77 : 57}
+                              height={(isSeparating && separationProgress > 50) || (currentResult && currentResult.technique === 'decantation') ? 77 : 57}
                               fill="#4A90E2"
                               opacity="0.7"
                             />
                             {/* Oil layer (top) */}
-                            {(!isSeparating || separationProgress < 70) && (
+                            {(!isSeparating || separationProgress < 70) && !currentResult && (
                               <motion.rect
                                 x="43"
                                 y={isSeparating ? 60 + separationProgress * 0.5 : 100}
@@ -977,9 +958,9 @@ export function SeparationTechniquesLabEnhanced() {
                             {/* Separation line */}
                             <line
                               x1="43"
-                              y1={isSeparating && separationProgress > 50 ? 140 : 160}
+                              y1={(isSeparating && separationProgress > 50) || (currentResult && currentResult.technique === 'decantation') ? 140 : 160}
                               x2="157"
-                              y2={isSeparating && separationProgress > 50 ? 140 : 160}
+                              y2={(isSeparating && separationProgress > 50) || (currentResult && currentResult.technique === 'decantation') ? 140 : 160}
                               stroke="#333"
                               strokeWidth="1"
                               strokeDasharray="3,3"
@@ -1040,7 +1021,7 @@ export function SeparationTechniquesLabEnhanced() {
                 )}
 
                 {/* Separate Button */}
-                {selectedMixture !== 'none' && selectedTechnique !== 'none' && !isSeparating && (
+                {selectedMixture !== 'none' && selectedTechnique !== 'none' && !isSeparating && !currentResult && (
                   <Button
                     onClick={handleSeparate}
                     size="lg"
@@ -1050,8 +1031,58 @@ export function SeparationTechniquesLabEnhanced() {
                   </Button>
                 )}
 
+                {/* Current Separation Result - Show prominently with Continue button */}
+                {currentResult && !isSeparating && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="space-y-4"
+                  >
+                    <Card className="border-4 border-green-500 bg-green-50 dark:bg-green-950/30 shadow-xl">
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-2 text-green-900 dark:text-green-100">
+                          <CheckCircle className="w-6 h-6" />
+                          Separation Complete!
+                        </CardTitle>
+                        <CardDescription className="text-green-700 dark:text-green-300">
+                          {currentResult.technique !== 'none' && currentResult.mixture !== 'none' && 
+                            `${techniques[currentResult.technique].name} on ${mixtures[currentResult.mixture].name}`}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <div className="bg-white dark:bg-gray-900 p-4 rounded-lg border-2 border-green-200 dark:border-green-800">
+                          <h5 className="font-semibold mb-2 text-green-900 dark:text-green-100">Observation:</h5>
+                          <p className="text-sm text-gray-700 dark:text-gray-300">
+                            {currentResult.observation}
+                          </p>
+                        </div>
+                        <div className="bg-white dark:bg-gray-900 p-4 rounded-lg border-2 border-green-200 dark:border-green-800">
+                          <h5 className="font-semibold mb-2 text-green-900 dark:text-green-100">Components Separated:</h5>
+                          <ul className="space-y-1">
+                            {currentResult.separated.map((component, i) => (
+                              <li key={i} className="flex items-center gap-2 text-sm">
+                                <Sparkles className="w-4 h-4 text-green-600" />
+                                <span>{component}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </CardContent>
+                      <CardFooter>
+                        <Button
+                          onClick={handleContinueAfterSeparation}
+                          size="lg"
+                          className="w-full bg-green-600 hover:bg-green-700"
+                        >
+                          Continue to Next Separation →
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  </motion.div>
+                )}
+
                 {/* Results Table */}
-                {experimentResults.length > 0 && (
+                {experimentResults.length > 0 && !currentResult && (
                   <div className="space-y-3">
                     <h4 className="font-semibold text-lg">Experiment Results:</h4>
                     {experimentResults.map((result, idx) => (

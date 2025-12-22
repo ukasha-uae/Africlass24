@@ -49,9 +49,6 @@ export function ReflectionLabEnhanced() {
     const isCompleted = isLabCompleted(labId);
     const completion = getLabCompletion(labId);
 
-    // Draggable teacher
-    const [teacherPosition, setTeacherPosition] = React.useState({ x: 0, y: 0 });
-
     React.useEffect(() => {
         if (currentStep === 'intro') {
             setTeacherMessage("Welcome to the Reflection Lab! We'll explore how light bounces off different surfaces and discover the law of reflection. Let's shine some light!");
@@ -184,34 +181,10 @@ export function ReflectionLabEnhanced() {
 
     return (
         <div className="space-y-6 pb-20">
-            {/* Draggable Teacher Voice */}
-            <motion.div
-                drag
-                dragMomentum={false}
-                dragElastic={0}
-                dragConstraints={{ left: -300, right: 300, top: -100, bottom: 400 }}
-                onDragEnd={(_, info) => {
-                    setTeacherPosition({ x: info.offset.x, y: info.offset.y });
-                }}
-                initial={{ x: 0, y: 0 }}
-                style={{ x: teacherPosition.x, y: teacherPosition.y }}
-                className="fixed bottom-16 left-2 right-2 md:left-auto md:right-4 md:w-96 max-w-md z-50 touch-none"
-            >
-                <Card className="shadow-2xl border-2 border-purple-400 dark:border-purple-600 cursor-move">
-                    <CardHeader className="pb-2 py-2 md:py-4">
-                        <div className="flex items-center gap-2">
-                            <GripVertical className="h-4 w-4 text-muted-foreground" />
-                            <CardTitle className="text-xs md:text-sm">Teacher Guide (Drag to Move)</CardTitle>
-                        </div>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                        <TeacherVoice 
-                            message={teacherMessage}
-                            onComplete={handleTeacherComplete}
-                        />
-                    </CardContent>
-                </Card>
-            </motion.div>
+            <TeacherVoice 
+                message={teacherMessage}
+                onComplete={handleTeacherComplete}
+            />
 
             {isCompleted && (
                 <motion.div

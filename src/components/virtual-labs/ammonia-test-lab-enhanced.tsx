@@ -474,6 +474,26 @@ export function AmmoniaTestLab() {
                                     {/* Ammonia Gas Animation */}
                                     {(currentStep === 'gas-produced' || currentStep === 'testing' || currentStep === 'result' || currentStep === 'complete') && (
                                         <>
+                                            {/* Pungent smell waves */}
+                                            {[...Array(3)].map((_, i) => (
+                                                <motion.div
+                                                    key={`wave-${i}`}
+                                                    className="absolute top-0 left-1/2 -translate-x-1/2 border-2 border-cyan-400 rounded-full"
+                                                    initial={{ width: 20, height: 20, opacity: 0.8 }}
+                                                    animate={{
+                                                        width: [20, 80],
+                                                        height: [20, 80],
+                                                        opacity: [0.8, 0]
+                                                    }}
+                                                    transition={{
+                                                        duration: 2,
+                                                        repeat: Infinity,
+                                                        delay: i * 0.7,
+                                                        ease: "easeOut"
+                                                    }}
+                                                />
+                                            ))}
+                                            {/* Rising gas bubbles */}
                                             {[...Array(6)].map((_, i) => (
                                                 <motion.div
                                                     key={i}
@@ -508,13 +528,32 @@ export function AmmoniaTestLab() {
                                     <motion.div
                                         initial={{ y: 50, opacity: 0 }}
                                         animate={{ y: 0, opacity: 1 }}
-                                        className="mt-2"
+                                        className="mt-2 relative"
                                     >
+                                        {/* Heat waves */}
+                                        {[...Array(3)].map((_, i) => (
+                                            <motion.div
+                                                key={`heat-${i}`}
+                                                className="absolute -top-4 left-1/2 -translate-x-1/2 w-16 h-2 bg-gradient-to-t from-orange-300/40 to-transparent rounded-full"
+                                                animate={{
+                                                    opacity: [0.3, 0.7, 0.3],
+                                                    scaleY: [1, 1.5, 1]
+                                                }}
+                                                transition={{
+                                                    duration: 1,
+                                                    repeat: Infinity,
+                                                    delay: i * 0.3
+                                                }}
+                                            />
+                                        ))}
                                         <motion.div
-                                            animate={{ scale: [1, 1.1, 1] }}
+                                            animate={{ 
+                                                scale: [1, 1.15, 1],
+                                                filter: ['hue-rotate(0deg)', 'hue-rotate(20deg)', 'hue-rotate(0deg)']
+                                            }}
                                             transition={{ duration: 0.5, repeat: Infinity }}
                                         >
-                                            <Flame className="h-14 w-14 text-orange-500" />
+                                            <Flame className="h-14 w-14 text-orange-500 drop-shadow-[0_0_10px_rgba(255,165,0,0.5)]" />
                                         </motion.div>
                                     </motion.div>
                                 )}
@@ -532,9 +571,9 @@ export function AmmoniaTestLab() {
                                 >
                                     <motion.div
                                         className={cn(
-                                            "w-8 h-28 rounded-sm border-2 transition-colors duration-1000",
+                                            "w-8 h-28 rounded-sm border-2 transition-all duration-1000",
                                             (currentStep === 'result' || currentStep === 'complete') 
-                                                ? "bg-blue-500 border-blue-700" 
+                                                ? "bg-blue-500 border-blue-700 shadow-[0_0_20px_rgba(59,130,246,0.6)]" 
                                                 : "bg-red-500 border-red-700"
                                         )}
                                         animate={{ 
@@ -554,13 +593,38 @@ export function AmmoniaTestLab() {
                                     </div>
                                     
                                     {(currentStep === 'result' || currentStep === 'complete') && (
-                                        <motion.div
-                                            className="absolute -right-12 top-1/2 -translate-y-1/2"
-                                            initial={{ scale: 0, rotate: -180 }}
-                                            animate={{ scale: 1, rotate: 0 }}
-                                        >
-                                            <CheckCircle className="h-10 w-10 text-green-600" />
-                                        </motion.div>
+                                        <>
+                                            <motion.div
+                                                className="absolute -right-12 top-1/2 -translate-y-1/2"
+                                                initial={{ scale: 0, rotate: -180 }}
+                                                animate={{ scale: 1, rotate: 0 }}
+                                            >
+                                                <CheckCircle className="h-10 w-10 text-green-600 drop-shadow-lg" />
+                                            </motion.div>
+                                            {/* Sparkle effects around litmus */}
+                                            {[...Array(4)].map((_, i) => (
+                                                <motion.div
+                                                    key={`sparkle-${i}`}
+                                                    className="absolute text-yellow-400"
+                                                    style={{
+                                                        top: `${20 + i * 20}%`,
+                                                        left: i % 2 === 0 ? '-10px' : 'calc(100% + 10px)'
+                                                    }}
+                                                    animate={{
+                                                        opacity: [0, 1, 0],
+                                                        scale: [0.5, 1, 0.5],
+                                                        rotate: [0, 180, 360]
+                                                    }}
+                                                    transition={{
+                                                        duration: 2,
+                                                        repeat: Infinity,
+                                                        delay: i * 0.5
+                                                    }}
+                                                >
+                                                    ✨
+                                                </motion.div>
+                                            ))}
+                                        </>
                                     )}
                                 </motion.div>
                             )}
@@ -599,12 +663,23 @@ export function AmmoniaTestLab() {
                                         onClick={() => handleBunsenDrop()}
                                         whileHover={{ scale: 1.05, y: -5 }}
                                         whileTap={{ scale: 0.95 }}
+                                        animate={{ 
+                                            boxShadow: [
+                                                '0 10px 30px rgba(251, 146, 60, 0.3)',
+                                                '0 10px 40px rgba(251, 146, 60, 0.5)',
+                                                '0 10px 30px rgba(251, 146, 60, 0.3)'
+                                            ]
+                                        }}
+                                        transition={{ duration: 2, repeat: Infinity }}
                                         className="cursor-pointer bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-2 border-orange-300 dark:border-orange-700 hover:border-orange-500 hover:shadow-xl transition-all"
                                     >
                                         <div className="flex flex-col items-center gap-2">
                                             <Flame className="h-16 w-16 text-orange-500" />
                                             <span className="text-sm font-medium">Bunsen Burner</span>
-                                            <span className="text-xs text-muted-foreground">Click to Use</span>
+                                            <span className="text-xs text-muted-foreground flex items-center gap-1">
+                                                <Zap className="h-3 w-3" />
+                                                Click to Use
+                                            </span>
                                         </div>
                                     </motion.div>
                                 )}
@@ -615,15 +690,30 @@ export function AmmoniaTestLab() {
                                         onClick={() => handleLitmusDrop()}
                                         whileHover={{ scale: 1.05, y: -5 }}
                                         whileTap={{ scale: 0.95 }}
+                                        animate={{ 
+                                            boxShadow: [
+                                                '0 10px 30px rgba(239, 68, 68, 0.3)',
+                                                '0 10px 40px rgba(239, 68, 68, 0.5)',
+                                                '0 10px 30px rgba(239, 68, 68, 0.3)'
+                                            ]
+                                        }}
+                                        transition={{ duration: 2, repeat: Infinity }}
                                         className="cursor-pointer bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-2 border-red-300 dark:border-red-700 hover:border-red-500 hover:shadow-xl transition-all"
                                     >
                                         <div className="flex flex-col items-center gap-2">
-                                            <div className="w-12 h-24 bg-red-500 rounded-sm border-2 border-red-700" />
+                                            <motion.div 
+                                                className="w-12 h-24 bg-red-500 rounded-sm border-2 border-red-700"
+                                                animate={{ scale: [1, 1.05, 1] }}
+                                                transition={{ duration: 1.5, repeat: Infinity }}
+                                            />
                                             <span className="text-sm font-medium flex items-center gap-1">
                                                 <Droplets className="h-3 w-3" />
                                                 Moist Red Litmus
                                             </span>
-                                            <span className="text-xs text-muted-foreground">Click to Use</span>
+                                            <span className="text-xs text-muted-foreground flex items-center gap-1">
+                                                <Sparkles className="h-3 w-3" />
+                                                Click to Use
+                                            </span>
                                         </div>
                                     </motion.div>
                                 )}

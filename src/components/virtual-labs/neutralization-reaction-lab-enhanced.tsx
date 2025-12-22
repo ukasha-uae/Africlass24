@@ -13,6 +13,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { useLabProgress } from '@/stores/lab-progress-store';
 import { TeacherVoice } from './TeacherVoice';
+import { LabNotes } from './LabNotes';
+import { Alert, AlertDescription } from '../ui/alert';
 
 type Step = 'intro' | 'collect-supplies' | 'experiment' | 'results' | 'quiz' | 'complete';
 
@@ -50,9 +52,6 @@ export function NeutralizationReactionLabEnhanced() {
     const labId = 'neutralization-reaction';
     const isCompleted = isLabCompleted(labId);
     const completion = getLabCompletion(labId);
-
-    // Draggable teacher
-    const [teacherPosition, setTeacherPosition] = React.useState({ x: 0, y: 0 });
 
     React.useEffect(() => {
         if (currentStep === 'intro') {
@@ -201,34 +200,10 @@ export function NeutralizationReactionLabEnhanced() {
 
     return (
         <div className="space-y-6 pb-20">
-            {/* Draggable Teacher Voice */}
-            <motion.div
-                drag
-                dragMomentum={false}
-                dragElastic={0}
-                dragConstraints={{ left: -300, right: 300, top: -100, bottom: 400 }}
-                onDragEnd={(_, info) => {
-                    setTeacherPosition({ x: info.offset.x, y: info.offset.y });
-                }}
-                initial={{ x: 0, y: 0 }}
-                style={{ x: teacherPosition.x, y: teacherPosition.y }}
-                className="fixed bottom-16 left-2 right-2 md:left-auto md:right-4 md:w-96 max-w-md z-50 touch-none"
-            >
-                <Card className="shadow-2xl border-2 border-purple-400 dark:border-purple-600 cursor-move">
-                    <CardHeader className="pb-2 py-2 md:py-4">
-                        <div className="flex items-center gap-2">
-                            <GripVertical className="h-4 w-4 text-muted-foreground" />
-                            <CardTitle className="text-xs md:text-sm">Teacher Guide (Drag to Move)</CardTitle>
-                        </div>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                        <TeacherVoice 
-                            message={teacherMessage}
-                            onComplete={handleTeacherComplete}
-                        />
-                    </CardContent>
-                </Card>
-            </motion.div>
+            <TeacherVoice 
+                message={teacherMessage}
+                onComplete={handleTeacherComplete}
+            />
 
             {isCompleted && (
                 <motion.div
@@ -920,6 +895,87 @@ export function NeutralizationReactionLabEnhanced() {
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            {/* Conclusion - Only shows after quiz is complete */}
+            {currentStep === 'complete' && (
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <Card className="border-2 border-green-200 dark:border-green-800">
+                        <CardHeader>
+                            <CardTitle className="flex items-center gap-2">
+                                <CheckCircle className="h-5 w-5 text-green-600" />
+                                Conclusion & Key Takeaways
+                            </CardTitle>
+                            <CardDescription>Summary of what you learned in this experiment</CardDescription>
+                        </CardHeader>
+                        <CardContent className="prose prose-sm dark:prose-invert">
+                            <ul className="space-y-2">
+                                <li className="flex items-start gap-2">
+                                    <span className="text-xl">⚗️</span>
+                                    <span><strong>Neutralization Equation:</strong> HCl + NaOH → NaCl + H₂O (acid + base → salt + water)</span>
+                                </li>
+                                <li className="flex items-start gap-2">
+                                    <span className="text-xl">🔥</span>
+                                    <span><strong>Exothermic Nature:</strong> The reaction releases heat, raising temperature significantly</span>
+                                </li>
+                                <li className="flex items-start gap-2">
+                                    <span className="text-xl">🎯</span>
+                                    <span><strong>pH Change:</strong> Acidic (pH &lt; 7) + Basic (pH &gt; 7) → Neutral (pH = 7)</span>
+                                </li>
+                            </ul>
+                            <div className="mt-4 p-3 bg-purple-50 dark:bg-purple-950/30 rounded-lg border border-purple-200 dark:border-purple-800">
+                                <p className="text-sm font-semibold text-purple-700 dark:text-purple-400 mb-2">
+                                    💡 Real-World Application
+                                </p>
+                                <p className="text-sm text-muted-foreground">
+                                    Neutralization is essential in medicine (antacids neutralize stomach acid), environmental science 
+                                    (treating industrial waste), agriculture (adjusting soil pH), and everyday cooking!
+                                </p>
+                            </div>
+                            <div className="mt-4 p-3 bg-amber-50 dark:bg-amber-950/30 rounded-lg border border-amber-200 dark:border-amber-800">
+                                <p className="text-sm font-semibold text-amber-700 dark:text-amber-400 mb-2">
+                                    📝 Exam Tip
+                                </p>
+                                <p className="text-sm text-muted-foreground">
+                                    Remember: <strong>Acid + Base → Salt + Water</strong>. This is always exothermic (releases heat). 
+                                    The products are always a salt and water - very common exam question!
+                                </p>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </motion.div>
+            )}
+
+            {/* Lab Notes - Always Available */}
+            <Card className="border-2 border-amber-200 dark:border-amber-800">
+                <Accordion type="single" collapsible className="w-full">
+                    <AccordionItem value="lab-notes" className="border-none">
+                        <AccordionTrigger className="px-6 pt-6 hover:no-underline">
+                            <div className="flex items-center gap-2 text-lg font-semibold">
+                                <BookOpen className="h-5 w-5 text-amber-600" />
+                                Lab Notes
+                            </div>
+                        </AccordionTrigger>
+                        <AccordionContent className="px-6 pb-6">
+                            <p className="text-sm text-muted-foreground mb-4">
+                                Record your observations, temperature changes, and pH measurements
+                            </p>
+                            <Alert className="mb-4 border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-950/20">
+                                <BookOpen className="h-4 w-4 text-amber-600" />
+                                <AlertDescription className="text-sm">
+                                    <strong>📝 Exam Preparation Tip:</strong> Use digital notes to capture your observations quickly, 
+                                    but <strong>remember to copy important points by hand</strong> into your notebook! Handwriting builds 
+                                    muscle memory and prepares you for written exams.
+                                </AlertDescription>
+                            </Alert>
+                            <LabNotes labId="neutralization-reaction" labTitle="Neutralization Reaction" />
+                        </AccordionContent>
+                    </AccordionItem>
+                </Accordion>
+            </Card>
         </div>
     );
 }
