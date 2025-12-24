@@ -184,7 +184,7 @@ export function localizeString(text: string, country: CountryConfig): string {
             foodMap[type] = 0;
           }
           const index = (foodMap[type]++) % foods.length;
-          result = result.replace(match, foods[index], 'g');
+          result = result.replaceAll(match, foods[index]);
         }
       });
     }

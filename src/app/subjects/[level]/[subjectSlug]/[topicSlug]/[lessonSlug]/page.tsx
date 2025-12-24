@@ -136,6 +136,8 @@ import WasteManagementIntro from '@/components/lesson-intros/integrated-science/
 // English Language Intro Components
 import EffectiveListeningIntro from '@/components/lesson-intros/english-language/shs1/EffectiveListeningIntro';
 import OralPresentationsIntro from '@/components/lesson-intros/english-language/shs1/OralPresentationsIntro';
+import PronunciationIntro from '@/components/lesson-intros/english-language/shs1/PronunciationIntro';
+import ReadingComprehensionIntro from '@/components/lesson-intros/english-language/shs1/ReadingComprehensionIntro';
 import { CarouselLesson } from '@/components/CarouselLesson';
 import { 
   addBookmark, 
@@ -314,12 +316,9 @@ export default function LessonPage() {
     return baseLesson;
   }, [localLesson, firestoreLesson, educationLevel, localTopic?.name, subjectInfo?.name]);
 
-  // Check carousel eligibility using feature flags
-  // Use lessonSlug as the main dependency to prevent infinite loops
-  const lessonId = lesson?.id || lesson?.slug || lessonSlug;
-  
+  // Check carousel eligibility using feature flags - ONLY depends on route parameters
   useEffect(() => {
-    if (lessonId && level && subjectSlug && topicSlug && lessonSlug) {
+    if (level && subjectSlug && topicSlug && lessonSlug) {
       // Check if carousel is enabled for this lesson
       const eligible = isCarouselEnabled(
         level,
@@ -336,66 +335,68 @@ export default function LessonPage() {
         eligible
       });
       
-      console.log('🎠 CAROUSEL CHECK DETAILS:', {
-        'level (normalized)': level.toLowerCase(),
-        'subject (normalized)': subjectSlug.toLowerCase(),
-        'topic (normalized)': topicSlug.toLowerCase(),
-        'lesson (normalized)': lessonSlug.toLowerCase(),
-        'Expected lesson slug': 'is-sy-ecosystems-energy-flow-food-chains',
-        'Match?': lessonSlug.toLowerCase() === 'is-sy-ecosystems-energy-flow-food-chains',
-        'eligible': eligible
-      });
-      
       setCarouselEligible(eligible);
-      
-      // Validate lesson structure if eligible
-      if (eligible && lesson) {
-        try {
-          const validation = validateLessonForCarousel(lesson);
-          setValidationResult(validation);
-          
-          console.log('✅ CAROUSEL VALIDATION:', {
-            isValid: validation.isValid,
-            errors: validation.errors,
-            warnings: validation.warnings,
-            slideCount: validation.slideCount
-          });
-          
-          // Track feature flag status
-          trackFeatureFlagStatus('carousel_mode', eligible, {
-            level,
-            subject: subjectSlug,
-            topic: topicSlug,
-            lesson: lessonSlug,
-            validation: validation.isValid,
-          });
-          
-          // Log validation results in development
-          if (process.env.NODE_ENV === 'development') {
-            console.log('Carousel Eligibility:', eligible);
-            console.log('Lesson Validation:', validation);
-            console.log('Lesson data:', lesson);
-          }
-          
-          // Track validation errors only if there are actual errors with content
-          if (!validation.isValid && validation.errors.length > 0) {
-            const errorMessage = validation.errors.join(', ').trim();
-            if (errorMessage) {
-              trackCarouselError({
-                lessonSlug: lessonSlug || 'unknown',
-                error: errorMessage,
-                errorType: 'validation',
-                context: 'Lesson structure validation failed',
-                timestamp: Date.now(),
-              });
-            }
-          }
-        } catch (error) {
-          console.error('Error during carousel validation:', error);
+    }
+  }, [level, subjectSlug, topicSlug, lessonSlug]);
+
+  // Validate lesson structure if carousel is eligible - separate effect for lesson-dependent logic
+  useEffect(() => {
+    if (carouselEligible && lesson?.id) {
+      try {
+        const validation = validateLessonForCarousel(lesson);
+        setValidationResult(validation);
+        
+        console.log('🎠 CAROUSEL CHECK DETAILS:', {
+          'level (normalized)': level.toLowerCase(),
+          'subject (normalized)': subjectSlug.toLowerCase(),
+          'topic (normalized)': topicSlug.toLowerCase(),
+          'lesson (normalized)': lessonSlug.toLowerCase(),
+          'Expected lesson slug': 'is-sy-ecosystems-energy-flow-food-chains',
+          'Match?': lessonSlug.toLowerCase() === 'is-sy-ecosystems-energy-flow-food-chains',
+          'eligible': carouselEligible
+        });
+        
+        console.log('✅ CAROUSEL VALIDATION:', {
+          isValid: validation.isValid,
+          errors: validation.errors,
+          warnings: validation.warnings,
+          slideCount: validation.slideCount
+        });
+        
+        // Track feature flag status
+        trackFeatureFlagStatus('carousel_mode', carouselEligible, {
+          level,
+          subject: subjectSlug,
+          topic: topicSlug,
+          lesson: lessonSlug,
+          validation: validation.isValid,
+        });
+        
+        // Log validation results in development
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Carousel Eligibility:', carouselEligible);
+          console.log('Lesson Validation:', validation);
+          console.log('Lesson data:', lesson);
         }
+        
+        // Track validation errors only if there are actual errors with content
+        if (!validation.isValid && validation.errors.length > 0) {
+          const errorMessage = validation.errors.join(', ').trim();
+          if (errorMessage) {
+            trackCarouselError({
+              lessonSlug: lessonSlug || 'unknown',
+              error: errorMessage,
+              errorType: 'validation',
+              context: 'Lesson structure validation failed',
+              timestamp: Date.now(),
+            });
+          }
+        }
+      } catch (error) {
+        console.error('Error during carousel validation:', error);
       }
     }
-  }, [lessonId, level, subjectSlug, topicSlug, lessonSlug, lesson]);
+  }, [carouselEligible, lesson?.id, level, subjectSlug, topicSlug, lessonSlug]);
 
   // Autostart carousel mode if enabled in feature flags
   useEffect(() => {
@@ -810,6 +811,10 @@ export default function LessonPage() {
               <EffectiveListeningIntro />
             ) : lessonSlug === 'eng-ls-oral-presentations' ? (
               <OralPresentationsIntro />
+            ) : lessonSlug === 'eng-ls-pronunciation-intonation' ? (
+              <PronunciationIntro />
+            ) : lessonSlug === 'eng-rw-reading-comprehension' ? (
+              <ReadingComprehensionIntro />
             ) : (
               // Fallback - should not reach here if all intros are properly mapped
               null

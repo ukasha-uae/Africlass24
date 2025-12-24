@@ -115,7 +115,9 @@ export const FEATURE_FLAGS = {
       // English Language SHS1 Topics
       'eng-ls-effective-listening',
       'eng-ls-oral-presentations', // NEW: Oral Presentations and Discussions
-    ], // Support multiple topic formats
+      'eng-ls-pronunciation-intonation', // NEW: Pronunciation, Stress, and Intonation
+      'eng-rw-reading-comprehension', // NEW: Reading Comprehension Strategies
+    ],
     lessons: [
       'quadratic-equations',
       'shs3-quadratic-equations', // Support both with and without prefix
@@ -221,7 +223,9 @@ export const FEATURE_FLAGS = {
       // English Language SHS1 Lessons
       'eng-ls-effective-listening', // Effective Listening Strategies
       'eng-ls-oral-presentations', // Oral Presentations and Discussions
-    ], // SHS3 (29) + SHS2 (12) + SHS1 (16) + Science SHS1 (22) + Science SHS2 (10) + Science SHS3 (5) + English SHS1 (2) = 96 lessons total
+      'eng-ls-pronunciation-intonation', // Pronunciation, Stress, and Intonation
+      'eng-rw-reading-comprehension', // Reading Comprehension Strategies
+    ], // SHS3 (29) + SHS2 (12) + SHS1 (16) + Science SHS1 (22) + Science SHS2 (10) + Science SHS3 (5) + English SHS1 (3) = 97 lessons total
   },
 };
 

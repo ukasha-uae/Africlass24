@@ -989,6 +989,143 @@ Listening comprehension is directly tested in Oral English examinations. Strong 
         explanation: 'Visual aids should support your presentation by highlighting key points, showing data, or illustrating concepts. They should never replace your spoken words or dominate audience attention. Slides with minimal text, clear visuals, and professional design work best. Remember: your voice and presence matter more than fancy graphics.'
       }
     ]
+  },
+  // STRAND 1: Listening & Speaking (Lesson 3)
+  {
+    id: 'eng-shs1-ls-3',
+    slug: 'eng-ls-pronunciation-intonation',
+    title: 'Pronunciation, Stress, and Intonation',
+    objectives: [
+      'Understand the importance of correct pronunciation in effective communication',
+      'Identify and pronounce the 44 English sounds using phonetic symbols',
+      'Apply word stress patterns to improve intelligibility and fluency',
+      'Master sentence stress and intonation patterns for natural speech',
+      'Use stress and intonation to convey emotion, emphasis, and meaning',
+      'Overcome pronunciation challenges specific to {{country:adjective}} English speakers',
+      'Apply stress and intonation patterns in real-world communication contexts'
+    ],
+    introduction: `Welcome to Pronunciation, Stress, and Intonation! Clear pronunciation is the foundation of effective communication in {{country}}. Whether you're presenting in class, participating in debates, or preparing for {{exam:secondary}}, how you speak is just as important as what you say.
+
+**What Makes Good Pronunciation?**
+Pronunciation is more than just producing individual sounds – it includes understanding **word stress** (which syllables are emphasized) and **intonation** (how your voice rises and falls). Together, these three elements help you communicate with clarity, confidence, and natural fluency.
+
+**Why It Matters in {{country}}:**
+- 🎯 **Academic Success**: Clear speech improves class participation and oral presentations
+- 🎯 **{{exam:secondary}} Performance**: Pronunciation is directly assessed in Oral English examinations
+- 🎯 **Professional Opportunities**: Job interviews and workplace communication require clear articulation
+- 🎯 **Cultural Pride**: {{country:adjective}} English is a legitimate global variety – embrace your accent while focusing on clarity
+- 🎯 **Listening Skills**: Better pronunciation improves your ability to understand spoken English
+
+**Important Note:** Your {{country:adjective}} accent is part of your identity! This lesson focuses on **clarity and intelligibility**, not sounding "native." The goal is to be understood clearly, not to eliminate your cultural identity.`,
+    keyConcepts: [
+      {
+        title: '1. Understanding English Sounds',
+        content: `English has 44 sounds (phonemes) made from just 26 letters – which is why spelling and pronunciation don't always match!`
+      },
+      {
+        title: '2. Word Stress Patterns',
+        content: `In English, one syllable in each word receives primary stress (spoken louder, longer, higher).`
+      },
+      {
+        title: '3. Sentence Stress and Intonation',
+        content: `Beyond individual words, sentence stress and intonation add meaning and emotion to your speech.`
+      },
+      {
+        title: '4. Common Pronunciation Challenges',
+        content: `Many sounds in English may be unfamiliar to {{country:adjective}} speakers. Focus on the sounds that cause the most confusion.`
+      },
+      {
+        title: '5. Improvement Techniques',
+        content: `Pronunciation improves through active, focused practice using proven techniques like listen-repeat-record cycles and shadowing.`
+      }
+    ],
+    activities: {
+      type: 'quiz',
+      questions: []
+    },
+    pastQuestions: [],
+    summary: `Pronunciation, stress, and intonation work together to make your English clear, natural, and engaging. Remember: {{country:adjective}} English is valid! Focus on clarity and comprehension, not sounding "native."`,
+    endOfLessonQuiz: [
+      {
+        type: 'mcq',
+        question: 'What is the PRIMARY goal of good pronunciation?',
+        options: [
+          'To sound exactly like a British or American speaker',
+          'To ensure listeners understand your message clearly',
+          'To use difficult sounds to impress others',
+          'To eliminate your {{country:adjective}} accent completely'
+        ],
+        answer: 'To ensure listeners understand your message clearly',
+        explanation: 'The primary purpose of good pronunciation is INTELLIGIBILITY – making sure listeners understand you clearly. Your {{country:adjective}} accent is part of your identity; the goal is clarity, not sounding native.'
+      }
+    ]
+  },
+  // STRAND 2: Reading & Writing (Lesson 1)
+  {
+    id: 'eng-shs1-rw-1',
+    slug: 'eng-rw-reading-comprehension',
+    title: 'Reading Comprehension Strategies',
+    objectives: [
+      'Understand the difference between surface reading and deep comprehension',
+      'Apply active reading strategies before, during, and after reading',
+      'Identify and analyze different text structures and organizational patterns',
+      'Use context clues to determine meanings of unfamiliar words',
+      'Make logical inferences and draw evidence-based conclusions',
+      'Distinguish between literal, inferential, and evaluative comprehension',
+      'Develop critical thinking skills to evaluate texts for purpose, bias, and credibility'
+    ],
+    introduction: `Reading comprehension is the foundation of all learning. In {{country}}, where education opens doors to opportunity, the ability to understand, analyze, and evaluate written texts is essential for academic success and lifelong learning.
+
+**Why Reading Comprehension Matters:**
+- 📚 **Academic Excellence**: Every subject requires reading comprehension - from science textbooks to history sources
+- 🎯 **{{exam:secondary}} Success**: Comprehension passages test your ability to understand and analyze texts
+- 💼 **Career Readiness**: Professional work requires interpreting reports, emails, proposals, and technical documents
+- 🧠 **Critical Thinking**: Strong readers question, evaluate, and form independent judgments
+- 🌍 **Information Literacy**: Navigate the modern world by understanding news, research, and digital content
+
+This lesson equips you with active reading strategies, vocabulary skills, and critical thinking techniques that transform you from a passive reader into an engaged, strategic thinker.`,
+    keyConcepts: [
+      {
+        title: '1. Three Levels of Comprehension',
+        content: `Reading comprehension operates at three interconnected levels, each building on the previous one.`
+      },
+      {
+        title: '2. Active Reading Strategies',
+        content: `Active reading means engaging with text systematically before, during, and after reading.`
+      },
+      {
+        title: '3. Text Structures and Organization',
+        content: `Authors organize information in predictable patterns. Recognizing these structures improves comprehension.`
+      },
+      {
+        title: '4. Vocabulary Development Through Context',
+        content: `Use context clues to decode unfamiliar words and expand your vocabulary naturally while reading.`
+      },
+      {
+        title: '5. Making Inferences and Drawing Conclusions',
+        content: `Strong readers draw logical conclusions from textual evidence combined with background knowledge.`
+      }
+    ],
+    activities: {
+      type: 'quiz',
+      questions: []
+    },
+    pastQuestions: [],
+    summary: `Reading comprehension is an active, strategic process that requires engagement before, during, and after reading. Master three levels: literal (what it says), inferential (what it means), and evaluative (how good it is). Use active strategies, recognize text structures, decode vocabulary from context, and make evidence-based inferences. With practice, you'll transform from a passive word-reader into a critical thinker who extracts meaning and insight from any text.`,
+    endOfLessonQuiz: [
+      {
+        type: 'mcq',
+        question: 'What is the main difference between literal and inferential comprehension?',
+        options: [
+          'Literal is easier than inferential',
+          'Literal understands stated facts; inferential draws conclusions from clues',
+          'Literal is for fiction; inferential is for non-fiction',
+          'There is no difference between them'
+        ],
+        answer: 'Literal understands stated facts; inferential draws conclusions from clues',
+        explanation: 'Literal comprehension means understanding what the text directly states. Inferential comprehension requires you to read between the lines, drawing logical conclusions from clues in the text combined with your background knowledge.'
+      }
+    ]
   }
 ];
 
