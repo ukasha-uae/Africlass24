@@ -3,14 +3,17 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { virtualLabExperiments } from '@/lib/virtual-labs-data';
+import { virtualLabExperiments, getAllVirtualLabs } from '@/lib/virtual-labs-data';
 import { FlaskConical, Atom, Dna, Zap, CheckCircle2, Lock, Trophy, Clock, Star } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useLabProgress } from '@/stores/lab-progress-store';
 import { Progress } from "@/components/ui/progress";
+import { V1RouteGuard, useV1FeatureAccess } from '@/components/V1RouteGuard';
 
 export default function VirtualLabsPage() {
+  // V1 Route Guard: Check if user has access to virtual labs
+  const { hasAccess, campus } = useV1FeatureAccess('virtualLabs');
   const [filter, setFilter] = useState<'All' | 'Biology' | 'Chemistry' | 'Physics'>('All');
   const [difficultyFilter, setDifficultyFilter] = useState<'All' | 'Easy' | 'Medium' | 'Hard'>('All');
   const { completedLabs, totalXP, streak, isLabCompleted } = useLabProgress();
@@ -49,18 +52,21 @@ export default function VirtualLabsPage() {
     return labDifficulty[slug] || 'Medium';
   };
 
-  const filteredExperiments = virtualLabExperiments.experiments
+  const allLabs = getAllVirtualLabs(); // Get V1-filtered labs
+  const filteredExperiments = allLabs
     .filter(exp => filter === 'All' || exp.subject === filter)
     .filter(exp => difficultyFilter === 'All' || getDifficulty(exp.slug) === difficultyFilter);
 
-  const completionRate = virtualLabExperiments.experiments.length > 0
-    ? Math.round((Object.keys(completedLabs).length / virtualLabExperiments.experiments.length) * 100)
+  const completionRate = allLabs.length > 0
+    ? Math.round((Object.keys(completedLabs).length / allLabs.length) * 100)
     : 0;
 
   const currentLevel = Math.floor(totalXP / 500) + 1;
 
+  // V1 Route Guard: Wrap content to check access
   return (
-    <div className="container mx-auto px-4 py-8">
+    <V1RouteGuard campus={campus} feature="virtualLabs">
+      <div className="container mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-8 text-center">
         <div className="flex items-center justify-center gap-3 mb-4">
@@ -70,7 +76,7 @@ export default function VirtualLabsPage() {
           </h1>
         </div>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Master science through hands-on experiments. {virtualLabExperiments.experiments.length} interactive labs await!
+          Master science through hands-on experiments. {getAllVirtualLabs().length} interactive labs await!
         </p>
       </div>
 
@@ -97,7 +103,7 @@ export default function VirtualLabsPage() {
                   </div>
                   <div className="flex items-center gap-1.5">
                     <Star className="h-4 w-4 text-yellow-500" />
-                    <span className="text-sm font-bold">{Object.keys(completedLabs).length}/{virtualLabExperiments.experiments.length}</span>
+                    <span className="text-sm font-bold">{Object.keys(completedLabs).length}/{getAllVirtualLabs().length}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <Zap className="h-4 w-4 text-orange-500" />
@@ -154,7 +160,7 @@ export default function VirtualLabsPage() {
       {/* Stats - Compact */}
       <div className="flex flex-wrap gap-3 mb-6">
         {Object.entries(subjectIcons).map(([subject, Icon]) => {
-          const count = virtualLabExperiments.experiments.filter(exp => exp.subject === subject).length;
+          const count = getAllVirtualLabs().filter(exp => exp.subject === subject).length;
           return (
             <div key={subject} className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-2 rounded-lg">
               <Icon className={`h-5 w-5 ${subject === 'Biology' ? 'text-green-600' : subject === 'Chemistry' ? 'text-orange-600' : 'text-blue-600'}`} />
@@ -256,5 +262,6 @@ export default function VirtualLabsPage() {
         </div>
       )}
     </div>
+    </V1RouteGuard>
   );
 }

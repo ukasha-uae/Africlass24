@@ -2,6 +2,7 @@
 'use client';
 
 import * as React from 'react';
+import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../ui/card';
 import { Button } from '../ui/button';
 import { useToast } from '@/hooks/use-toast';
@@ -85,8 +86,8 @@ const TestTubeSetup = ({ title, onDrop, onDragOver, onClick, isTarget, children 
 export function HydrogenPopTestLab() {
     const { toast } = useToast();
     const isMobile = useIsMobile();
+    const [teacherMessage, setTeacherMessage] = useState('Welcome to this experiment! Let\'s explore together.');
     const [results, setResults] = React.useState<Record<TubeContent, TubeResult>>({
-  const [teacherMessage, setTeacherMessage] = useState('Welcome to this experiment! Let\'s explore together.');
         Hydrogen: { tested: false, reaction: 'none' },
         Air: { tested: false, reaction: 'none' }
     });
@@ -322,7 +323,7 @@ export function HydrogenPopTestLab() {
                             )}
                         </TestTubeSetup>
                         <TestTubeSetup title="Tube with Air" onDrop={() => handleDrop('Air')} onDragOver={handleDragOver} onClick={() => handleMobileTubeTap('Air')} isTarget={!!selectedItem}>
-                             {/* No visual change for air */}
+                            <></>
                         </TestTubeSetup>
                     </div>
                 </CardContent>

@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { IntelligentWelcome } from '@/components/IntelligentWelcome';
 import { useLocalization } from '@/hooks/useLocalization';
+import { FEATURE_FLAGS } from '@/lib/featureFlags';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -86,13 +87,14 @@ export default function Home() {
       shortName: 'Primary',
       description: 'Class 1-6: Building Strong Foundations',
       gradient: colors.accent,
-      icon: BookOpen,
-      features: ['Age-Appropriate Content', 'Fun Learning Games', 'Basic Skills Building', 'Parent Monitoring'],
-      href: '/subjects/primary',
+      icon: Trophy,
+      features: ['Arena Challenge', 'Fun Learning Games', 'Competitive Play', 'Skill Building'],
+      href: '/challenge-arena/ghana',
       studentCount: '5,000+',
       classes: 'Class 1-6',
       emoji: '🎒',
-      tagline: 'Start Your Learning Journey'
+      tagline: 'Start Your Learning Journey',
+      v1Note: 'V1: Arena Challenge Only'
     },
     {
       id: 'jhs',
@@ -100,13 +102,14 @@ export default function Home() {
       shortName: juniorLevel,
       description: `Ace Your ${juniorExam} Exams`,
       gradient: colors.primary,
-      icon: BookOpen,
-      features: ['Interactive Lessons', 'School Battles', 'Progress Tracking', `${juniorExam} Practice`],
-      href: '/subjects/jhs',
+      icon: Trophy,
+      features: ['Arena Challenge', 'Competitive Battles', 'Progress Tracking', `${juniorExam} Practice`],
+      href: '/challenge-arena/ghana',
       studentCount: '12,000+',
       classes: juniorClasses,
       emoji: '📚',
-      tagline: country?.id === 'nigeria' ? 'Excel in Basic Education' : `Master ${juniorExam}`
+      tagline: country?.id === 'nigeria' ? 'Excel in Basic Education' : `Master ${juniorExam}`,
+      v1Note: 'V1: Arena Challenge Only'
     },
     {
       id: 'shs',
@@ -115,12 +118,13 @@ export default function Home() {
       description: `Conquer ${seniorExam} & Beyond`,
       gradient: colors.secondary,
       icon: GraduationCap,
-      features: ['NSMQ-Style Battles', 'Virtual Labs', 'Past Questions', `${seniorExam} Prep`],
-      href: '/shs',
+      features: ['Interactive Lessons', 'Virtual Labs', 'Arena Challenge', `${seniorExam} Prep`],
+      href: '/subjects/shs',
       studentCount: '10,000+',
       classes: seniorClasses,
       emoji: '🎓',
-      tagline: 'Your Path to University'
+      tagline: 'Your Path to University',
+      v1Note: 'V1: Full Access'
     }
   ];
 
@@ -246,6 +250,15 @@ export default function Home() {
                       </p>
                     </div>
 
+                    {/* V1 Note Badge */}
+                    {campus.v1Note && (
+                      <div className="mb-4">
+                        <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border border-amber-300 dark:border-amber-700">
+                          {campus.v1Note}
+                        </span>
+                      </div>
+                    )}
+
                     {/* Features with Icons */}
                     <div className="space-y-2 mb-6">
                       {campus.features.slice(0, 4).map((feature, idx) => (
@@ -314,11 +327,11 @@ export default function Home() {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
             {[
-              { href: '/challenge-arena', label: 'Challenge Arena', icon: '⚔️', desc: 'Battle & Compete' },
-              { href: '/study-groups', label: 'Study Groups', icon: '👥', desc: 'Learn Together' },
-              { href: '/virtual-labs', label: 'Virtual Labs', icon: '🔬', desc: 'Hands-On Science' },
-              { href: '/past-questions', label: 'Past Questions', icon: '📝', desc: 'Practice Tests' }
-            ].map((item) => (
+              { href: '/challenge-arena/ghana', label: 'Challenge Arena', icon: '⚔️', desc: 'Battle & Compete', show: true },
+              { href: '/study-groups', label: 'Study Groups', icon: '👥', desc: 'Learn Together', show: false }, // Hidden for V1
+              { href: '/virtual-labs', label: 'Virtual Labs', icon: '🔬', desc: 'Hands-On Science', show: FEATURE_FLAGS.V1_LAUNCH.shsHasVirtualLabs },
+              { href: '/past-questions', label: 'Past Questions', icon: '📝', desc: 'Practice Tests', show: true }
+            ].filter(item => item.show).map((item) => (
               <Link key={item.href} href={item.href}>
                 <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer border-2 hover:border-violet-400 dark:hover:border-violet-600 h-full">
                   <CardContent className="p-6 text-center">

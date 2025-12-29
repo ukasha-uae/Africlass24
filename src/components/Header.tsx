@@ -36,6 +36,7 @@ import { doc } from 'firebase/firestore';
 import { useMemo, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useLocalization } from '@/hooks/useLocalization';
+import { useV1FeatureAccess } from '@/components/V1RouteGuard';
 
 export default function Header() {
   const { user, firestore } = useFirebase();
@@ -47,6 +48,10 @@ export default function Header() {
   const { country } = useLocalization();
   const profileRef = useMemo(() => (user && firestore) ? doc(firestore, `students/${user.uid}`) : null, [user, firestore]);
   const { data: profile } = useDoc<any>(profileRef as any);
+  
+  // V1: Check feature access based on user's education level
+  const { hasAccess: hasLessonsAccess } = useV1FeatureAccess('lessons');
+  const { hasAccess: hasVirtualLabsAccess } = useV1FeatureAccess('virtualLabs');
   
   return (
     <header 
@@ -154,25 +159,29 @@ export default function Header() {
                       
                   {/* Main Navigation Links */}
                   <nav className="flex flex-col gap-1">
-                        <Link 
-                          href="/shs-programmes" 
-                          onClick={() => setSheetOpen(false)}
-                          className="flex items-center gap-3 p-3 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-colors text-foreground"
-                        >
-                          <GraduationCap className="h-5 w-5 text-violet-600 dark:text-violet-400" />
-                          <span className="font-medium">SHS Programmes</span>
-                        </Link>
+                        {hasLessonsAccess && (
+                          <Link 
+                            href="/shs-programmes" 
+                            onClick={() => setSheetOpen(false)}
+                            className="flex items-center gap-3 p-3 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-colors text-foreground"
+                          >
+                            <GraduationCap className="h-5 w-5 text-violet-600 dark:text-violet-400" />
+                            <span className="font-medium">SHS Programmes</span>
+                          </Link>
+                        )}
                         
-                        <Link 
-                          href="/virtual-labs" 
-                          onClick={() => setSheetOpen(false)}
-                          className="flex items-center gap-3 p-3 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-colors text-foreground"
-                        >
-                          <svg className="h-5 w-5 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                          </svg>
-                          <span className="font-medium">Virtual Labs</span>
-                        </Link>
+                        {hasVirtualLabsAccess && (
+                          <Link 
+                            href="/virtual-labs" 
+                            onClick={() => setSheetOpen(false)}
+                            className="flex items-center gap-3 p-3 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-colors text-foreground"
+                          >
+                            <svg className="h-5 w-5 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                            </svg>
+                            <span className="font-medium">Virtual Labs</span>
+                          </Link>
+                        )}
                         
                         <Link 
                           href="/challenge-arena" 
@@ -303,20 +312,24 @@ export default function Header() {
                 <DropdownMenuContent align="end" className="w-48 animate-in fade-in-50 slide-in-from-top-1">
                   <DropdownMenuLabel>Learning Tools</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <Link href="/shs-programmes">
-                    <DropdownMenuItem className="cursor-pointer">
-                      <GraduationCap className="h-4 w-4 mr-2" />
-                      SHS Programmes
-                    </DropdownMenuItem>
-                  </Link>
-                  <Link href="/virtual-labs">
-                    <DropdownMenuItem className="cursor-pointer">
-                      <svg className="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                      </svg>
-                      Virtual Labs
-                    </DropdownMenuItem>
-                  </Link>
+                  {hasLessonsAccess && (
+                    <Link href="/shs-programmes">
+                      <DropdownMenuItem className="cursor-pointer">
+                        <GraduationCap className="h-4 w-4 mr-2" />
+                        SHS Programmes
+                      </DropdownMenuItem>
+                    </Link>
+                  )}
+                  {hasVirtualLabsAccess && (
+                    <Link href="/virtual-labs">
+                      <DropdownMenuItem className="cursor-pointer">
+                        <svg className="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
+                        Virtual Labs
+                      </DropdownMenuItem>
+                    </Link>
+                  )}
                   <Link href="/wassce-questions">
                     <DropdownMenuItem className="cursor-pointer">
                       <Trophy className="h-4 w-4 mr-2" />

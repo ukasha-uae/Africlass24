@@ -211,4 +211,4 @@ export const socialStudiesSubject: Subject = {
         ]
       }
     ],
-  },;
+  };

@@ -70,33 +70,24 @@ export function ExpansionOfAirLabEnhanced() {
     const handleCollectBottle = () => {
         if (!bottleCollected) {
             setBottleCollected(true);
-            setTeacherMessage("Perfect! You collected the bottle. This sealed container holds air at room temperature. Inside are billions of gas molecules moving randomly and colliding with the walls. When we heat this air, those molecules will gain energy and push harder - causing expansion!");
-            toast({ 
-                title: '✅ Bottle Collected',
-                description: 'Sealed container with air molecules inside'
-            });
+            setTeacherMessage("Perfect! Now click on the WATER container - we'll use hot water to heat the air inside the bottle.");
+            toast({ title: '✅ Bottle Collected' });
         }
     };
     
     const handleCollectWater = () => {
         if (bottleCollected && !waterCollected) {
             setWaterCollected(true);
-            setTeacherMessage("Good! Hot water collected. We'll use this to heat the air inside the bottle. Heat transfers from hot water to the bottle, then to the air molecules inside. As molecules gain thermal energy, they move faster and need more space!");
-            toast({ 
-                title: '✅ Water Collected',
-                description: 'Heat source to increase air temperature'
-            });
+            setTeacherMessage("Good! Now click on the BALLOON - this will show us how much the air expands!");
+            toast({ title: '✅ Water Collected' });
         }
     };
     
     const handleCollectBalloon = () => {
         if (waterCollected && !balloonCollected) {
             setBalloonCollected(true);
-            setTeacherMessage("Excellent! Balloon collected. This elastic balloon will be our expansion indicator. When attached to the bottle, the balloon will inflate as the air inside expands. The more the air expands, the bigger the balloon grows - it's a visual proof of gas expansion!");
-            toast({ 
-                title: '✅ Balloon Collected',
-                description: 'Visual indicator for gas expansion'
-            });
+            setTeacherMessage("Excellent! Finally, click on the THERMOMETER - we need to measure the temperature change!");
+            toast({ title: '✅ Balloon Collected' });
         }
     };
     
@@ -104,11 +95,8 @@ export function ExpansionOfAirLabEnhanced() {
         if (balloonCollected && !thermometerCollected) {
             setThermometerCollected(true);
             setShowSupplies(false);
-            setTeacherMessage("All supplies ready! The thermometer will measure how much we increase the temperature. Starting at 20°C (room temperature), we'll heat the air and observe the relationship between temperature and volume. Charles' Law states: V ∝ T. Let's test it!");
-            toast({ 
-                title: '✅ All Supplies Collected!',
-                description: 'Ready to demonstrate Charles\' Law'
-            });
+            setTeacherMessage("All supplies ready! Now we'll set up the bottle with the balloon attached. Are you ready?");
+            toast({ title: '✅ All Supplies Collected!' });
             setPendingTransition(() => () => {
                 setCurrentStep('setup');
             });
@@ -118,13 +106,10 @@ export function ExpansionOfAirLabEnhanced() {
     const handleSetupComplete = () => {
         if (!suppliesReady) {
             setSuppliesReady(true);
-            setTeacherMessage("Perfect! The balloon is now attached to the bottle opening - it forms an airtight seal. Air molecules inside can't escape, so when they expand, they'll push the balloon outward. Temperature starts at 20°C. Click the FLAME to start heating and watch the balloon inflate as the air expands!");
-            toast({ 
-                title: '✅ Setup Complete',
-                description: 'Sealed system ready for heating'
-            });
+            setTeacherMessage("Perfect! The balloon is now attached to the bottle. The air inside will expand when heated. Click the FLAME to start heating!");
+            toast({ title: '✅ Setup Complete' });
             setPendingTransition(() => () => {
-                setCurrentStep('add-water');
+                setCurrentStep('heat-air');
             });
         }
     };
@@ -134,11 +119,8 @@ export function ExpansionOfAirLabEnhanced() {
         
         setHeatingActive(true);
         setBalloonInflating(true);
-        setTeacherMessage("Applying heat! Watch carefully - as thermal energy transfers to air molecules, they gain kinetic energy and move faster. Faster molecules collide with more force and push apart, increasing the pressure inside. Since the balloon is elastic, the expanding air pushes it outward. Temperature and volume are rising together - that's Charles' Law in action!");
-        toast({ 
-            title: '🔥 Heating the air...',
-            description: 'Molecules gaining kinetic energy and expanding'
-        });
+        setTeacherMessage("Applying heat! Watch the air particles gain energy and spread out. The balloon is filling up!");
+        toast({ title: '🔥 Heating the air...' });
         
         // Heating simulation
         let currentTemp = temperature;
@@ -156,11 +138,8 @@ export function ExpansionOfAirLabEnhanced() {
                 setHeatingActive(false);
                 setBalloonInflated(true);
                 setBalloonInflating(false);
-                setTeacherMessage("Wow! The balloon is fully inflated! From 20°C to 80°C, the air volume increased dramatically! This perfectly demonstrates Charles's Law: V ∝ T (at constant pressure, volume is directly proportional to absolute temperature). We heated the air from 293K to 353K - about 20% increase in Kelvin temperature, so the volume increased by roughly 20% too! The expanding gas pushed the elastic balloon outward. In Kelvin: (V₁/T₁) = (V₂/T₂). Real-world examples: hot air balloons, tire pressure changes, and why spray cans warn against heat!");
-                toast({ 
-                    title: '✅ Experiment Complete!', 
-                    description: 'Charles\' Law demonstrated - V ∝ T!' 
-                });
+                setTeacherMessage("Wow! The balloon is fully inflated! The air expanded significantly when heated. This demonstrates Charles's Law - gases expand with temperature!");
+                toast({ title: '✅ Experiment Complete!', description: 'Balloon fully inflated!' });
                 setPendingTransition(() => () => {
                     setCurrentStep('results');
                 });
@@ -196,7 +175,6 @@ export function ExpansionOfAirLabEnhanced() {
             const earnedXP = markLabComplete(labId, score, 0);
             setXpEarned(earnedXP);
             setQuizFeedback(`Perfect! 🎉 You got all 3 correct! You understand gas expansion! +${earnedXP} XP`);
-            setTeacherMessage(`Outstanding! Perfect score! 🎉 You've completely mastered gas expansion and Charles' Law! You understand that when we heated the air inside the bottle, we increased the kinetic energy of air molecules. Faster-moving molecules collide with more force and push outward more strongly, causing the gas to expand. The balloon inflated because the expanding air needed more space! This demonstrates Charles' Law: at constant pressure, the volume of a gas is directly proportional to its temperature (V ∝ T). If we doubled the Kelvin temperature, the volume would double too! In real life, this is why hot air balloons rise (heated air expands, becomes less dense, and floats), why tires can burst in hot weather (air inside expands), and why we shouldn't heat sealed containers (expanding gas creates pressure). You've mastered temperature, kinetic energy, and gas behavior! +${earnedXP} XP earned!`);
             setShowCelebration(true);
             confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
             setTimeout(() => {
@@ -205,10 +183,8 @@ export function ExpansionOfAirLabEnhanced() {
             }, 2000);
         } else if (correctCount === 2) {
             setQuizFeedback(`Good job! You got ${correctCount} out of 3 correct. Think about gas behavior and Charles's Law!`);
-            setTeacherMessage(`Good effort! You got 2 out of 3 correct. Let me clarify: When we heat air, we add thermal energy. This makes air molecules move faster - that's increased kinetic energy. Faster molecules push harder on the container walls, so the gas expands. The balloon inflated because the air needed more room. This is Charles' Law: V ∝ T (volume is proportional to temperature at constant pressure). Remember: heat → faster molecules → more force → expansion. Try the experiment again and watch how temperature affects the balloon size!`);
         } else {
             setQuizFeedback(`You got ${correctCount} out of 3 correct. Remember: gases expand when heated and contract when cooled!`);
-            setTeacherMessage(`Keep trying! You got ${correctCount} correct. Let me help you understand: Gases expand when heated because heat gives molecules kinetic energy. Key points: (1) The AIR inside the bottle expanded when heated - gas particles move faster and push apart. (2) Heat increases molecular KINETIC energy - particles vibrate and move faster. (3) This follows CHARLES' LAW - at constant pressure, gas volume increases with temperature (V ∝ T). Watch the balloon carefully - it inflates because expanding air needs more space. Try again and observe how heating affects the gas!`);
         }
     };
 
@@ -241,15 +217,11 @@ export function ExpansionOfAirLabEnhanced() {
             <TeacherVoice 
                 message={teacherMessage}
                 onComplete={handleTeacherComplete}
-                emotion={currentStep === 'complete' ? 'celebrating' : currentStep === 'heat-air' ? 'explaining' : 'happy'}
-                context={{
-                    attempts: temperature - 20,
-                    correctStreak: balloonInflated ? 100 : 0
-                }}
+                emotion={currentStep === 'complete' ? 'celebrating' : (currentStep === 'heat-air' || currentStep === 'results') ? 'explaining' : 'happy'}
                 quickActions={[
-                    { label: 'Reset Lab', onClick: handleRestart },
-                    { label: 'View Theory', onClick: () => document.querySelector('[value="theory"]')?.parentElement?.click() },
-                    { label: 'Safety Tips', onClick: () => document.querySelector('[value="safety"]')?.parentElement?.click() }
+                    { label: 'Reset Lab', icon: '🔄', onClick: handleRestart },
+                    { label: 'View Theory', icon: '📖', onClick: () => {} },
+                    { label: 'Safety Tips', icon: '🛡️', onClick: () => {} }
                 ]}
             />
 

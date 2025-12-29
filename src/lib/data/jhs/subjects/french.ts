@@ -187,4 +187,4 @@ export const frenchSubject: Subject = {
         ]
       },
     ]
-  },;
+  };

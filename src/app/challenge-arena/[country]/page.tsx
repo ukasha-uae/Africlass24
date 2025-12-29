@@ -35,6 +35,7 @@ import { useLocalization } from '@/hooks/useLocalization';
 import CountrySelector from '@/components/CountrySelector';
 import { useParams, notFound, useRouter } from 'next/navigation';
 import { COUNTRIES } from '@/lib/localization/countries/index';
+import { FEATURE_FLAGS } from '@/lib/featureFlags';
 
 export default function LocalizedChallengeArenaPage() {
   const params = useParams();
@@ -425,98 +426,83 @@ export default function LocalizedChallengeArenaPage() {
                 </Card>
               </Link>
 
-              <Link href="/challenge-arena/create">
-                <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900">
-                        <Target className="h-8 w-8 text-blue-600" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold mb-2">Challenge Friends</h3>
-                        <p className="text-sm text-muted-foreground mb-3">
-                          Create custom challenge and invite specific students
-                        </p>
-                        <div className="flex gap-2">
-                          <Badge variant="secondary">Schedule time</Badge>
-                          <Badge variant="outline">Custom rules</Badge>
+              {/* V1: Hide complex modes - only show Practice and Quick Match */}
+              {FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaBoss && (
+                <Link href="/challenge-arena/boss-battle">
+                  <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-red-500 bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="p-3 rounded-full bg-red-100 dark:bg-red-900">
+                          <Swords className="h-8 w-8 text-red-600" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-bold mb-2 text-red-600">Boss Battle</h3>
+                          <p className="text-sm text-muted-foreground mb-3">
+                            Challenge the top-ranked players in {country?.name}
+                          </p>
+                          <div className="flex gap-2">
+                            <Badge variant="destructive">Hard mode</Badge>
+                            <Badge variant="outline">High rewards</Badge>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
+                    </CardContent>
+                  </Card>
+                </Link>
+              )}
 
-              <Link href="/challenge-arena/school-battle">
-                <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-full bg-purple-100 dark:bg-purple-900">
-                        <School className="h-8 w-8 text-purple-600" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
-                          School vs School
-                          <Badge variant="secondary" className="text-xs bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">5 Countries</Badge>
-                        </h3>
-                        <p className="text-sm text-muted-foreground mb-3">
-                          Represent your school in inter-school battles across {country?.name || 'West Africa'}
-                        </p>
-                        <div className="flex gap-2">
-                          <Badge variant="secondary">Team battle</Badge>
-                          <Badge variant="outline">School pride</Badge>
-                          <Badge variant="outline">{country?.flag}</Badge>
+              {FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaTournament && (
+                <Link href="/challenge-arena/tournaments">
+                  <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="p-3 rounded-full bg-yellow-100 dark:bg-yellow-900">
+                          <Trophy className="h-8 w-8 text-yellow-600" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-bold mb-2">Tournaments</h3>
+                          <p className="text-sm text-muted-foreground mb-3">
+                            Join competitive tournaments and win prizes
+                          </p>
+                          <div className="flex gap-2">
+                            <Badge variant="secondary">Brackets</Badge>
+                            <Badge variant="outline">Win prizes</Badge>
+                            <Badge variant="outline">Weekly</Badge>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
+                    </CardContent>
+                  </Card>
+                </Link>
+              )}
 
-              <Link href="/challenge-arena/tournaments">
-                <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-full bg-yellow-100 dark:bg-yellow-900">
-                        <Trophy className="h-8 w-8 text-yellow-600" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold mb-2">Tournaments</h3>
-                        <p className="text-sm text-muted-foreground mb-3">
-                          Join competitive tournaments and win prizes
-                        </p>
-                        <div className="flex gap-2">
-                          <Badge variant="secondary">Brackets</Badge>
-                          <Badge variant="outline">Win prizes</Badge>
-                          <Badge variant="outline">Weekly</Badge>
+              {FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaSchool && (
+                <Link href="/challenge-arena/school-battle">
+                  <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="p-3 rounded-full bg-purple-100 dark:bg-purple-900">
+                          <School className="h-8 w-8 text-purple-600" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+                            School vs School
+                            <Badge variant="secondary" className="text-xs bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">5 Countries</Badge>
+                          </h3>
+                          <p className="text-sm text-muted-foreground mb-3">
+                            Represent your school in inter-school battles across {country?.name || 'West Africa'}
+                          </p>
+                          <div className="flex gap-2">
+                            <Badge variant="secondary">Team battle</Badge>
+                            <Badge variant="outline">School pride</Badge>
+                            <Badge variant="outline">{country?.flag}</Badge>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-
-              <Link href="/challenge-arena/boss-battle">
-                <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-red-500 bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-full bg-red-100 dark:bg-red-900">
-                        <Swords className="h-8 w-8 text-red-600" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold mb-2 text-red-600">Boss Battle</h3>
-                        <p className="text-sm text-muted-foreground mb-3">
-                          Challenge the top-ranked players in {country?.name}
-                        </p>
-                        <div className="flex gap-2">
-                          <Badge variant="destructive">Hard mode</Badge>
-                          <Badge variant="outline">High rewards</Badge>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
+                    </CardContent>
+                  </Card>
+                </Link>
+              )}
             </div>
           </TabsContent>
 

@@ -2,12 +2,13 @@
 'use client';
 
 import * as React from 'react';
+import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../ui/card';
 import { Button } from '../ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 import { Label } from '../ui/label';
-import { CheckCircle, XCircle, RefreshCw, Flame, BookOpen, Shield } from 'lucide-react';
+import { CheckCircle, XCircle, RefreshCw, Flame, BookOpen, Shield, Thermometer, Hand } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { cn } from '@/lib/utils';
 import { TextToSpeech } from '../text-to-speech';
@@ -280,7 +281,7 @@ export function HeatTransferLab() {
                             <div className="flex items-center space-x-2 py-1"><RadioGroupItem value="radiation" id="q1-c"/><Label htmlFor="q1-c">Radiation</Label></div>
                         </RadioGroup>
                          {quiz1Feedback && <p className={cn("mt-2 text-sm flex items-center gap-2 p-2 rounded-md", quiz1IsCorrect ? "text-green-700 bg-green-100" : "text-red-700 bg-red-100", quiz1IsCorrect === null && "text-blue-700 bg-blue-100")}>{quiz1IsCorrect ? <CheckCircle className="h-4 w-4"/> : !quiz1IsCorrect && quiz1Attempts > 1 ? <XCircle className="h-4 w-4"/> : <RefreshCw className="h-4 w-4 animate-spin"/>}{quiz1Feedback}</p>}
-                        <Button onClick={() => quiz1.handleSubmit(quiz1Answer, quiz1Attempts, quiz1IsCorrect)} size="sm" variant="outline" className="mt-2" disabled={!quiz1Answer || quiz1IsCorrect !== null}>Check Q1</Button>
+                        <Button onClick={() => quiz1.handleSubmit()} size="sm" variant="outline" className="mt-2" disabled={!quiz1Answer || quiz1IsCorrect !== null}>Check Q1</Button>
                     </div>
                      <div>
                         <p className="mb-2 font-medium">2. Why does a metal rod conduct heat faster than a plastic rod?</p>
@@ -290,7 +291,7 @@ export function HeatTransferLab() {
                             <div className="flex items-center space-x-2 py-1"><RadioGroupItem value="shape" id="q2-c"/><Label htmlFor="q2-c">Because of its shape.</Label></div>
                         </RadioGroup>
                          {quiz2Feedback && <p className={cn("mt-2 text-sm flex items-center gap-2 p-2 rounded-md", quiz2IsCorrect ? "text-green-700 bg-green-100" : "text-red-700 bg-red-100", quiz2IsCorrect === null && "text-blue-700 bg-blue-100")}>{quiz2IsCorrect ? <CheckCircle className="h-4 w-4"/> : !quiz2IsCorrect && quiz2Attempts > 1 ? <XCircle className="h-4 w-4"/> : <RefreshCw className="h-4 w-4 animate-spin"/>}{quiz2Feedback}</p>}
-                         <Button onClick={() => quiz2.handleSubmit(quiz2Answer, quiz2Attempts, quiz2IsCorrect)} size="sm" variant="outline" className="mt-2" disabled={!quiz2Answer || quiz2IsCorrect !== null}>Check Q2</Button>
+                         <Button onClick={() => quiz2.handleSubmit()} size="sm" variant="outline" className="mt-2" disabled={!quiz2Answer || quiz2IsCorrect !== null}>Check Q2</Button>
                     </div>
                     <div>
                         <p className="mb-2 font-medium">3. Why does the heated fluid rise in convection?</p>
@@ -300,7 +301,7 @@ export function HeatTransferLab() {
                             <div className="flex items-center space-x-2 py-1"><RadioGroupItem value="no-change" id="q3-c" /><Label htmlFor="q3-c">Its density does not change.</Label></div>
                         </RadioGroup>
                         {quiz3Feedback && <p className={cn("mt-2 text-sm flex items-center gap-2 p-2 rounded-md", quiz3IsCorrect ? "text-green-700 bg-green-100" : "text-red-700 bg-red-100", quiz3IsCorrect === null && "text-blue-700 bg-blue-100")}>{quiz3IsCorrect ? <CheckCircle className="h-4 w-4"/> : !quiz3IsCorrect && quiz3Attempts > 1 ? <XCircle className="h-4 w-4"/> : <RefreshCw className="h-4 w-4 animate-spin"/>}{quiz3Feedback}</p>}
-                         <Button onClick={() => quiz3.handleSubmit(quiz3Answer, quiz3Attempts, quiz3IsCorrect)} size="sm" variant="outline" className="mt-2" disabled={!quiz3Answer || quiz3IsCorrect !== null}>Check Q3</Button>
+                         <Button onClick={() => quiz3.handleSubmit()} size="sm" variant="outline" className="mt-2" disabled={!quiz3Answer || quiz3IsCorrect !== null}>Check Q3</Button>
                     </div>
                     {quiz1IsCorrect && quiz2IsCorrect && quiz3IsCorrect && stage === 'quiz' && (
                          <Button onClick={() => setStage('complete')} className="w-full mt-4">Complete Lab</Button>

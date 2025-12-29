@@ -2,6 +2,7 @@
 'use client';
 
 import * as React from 'react';
+import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../ui/card';
 import { Button } from '../ui/button';
 import { useToast } from '@/hooks/use-toast';
@@ -59,7 +60,7 @@ const KettleIcon = (props: React.SVGProps<SVGSVGElement>) => (
     </svg>
 );
 
-const LidWithIceIcon = (props: React.SVGProps<SVGSVGElement>) => (
+const LidWithIceIcon = (props: React.HTMLAttributes<HTMLDivElement>) => (
     <div className="relative w-24 h-12" {...props}>
         <div className="absolute bottom-0 w-full h-4 bg-gray-300 dark:bg-gray-600 rounded-md border border-gray-400"></div>
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1">

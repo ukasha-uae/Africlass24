@@ -32,6 +32,7 @@ import {
 import { useSoundEffects } from '@/hooks/use-sound-effects';
 import { useFirebase } from '@/firebase/provider';
 import { useToast } from '@/hooks/use-toast';
+import { FEATURE_FLAGS } from '@/lib/featureFlags';
 
 export default function QuizBattlePage() {
   const params = useParams();
@@ -934,9 +935,9 @@ export default function QuizBattlePage() {
             </Link>
             <Link href={
               isPractice ? "/challenge-arena/practice" :
-              isBossBattle ? "/challenge-arena/boss-battle" :
-              isSchoolBattle ? "/challenge-arena/school-battle" :
-              isTournament ? "/challenge-arena/tournaments" :
+              isBossBattle && FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaBoss ? "/challenge-arena/boss-battle" :
+              isSchoolBattle && FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaSchool ? "/challenge-arena/school-battle" :
+              isTournament && FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaTournament ? "/challenge-arena/tournaments" :
               "/challenge-arena/quick-match"
             } className="w-full">
               <Button className="w-full h-12 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70">
@@ -1013,12 +1014,14 @@ export default function QuizBattlePage() {
                               Quick Match
                             </Button>
                           </Link>
-                          <Link href="/challenge-arena/boss-battle">
-                            <Button size="sm" variant="outline" className="h-8 text-xs">
-                              <BrainCircuit className="h-3 w-3 mr-1" />
-                              Boss Battle
-                            </Button>
-                          </Link>
+                          {FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaBoss && (
+                            <Link href="/challenge-arena/boss-battle">
+                              <Button size="sm" variant="outline" className="h-8 text-xs">
+                                <BrainCircuit className="h-3 w-3 mr-1" />
+                                Boss Battle
+                              </Button>
+                            </Link>
+                          )}
                         </>
                       )}
                       {isPractice && accuracy < 80 && (
@@ -1031,7 +1034,7 @@ export default function QuizBattlePage() {
                       )}
                       {isBossBattle && (
                         <>
-                          {isWin && (
+                          {isWin && FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaBoss && (
                             <Link href="/challenge-arena/boss-battle">
                               <Button size="sm" variant="outline" className="h-8 text-xs">
                                 <Target className="h-3 w-3 mr-1" />
@@ -1039,22 +1042,26 @@ export default function QuizBattlePage() {
                               </Button>
                             </Link>
                           )}
-                          <Link href="/challenge-arena/tournaments">
-                            <Button size="sm" variant="outline" className="h-8 text-xs">
-                              <Trophy className="h-3 w-3 mr-1" />
-                              Join Tournament
-                            </Button>
-                          </Link>
+                          {FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaTournament && (
+                            <Link href="/challenge-arena/tournaments">
+                              <Button size="sm" variant="outline" className="h-8 text-xs">
+                                <Trophy className="h-3 w-3 mr-1" />
+                                Join Tournament
+                              </Button>
+                            </Link>
+                          )}
                         </>
                       )}
                       {isSchoolBattle && (
                         <>
-                          <Link href="/challenge-arena/school-battle">
-                            <Button size="sm" variant="outline" className="h-8 text-xs">
-                              <Award className="h-3 w-3 mr-1" />
-                              Another Battle
-                            </Button>
-                          </Link>
+                          {FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaSchool && (
+                            <Link href="/challenge-arena/school-battle">
+                              <Button size="sm" variant="outline" className="h-8 text-xs">
+                                <Award className="h-3 w-3 mr-1" />
+                                Another Battle
+                              </Button>
+                            </Link>
+                          )}
                           <Link href="/challenge-arena/practice">
                             <Button size="sm" variant="outline" className="h-8 text-xs">
                               <BookOpen className="h-3 w-3 mr-1" />
@@ -1065,18 +1072,22 @@ export default function QuizBattlePage() {
                       )}
                       {isQuickMatch && (
                         <>
-                          <Link href="/challenge-arena/boss-battle">
-                            <Button size="sm" variant="outline" className="h-8 text-xs">
-                              <BrainCircuit className="h-3 w-3 mr-1" />
-                              Boss Battle
-                            </Button>
-                          </Link>
-                          <Link href="/challenge-arena/tournaments">
-                            <Button size="sm" variant="outline" className="h-8 text-xs">
-                              <Trophy className="h-3 w-3 mr-1" />
-                              Tournament
-                            </Button>
-                          </Link>
+                          {FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaBoss && (
+                            <Link href="/challenge-arena/boss-battle">
+                              <Button size="sm" variant="outline" className="h-8 text-xs">
+                                <BrainCircuit className="h-3 w-3 mr-1" />
+                                Boss Battle
+                              </Button>
+                            </Link>
+                          )}
+                          {FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaTournament && (
+                            <Link href="/challenge-arena/tournaments">
+                              <Button size="sm" variant="outline" className="h-8 text-xs">
+                                <Trophy className="h-3 w-3 mr-1" />
+                                Tournament
+                              </Button>
+                            </Link>
+                          )}
                         </>
                       )}
                     </div>

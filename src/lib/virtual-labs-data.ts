@@ -34,6 +34,7 @@ import { TranspirationLabEnhanced as TranspirationLab } from '@/components/virtu
 import { WaterCycleLabEnhanced as WaterCycleLab } from "@/components/virtual-labs/water-cycle-lab-enhanced";
 import { WaterTestLabEnhanced as WaterTestLab } from "@/components/virtual-labs/water-test-lab-enhanced";
 import { WorkEnergyLabEnhanced as WorkEnergyLab } from "@/components/virtual-labs/work-energy-lab-enhanced";
+import { FEATURE_FLAGS } from "@/lib/featureFlags";
 
 
 export interface VirtualLabExperiment {
@@ -371,6 +372,37 @@ export const virtualLabExperiments = {
     ]
 };
 
+/**
+ * Get all virtual labs, filtered by V1 feature flags
+ */
+export const getAllVirtualLabs = (): VirtualLabExperiment[] => {
+    const allLabs = virtualLabExperiments.experiments;
+    
+    // If V1 is enabled, filter to only show selected labs
+    if (FEATURE_FLAGS.V1_LAUNCH.enabled && FEATURE_FLAGS.V1_LAUNCH.v1VirtualLabs) {
+        const allowedSlugs = FEATURE_FLAGS.V1_LAUNCH.v1VirtualLabs;
+        return allLabs.filter(lab => allowedSlugs.includes(lab.slug));
+    }
+    
+    return allLabs;
+};
+
 export const getVirtualLabBySlug = (slug: string): VirtualLabExperiment | undefined => {
-    return virtualLabExperiments.experiments.find(exp => exp.slug === slug);
+    const experiment = virtualLabExperiments.experiments.find(exp => exp.slug === slug);
+    if (!experiment) return undefined;
+    
+    // If V1 is enabled, check if this lab is in the allowed list
+    if (FEATURE_FLAGS.V1_LAUNCH.enabled && FEATURE_FLAGS.V1_LAUNCH.v1VirtualLabs) {
+        const allowedSlugs = FEATURE_FLAGS.V1_LAUNCH.v1VirtualLabs;
+        if (!allowedSlugs.includes(experiment.slug)) {
+            return undefined; // Lab not available in V1
+        }
+    }
+    
+    // Ensure the subject matches the expected union type
+    const validSubjects: Array<'Biology' | 'Chemistry' | 'Physics' | 'Science'> = ['Biology', 'Chemistry', 'Physics', 'Science'];
+    if (!validSubjects.includes(experiment.subject as any)) {
+        return undefined;
+    }
+    return experiment as VirtualLabExperiment;
 };

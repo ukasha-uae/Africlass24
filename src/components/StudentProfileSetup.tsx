@@ -57,11 +57,9 @@ export default function StudentProfileSetup({ onSave }: { onSave?: () => void })
         studentName,
         studentClass,
         schoolName,
-        city,
-        gender,
-        dateOfBirth,
-        profilePictureUrl: selectedAvatar,
-        educationLevel,
+        schoolAddress,
+        parentPhoneNumber,
+        profilePictureUrl: profilePictureUrl || null,
         updatedAt: new Date().toISOString(),
       };
       localStorage.setItem('studentProfile', JSON.stringify(localProfile));

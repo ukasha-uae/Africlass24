@@ -204,7 +204,6 @@ export function HeatTransferLabEnhanced() {
             const earnedXP = markLabComplete(labId, score, 0);
             setXpEarned(earnedXP);
             setQuizFeedback(`Perfect! 🎉 You got all 3 correct! You understand heat transfer! +${earnedXP} XP`);
-            setTeacherMessage(`Outstanding! Perfect score! 🎉 You've completely mastered all three heat transfer methods! Let me summarize: (1) CONDUCTION - heat travels through direct contact. The hot metal rod transfers energy to adjacent particles. Solids conduct best because particles are tightly packed. Metals are excellent conductors due to free electrons. (2) CONVECTION - heat travels through fluid (liquid/gas) movement. When water is heated, hot water becomes less dense and rises, cooler water sinks and replaces it, creating a circulation pattern called a convection current. This only works in fluids where particles can move freely. (3) RADIATION - heat travels through electromagnetic waves (infrared). No medium needed! The Sun heats Earth through radiation across empty space. All objects above absolute zero emit thermal radiation. You understand that conduction needs particles touching, convection needs particle movement, and radiation needs nothing - just waves! Real applications: cooking (all three), heating systems, insulation, space travel. Perfect understanding! +${earnedXP} XP earned!`);
             setShowCelebration(true);
             confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
             setTimeout(() => {
@@ -213,10 +212,8 @@ export function HeatTransferLabEnhanced() {
             }, 2000);
         } else if (correctCount === 2) {
             setQuizFeedback(`Good job! You got ${correctCount} out of 3 correct. Think about how heat travels!`);
-            setTeacherMessage(`Good effort! You got 2 out of 3 correct. Let me clarify the key concepts: RADIATION is how the Sun transfers heat to Earth - through electromagnetic waves (infrared light) that travel through empty space. No particles needed! CONDUCTION uses direct contact between particles - energy transfers from hot to cold through collisions. CONVECTION uses fluid movement - hot fluid rises (less dense), cold fluid sinks (more dense), creating currents. Remember: conduction = contact, convection = circulation, radiation = waves. Review the lab and watch each method carefully!`);
         } else {
             setQuizFeedback(`You got ${correctCount} out of 3 correct. Remember: conduction needs contact, convection needs movement, radiation travels through space!`);
-            setTeacherMessage(`Keep trying! You got ${correctCount} correct. Let me help you understand the three methods: (1) The Sun heats Earth through RADIATION - electromagnetic waves (infrared) that travel through the vacuum of space. No medium needed! (2) The metal rod transfers heat through CONDUCTION - direct contact between PARTICLES. Heat flows from hot end to cold end as particles collide and transfer kinetic energy. (3) Hot water rises because it's LESS DENSE than cold water. This creates CONVECTION currents - circular flow patterns in fluids. Watch each experiment again and observe how heat travels differently in each case!`);
         }
     };
 
@@ -251,15 +248,11 @@ export function HeatTransferLabEnhanced() {
             <TeacherVoice 
                 message={teacherMessage}
                 onComplete={handleTeacherComplete}
-                emotion={currentStep === 'complete' ? 'celebrating' : currentStep === 'conduction' || currentStep === 'convection' || currentStep === 'radiation' ? 'explaining' : 'happy'}
-                context={{
-                    attempts: (conductionTested ? 1 : 0) + (convectionTested ? 1 : 0) + (radiationTested ? 1 : 0),
-                    correctStreak: conductionTested && convectionTested && radiationTested ? 100 : 0
-                }}
+                emotion={currentStep === 'complete' ? 'celebrating' : (currentStep === 'conduction' || currentStep === 'convection' || currentStep === 'radiation') ? 'explaining' : 'happy'}
                 quickActions={[
-                    { label: 'Reset Lab', onClick: handleRestart },
-                    { label: 'View Theory', onClick: () => document.querySelector('[value="theory"]')?.parentElement?.click() },
-                    { label: 'Safety Tips', onClick: () => document.querySelector('[value="safety"]')?.parentElement?.click() }
+                    { label: 'Reset Lab', icon: '🔄', onClick: handleRestart },
+                    { label: 'View Theory', icon: '📖', onClick: () => {} },
+                    { label: 'Safety Tips', icon: '🛡️', onClick: () => {} }
                 ]}
             />
 

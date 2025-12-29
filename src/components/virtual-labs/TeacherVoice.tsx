@@ -81,9 +81,8 @@ export function TeacherVoice({
             const sentences = message.match(/[^.!?]+[.!?]+/g) || [message];
             const chunks: string[] = [];
             
-            // Group sentences into smaller chunks (1 sentence per chunk to keep card compact)
-            for (let i = 0; i < sentences.length; i++) {
-                const chunk = sentences[i].trim();
+            for (let i = 0; i < sentences.length; i += linesPerChunk) {
+                const chunk = sentences.slice(i, i + linesPerChunk).join(' ').trim();
                 if (chunk) chunks.push(chunk);
             }
             

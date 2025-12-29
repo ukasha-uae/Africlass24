@@ -207,4 +207,4 @@ export const integratedScienceSubject: Subject = {
         ]
       }
     ]
-  },;
+  };

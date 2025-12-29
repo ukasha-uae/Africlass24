@@ -4,11 +4,60 @@
  */
 
 export const FEATURE_FLAGS = {
+  V1_LAUNCH: {
+    enabled: true,
+    // Campus Access Control
+    showPrimary: true,              // Primary can access Arena Challenge only
+    showJHS: true,                 // JHS can access Arena Challenge only
+    showSHS: true,                 // SHS has full access
+    // Feature Access by Campus
+    primaryHasLessons: false,       // Primary: no lessons
+    primaryHasVirtualLabs: false,  // Primary: no virtual labs
+    primaryHasArena: true,         // Primary: Arena Challenge only
+    jhsHasLessons: false,          // JHS: no lessons
+    jhsHasVirtualLabs: false,      // JHS: no virtual labs
+    jhsHasArena: true,            // JHS: Arena Challenge only
+    shsHasLessons: true,          // SHS: full lesson access
+    shsHasVirtualLabs: true,       // SHS: virtual labs access
+    shsHasArena: true,            // SHS: Arena Challenge access
+    // Global Settings
+    showNigeria: false,            // Ghana only for V1
+    showCarousel: true,           // Carousel mode for SHS lessons
+    showTraditionalLesson: false, // Hide traditional view
+    showAdmin: false,              // Hide admin
+    showTeacher: false,            // Hide teacher
+    showParent: false,             // Hide parent
+    showCommunity: false,         // Hide community
+    showStudyGroups: false,        // Hide study groups
+    // Challenge Arena Modes
+    showChallengeArena: true,      // Show Arena Challenge
+    showChallengeArenaBoss: false, // Hide boss battles
+    showChallengeArenaTournament: false, // Hide tournaments
+    showChallengeArenaSchool: false,      // Hide school battles
+    showChallengeArenaPractice: true,    // Show practice mode
+    showChallengeArenaQuickMatch: true,  // Show quick match
+    // Virtual Labs - V1 Selection (5-10 best labs)
+    v1VirtualLabs: [
+      // Biology (3)
+      'food-tests',
+      'osmosis',
+      'photosynthesis-oxygen-production',
+      // Chemistry (3)
+      'litmus-test',
+      'neutralization-reaction',
+      'flame-test',
+      // Physics (4)
+      'ohms-law',
+      'simple-circuits',
+      'heat-transfer',
+      'reflection-of-light',
+    ],
+  },
   CAROUSEL_MODE: {
     enabled: true,
     autostart: true, // Automatically start carousel mode for eligible lessons
     subjects: ['mathematics', 'core-mathematics', 'integrated-science', 'english-language'], // Support both formats
-    levels: ['shs', 'shs1', 'shs2', 'shs3'], // Support all SHS levels and generic 'shs'
+    levels: ['shs', 'shs1', 'shs2', 'shs3', 'jhs', 'jhs1', 'jhs2', 'jhs3'], // Support all SHS and JHS levels
     topics: [
       'algebra', 
       'algebra-3', 
@@ -225,7 +274,11 @@ export const FEATURE_FLAGS = {
       'eng-ls-oral-presentations', // Oral Presentations and Discussions
       'eng-ls-pronunciation-intonation', // Pronunciation, Stress, and Intonation
       'eng-rw-reading-comprehension', // Reading Comprehension Strategies
-    ], // SHS3 (29) + SHS2 (12) + SHS1 (16) + Science SHS1 (22) + Science SHS2 (10) + Science SHS3 (5) + English SHS1 (3) = 97 lessons total
+      // English Language JHS Lessons
+      'nouns', // JHS: Nouns - Types, Gender, Number, Case, Functions
+      // English Language JHS Topics (for backward compatibility with old URLs)
+      'grammar-usage-1', // JHS: Grammar & Usage topic (contains nouns lesson)
+    ], // SHS3 (29) + SHS2 (12) + SHS1 (16) + Science SHS1 (22) + Science SHS2 (10) + Science SHS3 (5) + English SHS1 (3) + English JHS (1) = 98 lessons total
   },
 };
 
@@ -268,7 +321,8 @@ export function isCarouselEnabled(
   }
 
   // Check topic-level filter
-  if (normalizedTopic) {
+  // Skip topic check if topicSlug === lessonSlug (backward compatibility with old URLs)
+  if (normalizedTopic && normalizedTopic !== normalizedLesson) {
     const allowedTopics = FEATURE_FLAGS.CAROUSEL_MODE.topics;
     if (allowedTopics.length > 0 && !allowedTopics.includes('*')) {
       if (!allowedTopics.includes(normalizedTopic)) {
@@ -303,6 +357,35 @@ export function getCarouselConfig() {
   return {
     ...FEATURE_FLAGS.CAROUSEL_MODE,
     envOverride: process.env.NEXT_PUBLIC_ENABLE_CAROUSEL,
+  };
+}
+
+/**
+ * Check if a campus has access to a specific feature
+ */
+export function hasCampusFeature(
+  campus: 'primary' | 'jhs' | 'shs',
+  feature: 'lessons' | 'virtualLabs' | 'arena'
+): boolean {
+  if (!FEATURE_FLAGS.V1_LAUNCH.enabled) return true; // Fallback to allow all if V1 flags disabled
+
+  const campusKey = campus.toLowerCase() as 'primary' | 'jhs' | 'shs';
+  const featureKey = feature === 'lessons' ? 'HasLessons' :
+                     feature === 'virtualLabs' ? 'HasVirtualLabs' :
+                     'HasArena';
+
+  const flagKey = `${campusKey}${featureKey}` as keyof typeof FEATURE_FLAGS.V1_LAUNCH;
+  return FEATURE_FLAGS.V1_LAUNCH[flagKey] as boolean;
+}
+
+/**
+ * Get allowed features for a campus
+ */
+export function getCampusFeatures(campus: 'primary' | 'jhs' | 'shs') {
+  return {
+    lessons: hasCampusFeature(campus, 'lessons'),
+    virtualLabs: hasCampusFeature(campus, 'virtualLabs'),
+    arena: hasCampusFeature(campus, 'arena'),
   };
 }
 

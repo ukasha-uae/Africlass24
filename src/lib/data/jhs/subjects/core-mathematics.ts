@@ -1080,4 +1080,4 @@ In Ghana, statistics help us:
         ]
       }
     ]
-  },;
+  };

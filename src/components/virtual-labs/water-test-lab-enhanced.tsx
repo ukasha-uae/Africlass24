@@ -201,16 +201,6 @@ export function WaterTestLabEnhanced() {
           message={teacherMessage}
           theme="science"
           teacherName="Lab Instructor"
-          emotion={step === 'complete' ? 'celebrating' : testResults.length >= 2 ? 'happy' : 'explaining'}
-          context={{
-              attempts: testResults.length,
-              correctStreak: testResults.filter((t: any) => t.colorChangeObserved).length
-          }}
-          quickActions={[
-              { label: 'Reset Lab', icon: '🔄', onClick: () => window.location.reload() },
-              { label: 'View Theory', icon: '📖', onClick: () => document.querySelector('[value="theory"]')?.parentElement?.click() },
-              { label: 'Safety Tips', icon: '🛡️', onClick: () => document.querySelector('[value="safety"]')?.parentElement?.click() }
-          ]}
         />
       )}
 

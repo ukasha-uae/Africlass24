@@ -21,7 +21,7 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import type { Topic, Lesson } from '@/lib/types';
 import { Skeleton } from '@/components/ui/skeleton';
 import CreativeLoading from '@/components/CreativeLoading';
-import { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 
 type EducationLevel = 'Primary' | 'JHS' | 'SHS';
 type TopicWithLessons = Topic & { lessons: Lesson[] };
@@ -165,12 +165,17 @@ export default function SubjectPage() {
               slug: topic.slug,
               title: topic.name,
               name: topic.name,
-              lessons: [{
-                id: detailedLesson?.id || topic.id,
-                slug: lessonSlug, // Use the actual lesson slug
-                title: topic.name,
-                description: `Learn about ${topic.name}`
-              }]
+              lessons: detailedLesson ? [{
+                id: detailedLesson.id,
+                slug: lessonSlug,
+                title: detailedLesson.title || topic.name,
+                objectives: detailedLesson.objectives || [],
+                introduction: detailedLesson.introduction || '',
+                keyConcepts: detailedLesson.keyConcepts || [],
+                activities: detailedLesson.activities || { type: 'exercises', questions: [] },
+                pastQuestions: detailedLesson.pastQuestions || [],
+                summary: detailedLesson.summary || '',
+              }] : []
             } as TopicWithLessons);
           }
         });
@@ -246,19 +251,22 @@ export default function SubjectPage() {
           return match ? parseInt(match[1]) : null;
         };
         
-        subjectInfo.curriculum.forEach(levelData => {
-          const levelNum = getLevelNumber(levelData.level);
-          
-          if (levelNum) {
-            const displayLevel = `${baseName} ${levelNum}`;
-            if (localData[displayLevel]) {
-              localData[displayLevel] = levelData.topics.map(t => ({
-                ...t,
-                lessons: t.lessons || []
-              })) as TopicWithLessons[];
+        // Type guard: check if subjectInfo has curriculum (JHS Subject type)
+        if ('curriculum' in subjectInfo && Array.isArray(subjectInfo.curriculum)) {
+          subjectInfo.curriculum.forEach((levelData: any) => {
+            const levelNum = getLevelNumber(levelData.level);
+            
+            if (levelNum) {
+              const displayLevel = `${baseName} ${levelNum}`;
+              if (localData[displayLevel]) {
+                localData[displayLevel] = levelData.topics.map((t: any) => ({
+                  ...t,
+                  lessons: t.lessons || []
+                })) as TopicWithLessons[];
+              }
             }
-          }
-        });
+          });
+        }
         
         setTopicsWithLessons(localData);
         setIsLoadingLessons(false);
@@ -310,9 +318,9 @@ export default function SubjectPage() {
         {/* Enhanced Header Section */}
         <div className="mb-8 animate-fadeInUp">
           <div className="flex items-start gap-6">
-            {(subjectInfo as any).icon ? (
+            {'icon' in subjectInfo && subjectInfo.icon ? (
               <div className={`p-4 rounded-2xl bg-gradient-to-br ${colors.primary} shadow-lg`}>
-                <subjectInfo.icon className="h-12 w-12 text-white" />
+                {React.createElement(subjectInfo.icon, { className: "h-12 w-12 text-white" })}
               </div>
             ) : (
               <div className={`p-4 rounded-2xl bg-gradient-to-br ${colors.primary} shadow-lg`}>
@@ -376,24 +384,27 @@ export default function SubjectPage() {
                     </CardHeader>
                     <CardContent className="flex-grow relative z-10">
                       <ul className="space-y-3">
-                        {topic.lessons.map((lesson) => (
-                          <li key={lesson.id}>
-                            {/* 
-                              IMPORTANT: For SHS, topics ARE lessons (no nested structure).
-                              Both topicSlug and lessonSlug use lesson.slug to ensure proper routing.
-                              The lesson page handles when topicSlug === lessonSlug correctly.
-                              DO NOT change this back to ${topic.slug}/${lesson.slug}
-                            */}
-                            <Link
-                              href={`/subjects/${levelParam}/${subjectSlug}/${lesson.slug}/${lesson.slug}`}
-                              className={`flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gradient-to-r ${colors.accent} hover:text-white transition-all duration-300 group/lesson`}
-                            >
-                              <span className="text-sm">📚</span>
-                              <span className="text-sm flex-1">{lesson.title}</span>
-                              <ArrowLeft className="h-3 w-3 rotate-180 opacity-0 group-hover/lesson:opacity-100 group-hover/lesson:translate-x-1 transition-all" />
-                            </Link>
-                          </li>
-                        ))}
+                        {topic.lessons.map((lesson) => {
+                          // IMPORTANT: URL structure differs by education level
+                          // - JHS: /subjects/jhs/{subjectSlug}/{topicSlug}/{lessonSlug}
+                          // - SHS: /subjects/shs/{subjectSlug}/{lessonSlug}/{lessonSlug} (topics ARE lessons)
+                          const lessonUrl = educationLevel === 'SHS'
+                            ? `/subjects/${levelParam}/${subjectSlug}/${lesson.slug}/${lesson.slug}`
+                            : `/subjects/${levelParam}/${subjectSlug}/${topic.slug}/${lesson.slug}`;
+                          
+                          return (
+                            <li key={lesson.id}>
+                              <Link
+                                href={lessonUrl}
+                                className={`flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gradient-to-r ${colors.accent} hover:text-white transition-all duration-300 group/lesson`}
+                              >
+                                <span className="text-sm">📚</span>
+                                <span className="text-sm flex-1">{lesson.title}</span>
+                                <ArrowLeft className="h-3 w-3 rotate-180 opacity-0 group-hover/lesson:opacity-100 group-hover/lesson:translate-x-1 transition-all" />
+                              </Link>
+                            </li>
+                          );
+                        })}
                          {topic.lessons.length === 0 && <p className="text-sm text-muted-foreground italic">No lessons yet.</p>}
                       </ul>
                     </CardContent>

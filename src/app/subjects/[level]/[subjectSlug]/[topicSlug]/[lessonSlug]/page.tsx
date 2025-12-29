@@ -2,6 +2,7 @@
 'use client';
 
 import { getSubjectBySlug } from '@/lib/jhs-data';
+import { getLesson as getJHSLesson } from '@/lib/data/jhs';
 import { getPrimarySubjectBySlug } from '@/lib/primary-data';
 import { getSHSSubjectBySlug } from '@/lib/shs-data';
 import { useLocalizedLesson } from '@/hooks/useLocalizedLesson';
@@ -138,6 +139,7 @@ import EffectiveListeningIntro from '@/components/lesson-intros/english-language
 import OralPresentationsIntro from '@/components/lesson-intros/english-language/shs1/OralPresentationsIntro';
 import PronunciationIntro from '@/components/lesson-intros/english-language/shs1/PronunciationIntro';
 import ReadingComprehensionIntro from '@/components/lesson-intros/english-language/shs1/ReadingComprehensionIntro';
+import NounsIntro from '@/components/intros/jhs/english-language/NounsIntro';
 import { CarouselLesson } from '@/components/CarouselLesson';
 import { 
   addBookmark, 
@@ -157,6 +159,7 @@ import {
   isOnline 
 } from '@/lib/offline-storage';
 import { useToast } from '@/hooks/use-toast';
+import { V1RouteGuard } from '@/components/V1RouteGuard';
 
 export default function LessonPage() {
   const params = useParams();
@@ -164,6 +167,11 @@ export default function LessonPage() {
   const subjectSlug = params.subjectSlug as string;
   const topicSlug = params.topicSlug as string;
   const lessonSlug = params.lessonSlug as string;
+
+  // Determine campus from level parameter for route guard
+  const campus = level?.toLowerCase().includes('primary') ? 'primary' :
+                 level?.toLowerCase().includes('jhs') ? 'jhs' :
+                 level?.toLowerCase().includes('shs') ? 'shs' : 'shs';
 
   const { firestore } = useFirebase();
   const { country } = useLocalization();
@@ -182,6 +190,8 @@ export default function LessonPage() {
   const [carouselEligible, setCarouselEligible] = useState(false);
   const [validationResult, setValidationResult] = useState<any>(null);
   const [hasCheckedAutostart, setHasCheckedAutostart] = useState(false);
+  const [jhsLesson, setJhsLesson] = useState<Lesson | null>(null);
+  const [isJhsLoading, setIsJhsLoading] = useState(true);
   
   // Call useLocalizedLesson at the top level (before any conditional logic)
   // This ensures hooks are always called in the same order
@@ -200,6 +210,55 @@ export default function LessonPage() {
     }
   }, []);
   
+  // Load JHS lesson asynchronously using new data access layer
+  useEffect(() => {
+    if (educationLevel === 'JHS' && !isLevelLoading) {
+      setIsJhsLoading(true);
+      
+      // Backward compatibility: If topicSlug === lessonSlug, search across all topics
+      // This handles old URLs like /subjects/jhs/english-language/nouns/nouns
+      if (topicSlug === lessonSlug) {
+        // Try to find the lesson by searching all topics
+        import('@/lib/data/jhs').then(({ getSubjectBySlug }) => {
+          getSubjectBySlug(subjectSlug)
+            .then((subject) => {
+              if (subject) {
+                // Search across all curriculum levels and topics
+                for (const curriculum of subject.curriculum) {
+                  for (const topic of curriculum.topics) {
+                    const lesson = topic.lessons.find(l => l.slug === lessonSlug);
+                    if (lesson) {
+                      setJhsLesson(lesson);
+                      setIsJhsLoading(false);
+                      return;
+                    }
+                  }
+                }
+              }
+              setIsJhsLoading(false);
+            })
+            .catch((error) => {
+              console.error('Error loading JHS subject for backward compatibility:', error);
+              setIsJhsLoading(false);
+            });
+        });
+      } else {
+        // Normal case: use topicSlug and lessonSlug directly
+        getJHSLesson(subjectSlug, topicSlug, lessonSlug)
+          .then((lesson) => {
+            setJhsLesson(lesson);
+            setIsJhsLoading(false);
+          })
+          .catch((error) => {
+            console.error('Error loading JHS lesson:', error);
+            setIsJhsLoading(false);
+          });
+      }
+    } else if (educationLevel !== 'JHS') {
+      setIsJhsLoading(false);
+    }
+  }, [educationLevel, isLevelLoading, subjectSlug, topicSlug, lessonSlug]);
+
   // Get subject info based on education level (only after level is loaded)
   const subjectInfo = !isLevelLoading && educationLevel
     ? (educationLevel === 'Primary'
@@ -248,8 +307,11 @@ export default function LessonPage() {
         description: `Learn about ${localTopic.name} in detail.`,
       };
     }
-  } else if (subjectInfo) {
-    // JHS subjects have curriculum with topics
+  } else if (educationLevel === 'JHS' && jhsLesson) {
+    // Use the JHS lesson loaded from the new async data access layer
+    localLesson = jhsLesson;
+  } else if (subjectInfo && educationLevel === 'JHS') {
+    // Fallback: try to load from old synchronous method (for backward compatibility)
     localTopic = (subjectInfo as any).curriculum
         ?.flatMap((c: any) => c.topics)
         .find((t: any) => t.slug === topicSlug);
@@ -260,7 +322,7 @@ export default function LessonPage() {
   // This prevents flickering and async state updates from interfering with local development.
   // Memoize to prevent infinite loops from recreating the object
   const lesson = useMemo(() => {
-    const baseLesson = localLesson || firestoreLesson;
+    const baseLesson = localLesson || jhsLesson || firestoreLesson;
     
     // For Primary and SHS lessons without full content, generate placeholder content
     if ((educationLevel === 'Primary' || educationLevel === 'SHS') && baseLesson && !baseLesson.introduction) {
@@ -484,6 +546,17 @@ export default function LessonPage() {
     )
   }
 
+  // Only show loading if we don't have a lesson AND we are still trying to fetch one (including JHS async loading)
+  if (educationLevel === 'JHS' && isJhsLoading && !jhsLesson && !localLesson) {
+    return (
+      <div className="container mx-auto p-4 md:p-6 lg:p-8 space-y-6">
+        <Skeleton className="h-8 w-1/4" />
+        <Skeleton className="h-10 w-3/4" />
+        <Skeleton className="h-6 w-1/2 mb-8" />
+      </div>
+    );
+  }
+
   // Only show loading if we don't have a lesson AND we are still trying to fetch one
   if (!lesson && isFirestoreLoading && !localLesson) {
     return (
@@ -506,20 +579,28 @@ export default function LessonPage() {
     )
   }
 
-  if (!lesson) {
+  // Only show 404 if we've finished loading everything and still don't have a lesson
+  if (!isFirestoreLoading && !isJhsLoading && !lesson) {
     notFound();
+  }
+  
+  // Show loading while JHS lesson is being fetched
+  if (educationLevel === 'JHS' && isJhsLoading && !lesson) {
+    return (
+      <div className="container mx-auto p-4 md:p-6 lg:p-8 space-y-6">
+        <Skeleton className="h-8 w-1/4" />
+        <Skeleton className="h-10 w-3/4" />
+        <Skeleton className="h-6 w-1/2 mb-8" />
+      </div>
+    );
+  }
+  
+  if (!lesson) {
+    return null; // Still loading
   }
   
   if (!subjectInfo) {
       return <div>Subject not found</div>;
-  }
-
-  if (!lesson) {
-    notFound();
-  }
-  
-  if (!subjectInfo) {
-      notFound();
   }
 
   const introductionId = `lesson-${lesson.slug}-intro`;
@@ -596,7 +677,8 @@ export default function LessonPage() {
   };
 
   return (
-    <div className="container mx-auto p-4 md:p-6 lg:p-8">
+    <V1RouteGuard campus={campus} feature="lessons">
+      <div className="container mx-auto p-4 md:p-6 lg:p-8">
       {/* Use Carousel Mode if eligible and enabled */}
       {carouselEligible && validationResult?.isValid && useCarouselMode ? (
         <CarouselLesson
@@ -815,6 +897,9 @@ export default function LessonPage() {
               <PronunciationIntro />
             ) : lessonSlug === 'eng-rw-reading-comprehension' ? (
               <ReadingComprehensionIntro />
+            ) : // JHS English Language Intros
+            lessonSlug === 'nouns' ? (
+              <NounsIntro />
             ) : (
               // Fallback - should not reach here if all intros are properly mapped
               null
@@ -1172,6 +1257,7 @@ export default function LessonPage() {
         </div>
       </>
       )}
-    </div>
+      </div>
+    </V1RouteGuard>
   );
 }

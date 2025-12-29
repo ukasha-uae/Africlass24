@@ -1,6 +1,6 @@
 "use client";
 
-import { virtualLabExperiments } from '@/lib/virtual-labs-data';
+import { getVirtualLabBySlug } from '@/lib/virtual-labs-data';
 import { ArrowLeft, FlaskConical, CheckCircle2, ArrowRight, Trophy, Star, Zap, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -12,6 +12,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useLabProgress } from '@/stores/lab-progress-store';
 import { LabNotes } from '@/components/virtual-labs/LabNotes';
 import confetti from 'canvas-confetti';
+import { V1RouteGuard, useV1FeatureAccess } from '@/components/V1RouteGuard';
 
 interface QuizQuestion {
   question: string;
@@ -21,6 +22,9 @@ interface QuizQuestion {
 }
 
 export default function VirtualLabPage({ params }: { params: Promise<{ labSlug: string }> }) {
+  // V1 Route Guard: Check if user has access to virtual labs
+  const { hasAccess, campus } = useV1FeatureAccess('virtualLabs');
+  
   const [mounted, setMounted] = useState(false);
   const [experimentCompleted, setExperimentCompleted] = useState(false);
   const [showQuiz, setShowQuiz] = useState(false);
@@ -37,7 +41,7 @@ export default function VirtualLabPage({ params }: { params: Promise<{ labSlug: 
 
   if (!mounted) return null;
 
-  const experiment = virtualLabExperiments.experiments.find(exp => exp.slug === resolvedParams.labSlug);
+  const experiment = getVirtualLabBySlug(resolvedParams.labSlug);
   
   if (!experiment) {
     notFound();
@@ -108,7 +112,8 @@ export default function VirtualLabPage({ params }: { params: Promise<{ labSlug: 
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <V1RouteGuard campus={campus} feature="virtualLabs">
+      <div className="container mx-auto px-4 py-8">
       {/* Back Button */}
       <Link href="/virtual-labs">
         <Button variant="ghost" className="mb-6">
@@ -225,8 +230,8 @@ export default function VirtualLabPage({ params }: { params: Promise<{ labSlug: 
         </>
       )}
 
-      {/* Post-Lab Quiz Section */}
-      {showQuiz && (
+          {/* Post-Lab Quiz Section */}
+          {showQuiz && (
         <Card>
           <CardHeader>
             <CardTitle>Post-Lab Quiz</CardTitle>
@@ -370,9 +375,10 @@ export default function VirtualLabPage({ params }: { params: Promise<{ labSlug: 
             })()}
           </CardContent>
         </Card>
+          )}
+        </>
       )}
-      </>
-      )}
-    </div>
+      </div>
+    </V1RouteGuard>
   );
 }

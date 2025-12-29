@@ -2,6 +2,7 @@
 'use client';
 
 import * as React from 'react';
+import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../ui/card';
 import { Button } from '../ui/button';
 import { useToast } from '@/hooks/use-toast';
@@ -113,8 +114,8 @@ const TestTubeVisual = ({ state }: { state: TubeState }) => (
 export function MetalAcidReactionLab() {
     const { toast } = useToast();
     const isMobile = useIsMobile();
+    const [teacherMessage, setTeacherMessage] = useState('Welcome to this experiment! Let\'s explore together.');
     const [tubes, setTubes] = React.useState<Record<TubeId, TubeState>>({
-  const [teacherMessage, setTeacherMessage] = useState('Welcome to this experiment! Let\'s explore together.');
         A: { metal: null, reactionRate: 0, isSimulating: false, isComplete: false },
         B: { metal: null, reactionRate: 0, isSimulating: false, isComplete: false },
         C: { metal: null, reactionRate: 0, isSimulating: false, isComplete: false },

@@ -2,6 +2,7 @@
 'use client';
 
 import * as React from 'react';
+import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../ui/card';
 import { Button } from '../ui/button';
 import { Lightbulb, Battery, Zap, BookOpen, Shield, CheckCircle, XCircle, RefreshCw, Power } from 'lucide-react';

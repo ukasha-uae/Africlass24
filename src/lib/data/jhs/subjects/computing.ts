@@ -200,4 +200,4 @@ export const computingSubject: Subject = {
         ],
       },
     ],
-  },;
+  };

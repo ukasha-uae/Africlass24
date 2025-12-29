@@ -162,7 +162,7 @@ export const getAchievements = () => {
       name: 'Perfectionist',
       description: 'Score 100% on a quiz.',
       icon: Target,
-      unlocked: progress.quizScores?.some((score: number) => score === 100),
+      unlocked: (progress as any).quizScores?.some((score: number) => score === 100) || false,
       xpReward: 50,
     },
     {

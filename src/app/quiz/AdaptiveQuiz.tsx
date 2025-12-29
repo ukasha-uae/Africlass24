@@ -264,7 +264,8 @@ export default function AdaptiveQuiz() {
   };
 
   if (quizData && !quizFinished) {
-    const question = quizData.quizQuestions[currentQuestionIndex];
+    const question: QuizQuestion = quizData.quizQuestions[currentQuestionIndex];
+    if (!question) return null;
     
     // Common navigation buttons
     const navButtons = (
@@ -340,96 +341,16 @@ export default function AdaptiveQuiz() {
         </Card>
       );
     }
-    if (question.type === 'matching') {
+    // Note: matching, multiple-select, and ordering types are not currently
+    // supported by the AdaptiveQuizOutput schema, so these branches are unreachable.
+    // They are kept for potential future expansion.
+    if ((question as any).type === 'matching' || (question as any).type === 'multiple-select' || (question as any).type === 'ordering') {
       return (
         <Card className="w-full max-w-2xl mx-auto">
           <CardHeader>
-            <div className="flex justify-between items-center mb-4">
-              <Progress value={((currentQuestionIndex + 1) / quizData.quizQuestions.length) * 100} className="flex-1" />
-              {timedMode && (
-                <Badge variant={timeLeft < 60 ? "destructive" : "secondary"} className="ml-4 flex items-center gap-1">
-                  <Clock className="h-3 w-3" />
-                  {formatTime(timeLeft)}
-                </Badge>
-              )}
-            </div>
-            <CardTitle>Question {currentQuestionIndex + 1} of {quizData.quizQuestions.length}</CardTitle>
-            <CardDescription className="text-lg pt-2">{question.question}</CardDescription>
+            <CardTitle>Unsupported Question Type</CardTitle>
+            <CardDescription>This question type is not yet supported in adaptive quizzes.</CardDescription>
           </CardHeader>
-          <CardContent>
-            <Matching
-              quiz={question}
-              userAnswer={userAnswers[currentQuestionIndex] || {}}
-              onAnswerChange={(ans) => {
-                const newAnswers = [...userAnswers];
-                newAnswers[currentQuestionIndex] = ans;
-                setUserAnswers(newAnswers);
-              }}
-            />
-          </CardContent>
-          {navButtons}
-        </Card>
-      );
-    }
-    if (question.type === 'multiple-select') {
-      return (
-        <Card className="w-full max-w-2xl mx-auto">
-          <CardHeader>
-            <div className="flex justify-between items-center mb-4">
-              <Progress value={((currentQuestionIndex + 1) / quizData.quizQuestions.length) * 100} className="flex-1" />
-              {timedMode && (
-                <Badge variant={timeLeft < 60 ? "destructive" : "secondary"} className="ml-4 flex items-center gap-1">
-                  <Clock className="h-3 w-3" />
-                  {formatTime(timeLeft)}
-                </Badge>
-              )}
-            </div>
-            <CardTitle>Question {currentQuestionIndex + 1} of {quizData.quizQuestions.length}</CardTitle>
-            <CardDescription className="text-lg pt-2">{question.question}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <MultipleSelect
-              quiz={question}
-              userAnswer={userAnswers[currentQuestionIndex] || []}
-              onAnswerChange={(ans) => {
-                const newAnswers = [...userAnswers];
-                newAnswers[currentQuestionIndex] = ans;
-                setUserAnswers(newAnswers);
-              }}
-            />
-          </CardContent>
-          {navButtons}
-        </Card>
-      );
-    }
-    if (question.type === 'ordering') {
-      return (
-        <Card className="w-full max-w-2xl mx-auto">
-          <CardHeader>
-            <div className="flex justify-between items-center mb-4">
-              <Progress value={((currentQuestionIndex + 1) / quizData.quizQuestions.length) * 100} className="flex-1" />
-              {timedMode && (
-                <Badge variant={timeLeft < 60 ? "destructive" : "secondary"} className="ml-4 flex items-center gap-1">
-                  <Clock className="h-3 w-3" />
-                  {formatTime(timeLeft)}
-                </Badge>
-              )}
-            </div>
-            <CardTitle>Question {currentQuestionIndex + 1} of {quizData.quizQuestions.length}</CardTitle>
-            <CardDescription className="text-lg pt-2">{question.question}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Ordering
-              quiz={question}
-              userAnswer={userAnswers[currentQuestionIndex] || []}
-              onAnswerChange={(ans) => {
-                const newAnswers = [...userAnswers];
-                newAnswers[currentQuestionIndex] = ans;
-                setUserAnswers(newAnswers);
-              }}
-            />
-          </CardContent>
-          {navButtons}
         </Card>
       );
     }

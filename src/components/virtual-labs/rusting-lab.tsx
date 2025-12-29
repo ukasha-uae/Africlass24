@@ -2,6 +2,7 @@
 'use client';
 
 import * as React from 'react';
+import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../ui/card';
 import { Button } from '../ui/button';
 import { useToast } from '@/hooks/use-toast';
@@ -40,7 +41,7 @@ const IronNailIcon = ({ rusted, ...props }: React.SVGProps<SVGSVGElement> & { ru
     </svg>
 );
 
-const DraggableNail = ({ onDragStart, onDragEnd }: { onDragStart: React.DragEventHandler, onDragEnd: React.DragEventHandler }) => (
+const DraggableNail = ({ onDragStart, onDragEnd }: { onDragStart: (e: React.DragEvent<HTMLDivElement>) => void, onDragEnd: React.DragEventHandler }) => (
     <div
       draggable
       onDragStart={onDragStart}

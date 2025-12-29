@@ -13,6 +13,7 @@ import { Button } from '@/components/ui/button';
 import { useParams, notFound } from 'next/navigation';
 import { useLocalization } from '@/hooks/useLocalization';
 import { useLocalizedSubjects } from '@/hooks/useLocalizedSubjects';
+import { V1RouteGuard, useV1FeatureAccess } from '@/components/V1RouteGuard';
 
 import { subjects as localSubjects } from '@/lib/jhs-data';
 import { primarySubjects } from '@/lib/primary-data';
@@ -30,7 +31,12 @@ export default function LevelSubjectsPage() {
   // Validate level parameter - default to jhs if invalid
   const isValidLevel = ['primary', 'jhs', 'shs'].includes(levelParam?.toLowerCase());
   const educationLevel = (isValidLevel ? levelParam.toLowerCase() : 'jhs') as EducationLevel;
-
+  
+  // V1 Route Guard: Check if this campus has access to lessons
+  // Use URL parameter directly (more reliable than localStorage)
+  const campus = educationLevel === 'primary' ? 'primary' :
+                 educationLevel === 'jhs' ? 'jhs' : 'shs';
+  
   // Localization hooks
   const { country } = useLocalization();
   const localizedJSSSubjects = useLocalizedSubjects('jss');
@@ -128,8 +134,10 @@ export default function LevelSubjectsPage() {
     }
   };
 
+  // V1 Route Guard: Wrap content to check access
   return (
-    <div className="relative min-h-screen">
+    <V1RouteGuard campus={campus} feature="lessons">
+      <div className="relative min-h-screen">
       {/* Decorative Background Elements */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
         <div className={`absolute top-20 -right-20 w-96 h-96 bg-gradient-to-br ${colors.primary} opacity-10 rounded-full blur-3xl animate-float`} />
@@ -350,5 +358,6 @@ export default function LevelSubjectsPage() {
         </div>
       </div>
     </div>
+    </V1RouteGuard>
   );
 }

@@ -25,6 +25,7 @@ import MarkdownRenderer from '@/components/MarkdownRenderer';
 import ReadAloud from '@/components/ReadAloud';
 import LessonCompleteQuiz from '@/components/LessonCompleteQuiz';
 import LessonVisual from '@/components/LessonVisual';
+import { V1RouteGuard } from '@/components/V1RouteGuard';
 
 // Coming Soon Component
 function ComingSoonPage({ 
@@ -216,14 +217,15 @@ export default function ElectiveLessonPage({
   const introductionId = `${lesson.id}-introduction`;
 
   return (
-    <div className="min-h-screen bg-background">
+    <V1RouteGuard campus="shs" feature="lessons">
+      <div className="min-h-screen bg-background">
       {isCarouselLesson ? (
         <CarouselLesson
           lesson={lesson}
           subjectSlug={resolvedParams.subjectSlug}
           topicSlug={resolvedParams.lessonSlug}
           lessonSlug={resolvedParams.lessonSlug}
-          educationLevel="shs"
+          educationLevel="SHS"
           localQuizzes={lesson.endOfLessonQuiz || []}
           introComponent={customIntro}
           onExit={() => router.push(`/shs-programmes/${resolvedParams.programmeSlug}/${resolvedParams.subjectSlug}`)}
@@ -251,7 +253,7 @@ export default function ElectiveLessonPage({
           <div className="space-y-8">
             {/* Objectives */}
             {lesson.objectives && lesson.objectives.length > 0 && (
-              <LessonVisual variant="objectives">
+              <LessonVisual>
                 <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
                   <Target className="h-6 w-6 text-primary" />
                   Learning Objectives
@@ -315,7 +317,7 @@ export default function ElectiveLessonPage({
             )}
 
             {/* Activities */}
-            {lesson.activities && lesson.activities.length > 0 && (
+            {lesson.activities && Array.isArray(lesson.activities) && lesson.activities.length > 0 && (
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
@@ -419,6 +421,7 @@ export default function ElectiveLessonPage({
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </V1RouteGuard>
   );
 }

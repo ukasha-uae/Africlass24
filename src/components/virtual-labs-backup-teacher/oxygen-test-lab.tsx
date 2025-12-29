@@ -2,6 +2,7 @@
 'use client';
 
 import * as React from 'react';
+import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../ui/card';
 import { Button } from '../ui/button';
 import { useToast } from '@/hooks/use-toast';
@@ -88,8 +89,8 @@ const TestTubeSetup = ({ title, onDrop, onDragOver, children, isTarget }: { titl
 
 export function OxygenTestLab() {
     const { toast } = useToast();
+    const [teacherMessage, setTeacherMessage] = useState('Welcome to this experiment! Let\'s explore together.');
     const [results, setResults] = React.useState<Record<TubeContent, TubeResult>>({
-  const [teacherMessage, setTeacherMessage] = useState('Welcome to this experiment! Let\'s explore together.');
         Oxygen: { splintState: 'none' },
         Air: { splintState: 'none' }
     });
