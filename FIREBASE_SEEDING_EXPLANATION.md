@@ -165,3 +165,4 @@ If you want to track which lessons are viewed:
 
 **Bottom Line:** Your app works perfectly without seeding. All lesson content is in your codebase, and user data is created automatically. For V1, just launch! 🎉
 
+

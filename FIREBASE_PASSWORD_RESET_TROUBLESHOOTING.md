@@ -157,7 +157,7 @@ If you're having issues, use Firebase's default action URL:
 1. Go to **Firebase Console** → **Authentication** → **Templates** → **Password reset**
 2. **Action URL:** Leave as default or set to:
    ```
-   https://smartclass24-5e590.firebaseapp.com/__/auth/action
+   https://YOUR_PROJECT_ID.firebaseapp.com/__/auth/action
    ```
 3. This will redirect to Firebase's default reset page
 4. User can reset password there, then return to your app
@@ -216,4 +216,5 @@ When password reset works correctly:
 ---
 
 **Last Updated:** [Current Date]
+
 
