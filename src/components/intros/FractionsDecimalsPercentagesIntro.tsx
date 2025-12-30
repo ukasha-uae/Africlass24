@@ -188,12 +188,14 @@ const FractionsDecimalsPercentagesIntro: React.FC<LessonIntroProps> = ({ onCompl
     setIsSpeaking(false);
     setCurrentWordIndex(-1);
     setStage(newStage);
-    // Reset demos
-    setSelectedFraction(null);
-    setFractionParts(4);
-    setShadedParts(3);
-    setDecimalValue(0.75);
-    setPercentValue(75);
+    // Reset demos only if not staying on stage 3
+    if (newStage !== 3) {
+      setSelectedFraction(null);
+      setFractionParts(4);
+      setShadedParts(3);
+      setDecimalValue(0.75);
+      setPercentValue(75);
+    }
   };
 
   const renderNarrationText = () => {
@@ -225,30 +227,37 @@ const FractionsDecimalsPercentagesIntro: React.FC<LessonIntroProps> = ({ onCompl
   };
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto bg-gradient-to-br from-orange-900/30 via-gray-900 to-yellow-900/30 rounded-2xl p-4 sm:p-6 md:p-8 pb-24 sm:pb-28 overflow-hidden">
+    <div className="relative w-full max-w-4xl mx-auto bg-gradient-to-br from-orange-900/30 via-gray-900 to-yellow-900/30 rounded-2xl p-4 sm:p-6 md:p-8 pb-20 sm:pb-28 overflow-visible sm:overflow-hidden">
       {/* Floating elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {['½', '¼', '¾', '%', '0.5'].map((symbol, i) => (
-          <motion.div
-            key={i}
-            className="absolute text-2xl text-orange-400/30"
-            initial={{ opacity: 0 }}
-            animate={{ 
-              opacity: [0, 0.4, 0],
-              x: [Math.random() * 100, Math.random() * 300],
-              y: [Math.random() * 50, Math.random() * 200]
-            }}
-            transition={{ 
-              duration: 4,
-              delay: i * 1.5,
-              repeat: Infinity,
-              repeatType: "loop" as const,
-              repeatDelay: 2
-            }}
-          >
-            {symbol}
-          </motion.div>
-        ))}
+        {['½', '¼', '¾', '%', '0.5'].map((symbol, i) => {
+          const x1 = Math.random() * 100;
+          const x2 = Math.random() * 300;
+          const y1 = Math.random() * 50;
+          const y2 = Math.random() * 200;
+          return (
+            <motion.div
+              key={i}
+              className="absolute text-2xl text-orange-400/30"
+              initial={{ opacity: 0, x: x1, y: y1 }}
+              animate={{ 
+                opacity: [0, 0.4, 0],
+                x: [x1, x2],
+                y: [y1, y2]
+              }}
+              transition={{ 
+                duration: 4,
+                delay: i * 1.5,
+                repeat: Infinity as number,
+                repeatType: "loop" as const,
+                repeatDelay: 2,
+                ease: "easeInOut"
+              }}
+            >
+              {symbol}
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* Header */}
@@ -279,8 +288,13 @@ const FractionsDecimalsPercentagesIntro: React.FC<LessonIntroProps> = ({ onCompl
               className={`w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-orange-500 to-yellow-600 flex items-center justify-center ${
                 isSpeaking && !isPaused ? 'ring-2 sm:ring-4 ring-orange-400/50' : ''
               }`}
-              animate={isSpeaking && !isPaused ? { scale: [1, 1.05, 1] } : {}}
-              transition={{ duration: 0.5, repeat: Infinity, repeatType: "loop" as const }}
+              animate={isSpeaking && !isPaused ? { scale: [1, 1.05, 1] } : { scale: 1 }}
+              transition={isSpeaking && !isPaused ? { 
+                duration: 0.5, 
+                repeat: Infinity as number, 
+                repeatType: "loop" as const,
+                ease: "easeInOut"
+              } : { duration: 0.2 }}
             >
               <GraduationCap className="w-5 h-5 sm:w-8 sm:h-8 text-white" />
             </motion.div>
@@ -321,7 +335,7 @@ const FractionsDecimalsPercentagesIntro: React.FC<LessonIntroProps> = ({ onCompl
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -50 }}
-          className="bg-gray-800/80 rounded-xl p-4 sm:p-6 mb-4 sm:mb-6"
+          className="bg-gray-800/80 rounded-xl p-4 sm:p-6 mb-4 sm:mb-6 overflow-visible"
         >
           <h3 className="text-lg sm:text-2xl font-bold text-orange-400 mb-2 sm:mb-3">{stages[stage].title}</h3>
           <p className="text-gray-200 text-sm sm:text-lg mb-3 sm:mb-4">{stages[stage].content}</p>
@@ -506,39 +520,52 @@ const FractionsDecimalsPercentagesIntro: React.FC<LessonIntroProps> = ({ onCompl
             <div className="mt-3 sm:mt-4">
               <div className="bg-gradient-to-b from-green-900/50 to-emerald-900/50 rounded-lg p-4 mb-4">
                 <p className="text-center text-gray-200 mb-3 text-sm sm:text-base">Click to see percentage conversions:</p>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
-                  {commonFractions.map((frac, i) => (
-                    <motion.button
-                      key={i}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => {
-                        setSelectedFraction({ num: frac.num, den: frac.den });
-                        setPercentValue(frac.percent);
-                        setDecimalValue(frac.decimal);
-                      }}
-                      className={`p-3 rounded-lg text-center transition-all ${
-                        selectedFraction?.num === frac.num && selectedFraction?.den === frac.den
-                          ? 'bg-green-600 ring-4 ring-green-400'
-                          : 'bg-gray-700 hover:bg-gray-600'
-                      }`}
-                    >
-                      <div className="text-white font-bold text-lg sm:text-xl">{frac.label}</div>
-                      <div className="text-gray-300 text-xs sm:text-sm mt-1">= {frac.percent}%</div>
-                    </motion.button>
-                  ))}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-4">
+                  {commonFractions.map((frac, i) => {
+                    const isSelected = selectedFraction?.num === frac.num && selectedFraction?.den === frac.den;
+                    return (
+                      <button
+                        key={i}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          const newFraction = { num: frac.num, den: frac.den };
+                          setSelectedFraction(newFraction);
+                          setPercentValue(frac.percent);
+                          setDecimalValue(frac.decimal);
+                          // Force re-render and scroll on mobile
+                          setTimeout(() => {
+                            const conversionEl = document.getElementById('percentage-conversion-result');
+                            if (conversionEl) {
+                              conversionEl.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+                            }
+                          }, 200);
+                        }}
+                        className={`p-2 sm:p-3 rounded-lg text-center transition-all touch-manipulation active:scale-95 ${
+                          isSelected
+                            ? 'bg-green-600 ring-2 sm:ring-4 ring-green-400'
+                            : 'bg-gray-700 hover:bg-gray-600 active:bg-gray-600'
+                        }`}
+                      >
+                        <div className="text-white font-bold text-base sm:text-lg sm:text-xl">{frac.label}</div>
+                        <div className="text-gray-300 text-[10px] sm:text-xs sm:text-sm mt-0.5 sm:mt-1">= {frac.percent}%</div>
+                      </button>
+                    );
+                  })}
                 </div>
                 {selectedFraction && (
                   <motion.div
+                    id="percentage-conversion-result"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-4 p-3 bg-green-600/30 rounded-lg border border-green-500"
+                    transition={{ duration: 0.3 }}
+                    className="mt-2 sm:mt-4 p-3 sm:p-4 bg-green-600/30 rounded-lg border-2 border-green-500 z-10 relative"
                   >
                     <div className="text-center">
-                      <div className="text-green-200 text-sm sm:text-base">
-                        <strong>{decimalValue.toFixed(2)} × 100</strong> = <strong className="text-white">{percentValue.toFixed(1)}%</strong>
+                      <div className="text-green-200 text-xs sm:text-sm sm:text-base break-words font-semibold">
+                        <strong className="text-white">{decimalValue.toFixed(2)}</strong> × 100 = <strong className="text-white text-lg">{percentValue.toFixed(1)}%</strong>
                       </div>
-                      <div className="text-green-300 text-xs sm:text-sm mt-1">
+                      <div className="text-green-300 text-[10px] sm:text-xs sm:text-sm mt-2 sm:mt-2">
                         To convert: Multiply decimal by 100
                       </div>
                     </div>
@@ -707,44 +734,49 @@ const FractionsDecimalsPercentagesIntro: React.FC<LessonIntroProps> = ({ onCompl
         </div>
       </div>
 
-      {/* Fixed Navigation - Mobile friendly */}
-      <div className="fixed bottom-0 left-0 right-0 bg-gray-900/98 backdrop-blur-md px-4 sm:px-6 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:py-4 border-t border-gray-700/50 z-50 shadow-lg">
-        <div className="max-w-4xl mx-auto flex justify-between items-center">
-          <div className="flex gap-1.5 sm:gap-2">
+      {/* Fixed Navigation - Compact mobile design */}
+      <div className="fixed bottom-0 left-0 right-0 bg-gray-900/98 backdrop-blur-md px-2 sm:px-6 py-1.5 sm:py-4 pb-[calc(0.5rem+env(safe-area-inset-bottom,0px))] sm:pb-4 border-t border-gray-700/50 z-[9999] shadow-2xl">
+        <div className="max-w-4xl mx-auto flex items-center justify-between gap-2 sm:gap-0">
+          {/* Stage indicators - compact on mobile */}
+          <div className="flex gap-1 sm:gap-2 overflow-x-auto flex-1 min-w-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {stages.map((_, i) => (
               <button
                 key={i}
                 onClick={() => handleStageChange(i)}
-                className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-colors ${
-                  i === stage ? 'bg-orange-400' : 'bg-gray-600 hover:bg-gray-500'
+                className={`flex-shrink-0 w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors ${
+                  i === stage ? 'bg-orange-400 ring-1 ring-orange-300' : 'bg-gray-600 hover:bg-gray-500'
                 }`}
+                aria-label={`Go to stage ${i + 1}`}
               />
             ))}
           </div>
           
-          <div className="flex gap-2 sm:gap-3">
+          {/* Navigation buttons - compact on mobile */}
+          <div className="flex gap-1.5 sm:gap-3 flex-shrink-0">
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => handleStageChange(stage - 1)}
               disabled={stage === 0}
-              className={`p-2 sm:px-4 sm:py-2 rounded-lg font-medium text-sm sm:text-base transition-all ${
+              className={`px-2 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-base transition-all flex items-center justify-center ${
                 stage === 0 
                   ? 'bg-gray-800 text-gray-600 cursor-not-allowed opacity-50' 
-                  : 'bg-gray-700 hover:bg-gray-600 text-white'
+                  : 'bg-gray-700 hover:bg-gray-600 text-white active:bg-gray-500'
               }`}
+              aria-label="Previous stage"
             >
-              <ChevronLeft className="w-5 h-5 sm:hidden" />
-              <span className="hidden sm:inline">Back</span>
+              <ChevronLeft className="w-4 h-4 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline ml-1">Back</span>
             </motion.button>
             
             {stage < stages.length - 1 ? (
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 onClick={() => handleStageChange(stage + 1)}
-                className="p-2 sm:px-4 sm:py-2 bg-orange-600 hover:bg-orange-500 rounded-lg text-white font-medium flex items-center gap-1 sm:gap-2 text-sm sm:text-base"
+                className="px-2 py-1.5 sm:px-4 sm:py-2 bg-orange-600 hover:bg-orange-500 active:bg-orange-400 rounded-lg text-white text-xs sm:text-base font-medium flex items-center justify-center shadow-lg shadow-orange-500/30"
+                aria-label="Next stage"
               >
-                <span className="hidden sm:inline">Next</span>
-                <ChevronRight className="w-5 h-5" />
+                <span className="hidden sm:inline mr-1">Next</span>
+                <ChevronRight className="w-4 h-4 sm:w-4 sm:h-4" />
               </motion.button>
             ) : (
               <motion.button
@@ -753,10 +785,11 @@ const FractionsDecimalsPercentagesIntro: React.FC<LessonIntroProps> = ({ onCompl
                   window.speechSynthesis?.cancel();
                   onComplete?.();
                 }}
-                className="p-2 sm:px-6 sm:py-2 bg-orange-600 hover:bg-orange-500 rounded-lg text-white font-medium flex items-center gap-1 sm:gap-2 text-sm sm:text-base"
+                className="px-2 py-1.5 sm:px-6 sm:py-2 bg-orange-600 hover:bg-orange-500 active:bg-orange-400 rounded-lg text-white text-xs sm:text-base font-medium flex items-center justify-center shadow-lg shadow-orange-500/30"
+                aria-label="Start learning"
               >
-                <span className="hidden sm:inline">Start Learning!</span>
-                <Trophy className="w-5 h-5 sm:w-4 sm:h-4" />
+                <span className="hidden sm:inline mr-1">Start Learning!</span>
+                <Trophy className="w-4 h-4 sm:w-4 sm:h-4" />
               </motion.button>
             )}
           </div>

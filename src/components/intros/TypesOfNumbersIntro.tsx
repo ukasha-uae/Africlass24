@@ -229,7 +229,7 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
   };
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto bg-gradient-to-br from-blue-900/30 via-gray-900 to-purple-900/30 rounded-2xl p-4 sm:p-6 md:p-8 pb-24 sm:pb-28 overflow-hidden">
+    <div className="relative w-full max-w-4xl mx-auto bg-gradient-to-br from-blue-900/30 via-gray-900 to-purple-900/30 rounded-2xl p-4 sm:p-6 md:p-8 pb-20 sm:pb-28 overflow-hidden">
       {/* Floating number elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {['1', '2', '3', 'π', '√'].map((symbol, i) => (
@@ -245,7 +245,8 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
             transition={{ 
               duration: 4,
               delay: i * 1.5,
-              repeat: Infinity,
+              repeat: Infinity as number,
+              repeatType: "loop" as const,
               repeatDelay: 2
             }}
           >
@@ -282,8 +283,8 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
               className={`w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center ${
                 isSpeaking && !isPaused ? 'ring-2 sm:ring-4 ring-blue-400/50' : ''
               }`}
-              animate={isSpeaking && !isPaused ? { scale: [1, 1.05, 1] } : {}}
-              transition={{ duration: 0.5, repeat: Infinity }}
+              animate={isSpeaking && !isPaused ? { scale: [1, 1.05, 1] } : { scale: 1 }}
+              transition={isSpeaking && !isPaused ? { duration: 0.5, repeat: Infinity as number, repeatType: "loop" as const } : { duration: 0 }}
             >
               <GraduationCap className="w-5 h-5 sm:w-8 sm:h-8 text-white" />
             </motion.div>
@@ -467,7 +468,7 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
                         }}
                         transition={isAt ? {
                           duration: 0.5,
-                          repeat: Infinity,
+                          repeat: Infinity as number,
                           repeatType: "loop" as const,
                           ease: "easeInOut"
                         } : {
@@ -484,7 +485,7 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
                           } : {}}
                           transition={isAt ? {
                             duration: 0.5,
-                            repeat: Infinity,
+                            repeat: Infinity as number,
                             repeatType: "loop" as const,
                             ease: "easeInOut"
                           } : {
@@ -527,7 +528,7 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
                     }}
                     transition={{ 
                       duration: isAnimating ? 0.8 : 1,
-                      repeat: Infinity,
+                      repeat: Infinity as number,
                       ease: "easeInOut",
                       repeatType: "loop" as const
                     }}
@@ -541,7 +542,7 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
                       }}
                       transition={{ 
                         duration: 1, 
-                        repeat: Infinity,
+                        repeat: Infinity as number,
                         repeatType: "loop" as const,
                         ease: "easeInOut"
                       }}
@@ -556,7 +557,7 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
                         }}
                         transition={{
                           duration: 1.5,
-                          repeat: Infinity,
+                          repeat: Infinity as number,
                           repeatType: "loop" as const,
                           ease: "easeOut"
                         }}
@@ -572,7 +573,7 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
                         }}
                         transition={{ 
                           duration: 1, 
-                          repeat: Infinity,
+                          repeat: Infinity as number,
                           repeatType: "loop" as const,
                           ease: "easeInOut"
                         }}
@@ -658,44 +659,49 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
         </div>
       </div>
 
-      {/* Fixed Navigation - Mobile friendly */}
-      <div className="fixed bottom-0 left-0 right-0 bg-gray-900/98 backdrop-blur-md px-4 sm:px-6 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:py-4 border-t border-gray-700/50 z-50 shadow-lg">
-        <div className="max-w-4xl mx-auto flex justify-between items-center">
-          <div className="flex gap-1.5 sm:gap-2">
+      {/* Fixed Navigation - Compact mobile design */}
+      <div className="fixed bottom-0 left-0 right-0 bg-gray-900/98 backdrop-blur-md px-2 sm:px-6 py-1.5 sm:py-4 pb-[calc(0.5rem+env(safe-area-inset-bottom,0px))] sm:pb-4 border-t border-gray-700/50 z-[9999] shadow-2xl">
+        <div className="max-w-4xl mx-auto flex items-center justify-between gap-2 sm:gap-0">
+          {/* Stage indicators - compact on mobile */}
+          <div className="flex gap-1 sm:gap-2 overflow-x-auto flex-1 min-w-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {stages.map((_, i) => (
               <button
                 key={i}
                 onClick={() => handleStageChange(i)}
-                className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-colors ${
-                  i === stage ? 'bg-blue-400' : 'bg-gray-600 hover:bg-gray-500'
+                className={`flex-shrink-0 w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors ${
+                  i === stage ? 'bg-blue-400 ring-1 ring-blue-300' : 'bg-gray-600 hover:bg-gray-500'
                 }`}
+                aria-label={`Go to stage ${i + 1}`}
               />
             ))}
           </div>
           
-          <div className="flex gap-2 sm:gap-3">
+          {/* Navigation buttons - compact on mobile */}
+          <div className="flex gap-1.5 sm:gap-3 flex-shrink-0">
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => handleStageChange(stage - 1)}
               disabled={stage === 0}
-              className={`p-2 sm:px-4 sm:py-2 rounded-lg font-medium text-sm sm:text-base transition-all ${
+              className={`px-2 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-base transition-all flex items-center justify-center ${
                 stage === 0 
                   ? 'bg-gray-800 text-gray-600 cursor-not-allowed opacity-50' 
-                  : 'bg-gray-700 hover:bg-gray-600 text-white'
+                  : 'bg-gray-700 hover:bg-gray-600 text-white active:bg-gray-500'
               }`}
+              aria-label="Previous stage"
             >
-              <ChevronLeft className="w-5 h-5 sm:hidden" />
-              <span className="hidden sm:inline">Back</span>
+              <ChevronLeft className="w-4 h-4 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline ml-1">Back</span>
             </motion.button>
             
             {stage < stages.length - 1 ? (
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 onClick={() => handleStageChange(stage + 1)}
-                className="p-2 sm:px-4 sm:py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-white font-medium flex items-center gap-1 sm:gap-2 text-sm sm:text-base"
+                className="px-2 py-1.5 sm:px-4 sm:py-2 bg-blue-600 hover:bg-blue-500 active:bg-blue-400 rounded-lg text-white text-xs sm:text-base font-medium flex items-center justify-center shadow-lg shadow-blue-500/30"
+                aria-label="Next stage"
               >
-                <span className="hidden sm:inline">Next</span>
-                <ChevronRight className="w-5 h-5" />
+                <span className="hidden sm:inline mr-1">Next</span>
+                <ChevronRight className="w-4 h-4 sm:w-4 sm:h-4" />
               </motion.button>
             ) : (
               <motion.button
@@ -704,10 +710,11 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
                   window.speechSynthesis?.cancel();
                   onComplete?.();
                 }}
-                className="p-2 sm:px-6 sm:py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-white font-medium flex items-center gap-1 sm:gap-2 text-sm sm:text-base"
+                className="px-2 py-1.5 sm:px-6 sm:py-2 bg-blue-600 hover:bg-blue-500 active:bg-blue-400 rounded-lg text-white text-xs sm:text-base font-medium flex items-center justify-center shadow-lg shadow-blue-500/30"
+                aria-label="Start learning"
               >
-                <span className="hidden sm:inline">Start Learning!</span>
-                <Trophy className="w-5 h-5 sm:w-4 sm:h-4" />
+                <span className="hidden sm:inline mr-1">Start Learning!</span>
+                <Trophy className="w-4 h-4 sm:w-4 sm:h-4" />
               </motion.button>
             )}
           </div>
