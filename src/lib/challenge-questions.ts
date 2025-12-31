@@ -362,7 +362,672 @@ const primaryQuestionBank: ChallengeQuestion[] = [
     topic: 'Geography',
     explanation: 'Ghana has 16 regions'
   },
-  // Add more Primary questions here as needed
+  // ============================================
+  // MATHEMATICS - 20 Questions Total
+  // ============================================
+  {
+    id: 'primary-math-011',
+    question: 'What is 6 + 4?',
+    options: ['8', '9', '10', '11'],
+    correctAnswer: 2,
+    subject: 'Mathematics',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Addition',
+    explanation: '6 + 4 = 10'
+  },
+  {
+    id: 'primary-math-012',
+    question: 'What is 12 - 5?',
+    options: ['5', '6', '7', '8'],
+    correctAnswer: 2,
+    subject: 'Mathematics',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Subtraction',
+    explanation: '12 - 5 = 7'
+  },
+  {
+    id: 'primary-math-013',
+    question: 'What is 4 × 3?',
+    options: ['10', '11', '12', '13'],
+    correctAnswer: 2,
+    subject: 'Mathematics',
+    difficulty: 'medium',
+    level: 'Primary',
+    topic: 'Multiplication',
+    explanation: '4 × 3 = 12'
+  },
+  {
+    id: 'primary-math-014',
+    question: 'What is 20 ÷ 4?',
+    options: ['3', '4', '5', '6'],
+    correctAnswer: 2,
+    subject: 'Mathematics',
+    difficulty: 'medium',
+    level: 'Primary',
+    topic: 'Division',
+    explanation: '20 ÷ 4 = 5'
+  },
+  {
+    id: 'primary-math-015',
+    question: 'How many sides does a rectangle have?',
+    options: ['2', '3', '4', '5'],
+    correctAnswer: 2,
+    subject: 'Mathematics',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Shapes',
+    explanation: 'A rectangle has 4 sides'
+  },
+  {
+    id: 'primary-math-016',
+    question: 'What is 9 + 6?',
+    options: ['13', '14', '15', '16'],
+    correctAnswer: 2,
+    subject: 'Mathematics',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Addition',
+    explanation: '9 + 6 = 15'
+  },
+  {
+    id: 'primary-math-017',
+    question: 'What is 18 - 9?',
+    options: ['7', '8', '9', '10'],
+    correctAnswer: 2,
+    subject: 'Mathematics',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Subtraction',
+    explanation: '18 - 9 = 9'
+  },
+  {
+    id: 'primary-math-018',
+    question: 'What is 5 × 5?',
+    options: ['20', '25', '30', '35'],
+    correctAnswer: 1,
+    subject: 'Mathematics',
+    difficulty: 'medium',
+    level: 'Primary',
+    topic: 'Multiplication',
+    explanation: '5 × 5 = 25'
+  },
+  {
+    id: 'primary-math-019',
+    question: 'What is 16 ÷ 2?',
+    options: ['6', '7', '8', '9'],
+    correctAnswer: 2,
+    subject: 'Mathematics',
+    difficulty: 'medium',
+    level: 'Primary',
+    topic: 'Division',
+    explanation: '16 ÷ 2 = 8'
+  },
+  {
+    id: 'primary-math-020',
+    question: 'Which shape has no corners?',
+    options: ['Square', 'Triangle', 'Circle', 'Rectangle'],
+    correctAnswer: 2,
+    subject: 'Mathematics',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Shapes',
+    explanation: 'A circle has no corners'
+  },
+
+  // ============================================
+  // ENGLISH LANGUAGE - 20 Questions Total
+  // ============================================
+  {
+    id: 'primary-eng-006',
+    question: 'Which word starts with the letter "B"?',
+    options: ['Apple', 'Ball', 'Cat', 'Dog'],
+    correctAnswer: 1,
+    subject: 'English Language',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Alphabet',
+    explanation: 'Ball starts with the letter B'
+  },
+  {
+    id: 'primary-eng-007',
+    question: 'What is the plural of "dog"?',
+    options: ['dog', 'dogs', 'doges', 'dogies'],
+    correctAnswer: 1,
+    subject: 'English Language',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Grammar',
+    explanation: 'The plural of dog is dogs'
+  },
+  {
+    id: 'primary-eng-008',
+    question: 'Which word rhymes with "sun"?',
+    options: ['son', 'run', 'fun', 'All of the above'],
+    correctAnswer: 3,
+    subject: 'English Language',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Phonics',
+    explanation: 'Son, run, and fun all rhyme with sun'
+  },
+  {
+    id: 'primary-eng-009',
+    question: 'What is the opposite of "big"?',
+    options: ['Large', 'Small', 'Huge', 'Giant'],
+    correctAnswer: 1,
+    subject: 'English Language',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Vocabulary',
+    explanation: 'The opposite of big is small'
+  },
+  {
+    id: 'primary-eng-010',
+    question: 'Which sentence is correct?',
+    options: ['I am happy.', 'I is happy.', 'I are happy.', 'I be happy.'],
+    correctAnswer: 0,
+    subject: 'English Language',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Grammar',
+    explanation: 'I am happy is the correct sentence'
+  },
+  {
+    id: 'primary-eng-011',
+    question: 'What is the past tense of "go"?',
+    options: ['go', 'goes', 'went', 'going'],
+    correctAnswer: 2,
+    subject: 'English Language',
+    difficulty: 'medium',
+    level: 'Primary',
+    topic: 'Grammar',
+    explanation: 'The past tense of go is went'
+  },
+  {
+    id: 'primary-eng-012',
+    question: 'Which word is a noun?',
+    options: ['Run', 'Beautiful', 'School', 'Quickly'],
+    correctAnswer: 2,
+    subject: 'English Language',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Grammar',
+    explanation: 'School is a noun (a place)'
+  },
+  {
+    id: 'primary-eng-013',
+    question: 'What is the plural of "child"?',
+    options: ['childs', 'children', 'childrens', 'childes'],
+    correctAnswer: 1,
+    subject: 'English Language',
+    difficulty: 'medium',
+    level: 'Primary',
+    topic: 'Grammar',
+    explanation: 'The plural of child is children (irregular plural)'
+  },
+  {
+    id: 'primary-eng-014',
+    question: 'Which word means the same as "happy"?',
+    options: ['Sad', 'Glad', 'Mad', 'Bad'],
+    correctAnswer: 1,
+    subject: 'English Language',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Vocabulary',
+    explanation: 'Glad means the same as happy'
+  },
+  {
+    id: 'primary-eng-015',
+    question: 'Complete the sentence: "The cat is _____ the table."',
+    options: ['on', 'in', 'at', 'to'],
+    correctAnswer: 0,
+    subject: 'English Language',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Grammar',
+    explanation: 'The cat is on the table'
+  },
+  {
+    id: 'primary-eng-016',
+    question: 'Which word starts with the letter "C"?',
+    options: ['Apple', 'Ball', 'Cat', 'Dog'],
+    correctAnswer: 2,
+    subject: 'English Language',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Alphabet',
+    explanation: 'Cat starts with the letter C'
+  },
+  {
+    id: 'primary-eng-017',
+    question: 'What is the plural of "book"?',
+    options: ['book', 'books', 'bookes', 'bookies'],
+    correctAnswer: 1,
+    subject: 'English Language',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Grammar',
+    explanation: 'The plural of book is books'
+  },
+  {
+    id: 'primary-eng-018',
+    question: 'Which word rhymes with "hat"?',
+    options: ['hot', 'bat', 'hit', 'hut'],
+    correctAnswer: 1,
+    subject: 'English Language',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Phonics',
+    explanation: 'Bat rhymes with hat'
+  },
+  {
+    id: 'primary-eng-019',
+    question: 'What is the opposite of "hot"?',
+    options: ['Warm', 'Cold', 'Cool', 'Freezing'],
+    correctAnswer: 1,
+    subject: 'English Language',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Vocabulary',
+    explanation: 'The opposite of hot is cold'
+  },
+  {
+    id: 'primary-eng-020',
+    question: 'Which sentence is correct?',
+    options: ['She don\'t like apples.', 'She doesn\'t like apples.', 'She didn\'t likes apples.', 'She not like apples.'],
+    correctAnswer: 1,
+    subject: 'English Language',
+    difficulty: 'medium',
+    level: 'Primary',
+    topic: 'Grammar',
+    explanation: 'She doesn\'t like apples is the correct sentence'
+  },
+
+  // ============================================
+  // SCIENCE - 20 Questions Total
+  // ============================================
+  {
+    id: 'primary-sci-005',
+    question: 'Which animal lives on land?',
+    options: ['Fish', 'Bird', 'Dog', 'Shark'],
+    correctAnswer: 2,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Animals',
+    explanation: 'Dogs live on land'
+  },
+  {
+    id: 'primary-sci-006',
+    question: 'What do we use to see?',
+    options: ['Ears', 'Eyes', 'Nose', 'Mouth'],
+    correctAnswer: 1,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Body Parts',
+    explanation: 'We use our eyes to see'
+  },
+  {
+    id: 'primary-sci-007',
+    question: 'Which season comes after summer?',
+    options: ['Spring', 'Autumn', 'Winter', 'Rainy'],
+    correctAnswer: 1,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Seasons',
+    explanation: 'Autumn comes after summer'
+  },
+  {
+    id: 'primary-sci-008',
+    question: 'What do plants need to make food?',
+    options: ['Water only', 'Sunlight only', 'Water and sunlight', 'Nothing'],
+    correctAnswer: 2,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Plants',
+    explanation: 'Plants need both water and sunlight to make food'
+  },
+  {
+    id: 'primary-sci-009',
+    question: 'How many legs does a cat have?',
+    options: ['2', '3', '4', '6'],
+    correctAnswer: 2,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Animals',
+    explanation: 'A cat has 4 legs'
+  },
+  {
+    id: 'primary-sci-010',
+    question: 'Which animal can swim?',
+    options: ['Dog', 'Fish', 'Bird', 'Cat'],
+    correctAnswer: 1,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Animals',
+    explanation: 'Fish can swim'
+  },
+  {
+    id: 'primary-sci-011',
+    question: 'What do we use to hear?',
+    options: ['Eyes', 'Ears', 'Nose', 'Mouth'],
+    correctAnswer: 1,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Body Parts',
+    explanation: 'We use our ears to hear'
+  },
+  {
+    id: 'primary-sci-012',
+    question: 'Which season is the coldest?',
+    options: ['Spring', 'Summer', 'Autumn', 'Winter'],
+    correctAnswer: 3,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Seasons',
+    explanation: 'Winter is the coldest season'
+  },
+  {
+    id: 'primary-sci-013',
+    question: 'What part of a plant is usually green?',
+    options: ['Root', 'Stem', 'Leaf', 'Flower'],
+    correctAnswer: 2,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Plants',
+    explanation: 'Leaves are usually green'
+  },
+  {
+    id: 'primary-sci-014',
+    question: 'How many wings does a bird have?',
+    options: ['1', '2', '3', '4'],
+    correctAnswer: 1,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Animals',
+    explanation: 'A bird has 2 wings'
+  },
+  {
+    id: 'primary-sci-015',
+    question: 'Which animal lives in water?',
+    options: ['Dog', 'Cat', 'Fish', 'Bird'],
+    correctAnswer: 2,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Animals',
+    explanation: 'Fish live in water'
+  },
+  {
+    id: 'primary-sci-016',
+    question: 'What do we use to smell?',
+    options: ['Eyes', 'Ears', 'Nose', 'Mouth'],
+    correctAnswer: 2,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Body Parts',
+    explanation: 'We use our nose to smell'
+  },
+  {
+    id: 'primary-sci-017',
+    question: 'Which season is the hottest?',
+    options: ['Spring', 'Summer', 'Autumn', 'Winter'],
+    correctAnswer: 1,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Seasons',
+    explanation: 'Summer is the hottest season'
+  },
+  {
+    id: 'primary-sci-018',
+    question: 'What do plants grow from?',
+    options: ['Rocks', 'Seeds', 'Water', 'Air'],
+    correctAnswer: 1,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Plants',
+    explanation: 'Plants grow from seeds'
+  },
+  {
+    id: 'primary-sci-019',
+    question: 'How many legs does a dog have?',
+    options: ['2', '3', '4', '6'],
+    correctAnswer: 2,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Animals',
+    explanation: 'A dog has 4 legs'
+  },
+  {
+    id: 'primary-sci-020',
+    question: 'Which animal can fly?',
+    options: ['Fish', 'Bird', 'Dog', 'Cat'],
+    correctAnswer: 1,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Animals',
+    explanation: 'Birds can fly'
+  },
+
+  // ============================================
+  // SOCIAL STUDIES - 20 Questions Total
+  // ============================================
+  {
+    id: 'primary-soc-003',
+    question: 'What is the name of your country?',
+    options: ['Ghana', 'Nigeria', 'Sierra Leone', 'All of the above'],
+    correctAnswer: 3,
+    subject: 'Social Studies',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Geography',
+    explanation: 'All are countries in West Africa'
+  },
+  {
+    id: 'primary-soc-004',
+    question: 'What do we call the leader of a country?',
+    options: ['Teacher', 'President', 'Doctor', 'Farmer'],
+    correctAnswer: 1,
+    subject: 'Social Studies',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Government',
+    explanation: 'The leader of a country is called a President'
+  },
+  {
+    id: 'primary-soc-005',
+    question: 'What is the capital city of Ghana?',
+    options: ['Kumasi', 'Accra', 'Tamale', 'Cape Coast'],
+    correctAnswer: 1,
+    subject: 'Social Studies',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Geography',
+    explanation: 'Accra is the capital city of Ghana'
+  },
+  {
+    id: 'primary-soc-006',
+    question: 'How many days are in a week?',
+    options: ['5', '6', '7', '8'],
+    correctAnswer: 2,
+    subject: 'Social Studies',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Time',
+    explanation: 'There are 7 days in a week'
+  },
+  {
+    id: 'primary-soc-007',
+    question: 'What do we call the place where we learn?',
+    options: ['Hospital', 'School', 'Market', 'Church'],
+    correctAnswer: 1,
+    subject: 'Social Studies',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Community',
+    explanation: 'We learn at school'
+  },
+  {
+    id: 'primary-soc-008',
+    question: 'What is the capital city of Nigeria?',
+    options: ['Lagos', 'Abuja', 'Kano', 'Ibadan'],
+    correctAnswer: 1,
+    subject: 'Social Studies',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Geography',
+    explanation: 'Abuja is the capital city of Nigeria'
+  },
+  {
+    id: 'primary-soc-009',
+    question: 'What do we call people who live in the same area?',
+    options: ['Family', 'Community', 'School', 'Country'],
+    correctAnswer: 1,
+    subject: 'Social Studies',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Community',
+    explanation: 'People who live in the same area form a community'
+  },
+  {
+    id: 'primary-soc-010',
+    question: 'How many months are in a year?',
+    options: ['10', '11', '12', '13'],
+    correctAnswer: 2,
+    subject: 'Social Studies',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Time',
+    explanation: 'There are 12 months in a year'
+  },
+  {
+    id: 'primary-soc-011',
+    question: 'What do we call the place where we buy food?',
+    options: ['School', 'Hospital', 'Market', 'Church'],
+    correctAnswer: 2,
+    subject: 'Social Studies',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Community',
+    explanation: 'We buy food at the market'
+  },
+  {
+    id: 'primary-soc-012',
+    question: 'What is the capital city of Sierra Leone?',
+    options: ['Freetown', 'Bo', 'Kenema', 'Makeni'],
+    correctAnswer: 0,
+    subject: 'Social Studies',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Geography',
+    explanation: 'Freetown is the capital city of Sierra Leone'
+  },
+  {
+    id: 'primary-soc-013',
+    question: 'What do we call the people in our family?',
+    options: ['Friends', 'Relatives', 'Neighbors', 'Teachers'],
+    correctAnswer: 1,
+    subject: 'Social Studies',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Family',
+    explanation: 'People in our family are called relatives'
+  },
+  {
+    id: 'primary-soc-014',
+    question: 'How many days are in a month?',
+    options: ['28', '30', '31', 'All of the above'],
+    correctAnswer: 3,
+    subject: 'Social Studies',
+    difficulty: 'medium',
+    level: 'Primary',
+    topic: 'Time',
+    explanation: 'Months can have 28, 30, or 31 days'
+  },
+  {
+    id: 'primary-soc-015',
+    question: 'What do we call the place where sick people go?',
+    options: ['School', 'Hospital', 'Market', 'Church'],
+    correctAnswer: 1,
+    subject: 'Social Studies',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Community',
+    explanation: 'Sick people go to the hospital'
+  },
+  {
+    id: 'primary-soc-016',
+    question: 'What is the capital city of Liberia?',
+    options: ['Monrovia', 'Buchanan', 'Gbarnga', 'Kakata'],
+    correctAnswer: 0,
+    subject: 'Social Studies',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Geography',
+    explanation: 'Monrovia is the capital city of Liberia'
+  },
+  {
+    id: 'primary-soc-017',
+    question: 'What do we call the place where we worship?',
+    options: ['School', 'Hospital', 'Market', 'Church'],
+    correctAnswer: 3,
+    subject: 'Social Studies',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Community',
+    explanation: 'We worship at a church or mosque'
+  },
+  {
+    id: 'primary-soc-018',
+    question: 'How many hours are in a day?',
+    options: ['12', '20', '24', '30'],
+    correctAnswer: 2,
+    subject: 'Social Studies',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Time',
+    explanation: 'There are 24 hours in a day'
+  },
+  {
+    id: 'primary-soc-019',
+    question: 'What is the capital city of Gambia?',
+    options: ['Banjul', 'Serekunda', 'Brikama', 'Bakau'],
+    correctAnswer: 0,
+    subject: 'Social Studies',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Geography',
+    explanation: 'Banjul is the capital city of Gambia'
+  },
+  {
+    id: 'primary-soc-020',
+    question: 'What do we call the people who teach us?',
+    options: ['Doctors', 'Teachers', 'Farmers', 'Traders'],
+    correctAnswer: 1,
+    subject: 'Social Studies',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Community',
+    explanation: 'People who teach us are called teachers'
+  },
+
+  // Total: 80 Primary questions (20 per subject)
   // TO ADD MORE: Simply add objects to this array following the ChallengeQuestion interface
 ];
 
