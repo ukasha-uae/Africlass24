@@ -10,7 +10,7 @@ interface LessonIntroProps {
 }
 
 const DirectedNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
-  const { currencyName } = useCountryProperties();
+  const { currencySymbol } = useCountryProperties();
   const [stage, setStage] = useState(0);
   
   // Interactive state for demonstrations
@@ -33,7 +33,7 @@ const DirectedNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
     {
       title: "➡️⬅️ Directed Numbers - Positive & Negative!",
       content: "Numbers with direction! Temperature, money, elevation - all use directed numbers.",
-      narration: `Welcome to directed numbers! These are numbers that have both size and direction - positive or negative. Think about temperature: when it's hot, we say 30 degrees, which is positive. But in a freezer, it might be negative 5 degrees! Think about money: if you have ${currencyName} in your account, that's positive. But if you owe money, that's negative! Think about elevation: a mountain is above sea level - positive. A submarine is below sea level - negative. Directed numbers are everywhere in real life, and mastering them is essential for algebra, science, and your WASSCE examinations!`,
+      narration: `Welcome to directed numbers! These are numbers that have both size and direction - positive or negative. Think about temperature: when it's hot, we say 30 degrees, which is positive. But in a freezer, it might be negative 5 degrees! Think about money: if you have ${currencySymbol} in your account, that's positive. But if you owe money, that's negative! Think about elevation: a mountain is above sea level - positive. A submarine is below sea level - negative. Directed numbers are everywhere in real life, and mastering them is essential for algebra, science, and your WASSCE examinations!`,
       highlightWords: ['directed numbers', 'positive', 'negative', 'temperature', 'money', 'elevation', 'WASSCE']
     },
     {
@@ -45,7 +45,7 @@ const DirectedNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
     {
       title: "➕ Addition Rules - Same or Different Signs?",
       content: "Adding directed numbers: same signs add, different signs subtract!",
-      narration: `Adding directed numbers follows clear rules! When both numbers have the SAME sign - both positive or both negative - you ADD the numbers and KEEP the sign. For example, positive 5 plus positive 3 equals positive 8. Negative 5 plus negative 3 equals negative 8. When the numbers have DIFFERENT signs - one positive and one negative - you SUBTRACT the smaller number from the larger number, and take the SIGN of the larger number. For example, negative 7 plus positive 3: subtract 3 from 7 to get 4, and since negative 7 is larger, the answer is negative 4. Think of it like money: if you owe 7 ${currencyName} and someone gives you 3 ${currencyName}, you still owe 4 ${currencyName}!`,
+      narration: `Adding directed numbers follows clear rules! When both numbers have the SAME sign - both positive or both negative - you ADD the numbers and KEEP the sign. For example, positive 5 plus positive 3 equals positive 8. Negative 5 plus negative 3 equals negative 8. When the numbers have DIFFERENT signs - one positive and one negative - you SUBTRACT the smaller number from the larger number, and take the SIGN of the larger number. For example, negative 7 plus positive 3: subtract 3 from 7 to get 4, and since negative 7 is larger, the answer is negative 4. Think of it like money: if you owe 7 ${currencySymbol} and someone gives you 3 ${currencySymbol}, you still owe 4 ${currencySymbol}!`,
       highlightWords: ['addition', 'same signs', 'different signs', 'add', 'subtract', 'keep the sign', 'larger number']
     },
     {
@@ -554,8 +554,8 @@ const DirectedNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
                     { icon: Thermometer, title: 'Temperature', example: '+30°C (hot) or -5°C (freezer)', bgClass: 'from-red-900/50 to-red-800/50', borderClass: 'border-red-700', iconClass: 'text-red-400', textClass: 'text-red-300' },
-                    { icon: TrendingUp, title: 'Business', example: `+${currencyName}500 (profit) or -${currencyName}200 (loss)`, bgClass: 'from-green-900/50 to-green-800/50', borderClass: 'border-green-700', iconClass: 'text-green-400', textClass: 'text-green-300' },
-                    { icon: TrendingDown, title: 'Banking', example: `+${currencyName}1000 (credit) or -${currencyName}500 (debt)`, bgClass: 'from-blue-900/50 to-blue-800/50', borderClass: 'border-blue-700', iconClass: 'text-blue-400', textClass: 'text-blue-300' },
+                    { icon: TrendingUp, title: 'Business', example: `+${currencySymbol}500 (profit) or -${currencySymbol}200 (loss)`, bgClass: 'from-green-900/50 to-green-800/50', borderClass: 'border-green-700', iconClass: 'text-green-400', textClass: 'text-green-300' },
+                    { icon: TrendingDown, title: 'Banking', example: `+${currencySymbol}1000 (credit) or -${currencySymbol}500 (debt)`, bgClass: 'from-blue-900/50 to-blue-800/50', borderClass: 'border-blue-700', iconClass: 'text-blue-400', textClass: 'text-blue-300' },
                     { icon: ArrowLeftRight, title: 'Elevation', example: '+885m (mountain) or -100m (submarine)', bgClass: 'from-purple-900/50 to-purple-800/50', borderClass: 'border-purple-700', iconClass: 'text-purple-400', textClass: 'text-purple-300' }
                   ].map((item, i) => (
                     <motion.div
