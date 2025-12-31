@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export type QuestionDifficulty = 'easy' | 'medium' | 'hard';
-export type QuestionSubject = 'Mathematics' | 'English Language' | 'Integrated Science' | 'Social Studies' | 'ICT' | 'RME';
+export type QuestionSubject = 'Mathematics' | 'English Language' | 'Integrated Science' | 'Science' | 'Social Studies' | 'ICT' | 'Creative Arts' | 'French' | 'Arabic' | 'RME';
 
 export interface BeceQuestion {
   id: string;
@@ -69,7 +69,7 @@ export const beceQuestions: BeceQuestion[] = [
   createQuestion('Mathematics', 'hard', 'If 2^x = 32, find x.', ['3', '4', '5', '6'], 2, '2 × 2 × 2 × 2 × 2 = 32. So x = 5.', 2017, 'Indices'),
   createQuestion('Mathematics', 'hard', 'In a class of 40 students, 25 play football, 20 play hockey and 10 play both. How many play neither?', ['5', '10', '15', '0'], 0, 'n(F∪H) = n(F) + n(H) - n(F∩H) = 25 + 20 - 10 = 35. Neither = 40 - 35 = 5.', 2021, 'Sets'),
   createQuestion('Mathematics', 'hard', 'Find the gradient of the line joining points A(2, 3) and B(6, 11).', ['1', '2', '3', '4'], 1, 'Gradient = (y2 - y1) / (x2 - x1) = (11 - 3) / (6 - 2) = 8 / 4 = 2', 2022, 'Coordinate Geometry'),
-  createQuestion('Mathematics', 'hard', 'Simplify: (2√3 + √2)(2√3 - √2)', ['8', '10', '12', '14'], 1, 'Difference of two squares: (2√3)² - (√2)² = (4×3) - 2 = 12 - 2 = 10', 2016, 'Surds'),
+  createQuestion('Mathematics', 'hard', `Simplify: (2${String.fromCharCode(8730)}3 + ${String.fromCharCode(8730)}2)(2${String.fromCharCode(8730)}3 - ${String.fromCharCode(8730)}2)`, ['8', '10', '12', '14'], 1, `Difference of two squares: (2${String.fromCharCode(8730)}3)² - (${String.fromCharCode(8730)}2)² = (4×3) - 2 = 12 - 2 = 10`, 2016, 'Surds'),
   createQuestion('Mathematics', 'hard', 'The probability of passing an exam is 0.8. If 50 students took the exam, how many are expected to fail?', ['5', '10', '20', '40'], 1, 'Prob(Fail) = 1 - 0.8 = 0.2. Expected fail = 0.2 × 50 = 10.', 2019, 'Probability'),
   createQuestion('Mathematics', 'hard', 'Solve the simultaneous equations: 2x + y = 7 and x - y = 2', ['x=3, y=1', 'x=2, y=3', 'x=4, y=-1', 'x=3, y=2'], 0, 'Add equations: 3x = 9 => x = 3. Substitute x: 3 - y = 2 => y = 1.', 2015, 'Algebra'),
   createQuestion('Mathematics', 'hard', 'Calculate the total surface area of a closed cylinder with radius 7cm and height 10cm. (π = 22/7)', ['748 cm²', '374 cm²', '528 cm²', '440 cm²'], 0, 'TSA = 2πr(r + h) = 2 × (22/7) × 7 × (7 + 10) = 44 × 17 = 748 cm²', 2018, 'Mensuration'),
@@ -166,6 +166,102 @@ export const beceQuestions: BeceQuestion[] = [
   createQuestion('Social Studies', 'hard', 'Productivity is defined as...', ['Output per unit input', 'Total production', 'Cost of production', 'Profit made'], 0, 'Efficiency of production.', 2017, 'Economics'),
   createQuestion('Social Studies', 'hard', 'Which of these is a feature of a good map?', ['Title', 'Color', 'Size', 'Shape'], 0, 'A map must have a title, scale, key, etc.', 2022, 'Geography'),
   createQuestion('Social Studies', 'hard', 'Globalization has made the world a...', ['Big continent', 'Global village', 'Small country', 'Large market'], 1, 'Interconnectedness of the world.', 2016, 'Global Issues'),
+
+  // ICT - Easy
+  createQuestion('ICT', 'easy', 'What does ICT stand for?', ['Information and Communication Technology', 'International Computer Technology', 'Internet Communication Tools', 'Integrated Computer Technology'], 0, 'ICT stands for Information and Communication Technology.', 2020, 'Basics'),
+  createQuestion('ICT', 'easy', 'Which of these is an input device?', ['Monitor', 'Printer', 'Keyboard', 'Speaker'], 2, 'Keyboard is used to input data into a computer.', 2019, 'Hardware'),
+  createQuestion('ICT', 'easy', 'The brain of a computer is the...', ['Monitor', 'CPU', 'Keyboard', 'Mouse'], 1, 'CPU (Central Processing Unit) processes all instructions.', 2018, 'Hardware'),
+  createQuestion('ICT', 'easy', 'Which software is used to create documents?', ['Spreadsheet', 'Word Processor', 'Database', 'Presentation'], 1, 'Word processors like Microsoft Word create documents.', 2021, 'Software'),
+  createQuestion('ICT', 'easy', 'A collection of related files is called a...', ['Folder', 'File', 'Document', 'Program'], 0, 'Folders organize related files together.', 2017, 'File Management'),
+  createQuestion('ICT', 'easy', 'Which of these is a web browser?', ['Microsoft Word', 'Google Chrome', 'Excel', 'PowerPoint'], 1, 'Google Chrome is used to browse the internet.', 2022, 'Internet'),
+  createQuestion('ICT', 'easy', 'RAM stands for...', ['Random Access Memory', 'Read Access Memory', 'Random Application Memory', 'Read Application Memory'], 0, 'RAM is temporary storage that the computer uses actively.', 2016, 'Hardware'),
+  createQuestion('ICT', 'easy', 'To save a document, you press...', ['Ctrl + S', 'Ctrl + C', 'Ctrl + V', 'Ctrl + X'], 0, 'Ctrl + S is the keyboard shortcut to save.', 2015, 'Software'),
+  createQuestion('ICT', 'easy', 'Which of these is an output device?', ['Keyboard', 'Mouse', 'Printer', 'Scanner'], 2, 'Printer produces output (printed documents).', 2020, 'Hardware'),
+  createQuestion('ICT', 'easy', 'The internet is a...', ['Computer', 'Network of networks', 'Software program', 'Hardware device'], 1, 'The internet connects millions of networks worldwide.', 2019, 'Internet'),
+
+  // ICT - Medium
+  createQuestion('ICT', 'medium', 'What is the full form of URL?', ['Uniform Resource Locator', 'Universal Resource Link', 'Uniform Resource Link', 'Universal Resource Locator'], 0, 'URL identifies the location of a resource on the internet.', 2018, 'Internet'),
+  createQuestion('ICT', 'medium', 'Which protocol is used for secure web browsing?', ['HTTP', 'HTTPS', 'FTP', 'SMTP'], 1, 'HTTPS encrypts data for secure transmission.', 2021, 'Internet'),
+  createQuestion('ICT', 'medium', 'A spreadsheet is used for...', ['Writing letters', 'Creating presentations', 'Organizing and calculating data', 'Browsing the internet'], 2, 'Spreadsheets like Excel organize data in rows and columns.', 2017, 'Software'),
+  createQuestion('ICT', 'medium', 'What does CPU stand for?', ['Central Processing Unit', 'Computer Processing Unit', 'Central Program Unit', 'Computer Program Unit'], 0, 'CPU executes instructions and processes data.', 2022, 'Hardware'),
+  createQuestion('ICT', 'medium', 'Which of these is a search engine?', ['Facebook', 'Google', 'WhatsApp', 'Instagram'], 1, 'Google helps you search for information on the internet.', 2016, 'Internet'),
+  createQuestion('ICT', 'medium', 'To copy text, you use...', ['Ctrl + C', 'Ctrl + V', 'Ctrl + X', 'Ctrl + Z'], 0, 'Ctrl + C copies selected text to clipboard.', 2019, 'Software'),
+  createQuestion('ICT', 'medium', 'A virus in computing is...', ['A helpful program', 'Malicious software', 'A hardware component', 'An operating system'], 1, 'Computer viruses are harmful programs that can damage files.', 2015, 'Security'),
+  createQuestion('ICT', 'medium', 'Which storage device has the largest capacity?', ['USB Flash Drive', 'CD', 'Hard Disk', 'Floppy Disk'], 2, 'Hard disks can store terabytes of data.', 2020, 'Storage'),
+  createQuestion('ICT', 'medium', 'Email stands for...', ['Electronic Mail', 'Easy Mail', 'Express Mail', 'External Mail'], 0, 'Email allows sending messages electronically.', 2018, 'Internet'),
+  createQuestion('ICT', 'medium', 'Which file extension is for images?', ['.txt', '.jpg', '.doc', '.xls'], 1, '.jpg is a common image file format.', 2021, 'File Types'),
+
+  // Creative Arts - Easy
+  createQuestion('Creative Arts', 'easy', 'Which of these is a primary color?', ['Green', 'Orange', 'Red', 'Purple'], 2, 'Red, blue, and yellow are primary colors.', 2020, 'Visual Arts'),
+  createQuestion('Creative Arts', 'easy', 'A drawing made with pencil is called a...', ['Painting', 'Sketch', 'Sculpture', 'Collage'], 1, 'Sketches are quick pencil drawings.', 2019, 'Visual Arts'),
+  createQuestion('Creative Arts', 'easy', 'Which instrument is played by striking?', ['Flute', 'Drum', 'Guitar', 'Piano'], 1, 'Drums are percussion instruments played by striking.', 2018, 'Music'),
+  createQuestion('Creative Arts', 'easy', 'The art of making pots from clay is called...', ['Sculpting', 'Pottery', 'Weaving', 'Carving'], 1, 'Pottery involves shaping clay into vessels.', 2021, 'Crafts'),
+  createQuestion('Creative Arts', 'easy', 'Which of these is a string instrument?', ['Drum', 'Flute', 'Guitar', 'Trumpet'], 2, 'Guitar has strings that are plucked or strummed.', 2017, 'Music'),
+  createQuestion('Creative Arts', 'easy', 'A play performed on stage is called a...', ['Movie', 'Drama', 'Song', 'Poem'], 1, 'Drama is live theatrical performance.', 2022, 'Drama'),
+  createQuestion('Creative Arts', 'easy', 'Which color is made by mixing red and yellow?', ['Green', 'Orange', 'Blue', 'Purple'], 1, 'Red + Yellow = Orange.', 2016, 'Visual Arts'),
+  createQuestion('Creative Arts', 'easy', 'The art of cutting and pasting paper is called...', ['Drawing', 'Collage', 'Painting', 'Sculpting'], 1, 'Collage involves arranging cut paper pieces.', 2015, 'Visual Arts'),
+  createQuestion('Creative Arts', 'easy', 'Which of these is a wind instrument?', ['Piano', 'Violin', 'Flute', 'Drum'], 2, 'Flute produces sound when air is blown through it.', 2020, 'Music'),
+  createQuestion('Creative Arts', 'easy', 'A person who acts in a play is called an...', ['Director', 'Actor', 'Producer', 'Writer'], 1, 'Actors perform roles in dramas and plays.', 2019, 'Drama'),
+
+  // Creative Arts - Medium
+  createQuestion('Creative Arts', 'medium', 'Which of these is a secondary color?', ['Red', 'Blue', 'Green', 'Yellow'], 2, 'Green is made by mixing blue and yellow.', 2018, 'Visual Arts'),
+  createQuestion('Creative Arts', 'medium', 'The art of creating three-dimensional objects is called...', ['Drawing', 'Painting', 'Sculpture', 'Printing'], 2, 'Sculpture creates 3D art forms.', 2021, 'Visual Arts'),
+  createQuestion('Creative Arts', 'medium', 'Which musical note has the longest duration?', ['Whole note', 'Half note', 'Quarter note', 'Eighth note'], 0, 'Whole notes last for 4 beats.', 2017, 'Music'),
+  createQuestion('Creative Arts', 'medium', 'A traditional Ghanaian dance is...', ['Ballet', 'Adowa', 'Hip-hop', 'Jazz'], 1, 'Adowa is a popular traditional dance in Ghana.', 2022, 'Dance'),
+  createQuestion('Creative Arts', 'medium', 'Which of these is a warm color?', ['Blue', 'Green', 'Red', 'Purple'], 2, 'Red, orange, and yellow are warm colors.', 2016, 'Visual Arts'),
+  createQuestion('Creative Arts', 'medium', 'The person who writes a play is called a...', ['Actor', 'Director', 'Playwright', 'Producer'], 2, 'Playwrights create scripts for plays.', 2019, 'Drama'),
+  createQuestion('Creative Arts', 'medium', 'Which instrument is part of the brass family?', ['Violin', 'Flute', 'Trumpet', 'Piano'], 2, 'Trumpet is a brass instrument.', 2015, 'Music'),
+  createQuestion('Creative Arts', 'medium', 'The art of making designs with thread is called...', ['Weaving', 'Pottery', 'Carving', 'Painting'], 0, 'Weaving creates patterns with threads.', 2020, 'Crafts'),
+  createQuestion('Creative Arts', 'medium', 'Which of these is a cool color?', ['Red', 'Orange', 'Blue', 'Yellow'], 2, 'Blue, green, and purple are cool colors.', 2018, 'Visual Arts'),
+  createQuestion('Creative Arts', 'medium', 'A group of musicians playing together is called an...', ['Solo', 'Duet', 'Orchestra', 'Quartet'], 2, 'Orchestras have many musicians playing together.', 2021, 'Music'),
+
+  // French - Easy
+  createQuestion('French', 'easy', 'How do you say "Hello" in French?', ['Bonjour', 'Au revoir', 'Merci', 'S\'il vous plaît'], 0, 'Bonjour means hello or good day.', 2020, 'Greetings'),
+  createQuestion('French', 'easy', 'What does "Merci" mean in English?', ['Please', 'Thank you', 'Hello', 'Goodbye'], 1, 'Merci means thank you.', 2019, 'Common Phrases'),
+  createQuestion('French', 'easy', 'How do you say "Goodbye" in French?', ['Bonjour', 'Au revoir', 'Bonsoir', 'Bonne nuit'], 1, 'Au revoir means goodbye.', 2018, 'Greetings'),
+  createQuestion('French', 'easy', 'What is the French word for "water"?', ['Pain', 'Eau', 'Lait', 'Café'], 1, 'Eau means water.', 2021, 'Vocabulary'),
+  createQuestion('French', 'easy', 'How do you say "Please" in French?', ['Merci', 'S\'il vous plaît', 'Excusez-moi', 'Pardon'], 1, 'S\'il vous plaît means please.', 2017, 'Common Phrases'),
+  createQuestion('French', 'easy', 'What does "Oui" mean?', ['No', 'Yes', 'Maybe', 'Hello'], 1, 'Oui means yes.', 2022, 'Common Words'),
+  createQuestion('French', 'easy', 'How do you say "Good morning" in French?', ['Bonsoir', 'Bonne nuit', 'Bonjour', 'Au revoir'], 2, 'Bonjour is used for good morning.', 2016, 'Greetings'),
+  createQuestion('French', 'easy', 'What is the French word for "bread"?', ['Eau', 'Pain', 'Fromage', 'Beurre'], 1, 'Pain means bread.', 2015, 'Vocabulary'),
+  createQuestion('French', 'easy', 'How do you say "My name is" in French?', ['Je m\'appelle', 'Comment allez-vous?', 'Je suis', 'J\'ai'], 0, 'Je m\'appelle means my name is.', 2020, 'Introductions'),
+  createQuestion('French', 'easy', 'What does "Non" mean?', ['Yes', 'No', 'Maybe', 'Please'], 1, 'Non means no.', 2019, 'Common Words'),
+
+  // French - Medium
+  createQuestion('French', 'medium', 'How do you say "How are you?" in French?', ['Comment allez-vous?', 'Quel est votre nom?', 'Où êtes-vous?', 'Quel âge avez-vous?'], 0, 'Comment allez-vous? means how are you?', 2018, 'Conversation'),
+  createQuestion('French', 'medium', 'What is the French word for "school"?', ['Maison', 'École', 'Voiture', 'Livre'], 1, 'École means school.', 2021, 'Vocabulary'),
+  createQuestion('French', 'medium', 'How do you say "I am fine" in French?', ['Je suis bien', 'Je vais bien', 'Je suis malade', 'Je suis fatigué'], 1, 'Je vais bien means I am fine.', 2017, 'Conversation'),
+  createQuestion('French', 'medium', 'What does "Excusez-moi" mean?', ['Thank you', 'Please', 'Excuse me', 'Goodbye'], 2, 'Excusez-moi means excuse me.', 2022, 'Common Phrases'),
+  createQuestion('French', 'medium', 'How do you say "What is your name?" in French?', ['Comment allez-vous?', 'Quel est votre nom?', 'Où habitez-vous?', 'Comment vous appelez-vous?'], 3, 'Comment vous appelez-vous? means what is your name?', 2016, 'Conversation'),
+  createQuestion('French', 'medium', 'What is the French word for "house"?', ['École', 'Maison', 'Voiture', 'Jardin'], 1, 'Maison means house.', 2019, 'Vocabulary'),
+  createQuestion('French', 'medium', 'How do you say "Good evening" in French?', ['Bonjour', 'Bonsoir', 'Bonne nuit', 'Au revoir'], 1, 'Bonsoir means good evening.', 2015, 'Greetings'),
+  createQuestion('French', 'medium', 'What does "Bonne nuit" mean?', ['Good morning', 'Good afternoon', 'Good evening', 'Good night'], 3, 'Bonne nuit means good night.', 2020, 'Greetings'),
+  createQuestion('French', 'medium', 'How do you say "I don\'t understand" in French?', ['Je comprends', 'Je ne comprends pas', 'Je sais', 'Je ne sais pas'], 1, 'Je ne comprends pas means I don\'t understand.', 2018, 'Conversation'),
+  createQuestion('French', 'medium', 'What is the French word for "book"?', ['Crayon', 'Livre', 'Cahier', 'Stylo'], 1, 'Livre means book.', 2021, 'Vocabulary'),
+
+  // Arabic - Easy (with proper diacritics and clear transliteration for non-native speakers)
+  createQuestion('Arabic', 'easy', 'How do you say "Hello" in Arabic?', ['مَرْحَبًا (Marhaban)', 'مَعَ السَّلَامَةِ (Ma\'a as-salama)', 'شُكْرًا (Shukran)', 'مِنْ فَضْلِك (Min fadlik)'], 0, 'مَرْحَبًا (Marhaban) means hello. The fatha (َ) on ر makes it "ra", and the sukun (ْ) on ح makes it "h".', 2020, 'Greetings'),
+  createQuestion('Arabic', 'easy', 'What does "شُكْرًا (Shukran)" mean in English?', ['Please', 'Thank you', 'Hello', 'Goodbye'], 1, 'شُكْرًا (Shukran) means thank you. The dhamma (ُ) on ش makes it "shu", and the fatha (َ) on ر makes it "ra".', 2019, 'Common Phrases'),
+  createQuestion('Arabic', 'easy', 'How do you say "Goodbye" in Arabic?', ['مَرْحَبًا (Marhaban)', 'مَعَ السَّلَامَةِ (Ma\'a as-salama)', 'صَبَاحُ الْخَيْرِ (Sabah al-khayr)', 'مَسَاءُ الْخَيْرِ (Masa\' al-khayr)'], 1, 'مَعَ السَّلَامَةِ (Ma\'a as-salama) means goodbye. Literally "with peace". The fatha (َ) on م makes it "ma", and the kasra (ِ) on ل makes it "li".', 2018, 'Greetings'),
+  createQuestion('Arabic', 'easy', 'What is the Arabic word for "water"?', ['خُبْز (Khubz)', 'مَاء (Ma\')', 'حَلِيب (Haleeb)', 'قَهْوَة (Qahwa)'], 1, 'مَاء (Ma\') means water. The fatha (َ) on م makes it "ma", and the maddah (آ) makes the long "aa" sound.', 2021, 'Vocabulary'),
+  createQuestion('Arabic', 'easy', 'How do you say "Please" in Arabic?', ['شُكْرًا (Shukran)', 'مِنْ فَضْلِك (Min fadlik)', 'عَفْوًا (Afwan)', 'آسِف (Asif)'], 1, 'مِنْ فَضْلِك (Min fadlik) means please. The kasra (ِ) on م makes it "mi", and the sukun (ْ) on ن makes it "n".', 2017, 'Common Phrases'),
+  createQuestion('Arabic', 'easy', 'What does "نَعَم (Na\'am)" mean?', ['No', 'Yes', 'Maybe', 'Hello'], 1, 'نَعَم (Na\'am) means yes. The fatha (َ) on ن makes it "na", and the fatha (َ) on ع makes it "a".', 2022, 'Common Words'),
+  createQuestion('Arabic', 'easy', 'How do you say "Good morning" in Arabic?', ['مَسَاءُ الْخَيْرِ (Masa\' al-khayr)', 'لَيْلَة سَعِيدَة (Layla sa\'ida)', 'صَبَاحُ الْخَيْرِ (Sabah al-khayr)', 'مَعَ السَّلَامَةِ (Ma\'a as-salama)'], 2, 'صَبَاحُ الْخَيْرِ (Sabah al-khayr) means good morning. The fatha (َ) on ص makes it "sa", and the dhamma (ُ) on ب makes it "bu".', 2016, 'Greetings'),
+  createQuestion('Arabic', 'easy', 'What is the Arabic word for "bread"?', ['مَاء (Ma\')', 'خُبْز (Khubz)', 'جُبْن (Jubn)', 'زُبْدَة (Zubda)'], 1, 'خُبْز (Khubz) means bread. The dhamma (ُ) on خ makes it "khu", and the sukun (ْ) on ب makes it "b".', 2015, 'Vocabulary'),
+  createQuestion('Arabic', 'easy', 'How do you say "My name is" in Arabic?', ['اِسْمِي (Ismi)', 'كَيْفَ حَالُك (Kayf halak?)', 'أَنَا (Ana)', 'لَدَي (Laday)'], 0, 'اِسْمِي (Ismi) means my name is. The kasra (ِ) on ا makes it "i", and the kasra (ِ) on م makes it "mi".', 2020, 'Introductions'),
+  createQuestion('Arabic', 'easy', 'What does "لَا (La)" mean?', ['Yes', 'No', 'Maybe', 'Please'], 1, 'لَا (La) means no. The fatha (َ) on ل makes it "la", and the alif (ا) extends the sound.', 2019, 'Common Words'),
+
+  // Arabic - Medium (with proper diacritics and clear transliteration for non-native speakers)
+  createQuestion('Arabic', 'medium', 'How do you say "How are you?" in Arabic?', ['كَيْفَ حَالُك (Kayf halak?)', 'مَا اِسْمُك (Ma ismak?)', 'أَيْنَ أَنْت (Ayna anta?)', 'كَمْ عُمْرُك (Kam umrak?)'], 0, 'كَيْفَ حَالُك (Kayf halak?) means how are you? The fatha (َ) on ك makes it "ka", the kasra (ِ) on ح makes it "hi", and the dhamma (ُ) on ل makes it "lu".', 2018, 'Conversation'),
+  createQuestion('Arabic', 'medium', 'What is the Arabic word for "school"?', ['بَيْت (Bayt)', 'مَدْرَسَة (Madrasa)', 'سَيَّارَة (Sayyara)', 'كِتَاب (Kitab)'], 1, 'مَدْرَسَة (Madrasa) means school. The fatha (َ) on م makes it "ma", the sukun (ْ) on د makes it "d", and the fatha (َ) on ر makes it "ra".', 2021, 'Vocabulary'),
+  createQuestion('Arabic', 'medium', 'How do you say "I am fine" in Arabic?', ['أَنَا بِخَيْر (Ana bikhayr)', 'أَنَا مَرِيض (Ana marid)', 'أَنَا مُتْعَب (Ana muta\'ab)', 'أَنَا جَائِع (Ana ja\'i\')'], 0, 'أَنَا بِخَيْر (Ana bikhayr) means I am fine. The fatha (َ) on أ makes it "a", the kasra (ِ) on ب makes it "bi", and the fatha (َ) on خ makes it "kha".', 2017, 'Conversation'),
+  createQuestion('Arabic', 'medium', 'What does "عَفْوًا (Afwan)" mean?', ['Thank you', 'Please', 'Excuse me / You\'re welcome', 'Goodbye'], 2, 'عَفْوًا (Afwan) means excuse me or you\'re welcome. The fatha (َ) on ع makes it "a", the sukun (ْ) on ف makes it "f", and the fatha (َ) on و makes it "wa".', 2022, 'Common Phrases'),
+  createQuestion('Arabic', 'medium', 'How do you say "What is your name?" in Arabic?', ['كَيْفَ حَالُك (Kayf halak?)', 'مَا اِسْمُك (Ma ismak?)', 'أَيْنَ تَسْكُن (Ayna taskun?)', 'كَيْفَ تُسَمَّى (Kayf tusamma?)'], 1, 'مَا اِسْمُك (Ma ismak?) means what is your name? The fatha (َ) on م makes it "ma", the kasra (ِ) on ا makes it "i", and the dhamma (ُ) on س makes it "su".', 2016, 'Conversation'),
+  createQuestion('Arabic', 'medium', 'What is the Arabic word for "house"?', ['مَدْرَسَة (Madrasa)', 'بَيْت (Bayt)', 'سَيَّارَة (Sayyara)', 'حَدِيقَة (Hadiqa)'], 1, 'بَيْت (Bayt) means house. The fatha (َ) on ب makes it "ba", and the sukun (ْ) on ي makes it "y".', 2019, 'Vocabulary'),
+  createQuestion('Arabic', 'medium', 'How do you say "Good evening" in Arabic?', ['صَبَاحُ الْخَيْرِ (Sabah al-khayr)', 'مَسَاءُ الْخَيْرِ (Masa\' al-khayr)', 'لَيْلَة سَعِيدَة (Layla sa\'ida)', 'مَعَ السَّلَامَةِ (Ma\'a as-salama)'], 1, 'مَسَاءُ الْخَيْرِ (Masa\' al-khayr) means good evening. The fatha (َ) on م makes it "ma", the fatha (َ) on س makes it "sa", and the dhamma (ُ) on ا makes it "u".', 2015, 'Greetings'),
+  createQuestion('Arabic', 'medium', 'What does "لَيْلَة سَعِيدَة (Layla sa\'ida)" mean?', ['Good morning', 'Good afternoon', 'Good evening', 'Good night'], 3, 'لَيْلَة سَعِيدَة (Layla sa\'ida) means good night. The fatha (َ) on ل makes it "la", the kasra (ِ) on ي makes it "yi", and the fatha (َ) on س makes it "sa".', 2020, 'Greetings'),
+  createQuestion('Arabic', 'medium', 'How do you say "I don\'t understand" in Arabic?', ['أَفْهَم (Afham)', 'لَا أَفْهَم (La afham)', 'أَعْرِف (A\'rif)', 'لَا أَعْرِف (La a\'rif)'], 1, 'لَا أَفْهَم (La afham) means I don\'t understand. The fatha (َ) on ل makes it "la", the fatha (َ) on أ makes it "a", and the fatha (َ) on ف makes it "fa".', 2018, 'Conversation'),
+  createQuestion('Arabic', 'medium', 'What is the Arabic word for "book"?', ['قَلَم (Qalam)', 'كِتَاب (Kitab)', 'دَفْتَر (Daftar)', 'قَلَم رَصَاص (Qalam rasas)'], 1, 'كِتَاب (Kitab) means book. The kasra (ِ) on ك makes it "ki", the fatha (َ) on ت makes it "ta", and the fatha (َ) on ب makes it "ba".', 2021, 'Vocabulary'),
 ];
 
 // Helper functions to interact with the question bank

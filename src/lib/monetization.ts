@@ -1,0 +1,263 @@
+/**
+ * Monetization System for Challenge Arena
+ * Handles premium subscriptions, coin purchases, and feature unlocks
+ */
+
+export type SubscriptionTier = 'free' | 'premium';
+export type PremiumFeature = 
+  | 'boss_battle' 
+  | 'tournaments' 
+  | 'school_battle' 
+  | 'custom_challenges'
+  | 'advanced_analytics'
+  | 'ad_free'
+  | 'double_coins'
+  | 'priority_matchmaking'
+  | 'unlimited_practice'
+  | 'daily_bonus';
+
+export interface UserSubscription {
+  userId: string;
+  tier: SubscriptionTier;
+  startDate: string;
+  endDate?: string; // undefined for lifetime
+  isActive: boolean;
+  features: PremiumFeature[];
+  planId?: string; // e.g., 'premium_monthly', 'premium_annual'
+}
+
+export interface CoinPurchase {
+  packageId: string;
+  name: string;
+  coins: number;
+  price: number; // in GHS
+  currency: string;
+  bonus?: number; // bonus coins
+}
+
+// Import from payments.ts to avoid duplication
+export { COIN_PACKAGES_GHS as COIN_PACKAGES } from './payments';
+
+export const PREMIUM_FEATURES: Record<PremiumFeature, {
+  name: string;
+  description: string;
+  icon: string;
+}> = {
+  boss_battle: {
+    name: 'Boss Battle',
+    description: 'Challenge AI bosses and earn exclusive rewards',
+    icon: '👹',
+  },
+  tournaments: {
+    name: 'Tournaments',
+    description: 'Compete in weekly and monthly tournaments',
+    icon: '🏆',
+  },
+  school_battle: {
+    name: 'School Battle',
+    description: 'Compete against other schools',
+    icon: '🏫',
+  },
+  custom_challenges: {
+    name: 'Custom Challenges',
+    description: 'Create and share custom challenges',
+    icon: '🎯',
+  },
+  advanced_analytics: {
+    name: 'Advanced Analytics',
+    description: 'Detailed performance reports and insights',
+    icon: '📊',
+  },
+  ad_free: {
+    name: 'Ad-Free Experience',
+    description: 'No ads during gameplay',
+    icon: '🚫',
+  },
+  double_coins: {
+    name: 'Double Coins',
+    description: 'Earn 2x coins from all challenges',
+    icon: '💰',
+  },
+  priority_matchmaking: {
+    name: 'Priority Matchmaking',
+    description: 'Faster opponent matching',
+    icon: '⚡',
+  },
+  unlimited_practice: {
+    name: 'Unlimited Practice',
+    description: 'No daily limits on practice mode',
+    icon: '♾️',
+  },
+  daily_bonus: {
+    name: 'Daily Bonus',
+    description: 'Extra coins and XP daily',
+    icon: '🎁',
+  },
+};
+
+/**
+ * Check if user has premium subscription
+ */
+export function isPremiumUser(userId: string): boolean {
+  if (typeof window === 'undefined') return false;
+  
+  const subscription = getUserSubscription(userId);
+  return subscription?.tier === 'premium' && subscription?.isActive === true;
+}
+
+/**
+ * Get user subscription
+ */
+export function getUserSubscription(userId: string): UserSubscription | null {
+  if (typeof window === 'undefined') return null;
+  
+  const subscriptions = localStorage.getItem('userSubscriptions');
+  if (!subscriptions) return null;
+  
+  const allSubscriptions: Record<string, UserSubscription> = JSON.parse(subscriptions);
+  return allSubscriptions[userId] || null;
+}
+
+/**
+ * Set user subscription
+ */
+export function setUserSubscription(userId: string, subscription: UserSubscription): void {
+  if (typeof window === 'undefined') return;
+  
+  const subscriptions = localStorage.getItem('userSubscriptions');
+  const allSubscriptions: Record<string, UserSubscription> = subscriptions 
+    ? JSON.parse(subscriptions) 
+    : {};
+  
+  allSubscriptions[userId] = subscription;
+  localStorage.setItem('userSubscriptions', JSON.stringify(allSubscriptions));
+}
+
+/**
+ * Check if user has access to a premium feature
+ */
+export function hasPremiumFeature(userId: string, feature: PremiumFeature): boolean {
+  const subscription = getUserSubscription(userId);
+  if (!subscription || !subscription.isActive) return false;
+  
+  return subscription.features.includes(feature);
+}
+
+/**
+ * Get all premium features for user
+ */
+export function getUserPremiumFeatures(userId: string): PremiumFeature[] {
+  const subscription = getUserSubscription(userId);
+  if (!subscription || !subscription.isActive) return [];
+  
+  return subscription.features;
+}
+
+/**
+ * Add a new subscription
+ */
+export function addSubscription(
+  userId: string,
+  planId: string,
+  duration: 'monthly' | 'annual'
+): UserSubscription {
+  if (typeof window === 'undefined') {
+    throw new Error('Cannot add subscription on server side');
+  }
+
+  const now = new Date();
+  const endDate = duration === 'monthly'
+    ? new Date(now.setMonth(now.getMonth() + 1)).toISOString()
+    : new Date(now.setFullYear(now.getFullYear() + 1)).toISOString();
+
+  const subscription: UserSubscription = {
+    userId,
+    tier: 'premium',
+    startDate: new Date().toISOString(),
+    endDate,
+    isActive: true,
+    features: Object.keys(PREMIUM_FEATURES) as PremiumFeature[],
+    planId,
+  };
+
+  setUserSubscription(userId, subscription);
+
+  // Update player profile
+  try {
+    const { getPlayerProfile, createOrUpdatePlayer } = require('./challenge');
+    const player = getPlayerProfile(userId);
+    if (player) {
+      createOrUpdatePlayer({ ...player, isPremium: true });
+    }
+  } catch (error) {
+    console.warn('Could not update player profile:', error);
+  }
+
+  return subscription;
+}
+
+/**
+ * Initialize premium subscription (for testing/demo)
+ */
+export function initializePremiumSubscription(userId: string, tier: SubscriptionTier = 'premium'): void {
+  const subscription: UserSubscription = {
+    userId,
+    tier,
+    startDate: new Date().toISOString(),
+    isActive: true,
+    features: tier === 'premium' 
+      ? Object.keys(PREMIUM_FEATURES) as PremiumFeature[]
+      : [],
+    planId: 'premium_monthly', // Default for demo
+  };
+  
+  setUserSubscription(userId, subscription);
+}
+
+/**
+ * Update subscription status
+ */
+export function updateSubscription(
+  userId: string,
+  planId: string,
+  isActive: boolean
+): void {
+  if (typeof window === 'undefined') return;
+  
+  const subscription = getUserSubscription(userId);
+  if (!subscription) return;
+  
+  // Update subscription status
+  const updatedSubscription: UserSubscription = {
+    ...subscription,
+    isActive,
+    endDate: !isActive ? new Date().toISOString() : subscription.endDate,
+  };
+  
+  setUserSubscription(userId, updatedSubscription);
+  
+  // Update player profile if needed
+  if (typeof window !== 'undefined') {
+    try {
+      const { getPlayerProfile, createOrUpdatePlayer } = require('./challenge');
+      const player = getPlayerProfile(userId);
+      if (player) {
+        createOrUpdatePlayer({ ...player, isPremium: isActive });
+      }
+    } catch (error) {
+      // Silently fail if challenge module not available
+      console.warn('Could not update player profile:', error);
+    }
+  }
+}
+
+/**
+ * Calculate coin multiplier based on subscription
+ */
+export function getCoinMultiplier(userId: string): number {
+  if (hasPremiumFeature(userId, 'double_coins')) {
+    return 2.0;
+  }
+  return 1.0;
+}
+

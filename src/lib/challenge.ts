@@ -4,6 +4,7 @@ import { QuestionDifficulty } from './bece-questions';
 import { getChallengeQuestions, getAvailableSubjects, type EducationLevel } from './challenge-questions';
 import { createInAppNotification } from './in-app-notifications';
 import { calculateXP, calculateCoins, checkAchievements } from './gamification';
+import { getCoinMultiplier } from './monetization';
 
 export interface Player {
   userId: string;
@@ -31,7 +32,7 @@ export interface Challenge {
   type: 'quick' | 'scheduled' | 'school' | 'tournament' | 'practice' | 'boss';
   level: EducationLevel; // JHS or SHS
   subject: string;
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: 'easy' | 'medium' | 'hard' | 'JHS 1' | 'JHS 2' | 'JHS 3' | 'SHS 1' | 'SHS 2' | 'SHS 3' | 'Primary 1' | 'Primary 2' | 'Primary 3' | 'Primary 4' | 'Primary 5' | 'Primary 6';
   questionCount: number;
   timeLimit: number; // seconds per question
   
@@ -641,7 +642,7 @@ export const completeChallenge = (challenge: Challenge): void => {
       );
 
       // Calculate Coins
-      coinsEarned = calculateCoins(
+      let coinsEarned = calculateCoins(
         playerResult,
         result.accuracy,
         result.score,
@@ -649,6 +650,10 @@ export const completeChallenge = (challenge: Challenge): void => {
         challenge.results!.length,
         player.winStreak || 0
       );
+      
+      // Apply premium multiplier (2x coins for premium users)
+      const multiplier = getCoinMultiplier(result.userId);
+      coinsEarned = Math.floor(coinsEarned * multiplier);
 
       // Check Achievements
       // We need to simulate the updated stats for the check
@@ -886,10 +891,11 @@ const generateGameQuestions = (
 
   // STRICT LEVEL FILTERING - Use the new unified challenge questions system
   // Each level ONLY gets questions from their own level
+  // difficulty can now be a classLevel (JHS 1, JHS 2, etc.) or legacy difficulty
   let challengeQuestions = getChallengeQuestions(
     level,
     subject === 'general' ? 'Mixed' : mappedSubject,
-    difficulty as QuestionDifficulty,
+    difficulty as any, // Can be QuestionDifficulty or ClassLevel
     count,
     userId
   );
@@ -900,43 +906,74 @@ const generateGameQuestions = (
     challengeQuestions = getChallengeQuestions(
       level, // Keep same level - STRICT filtering
       'Mixed',
-      difficulty as QuestionDifficulty,
+      difficulty as any,
       count,
       userId
     );
   }
   
-  // Last resort: Try with easier difficulty or default subject (SAME LEVEL)
+  // Last resort: Try with easier class level or default subject (SAME LEVEL)
   if (challengeQuestions.length === 0) {
-    console.warn(`No questions found for ${level}, trying with easier difficulty`);
-    const fallbackDifficulty = difficulty === 'hard' ? 'medium' : 'easy';
+    console.warn(`No questions found for ${level}, trying with easier class level`);
+    const classLevels: string[] = level === 'Primary' ? ['Primary 1', 'Primary 2', 'Primary 3'] :
+                                  level === 'JHS' ? ['JHS 1', 'JHS 2', 'JHS 3'] :
+                                  ['SHS 1', 'SHS 2', 'SHS 3'];
+    const currentIndex = classLevels.indexOf(difficulty);
+    const fallbackClassLevel = currentIndex > 0 ? classLevels[currentIndex - 1] : classLevels[0];
     const fallbackSubject = level === 'Primary' ? 'Mathematics' :
                             level === 'JHS' ? 'Mathematics' :
                             'Core Mathematics';
     challengeQuestions = getChallengeQuestions(
       level, // Keep same level - STRICT filtering
       fallbackSubject,
-      fallbackDifficulty as QuestionDifficulty,
+      fallbackClassLevel as any,
       count,
       userId
     );
   }
   
   // Convert to GameQuestion format with variety of question types
+  // Pre-calculate question types to ensure proper distribution
+  const totalQuestions = challengeQuestions.length;
+  const mcqCount = Math.floor(totalQuestions * 0.70);
+  const trueFalseCount = Math.floor(totalQuestions * 0.15);
+  const fillBlankCount = Math.floor(totalQuestions * 0.10);
+  const numberInputCount = totalQuestions - mcqCount - trueFalseCount - fillBlankCount;
+  
+  // Create array of question types with proper distribution
+  const questionTypes: Array<'mcq' | 'truefalse' | 'fillblank' | 'number_input'> = [
+    ...Array(mcqCount).fill('mcq' as const),
+    ...Array(trueFalseCount).fill('truefalse' as const),
+    ...Array(fillBlankCount).fill('fillblank' as const),
+    ...Array(numberInputCount).fill('number_input' as const)
+  ];
+  
+  // Shuffle the types array to randomize distribution
+  for (let i = questionTypes.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [questionTypes[i], questionTypes[j]] = [questionTypes[j], questionTypes[i]];
+  }
+  
   return challengeQuestions.map((q, index) => {
+    // Calculate points based on classLevel or difficulty
+    let points = 5; // Default
+    if (difficulty.includes('3') || difficulty === 'hard') points = 15;
+    else if (difficulty.includes('2') || difficulty === 'medium') points = 10;
+    else if (difficulty.includes('1') || difficulty === 'easy') points = 5;
+    
     const baseQuestion = {
       id: q.id,
       question: q.question,
-      points: difficulty === 'hard' ? 15 : difficulty === 'medium' ? 10 : 5,
+      points,
       explanation: q.explanation || '',
       source: level === 'JHS' ? 'bece' : 'wassce' as 'bece' | 'practice',
       year: 2024,
     };
 
-    // Mix question types: 70% MCQ, 15% True/False, 10% Fill Blank, 5% Number Input
-    const typeRoll = index % 20;
+    // Use pre-calculated question type for this index
+    const questionType = questionTypes[index] || 'mcq';
     
-    if (typeRoll < 14) {
+    if (questionType === 'mcq') {
       // MCQ (70%)
       return {
         ...baseQuestion,
@@ -944,27 +981,73 @@ const generateGameQuestions = (
         options: q.options,
         correctAnswer: q.options[q.correctAnswer],
       };
-    } else if (typeRoll < 17) {
+    } else if (questionType === 'truefalse') {
       // True/False (15%) - Convert MCQ to True/False
       const correctOption = q.options[q.correctAnswer];
-      const isTrue = Math.random() > 0.5;
+      // Create a statement based on the question - make it more natural
+      const statement = q.question.replace(/\?/g, '').trim();
+      // Use index to determine true/false for consistency (alternate)
+      const isTrue = index % 2 === 0;
+      const wrongOption = q.options.find((opt, idx) => idx !== q.correctAnswer) || 'something else';
       return {
         ...baseQuestion,
         type: 'truefalse' as const,
-        question: `${q.question} (The answer is "${correctOption}")`,
+        question: isTrue 
+          ? `True or False: ${statement} The answer is "${correctOption}".` 
+          : `True or False: ${statement} The answer is "${wrongOption}".`,
         correctAnswer: isTrue ? 'true' : 'false',
       };
-    } else if (typeRoll < 19) {
+    } else if (questionType === 'fillblank') {
       // Fill Blank (10%) - Convert MCQ to Fill Blank
       const correctOption = q.options[q.correctAnswer];
-      // Create a fill-in-the-blank version
-      const blankQuestion = q.question.replace(/\?/g, '_____');
+      // Create a fill-in-the-blank version with better question rewriting
+      let blankQuestion = q.question.replace(/\?/g, '').trim();
+      
+      // Handle "Which of these" type questions by rewriting them
+      if (blankQuestion.toLowerCase().includes('which of these') || blankQuestion.toLowerCase().includes('which of the following')) {
+        // Convert "Which of these is a search engine?" to "A search engine is: _____"
+        // Pattern: "Which of these is [something]?" -> "[Something] is: _____"
+        const match = blankQuestion.match(/which of (?:these|the following)\s+(?:is|are|can be|is used for|are used for|is used to|are used to)\s+(.+)/i);
+        if (match && match[1]) {
+          const rest = match[1].trim();
+          blankQuestion = `${rest}: _____`;
+        } else {
+          // Fallback: remove "Which of these" and make it a statement
+          blankQuestion = blankQuestion.replace(/which of (?:these|the following)/i, '').trim();
+          blankQuestion = blankQuestion.replace(/^(is|are|can be|is used for|are used for|is used to|are used to)\s*/i, '');
+          if (blankQuestion.trim()) {
+            blankQuestion = `${blankQuestion.trim()}: _____`;
+          } else {
+            blankQuestion = q.question.replace(/\?/g, '') + ': _____';
+          }
+        }
+      } else if (blankQuestion.toLowerCase().includes('what is') || blankQuestion.toLowerCase().includes('what does')) {
+        // Convert "What is X?" to "X is: _____" or "What does X stand for?" to "X stands for: _____"
+        blankQuestion = blankQuestion.replace(/what (?:is|does)\s+/i, '');
+        if (blankQuestion.toLowerCase().includes('stand for')) {
+          blankQuestion = blankQuestion.replace(/\s+stand for/i, ' stands for: _____');
+        } else {
+          blankQuestion = blankQuestion.replace(/\?/g, '');
+          const parts = blankQuestion.split(/\s+/);
+          if (parts.length > 0) {
+            blankQuestion = `${blankQuestion.replace(/\?/g, '')}: _____`;
+          }
+        }
+      } else {
+        // For other questions, replace question mark with blank or add blank at the end
+        if (blankQuestion.endsWith('?')) {
+          blankQuestion = blankQuestion.slice(0, -1) + ': _____';
+        } else {
+          blankQuestion = blankQuestion + ' _____';
+        }
+      }
+      
       return {
         ...baseQuestion,
         type: 'fillblank' as const,
         question: blankQuestion || q.question,
-        correctAnswer: correctOption.toLowerCase(),
-        alternatives: q.options.filter((opt, idx) => idx !== q.correctAnswer).slice(0, 2).map(o => o.toLowerCase()),
+        correctAnswer: correctOption.toLowerCase().trim(),
+        alternatives: q.options.filter((opt, idx) => idx !== q.correctAnswer).slice(0, 2).map(o => o.toLowerCase().trim()),
       };
     } else {
       // Number Input (5%) - Only for math questions

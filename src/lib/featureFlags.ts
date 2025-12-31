@@ -31,9 +31,9 @@ export const FEATURE_FLAGS = {
     showStudyGroups: false,        // Hide study groups
     // Challenge Arena Modes
     showChallengeArena: true,      // Show Arena Challenge
-    showChallengeArenaBoss: false, // Hide boss battles
-    showChallengeArenaTournament: false, // Hide tournaments
-    showChallengeArenaSchool: false,      // Hide school battles
+    showChallengeArenaBoss: true,  // Show boss battles (Premium unlock)
+    showChallengeArenaTournament: true, // Show tournaments (Premium unlock)
+    showChallengeArenaSchool: true,      // Show school battles (Premium unlock)
     showChallengeArenaPractice: true,    // Show practice mode
     showChallengeArenaQuickMatch: true,  // Show quick match
     // Virtual Labs - V1 Selection (5-10 best labs)

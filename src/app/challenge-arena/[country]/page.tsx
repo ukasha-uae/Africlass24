@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
   Trophy, Zap, Calendar, Users, Target, TrendingUp, 
   Clock, Award, Play, Plus, Eye, Swords, School, Bell,
-  BrainCircuit, ChevronRight
+  BrainCircuit, ChevronRight, BookOpen, Calculator, FlaskConical, Globe, Languages, Palette, Computer, Music
 } from 'lucide-react';
 import Link from 'next/link';
 import {
@@ -36,6 +36,12 @@ import CountrySelector from '@/components/CountrySelector';
 import { useParams, notFound, useRouter } from 'next/navigation';
 import { COUNTRIES } from '@/lib/localization/countries/index';
 import { FEATURE_FLAGS } from '@/lib/featureFlags';
+import { getAvailableSubjects } from '@/lib/challenge-questions';
+import CoinStore from '@/components/premium/CoinStore';
+import TransactionHistory from '@/components/premium/TransactionHistory';
+import SubscriptionManagement from '@/components/premium/SubscriptionManagement';
+import { isPremiumUser, hasPremiumFeature } from '@/lib/monetization';
+import { Crown, Lock, Coins } from 'lucide-react';
 
 export default function LocalizedChallengeArenaPage() {
   const params = useParams();
@@ -58,8 +64,15 @@ export default function LocalizedChallengeArenaPage() {
   const [activeTab, setActiveTab] = useState('play');
   const [educationLevel, setEducationLevel] = useState<'Primary' | 'JHS' | 'SHS'>('Primary');
   const [hasInitialized, setHasInitialized] = useState(false);
+  const [showCoinStore, setShowCoinStore] = useState(false);
+  const [showTransactionHistory, setShowTransactionHistory] = useState(false);
+  const [showSubscriptionManagement, setShowSubscriptionManagement] = useState(false);
 
   const { firestore, user } = useFirebase();
+  
+  // Check premium status
+  const userId = user?.uid || 'test-user-1';
+  const isPremium = isPremiumUser(userId);
   const profileRef = useMemo(() => (user && firestore) ? doc(firestore, `students/${user.uid}`) : null, [user, firestore]);
   const { data: userProfile } = useDoc(profileRef);
 
@@ -194,6 +207,39 @@ export default function LocalizedChallengeArenaPage() {
     }
   }, [player]);
 
+  // Get subjects for the selected level
+  const availableSubjects = getAvailableSubjects(educationLevel);
+
+  // Subject icons mapping
+  const getSubjectIcon = (subject: string) => {
+    const subjectLower = subject.toLowerCase();
+    if (subjectLower.includes('math')) return Calculator;
+    if (subjectLower.includes('english') || subjectLower.includes('language')) return BookOpen;
+    if (subjectLower.includes('science') || subjectLower.includes('integrated')) return FlaskConical;
+    if (subjectLower.includes('social')) return Globe;
+    if (subjectLower.includes('ict') || subjectLower.includes('computing')) return Computer;
+    if (subjectLower.includes('creative') || subjectLower.includes('arts')) return Palette;
+    if (subjectLower.includes('french')) return Languages;
+    if (subjectLower.includes('arabic')) return Languages;
+    if (subjectLower.includes('music')) return Music;
+    return BookOpen;
+  };
+
+  // Subject colors mapping
+  const getSubjectColor = (subject: string, index: number) => {
+    const colors = [
+      'from-blue-500 to-cyan-500',
+      'from-green-500 to-emerald-500',
+      'from-orange-500 to-red-500',
+      'from-purple-500 to-pink-500',
+      'from-yellow-500 to-amber-500',
+      'from-indigo-500 to-blue-500',
+      'from-teal-500 to-green-500',
+      'from-rose-500 to-pink-500',
+    ];
+    return colors[index % colors.length];
+  };
+
   const pendingChallenges = challenges.filter(c => 
     c.status === 'pending' && c.opponents.some(o => o.userId === (user?.uid || 'user-1') && o.status === 'invited')
   );
@@ -282,6 +328,51 @@ export default function LocalizedChallengeArenaPage() {
           </div>
         </div>
 
+        {/* Subjects for Selected Level */}
+        <Card className={`mb-6 bg-gradient-to-r ${colors.cardBg} border-2 border-primary/20 shadow-xl`}>
+          <CardHeader className="pb-3">
+            <div className="flex items-center gap-3">
+              <div className={`p-2 rounded-lg bg-gradient-to-br ${colors.primary}`}>
+                <BookOpen className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <CardTitle className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  Available Subjects for {educationLevel}
+                </CardTitle>
+                <CardDescription className="text-sm">
+                  Click on a subject to start practicing or challenging
+                </CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+              {availableSubjects.map((subject, index) => {
+                const Icon = getSubjectIcon(subject);
+                const subjectColor = getSubjectColor(subject, index);
+                return (
+                  <Link
+                    key={subject}
+                    href={`/challenge-arena/practice?level=${educationLevel}&subject=${encodeURIComponent(subject)}`}
+                  >
+                    <Card className={`group relative bg-gradient-to-br ${subjectColor} p-4 rounded-xl shadow-lg text-white overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer border-0 h-full`}>
+                      <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+                      <div className="relative z-10">
+                        <div className="mb-3">
+                          <Icon className="h-8 w-8 sm:h-10 sm:w-10 group-hover:scale-110 transition-transform" />
+                        </div>
+                        <h3 className="font-bold text-sm sm:text-base leading-tight group-hover:underline">
+                          {subject}
+                        </h3>
+                      </div>
+                    </Card>
+                  </Link>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Welcome & Multi-Country Info Banner */}
         <Card className={`mb-6 bg-gradient-to-r ${colors.cardBg} border-2`}>
           <CardContent className="p-4 sm:p-6">
@@ -349,6 +440,37 @@ export default function LocalizedChallengeArenaPage() {
               <div className="text-3xl sm:text-4xl lg:text-5xl mb-2 group-hover:scale-110 group-hover:rotate-12 transition-all inline-block">💰</div>
               <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-yellow-600 to-amber-600 bg-clip-text text-transparent">{player.coins || 0}</div>
               <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium mt-1">Coins</div>
+              <div className="mt-2 space-y-1">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowCoinStore(true)}
+                  className="w-full text-xs h-6 px-2 bg-gradient-to-r from-yellow-500/20 to-amber-500/20 hover:from-yellow-500/30 hover:to-amber-500/30 border border-yellow-300/30"
+                >
+                  <Coins className="h-3 w-3 mr-1" />
+                  Buy
+                </Button>
+                <div className="flex gap-1">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setShowTransactionHistory(true)}
+                    className="flex-1 text-[10px] h-5 px-1"
+                    title="Transaction History"
+                  >
+                    History
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setShowSubscriptionManagement(true)}
+                    className="flex-1 text-[10px] h-5 px-1"
+                    title={isPremium ? 'Manage Subscription' : 'Subscribe'}
+                  >
+                    {isPremium ? 'Manage' : 'Sub'}
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -561,80 +683,160 @@ export default function LocalizedChallengeArenaPage() {
                 </Card>
               </Link>
 
-              {/* V1: Hide complex modes - only show Practice and Quick Match */}
+              {/* Premium Game Modes */}
               {FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaBoss && (
                 <Link href="/challenge-arena/boss-battle">
-                  <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-red-500 bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-full bg-red-100 dark:bg-red-900">
-                          <Swords className="h-8 w-8 text-red-600" />
+                  <Card className={`relative bg-gradient-to-br ${isPremium ? 'from-red-500 to-orange-600' : 'from-red-400/80 to-orange-500/80'} p-6 sm:p-8 rounded-2xl shadow-xl text-white overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer border-0`}>
+                    {!isPremium && (
+                      <>
+                        <div className="absolute inset-0 bg-black/20 backdrop-blur-sm z-10"></div>
+                        <div className="absolute top-3 right-3 z-20">
+                          <Badge className="bg-gradient-to-r from-amber-500 to-yellow-500 text-white border-0 shadow-lg animate-pulse">
+                            <Crown className="h-3 w-3 mr-1" />
+                            Premium
+                          </Badge>
                         </div>
-                        <div className="flex-1">
-                          <h3 className="text-xl font-bold mb-2 text-red-600">Boss Battle</h3>
-                          <p className="text-sm text-muted-foreground mb-3">
-                            Challenge the top-ranked players in {country?.name}
-                          </p>
-                          <div className="flex gap-2">
-                            <Badge variant="destructive">Hard mode</Badge>
-                            <Badge variant="outline">High rewards</Badge>
+                      </>
+                    )}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+                    <div className="relative z-0">
+                      <div className="text-4xl sm:text-5xl lg:text-6xl mb-3 sm:mb-4">👹</div>
+                      <h3 className="text-2xl sm:text-3xl font-bold mb-2 flex items-center gap-2">
+                        Boss Battle
+                        {!isPremium && <Lock className="h-5 w-5" />}
+                      </h3>
+                      <p className="text-base sm:text-lg mb-3 sm:mb-4 opacity-90">
+                        Challenge the top-ranked players in {country?.name}
+                      </p>
+                      <div className="space-y-2 mb-4 sm:mb-6">
+                        <div className="flex items-center">
+                          <span className="text-white/80 mr-2">⚔️</span>
+                          <span className="text-sm sm:text-base">Hard mode</span>
+                        </div>
+                        <div className="flex items-center">
+                          <span className="text-white/80 mr-2">💎</span>
+                          <span className="text-sm sm:text-base">High rewards</span>
+                        </div>
+                        <div className="flex items-center">
+                          <span className="text-white/80 mr-2">🏆</span>
+                          <span className="text-sm sm:text-base">AI Bosses</span>
+                        </div>
+                        {!isPremium && (
+                          <div className="flex items-center">
+                            <span className="text-white/80 mr-2">👑</span>
+                            <span className="text-sm sm:text-base font-semibold">Premium Only</span>
                           </div>
-                        </div>
+                        )}
                       </div>
-                    </CardContent>
+                      <div className={`w-full ${isPremium ? 'bg-white text-red-600' : 'bg-white/50 text-red-600/70'} text-center py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-bold ${isPremium ? 'hover:bg-gray-100' : 'cursor-not-allowed'} transition-colors`}>
+                        {isPremium ? 'Start Battle' : 'Unlock Premium'}
+                      </div>
+                    </div>
                   </Card>
                 </Link>
               )}
 
               {FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaTournament && (
                 <Link href="/challenge-arena/tournaments">
-                  <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-full bg-yellow-100 dark:bg-yellow-900">
-                          <Trophy className="h-8 w-8 text-yellow-600" />
+                  <Card className={`relative bg-gradient-to-br ${isPremium ? 'from-yellow-500 to-amber-600' : 'from-yellow-400/80 to-amber-500/80'} p-6 sm:p-8 rounded-2xl shadow-xl text-white overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer border-0`}>
+                    {!isPremium && (
+                      <>
+                        <div className="absolute inset-0 bg-black/20 backdrop-blur-sm z-10"></div>
+                        <div className="absolute top-3 right-3 z-20">
+                          <Badge className="bg-gradient-to-r from-amber-500 to-yellow-500 text-white border-0 shadow-lg animate-pulse">
+                            <Crown className="h-3 w-3 mr-1" />
+                            Premium
+                          </Badge>
                         </div>
-                        <div className="flex-1">
-                          <h3 className="text-xl font-bold mb-2">Tournaments</h3>
-                          <p className="text-sm text-muted-foreground mb-3">
-                            Join competitive tournaments and win prizes
-                          </p>
-                          <div className="flex gap-2">
-                            <Badge variant="secondary">Brackets</Badge>
-                            <Badge variant="outline">Win prizes</Badge>
-                            <Badge variant="outline">Weekly</Badge>
+                      </>
+                    )}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+                    <div className="relative z-0">
+                      <div className="text-4xl sm:text-5xl lg:text-6xl mb-3 sm:mb-4">🏆</div>
+                      <h3 className="text-2xl sm:text-3xl font-bold mb-2 flex items-center gap-2">
+                        Tournaments
+                        {!isPremium && <Lock className="h-5 w-5" />}
+                      </h3>
+                      <p className="text-base sm:text-lg mb-3 sm:mb-4 opacity-90">
+                        Join competitive tournaments and win prizes
+                      </p>
+                      <div className="space-y-2 mb-4 sm:mb-6">
+                        <div className="flex items-center">
+                          <span className="text-white/80 mr-2">📊</span>
+                          <span className="text-sm sm:text-base">Brackets</span>
+                        </div>
+                        <div className="flex items-center">
+                          <span className="text-white/80 mr-2">🎁</span>
+                          <span className="text-sm sm:text-base">Win prizes</span>
+                        </div>
+                        <div className="flex items-center">
+                          <span className="text-white/80 mr-2">📅</span>
+                          <span className="text-sm sm:text-base">Weekly</span>
+                        </div>
+                        {!isPremium && (
+                          <div className="flex items-center">
+                            <span className="text-white/80 mr-2">👑</span>
+                            <span className="text-sm sm:text-base font-semibold">Premium Only</span>
                           </div>
-                        </div>
+                        )}
                       </div>
-                    </CardContent>
+                      <div className={`w-full ${isPremium ? 'bg-white text-yellow-600' : 'bg-white/50 text-yellow-600/70'} text-center py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-bold ${isPremium ? 'hover:bg-gray-100' : 'cursor-not-allowed'} transition-colors`}>
+                        {isPremium ? 'Join Tournament' : 'Unlock Premium'}
+                      </div>
+                    </div>
                   </Card>
                 </Link>
               )}
 
               {FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaSchool && (
                 <Link href="/challenge-arena/school-battle">
-                  <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-full bg-purple-100 dark:bg-purple-900">
-                          <School className="h-8 w-8 text-purple-600" />
+                  <Card className={`relative bg-gradient-to-br ${isPremium ? 'from-purple-500 to-pink-600' : 'from-purple-400/80 to-pink-500/80'} p-6 sm:p-8 rounded-2xl shadow-xl text-white overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer border-0`}>
+                    {!isPremium && (
+                      <>
+                        <div className="absolute inset-0 bg-black/20 backdrop-blur-sm z-10"></div>
+                        <div className="absolute top-3 right-3 z-20">
+                          <Badge className="bg-gradient-to-r from-amber-500 to-yellow-500 text-white border-0 shadow-lg animate-pulse">
+                            <Crown className="h-3 w-3 mr-1" />
+                            Premium
+                          </Badge>
                         </div>
-                        <div className="flex-1">
-                          <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
-                            School vs School
-                            <Badge variant="secondary" className="text-xs bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">5 Countries</Badge>
-                          </h3>
-                          <p className="text-sm text-muted-foreground mb-3">
-                            Represent your school in inter-school battles across {country?.name || 'West Africa'}
-                          </p>
-                          <div className="flex gap-2">
-                            <Badge variant="secondary">Team battle</Badge>
-                            <Badge variant="outline">School pride</Badge>
-                            <Badge variant="outline">{country?.flag}</Badge>
+                      </>
+                    )}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+                    <div className="relative z-0">
+                      <div className="text-4xl sm:text-5xl lg:text-6xl mb-3 sm:mb-4">🏫</div>
+                      <h3 className="text-2xl sm:text-3xl font-bold mb-2 flex items-center gap-2">
+                        School vs School
+                        <Badge className="text-xs bg-green-500/30 text-white border border-green-400/50">5 Countries</Badge>
+                        {!isPremium && <Lock className="h-5 w-5" />}
+                      </h3>
+                      <p className="text-base sm:text-lg mb-3 sm:mb-4 opacity-90">
+                        Represent your school in inter-school battles across {country?.name || 'West Africa'}
+                      </p>
+                      <div className="space-y-2 mb-4 sm:mb-6">
+                        <div className="flex items-center">
+                          <span className="text-white/80 mr-2">👥</span>
+                          <span className="text-sm sm:text-base">Team battle</span>
+                        </div>
+                        <div className="flex items-center">
+                          <span className="text-white/80 mr-2">🏅</span>
+                          <span className="text-sm sm:text-base">School pride</span>
+                        </div>
+                        <div className="flex items-center">
+                          <span className="text-white/80 mr-2">{country?.flag || '🌍'}</span>
+                          <span className="text-sm sm:text-base">5 Countries</span>
+                        </div>
+                        {!isPremium && (
+                          <div className="flex items-center">
+                            <span className="text-white/80 mr-2">👑</span>
+                            <span className="text-sm sm:text-base font-semibold">Premium Only</span>
                           </div>
-                        </div>
+                        )}
                       </div>
-                    </CardContent>
+                      <div className={`w-full ${isPremium ? 'bg-white text-purple-600' : 'bg-white/50 text-purple-600/70'} text-center py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-bold ${isPremium ? 'hover:bg-gray-100' : 'cursor-not-allowed'} transition-colors`}>
+                        {isPremium ? 'Start Battle' : 'Unlock Premium'}
+                      </div>
+                    </div>
                   </Card>
                 </Link>
               )}
@@ -837,6 +1039,34 @@ export default function LocalizedChallengeArenaPage() {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Coin Store Modal */}
+      <CoinStore
+        open={showCoinStore}
+        onClose={() => setShowCoinStore(false)}
+        userId={userId}
+        onPurchaseComplete={() => {
+          // Reload player data to update coins
+          const updatedPlayer = getPlayerProfile(userId);
+          if (updatedPlayer) {
+            setPlayer(updatedPlayer);
+          }
+        }}
+      />
+      <TransactionHistory
+        open={showTransactionHistory}
+        onClose={() => setShowTransactionHistory(false)}
+        userId={userId}
+      />
+      <SubscriptionManagement
+        open={showSubscriptionManagement}
+        onClose={() => setShowSubscriptionManagement(false)}
+        userId={userId}
+        onRenew={() => {
+          setShowSubscriptionManagement(false);
+          setShowCoinStore(true);
+        }}
+      />
     </div>
   );
 }

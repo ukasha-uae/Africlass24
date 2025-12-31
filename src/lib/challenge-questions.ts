@@ -4,6 +4,9 @@ import { getRandomQuestions as getJHSQuestions, QuestionSubject as JHSSubject, Q
 import { pastQuestions, type PastQuestion } from './past-questions';
 
 export type EducationLevel = 'Primary' | 'JHS' | 'SHS';
+export type ClassLevel = 'JHS 1' | 'JHS 2' | 'JHS 3' | 'SHS 1' | 'SHS 2' | 'SHS 3' | 'Primary 1' | 'Primary 2' | 'Primary 3' | 'Primary 4' | 'Primary 5' | 'Primary 6';
+// Legacy difficulty type for backward compatibility during migration
+export type QuestionDifficulty = 'easy' | 'medium' | 'hard';
 
 export interface ChallengeQuestion {
   id: string;
@@ -11,7 +14,8 @@ export interface ChallengeQuestion {
   options: string[];
   correctAnswer: number;
   subject: string;
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: 'easy' | 'medium' | 'hard'; // Legacy - will be replaced by classLevel
+  classLevel?: ClassLevel; // New field for class-based leveling
   level: EducationLevel;
   explanation?: string;
   topic?: string;
@@ -122,6 +126,30 @@ function filterFreshQuestions(questions: ChallengeQuestion[], sessionKey: string
 // - loadQuestionsFromDatabase(level, subject)
 // - loadQuestionsFromJSON(level, subject)
 
+// Helper function to assign classLevel based on difficulty and level
+function assignClassLevel(level: EducationLevel, difficulty: 'easy' | 'medium' | 'hard', index?: number): ClassLevel {
+  if (level === 'Primary') {
+    if (difficulty === 'easy') {
+      // Distribute easy questions between Primary 1 and 2
+      return (index && index % 2 === 0) ? 'Primary 2' : 'Primary 1';
+    } else if (difficulty === 'medium') {
+      // Distribute medium questions between Primary 3 and 4
+      return (index && index % 2 === 0) ? 'Primary 4' : 'Primary 3';
+    } else {
+      // Distribute hard questions between Primary 5 and 6
+      return (index && index % 2 === 0) ? 'Primary 6' : 'Primary 5';
+    }
+  } else if (level === 'JHS') {
+    if (difficulty === 'easy') return 'JHS 1';
+    if (difficulty === 'medium') return 'JHS 2';
+    return 'JHS 3';
+  } else { // SHS
+    if (difficulty === 'easy') return 'SHS 1';
+    if (difficulty === 'medium') return 'SHS 2';
+    return 'SHS 3';
+  }
+}
+
 // Primary Question Bank (Expandable)
 const primaryQuestionBank: ChallengeQuestion[] = [
   // Mathematics - Primary
@@ -132,6 +160,7 @@ const primaryQuestionBank: ChallengeQuestion[] = [
     correctAnswer: 1,
     subject: 'Mathematics',
     difficulty: 'easy',
+    classLevel: 'Primary 1',
     level: 'Primary',
     topic: 'Addition',
     explanation: '2 + 3 = 5'
@@ -1081,7 +1110,7 @@ const shsQuestionBank: ChallengeQuestion[] = [
   {
     id: 'shs-math-005',
     question: 'The quadratic formula is used to solve equations of the form ax² + bx + c = 0. What is the discriminant?',
-    options: ['b² - 4ac', 'b² + 4ac', '-b ± √(b² - 4ac)', '2a'],
+    options: ['b² - 4ac', 'b² + 4ac', `-b ± ${String.fromCharCode(8730)}(b² - 4ac)`, '2a'],
     correctAnswer: 0,
     subject: 'Core Mathematics',
     difficulty: 'medium',
@@ -1231,14 +1260,19 @@ const shsQuestionBank: ChallengeQuestion[] = [
   },
   {
     id: 'shs-math-013',
-    question: 'Simplify: 2√18 + 3√8',
-    options: ['5√26', '12√2', '6√3 + 6√2', '5√2'],
-    correctAnswer: 2,
+    question: `Simplify: 2${String.fromCharCode(8730)}18 + 3${String.fromCharCode(8730)}8`,
+    options: [
+      `5${String.fromCharCode(8730)}26`,
+      `12${String.fromCharCode(8730)}2`,
+      `6${String.fromCharCode(8730)}3 + 6${String.fromCharCode(8730)}2`,
+      `5${String.fromCharCode(8730)}2`
+    ],
+    correctAnswer: 1, // 12√2 is correct: 2√18 = 2×3√2 = 6√2, 3√8 = 3×2√2 = 6√2, sum = 12√2
     subject: 'Core Mathematics',
     difficulty: 'hard',
     level: 'SHS',
     topic: 'Surds',
-    explanation: '2√18 = 2√(9×2) = 6√2. 3√8 = 3√(4×2) = 6√2. Wait, 2√18=6√2 and 3√8=6√2, so sum=12√2. But √18=3√2, so 2√18=6√2. √8=2√2, so 3√8=6√2. Total=12√2. However option shows different form - let me recalculate: √18=√(9×2)=3√2, so 2√18=6√2. √8=√(4×2)=2√2, so 3√8=6√2. Total = 6√2+6√2=12√2'
+    explanation: `2${String.fromCharCode(8730)}18 = 2${String.fromCharCode(8730)}(9×2) = 2×3${String.fromCharCode(8730)}2 = 6${String.fromCharCode(8730)}2. 3${String.fromCharCode(8730)}8 = 3${String.fromCharCode(8730)}(4×2) = 3×2${String.fromCharCode(8730)}2 = 6${String.fromCharCode(8730)}2. Total = 6${String.fromCharCode(8730)}2 + 6${String.fromCharCode(8730)}2 = 12${String.fromCharCode(8730)}2`
   },
   {
     id: 'shs-math-014',
@@ -1823,18 +1857,45 @@ const shsQuestionBank: ChallengeQuestion[] = [
  * Implements anti-repeat logic to ensure fresh questions each time
  */
 /**
+ * Get class level from education level and difficulty (for backward compatibility)
+ */
+function mapDifficultyToClassLevel(level: EducationLevel, difficulty: QuestionDifficulty): ClassLevel | undefined {
+  if (level === 'JHS') {
+    if (difficulty === 'easy') return 'JHS 1';
+    if (difficulty === 'medium') return 'JHS 2';
+    if (difficulty === 'hard') return 'JHS 3';
+  } else if (level === 'SHS') {
+    if (difficulty === 'easy') return 'SHS 1';
+    if (difficulty === 'medium') return 'SHS 2';
+    if (difficulty === 'hard') return 'SHS 3';
+  } else if (level === 'Primary') {
+    if (difficulty === 'easy') return 'Primary 1';
+    if (difficulty === 'medium') return 'Primary 3';
+    if (difficulty === 'hard') return 'Primary 5';
+  }
+  return undefined;
+}
+
+/**
  * Get challenge questions with STRICT level filtering
  * Primary students ONLY get Primary questions
  * JHS students ONLY get JHS questions  
  * SHS students ONLY get SHS questions
+ * 
+ * Now supports classLevel parameter for class-based filtering (JHS 1, JHS 2, JHS 3, etc.)
  */
 export function getChallengeQuestions(
   level: EducationLevel,
   subject: string,
-  difficulty: QuestionDifficulty,
+  difficulty: QuestionDifficulty | ClassLevel,
   count: number = 10,
   userId: string = 'guest'
 ): ChallengeQuestion[] {
+  // Determine if difficulty is actually a classLevel
+  const classLevels: ClassLevel[] = ['JHS 1', 'JHS 2', 'JHS 3', 'SHS 1', 'SHS 2', 'SHS 3', 'Primary 1', 'Primary 2', 'Primary 3', 'Primary 4', 'Primary 5', 'Primary 6'];
+  const isClassLevel = classLevels.includes(difficulty as ClassLevel);
+  const classLevel = isClassLevel ? (difficulty as ClassLevel) : mapDifficultyToClassLevel(level, difficulty as QuestionDifficulty);
+  const legacyDifficulty = isClassLevel ? undefined : (difficulty as QuestionDifficulty);
   const sessionKey = `${userId}-${level}`;
   
   // STRICT LEVEL FILTERING - Each level only gets their own questions
@@ -1847,9 +1908,27 @@ export function getChallengeQuestions(
       filtered = filtered.filter(q => q.subject === subject);
     }
     
-    // Filter by difficulty
-    if (difficulty && ['easy', 'medium', 'hard'].includes(difficulty)) {
-      filtered = filtered.filter(q => q.difficulty === difficulty);
+    // Filter by classLevel or difficulty (prefer classLevel)
+    // If classLevel is specified, filter by it. If not, filter by difficulty and assign classLevel
+    if (classLevel) {
+      filtered = filtered.filter(q => {
+        // If question has classLevel, use it; otherwise assign based on difficulty
+        const qClassLevel = q.classLevel || assignClassLevel(q.level, q.difficulty);
+        return qClassLevel === classLevel;
+      });
+    } else if (legacyDifficulty && ['easy', 'medium', 'hard'].includes(legacyDifficulty)) {
+      filtered = filtered.filter(q => q.difficulty === legacyDifficulty);
+      // Assign classLevel to filtered questions
+      filtered = filtered.map((q, idx) => ({
+        ...q,
+        classLevel: q.classLevel || assignClassLevel(q.level, q.difficulty, idx)
+      }));
+    } else {
+      // Assign classLevel to all questions
+      filtered = filtered.map((q, idx) => ({
+        ...q,
+        classLevel: q.classLevel || assignClassLevel(q.level, q.difficulty, idx)
+      }));
     }
     
     // Filter out recently used questions
@@ -1866,20 +1945,48 @@ export function getChallengeQuestions(
     
   } else if (level === 'JHS') {
     // JHS questions only - Use BECE questions + past questions (if available)
-    const jhsQuestions = getJHSQuestions(count, subject as JHSSubject, difficulty);
+    // Map subject names: 'Science' -> 'Integrated Science' for BECE questions
+    let mappedSubject = subject;
+    if (subject === 'Science') {
+      mappedSubject = 'Integrated Science';
+    }
+    // Map classLevel to difficulty for BECE questions (temporary until bece-questions.ts is updated)
+    let beceDifficulty: QuestionDifficulty = 'medium';
+    if (classLevel === 'JHS 1') beceDifficulty = 'easy';
+    else if (classLevel === 'JHS 2') beceDifficulty = 'medium';
+    else if (classLevel === 'JHS 3') beceDifficulty = 'hard';
+    else if (legacyDifficulty) beceDifficulty = legacyDifficulty;
+    
+    const jhsQuestions = getJHSQuestions(count, mappedSubject as JHSSubject, beceDifficulty);
     
     // Convert to ChallengeQuestion format
-    const converted = jhsQuestions.map(q => ({
-      id: q.id,
-      question: q.question,
-      options: q.options,
-      correctAnswer: q.correctAnswer,
-      subject: q.subject,
-      difficulty: q.difficulty,
-      level: 'JHS' as EducationLevel,
-      explanation: q.explanation,
-      topic: q.topic
-    }));
+    // Map 'Integrated Science' back to 'Science' for consistency with getAvailableSubjects
+    // Add classLevel based on difficulty mapping
+    const converted = jhsQuestions.map(q => {
+      let mappedClassLevel: ClassLevel | undefined = undefined;
+      if (classLevel) {
+        mappedClassLevel = classLevel;
+      } else if (q.difficulty === 'easy') {
+        mappedClassLevel = 'JHS 1';
+      } else if (q.difficulty === 'medium') {
+        mappedClassLevel = 'JHS 2';
+      } else if (q.difficulty === 'hard') {
+        mappedClassLevel = 'JHS 3';
+      }
+      
+      return {
+        id: q.id,
+        question: q.question,
+        options: q.options,
+        correctAnswer: q.correctAnswer,
+        subject: q.subject === 'Integrated Science' ? 'Science' : q.subject,
+        difficulty: q.difficulty,
+        classLevel: mappedClassLevel,
+        level: 'JHS' as EducationLevel,
+        explanation: q.explanation,
+        topic: q.topic
+      };
+    });
     
     // TODO: Integrate JHS past questions (BECE past questions)
     // const pastQuestions = getPastQuestionsAsChallengeQuestions('JHS', subject, Math.floor(count * 0.2));
@@ -1907,9 +2014,27 @@ export function getChallengeQuestions(
       filtered = filtered.filter(q => q.subject === subject);
     }
     
-    // Filter by difficulty
-    if (difficulty && ['easy', 'medium', 'hard'].includes(difficulty)) {
-      filtered = filtered.filter(q => q.difficulty === difficulty);
+    // Filter by classLevel or difficulty (prefer classLevel)
+    // If classLevel is specified, filter by it. If not, filter by difficulty and assign classLevel
+    if (classLevel) {
+      filtered = filtered.filter(q => {
+        // If question has classLevel, use it; otherwise assign based on difficulty
+        const qClassLevel = q.classLevel || assignClassLevel(q.level, q.difficulty);
+        return qClassLevel === classLevel;
+      });
+    } else if (legacyDifficulty && ['easy', 'medium', 'hard'].includes(legacyDifficulty)) {
+      filtered = filtered.filter(q => q.difficulty === legacyDifficulty);
+      // Assign classLevel to filtered questions
+      filtered = filtered.map((q, idx) => ({
+        ...q,
+        classLevel: q.classLevel || assignClassLevel(q.level, q.difficulty, idx)
+      }));
+    } else {
+      // Assign classLevel to all questions
+      filtered = filtered.map((q, idx) => ({
+        ...q,
+        classLevel: q.classLevel || assignClassLevel(q.level, q.difficulty, idx)
+      }));
     }
     
     // Integrate SHS past questions (WASSCE)
@@ -1962,7 +2087,8 @@ export function getAvailableSubjects(level: EducationLevel): string[] {
       'Social Studies',
       'ICT',
       'Creative Arts',
-      'French'
+      'French',
+      'Arabic'
     ];
   } else {
     return [

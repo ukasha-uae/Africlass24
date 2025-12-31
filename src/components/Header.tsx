@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import { GraduationCap, Users, MessagesSquare, Trophy, HelpCircle, ChevronDown, Menu, Calendar, BookOpen, Globe, ChevronRight } from 'lucide-react';
+import { GraduationCap, Users, MessagesSquare, Trophy, HelpCircle, ChevronDown, Menu, Calendar, BookOpen, Globe, ChevronRight, MessageCircle } from 'lucide-react';
 import AuthModal from './AuthModal';
 import { ThemeToggle } from './ThemeToggle';
 import CountrySelector from './CountrySelector';
@@ -38,6 +38,54 @@ import { cn } from '@/lib/utils';
 import { useLocalization } from '@/hooks/useLocalization';
 import { useV1FeatureAccess } from '@/components/V1RouteGuard';
 import { useFullscreen } from '@/contexts/FullscreenContext';
+
+// WhatsApp Header Button Component
+function WhatsAppHeaderButton({ isMobile = false }: { isMobile?: boolean }) {
+  const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '+233244432795'; // Fallback for development
+  const message = 'Hello! I would like to purchase coins or subscribe to premium.';
+
+  const formatPhoneNumber = (phone: string): string => {
+    let formatted = phone.replace(/^\+/, '').replace(/^0/, '');
+    if (!formatted.startsWith('233')) {
+      formatted = '233' + formatted;
+    }
+    return formatted;
+  };
+
+  const handleWhatsAppClick = () => {
+    const formattedPhone = formatPhoneNumber(phoneNumber);
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${formattedPhone}?text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  if (isMobile) {
+    return (
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={handleWhatsAppClick}
+        className="flex items-center justify-center p-2 bg-gradient-to-r from-green-500/10 to-emerald-500/10 hover:from-green-500/20 hover:to-emerald-500/20 border border-green-300/30 dark:border-green-700/30 hover:border-green-400/50 dark:hover:border-green-600/50 transition-all hover:scale-105"
+        title="Contact us on WhatsApp"
+      >
+        <MessageCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
+      </Button>
+    );
+  }
+
+  return (
+    <Button
+      variant="ghost"
+      size="sm"
+      onClick={handleWhatsAppClick}
+      className="flex items-center gap-2 bg-gradient-to-r from-green-500/10 to-emerald-500/10 hover:from-green-500/20 hover:to-emerald-500/20 border border-green-300/30 dark:border-green-700/30 hover:border-green-400/50 dark:hover:border-green-600/50 transition-all hover:scale-105"
+      title="Contact us on WhatsApp"
+    >
+      <MessageCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
+      <span className="hidden lg:inline font-semibold text-green-700 dark:text-green-400">WhatsApp</span>
+    </Button>
+  );
+}
 
 export default function Header() {
   const { user, firestore } = useFirebase();
@@ -107,13 +155,15 @@ export default function Header() {
         <div className="ml-auto flex items-center gap-1 sm:gap-2">
           {/* Mobile Hamburger Menu */}
           {hasMounted && isMobile && (
-            <Sheet open={sheetOpen} onOpenChange={setSheetOpen} modal={false}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="sm">
-                  <Menu className="h-5 w-5" />
-                  <span className="sr-only">Open menu</span>
-                </Button>
-              </SheetTrigger>
+            <>
+              <WhatsAppHeaderButton isMobile={true} />
+              <Sheet open={sheetOpen} onOpenChange={setSheetOpen} modal={false}>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="sm">
+                    <Menu className="h-5 w-5" />
+                    <span className="sr-only">Open menu</span>
+                  </Button>
+                </SheetTrigger>
               <SheetContent side="left" className="w-[300px] overflow-y-auto p-0 bg-gradient-to-br from-slate-50 via-purple-50/30 to-indigo-50/30 dark:from-slate-900 dark:via-purple-950/30 dark:to-indigo-950/30 border-r-2 border-purple-200/30 dark:border-purple-800/30">
                 {/* Premium Animated Background */}
                 <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
@@ -369,6 +419,7 @@ export default function Header() {
                 </div>
               </SheetContent>
             </Sheet>
+            </>
           )}
           
           {/* Desktop Navigation */}
@@ -378,6 +429,10 @@ export default function Header() {
             className="hidden md:flex border-0 bg-transparent hover:bg-accent" 
           />
           <ThemeToggle className="hidden md:flex" />
+          {/* WhatsApp Button - Desktop (Hidden on Mobile) */}
+          <div className="hidden md:block">
+            <WhatsAppHeaderButton isMobile={false} />
+          </div>
           {hasMounted && user && (
             <>
               {/* Resources Menu Dropdown */}

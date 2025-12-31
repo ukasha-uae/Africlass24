@@ -41,7 +41,7 @@ export default function QuickMatchPage() {
   
   // Match settings
   const [subject, setSubject] = useState('');
-  const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium');
+  const [classLevel, setClassLevel] = useState<string>(''); // Will be set based on player level
   
   // Get subjects based on player's education level
   const getSubjectsForLevel = (level: 'Primary' | 'JHS' | 'SHS') => {
@@ -79,6 +79,34 @@ export default function QuickMatchPage() {
   
   const subjects = player ? getSubjectsForLevel(player.level || 'JHS') : [];
 
+  // Get class levels based on education level
+  const getClassLevels = (level: 'Primary' | 'JHS' | 'SHS') => {
+    if (level === 'Primary') {
+      return [
+        { id: 'Primary 1', name: 'Primary 1', color: 'text-green-500' },
+        { id: 'Primary 2', name: 'Primary 2', color: 'text-green-500' },
+        { id: 'Primary 3', name: 'Primary 3', color: 'text-yellow-500' },
+        { id: 'Primary 4', name: 'Primary 4', color: 'text-yellow-500' },
+        { id: 'Primary 5', name: 'Primary 5', color: 'text-red-500' },
+        { id: 'Primary 6', name: 'Primary 6', color: 'text-red-500' },
+      ];
+    } else if (level === 'JHS') {
+      return [
+        { id: 'JHS 1', name: 'JHS 1', color: 'text-green-500' },
+        { id: 'JHS 2', name: 'JHS 2', color: 'text-yellow-500' },
+        { id: 'JHS 3', name: 'JHS 3', color: 'text-red-500' },
+      ];
+    } else {
+      return [
+        { id: 'SHS 1', name: 'SHS 1', color: 'text-green-500' },
+        { id: 'SHS 2', name: 'SHS 2', color: 'text-yellow-500' },
+        { id: 'SHS 3', name: 'SHS 3', color: 'text-red-500' },
+      ];
+    }
+  };
+
+  const classLevels = player ? getClassLevels(player.level || 'JHS') : [];
+
   useEffect(() => {
     // Use mock user ID for testing
     const userId = user?.uid || 'test-user-1';
@@ -90,6 +118,11 @@ export default function QuickMatchPage() {
         const defaultSubjects = getSubjectsForLevel(playerProfile.level || 'JHS');
         setSubject(defaultSubjects[0] || 'Mathematics');
       }
+      // Set default class level based on player's level
+      if (!classLevel) {
+        const defaultClassLevels = getClassLevels(playerProfile.level || 'JHS');
+        setClassLevel(defaultClassLevels[0]?.id || 'JHS 1');
+      }
     } else {
       // Create a test player profile
       const newPlayer = createOrUpdatePlayer({
@@ -100,6 +133,9 @@ export default function QuickMatchPage() {
         rating: 1200,
       });
       setPlayer(newPlayer);
+      // Set default class level for new player
+      const defaultClassLevels = getClassLevels('JHS');
+      setClassLevel(defaultClassLevels[0]?.id || 'JHS 1');
     }
   }, [user, router]);
 
@@ -128,16 +164,6 @@ export default function QuickMatchPage() {
 
     return () => clearInterval(timer);
   }, [opponent, countdown]);
-
-  // Separate effect to handle navigation when countdown reaches 0
-  useEffect(() => {
-    if (opponent && countdown === 0) {
-      // Use setTimeout to defer navigation until after render
-      setTimeout(() => {
-        startMatch();
-      }, 0);
-    }
-  }, [opponent, countdown, startMatch]);
 
   const findOpponent = () => {
     if (!player) return;
@@ -201,7 +227,7 @@ export default function QuickMatchPage() {
       type: 'quick',
       level: player.level || 'JHS',
       subject,
-      difficulty,
+      difficulty: classLevel, // Using classLevel as difficulty for backward compatibility
       questionCount: 10,
       timeLimit: 120,
       creatorId: player.userId,
@@ -227,7 +253,17 @@ export default function QuickMatchPage() {
     setTimeout(() => {
       router.push(`/challenge-arena/play/${challenge.id}`);
     }, 0);
-  }, [player, opponent, subject, difficulty, router]);
+  }, [player, opponent, subject, classLevel, router]);
+
+  // Separate effect to handle navigation when countdown reaches 0 (after startMatch is defined)
+  useEffect(() => {
+    if (opponent && countdown === 0) {
+      // Use setTimeout to defer navigation until after render
+      setTimeout(() => {
+        startMatch();
+      }, 0);
+    }
+  }, [opponent, countdown, startMatch]);
 
   const handleStartSearch = () => {
     setIsSearching(true);
@@ -389,41 +425,31 @@ export default function QuickMatchPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Difficulty</label>
-                  <div className="grid grid-cols-3 gap-3">
-                    <Button
-                      variant={difficulty === 'easy' ? 'default' : 'outline'}
-                      onClick={() => setDifficulty('easy')}
-                      className={`h-14 font-bold text-base transition-all ${
-                        difficulty === 'easy' 
-                          ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg hover:shadow-xl scale-105' 
-                          : 'hover:scale-105'
-                      }`}
-                    >
-                      Easy
-                    </Button>
-                    <Button
-                      variant={difficulty === 'medium' ? 'default' : 'outline'}
-                      onClick={() => setDifficulty('medium')}
-                      className={`h-14 font-bold text-base transition-all ${
-                        difficulty === 'medium' 
-                          ? 'bg-gradient-to-r from-yellow-500 to-orange-600 text-white shadow-lg hover:shadow-xl scale-105' 
-                          : 'hover:scale-105'
-                      }`}
-                    >
-                      Medium
-                    </Button>
-                    <Button
-                      variant={difficulty === 'hard' ? 'default' : 'outline'}
-                      onClick={() => setDifficulty('hard')}
-                      className={`h-14 font-bold text-base transition-all ${
-                        difficulty === 'hard' 
-                          ? 'bg-gradient-to-r from-red-500 to-rose-600 text-white shadow-lg hover:shadow-xl scale-105' 
-                          : 'hover:scale-105'
-                      }`}
-                    >
-                      Hard
-                    </Button>
+                  <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Class Level</label>
+                  <div className={`grid gap-3 ${classLevels.length === 3 ? 'grid-cols-3' : classLevels.length === 6 ? 'grid-cols-3' : 'grid-cols-2'}`}>
+                    {classLevels.map((level) => {
+                      const isSelected = classLevel === level.id;
+                      const colorClass = level.color.includes('green') 
+                        ? 'from-green-500 to-emerald-600' 
+                        : level.color.includes('yellow') 
+                        ? 'from-yellow-500 to-orange-600' 
+                        : 'from-red-500 to-rose-600';
+                      
+                      return (
+                        <Button
+                          key={level.id}
+                          variant={isSelected ? 'default' : 'outline'}
+                          onClick={() => setClassLevel(level.id)}
+                          className={`h-14 font-bold text-base transition-all ${
+                            isSelected 
+                              ? `bg-gradient-to-r ${colorClass} text-white shadow-lg hover:shadow-xl scale-105` 
+                              : 'hover:scale-105'
+                          }`}
+                        >
+                          {level.name}
+                        </Button>
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -500,7 +526,7 @@ export default function QuickMatchPage() {
               <div className="flex flex-wrap justify-center gap-2 mb-6">
                 <Badge variant="outline">Rating: {player.rating} ±100</Badge>
                 <Badge variant="outline">{subject}</Badge>
-                <Badge variant="outline">{difficulty}</Badge>
+                <Badge variant="outline">{classLevel}</Badge>
               </div>
               <Button variant="outline" onClick={handleCancel}>
                 Cancel Search
@@ -555,8 +581,8 @@ export default function QuickMatchPage() {
                       <p className="font-semibold">{subject}</p>
                     </div>
                     <div>
-                      <p className="text-muted-foreground">Difficulty</p>
-                      <p className="font-semibold capitalize">{difficulty}</p>
+                      <p className="text-muted-foreground">Class Level</p>
+                      <p className="font-semibold">{classLevel}</p>
                     </div>
                     <div>
                       <p className="text-muted-foreground">Questions</p>

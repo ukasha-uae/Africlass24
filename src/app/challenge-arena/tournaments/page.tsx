@@ -19,23 +19,34 @@ import {
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { FEATURE_FLAGS } from '@/lib/featureFlags';
+import { isPremiumUser, hasPremiumFeature } from '@/lib/monetization';
+import PremiumUnlockModal from '@/components/premium/PremiumUnlockModal';
+import { useFirebase } from '@/firebase/provider';
 
 // V1 Route Guard: Redirect to practice if tournaments are disabled
 export default function TournamentsPage() {
   const router = useRouter();
+  const { user } = useFirebase();
+  const { toast } = useToast();
+  
+  // Check premium access
+  const userId = user?.uid || 'test-user-1';
+  const isPremium = isPremiumUser(userId);
+  const hasTournamentAccess = hasPremiumFeature(userId, 'tournaments');
+  const [showUnlockModal, setShowUnlockModal] = useState(false);
   
   useEffect(() => {
     if (!FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaTournament) {
       router.replace('/challenge-arena/practice');
+    } else if (!isPremium && !hasTournamentAccess) {
+      setShowUnlockModal(true);
     }
-  }, [router]);
+  }, [router, isPremium, hasTournamentAccess]);
   
   // Don't render if feature is disabled
   if (!FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaTournament) {
     return null;
   }
-
-  const { toast } = useToast();
   const [activeTab, setActiveTab] = useState('upcoming');
 
   // Mock Tournament Data
@@ -144,6 +155,19 @@ export default function TournamentsPage() {
           ))}
         </TabsContent>
       </Tabs>
+
+      {/* Premium Unlock Modal */}
+      <PremiumUnlockModal
+        open={showUnlockModal}
+        onClose={() => {
+          setShowUnlockModal(false);
+          router.push('/challenge-arena/ghana');
+        }}
+        feature="tournaments"
+        onSuccess={() => {
+          setShowUnlockModal(false);
+        }}
+      />
     </div>
   );
 }

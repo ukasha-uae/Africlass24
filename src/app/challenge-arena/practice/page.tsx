@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect, useMemo } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -17,36 +17,139 @@ import {
   CheckCircle2,
   Clock,
   Target,
-  Loader2
+  Loader2,
+  Languages,
+  Palette,
+  Computer,
+  Music
 } from 'lucide-react';
 import { createChallenge } from '@/lib/challenge';
 import { useToast } from '@/hooks/use-toast';
 import { useFirebase } from '@/firebase/provider';
+import { getAvailableSubjects, type EducationLevel } from '@/lib/challenge-questions';
 
-const SUBJECTS = [
-  { id: 'math', name: 'Maths', icon: Calculator, color: 'text-blue-500', bg: 'bg-blue-500/10' },
-  { id: 'english', name: 'English', icon: BookOpen, color: 'text-green-500', bg: 'bg-green-500/10' },
-  { id: 'science', name: 'Science', icon: FlaskConical, color: 'text-orange-500', bg: 'bg-orange-500/10' },
-  { id: 'social', name: 'Social Studies', icon: Globe, color: 'text-purple-500', bg: 'bg-purple-500/10' },
-];
+// Get class levels based on education level
+const getClassLevels = (level: 'Primary' | 'JHS' | 'SHS') => {
+  if (level === 'Primary') {
+    return [
+      { id: 'Primary 1', name: 'Primary 1', questions: 5, time: '~5 min', color: 'text-green-500' },
+      { id: 'Primary 2', name: 'Primary 2', questions: 5, time: '~5 min', color: 'text-green-500' },
+      { id: 'Primary 3', name: 'Primary 3', questions: 10, time: '~10 min', color: 'text-yellow-500' },
+      { id: 'Primary 4', name: 'Primary 4', questions: 10, time: '~10 min', color: 'text-yellow-500' },
+      { id: 'Primary 5', name: 'Primary 5', questions: 15, time: '~15 min', color: 'text-red-500' },
+      { id: 'Primary 6', name: 'Primary 6', questions: 15, time: '~15 min', color: 'text-red-500' },
+    ];
+  } else if (level === 'JHS') {
+    return [
+      { id: 'JHS 1', name: 'JHS 1', questions: 5, time: '~5 min', color: 'text-green-500' },
+      { id: 'JHS 2', name: 'JHS 2', questions: 10, time: '~10 min', color: 'text-yellow-500' },
+      { id: 'JHS 3', name: 'JHS 3', questions: 15, time: '~15 min', color: 'text-red-500' },
+    ];
+  } else {
+    return [
+      { id: 'SHS 1', name: 'SHS 1', questions: 5, time: '~5 min', color: 'text-green-500' },
+      { id: 'SHS 2', name: 'SHS 2', questions: 10, time: '~10 min', color: 'text-yellow-500' },
+      { id: 'SHS 3', name: 'SHS 3', questions: 15, time: '~15 min', color: 'text-red-500' },
+    ];
+  }
+};
 
-const DIFFICULTIES = [
-  { id: 'easy', name: 'Easy', questions: 5, time: '~5 min', color: 'text-green-500' },
-  { id: 'medium', name: 'Medium', questions: 10, time: '~10 min', color: 'text-yellow-500' },
-  { id: 'hard', name: 'Hard', questions: 15, time: '~15 min', color: 'text-red-500' },
-];
+// Subject icon mapping
+const getSubjectIcon = (subject: string) => {
+  const subjectLower = subject.toLowerCase();
+  if (subjectLower.includes('math')) return Calculator;
+  if (subjectLower.includes('english') || subjectLower.includes('language')) return BookOpen;
+  if (subjectLower.includes('science') || subjectLower.includes('integrated')) return FlaskConical;
+  if (subjectLower.includes('social')) return Globe;
+  if (subjectLower.includes('ict') || subjectLower.includes('computing')) return Computer;
+  if (subjectLower.includes('creative') || subjectLower.includes('arts')) return Palette;
+  if (subjectLower.includes('french')) return Languages;
+  if (subjectLower.includes('arabic')) return Languages;
+  if (subjectLower.includes('music')) return Music;
+  return BookOpen;
+};
+
+// Subject color mapping
+const getSubjectColor = (subject: string, index: number) => {
+  const colors = [
+    'text-blue-500',
+    'text-green-500',
+    'text-orange-500',
+    'text-purple-500',
+    'text-yellow-500',
+    'text-indigo-500',
+    'text-teal-500',
+    'text-rose-500',
+  ];
+  return colors[index % colors.length];
+};
+
+const getSubjectBg = (subject: string, index: number) => {
+  const colors = [
+    'bg-blue-500/10',
+    'bg-green-500/10',
+    'bg-orange-500/10',
+    'bg-purple-500/10',
+    'bg-yellow-500/10',
+    'bg-indigo-500/10',
+    'bg-teal-500/10',
+    'bg-rose-500/10',
+  ];
+  return colors[index % colors.length];
+};
 
 export default function PracticeModePage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { toast } = useToast();
   const { user } = useFirebase();
-  const [step, setStep] = useState(1);
+  
+  // Get level and subject from URL params
+  const levelParam = searchParams.get('level') as EducationLevel | null;
+  const subjectParam = searchParams.get('subject');
+  
+  const [level, setLevel] = useState<EducationLevel>(levelParam || 'JHS');
+  const [step, setStep] = useState(subjectParam ? 2 : 1); // Skip to step 2 if subject is provided
   const [loading, setLoading] = useState(false);
   
+  // Get available subjects for the selected level
+  const availableSubjects = useMemo(() => {
+    return getAvailableSubjects(level).filter(s => s !== 'Mixed');
+  }, [level]);
+  
+  // Create subject objects with icons
+  const subjects = useMemo(() => {
+    return availableSubjects.map((subject, index) => ({
+      id: subject.toLowerCase().replace(/\s+/g, '-'),
+      name: subject,
+      icon: getSubjectIcon(subject),
+      color: getSubjectColor(subject, index),
+      bg: getSubjectBg(subject, index),
+    }));
+  }, [availableSubjects]);
+  
   const [formData, setFormData] = useState({
-    subject: '',
-    difficulty: 'medium',
+    subject: subjectParam ? subjectParam : '',
+    classLevel: level === 'JHS' ? 'JHS 1' : level === 'SHS' ? 'SHS 1' : 'Primary 1',
   });
+  
+  // Get class levels for the selected education level
+  const classLevels = useMemo(() => getClassLevels(level), [level]);
+  
+  // Update formData when subjectParam changes
+  useEffect(() => {
+    if (subjectParam) {
+      setFormData(prev => ({ ...prev, subject: subjectParam }));
+      setStep(2); // Skip to difficulty selection
+    }
+  }, [subjectParam]);
+  
+  // Update level when levelParam changes
+  useEffect(() => {
+    if (levelParam && ['Primary', 'JHS', 'SHS'].includes(levelParam)) {
+      setLevel(levelParam);
+    }
+  }, [levelParam]);
 
   const handleStartPractice = async () => {
     // Use mock user ID for testing
@@ -54,16 +157,19 @@ export default function PracticeModePage() {
     
     setLoading(true);
     try {
-      const questionCount = formData.difficulty === 'easy' ? 5 : formData.difficulty === 'medium' ? 10 : 15;
+      // Get question count from class level
+      const selectedClassLevel = classLevels.find(cl => cl.id === formData.classLevel);
+      const questionCount = selectedClassLevel?.questions || 10;
       const timeLimit = 300;
 
-      const selectedSubject = SUBJECTS.find(s => s.id === formData.subject)?.name || 'Mathematics';
+      // Use the subject name directly (it's already the full name from getAvailableSubjects)
+      const selectedSubject = formData.subject || subjects[0]?.name || 'Mathematics';
 
       const challenge = createChallenge({
         type: 'practice',
-        level: 'JHS',
+        level: level,
         subject: selectedSubject,
-        difficulty: formData.difficulty as any,
+        difficulty: formData.classLevel as any,
         questionCount,
         timeLimit,
         creatorId: userId,
@@ -84,6 +190,7 @@ export default function PracticeModePage() {
 
   const canProceed = () => {
     if (step === 1) return !!formData.subject;
+    if (step === 2) return !!formData.classLevel;
     return true;
   };
 
@@ -92,7 +199,7 @@ export default function PracticeModePage() {
     else handleStartPractice();
   };
 
-  const selectedDiff = DIFFICULTIES.find(d => d.id === formData.difficulty);
+  const selectedClassLevel = classLevels.find(cl => cl.id === formData.classLevel);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 dark:from-slate-900 dark:via-green-950 dark:to-emerald-950 relative overflow-hidden">
@@ -114,6 +221,29 @@ export default function PracticeModePage() {
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 text-center sm:text-left">
             Sharpen your skills without affecting your rating
           </p>
+          
+          {/* Level Selector (if no level in URL) */}
+          {!levelParam && (
+            <div className="mt-4 flex gap-2 justify-center sm:justify-start">
+              {(['Primary', 'JHS', 'SHS'] as EducationLevel[]).map((lvl) => (
+                <button
+                  key={lvl}
+                  onClick={() => {
+                    setLevel(lvl);
+                    setFormData({ ...formData, subject: '' }); // Reset subject when level changes
+                    setStep(1); // Go back to step 1
+                  }}
+                  className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
+                    level === lvl
+                      ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg'
+                      : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                  }`}
+                >
+                  {lvl}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
         
         {/* Progress Indicator */}
@@ -148,25 +278,28 @@ export default function PracticeModePage() {
             </CardHeader>
             <CardContent className="pb-4">
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                {SUBJECTS.map((subject) => (
-                  <button
-                    key={subject.id}
-                    className={`group relative flex items-center gap-3 p-4 rounded-xl border-2 transition-all overflow-hidden hover:scale-105 ${
-                      formData.subject === subject.id 
-                        ? 'border-green-500 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 shadow-lg' 
-                        : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-gray-800 hover:border-green-300 dark:hover:border-green-700'
-                    }`}
-                    onClick={() => setFormData({ ...formData, subject: subject.id })}
-                  >
-                    <div className={`p-3 rounded-lg shrink-0 ${subject.bg} group-hover:scale-110 transition-transform`}>
-                      <subject.icon className={`h-6 w-6 ${subject.color}`} />
-                    </div>
-                    <span className="font-semibold text-sm sm:text-base truncate flex-1 text-left">{subject.name}</span>
-                    {formData.subject === subject.id && (
-                      <CheckCircle2 className="h-5 w-5 text-green-600 shrink-0 animate-in zoom-in" />
-                    )}
-                  </button>
-                ))}
+                {subjects.map((subject) => {
+                  const isSelected = formData.subject === subject.name;
+                  return (
+                    <button
+                      key={subject.id}
+                      className={`group relative flex items-center gap-3 p-4 rounded-xl border-2 transition-all overflow-hidden hover:scale-105 ${
+                        isSelected
+                          ? 'border-green-500 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 shadow-lg' 
+                          : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-gray-800 hover:border-green-300 dark:hover:border-green-700'
+                      }`}
+                      onClick={() => setFormData({ ...formData, subject: subject.name })}
+                    >
+                      <div className={`p-3 rounded-lg shrink-0 ${subject.bg} group-hover:scale-110 transition-transform`}>
+                        <subject.icon className={`h-6 w-6 ${subject.color}`} />
+                      </div>
+                      <span className="font-semibold text-sm sm:text-base truncate flex-1 text-left">{subject.name}</span>
+                      {isSelected && (
+                        <CheckCircle2 className="h-5 w-5 text-green-600 shrink-0 animate-in zoom-in" />
+                      )}
+                    </button>
+                  );
+                })}
               </div>
             </CardContent>
           </div>
@@ -177,32 +310,39 @@ export default function PracticeModePage() {
           <div className="animate-in fade-in duration-200">
             <CardHeader className="pb-3">
               <CardTitle className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-                Select Difficulty
+                Select Class Level
               </CardTitle>
-              <CardDescription className="text-base">Choose your challenge level</CardDescription>
+              <CardDescription className="text-base">Choose your class level ({level})</CardDescription>
             </CardHeader>
             <CardContent className="pb-4 space-y-4">
-              {/* Premium Difficulty Cards */}
-              <div className="grid grid-cols-3 gap-3 sm:gap-4">
-                {DIFFICULTIES.map((diff) => (
-                  <button
-                    key={diff.id}
-                    className={`group relative py-4 px-3 rounded-xl border-2 text-center transition-all hover:scale-105 ${
-                      formData.difficulty === diff.id 
-                        ? diff.id === 'easy'
-                          ? 'border-green-500 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 shadow-lg'
-                          : diff.id === 'medium'
-                          ? 'border-yellow-500 bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-950/30 dark:to-orange-950/30 shadow-lg'
-                          : 'border-red-500 bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-950/30 dark:to-rose-950/30 shadow-lg'
-                        : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-gray-800 hover:border-slate-300 dark:hover:border-slate-600'
-                    }`}
-                    onClick={() => setFormData({ ...formData, difficulty: diff.id })}
-                  >
-                    <div className={`font-bold text-base sm:text-lg mb-1 ${diff.color}`}>{diff.name}</div>
-                    <div className="text-xs text-muted-foreground">{diff.questions} Questions</div>
-                    <div className="text-xs text-muted-foreground mt-1">{diff.time}</div>
-                  </button>
-                ))}
+              {/* Premium Class Level Cards */}
+              <div className={`grid gap-3 sm:gap-4 ${classLevels.length === 3 ? 'grid-cols-3' : 'grid-cols-2 sm:grid-cols-3'}`}>
+                {classLevels.map((cl) => {
+                  const isSelected = formData.classLevel === cl.id;
+                  const isEasy = cl.id.includes('1') || cl.id.includes('2');
+                  const isMedium = cl.id.includes('3') || cl.id.includes('4');
+                  const isHard = cl.id.includes('5') || cl.id.includes('6') || cl.id.includes('3') && (level === 'JHS' || level === 'SHS');
+                  
+                  return (
+                    <button
+                      key={cl.id}
+                      className={`group relative py-4 px-3 rounded-xl border-2 text-center transition-all hover:scale-105 ${
+                        isSelected 
+                          ? isEasy
+                            ? 'border-green-500 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 shadow-lg'
+                            : isMedium
+                            ? 'border-yellow-500 bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-950/30 dark:to-orange-950/30 shadow-lg'
+                            : 'border-red-500 bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-950/30 dark:to-rose-950/30 shadow-lg'
+                          : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-gray-800 hover:border-slate-300 dark:hover:border-slate-600'
+                      }`}
+                      onClick={() => setFormData({ ...formData, classLevel: cl.id })}
+                    >
+                      <div className={`font-bold text-base sm:text-lg mb-1 ${cl.color}`}>{cl.name}</div>
+                      <div className="text-xs text-muted-foreground">{cl.questions} Questions</div>
+                      <div className="text-xs text-muted-foreground mt-1">{cl.time}</div>
+                    </button>
+                  );
+                })}
               </div>
 
               {/* Premium Summary Preview */}
@@ -212,17 +352,17 @@ export default function PracticeModePage() {
                   <div className="bg-white/80 dark:bg-gray-800/80 p-3 rounded-lg text-center">
                     <Target className="h-5 w-5 mx-auto mb-2 text-green-600" />
                     <div className="text-xs text-muted-foreground mb-1">Subject</div>
-                    <div className="font-bold text-sm">{SUBJECTS.find(s => s.id === formData.subject)?.name}</div>
+                    <div className="font-bold text-sm">{formData.subject || 'Not selected'}</div>
                   </div>
                   <div className="bg-white/80 dark:bg-gray-800/80 p-3 rounded-lg text-center">
                     <Zap className="h-5 w-5 mx-auto mb-2 text-yellow-600" />
                     <div className="text-xs text-muted-foreground mb-1">Questions</div>
-                    <div className="font-bold text-sm">{selectedDiff?.questions}</div>
+                    <div className="font-bold text-sm">{selectedClassLevel?.questions}</div>
                   </div>
                   <div className="bg-white/80 dark:bg-gray-800/80 p-3 rounded-lg text-center">
                     <Clock className="h-5 w-5 mx-auto mb-2 text-blue-600" />
                     <div className="text-xs text-muted-foreground mb-1">Est. Time</div>
-                    <div className="font-bold text-sm">{selectedDiff?.time}</div>
+                    <div className="font-bold text-sm">{selectedClassLevel?.time}</div>
                   </div>
                 </div>
               </div>
@@ -294,9 +434,10 @@ export default function PracticeModePage() {
       {/* Summary Preview (always visible) */}
       {formData.subject && (
         <div className="mt-4 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-          <span className="bg-muted px-2 py-1 rounded-full">{SUBJECTS.find(s => s.id === formData.subject)?.name}</span>
-          <span className="bg-muted px-2 py-1 rounded-full capitalize">{formData.difficulty}</span>
-          <span className="bg-muted px-2 py-1 rounded-full">{selectedDiff?.questions} questions</span>
+          <span className="bg-muted px-2 py-1 rounded-full">{formData.subject}</span>
+          <span className="bg-muted px-2 py-1 rounded-full">{formData.classLevel}</span>
+          <span className="bg-muted px-2 py-1 rounded-full">{selectedClassLevel?.questions} questions</span>
+          <span className="bg-muted px-2 py-1 rounded-full">{level}</span>
         </div>
       )}
       </div>
