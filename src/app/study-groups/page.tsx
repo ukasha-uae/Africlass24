@@ -282,7 +282,7 @@ export default function StudyGroupsPage() {
             ))}
           </div>
         </div>
-      )}
+        )}
 
         {/* Premium Discover Groups */}
         <div>
@@ -299,49 +299,50 @@ export default function StudyGroupsPage() {
               {availableGroups.map((group) => (
                 <Card key={group.id} className="group hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] border-2 border-purple-200/50 dark:border-purple-800/50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl overflow-hidden">
                   <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    {group.isPrivate && <Lock className="h-4 w-4" />}
-                    {group.name}
-                  </CardTitle>
-                  {group.subject && (
-                    <Badge variant="secondary" className="text-xs w-fit">
-                      {group.subject}
-                    </Badge>
-                  )}
-                  <CardDescription className="line-clamp-2">
-                    {group.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm text-muted-foreground">
-                      {group.members.length} members
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      by {group.createdByName}
-                    </span>
-                  </div>
-                  <Button
-                    onClick={() => {
-                      if (group.isPrivate) {
-                        setSelectedGroup(group);
-                        setShowJoinModal(true);
-                      } else {
-                        handleJoinGroup(group.id);
-                      }
-                    }}
-                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg hover:shadow-xl transition-all hover:scale-105"
-                  >
-                    <UserPlus className="h-4 w-4 mr-2" />
-                    Join Group
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        )}
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      {group.isPrivate && <Lock className="h-4 w-4" />}
+                      {group.name}
+                    </CardTitle>
+                    {group.subject && (
+                      <Badge variant="secondary" className="text-xs w-fit">
+                        {group.subject}
+                      </Badge>
+                    )}
+                    <CardDescription className="line-clamp-2">
+                      {group.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-sm text-muted-foreground">
+                        {group.members.length} members
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        by {group.createdByName}
+                      </span>
+                    </div>
+                    <Button
+                      onClick={() => {
+                        if (group.isPrivate) {
+                          setSelectedGroup(group);
+                          setShowJoinModal(true);
+                        } else {
+                          handleJoinGroup(group.id);
+                        }
+                      }}
+                      className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                    >
+                      <UserPlus className="h-4 w-4 mr-2" />
+                      Join Group
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
+      </div>
 
         {/* Premium Create Group Modal */}
         {showCreateModal && (
