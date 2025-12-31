@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Circle, Layers, Combine, Calculator, Trophy, Play, Pause, Volume2, VolumeX, GraduationCap, ChevronLeft, ChevronRight, Hash, Union, Intersection } from 'lucide-react';
+import { Circle, Layers, Combine, Calculator, Trophy, Play, Pause, Volume2, VolumeX, GraduationCap, ChevronLeft, ChevronRight, Hash, X, Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCountryProperties } from '@/hooks/useCountryConfig';
 
@@ -621,12 +621,12 @@ const SetsVennDiagramsIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
         {/* Quick facts */}
         <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-4 sm:mb-6">
           <div className="bg-blue-900/50 rounded-lg p-2 sm:p-3 text-center border border-blue-700">
-            <Union className="w-4 h-4 sm:w-6 sm:h-6 text-blue-400 mx-auto mb-0.5 sm:mb-1" />
+            <Plus className="w-4 h-4 sm:w-6 sm:h-6 text-blue-400 mx-auto mb-0.5 sm:mb-1" />
             <p className="text-blue-300 text-[10px] sm:text-sm">Union</p>
             <p className="text-white font-mono text-xs sm:text-base">A ∪ B</p>
           </div>
           <div className="bg-green-900/50 rounded-lg p-2 sm:p-3 text-center border border-green-700">
-            <Intersection className="w-4 h-4 sm:w-6 sm:h-6 text-green-400 mx-auto mb-0.5 sm:mb-1" />
+            <X className="w-4 h-4 sm:w-6 sm:h-6 text-green-400 mx-auto mb-0.5 sm:mb-1" />
             <p className="text-green-300 text-[10px] sm:text-sm">Intersection</p>
             <p className="text-white font-mono text-xs sm:text-base">A ∩ B</p>
           </div>
