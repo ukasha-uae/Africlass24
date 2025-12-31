@@ -537,18 +537,7 @@ export default function QuickMatchPage() {
             </div>
           </>
         )}
-
-        {/* Start Search Button */}
-        {!isSearching && !opponent && (
-          <Button
-            onClick={handleStartSearch}
-            className="w-full h-14 text-lg"
-            size="lg"
-          >
-            <Zap className="h-5 w-5 mr-2" />
-            Find Match
-          </Button>
-        )}
+        </div>
       </div>
     </div>
   );
