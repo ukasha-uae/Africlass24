@@ -113,271 +113,360 @@ export default function VirtualLabPage({ params }: { params: Promise<{ labSlug: 
 
   return (
     <V1RouteGuard campus={campus} feature="virtualLabs">
-      <div className="container mx-auto px-4 py-8">
-      {/* Back Button */}
-      <Link href="/virtual-labs">
-        <Button variant="ghost" className="mb-6">
-          <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Virtual Labs
-        </Button>
-      </Link>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50/30 to-indigo-50/30 dark:from-slate-900 dark:via-purple-950/30 dark:to-indigo-950/30 relative overflow-hidden">
+        {/* Premium Animated Background */}
+        <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-purple-300/20 via-violet-300/20 to-indigo-300/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-indigo-300/20 via-blue-300/20 to-cyan-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        </div>
 
-      {/* For enhanced labs, render directly without wrapper UI */}
-      {isEnhancedLab ? (
-        <>
-          {/* Simple header for enhanced labs */}
-          <div className="mb-6">
-            <div className="flex items-center gap-3 mb-4">
-              <FlaskConical className="h-8 w-8 text-violet-600 dark:text-violet-400" />
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-2">
-                  <h1 className="text-3xl font-bold">{experiment.title}</h1>
-                  <Badge className={`${subjectColors[experiment.subject as keyof typeof subjectColors]} border`}>
-                    {experiment.subject}
-                  </Badge>
-                </div>
-                <p className="text-muted-foreground">{experiment.description}</p>
-              </div>
-            </div>
-          </div>
-          {/* Enhanced lab handles its own UI flow */}
-          <LabComponent />
-        </>
-      ) : (
-        <>
-          {/* Original wrapper UI for non-enhanced labs */}
-          <div className="mb-6">
-            <div className="flex items-center gap-3 mb-4">
-              <FlaskConical className="h-8 w-8 text-violet-600 dark:text-violet-400" />
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-2">
-                  <h1 className="text-3xl font-bold">{experiment.title}</h1>
-                  <Badge className={`${subjectColors[experiment.subject as keyof typeof subjectColors]} border`}>
-                    {experiment.subject}
-                  </Badge>
-                </div>
-                <p className="text-muted-foreground">{experiment.description}</p>
-              </div>
-            </div>
+        <div className="container mx-auto px-4 py-8 relative z-10">
+          {/* Premium Back Button */}
+          <Link href="/virtual-labs">
+            <Button variant="ghost" className="mb-6 hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-violet-500/10 border-2 border-transparent hover:border-purple-300 dark:hover:border-purple-700 transition-all hover:scale-105">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Virtual Labs
+            </Button>
+          </Link>
 
-            {/* Progress Indicator */}
-            <div className="flex items-center gap-4 mt-4">
-              <div className={`flex items-center gap-2 ${!experimentCompleted ? 'text-violet-600 font-semibold' : 'text-green-600'}`}>
-                <div className={`h-8 w-8 rounded-full flex items-center justify-center ${!experimentCompleted ? 'bg-violet-600 text-white' : 'bg-green-600 text-white'}`}>
-                  {experimentCompleted ? <CheckCircle2 className="h-5 w-5" /> : '1'}
-                </div>
-                <span>Experiment</span>
-              </div>
-              <div className="flex-1 h-1 bg-secondary" />
-              <div className={`flex items-center gap-2 ${showQuiz ? 'text-violet-600 font-semibold' : 'text-muted-foreground'}`}>
-                <div className={`h-8 w-8 rounded-full flex items-center justify-center ${showQuiz ? 'bg-violet-600 text-white' : 'bg-secondary'}`}>
-                  2
-                </div>
-                <span>Post-Lab Quiz</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Experiment Section */}
-          {!showQuiz && (
-        <>
-          <Card>
-            <CardContent className="p-6">
-              <LabComponent />
-            </CardContent>
-          </Card>
-
-          {/* Complete Experiment Button */}
-          {!experimentCompleted && (
-            <div className="mt-6 text-center">
-              <Button size="lg" onClick={handleCompleteExperiment} className="bg-violet-600 hover:bg-violet-700">
-                Mark Experiment as Complete
-                <CheckCircle2 className="ml-2 h-5 w-5" />
-              </Button>
-            </div>
-          )}
-
-          {/* Post-Lab Quiz CTA */}
-          {experimentCompleted && (
-            <Alert className="mt-6 bg-green-500/10 border-green-500/30">
-              <CheckCircle2 className="h-4 w-4 text-green-600" />
-              <AlertDescription>
-                <div className="flex items-center justify-between flex-wrap gap-4">
-                  <div>
-                    <p className="font-semibold text-green-900 dark:text-green-100 mb-1">Experiment Completed!</p>
-                    <p className="text-sm">Test your understanding with the post-lab quiz.</p>
+          {/* For enhanced labs, render directly without wrapper UI */}
+          {isEnhancedLab ? (
+            <>
+              {/* Premium header for enhanced labs */}
+              <Card className="mb-8 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-2 border-purple-200/30 dark:border-purple-800/30 shadow-2xl">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-4">
+                    <div className="text-5xl">🔬</div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-3 flex-wrap">
+                        <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 dark:from-purple-400 dark:via-violet-400 dark:to-indigo-400 bg-clip-text text-transparent">{experiment.title}</h1>
+                        <Badge className={`${subjectColors[experiment.subject as keyof typeof subjectColors]} border-2 font-semibold`}>
+                          {experiment.subject}
+                        </Badge>
+                      </div>
+                      <p className="text-slate-600 dark:text-slate-400">{experiment.description}</p>
+                    </div>
                   </div>
-                  <Button onClick={handleStartQuiz} className="bg-violet-600 hover:bg-violet-700">
-                    Start Post-Lab Quiz
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </div>
-              </AlertDescription>
-            </Alert>
-          )}
-
-          {/* Lab Notes with Exam Practice Reminder */}
-          <Alert className="border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-950/20">
-            <BookOpen className="h-4 w-4 text-amber-600" />
-            <AlertDescription className="text-sm">
-              <strong>📝 Exam Preparation Tip:</strong> Use digital notes below to capture your observations quickly, 
-              but <strong>remember to copy important points by hand</strong> into your notebook! Handwriting builds 
-              muscle memory and prepares you for written exams.
-            </AlertDescription>
-          </Alert>
-
-          <LabNotes labId={experiment.id} labTitle={experiment.title} />
-        </>
-      )}
-
-          {/* Post-Lab Quiz Section */}
-          {showQuiz && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Post-Lab Quiz</CardTitle>
-            <CardDescription>Test your understanding of the experiment.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {quizQuestions.map((q, index) => (
-              <Card key={index} className={`border-2 ${
-                quizAnswers[index] !== undefined 
-                  ? quizAnswers[index] === q.correctAnswer 
-                    ? 'border-green-500 bg-green-500/5' 
-                    : 'border-red-500 bg-red-500/5'
-                  : 'border-border'
-              }`}>
-                <CardHeader>
-                  <CardTitle className="text-base">
-                    Question {index + 1}: {q.question}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {q.options.map((option, optionIndex) => (
-                    <Button
-                      key={optionIndex}
-                      variant={quizAnswers[index] === optionIndex ? "default" : "outline"}
-                      className={`w-full justify-start text-left h-auto py-3 ${
-                        quizAnswers[index] !== undefined && optionIndex === q.correctAnswer
-                          ? 'bg-green-600 hover:bg-green-700 text-white'
-                          : quizAnswers[index] === optionIndex && optionIndex !== q.correctAnswer
-                          ? 'bg-red-600 hover:bg-red-700 text-white'
-                          : ''
-                      }`}
-                      onClick={() => handleAnswerSelect(index, optionIndex)}
-                      disabled={quizAnswers[index] !== undefined}
-                    >
-                      <span className="font-semibold mr-2">{String.fromCharCode(65 + optionIndex)}.</span>
-                      {option}
-                    </Button>
-                  ))}
-                  {quizAnswers[index] !== undefined && (
-                    <Alert className={quizAnswers[index] === q.correctAnswer ? 'bg-green-500/10 border-green-500' : 'bg-red-500/10 border-red-500'}>
-                      <AlertDescription>
-                        {quizAnswers[index] === q.correctAnswer ? (
-                          <span className="text-green-700 dark:text-green-400 font-medium">✓ Correct!</span>
-                        ) : (
-                          <span className="text-red-700 dark:text-red-400 font-medium">✗ Incorrect. The correct answer is {String.fromCharCode(65 + q.correctAnswer)}.</span>
-                        )}
-                        <div className="mt-2 text-sm">{q.explanation}</div>
-                      </AlertDescription>
-                    </Alert>
-                  )}
                 </CardContent>
               </Card>
-            ))}
+              {/* Enhanced lab handles its own UI flow */}
+              <LabComponent />
+            </>
+          ) : (
+            <>
+              {/* Premium wrapper UI for non-enhanced labs */}
+              <Card className="mb-8 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-2 border-purple-200/30 dark:border-purple-800/30 shadow-2xl">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="text-5xl">🔬</div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-3 flex-wrap">
+                        <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 dark:from-purple-400 dark:via-violet-400 dark:to-indigo-400 bg-clip-text text-transparent">{experiment.title}</h1>
+                        <Badge className={`${subjectColors[experiment.subject as keyof typeof subjectColors]} border-2 font-semibold`}>
+                          {experiment.subject}
+                        </Badge>
+                      </div>
+                      <p className="text-slate-600 dark:text-slate-400">{experiment.description}</p>
+                    </div>
+                  </div>
 
-            {/* Quiz Results */}
-            {quizAnswers.length === quizQuestions.length && !labCompleted && (() => {
-              const score = quizAnswers.filter((ans, idx) => ans === quizQuestions[idx].correctAnswer).length;
-              const timeSpent = Math.floor((Date.now() - startTime) / 60000); // minutes
-              const percentage = Math.round((score / quizQuestions.length) * 100);
-              
-              // Calculate and award XP
-              const earnedXP = markLabComplete(experiment.id, percentage, timeSpent);
-              
-              // Trigger completion state
-              setTimeout(() => {
-                setLabCompleted(true);
-                
-                // Trigger confetti celebration
-                confetti({
-                  particleCount: 100,
-                  spread: 70,
-                  origin: { y: 0.6 }
-                });
-              }, 0);
-              
-              return (
-                <Card className="bg-gradient-to-br from-violet-500/10 to-purple-500/10 border-violet-300 dark:border-violet-700">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-2xl">
-                      <Trophy className="h-7 w-7 text-amber-500" />
-                      Lab Complete! 🎉
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                      <div className="text-center p-3 bg-white dark:bg-gray-900 rounded-lg">
-                        <CheckCircle2 className="h-6 w-6 mx-auto text-green-600 mb-1" />
-                        <p className="text-2xl font-bold">{percentage}%</p>
-                        <p className="text-xs text-muted-foreground">Score</p>
+                  {/* Premium Progress Indicator */}
+                  <div className="flex items-center gap-4">
+                    <div className={`group flex items-center gap-3 p-3 rounded-xl transition-all ${
+                      !experimentCompleted 
+                        ? 'bg-gradient-to-r from-purple-500/20 to-violet-500/20 border-2 border-purple-400/50' 
+                        : 'bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-2 border-green-400/50'
+                    }`}>
+                      <div className={`h-10 w-10 rounded-full flex items-center justify-center font-bold shadow-lg ${
+                        !experimentCompleted 
+                          ? 'bg-gradient-to-r from-purple-600 to-violet-600 text-white' 
+                          : 'bg-gradient-to-r from-green-600 to-emerald-600 text-white'
+                      }`}>
+                        {experimentCompleted ? <CheckCircle2 className="h-6 w-6" /> : '1'}
                       </div>
-                      <div className="text-center p-3 bg-white dark:bg-gray-900 rounded-lg">
-                        <Star className="h-6 w-6 mx-auto text-yellow-500 mb-1" />
-                        <p className="text-2xl font-bold">{score}/{quizQuestions.length}</p>
-                        <p className="text-xs text-muted-foreground">Correct</p>
-                      </div>
-                      <div className="text-center p-3 bg-white dark:bg-gray-900 rounded-lg">
-                        <Zap className="h-6 w-6 mx-auto text-violet-600 mb-1" />
-                        <p className="text-2xl font-bold">+{earnedXP}</p>
-                        <p className="text-xs text-muted-foreground">XP Earned</p>
-                      </div>
-                      <div className="text-center p-3 bg-white dark:bg-gray-900 rounded-lg">
-                        <FlaskConical className="h-6 w-6 mx-auto text-blue-600 mb-1" />
-                        <p className="text-2xl font-bold">{timeSpent}</p>
-                        <p className="text-xs text-muted-foreground">Minutes</p>
-                      </div>
+                      <span className={`font-semibold ${
+                        !experimentCompleted 
+                          ? 'bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent' 
+                          : 'bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent'
+                      }`}>Experiment</span>
                     </div>
-                    
-                    {percentage === 100 && (
-                      <Alert className="bg-amber-500/10 border-amber-500">
-                        <Trophy className="h-4 w-4 text-amber-600" />
-                        <AlertDescription className="text-amber-900 dark:text-amber-100">
-                          <strong>Perfect Score!</strong> You've mastered this lab. Bonus XP awarded! 🏆
-                        </AlertDescription>
-                      </Alert>
-                    )}
-                    
-                    <div className="flex gap-3 flex-wrap">
-                      <Button onClick={() => setShowQuiz(false)} variant="outline">
-                        Review Experiment
-                      </Button>
+                    <div className="flex-1 h-2 bg-gradient-to-r from-purple-200 to-violet-200 dark:from-purple-800 dark:to-violet-800 rounded-full overflow-hidden">
+                      <div className={`h-full transition-all ${
+                        showQuiz 
+                          ? 'w-full bg-gradient-to-r from-purple-600 to-violet-600' 
+                          : experimentCompleted 
+                            ? 'w-1/2 bg-gradient-to-r from-green-600 to-emerald-600' 
+                            : 'w-0'
+                      }`}></div>
+                    </div>
+                    <div className={`group flex items-center gap-3 p-3 rounded-xl transition-all ${
+                      showQuiz 
+                        ? 'bg-gradient-to-r from-purple-500/20 to-violet-500/20 border-2 border-purple-400/50' 
+                        : 'bg-slate-100 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700'
+                    }`}>
+                      <div className={`h-10 w-10 rounded-full flex items-center justify-center font-bold shadow-lg ${
+                        showQuiz 
+                          ? 'bg-gradient-to-r from-purple-600 to-violet-600 text-white' 
+                          : 'bg-slate-400 dark:bg-slate-600 text-white'
+                      }`}>
+                        2
+                      </div>
+                      <span className={`font-semibold ${
+                        showQuiz 
+                          ? 'bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent' 
+                          : 'text-slate-500 dark:text-slate-400'
+                      }`}>Post-Lab Quiz</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Premium Experiment Section */}
+              {!showQuiz && (
+                <>
+                  <Card className="mb-6 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-2 border-purple-200/30 dark:border-purple-800/30 shadow-2xl">
+                    <CardContent className="p-6">
+                      <LabComponent />
+                    </CardContent>
+                  </Card>
+
+                  {/* Premium Complete Experiment Button */}
+                  {!experimentCompleted && (
+                    <div className="mb-6 text-center">
                       <Button 
-                        onClick={() => {
-                          setQuizAnswers([]);
-                          setLabCompleted(false);
-                          setStartTime(Date.now());
-                        }}
-                        variant="outline"
+                        size="lg" 
+                        onClick={handleCompleteExperiment} 
+                        className="bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white shadow-xl hover:shadow-2xl transition-all hover:scale-105 px-8 py-6 text-lg font-bold"
                       >
-                        Retry Quiz
+                        Mark Experiment as Complete
+                        <CheckCircle2 className="ml-2 h-5 w-5" />
                       </Button>
-                      <Link href="/virtual-labs" className="flex-1">
-                        <Button className="w-full bg-violet-600 hover:bg-violet-700">
-                          Back to Virtual Labs
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
-                      </Link>
                     </div>
+                  )}
+
+                  {/* Premium Post-Lab Quiz CTA */}
+                  {experimentCompleted && (
+                    <Card className="mb-6 bg-gradient-to-br from-green-500/10 to-emerald-500/10 backdrop-blur-xl border-2 border-green-400/50 dark:border-green-600/50 shadow-2xl">
+                      <CardContent className="p-6">
+                        <div className="flex items-center justify-between flex-wrap gap-4">
+                          <div className="flex items-center gap-3">
+                            <div className="text-4xl">✅</div>
+                            <div>
+                              <p className="font-bold text-lg bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-1">Experiment Completed!</p>
+                              <p className="text-sm text-slate-600 dark:text-slate-400">Test your understanding with the post-lab quiz.</p>
+                            </div>
+                          </div>
+                          <Button 
+                            onClick={handleStartQuiz} 
+                            className="bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                          >
+                            Start Post-Lab Quiz
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* Premium Lab Notes with Exam Practice Reminder */}
+                  <Card className="mb-6 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 backdrop-blur-xl border-2 border-amber-200/50 dark:border-amber-800/50 shadow-xl">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-3">
+                        <div className="text-3xl">📝</div>
+                        <div>
+                          <p className="font-bold text-amber-900 dark:text-amber-100 mb-2">Exam Preparation Tip</p>
+                          <p className="text-sm text-amber-800 dark:text-amber-200">
+                            Use digital notes below to capture your observations quickly, 
+                            but <strong>remember to copy important points by hand</strong> into your notebook! Handwriting builds 
+                            muscle memory and prepares you for written exams.
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <LabNotes labId={experiment.id} labTitle={experiment.title} />
+                </>
+              )}
+
+              {/* Premium Post-Lab Quiz Section */}
+              {showQuiz && (
+                <Card className="mb-6 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-2 border-purple-200/30 dark:border-purple-800/30 shadow-2xl">
+                  <CardHeader>
+                    <CardTitle className="text-2xl bg-gradient-to-r from-purple-600 to-violet-600 dark:from-purple-400 dark:to-violet-400 bg-clip-text text-transparent">Post-Lab Quiz</CardTitle>
+                    <CardDescription className="text-slate-600 dark:text-slate-400">Test your understanding of the experiment.</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    {quizQuestions.map((q, index) => (
+                      <Card 
+                        key={index} 
+                        className={`border-2 bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm ${
+                          quizAnswers[index] !== undefined 
+                            ? quizAnswers[index] === q.correctAnswer 
+                              ? 'border-green-400/50 dark:border-green-600/50 bg-green-500/10' 
+                              : 'border-red-400/50 dark:border-red-600/50 bg-red-500/10'
+                            : 'border-purple-200/30 dark:border-purple-800/30'
+                        }`}
+                      >
+                        <CardHeader>
+                          <CardTitle className="text-lg font-bold">
+                            Question {index + 1}: {q.question}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-3">
+                          {q.options.map((option, optionIndex) => (
+                            <Button
+                              key={optionIndex}
+                              variant={quizAnswers[index] === optionIndex ? "default" : "outline"}
+                              className={`w-full justify-start text-left h-auto py-4 px-4 text-base transition-all hover:scale-[1.02] ${
+                                quizAnswers[index] !== undefined && optionIndex === q.correctAnswer
+                                  ? 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg'
+                                  : quizAnswers[index] === optionIndex && optionIndex !== q.correctAnswer
+                                  ? 'bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white shadow-lg'
+                                  : 'hover:bg-purple-50 dark:hover:bg-purple-950/30 border-2'
+                              }`}
+                              onClick={() => handleAnswerSelect(index, optionIndex)}
+                              disabled={quizAnswers[index] !== undefined}
+                            >
+                              <span className="font-bold mr-3 text-lg">{String.fromCharCode(65 + optionIndex)}.</span>
+                              {option}
+                            </Button>
+                          ))}
+                          {quizAnswers[index] !== undefined && (
+                            <Card className={`mt-4 ${
+                              quizAnswers[index] === q.correctAnswer 
+                                ? 'bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border-2 border-green-400/50 dark:border-green-600/50' 
+                                : 'bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/30 dark:to-orange-950/30 border-2 border-red-400/50 dark:border-red-600/50'
+                            }`}>
+                              <CardContent className="p-4">
+                                {quizAnswers[index] === q.correctAnswer ? (
+                                  <div className="flex items-start gap-2">
+                                    <span className="text-2xl">✅</span>
+                                    <div>
+                                      <p className="font-bold text-green-700 dark:text-green-400 mb-1">Correct!</p>
+                                      <p className="text-sm text-green-600 dark:text-green-300">{q.explanation}</p>
+                                    </div>
+                                  </div>
+                                ) : (
+                                  <div className="flex items-start gap-2">
+                                    <span className="text-2xl">❌</span>
+                                    <div>
+                                      <p className="font-bold text-red-700 dark:text-red-400 mb-1">Incorrect. The correct answer is {String.fromCharCode(65 + q.correctAnswer)}.</p>
+                                      <p className="text-sm text-red-600 dark:text-red-300">{q.explanation}</p>
+                                    </div>
+                                  </div>
+                                )}
+                              </CardContent>
+                            </Card>
+                          )}
+                        </CardContent>
+                      </Card>
+                    ))}
+
+                    {/* Premium Quiz Results */}
+                    {quizAnswers.length === quizQuestions.length && !labCompleted && (() => {
+                      const score = quizAnswers.filter((ans, idx) => ans === quizQuestions[idx].correctAnswer).length;
+                      const timeSpent = Math.floor((Date.now() - startTime) / 60000); // minutes
+                      const percentage = Math.round((score / quizQuestions.length) * 100);
+                      
+                      // Calculate and award XP
+                      const earnedXP = markLabComplete(experiment.id, percentage, timeSpent);
+                      
+                      // Trigger completion state
+                      setTimeout(() => {
+                        setLabCompleted(true);
+                        
+                        // Trigger confetti celebration
+                        confetti({
+                          particleCount: 100,
+                          spread: 70,
+                          origin: { y: 0.6 }
+                        });
+                      }, 0);
+                      
+                      return (
+                        <Card className="bg-gradient-to-br from-purple-500/20 via-violet-500/20 to-indigo-500/20 backdrop-blur-xl border-2 border-purple-400/50 dark:border-purple-600/50 shadow-2xl overflow-hidden">
+                          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-400/30 to-yellow-400/30 rounded-full blur-3xl"></div>
+                          <CardHeader className="relative z-10">
+                            <CardTitle className="flex items-center gap-3 text-3xl">
+                              <div className="text-4xl">🏆</div>
+                              <span className="bg-gradient-to-r from-amber-600 via-yellow-600 to-orange-600 dark:from-amber-400 dark:via-yellow-400 dark:to-orange-400 bg-clip-text text-transparent">Lab Complete! 🎉</span>
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent className="space-y-6 relative z-10">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                              <div className="group text-center p-4 bg-gradient-to-br from-green-500/10 to-emerald-500/10 backdrop-blur-sm rounded-xl border-2 border-green-200/30 dark:border-green-800/30 hover:scale-105 transition-all">
+                                <CheckCircle2 className="h-8 w-8 mx-auto text-green-600 dark:text-green-400 mb-2 group-hover:scale-110 transition-transform" />
+                                <p className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">{percentage}%</p>
+                                <p className="text-xs text-slate-600 dark:text-slate-400 font-medium">Score</p>
+                              </div>
+                              <div className="group text-center p-4 bg-gradient-to-br from-yellow-500/10 to-amber-500/10 backdrop-blur-sm rounded-xl border-2 border-yellow-200/30 dark:border-yellow-800/30 hover:scale-105 transition-all">
+                                <Star className="h-8 w-8 mx-auto text-yellow-600 dark:text-yellow-400 mb-2 group-hover:scale-110 transition-transform" />
+                                <p className="text-3xl font-bold bg-gradient-to-r from-yellow-600 to-amber-600 bg-clip-text text-transparent">{score}/{quizQuestions.length}</p>
+                                <p className="text-xs text-slate-600 dark:text-slate-400 font-medium">Correct</p>
+                              </div>
+                              <div className="group text-center p-4 bg-gradient-to-br from-purple-500/10 to-violet-500/10 backdrop-blur-sm rounded-xl border-2 border-purple-200/30 dark:border-purple-800/30 hover:scale-105 transition-all">
+                                <Zap className="h-8 w-8 mx-auto text-purple-600 dark:text-purple-400 mb-2 group-hover:scale-110 transition-transform" />
+                                <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent">+{earnedXP}</p>
+                                <p className="text-xs text-slate-600 dark:text-slate-400 font-medium">XP Earned</p>
+                              </div>
+                              <div className="group text-center p-4 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 backdrop-blur-sm rounded-xl border-2 border-blue-200/30 dark:border-blue-800/30 hover:scale-105 transition-all">
+                                <FlaskConical className="h-8 w-8 mx-auto text-blue-600 dark:text-blue-400 mb-2 group-hover:scale-110 transition-transform" />
+                                <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">{timeSpent}</p>
+                                <p className="text-xs text-slate-600 dark:text-slate-400 font-medium">Minutes</p>
+                              </div>
+                            </div>
+                            
+                            {percentage === 100 && (
+                              <Card className="bg-gradient-to-br from-amber-500/20 to-yellow-500/20 backdrop-blur-xl border-2 border-amber-400/50 dark:border-amber-600/50">
+                                <CardContent className="p-4">
+                                  <div className="flex items-center gap-3">
+                                    <div className="text-3xl">🏆</div>
+                                    <div>
+                                      <p className="font-bold text-amber-900 dark:text-amber-100">Perfect Score!</p>
+                                      <p className="text-sm text-amber-800 dark:text-amber-200">You've mastered this lab. Bonus XP awarded! 🏆</p>
+                                    </div>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            )}
+                            
+                            <div className="flex gap-3 flex-wrap">
+                              <Button 
+                                onClick={() => setShowQuiz(false)} 
+                                variant="outline"
+                                className="border-2 hover:bg-slate-100 dark:hover:bg-slate-800"
+                              >
+                                Review Experiment
+                              </Button>
+                              <Button 
+                                onClick={() => {
+                                  setQuizAnswers([]);
+                                  setLabCompleted(false);
+                                  setStartTime(Date.now());
+                                }}
+                                variant="outline"
+                                className="border-2 hover:bg-slate-100 dark:hover:bg-slate-800"
+                              >
+                                Retry Quiz
+                              </Button>
+                              <Link href="/virtual-labs" className="flex-1">
+                                <Button className="w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white shadow-lg hover:shadow-xl transition-all hover:scale-105">
+                                  Back to Virtual Labs
+                                  <ArrowRight className="ml-2 h-4 w-4" />
+                                </Button>
+                              </Link>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      );
+                    })()}
                   </CardContent>
                 </Card>
-              );
-            })()}
-          </CardContent>
-        </Card>
+              )}
+            </>
           )}
-        </>
-      )}
+        </div>
       </div>
     </V1RouteGuard>
   );
