@@ -157,12 +157,26 @@ export default function Home() {
             </div>
           )}
 
-          {/* Main Title with Animation */}
-          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4">
-            <Sparkles className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-violet-600 dark:text-violet-400 animate-pulse" />
-            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 dark:from-violet-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent animate-gradient">
-              SmartClass24
-            </h1>
+          {/* Main Title with Premium Animation */}
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
+            {/* Premium Icon with Multi-layer Glow */}
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-violet-400 via-indigo-400 to-purple-400 rounded-full blur-2xl opacity-50 animate-pulse"></div>
+              <div className="relative p-2 sm:p-3 bg-gradient-to-br from-violet-500/20 via-indigo-500/20 to-purple-500/20 rounded-2xl backdrop-blur-sm border-2 border-violet-300/30 dark:border-violet-700/30">
+                <Sparkles className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-violet-600 dark:text-violet-400 animate-pulse drop-shadow-lg" />
+              </div>
+            </div>
+            {/* Premium Text Logo with Enhanced Effects */}
+            <div className="relative">
+              {/* Glow layer */}
+              <h1 className="absolute inset-0 text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black font-headline bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 dark:from-violet-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent blur-md opacity-40 animate-pulse">
+                S24
+              </h1>
+              {/* Main text */}
+              <h1 className="relative text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black font-headline bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 dark:from-violet-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent tracking-tight drop-shadow-lg animate-gradient">
+                S24
+              </h1>
+            </div>
           </div>
 
           {/* Country-Specific Tagline */}

@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
   Trophy, Zap, Calendar, Users, Target, TrendingUp, 
   Clock, Award, Play, Plus, Eye, Swords, School, Bell,
-  BrainCircuit
+  BrainCircuit, ChevronRight
 } from 'lucide-react';
 import Link from 'next/link';
 import {
@@ -310,7 +310,7 @@ export default function LocalizedChallengeArenaPage() {
         </Card>
 
         {/* Premium Player Stats Dashboard */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-6 mb-6">
           <div className="group relative bg-gradient-to-br from-blue-500/10 to-blue-600/10 backdrop-blur-xl p-4 sm:p-6 rounded-2xl border border-blue-200/30 dark:border-blue-800/30 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 overflow-hidden">
             <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-blue-400/30 to-purple-400/30 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
             <div className="relative text-center">
@@ -341,6 +341,14 @@ export default function LocalizedChallengeArenaPage() {
               <div className="text-3xl sm:text-4xl lg:text-5xl mb-2 group-hover:scale-110 transition-transform inline-block">🎯</div>
               <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{player.totalGames}</div>
               <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium mt-1">Total Games</div>
+            </div>
+          </div>
+          <div className="group relative bg-gradient-to-br from-yellow-500/10 to-amber-600/10 backdrop-blur-xl p-4 sm:p-6 rounded-2xl border border-yellow-200/30 dark:border-yellow-800/30 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 overflow-hidden">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-yellow-400/30 to-amber-400/30 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+            <div className="relative text-center">
+              <div className="text-3xl sm:text-4xl lg:text-5xl mb-2 group-hover:scale-110 group-hover:rotate-12 transition-all inline-block">💰</div>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-yellow-600 to-amber-600 bg-clip-text text-transparent">{player.coins || 0}</div>
+              <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium mt-1">Coins</div>
             </div>
           </div>
         </div>
@@ -409,6 +417,85 @@ export default function LocalizedChallengeArenaPage() {
 
           {/* Play Tab */}
           <TabsContent value="play" className="space-y-4">
+            {/* Premium Leaderboard Preview */}
+            <Card className="bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-yellow-500/10 backdrop-blur-xl border-2 border-amber-200/30 dark:border-amber-800/30 shadow-xl">
+              <CardHeader className="pb-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600">
+                      <Trophy className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                        Top Players
+                      </CardTitle>
+                      <CardDescription className="text-xs">See where you rank among the best</CardDescription>
+                    </div>
+                  </div>
+                  <Link href={`#leaderboard`} onClick={(e) => { e.preventDefault(); setActiveTab('leaderboard'); }}>
+                    <Button variant="ghost" size="sm" className="text-amber-600 hover:text-amber-700">
+                      View All <ChevronRight className="h-4 w-4 ml-1" />
+                    </Button>
+                  </Link>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2">
+                  {topPlayers.slice(0, 5).map((p, idx) => {
+                    const isCurrentUser = p.userId === player.userId;
+                    return (
+                      <div
+                        key={p.userId}
+                        className={`flex items-center gap-3 p-3 rounded-lg transition-all ${
+                          isCurrentUser
+                            ? 'bg-gradient-to-r from-amber-500/20 to-orange-500/20 border-2 border-amber-400/50'
+                            : 'bg-white/50 dark:bg-gray-900/50 hover:bg-white/70 dark:hover:bg-gray-900/70'
+                        }`}
+                      >
+                        <div className={`text-2xl font-bold w-8 text-center ${getRankColor(idx + 1)}`}>
+                          {idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx + 1}`}
+                        </div>
+                        <Avatar className="h-10 w-10 border-2 border-amber-200 dark:border-amber-800">
+                          {p.avatar ? (
+                            <AvatarImage src={p.avatar} alt={p.userName} />
+                          ) : (
+                            <AvatarFallback className="text-sm font-bold bg-gradient-to-br from-amber-500 to-orange-600 text-white">
+                              {p.userName.split(' ').map(n => n[0]).join('')}
+                            </AvatarFallback>
+                          )}
+                        </Avatar>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <p className={`font-semibold text-sm truncate ${isCurrentUser ? 'text-amber-700 dark:text-amber-400' : ''}`}>
+                              {p.userName}
+                            </p>
+                            {isCurrentUser && (
+                              <Badge variant="secondary" className="text-xs bg-amber-500/20 text-amber-700 dark:text-amber-400">
+                                You
+                              </Badge>
+                            )}
+                          </div>
+                          <p className="text-xs text-muted-foreground truncate">{p.school}</p>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-sm font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                            {p.rating}
+                          </div>
+                          <div className="text-xs text-muted-foreground">Rating</div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  {topPlayers.length === 0 && (
+                    <div className="text-center py-8 text-muted-foreground">
+                      <Trophy className="h-12 w-12 mx-auto mb-2 opacity-50" />
+                      <p className="text-sm">No players yet. Be the first!</p>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <Link href="/challenge-arena/practice">
                 <Card className="relative bg-gradient-to-br from-green-500 to-emerald-600 p-6 sm:p-8 rounded-2xl shadow-xl text-white overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer border-0">

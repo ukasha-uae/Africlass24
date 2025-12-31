@@ -1,4 +1,5 @@
-21// Unified Challenge Questions System for JHS & SHS
+// Unified Challenge Questions System for Primary, JHS & SHS
+// Scalable question bank architecture - easily extendable for loading more questions
 import { getRandomQuestions as getJHSQuestions, QuestionSubject as JHSSubject, QuestionDifficulty } from './bece-questions';
 import { pastQuestions, type PastQuestion } from './past-questions';
 
@@ -16,13 +17,52 @@ export interface ChallengeQuestion {
   topic?: string;
 }
 
-// Convert WASSCE past questions to challenge format (MCQ only)
-function convertWASSCEToChallenge(pastQuestion: PastQuestion): ChallengeQuestion | null {
-  // For now, we'll create simplified MCQ versions from past questions
-  // In production, you'd have a proper MCQ bank for SHS
+/**
+ * Convert past questions to ChallengeQuestion format
+ * This allows integration of past exam questions into the challenge system
+ */
+function convertPastQuestionToChallenge(pastQuestion: PastQuestion, level: 'JHS' | 'SHS'): ChallengeQuestion | null {
+  // For theory questions, we can create MCQ versions
+  // Extract key information from the question
+  const questionText = typeof pastQuestion.question === 'string' 
+    ? pastQuestion.question 
+    : String(pastQuestion.question);
   
-  // This is a placeholder - you'll need to expand with actual SHS MCQ questions
+  // For now, create a simplified MCQ version
+  // In production, you'd have proper MCQ conversions or use theory questions differently
+  // This is a placeholder that can be expanded
   return null;
+}
+
+/**
+ * Get past questions converted to ChallengeQuestion format
+ * This function loads past questions and converts them for use in challenges
+ */
+function getPastQuestionsAsChallengeQuestions(level: 'JHS' | 'SHS', subject?: string, count: number = 10): ChallengeQuestion[] {
+  // Filter past questions by level and subject
+  let filtered = pastQuestions.filter(pq => {
+    // SHS past questions are WASSCE level
+    if (level === 'SHS') {
+      if (subject && pq.subject !== subject) return false;
+      return true; // All past questions in the file are SHS level
+    }
+    // JHS past questions would be BECE level (if we add them)
+    // For now, return empty as past-questions.ts only has SHS questions
+    return false;
+  });
+
+  // Convert to ChallengeQuestion format
+  // Note: This is a simplified conversion - you may want to enhance this
+  // to properly handle theory questions or create MCQ versions
+  const converted: ChallengeQuestion[] = [];
+  
+  // For now, we'll skip conversion as past questions are theory-based
+  // In production, you'd either:
+  // 1. Have MCQ versions of past questions
+  // 2. Use theory questions in a different question type
+  // 3. Convert theory to MCQ programmatically
+  
+  return converted.slice(0, count);
 }
 
 // Track recently used questions to prevent immediate repeats
@@ -60,6 +100,271 @@ function filterFreshQuestions(questions: ChallengeQuestion[], sessionKey: string
   }
   return fresh;
 }
+
+// ============================================
+// SCALABLE QUESTION BANK ARCHITECTURE
+// ============================================
+// This structure allows easy loading of questions from:
+// - Static arrays (current implementation)
+// - External APIs
+// - Database queries
+// - JSON files
+// Simply extend the arrays or add loading functions
+//
+// TO ADD MORE QUESTIONS:
+// 1. For Primary: Add to primaryQuestionBank array
+// 2. For JHS: Add to bece-questions.ts or extend here
+// 3. For SHS: Add to shsQuestionBank array
+// 4. For Past Questions: Add to past-questions.ts and they'll be integrated
+//
+// FUTURE: Can add async loading functions like:
+// - loadQuestionsFromAPI(level, subject)
+// - loadQuestionsFromDatabase(level, subject)
+// - loadQuestionsFromJSON(level, subject)
+
+// Primary Question Bank (Expandable)
+const primaryQuestionBank: ChallengeQuestion[] = [
+  // Mathematics - Primary
+  {
+    id: 'primary-math-001',
+    question: 'What is 2 + 3?',
+    options: ['4', '5', '6', '7'],
+    correctAnswer: 1,
+    subject: 'Mathematics',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Addition',
+    explanation: '2 + 3 = 5'
+  },
+  {
+    id: 'primary-math-002',
+    question: 'How many sides does a triangle have?',
+    options: ['2', '3', '4', '5'],
+    correctAnswer: 1,
+    subject: 'Mathematics',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Shapes',
+    explanation: 'A triangle has 3 sides'
+  },
+  {
+    id: 'primary-math-003',
+    question: 'What is 10 - 4?',
+    options: ['5', '6', '7', '8'],
+    correctAnswer: 1,
+    subject: 'Mathematics',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Subtraction',
+    explanation: '10 - 4 = 6'
+  },
+  {
+    id: 'primary-math-004',
+    question: 'Which number comes after 9?',
+    options: ['8', '9', '10', '11'],
+    correctAnswer: 2,
+    subject: 'Mathematics',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Numbers',
+    explanation: 'After 9 comes 10'
+  },
+  {
+    id: 'primary-math-005',
+    question: 'What is 5 × 2?',
+    options: ['7', '10', '12', '15'],
+    correctAnswer: 1,
+    subject: 'Mathematics',
+    difficulty: 'medium',
+    level: 'Primary',
+    topic: 'Multiplication',
+    explanation: '5 × 2 = 10'
+  },
+  // English Language - Primary
+  {
+    id: 'primary-eng-001',
+    question: 'Which word starts with the letter "A"?',
+    options: ['Ball', 'Apple', 'Cat', 'Dog'],
+    correctAnswer: 1,
+    subject: 'English Language',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Alphabet',
+    explanation: 'Apple starts with the letter A'
+  },
+  {
+    id: 'primary-eng-002',
+    question: 'What is the plural of "cat"?',
+    options: ['cat', 'cats', 'cates', 'caties'],
+    correctAnswer: 1,
+    subject: 'English Language',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Grammar',
+    explanation: 'The plural of cat is cats'
+  },
+  {
+    id: 'primary-eng-003',
+    question: 'Which word rhymes with "hat"?',
+    options: ['hot', 'bat', 'hit', 'hut'],
+    correctAnswer: 1,
+    subject: 'English Language',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Phonics',
+    explanation: 'Bat rhymes with hat'
+  },
+  // Science - Primary
+  {
+    id: 'primary-sci-001',
+    question: 'How many legs does a spider have?',
+    options: ['4', '6', '8', '10'],
+    correctAnswer: 2,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Animals',
+    explanation: 'A spider has 8 legs'
+  },
+  {
+    id: 'primary-sci-002',
+    question: 'Which animal lives in water?',
+    options: ['Dog', 'Fish', 'Bird', 'Cat'],
+    correctAnswer: 1,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Animals',
+    explanation: 'Fish live in water'
+  },
+  // Mathematics - More Primary questions
+  {
+    id: 'primary-math-006',
+    question: 'What is 8 ÷ 2?',
+    options: ['3', '4', '5', '6'],
+    correctAnswer: 1,
+    subject: 'Mathematics',
+    difficulty: 'medium',
+    level: 'Primary',
+    topic: 'Division',
+    explanation: '8 ÷ 2 = 4'
+  },
+  {
+    id: 'primary-math-007',
+    question: 'How many corners does a square have?',
+    options: ['2', '3', '4', '5'],
+    correctAnswer: 2,
+    subject: 'Mathematics',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Shapes',
+    explanation: 'A square has 4 corners'
+  },
+  {
+    id: 'primary-math-008',
+    question: 'What is 3 × 4?',
+    options: ['7', '10', '12', '15'],
+    correctAnswer: 2,
+    subject: 'Mathematics',
+    difficulty: 'medium',
+    level: 'Primary',
+    topic: 'Multiplication',
+    explanation: '3 × 4 = 12'
+  },
+  {
+    id: 'primary-math-009',
+    question: 'Which number is the smallest?',
+    options: ['5', '2', '8', '10'],
+    correctAnswer: 1,
+    subject: 'Mathematics',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Numbers',
+    explanation: '2 is the smallest number'
+  },
+  {
+    id: 'primary-math-010',
+    question: 'What is 15 - 7?',
+    options: ['6', '7', '8', '9'],
+    correctAnswer: 2,
+    subject: 'Mathematics',
+    difficulty: 'medium',
+    level: 'Primary',
+    topic: 'Subtraction',
+    explanation: '15 - 7 = 8'
+  },
+  // English Language - More Primary questions
+  {
+    id: 'primary-eng-004',
+    question: 'Which word is a verb?',
+    options: ['Happy', 'Run', 'Big', 'Red'],
+    correctAnswer: 1,
+    subject: 'English Language',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Grammar',
+    explanation: 'Run is an action word (verb)'
+  },
+  {
+    id: 'primary-eng-005',
+    question: 'What is the opposite of "hot"?',
+    options: ['Warm', 'Cold', 'Cool', 'Freezing'],
+    correctAnswer: 1,
+    subject: 'English Language',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Vocabulary',
+    explanation: 'The opposite of hot is cold'
+  },
+  // Science - More Primary questions
+  {
+    id: 'primary-sci-003',
+    question: 'Which animal can fly?',
+    options: ['Fish', 'Bird', 'Dog', 'Cat'],
+    correctAnswer: 1,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Animals',
+    explanation: 'Birds can fly'
+  },
+  {
+    id: 'primary-sci-004',
+    question: 'What do plants need to grow?',
+    options: ['Water only', 'Sunlight only', 'Water and sunlight', 'Nothing'],
+    correctAnswer: 2,
+    subject: 'Science',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Plants',
+    explanation: 'Plants need both water and sunlight to grow'
+  },
+  // Social Studies - Primary
+  {
+    id: 'primary-soc-001',
+    question: 'What is the capital city of Ghana?',
+    options: ['Kumasi', 'Accra', 'Tamale', 'Cape Coast'],
+    correctAnswer: 1,
+    subject: 'Social Studies',
+    difficulty: 'easy',
+    level: 'Primary',
+    topic: 'Geography',
+    explanation: 'Accra is the capital city of Ghana'
+  },
+  {
+    id: 'primary-soc-002',
+    question: 'How many regions are in Ghana?',
+    options: ['14', '15', '16', '17'],
+    correctAnswer: 2,
+    subject: 'Social Studies',
+    difficulty: 'medium',
+    level: 'Primary',
+    topic: 'Geography',
+    explanation: 'Ghana has 16 regions'
+  },
+  // Add more Primary questions here as needed
+  // TO ADD MORE: Simply add objects to this array following the ChallengeQuestion interface
+];
 
 // SHS Question Bank (Expandable) - WASSCE Level
 const shsQuestionBank: ChallengeQuestion[] = [
@@ -852,6 +1157,12 @@ const shsQuestionBank: ChallengeQuestion[] = [
  * Get random questions for challenge based on education level
  * Implements anti-repeat logic to ensure fresh questions each time
  */
+/**
+ * Get challenge questions with STRICT level filtering
+ * Primary students ONLY get Primary questions
+ * JHS students ONLY get JHS questions  
+ * SHS students ONLY get SHS questions
+ */
 export function getChallengeQuestions(
   level: EducationLevel,
   subject: string,
@@ -861,8 +1172,35 @@ export function getChallengeQuestions(
 ): ChallengeQuestion[] {
   const sessionKey = `${userId}-${level}`;
   
-  if (level === 'JHS') {
-    // Use existing JHS/BECE questions
+  // STRICT LEVEL FILTERING - Each level only gets their own questions
+  if (level === 'Primary') {
+    // Primary questions only
+    let filtered = primaryQuestionBank.filter(q => q.level === 'Primary');
+    
+    // Filter by subject if specified
+    if (subject && subject !== 'Mixed' && subject !== 'general') {
+      filtered = filtered.filter(q => q.subject === subject);
+    }
+    
+    // Filter by difficulty
+    if (difficulty && ['easy', 'medium', 'hard'].includes(difficulty)) {
+      filtered = filtered.filter(q => q.difficulty === difficulty);
+    }
+    
+    // Filter out recently used questions
+    const fresh = filterFreshQuestions(filtered, sessionKey);
+    
+    // Shuffle and select
+    const shuffled = fresh.sort(() => Math.random() - 0.5);
+    const finalQuestions = shuffled.length >= count
+      ? shuffled.slice(0, count)
+      : [...shuffled, ...filtered.filter(q => !fresh.includes(q)).sort(() => Math.random() - 0.5)].slice(0, count);
+    
+    markQuestionsUsed(sessionKey, finalQuestions.map(q => q.id));
+    return finalQuestions;
+    
+  } else if (level === 'JHS') {
+    // JHS questions only - Use BECE questions + past questions (if available)
     const jhsQuestions = getJHSQuestions(count, subject as JHSSubject, difficulty);
     
     // Convert to ChallengeQuestion format
@@ -878,6 +1216,10 @@ export function getChallengeQuestions(
       topic: q.topic
     }));
     
+    // TODO: Integrate JHS past questions (BECE past questions)
+    // const pastQuestions = getPastQuestionsAsChallengeQuestions('JHS', subject, Math.floor(count * 0.2));
+    // converted.push(...pastQuestions);
+    
     // Filter out recently used questions
     const fresh = filterFreshQuestions(converted, sessionKey);
     
@@ -890,8 +1232,9 @@ export function getChallengeQuestions(
     markQuestionsUsed(sessionKey, finalQuestions.map(q => q.id));
     
     return finalQuestions;
-  } else {
-    // Use SHS questions
+    
+  } else if (level === 'SHS') {
+    // SHS questions only - Use question bank + past questions
     let filtered = shsQuestionBank.filter(q => q.level === 'SHS');
     
     // Filter by subject if specified
@@ -899,11 +1242,17 @@ export function getChallengeQuestions(
       filtered = filtered.filter(q => q.subject === subject);
     }
     
-    // Filter by difficulty if specified
-    if (difficulty && difficulty !== 'easy' && difficulty !== 'medium' && difficulty !== 'hard') {
-      // If mixed difficulty, keep all
-    } else if (difficulty) {
+    // Filter by difficulty
+    if (difficulty && ['easy', 'medium', 'hard'].includes(difficulty)) {
       filtered = filtered.filter(q => q.difficulty === difficulty);
+    }
+    
+    // Integrate SHS past questions (WASSCE)
+    // Get 20% of questions from past questions if available
+    const pastQuestionsCount = Math.floor(count * 0.2);
+    const pastQuestions = getPastQuestionsAsChallengeQuestions('SHS', subject, pastQuestionsCount);
+    if (pastQuestions.length > 0) {
+      filtered = [...filtered, ...pastQuestions];
     }
     
     // Filter out recently used questions
@@ -922,13 +1271,24 @@ export function getChallengeQuestions(
     
     return finalQuestions;
   }
+  
+  // Fallback - should never reach here with strict filtering
+  return [];
 }
 
 /**
  * Get available subjects for a given education level
  */
 export function getAvailableSubjects(level: EducationLevel): string[] {
-  if (level === 'JHS') {
+  if (level === 'Primary') {
+    return [
+      'Mixed',
+      'Mathematics',
+      'English Language',
+      'Science',
+      'Social Studies'
+    ];
+  } else if (level === 'JHS') {
     return [
       'Mixed',
       'Mathematics',
@@ -953,15 +1313,17 @@ export function getAvailableSubjects(level: EducationLevel): string[] {
 /**
  * Get question counts by level (for stats)
  */
-export function getQuestionStats(): { jhs: number; shs: number; total: number } {
+export function getQuestionStats(): { primary: number; jhs: number; shs: number; total: number } {
+  const primaryCount = primaryQuestionBank.length;
   const shsCount = shsQuestionBank.length;
   // JHS count from bece-questions (approximate based on file size)
   const jhsCount = 150; // BECE questions in bece-questions.ts
   
   return {
+    primary: primaryCount,
     jhs: jhsCount,
     shs: shsCount,
-    total: jhsCount + shsCount
+    total: primaryCount + jhsCount + shsCount
   };
 }
 
@@ -990,4 +1352,62 @@ export function hasEnoughQuestions(
 ): boolean {
   const available = getChallengeQuestions(level, subject, difficulty, 1000);
   return available.length >= requiredCount;
+}
+
+/**
+ * SCALABLE LOADING FUNCTIONS
+ * These functions can be extended to load questions from external sources
+ */
+
+/**
+ * Load additional questions from external source (placeholder for future implementation)
+ * This allows loading questions from APIs, databases, or JSON files
+ */
+export async function loadQuestionsFromExternalSource(
+  level: EducationLevel,
+  subject: string,
+  source: 'api' | 'database' | 'json' = 'api'
+): Promise<ChallengeQuestion[]> {
+  // Placeholder for future implementation
+  // Example:
+  // if (source === 'api') {
+  //   const response = await fetch(`/api/questions?level=${level}&subject=${subject}`);
+  //   return response.json();
+  // }
+  return [];
+}
+
+/**
+ * Add questions to the question bank dynamically
+ * Useful for loading questions at runtime
+ */
+export function addQuestionsToBank(
+  level: EducationLevel,
+  questions: ChallengeQuestion[]
+): void {
+  // Validate all questions are for the correct level
+  const validQuestions = questions.filter(q => q.level === level);
+  
+  // Add to appropriate bank
+  if (level === 'Primary') {
+    primaryQuestionBank.push(...validQuestions);
+  } else if (level === 'SHS') {
+    shsQuestionBank.push(...validQuestions);
+  }
+  // JHS questions are managed in bece-questions.ts
+}
+
+/**
+ * Get question bank size for a specific level
+ * Useful for monitoring and scaling
+ */
+export function getQuestionBankSize(level: EducationLevel): number {
+  if (level === 'Primary') {
+    return primaryQuestionBank.length;
+  } else if (level === 'JHS') {
+    return 150; // Approximate from bece-questions.ts
+  } else if (level === 'SHS') {
+    return shsQuestionBank.length;
+  }
+  return 0;
 }

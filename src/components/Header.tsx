@@ -74,16 +74,33 @@ export default function Header() {
       </div>
 
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6 relative">
-        <Link href="/" className="flex items-center gap-2 group shrink-0">
+        <Link href="/" className="flex items-center gap-2.5 group shrink-0">
+          {/* Premium Logo Icon with Enhanced Glow */}
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-violet-400 to-indigo-400 rounded-full blur-lg opacity-50 group-hover:opacity-75 transition-opacity"></div>
-            <GraduationCap className="h-6 w-6 sm:h-7 sm:w-7 text-violet-600 dark:text-violet-400 relative transition-transform group-hover:scale-110 group-hover:rotate-12 duration-200" />
+            {/* Multi-layer glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-violet-400 via-indigo-400 to-purple-400 rounded-full blur-xl opacity-60 group-hover:opacity-80 transition-opacity animate-pulse"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-violet-500 to-indigo-500 rounded-full blur-md opacity-40 group-hover:opacity-60 transition-opacity"></div>
+            {/* Icon container with premium styling */}
+            <div className="relative p-1.5 bg-gradient-to-br from-violet-500/20 via-indigo-500/20 to-purple-500/20 rounded-xl backdrop-blur-sm border border-violet-300/30 dark:border-violet-700/30 group-hover:border-violet-400/50 dark:group-hover:border-violet-600/50 transition-all">
+              <GraduationCap className="h-5 w-5 sm:h-6 sm:w-6 text-violet-600 dark:text-violet-400 relative transition-all group-hover:scale-110 group-hover:rotate-12 duration-300 drop-shadow-lg" />
+            </div>
           </div>
-          <div className="flex flex-col leading-tight">
-            <span className="text-base sm:text-lg md:text-xl font-bold font-headline bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 dark:from-violet-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent group-hover:scale-105 transition-transform inline-block">
-              SmartC24
+          {/* Premium Text Logo - Clean & Minimal */}
+          <div className="relative flex items-baseline gap-2">
+            <div className="relative">
+              {/* Text glow effect */}
+              <span className="absolute inset-0 text-base sm:text-lg md:text-xl font-black font-headline bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 dark:from-violet-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent blur-sm opacity-50 group-hover:opacity-70 transition-opacity">
+                S24
+              </span>
+              {/* Main text */}
+              <span className="relative text-base sm:text-lg md:text-xl font-black font-headline bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 dark:from-violet-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent group-hover:scale-105 transition-transform inline-block tracking-tight drop-shadow-sm">
+                S24
+              </span>
+            </div>
+            {/* Optional: Elegant Premium Tagline Badge */}
+            <span className="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gradient-to-r from-violet-100/80 to-indigo-100/80 dark:from-violet-900/30 dark:to-indigo-900/30 text-violet-700 dark:text-violet-300 border border-violet-200/50 dark:border-violet-700/50 backdrop-blur-sm group-hover:scale-105 transition-transform tracking-wide">
+              Smart Learning
             </span>
-            <span className="hidden xs:inline text-[9px] text-muted-foreground -mt-1 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">Smart Learning</span>
           </div>
         </Link>
         

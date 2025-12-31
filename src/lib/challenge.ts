@@ -3,7 +3,7 @@ import { getSchoolById } from './schools';
 import { QuestionDifficulty } from './bece-questions';
 import { getChallengeQuestions, getAvailableSubjects, type EducationLevel } from './challenge-questions';
 import { createInAppNotification } from './in-app-notifications';
-import { calculateXP, checkAchievements } from './gamification';
+import { calculateXP, calculateCoins, checkAchievements } from './gamification';
 
 export interface Player {
   userId: string;
@@ -21,6 +21,7 @@ export interface Player {
   highestStreak: number;
   isVerified?: boolean; // Verified student status
   xp: number;
+  coins: number; // Wallet/coin balance
   achievements: string[]; // Array of achievement IDs
   level: EducationLevel; // JHS or SHS
 }
@@ -75,14 +76,72 @@ export interface ChallengeOpponent {
 export interface GameQuestion {
   id: string;
   question: string;
-  type: 'mcq' | 'fillblank' | 'truefalse';
+  type: 'mcq' | 'fillblank' | 'truefalse' | 'multiple_select' | 'number_input';
   options?: string[];
-  correctAnswer: string;
+  correctAnswer: string | string[] | number; // Can be string, array of strings, or number
+  correctAnswers?: string[]; // For multiple select
   points: number;
   explanation?: string;
   source: 'bece' | 'practice';
   year?: number;
+  unit?: string; // For number input questions
+  alternatives?: string[]; // Alternative correct answers for fillblank
 }
+
+/**
+ * Check if an answer is correct for a given question
+ */
+export const checkGameQuestionAnswer = (question: GameQuestion, answer: any): boolean => {
+  if (question.type === 'mcq') {
+    // For MCQ, answer can be index or option string
+    if (typeof answer === 'number' && question.options) {
+      return question.options[answer] === question.correctAnswer;
+    }
+    return String(answer).toLowerCase() === String(question.correctAnswer).toLowerCase();
+  }
+
+  if (question.type === 'truefalse') {
+    const correctAnswer = question.correctAnswer === 'true' || question.correctAnswer === true;
+    return answer === correctAnswer;
+  }
+
+  if (question.type === 'fillblank') {
+    const userAnswer = String(answer).toLowerCase().trim();
+    const correctAnswer = String(question.correctAnswer).toLowerCase().trim();
+    const alternatives = (question.alternatives || []).map(a => String(a).toLowerCase().trim());
+    return userAnswer === correctAnswer || alternatives.includes(userAnswer);
+  }
+
+  if (question.type === 'number_input') {
+    const userNum = typeof answer === 'number' ? answer : parseFloat(String(answer));
+    const correctNum = typeof question.correctAnswer === 'number' 
+      ? question.correctAnswer 
+      : parseFloat(String(question.correctAnswer));
+    
+    if (isNaN(userNum) || isNaN(correctNum)) return false;
+    
+    // Allow small tolerance for floating point numbers (0.01)
+    return Math.abs(userNum - correctNum) < 0.01;
+  }
+
+  if (question.type === 'multiple_select') {
+    if (!Array.isArray(answer)) return false;
+    
+    const correctAnswers = question.correctAnswers || 
+      (Array.isArray(question.correctAnswer) ? question.correctAnswer : []);
+    
+    // Convert to strings and sort for comparison
+    const userAnswers = answer.map(a => String(a).toLowerCase()).sort();
+    const correctAnswersLower = correctAnswers.map(a => String(a).toLowerCase()).sort();
+    
+    // Must have same length and all match
+    if (userAnswers.length !== correctAnswersLower.length) return false;
+    
+    return userAnswers.every((ans, idx) => ans === correctAnswersLower[idx]);
+  }
+
+  return false;
+};
 
 export interface GameResult {
   userId: string;
@@ -95,6 +154,7 @@ export interface GameResult {
   accuracy: number; // percentage
   rank: number;
   ratingChange: number;
+  coinsEarned?: number; // Coin rewards
 }
 
 export interface PlayerAnswer {
@@ -207,6 +267,7 @@ export const createOrUpdatePlayer = (player: Partial<Player> & { userId: string 
       winStreak: 0,
       highestStreak: 0,
       xp: 0,
+      coins: 0, // Starting coins
       achievements: [],
       level: player.level || 'JHS',
     };
@@ -227,7 +288,8 @@ export const updatePlayerStats = (
   result: 'win' | 'loss' | 'draw',
   ratingChange: number,
   xpEarned: number = 0,
-  newAchievements: string[] = []
+  newAchievements: string[] = [],
+  coinsEarned: number = 0
 ): void => {
   const players = getAllPlayers();
   const playerIndex = players.findIndex(p => p.userId === userId);
@@ -252,6 +314,9 @@ export const updatePlayerStats = (
 
   // Update XP
   player.xp = (player.xp || 0) + xpEarned;
+
+  // Update Coins
+  player.coins = (player.coins || 0) + coinsEarned;
 
   // Update Achievements
   if (newAchievements.length > 0) {
@@ -284,8 +349,15 @@ export const getMyChallenges = (userId: string): Challenge[] => {
 export const createChallenge = (challenge: Omit<Challenge, 'id' | 'createdAt' | 'status' | 'questions'>): Challenge => {
   const challenges = getAllChallenges();
   
-  // Generate questions based on education level (JHS or SHS) with anti-repeat logic
+  // Generate questions based on education level (Primary, JHS, or SHS) with STRICT level filtering
+  // Each level ONLY gets questions from their own level - no cross-level access
   const questions = generateGameQuestions(challenge.level, challenge.subject, challenge.difficulty, challenge.questionCount, challenge.creatorId);
+  
+  // Validate that questions were generated (should never be empty with proper question banks)
+  if (questions.length === 0) {
+    console.error(`No questions generated for level: ${challenge.level}, subject: ${challenge.subject}`);
+    // This should not happen with proper question banks, but handle gracefully
+  }
   
   // Auto-matchmaking for quick and school battles
   if ((challenge.type === 'quick' || challenge.type === 'school') && challenge.opponents.length === 0) {
@@ -555,12 +627,23 @@ export const completeChallenge = (challenge: Challenge): void => {
     // Gamification Logic
     const player = getPlayerProfile(result.userId);
     let xpEarned = 0;
+    let coinsEarned = 0;
     let newAchievements: string[] = [];
 
     if (player) {
       // Calculate XP
       xpEarned = calculateXP(
         playerResult,
+        result.score,
+        result.rank,
+        challenge.results!.length,
+        player.winStreak || 0
+      );
+
+      // Calculate Coins
+      coinsEarned = calculateCoins(
+        playerResult,
+        result.accuracy,
         result.score,
         result.rank,
         challenge.results!.length,
@@ -580,7 +663,10 @@ export const completeChallenge = (challenge: Challenge): void => {
       newAchievements = checkAchievements(updatedStats);
     }
 
-    updatePlayerStats(result.userId, playerResult, ratingChange, xpEarned, newAchievements);
+    // Store coins earned in result
+    result.coinsEarned = coinsEarned;
+
+    updatePlayerStats(result.userId, playerResult, ratingChange, xpEarned, newAchievements, coinsEarned);
   });
   
   challenge.status = 'completed';
@@ -785,12 +871,21 @@ const generateGameQuestions = (
 ): GameQuestion[] => {
   // Handle legacy/lowercase subject names to prevent empty question sets
   let mappedSubject = subject;
-  if (subject === 'math' || subject === 'Maths') mappedSubject = level === 'JHS' ? 'Mathematics' : 'Core Mathematics';
+  if (subject === 'math' || subject === 'Maths') {
+    mappedSubject = level === 'Primary' ? 'Mathematics' : 
+                    level === 'JHS' ? 'Mathematics' : 
+                    'Core Mathematics';
+  }
   if (subject === 'english' || subject === 'English') mappedSubject = 'English Language';
-  if (subject === 'science' || subject === 'Science') mappedSubject = level === 'JHS' ? 'Science' : 'Integrated Science';
+  if (subject === 'science' || subject === 'Science') {
+    mappedSubject = level === 'Primary' ? 'Science' :
+                    level === 'JHS' ? 'Science' : 
+                    'Integrated Science';
+  }
   if (subject === 'social') mappedSubject = 'Social Studies';
 
-  // Use the new unified challenge questions system with anti-repeat logic
+  // STRICT LEVEL FILTERING - Use the new unified challenge questions system
+  // Each level ONLY gets questions from their own level
   let challengeQuestions = getChallengeQuestions(
     level,
     subject === 'general' ? 'Mixed' : mappedSubject,
@@ -799,11 +894,11 @@ const generateGameQuestions = (
     userId
   );
   
-  // Fallback: If no questions found, try with 'Mixed' subject
+  // Fallback: If no questions found, try with 'Mixed' subject (SAME LEVEL)
   if (challengeQuestions.length === 0) {
     console.warn(`No questions found for ${level} ${mappedSubject}, falling back to mixed questions`);
     challengeQuestions = getChallengeQuestions(
-      level,
+      level, // Keep same level - STRICT filtering
       'Mixed',
       difficulty as QuestionDifficulty,
       count,
@@ -811,29 +906,91 @@ const generateGameQuestions = (
     );
   }
   
-  // Last resort: If still no questions, try JHS Mathematics as a safe fallback
+  // Last resort: Try with easier difficulty or default subject (SAME LEVEL)
   if (challengeQuestions.length === 0) {
-    console.warn('No mixed questions found, using Mathematics as fallback');
+    console.warn(`No questions found for ${level}, trying with easier difficulty`);
+    const fallbackDifficulty = difficulty === 'hard' ? 'medium' : 'easy';
+    const fallbackSubject = level === 'Primary' ? 'Mathematics' :
+                            level === 'JHS' ? 'Mathematics' :
+                            'Core Mathematics';
     challengeQuestions = getChallengeQuestions(
-      'JHS',
-      'Mathematics',
-      'medium',
+      level, // Keep same level - STRICT filtering
+      fallbackSubject,
+      fallbackDifficulty as QuestionDifficulty,
       count,
       userId
     );
   }
   
-  return challengeQuestions.map(q => ({
-    id: q.id,
-    question: q.question,
-    type: 'mcq' as const,
-    options: q.options,
-    correctAnswer: q.options[q.correctAnswer],
-    points: difficulty === 'hard' ? 15 : difficulty === 'medium' ? 10 : 5,
-    explanation: q.explanation || '',
-    source: level === 'JHS' ? 'bece' : 'wassce' as 'bece' | 'practice',
-    year: 2024,
-  }));
+  // Convert to GameQuestion format with variety of question types
+  return challengeQuestions.map((q, index) => {
+    const baseQuestion = {
+      id: q.id,
+      question: q.question,
+      points: difficulty === 'hard' ? 15 : difficulty === 'medium' ? 10 : 5,
+      explanation: q.explanation || '',
+      source: level === 'JHS' ? 'bece' : 'wassce' as 'bece' | 'practice',
+      year: 2024,
+    };
+
+    // Mix question types: 70% MCQ, 15% True/False, 10% Fill Blank, 5% Number Input
+    const typeRoll = index % 20;
+    
+    if (typeRoll < 14) {
+      // MCQ (70%)
+      return {
+        ...baseQuestion,
+        type: 'mcq' as const,
+        options: q.options,
+        correctAnswer: q.options[q.correctAnswer],
+      };
+    } else if (typeRoll < 17) {
+      // True/False (15%) - Convert MCQ to True/False
+      const correctOption = q.options[q.correctAnswer];
+      const isTrue = Math.random() > 0.5;
+      return {
+        ...baseQuestion,
+        type: 'truefalse' as const,
+        question: `${q.question} (The answer is "${correctOption}")`,
+        correctAnswer: isTrue ? 'true' : 'false',
+      };
+    } else if (typeRoll < 19) {
+      // Fill Blank (10%) - Convert MCQ to Fill Blank
+      const correctOption = q.options[q.correctAnswer];
+      // Create a fill-in-the-blank version
+      const blankQuestion = q.question.replace(/\?/g, '_____');
+      return {
+        ...baseQuestion,
+        type: 'fillblank' as const,
+        question: blankQuestion || q.question,
+        correctAnswer: correctOption.toLowerCase(),
+        alternatives: q.options.filter((opt, idx) => idx !== q.correctAnswer).slice(0, 2).map(o => o.toLowerCase()),
+      };
+    } else {
+      // Number Input (5%) - Only for math questions
+      if (q.subject === 'Mathematics' || q.subject === 'Core Mathematics') {
+        // Try to extract a number from the correct answer
+        const correctOption = q.options[q.correctAnswer];
+        const numberMatch = correctOption.match(/-?\d+\.?\d*/);
+        if (numberMatch) {
+          return {
+            ...baseQuestion,
+            type: 'number_input' as const,
+            question: q.question,
+            correctAnswer: parseFloat(numberMatch[0]),
+            unit: correctOption.replace(numberMatch[0], '').trim() || undefined,
+          };
+        }
+      }
+      // Fallback to MCQ if conversion fails
+      return {
+        ...baseQuestion,
+        type: 'mcq' as const,
+        options: q.options,
+        correctAnswer: q.options[q.correctAnswer],
+      };
+    }
+  });
 };
 
 // Notifications

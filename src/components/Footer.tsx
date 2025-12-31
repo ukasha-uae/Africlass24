@@ -82,10 +82,23 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-4 lg:col-span-2">
             <div className="mb-6 p-6 bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm rounded-2xl border-2 border-violet-200/30 dark:border-violet-800/30 shadow-lg">
               <div className="flex items-center gap-3 mb-4">
-                <div className="text-4xl animate-pulse">🎓</div>
-                <h3 className="text-2xl font-bold font-headline bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 dark:from-violet-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
-                  SmartClass24
-                </h3>
+                {/* Premium Logo with Enhanced Design */}
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-violet-400 via-indigo-400 to-purple-400 rounded-full blur-xl opacity-40 animate-pulse"></div>
+                  <div className="relative p-2 bg-gradient-to-br from-violet-500/20 via-indigo-500/20 to-purple-500/20 rounded-xl backdrop-blur-sm border border-violet-300/30 dark:border-violet-700/30">
+                    <div className="text-3xl">🎓</div>
+                  </div>
+                </div>
+                <div className="relative">
+                  {/* Text glow */}
+                  <h3 className="absolute inset-0 text-2xl font-black font-headline bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 dark:from-violet-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent blur-sm opacity-50">
+                    S24
+                  </h3>
+                  {/* Main text */}
+                  <h3 className="relative text-2xl font-black font-headline bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 dark:from-violet-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent tracking-tight drop-shadow-sm">
+                    S24
+                  </h3>
+                </div>
               </div>
               <p className="text-sm text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
                 Empowering {country?.name || 'African'} students with smart, interactive learning experiences. 
@@ -238,7 +251,7 @@ export default function Footer() {
         <div className="border-t-2 border-violet-200/30 dark:border-violet-800/30 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
           <div className="p-3 bg-gradient-to-r from-violet-50 to-indigo-50 dark:from-violet-950/30 dark:to-indigo-950/30 rounded-xl border border-violet-200/50 dark:border-violet-800/50">
             <p className="text-slate-700 dark:text-slate-300">
-              © {currentYear} SmartClass24. All rights reserved. 
+              © {currentYear} S24. All rights reserved. 
               <span className="ml-2 font-semibold bg-gradient-to-r from-violet-600 to-indigo-600 dark:from-violet-400 dark:to-indigo-400 bg-clip-text text-transparent">Made with ❤️ for {country?.name || 'Africa'}</span>
             </p>
           </div>

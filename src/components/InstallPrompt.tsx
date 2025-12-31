@@ -58,7 +58,7 @@ export default function InstallPrompt() {
       >
         <div className="bg-primary text-primary-foreground p-4 rounded-lg shadow-lg flex items-center justify-between gap-4">
           <div className="flex-1">
-            <h3 className="font-semibold text-base">Install SmartC24</h3>
+            <h3 className="font-semibold text-base">Install S24</h3>
             <p className="text-sm opacity-90">Get quick access and work offline!</p>
           </div>
           <div className="flex items-center gap-2">

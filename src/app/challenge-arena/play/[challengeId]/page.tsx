@@ -28,7 +28,9 @@ import {
   GameQuestion,
   Player,
   PlayerAnswer,
+  checkGameQuestionAnswer,
 } from '@/lib/challenge';
+import ArenaQuestionRenderer from '@/components/arena/ArenaQuestionRenderer';
 import { useSoundEffects } from '@/hooks/use-sound-effects';
 import { useFirebase } from '@/firebase/provider';
 import { useToast } from '@/hooks/use-toast';
@@ -122,8 +124,8 @@ export default function QuizBattlePage() {
     return () => clearInterval(timer);
   }, [gamePhase, currentQuestionIndex, playSound]);
 
-  const handleAnswerSelect = (answerId: string) => {
-    if (!challenge || selectedAnswer) return; // Prevent changing answer once selected
+  const handleAnswerSelect = (answer: any) => {
+    if (!challenge || selectedAnswer !== null && selectedAnswer !== undefined) return; // Prevent changing answer once selected
     
     const currentQuestion = challenge.questions[currentQuestionIndex];
     const questionStartTime = questionStartTimes[currentQuestion.id] || Date.now();
@@ -142,9 +144,9 @@ export default function QuizBattlePage() {
       [currentQuestion.id]: timeSpent
     }));
     
-    setSelectedAnswer(answerId);
+    setSelectedAnswer(answer);
 
-    const isCorrect = currentQuestion.correctAnswer === answerId;
+    const isCorrect = checkGameQuestionAnswer(currentQuestion, answer);
     
     if (isCorrect) {
       playSound('correct');
@@ -154,13 +156,13 @@ export default function QuizBattlePage() {
 
     // Auto-advance after a short delay
     setTimeout(() => {
-      handleNextQuestion(answerId);
-    }, 1000); // Increased delay slightly to let sound play
+      handleNextQuestion(answer);
+    }, 1500); // Increased delay to show feedback
   };
 
-  const handleNextQuestion = (answerToSubmit?: string) => {
-    const answer = answerToSubmit || selectedAnswer;
-    if (!challenge || !answer) return;
+  const handleNextQuestion = (answerToSubmit?: any) => {
+    const answer = answerToSubmit !== undefined ? answerToSubmit : selectedAnswer;
+    if (!challenge || (answer === null || answer === undefined)) return;
 
     const currentQuestion = challenge.questions[currentQuestionIndex];
     setUserAnswers(prev => ({
@@ -199,12 +201,12 @@ export default function QuizBattlePage() {
     // Convert to PlayerAnswer[] with proper timing tracking
     const playerAnswers: PlayerAnswer[] = challenge.questions.map(q => {
       const answer = answersMap[q.id];
-      const isCorrect = answer === q.correctAnswer;
+      const isCorrect = checkGameQuestionAnswer(q, answer);
       const timeSpent = questionTimeSpent[q.id] || (Date.now() - (questionStartTimes[q.id] || startTime));
       
       return {
         questionId: q.id,
-        answer,
+        answer: String(answer), // Convert to string for storage
         isCorrect,
         timeSpent, // Now properly tracked per question
         points: isCorrect ? q.points : 0
@@ -283,8 +285,8 @@ export default function QuizBattlePage() {
       if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
         try {
           await navigator.share({
-            title: 'SmartC24 Challenge Results',
-            text: '🎯 Check out my results on SmartC24!',
+            title: 'S24 Challenge Results',
+            text: '🎯 Check out my results on S24!',
             files: [file],
           });
           toast({ title: 'Shared successfully!', description: 'Thanks for spreading the word!' });
@@ -580,11 +582,16 @@ export default function QuizBattlePage() {
             <CardContent className="p-6 sm:p-8 text-center relative overflow-hidden">
               {/* App Branding Header - for sharing */}
               <div className="mb-4 flex items-center justify-center gap-3">
-                <div className="bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl">
-                  S24
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-violet-400 via-indigo-400 to-purple-400 rounded-full blur-lg opacity-50"></div>
+                  <div className="relative bg-gradient-to-br from-violet-500 via-indigo-500 to-purple-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-black text-lg shadow-lg">
+                    S24
+                  </div>
                 </div>
                 <div className="text-left">
-                  <h2 className="font-bold text-lg leading-tight">SmartC24</h2>
+                  <h2 className="font-black text-lg leading-tight bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 dark:from-violet-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent tracking-tight">
+                    S24
+                  </h2>
                   <p className="text-xs text-muted-foreground">Learn • Practice • Excel</p>
                 </div>
               </div>
@@ -755,26 +762,46 @@ export default function QuizBattlePage() {
                   </div>
                 </div>
 
-                {/* Premium Rating change for competitive modes */}
+                {/* Premium Rating change and Coins for competitive modes */}
                 {!isPractice && (
-                  <div className="mt-6 p-6 bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-indigo-500/10 backdrop-blur-sm rounded-2xl border-2 border-purple-200/30 dark:border-purple-800/30 shadow-xl">
-                    <div className="flex items-center justify-center gap-6">
-                      <div className="text-5xl">📈</div>
-                      <div className="text-center">
-                        <p className="text-sm text-muted-foreground mb-1">Rating Change</p>
-                        <p className={`text-4xl sm:text-5xl font-bold ${
-                          ratingChange > 0 ? 'text-green-600' :
-                          ratingChange < 0 ? 'text-red-600' : 'text-gray-600'
-                        }`}>
-                          {ratingChange > 0 ? '+' : ''}{ratingChange}
-                        </p>
-                      </div>
-                      <div className="h-16 w-px bg-slate-300 dark:bg-slate-700"></div>
-                      <div className="text-center">
-                        <p className="text-sm text-muted-foreground mb-1">New Rating</p>
-                        <p className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{player?.rating || 1000}</p>
+                  <div className="mt-6 space-y-4">
+                    <div className="p-6 bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-indigo-500/10 backdrop-blur-sm rounded-2xl border-2 border-purple-200/30 dark:border-purple-800/30 shadow-xl">
+                      <div className="flex items-center justify-center gap-6">
+                        <div className="text-5xl">📈</div>
+                        <div className="text-center">
+                          <p className="text-sm text-muted-foreground mb-1">Rating Change</p>
+                          <p className={`text-4xl sm:text-5xl font-bold ${
+                            ratingChange > 0 ? 'text-green-600' :
+                            ratingChange < 0 ? 'text-red-600' : 'text-gray-600'
+                          }`}>
+                            {ratingChange > 0 ? '+' : ''}{ratingChange}
+                          </p>
+                        </div>
+                        <div className="h-16 w-px bg-slate-300 dark:bg-slate-700"></div>
+                        <div className="text-center">
+                          <p className="text-sm text-muted-foreground mb-1">New Rating</p>
+                          <p className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{player?.rating || 1000}</p>
+                        </div>
                       </div>
                     </div>
+                    {myResult?.coinsEarned !== undefined && myResult.coinsEarned > 0 && (
+                      <div className="p-6 bg-gradient-to-br from-yellow-500/10 via-amber-500/10 to-orange-500/10 backdrop-blur-sm rounded-2xl border-2 border-yellow-400/30 dark:border-yellow-800/30 shadow-xl">
+                        <div className="flex items-center justify-center gap-6">
+                          <div className="text-5xl">💰</div>
+                          <div className="text-center">
+                            <p className="text-sm text-muted-foreground mb-1">Coins Earned</p>
+                            <p className="text-4xl sm:text-5xl font-bold text-yellow-600">
+                              +{myResult.coinsEarned}
+                            </p>
+                          </div>
+                          <div className="h-16 w-px bg-slate-300 dark:bg-slate-700"></div>
+                          <div className="text-center">
+                            <p className="text-sm text-muted-foreground mb-1">Total Coins</p>
+                            <p className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-yellow-600 to-amber-600 bg-clip-text text-transparent">{player?.coins || 0}</p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
                 
@@ -1360,76 +1387,28 @@ export default function QuizBattlePage() {
             </CardContent>
           </Card>
 
-          {/* Premium Question Card - Compact */}
+          {/* Premium Question Card - Using QuestionRenderer */}
           <Card className="mb-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl border-2 border-primary/30 shadow-2xl">
             <CardContent className="p-4 sm:p-6">
-              <div className="mb-4">
-                <div className="flex items-center justify-between mb-3">
-                  <Badge className="px-3 py-1 text-xs bg-gradient-to-r from-blue-500 to-indigo-600 text-white border-0">
-                    {challenge.subject}
-                  </Badge>
-                  <Badge variant="outline" className="px-3 py-1 text-xs border-2 capitalize">
-                    {challenge.difficulty}
-                  </Badge>
-                </div>
-                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold leading-tight bg-gradient-to-r from-slate-900 to-slate-700 dark:from-slate-100 dark:to-slate-300 bg-clip-text text-transparent">
-                  {currentQuestion.question}
-                </h2>
+              <div className="flex items-center justify-between mb-4">
+                <Badge className="px-3 py-1 text-xs bg-gradient-to-r from-blue-500 to-indigo-600 text-white border-0">
+                  {challenge.subject}
+                </Badge>
+                <Badge variant="outline" className="px-3 py-1 text-xs border-2 capitalize">
+                  {challenge.difficulty}
+                </Badge>
               </div>
-
-              {/* Premium Answer Options - Compact */}
-              <div className="space-y-2 sm:space-y-3" key={currentQuestionIndex}>
-                {currentQuestion.options?.map((option, index) => {
-                  const isSelected = selectedAnswer === option;
-                  const isCorrect = option === currentQuestion.correctAnswer;
-                  const showResult = !!selectedAnswer;
-                  const letter = String.fromCharCode(65 + index);
-
-                  return (
-                    <button
-                      key={index}
-                      onClick={() => handleAnswerSelect(option)}
-                      disabled={!!selectedAnswer}
-                      className={`group relative w-full p-3 sm:p-4 text-left rounded-lg border-2 transition-all duration-300 hover:scale-[1.01] ${
-                        isSelected
-                          ? (isCorrect 
-                              ? 'border-green-500 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 font-semibold shadow-lg shadow-green-200/50 dark:shadow-green-900/20' 
-                              : 'border-red-500 bg-gradient-to-r from-red-50 to-rose-50 dark:from-red-950/30 dark:to-rose-950/30 font-semibold shadow-lg shadow-red-200/50 dark:shadow-red-900/20')
-                          : showResult
-                            ? (isCorrect 
-                                ? 'border-green-500 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 shadow-md' 
-                                : 'border-slate-200 dark:border-slate-700 opacity-50 cursor-not-allowed')
-                            : 'border-slate-200 dark:border-slate-700 hover:border-primary hover:bg-gradient-to-r hover:from-primary/5 hover:to-purple-500/5 hover:shadow-md'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className={`flex items-center justify-center w-10 h-10 rounded-lg border-2 font-bold text-base transition-all flex-shrink-0 ${
-                          isSelected
-                            ? (isCorrect 
-                                ? 'border-green-500 bg-gradient-to-br from-green-500 to-emerald-600 text-white shadow-lg' 
-                                : 'border-red-500 bg-gradient-to-br from-red-500 to-rose-600 text-white shadow-lg')
-                            : showResult && isCorrect
-                              ? 'border-green-500 bg-gradient-to-br from-green-500 to-emerald-600 text-white shadow-lg'
-                              : 'border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-800 group-hover:border-primary group-hover:bg-primary/10'
-                        }`}>
-                          {letter}
-                        </div>
-                        <span className="flex-1 text-sm sm:text-base font-medium leading-tight">{option}</span>
-                        {isSelected && (
-                          isCorrect 
-                            ? <CheckCircle2 className="h-5 w-5 text-green-500 animate-in zoom-in flex-shrink-0" />
-                            : <XCircle className="h-5 w-5 text-red-500 animate-in zoom-in flex-shrink-0" />
-                        )}
-                        {showResult && !isSelected && isCorrect && (
-                          <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0" />
-                        )}
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-          </CardContent>
-        </Card>
+              
+              <ArenaQuestionRenderer
+                question={currentQuestion}
+                onAnswer={handleAnswerSelect}
+                selectedAnswer={selectedAnswer}
+                showResult={selectedAnswer !== null && selectedAnswer !== undefined}
+                isCorrect={selectedAnswer !== null && selectedAnswer !== undefined ? checkGameQuestionAnswer(currentQuestion, selectedAnswer) : false}
+                disabled={selectedAnswer !== null && selectedAnswer !== undefined}
+              />
+            </CardContent>
+          </Card>
 
         {/* Action Button - Hidden for auto-advance, but kept in DOM for accessibility/fallback if needed, or removed entirely */}
         {/* <Button

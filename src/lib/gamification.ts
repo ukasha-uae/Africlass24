@@ -131,6 +131,57 @@ export const calculateXP = (
   return xp;
 };
 
+/**
+ * Calculate coin rewards based on game result, accuracy, and performance
+ */
+export const calculateCoins = (
+  result: 'win' | 'loss' | 'draw',
+  accuracy: number, // 0-100 percentage
+  score: number,
+  rank: number,
+  totalPlayers: number,
+  currentStreak: number
+): number => {
+  let coins = 0;
+
+  // Base coins for participation
+  coins += 10;
+
+  // Result Bonus
+  if (result === 'win') {
+    coins += 50; // Win bonus
+  } else if (result === 'draw') {
+    coins += 20; // Draw bonus
+  }
+
+  // Accuracy Bonus (up to 50 coins for 100% accuracy)
+  const accuracyBonus = Math.floor(accuracy * 0.5);
+  coins += accuracyBonus;
+
+  // Score Bonus (1 coin per 10 points)
+  coins += Math.floor(score / 10);
+
+  // Rank Bonus (for multiplayer)
+  if (totalPlayers > 2) {
+    // Top 3 get extra bonus
+    if (rank === 1) coins += 100; // First place
+    else if (rank === 2) coins += 50; // Second place
+    else if (rank === 3) coins += 25; // Third place
+  }
+
+  // Streak Bonus (5 coins per streak)
+  if (currentStreak > 0 && result === 'win') {
+    coins += currentStreak * 5;
+  }
+
+  // Perfect Score Bonus
+  if (accuracy === 100) {
+    coins += 50; // Perfect accuracy bonus
+  }
+
+  return Math.floor(coins);
+};
+
 export const getLevel = (xp: number) => {
   const level = Math.floor(Math.sqrt(xp / 100)) + 1;
   const xpForCurrentLevel = 100 * Math.pow(level - 1, 2);

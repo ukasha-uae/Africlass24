@@ -75,7 +75,7 @@ export function PWAInstallPrompt() {
               </div>
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-base mb-1">Install SmartC24</h3>
+              <h3 className="font-semibold text-base mb-1">Install S24</h3>
               <p className="text-sm text-muted-foreground mb-3">
                 Get quick access and work offline!
               </p>
@@ -164,7 +164,7 @@ export function PWAUpdatePrompt() {
             <div className="flex-1 min-w-0">
               <h3 className="font-semibold text-base mb-1">Update Available</h3>
               <p className="text-sm text-muted-foreground mb-3">
-                A new version of SmartC24 is ready!
+                A new version of S24 is ready!
               </p>
               <div className="flex gap-2 mt-2">
                 <Button 

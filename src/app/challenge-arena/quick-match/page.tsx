@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -120,7 +120,6 @@ export default function QuickMatchPage() {
     const timer = setInterval(() => {
       setCountdown(prev => {
         if (prev <= 1) {
-          startMatch();
           return 0;
         }
         return prev - 1;
@@ -129,6 +128,16 @@ export default function QuickMatchPage() {
 
     return () => clearInterval(timer);
   }, [opponent, countdown]);
+
+  // Separate effect to handle navigation when countdown reaches 0
+  useEffect(() => {
+    if (opponent && countdown === 0) {
+      // Use setTimeout to defer navigation until after render
+      setTimeout(() => {
+        startMatch();
+      }, 0);
+    }
+  }, [opponent, countdown, startMatch]);
 
   const findOpponent = () => {
     if (!player) return;
@@ -184,7 +193,7 @@ export default function QuickMatchPage() {
     }
   };
 
-  const startMatch = () => {
+  const startMatch = useCallback(() => {
     if (!player || !opponent) return;
 
     // Create challenge
@@ -214,9 +223,11 @@ export default function QuickMatchPage() {
     // Start the challenge
     startChallenge(challenge.id);
 
-    // Navigate to battle page
-    router.push(`/challenge-arena/play/${challenge.id}`);
-  };
+    // Navigate to battle page - use setTimeout to defer navigation
+    setTimeout(() => {
+      router.push(`/challenge-arena/play/${challenge.id}`);
+    }, 0);
+  }, [player, opponent, subject, difficulty, router]);
 
   const handleStartSearch = () => {
     setIsSearching(true);
@@ -295,8 +306,26 @@ export default function QuickMatchPage() {
               <div className="text-base sm:text-lg opacity-90">Rating: {opponent.rating}</div>
             </div>
           </div>
-          <div className="text-3xl sm:text-4xl font-bold animate-pulse">
-            Starting in {countdown}... {countdown > 0 ? countdown : 'GO!'}
+          <div className="mt-8 sm:mt-12">
+            <div className={`inline-block p-6 sm:p-8 rounded-3xl border-4 transition-all duration-300 ${
+              countdown <= 3 
+                ? 'bg-gradient-to-br from-red-500 to-orange-600 border-red-400 animate-pulse scale-110' 
+                : countdown <= 6
+                ? 'bg-gradient-to-br from-orange-500 to-yellow-600 border-orange-400 scale-105'
+                : 'bg-gradient-to-br from-green-500 to-emerald-600 border-green-400'
+            } shadow-2xl`}>
+              <div className="text-center">
+                <p className="text-sm sm:text-base opacity-90 mb-2">Starting in</p>
+                <div className={`text-6xl sm:text-7xl lg:text-8xl font-bold transition-all duration-300 ${
+                  countdown <= 3 ? 'animate-bounce' : ''
+                }`}>
+                  {countdown > 0 ? countdown : 'GO!'}
+                </div>
+                {countdown === 0 && (
+                  <div className="mt-4 text-2xl sm:text-3xl animate-pulse">🚀</div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
