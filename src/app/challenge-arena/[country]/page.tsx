@@ -236,32 +236,44 @@ export default function LocalizedChallengeArenaPage() {
   }
 
   return (
-    <div className="relative min-h-screen">
-      {/* Decorative Background Elements */}
+    <div className="relative min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-indigo-950 dark:to-purple-950">
+      {/* Premium Animated Background Elements */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className={`absolute top-20 -right-20 w-96 h-96 bg-gradient-to-br ${colors.primary} opacity-10 rounded-full blur-3xl animate-float`} />
-        <div className={`absolute -bottom-20 -left-20 w-96 h-96 bg-gradient-to-tr ${colors.accent} opacity-10 rounded-full blur-3xl`} style={{ animationDelay: '1s' }} />
-        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br ${colors.secondary} opacity-5 rounded-full blur-3xl`} />
+        {/* Large gradient orbs with blur */}
+        <div className={`absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br ${colors.primary} opacity-20 rounded-full blur-3xl animate-pulse`} style={{ animationDuration: '8s' }} />
+        <div className={`absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr ${colors.accent} opacity-20 rounded-full blur-3xl animate-pulse`} style={{ animationDuration: '10s', animationDelay: '1s' }} />
+        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br ${colors.secondary} opacity-10 rounded-full blur-3xl animate-pulse`} style={{ animationDuration: '12s', animationDelay: '2s' }} />
+        {/* Additional floating orbs */}
+        <div className={`absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-gradient-to-br from-amber-300/20 via-orange-300/20 to-red-300/20 rounded-full blur-3xl animate-pulse`} style={{ animationDuration: '6s' }} />
+        <div className={`absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-gradient-to-tr from-blue-300/20 via-purple-300/20 to-pink-300/20 rounded-full blur-3xl animate-pulse`} style={{ animationDuration: '7s', animationDelay: '1.5s' }} />
       </div>
 
       <div className="container mx-auto p-3 sm:p-4 md:p-6 lg:p-8 pb-20">
-        {/* Header */}
-        <div className="mb-6 sm:mb-8">
+        {/* Premium Header */}
+        <div className="mb-6 sm:mb-8 lg:mb-12">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 mb-4">
-                <span className="text-2xl">{colors.flag}</span>
-                <span className="text-sm font-semibold text-primary">{colors.tagline}</span>
+            <div className="flex-1">
+              <div className="inline-block mb-6 px-6 py-2 bg-gradient-to-r from-amber-500/10 to-orange-500/10 backdrop-blur-sm rounded-full border border-amber-200/50 dark:border-amber-800/50">
+                <span className="text-amber-700 dark:text-amber-400 font-semibold text-sm flex items-center gap-2">
+                  <span className="text-xl">{colors.flag}</span>
+                  <span>{colors.tagline}</span>
+                </span>
               </div>
-
-              <h1 className={`text-3xl sm:text-4xl font-bold mb-2 flex items-center gap-3 bg-gradient-to-r ${colors.primary} bg-clip-text text-transparent`}>
-                <Trophy className="h-10 w-10 text-yellow-500" />
-                Challenge Arena
-              </h1>
-              <p className="text-muted-foreground flex items-center gap-2">
-                <span>{country?.flag}</span>
-                <span>Compete with classmates and schools across {country?.name || 'West Africa'}</span>
-              </p>
+              
+              <div className="flex items-center justify-center sm:justify-start gap-4 mb-4">
+                <div className="text-5xl sm:text-6xl lg:text-7xl animate-pulse">🎮</div>
+                <h1 className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r ${colors.primary} bg-clip-text text-transparent`}>
+                  Challenge Arena
+                </h1>
+              </div>
+              
+              <div className="flex items-center justify-center sm:justify-start gap-3 mb-6">
+                <div className="h-px w-16 bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+                <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-400 max-w-3xl">
+                  Compete with classmates and schools across {country?.name || 'West Africa'}
+                </p>
+                <div className="h-px w-16 bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+              </div>
             </div>
             <div className="flex flex-col gap-2">
               <CampusSelector onLevelChange={handleLevelChange} defaultLevel={educationLevel} />
@@ -297,46 +309,63 @@ export default function LocalizedChallengeArenaPage() {
           </CardContent>
         </Card>
 
-        {/* Player Stats */}
-        <Card className="mb-6 bg-gradient-to-r from-primary/10 to-primary/5">
+        {/* Premium Player Stats Dashboard */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6">
+          <div className="group relative bg-gradient-to-br from-blue-500/10 to-blue-600/10 backdrop-blur-xl p-4 sm:p-6 rounded-2xl border border-blue-200/30 dark:border-blue-800/30 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 overflow-hidden">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-blue-400/30 to-purple-400/30 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+            <div className="relative text-center">
+              <div className="text-3xl sm:text-4xl lg:text-5xl mb-2 group-hover:scale-110 transition-transform inline-block">⭐</div>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">{player.rating}</div>
+              <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium mt-1">Rating</div>
+            </div>
+          </div>
+          <div className="group relative bg-gradient-to-br from-amber-500/10 to-orange-600/10 backdrop-blur-xl p-4 sm:p-6 rounded-2xl border border-amber-200/30 dark:border-amber-800/30 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 overflow-hidden">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-amber-400/30 to-orange-400/30 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+            <div className="relative text-center">
+              <div className="text-3xl sm:text-4xl lg:text-5xl mb-2 group-hover:scale-110 group-hover:rotate-12 transition-all inline-block">🏆</div>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">{player.wins}</div>
+              <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium mt-1">Wins</div>
+            </div>
+          </div>
+          <div className="group relative bg-gradient-to-br from-emerald-500/10 to-teal-600/10 backdrop-blur-xl p-4 sm:p-6 rounded-2xl border border-emerald-200/30 dark:border-emerald-800/30 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 overflow-hidden">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-emerald-400/30 to-teal-400/30 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+            <div className="relative text-center">
+              <div className="text-3xl sm:text-4xl lg:text-5xl mb-2 group-hover:scale-110 transition-transform inline-block">🔥</div>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">{player.winStreak}</div>
+              <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium mt-1">Win Streak</div>
+            </div>
+          </div>
+          <div className="group relative bg-gradient-to-br from-purple-500/10 to-pink-600/10 backdrop-blur-xl p-4 sm:p-6 rounded-2xl border border-purple-200/30 dark:border-purple-800/30 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 overflow-hidden">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-purple-400/30 to-pink-400/30 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+            <div className="relative text-center">
+              <div className="text-3xl sm:text-4xl lg:text-5xl mb-2 group-hover:scale-110 transition-transform inline-block">🎯</div>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{player.totalGames}</div>
+              <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium mt-1">Total Games</div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Player Profile Card */}
+        <Card className="mb-6 bg-gradient-to-r from-primary/10 to-primary/5 backdrop-blur-sm border-2 border-primary/20">
           <CardContent className="p-4 sm:p-6">
-            <div className="flex items-center gap-4 mb-4">
-              <Avatar className="h-16 w-16 border-4 border-primary">
+            <div className="flex items-center gap-4">
+              <Avatar className="h-16 w-16 border-4 border-primary shadow-lg">
                 {player.avatar ? (
                   <AvatarImage src={player.avatar} alt={player.userName} />
                 ) : (
-                  <AvatarFallback className="text-2xl font-bold">
+                  <AvatarFallback className="text-2xl font-bold bg-gradient-to-br from-primary to-accent text-white">
                     {player.userName.split(' ').map(n => n[0]).join('')}
                   </AvatarFallback>
                 )}
               </Avatar>
               <div className="flex-1">
-                <h2 className="text-2xl font-bold">{player.userName}</h2>
+                <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">{player.userName}</h2>
                 <p className="text-sm text-muted-foreground">{player.school}</p>
                 <Badge variant="outline" className="mt-1">{player.level || 'JHS'}</Badge>
               </div>
               <div className="text-right">
                 <div className="text-sm font-semibold text-primary">Level {Math.floor((player.xp || 0) / 100) + 1}</div>
                 <div className="text-xs text-muted-foreground">{player.xp || 0} XP</div>
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-primary">{player.rating}</div>
-                <div className="text-xs text-muted-foreground">Rating</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-green-600">{player.wins}</div>
-                <div className="text-xs text-muted-foreground">Wins</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-orange-600">{player.winStreak}</div>
-                <div className="text-xs text-muted-foreground">Streak</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-purple-600">{player.totalGames}</div>
-                <div className="text-xs text-muted-foreground">Games</div>
               </div>
             </div>
           </CardContent>
@@ -382,47 +411,66 @@ export default function LocalizedChallengeArenaPage() {
           <TabsContent value="play" className="space-y-4">
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <Link href="/challenge-arena/practice">
-                <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-full bg-green-100 dark:bg-green-900">
-                        <BrainCircuit className="h-8 w-8 text-green-600" />
+                <Card className="relative bg-gradient-to-br from-green-500 to-emerald-600 p-6 sm:p-8 rounded-2xl shadow-xl text-white overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer border-0">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+                  <div className="relative">
+                    <div className="text-4xl sm:text-5xl lg:text-6xl mb-3 sm:mb-4">🧠</div>
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-2">Practice Mode</h3>
+                    <p className="text-base sm:text-lg mb-3 sm:mb-4 opacity-90">
+                      Sharpen your skills without affecting your rating
+                    </p>
+                    <div className="space-y-2 mb-4 sm:mb-6">
+                      <div className="flex items-center">
+                        <span className="text-white/80 mr-2">👤</span>
+                        <span className="text-sm sm:text-base">Solo Practice</span>
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold mb-2">Practice Mode</h3>
-                        <p className="text-sm text-muted-foreground mb-3">
-                          Sharpen your skills without affecting your rating
-                        </p>
-                        <div className="flex gap-2">
-                          <Badge variant="secondary">Solo</Badge>
-                          <Badge variant="outline">No pressure</Badge>
-                        </div>
+                      <div className="flex items-center">
+                        <span className="text-white/80 mr-2">⏱️</span>
+                        <span className="text-sm sm:text-base">No time limit</span>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="text-white/80 mr-2">🛡️</span>
+                        <span className="text-sm sm:text-base">No rating change</span>
                       </div>
                     </div>
-                  </CardContent>
+                    <div className="w-full bg-white text-green-600 text-center py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-bold hover:bg-gray-100 transition-colors">
+                      Start Practice
+                    </div>
+                  </div>
                 </Card>
               </Link>
 
               <Link href="/challenge-arena/quick-match">
-                <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-full bg-orange-100 dark:bg-orange-900">
-                        <Zap className="h-8 w-8 text-orange-600" />
+                <Card className="relative bg-gradient-to-br from-orange-500 to-red-600 p-6 sm:p-8 rounded-2xl shadow-xl text-white overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer border-0">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+                  <div className="relative">
+                    <div className="text-4xl sm:text-5xl lg:text-6xl mb-3 sm:mb-4">⚡</div>
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-2">Quick Match</h3>
+                    <p className="text-base sm:text-lg mb-3 sm:mb-4 opacity-90">
+                      Instant matchmaking with students at your level
+                    </p>
+                    <div className="space-y-2 mb-4 sm:mb-6">
+                      <div className="flex items-center">
+                        <span className="text-white/80 mr-2">👥</span>
+                        <span className="text-sm sm:text-base">2 Players</span>
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold mb-2">Quick Match</h3>
-                        <p className="text-sm text-muted-foreground mb-3">
-                          Instant matchmaking with students at your level
-                        </p>
-                        <div className="flex gap-2">
-                          <Badge variant="secondary">2 players</Badge>
-                          <Badge variant="outline">10 questions</Badge>
-                          <Badge variant="outline">2 min each</Badge>
-                        </div>
+                      <div className="flex items-center">
+                        <span className="text-white/80 mr-2">⏱️</span>
+                        <span className="text-sm sm:text-base">2 minutes</span>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="text-white/80 mr-2">❓</span>
+                        <span className="text-sm sm:text-base">10 questions</span>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="text-white/80 mr-2">💎</span>
+                        <span className="text-sm sm:text-base">100 pts/question</span>
                       </div>
                     </div>
-                  </CardContent>
+                    <div className="w-full bg-white text-orange-600 text-center py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-bold hover:bg-gray-100 transition-colors">
+                      Find Match
+                    </div>
+                  </div>
                 </Card>
               </Link>
 
