@@ -89,10 +89,10 @@ export default function QuizBattlePage() {
       setTimeLeft(prev => {
         // Play warning sound when time is low
         if (prev === 10) {
-          playSound('warning', 0.3);
+          playSound('warning');
         }
         if (prev === 5) {
-          playSound('warning', 0.5);
+          playSound('warning');
         }
         
         if (prev <= 1) {
@@ -1198,22 +1198,54 @@ export default function QuizBattlePage() {
 
       <div className="container mx-auto p-3 sm:p-6 pb-20 relative z-10">
         <div className="max-w-4xl mx-auto">
-          {/* Premium Progress Header */}
-          <Card className="mb-4 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-2 border-primary/20 shadow-xl">
-            <CardContent className="p-4 sm:p-6">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="text-3xl sm:text-4xl animate-pulse">⚡</div>
-                  <div>
-                    <span className="font-bold text-lg sm:text-xl bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                      Question {currentQuestionIndex + 1} of {challenge.questions.length}
-                    </span>
-                    <div className="text-xs text-muted-foreground mt-0.5">
-                      {challenge.subject} • {challenge.difficulty}
+          {/* Premium Large Visible Timer - Fixed at Top */}
+          <div className={`sticky top-0 z-50 mb-4 transition-all ${
+            timeLeft <= 30 
+              ? 'animate-pulse' 
+              : ''
+          }`}>
+            <Card className={`border-2 shadow-2xl ${
+              timeLeft <= 30 
+                ? 'bg-gradient-to-r from-red-500/20 to-orange-500/20 dark:from-red-950/50 dark:to-orange-950/50 border-red-500/50 dark:border-red-600/50' 
+                : timeLeft <= 60
+                ? 'bg-gradient-to-r from-orange-500/20 to-yellow-500/20 dark:from-orange-950/50 dark:to-yellow-950/50 border-orange-500/50 dark:border-orange-600/50'
+                : 'bg-gradient-to-r from-blue-500/20 to-indigo-500/20 dark:from-blue-950/50 dark:to-indigo-950/50 border-blue-500/50 dark:border-blue-600/50'
+            } backdrop-blur-xl`}>
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex items-center justify-between flex-wrap gap-4">
+                  {/* Question Info */}
+                  <div className="flex items-center gap-3">
+                    <div className="text-3xl sm:text-4xl animate-pulse">⚡</div>
+                    <div>
+                      <span className="font-bold text-lg sm:text-xl bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+                        Question {currentQuestionIndex + 1} of {challenge.questions.length}
+                      </span>
+                      <div className="text-xs text-muted-foreground mt-0.5">
+                        {challenge.subject} • {challenge.difficulty}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="flex items-center gap-3">
+                  
+                  {/* Large Prominent Timer */}
+                  <div className={`flex items-center gap-3 px-6 py-4 rounded-2xl border-2 transition-all shadow-lg ${
+                    timeLeft <= 30 
+                      ? 'border-red-500 bg-gradient-to-br from-red-500 to-orange-600 animate-pulse scale-105' 
+                      : timeLeft <= 60
+                      ? 'border-orange-500 bg-gradient-to-br from-orange-500 to-yellow-500'
+                      : 'border-blue-500 bg-gradient-to-br from-blue-500 to-indigo-600'
+                  }`}>
+                    <Clock className={`h-8 w-8 sm:h-10 sm:w-10 text-white ${
+                      timeLeft <= 30 ? 'animate-spin' : ''
+                    }`} />
+                    <div className="flex flex-col">
+                      <span className="text-xs sm:text-sm text-white/80 font-medium">Time Left</span>
+                      <span className="font-mono font-black text-3xl sm:text-4xl lg:text-5xl text-white leading-none">
+                        {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {/* Sound Toggle */}
                   <Button
                     variant="ghost"
                     size="icon"
@@ -1227,41 +1259,37 @@ export default function QuizBattlePage() {
                       <Volume2 className="h-5 w-5 text-primary" />
                     )}
                   </Button>
-                  <div className={`flex items-center gap-2 px-4 py-2 rounded-full border-2 transition-all ${
-                    timeLeft <= 30 
-                      ? 'border-red-500 bg-red-50 dark:bg-red-950/30 animate-pulse' 
-                      : timeLeft <= 60
-                      ? 'border-orange-500 bg-orange-50 dark:bg-orange-950/30'
-                      : 'border-blue-500 bg-blue-50 dark:bg-blue-950/30'
-                  }`}>
-                    <Clock className={`h-5 w-5 ${timeLeft <= 30 ? 'text-red-500 animate-pulse' : timeLeft <= 60 ? 'text-orange-500' : 'text-blue-500'}`} />
-                    <span className={`font-mono font-bold text-lg ${timeLeft <= 30 ? 'text-red-600' : timeLeft <= 60 ? 'text-orange-600' : 'text-blue-600'}`}>
-                      {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
+                </div>
+                
+                {/* Progress Bars */}
+                <div className="space-y-3 mt-4">
+                  <div className="flex items-center justify-between text-xs text-muted-foreground mb-1">
+                    <span>Question Progress</span>
+                    <span className="font-semibold">{Math.round(progress)}%</span>
+                  </div>
+                  <Progress value={progress} className="h-3 bg-slate-200 dark:bg-slate-700" />
+                  <div className="flex items-center justify-between text-xs text-muted-foreground mb-1">
+                    <span>Time Remaining</span>
+                    <span className={`font-bold ${
+                      timeLeft <= 30 ? 'text-red-600' : 
+                      timeLeft <= 60 ? 'text-orange-600' : 
+                      'text-blue-600'
+                    }`}>
+                      {Math.round(timeProgress)}%
                     </span>
                   </div>
+                  <Progress 
+                    value={timeProgress} 
+                    className={`h-3 bg-slate-200 dark:bg-slate-700 ${
+                      timeLeft <= 30 ? '[&>div]:bg-gradient-to-r [&>div]:from-red-500 [&>div]:to-orange-600' : 
+                      timeLeft <= 60 ? '[&>div]:bg-gradient-to-r [&>div]:from-orange-500 [&>div]:to-yellow-500' : 
+                      '[&>div]:bg-gradient-to-r [&>div]:from-blue-500 [&>div]:to-indigo-600'
+                    }`}
+                  />
                 </div>
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs text-muted-foreground mb-1">
-                  <span>Progress</span>
-                  <span>{Math.round(progress)}%</span>
-                </div>
-                <Progress value={progress} className="h-3 bg-slate-200 dark:bg-slate-700" />
-                <div className="flex items-center justify-between text-xs text-muted-foreground mb-1">
-                  <span>Time Remaining</span>
-                  <span>{Math.round(timeProgress)}%</span>
-                </div>
-                <Progress 
-                  value={timeProgress} 
-                  className={`h-2 bg-slate-200 dark:bg-slate-700 ${
-                    timeLeft <= 30 ? '[&>div]:bg-red-500' : 
-                    timeLeft <= 60 ? '[&>div]:bg-orange-500' : 
-                    '[&>div]:bg-blue-500'
-                  }`}
-                />
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </div>
 
           {/* Premium Player/Opponent Info */}
           <Card className="mb-4 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-2 border-slate-200/30 dark:border-slate-700/30 shadow-xl">
