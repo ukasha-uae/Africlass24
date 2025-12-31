@@ -391,12 +391,12 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
                 <p className="text-center text-gray-200 mb-3 text-sm sm:text-base">Click to see fraction form:</p>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                   {[
-                    { decimal: 0.5, fraction: '½' },
-                    { decimal: 0.25, fraction: '¼' },
-                    { decimal: 0.75, fraction: '¾' },
-                    { decimal: 0.333, fraction: '⅓' },
-                    { decimal: 1.5, fraction: '3/2' },
-                    { decimal: 2.5, fraction: '5/2' }
+                    { decimal: 0.5, fraction: '½', num: 1, den: 2 },
+                    { decimal: 0.25, fraction: '¼', num: 1, den: 4 },
+                    { decimal: 0.75, fraction: '¾', num: 3, den: 4 },
+                    { decimal: 0.333, fraction: '⅓', num: 1, den: 3 },
+                    { decimal: 1.5, fraction: '3/2', num: 3, den: 2 },
+                    { decimal: 2.5, fraction: '5/2', num: 5, den: 2 }
                   ].map((item, i) => (
                     <motion.button
                       key={i}
@@ -417,6 +417,94 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
                     </motion.button>
                   ))}
                 </div>
+                
+                {/* Visual fraction representation */}
+                {selectedNumber !== null && (() => {
+                  const selectedItem = [
+                    { decimal: 0.5, fraction: '½', num: 1, den: 2 },
+                    { decimal: 0.25, fraction: '¼', num: 1, den: 4 },
+                    { decimal: 0.75, fraction: '¾', num: 3, den: 4 },
+                    { decimal: 0.333, fraction: '⅓', num: 1, den: 3 },
+                    { decimal: 1.5, fraction: '3/2', num: 3, den: 2 },
+                    { decimal: 2.5, fraction: '5/2', num: 5, den: 2 }
+                  ].find(item => item.decimal === selectedNumber);
+                  
+                  if (!selectedItem) return null;
+                  
+                  const { num, den, fraction, decimal } = selectedItem;
+                  const isProper = num < den;
+                  
+                  return (
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="mt-4 p-4 bg-green-600/30 rounded-lg border border-green-500"
+                    >
+                      <p className="text-center text-green-200 font-bold text-base sm:text-lg mb-4">
+                        {decimal} = {fraction}
+                      </p>
+                      
+                      {/* Visual representation */}
+                      <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                        {/* Circle/Pie chart */}
+                        <div className="relative w-28 h-28 sm:w-36 sm:h-36">
+                          <svg viewBox="0 0 100 100" className="w-full h-full">
+                            {Array.from({ length: den }).map((_, i) => {
+                              const angle = (360 / den);
+                              const startAngle = (i * angle - 90) * Math.PI / 180;
+                              const endAngle = ((i + 1) * angle - 90) * Math.PI / 180;
+                              const isShaded = i < num;
+                              
+                              const x1 = 50 + 50 * Math.cos(startAngle);
+                              const y1 = 50 + 50 * Math.sin(startAngle);
+                              const x2 = 50 + 50 * Math.cos(endAngle);
+                              const y2 = 50 + 50 * Math.sin(endAngle);
+                              const largeArc = angle > 180 ? 1 : 0;
+                              
+                              return (
+                                <motion.path
+                                  key={i}
+                                  initial={{ pathLength: 0, opacity: 0 }}
+                                  animate={{ pathLength: 1, opacity: 1 }}
+                                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                                  d={`M 50 50 L ${x1} ${y1} A 50 50 0 ${largeArc} 1 ${x2} ${y2} Z`}
+                                  fill={isShaded ? '#10b981' : '#374151'}
+                                  stroke="#1f2937"
+                                  strokeWidth="1.5"
+                                />
+                              );
+                            })}
+                          </svg>
+                        </div>
+                        
+                        {/* Bar representation */}
+                        <div className="flex flex-col items-center">
+                          <div className="flex gap-1 h-20 sm:h-24 mb-2">
+                            {Array.from({ length: den }).map((_, i) => {
+                              const isShaded = i < num;
+                              
+                              return (
+                                <motion.div
+                                  key={i}
+                                  initial={{ scaleY: 0 }}
+                                  animate={{ scaleY: 1 }}
+                                  transition={{ duration: 0.3, delay: i * 0.05 }}
+                                  className={`w-6 sm:w-8 rounded ${
+                                    isShaded ? 'bg-green-500' : 'bg-gray-600'
+                                  }`}
+                                />
+                              );
+                            })}
+                          </div>
+                          <p className="text-green-300 text-xs sm:text-sm text-center font-medium">
+                            {num} out of {den} parts {isProper ? 'shaded' : '(improper fraction)'}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })()}
               </div>
             </div>
           )}
