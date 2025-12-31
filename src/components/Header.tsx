@@ -37,6 +37,7 @@ import { useMemo, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useLocalization } from '@/hooks/useLocalization';
 import { useV1FeatureAccess } from '@/components/V1RouteGuard';
+import { useFullscreen } from '@/contexts/FullscreenContext';
 
 export default function Header() {
   const { user, firestore } = useFirebase();
@@ -46,12 +47,18 @@ export default function Header() {
   const [sheetOpen, setSheetOpen] = useState(false);
   const [countryOpen, setCountryOpen] = useState(false);
   const { country } = useLocalization();
+  const { isFullscreen } = useFullscreen();
   const profileRef = useMemo(() => (user && firestore) ? doc(firestore, `students/${user.uid}`) : null, [user, firestore]);
   const { data: profile } = useDoc<any>(profileRef as any);
   
   // V1: Check feature access based on user's education level
   const { hasAccess: hasLessonsAccess } = useV1FeatureAccess('lessons');
   const { hasAccess: hasVirtualLabsAccess } = useV1FeatureAccess('virtualLabs');
+  
+  // Hide header during fullscreen (gameplay/lessons)
+  if (isFullscreen) {
+    return null;
+  }
   
   return (
     <header 

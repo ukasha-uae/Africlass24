@@ -5,6 +5,7 @@ import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from 'luci
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useLocalization } from '@/lib/localization/localization-context';
+import { useFullscreen } from '@/contexts/FullscreenContext';
 import { useState } from 'react';
 
 /**
@@ -14,8 +15,14 @@ import { useState } from 'react';
  */
 export default function Footer() {
   const { country } = useLocalization();
+  const { isFullscreen } = useFullscreen();
   const [email, setEmail] = useState('');
   const currentYear = new Date().getFullYear();
+  
+  // Hide footer during fullscreen (gameplay/lessons)
+  if (isFullscreen) {
+    return null;
+  }
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();

@@ -33,6 +33,8 @@ import { useSoundEffects } from '@/hooks/use-sound-effects';
 import { useFirebase } from '@/firebase/provider';
 import { useToast } from '@/hooks/use-toast';
 import { FEATURE_FLAGS } from '@/lib/featureFlags';
+import { useFullscreen } from '@/contexts/FullscreenContext';
+import { useEffect } from 'react';
 
 export default function QuizBattlePage() {
   const params = useParams();
@@ -40,6 +42,7 @@ export default function QuizBattlePage() {
   const { playSound, isMuted, toggleMute } = useSoundEffects();
   const { user } = useFirebase();
   const { toast } = useToast();
+  const { setFullscreen } = useFullscreen();
   const challengeId = params.challengeId as string;
   
   const [challenge, setChallenge] = useState<Challenge | null>(null);
@@ -58,6 +61,20 @@ export default function QuizBattlePage() {
   const [questionStartTimes, setQuestionStartTimes] = useState<Record<string, number>>({});
   const [questionTimeSpent, setQuestionTimeSpent] = useState<Record<string, number>>({});
   const [suspiciousActivity, setSuspiciousActivity] = useState<string[]>([]);
+
+  // Enable fullscreen mode when gameplay starts
+  useEffect(() => {
+    if (gamePhase === 'playing') {
+      setFullscreen(true);
+    } else {
+      setFullscreen(false);
+    }
+    
+    // Cleanup: disable fullscreen when component unmounts
+    return () => {
+      setFullscreen(false);
+    };
+  }, [gamePhase, setFullscreen]);
 
   useEffect(() => {
     // Use mock user ID for testing
@@ -1198,7 +1215,7 @@ export default function QuizBattlePage() {
 
       <div className="container mx-auto p-3 sm:p-6 pb-20 relative z-10">
         <div className="max-w-4xl mx-auto">
-          {/* Premium Large Visible Timer - Fixed at Top */}
+          {/* Premium Large Visible Timer - Fixed at Top (no header offset needed) */}
           <div className={`fixed top-0 left-0 right-0 z-50 transition-all ${
             timeLeft <= 30 
               ? 'animate-pulse' 
@@ -1289,8 +1306,8 @@ export default function QuizBattlePage() {
             </Card>
           </div>
           
-          {/* Spacer for fixed header */}
-          <div className="h-[140px] sm:h-[160px]"></div>
+          {/* Spacer for fixed timer (no header, so just timer height) */}
+          <div className="h-[120px] sm:h-[140px]"></div>
 
           {/* Premium Player/Opponent Info - Compact */}
           <Card className="mb-3 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-2 border-slate-200/30 dark:border-slate-700/30 shadow-xl">

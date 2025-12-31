@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { User, BrainCircuit, Swords, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useFullscreen } from '@/contexts/FullscreenContext';
 
 /**
  * BottomNav Component - Mobile-only bottom navigation
@@ -12,6 +13,12 @@ import { cn } from '@/lib/utils';
  */
 export default function BottomNav() {
   const pathname = usePathname();
+  const { isFullscreen } = useFullscreen();
+  
+  // Hide bottom nav during fullscreen (gameplay/lessons)
+  if (isFullscreen) {
+    return null;
+  }
 
   const navItems = [
     { href: '/past-questions', label: 'Practice', icon: BrainCircuit },

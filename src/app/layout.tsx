@@ -9,6 +9,8 @@ import { FirebaseClientProvider } from '@/firebase';
 import StudentProfileSetup from '@/components/StudentProfileSetup';
 import { PWAInstallPrompt, PWAUpdatePrompt } from '@/components/PWAPrompts';
 import { LocalizationProvider } from '@/lib/localization/localization-context';
+import { FullscreenProvider } from '@/contexts/FullscreenContext';
+import { FullscreenMain } from '@/components/FullscreenMain';
 
 export const metadata: Metadata = {
   title: 'Smartclass24',
@@ -35,15 +37,17 @@ export default function RootLayout({
       <body className={cn('font-body antialiased bg-background h-full')}>
         <FirebaseClientProvider>
           <LocalizationProvider>
-            <div className="relative flex min-h-screen w-full flex-col">
-              <Header />
-              <main className="flex-1 pb-20 md:pb-8 pt-16">{children}</main>
-              <Footer />
-              <PWAInstallPrompt />
-              <PWAUpdatePrompt />
-              <BottomNav />
-              <Toaster />
-            </div>
+            <FullscreenProvider>
+              <div className="relative flex min-h-screen w-full flex-col">
+                <Header />
+                <FullscreenMain>{children}</FullscreenMain>
+                <Footer />
+                <PWAInstallPrompt />
+                <PWAUpdatePrompt />
+                <BottomNav />
+                <Toaster />
+              </div>
+            </FullscreenProvider>
           </LocalizationProvider>
         </FirebaseClientProvider>
       </body>
