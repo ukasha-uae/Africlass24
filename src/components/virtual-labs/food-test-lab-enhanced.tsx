@@ -392,28 +392,31 @@ export function FoodTestLabEnhanced() {
 
     return (
         <div className="space-y-6">
-            {/* Completion Badge */}
+            {/* Premium Completion Badge */}
             {hasCompleted && labProgress && (
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="flex items-center justify-between p-4 bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-950/30 dark:to-yellow-950/30 rounded-xl border-2 border-amber-300 dark:border-amber-700"
+                    className="relative p-6 bg-gradient-to-br from-amber-500/20 via-yellow-500/20 to-orange-500/20 backdrop-blur-xl rounded-2xl border-2 border-amber-400/50 dark:border-amber-600/50 shadow-2xl overflow-hidden"
                 >
-                    <div className="flex items-center gap-3">
-                        <div className="p-2 bg-amber-500 rounded-full">
-                            <Trophy className="h-6 w-6 text-white" />
-                        </div>
-                        <div>
-                            <div className="font-bold text-amber-900 dark:text-amber-100">Lab Completed!</div>
-                            <div className="text-sm text-amber-700 dark:text-amber-300">
-                                Score: {labProgress.score}%
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-400/30 to-yellow-400/30 rounded-full blur-3xl"></div>
+                    <div className="relative flex items-center justify-between">
+                        <div className="flex items-center gap-4">
+                            <div className="p-4 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-2xl shadow-lg">
+                                <Trophy className="h-8 w-8 text-white" />
+                            </div>
+                            <div>
+                                <div className="font-bold text-xl bg-gradient-to-r from-amber-600 to-yellow-600 dark:from-amber-400 dark:to-yellow-400 bg-clip-text text-transparent">Lab Completed!</div>
+                                <div className="text-sm text-amber-700 dark:text-amber-300 font-medium">
+                                    Score: <span className="font-bold">{labProgress.score}%</span>
+                                </div>
                             </div>
                         </div>
+                        <Badge className="bg-gradient-to-r from-amber-500 to-yellow-600 text-white border-0 shadow-lg px-4 py-2 text-base font-bold">
+                            <Award className="h-4 w-4 mr-2" />
+                            {labProgress.xpEarned} XP
+                        </Badge>
                     </div>
-                    <Badge variant="secondary" className="bg-amber-200 text-amber-900">
-                        <Award className="h-3 w-3 mr-1" />
-                        {labProgress.xpEarned} XP
-                    </Badge>
                 </motion.div>
             )}
 
@@ -464,40 +467,54 @@ export function FoodTestLabEnhanced() {
                 />
             )}
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>Objective</CardTitle>
-                    <CardDescription>
+            {/* Premium Objective Card */}
+            <Card className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-2 border-purple-200/30 dark:border-purple-800/30 shadow-xl">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-purple-400/20 to-violet-400/20 rounded-full blur-3xl"></div>
+                <CardHeader className="relative z-10">
+                    <CardTitle className="flex items-center gap-3 text-xl">
+                        <div className="text-3xl">🎯</div>
+                        <span className="bg-gradient-to-r from-purple-600 to-violet-600 dark:from-purple-400 dark:to-violet-400 bg-clip-text text-transparent">Objective</span>
+                    </CardTitle>
+                    <CardDescription className="text-slate-600 dark:text-slate-400 text-base leading-relaxed">
                         {objectiveText}
                     </CardDescription>
                 </CardHeader>
             </Card>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>Lab Information</CardTitle>
+            {/* Premium Lab Information Card */}
+            <Card className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-2 border-purple-200/30 dark:border-purple-800/30 shadow-xl">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-blue-400/20 to-indigo-400/20 rounded-full blur-3xl"></div>
+                <CardHeader className="relative z-10">
+                    <CardTitle className="flex items-center gap-3 text-xl">
+                        <div className="text-3xl">📚</div>
+                        <span className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">Lab Information</span>
+                    </CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="relative z-10">
                     <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger>
-                                <div className="flex items-center gap-2">
-                                    <BookOpen className="h-4 w-4" />
-                                    <span>Background Theory</span>
+                        <AccordionItem value="item-1" className="border-2 border-purple-200/30 dark:border-purple-800/30 rounded-xl mb-3 px-4">
+                            <AccordionTrigger className="hover:no-underline">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-lg">
+                                        <BookOpen className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                                    </div>
+                                    <span className="font-semibold text-slate-700 dark:text-slate-300">Background Theory</span>
                                 </div>
                             </AccordionTrigger>
-                            <AccordionContent className="prose prose-sm dark:prose-invert text-muted-foreground">
+                            <AccordionContent className="pt-4 text-slate-600 dark:text-slate-400 leading-relaxed">
                                 <p>{theoryText}</p>
                             </AccordionContent>
                         </AccordionItem>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger>
-                                <div className="flex items-center gap-2">
-                                    <Shield className="h-4 w-4" />
-                                    <span>Safety Precautions</span>
+                        <AccordionItem value="item-2" className="border-2 border-green-200/30 dark:border-green-800/30 rounded-xl px-4">
+                            <AccordionTrigger className="hover:no-underline">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-lg">
+                                        <Shield className="h-5 w-5 text-green-600 dark:text-green-400" />
+                                    </div>
+                                    <span className="font-semibold text-slate-700 dark:text-slate-300">Safety Precautions</span>
                                 </div>
                             </AccordionTrigger>
-                            <AccordionContent className="prose prose-sm dark:prose-invert text-muted-foreground">
+                            <AccordionContent className="pt-4 text-slate-600 dark:text-slate-400 leading-relaxed">
                                 <p>{safetyText}</p>
                             </AccordionContent>
                         </AccordionItem>
@@ -505,51 +522,63 @@ export function FoodTestLabEnhanced() {
                 </CardContent>
             </Card>
 
-            {/* Main Lab Interface */}
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center justify-between">
-                        <span>🧪 Interactive Food Test Lab</span>
+            {/* Premium Main Lab Interface */}
+            <Card className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-2 border-purple-200/30 dark:border-purple-800/30 shadow-2xl overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-400/20 to-violet-400/20 rounded-full blur-3xl"></div>
+                <CardHeader className="relative z-10">
+                    <CardTitle className="flex items-center justify-between flex-wrap gap-4">
+                        <div className="flex items-center gap-3">
+                            <div className="text-4xl">🧪</div>
+                            <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 dark:from-purple-400 dark:via-violet-400 dark:to-indigo-400 bg-clip-text text-transparent">Interactive Food Test Lab</span>
+                        </div>
                         <Button 
                             variant="outline" 
                             size="sm"
                             onClick={() => setShowSafetyGear(!showSafetyGear)}
-                            className={cn("transition-colors", showSafetyGear && "border-green-500 text-green-600")}
+                            className={cn(
+                                "transition-all hover:scale-105 border-2 font-semibold",
+                                showSafetyGear 
+                                    ? "bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-green-500 text-green-700 dark:text-green-400" 
+                                    : "border-slate-300 dark:border-slate-700"
+                            )}
                         >
                             {showSafetyGear ? <Eye className="h-4 w-4 mr-2" /> : <EyeOff className="h-4 w-4 mr-2" />}
                             Safety {showSafetyGear ? 'ON' : 'OFF'}
                         </Button>
                     </CardTitle>
-                    <CardDescription>Follow the teacher's guidance to perform food nutrient tests</CardDescription>
+                    <CardDescription className="text-slate-600 dark:text-slate-400 text-base">Follow the teacher's guidance to perform food nutrient tests</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                    {/* Start Button (intro step) */}
+                    {/* Premium Start Button (intro step) */}
                     {currentStep === 'intro' && (
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            className="flex flex-col items-center justify-center py-12 space-y-4"
+                            className="flex flex-col items-center justify-center py-16 space-y-6"
                         >
-                            <FlaskConical className="h-24 w-24 text-primary" />
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-violet-400 rounded-full blur-2xl opacity-50 animate-pulse"></div>
+                                <FlaskConical className="h-32 w-32 text-purple-600 dark:text-purple-400 relative z-10" />
+                            </div>
                             <Button 
                                 size="lg" 
                                 onClick={handleStartExperiment}
-                                className="text-lg px-8"
+                                className="text-lg px-10 py-6 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white shadow-xl hover:shadow-2xl transition-all hover:scale-105 font-bold"
                             >
                                 Start Experiment 🧪
                             </Button>
                         </motion.div>
                     )}
 
-                    {/* Food Selection */}
+                    {/* Premium Food Selection */}
                     {currentStep === 'select-food' && (
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="space-y-4"
+                            className="space-y-6"
                         >
-                            <Label className="text-lg font-semibold flex items-center gap-2">
-                                <Utensils className="h-5 w-5" />
+                            <Label className="text-xl font-bold flex items-center gap-3 bg-gradient-to-r from-purple-600 to-violet-600 dark:from-purple-400 dark:to-violet-400 bg-clip-text text-transparent">
+                                <Utensils className="h-6 w-6 text-purple-600 dark:text-purple-400" />
                                 Select a Food Sample
                             </Label>
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -560,10 +589,15 @@ export function FoodTestLabEnhanced() {
                                             <Button 
                                                 variant={selectedFood === food ? 'default' : 'outline'}
                                                 onClick={() => handleFoodSelect(food)}
-                                                className="h-auto w-full flex-col gap-3 py-6"
+                                                className={cn(
+                                                    "h-auto w-full flex-col gap-3 py-6 border-2 transition-all",
+                                                    selectedFood === food
+                                                        ? "bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white shadow-lg hover:shadow-xl"
+                                                        : "hover:bg-purple-50 dark:hover:bg-purple-950/30 hover:border-purple-300 dark:hover:border-purple-700"
+                                                )}
                                             >
-                                                <Icon className="h-10 w-10" />
-                                                <span className="text-sm font-medium">{food}</span>
+                                                <Icon className="h-12 w-12" />
+                                                <span className="text-base font-semibold">{food}</span>
                                             </Button>
                                         </motion.div>
                                     );
@@ -572,37 +606,42 @@ export function FoodTestLabEnhanced() {
                         </motion.div>
                     )}
 
-                    {/* Reagent Selection */}
+                    {/* Premium Reagent Selection */}
                     {currentStep === 'select-reagent' && selectedFood && (
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="space-y-4"
+                            className="space-y-6"
                         >
-                            <div className="flex items-center gap-3 p-3 bg-primary/5 rounded-lg border">
-                                <FoodIcon className="h-8 w-8 text-primary" />
+                            <div className="flex items-center gap-4 p-4 bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-950/30 dark:to-violet-950/30 rounded-xl border-2 border-purple-200/50 dark:border-purple-800/50 backdrop-blur-sm">
+                                <div className="p-3 bg-gradient-to-br from-purple-500/20 to-violet-500/20 rounded-xl">
+                                    <FoodIcon className="h-10 w-10 text-purple-600 dark:text-purple-400" />
+                                </div>
                                 <div>
-                                    <div className="text-sm text-muted-foreground">Testing</div>
-                                    <div className="font-bold">{selectedFood}</div>
+                                    <div className="text-sm text-slate-600 dark:text-slate-400 font-medium">Testing</div>
+                                    <div className="font-bold text-lg bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent">{selectedFood}</div>
                                 </div>
                             </div>
                             
-                            <Label className="text-lg font-semibold flex items-center gap-2">
-                                <Beaker className="h-5 w-5" />
+                            <Label className="text-xl font-bold flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">
+                                <Beaker className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                                 Select a Test Reagent
                             </Label>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {reagentOptions.map(reagent => (
                                     <motion.div key={reagent} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                                         <Button 
                                             variant={selectedReagent === reagent ? 'default' : 'outline'}
                                             onClick={() => handleReagentSelect(reagent)}
-                                            className="h-auto w-full flex-col gap-2 py-4 text-left"
+                                            className={cn(
+                                                "h-auto w-full flex items-center gap-3 py-5 px-4 text-left border-2 transition-all",
+                                                selectedReagent === reagent
+                                                    ? "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl"
+                                                    : "hover:bg-blue-50 dark:hover:bg-blue-950/30 hover:border-blue-300 dark:hover:border-blue-700"
+                                            )}
                                         >
-                                            <div className="flex items-center gap-2 w-full">
-                                                <TestTube className="h-6 w-6" />
-                                                <span className="text-sm font-medium">{reagent}</span>
-                                            </div>
+                                            <TestTube className="h-6 w-6 flex-shrink-0" />
+                                            <span className="text-base font-semibold">{reagent}</span>
                                         </Button>
                                     </motion.div>
                                 ))}
@@ -770,33 +809,34 @@ export function FoodTestLabEnhanced() {
                         </div>
                     )}
 
-                    {/* Result Display */}
+                    {/* Premium Result Display */}
                     <AnimatePresence>
                         {result && currentStep === 'result' && (
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 rounded-xl border-2 border-green-200 dark:border-green-800"
+                                className="p-6 bg-gradient-to-br from-green-500/20 via-emerald-500/20 to-teal-500/20 backdrop-blur-xl rounded-2xl border-2 border-green-400/50 dark:border-green-600/50 shadow-2xl overflow-hidden"
                             >
-                                <div className="flex items-start gap-4">
-                                    <div className="p-3 bg-green-500 rounded-full flex-shrink-0">
-                                        <CheckCircle className="h-6 w-6 text-white" />
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-400/30 to-emerald-400/30 rounded-full blur-3xl"></div>
+                                <div className="relative flex items-start gap-4">
+                                    <div className="p-4 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl shadow-lg flex-shrink-0">
+                                        <CheckCircle className="h-8 w-8 text-white" />
                                     </div>
-                                    <div className="flex-1 space-y-3">
-                                        <h3 className="font-bold text-lg text-green-900 dark:text-green-100">
+                                    <div className="flex-1 space-y-4">
+                                        <h3 className="font-bold text-xl bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent">
                                             Test Complete! ✓
                                         </h3>
-                                        <p className="text-green-800 dark:text-green-200 font-medium">
+                                        <p className="text-green-800 dark:text-green-200 font-semibold text-base leading-relaxed">
                                             {result.text}
                                         </p>
-                                        <div className="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-green-200 dark:border-green-800">
-                                            <div>
-                                                <div className="text-xs text-green-600 dark:text-green-400 font-semibold mb-1">Nutrient Detected</div>
-                                                <div className="text-sm font-bold text-green-900 dark:text-green-100">{result.nutrient}</div>
+                                        <div className="grid grid-cols-2 gap-4 mt-6 pt-4 border-t-2 border-green-300/50 dark:border-green-700/50">
+                                            <div className="p-3 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 rounded-xl border border-green-200/50 dark:border-green-800/50">
+                                                <div className="text-xs text-green-600 dark:text-green-400 font-bold mb-2">Nutrient Detected</div>
+                                                <div className="text-base font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">{result.nutrient}</div>
                                             </div>
-                                            <div>
-                                                <div className="text-xs text-green-600 dark:text-green-400 font-semibold mb-1">Color Change</div>
-                                                <div className="text-sm font-bold text-green-900 dark:text-green-100">{result.colorChange}</div>
+                                            <div className="p-3 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 rounded-xl border border-green-200/50 dark:border-green-800/50">
+                                                <div className="text-xs text-green-600 dark:text-green-400 font-bold mb-2">Color Change</div>
+                                                <div className="text-base font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">{result.colorChange}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -805,12 +845,12 @@ export function FoodTestLabEnhanced() {
                         )}
                     </AnimatePresence>
                 </CardContent>
-                <CardFooter className="flex flex-col gap-3">
-                    {/* Action buttons */}
+                <CardFooter className="flex flex-col gap-4 relative z-10">
+                    {/* Premium Action buttons */}
                     {currentStep === 'select-reagent' && selectedReagent && (
                         <Button 
                             size="lg" 
-                            className="w-full"
+                            className="w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white shadow-xl hover:shadow-2xl transition-all hover:scale-105 font-bold py-6"
                             onClick={handleAddReagent}
                             data-action-button
                         >
@@ -822,7 +862,7 @@ export function FoodTestLabEnhanced() {
                     {currentStep === 'heating' && !isHeating && (
                         <Button 
                             size="lg" 
-                            className="w-full bg-orange-600 hover:bg-orange-700"
+                            className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-xl hover:shadow-2xl transition-all hover:scale-105 font-bold py-6"
                             onClick={handleStartHeating}
                             data-action-button
                         >
@@ -834,7 +874,7 @@ export function FoodTestLabEnhanced() {
                     {currentStep === 'observe' && !isHeating && (
                         <Button 
                             size="lg" 
-                            className="w-full"
+                            className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-xl hover:shadow-2xl transition-all hover:scale-105 font-bold py-6"
                             onClick={handleShowResult}
                             data-action-button
                         >
@@ -847,35 +887,39 @@ export function FoodTestLabEnhanced() {
                         <Button 
                             variant="outline" 
                             onClick={handleReset}
-                            className="w-full"
+                            className="w-full border-2 hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold py-6"
                         >
                             Reset & Try Another Test
                         </Button>
                     )}
                     
                     {selectedReagent === "Benedict's Solution" && currentStep !== 'intro' && (
-                        <div className="flex items-center gap-2 text-sm text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/30 px-4 py-2 rounded-lg border border-orange-200 dark:border-orange-800 w-full">
-                            <Flame className="h-4 w-4 flex-shrink-0" />
-                            <span className="font-medium">Note: Benedict's test requires heating to 80-100°C</span>
+                        <div className="flex items-center gap-3 text-sm bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-950/30 dark:to-red-950/30 px-5 py-3 rounded-xl border-2 border-orange-300/50 dark:border-orange-700/50 backdrop-blur-sm w-full">
+                            <Flame className="h-5 w-5 text-orange-600 dark:text-orange-400 flex-shrink-0" />
+                            <span className="font-semibold text-orange-700 dark:text-orange-300">Note: Benedict's test requires heating to 80-100°C</span>
                         </div>
                     )}
                 </CardFooter>
             </Card>
 
-            {/* Quiz Section */}
+            {/* Premium Quiz Section */}
             {currentStep === 'quiz' && (
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     data-quiz-section
                 >
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Post-Lab Quiz</CardTitle>
-                            <CardDescription>Test your understanding of the experiment</CardDescription>
+                    <Card className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-2 border-purple-200/30 dark:border-purple-800/30 shadow-2xl overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-400/20 to-violet-400/20 rounded-full blur-3xl"></div>
+                        <CardHeader className="relative z-10">
+                            <CardTitle className="text-2xl flex items-center gap-3">
+                                <div className="text-3xl">📝</div>
+                                <span className="bg-gradient-to-r from-purple-600 to-violet-600 dark:from-purple-400 dark:to-violet-400 bg-clip-text text-transparent">Post-Lab Quiz</span>
+                            </CardTitle>
+                            <CardDescription className="text-slate-600 dark:text-slate-400 text-base">Test your understanding of the experiment</CardDescription>
                         </CardHeader>
-                        <CardContent className="space-y-4">
-                            <p className="font-medium">
+                        <CardContent className="space-y-6 relative z-10">
+                            <p className="font-bold text-lg text-slate-700 dark:text-slate-300">
                                 Which reagent is specifically used to test for the presence of proteins in a food sample?
                             </p>
                             <RadioGroup 
@@ -886,23 +930,37 @@ export function FoodTestLabEnhanced() {
                                     setQuizFeedback(null);
                                 }} 
                                 disabled={quizIsCorrect !== null}
+                                className="space-y-3"
                             >
-                                <div className="flex items-center space-x-2 py-2">
-                                    <RadioGroupItem value="Iodine Solution" id="q-iodine" />
-                                    <Label htmlFor="q-iodine" className="cursor-pointer">Iodine Solution (tests for starch)</Label>
-                                </div>
-                                <div className="flex items-center space-x-2 py-2">
-                                    <RadioGroupItem value="Biuret Solution" id="q-biuret" />
-                                    <Label htmlFor="q-biuret" className="cursor-pointer">Biuret Solution (tests for proteins)</Label>
-                                </div>
-                                <div className="flex items-center space-x-2 py-2">
-                                    <RadioGroupItem value="Benedict's Solution" id="q-benedict" />
-                                    <Label htmlFor="q-benedict" className="cursor-pointer">Benedict's Solution (tests for reducing sugars)</Label>
-                                </div>
-                                <div className="flex items-center space-x-2 py-2">
-                                    <RadioGroupItem value="Ethanol" id="q-ethanol" />
-                                    <Label htmlFor="q-ethanol" className="cursor-pointer">Ethanol (tests for fats)</Label>
-                                </div>
+                                {[
+                                    { value: "Iodine Solution", label: "Iodine Solution (tests for starch)", id: "q-iodine" },
+                                    { value: "Biuret Solution", label: "Biuret Solution (tests for proteins)", id: "q-biuret" },
+                                    { value: "Benedict's Solution", label: "Benedict's Solution (tests for reducing sugars)", id: "q-benedict" },
+                                    { value: "Ethanol", label: "Ethanol (tests for fats)", id: "q-ethanol" }
+                                ].map((option) => (
+                                    <motion.div 
+                                        key={option.id}
+                                        whileHover={{ scale: 1.02 }}
+                                        className={cn(
+                                            "flex items-center space-x-3 p-4 rounded-xl border-2 transition-all cursor-pointer",
+                                            quizAnswer === option.value
+                                                ? "bg-gradient-to-r from-purple-500/20 to-violet-500/20 border-purple-400/50 dark:border-purple-600/50"
+                                                : "bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-purple-300 dark:hover:border-purple-700"
+                                        )}
+                                        onClick={() => {
+                                            if (quizIsCorrect === null) {
+                                                setQuizAnswer(option.value);
+                                                setQuizIsCorrect(null);
+                                                setQuizFeedback(null);
+                                            }
+                                        }}
+                                    >
+                                        <RadioGroupItem value={option.value} id={option.id} className="border-2" />
+                                        <Label htmlFor={option.id} className="cursor-pointer flex-1 font-medium text-slate-700 dark:text-slate-300">
+                                            {option.label}
+                                        </Label>
+                                    </motion.div>
+                                ))}
                             </RadioGroup>
                             
                             {quizFeedback && (
@@ -910,30 +968,38 @@ export function FoodTestLabEnhanced() {
                                     initial={{ opacity: 0, scale: 0.95 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     className={cn(
-                                        "p-4 rounded-lg border-2 flex items-start gap-3",
+                                        "p-5 rounded-xl border-2 flex items-start gap-4 backdrop-blur-sm",
                                         quizIsCorrect 
-                                            ? "bg-green-50 dark:bg-green-950/30 border-green-500 text-green-900 dark:text-green-100"
+                                            ? "bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 border-green-400/50 dark:border-green-600/50"
                                             : quizIsCorrect === false
-                                            ? "bg-red-50 dark:bg-red-950/30 border-red-500 text-red-900 dark:text-red-100"
-                                            : "bg-blue-50 dark:bg-blue-950/30 border-blue-500 text-blue-900 dark:text-blue-100"
+                                            ? "bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/30 dark:to-orange-950/30 border-red-400/50 dark:border-red-600/50"
+                                            : "bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 border-blue-400/50 dark:border-blue-600/50"
                                     )}
                                 >
                                     {quizIsCorrect ? (
-                                        <CheckCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
+                                        <div className="text-3xl">✅</div>
                                     ) : quizIsCorrect === false ? (
-                                        <XCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
+                                        <div className="text-3xl">❌</div>
                                     ) : (
-                                        <Sparkles className="h-5 w-5 flex-shrink-0 mt-0.5" />
+                                        <Sparkles className="h-6 w-6 flex-shrink-0 mt-0.5 text-blue-600" />
                                     )}
-                                    <p className="text-sm font-medium">{quizFeedback}</p>
+                                    <p className="text-base font-semibold flex-1">{quizFeedback}</p>
                                 </motion.div>
                             )}
                         </CardContent>
-                        <CardFooter>
+                        <CardFooter className="relative z-10">
                             <Button 
                                 onClick={handleQuizSubmit} 
                                 disabled={!quizAnswer || quizIsCorrect !== null}
                                 size="lg"
+                                className={cn(
+                                    "w-full font-bold py-6 transition-all hover:scale-105",
+                                    quizIsCorrect === true
+                                        ? "bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
+                                        : quizIsCorrect === false
+                                        ? "bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700"
+                                        : "bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700"
+                                )}
                             >
                                 {quizIsCorrect === true ? "Correct! ✓" : quizIsCorrect === false ? "Review Answer" : quizAttempts === 1 ? "Try Again" : "Submit Answer"}
                             </Button>
