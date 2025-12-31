@@ -238,34 +238,37 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
   };
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto bg-gradient-to-br from-blue-900/30 via-gray-900 to-purple-900/30 rounded-2xl p-4 sm:p-6 md:p-8 pb-20 sm:pb-28 overflow-hidden">
-      {/* Floating number elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {['1', '2', '3', 'π', '√'].map((symbol, i) => {
-          const pos = floatingPositions.current[i] || { x: [0, 100], y: [0, 50] };
-          return (
-            <motion.div
-              key={i}
-              className="absolute text-2xl text-blue-400/30"
-              initial={{ opacity: 0 }}
-              animate={{ 
-                opacity: [0, 0.4, 0],
-                x: pos.x,
-                y: pos.y
-              }}
-              transition={{ 
-                duration: 4,
-                delay: i * 1.5,
-                repeat: Infinity as number,
-                repeatType: "loop" as const,
-                repeatDelay: 2
-              }}
-            >
-              {symbol}
-            </motion.div>
-          );
-        })}
-      </div>
+    <>
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes float-opacity {
+          0%, 100% { opacity: 0; }
+          50% { opacity: 0.4; }
+        }
+        .float-anim-0 { animation: float-opacity 4s ease-in-out 0s infinite; }
+        .float-anim-1 { animation: float-opacity 4s ease-in-out 1.5s infinite; }
+        .float-anim-2 { animation: float-opacity 4s ease-in-out 3s infinite; }
+        .float-anim-3 { animation: float-opacity 4s ease-in-out 4.5s infinite; }
+        .float-anim-4 { animation: float-opacity 4s ease-in-out 6s infinite; }
+      `}} />
+      <div className="relative w-full max-w-4xl mx-auto bg-gradient-to-br from-blue-900/30 via-gray-900 to-purple-900/30 rounded-2xl p-4 sm:p-6 md:p-8 pb-20 sm:pb-28 overflow-hidden">
+        {/* Floating number elements - simplified static display */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {['1', '2', '3', 'π', '√'].map((symbol, i) => {
+            const pos = floatingPositions.current[i] || { x: [20, 150], y: [10, 80] };
+            return (
+              <div
+                key={i}
+                className={`absolute text-2xl text-blue-400/30 float-anim-${i}`}
+                style={{
+                  left: `${pos.x[0]}px`,
+                  top: `${pos.y[0]}px`
+                }}
+              >
+                {symbol}
+              </div>
+            );
+          })}
+        </div>
 
       {/* Header */}
       <motion.div 
@@ -291,15 +294,13 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
       >
         <div className="flex items-start gap-2 sm:gap-4">
           <div className="flex-shrink-0">
-            <motion.div 
-              className={`w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center ${
-                isSpeaking && !isPaused ? 'ring-2 sm:ring-4 ring-blue-400/50' : ''
+            <div 
+              className={`w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center transition-all ${
+                isSpeaking && !isPaused ? 'ring-2 sm:ring-4 ring-blue-400/50 animate-pulse' : ''
               }`}
-              animate={isSpeaking && !isPaused ? { scale: [1, 1.05, 1] } : { scale: 1 }}
-              transition={isSpeaking && !isPaused ? { duration: 0.5, repeat: Infinity as number, repeatType: "loop" as const } : { duration: 0 }}
             >
               <GraduationCap className="w-5 h-5 sm:w-8 sm:h-8 text-white" />
-            </motion.div>
+            </div>
             <p className="text-center text-[10px] sm:text-xs text-blue-300 mt-1 hidden sm:block">Teacher</p>
           </div>
 
@@ -467,139 +468,59 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
                     const isAt = num === numberLinePosition;
                     
                     return (
-                      <motion.div
+                      <div
                         key={num}
-                        className="absolute top-1/2 transform -translate-y-1/2"
+                        className={`absolute top-1/2 transform -translate-y-1/2 transition-all ${
+                          isAt && isAnimating ? 'animate-pulse scale-110' : isNear && isAnimating ? 'scale-105' : ''
+                        }`}
                         style={{ left: `${((num + 10) / 20) * 100}%` }}
-                        animate={isAt && isAnimating ? { 
-                          scale: [1, 1.3, 1] 
-                        } : isNear && isAnimating ? { 
-                          scale: 1.1 
-                        } : { 
-                          scale: 1 
-                        }}
-                        transition={isAt && isAnimating ? {
-                          duration: 0.5,
-                          repeat: Infinity as number,
-                          repeatType: "loop" as const,
-                          ease: "easeInOut"
-                        } : {
-                          duration: 0.3,
-                          repeat: 0
-                        }}
                       >
-                        <motion.div 
+                        <div 
                           className={`w-1 h-6 sm:h-8 transition-colors ${
                             isAt ? 'bg-yellow-400' : isNear ? 'bg-blue-400' : 'bg-gray-400'
                           }`}
-                          animate={isAt && isAnimating ? { 
-                            height: ['1.5rem', '2rem', '1.5rem'] 
-                          } : {}}
-                          transition={isAt && isAnimating ? {
-                            duration: 0.5,
-                            repeat: Infinity as number,
-                            repeatType: "loop" as const,
-                            ease: "easeInOut"
-                          } : {
-                            duration: 0.3,
-                            repeat: 0
-                          }}
                         />
-                        <motion.div 
+                        <div 
                           className={`text-xs sm:text-sm mt-1 transform -translate-x-1/2 font-bold transition-colors ${
                             isAt ? 'text-yellow-300 scale-125' : isNear ? 'text-blue-300' : 'text-gray-300'
                           }`}
                           style={{ marginLeft: '50%' }}
                         >
                           {num}
-                        </motion.div>
+                        </div>
                         {isAt && (
-                          <motion.div
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: -20 }}
-                            className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full whitespace-nowrap"
-                          >
+                          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full whitespace-nowrap animate-fade-in">
                             <div className="bg-yellow-500 text-gray-900 text-[10px] sm:text-xs px-2 py-1 rounded font-bold">
                               Real Number
                             </div>
-                          </motion.div>
+                          </div>
                         )}
-                      </motion.div>
+                      </div>
                     );
                   })}
                   
-                  {/* Moving indicator with glow effect */}
-                  <motion.div
-                    className="absolute top-1/2 transform -translate-y-1/2 -translate-x-1/2"
+                  {/* Moving indicator with glow effect - using CSS animations */}
+                  <div
+                    className={`absolute top-1/2 transform -translate-y-1/2 -translate-x-1/2 transition-all ${
+                      isAnimating ? 'animate-bounce' : ''
+                    }`}
                     style={{ left: `${((numberLinePosition + 10) / 20) * 100}%` }}
-                    animate={isAnimating ? {
-                      y: [0, -8, 0],
-                      scale: [1, 1.2, 1]
-                    } : {
-                      y: 0,
-                      scale: 1
-                    }}
-                    transition={isAnimating ? { 
-                      duration: 0.8,
-                      repeat: Infinity as number,
-                      ease: "easeInOut",
-                      repeatType: "loop" as const
-                    } : {
-                      duration: 0.3,
-                      repeat: 0
-                    }}
                   >
                     {/* Glow effect - only animate when active */}
                     {isAnimating && (
-                      <motion.div
-                        className="absolute inset-0 bg-blue-400 rounded-full blur-lg opacity-50"
-                        animate={{ 
-                          scale: [1, 1.5, 1], 
-                          opacity: [0.5, 0.8, 0.5] 
-                        }}
-                        transition={{ 
-                          duration: 1, 
-                          repeat: Infinity as number,
-                          repeatType: "loop" as const,
-                          ease: "easeInOut"
-                        }}
-                      />
+                      <div className="absolute inset-0 bg-blue-400 rounded-full blur-lg opacity-50 animate-ping" />
                     )}
                     {/* Main indicator */}
                     <div className="relative w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-full border-2 border-white shadow-lg">
                       {isAnimating && (
-                        <motion.div 
-                          className="absolute inset-0 bg-blue-300 rounded-full opacity-75"
-                          animate={{ 
-                            scale: [1, 1.5, 1],
-                            opacity: [0.75, 0, 0.75]
-                          }}
-                          transition={{
-                            duration: 1.5,
-                            repeat: Infinity as number,
-                            repeatType: "loop" as const,
-                            ease: "easeOut"
-                          }}
-                        />
+                        <div className="absolute inset-0 bg-blue-300 rounded-full opacity-75 animate-pulse" />
                       )}
                     </div>
                     {/* Trail effect */}
                     {isAnimating && (
-                      <motion.div
-                        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-blue-500 rounded-full opacity-20"
-                        animate={{ 
-                          scale: [0.5, 1.5, 0.5], 
-                          opacity: [0.3, 0, 0.3] 
-                        }}
-                        transition={{ 
-                          duration: 1, 
-                          repeat: Infinity as number,
-                          repeatType: "loop" as const,
-                          ease: "easeInOut"
-                        }}
-                      />
+                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-blue-500 rounded-full opacity-20 animate-ping" />
                     )}
-                  </motion.div>
+                  </div>
                   
                   {/* Labels for number types */}
                   <div className="absolute bottom-2 left-2 right-2 flex justify-between text-[10px] sm:text-xs text-gray-400">
@@ -741,6 +662,7 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
