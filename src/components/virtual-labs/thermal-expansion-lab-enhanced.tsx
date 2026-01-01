@@ -176,6 +176,9 @@ export function ThermalExpansionLabEnhanced() {
     const [waterExpanded, setWaterExpanded] = React.useState(false);
     const [alcoholExpanded, setAlcoholExpanded] = React.useState(false);
     const [heatingMaterial, setHeatingMaterial] = React.useState<string | null>(null);
+    const [metalHeatingComplete, setMetalHeatingComplete] = React.useState(false);
+    const [waterHeatingComplete, setWaterHeatingComplete] = React.useState(false);
+    const [alcoholHeatingComplete, setAlcoholHeatingComplete] = React.useState(false);
     
     // Temperature tracking
     const [temperatures, setTemperatures] = React.useState({
@@ -255,14 +258,14 @@ export function ThermalExpansionLabEnhanced() {
                     setHeatingMaterial(null);
                     
                     if (material === 'metal') {
-                        setTeacherMessage("Wow! The metal rod expanded by 15%! Notice how it grew. Solids expand the least. Now let's heat the water!");
-                        setTimeout(() => setCurrentStep('heat-water'), 2000); // Give time to observe
+                        setMetalHeatingComplete(true);
+                        setTeacherMessage("Wow! The metal rod expanded by 15%! Notice how it grew. Solids expand the least. Take your time to observe, then click 'Continue' when ready!");
                     } else if (material === 'water') {
-                        setTeacherMessage("The water expanded by 30%! Much more than the metal! Liquids expand more than solids. Now let's try alcohol!");
-                        setTimeout(() => setCurrentStep('heat-alcohol'), 2000);
+                        setWaterHeatingComplete(true);
+                        setTeacherMessage("The water expanded by 30%! Much more than the metal! Liquids expand more than solids. Observe the difference, then click 'Continue' when ready!");
                     } else if (material === 'alcohol') {
-                        setTeacherMessage("Amazing! Alcohol expanded by 40% - the MOST! This clearly shows different materials have different expansion rates!");
-                        setTimeout(() => setCurrentStep('results'), 2000);
+                        setAlcoholHeatingComplete(true);
+                        setTeacherMessage("Amazing! Alcohol expanded by 40% - the MOST! This clearly shows different materials have different expansion rates! Take your time to observe all three materials, then click 'Continue to Results' when ready!");
                     }
                     return prev;
                 }
@@ -304,6 +307,24 @@ export function ThermalExpansionLabEnhanced() {
         }
     };
 
+    const handleContinueAfterMetal = () => {
+        setMetalHeatingComplete(false);
+        setCurrentStep('heat-water');
+        setTeacherMessage("Great! Now let's heat the water and see how much it expands!");
+    };
+
+    const handleContinueAfterWater = () => {
+        setWaterHeatingComplete(false);
+        setCurrentStep('heat-alcohol');
+        setTeacherMessage("Excellent! Now let's heat the alcohol - it should expand even more!");
+    };
+
+    const handleContinueAfterAlcohol = () => {
+        setAlcoholHeatingComplete(false);
+        setCurrentStep('results');
+        setTeacherMessage("Perfect! You've observed all three materials. Let's review the results!");
+    };
+
     const handleRestart = () => {
         setCurrentStep('intro');
         setShowSupplies(true);
@@ -313,6 +334,9 @@ export function ThermalExpansionLabEnhanced() {
         setWaterExpanded(false);
         setAlcoholExpanded(false);
         setHeatingMaterial(null);
+        setMetalHeatingComplete(false);
+        setWaterHeatingComplete(false);
+        setAlcoholHeatingComplete(false);
         setTemperatures({ metal: 20, water: 20, alcohol: 20 });
         setSelectedAnswer1(null);
         setSelectedAnswer2(null);
@@ -684,7 +708,7 @@ export function ThermalExpansionLabEnhanced() {
                                                         {temperatures.water}°C
                                                     </div>
                                                 )}
-                                                {currentStep === 'heat-water' && suppliesReady && !heatingMaterial && (
+                                                {currentStep === 'heat-water' && suppliesReady && !heatingMaterial && !waterHeatingComplete && (
                                                     <p className="text-xs md:text-sm font-medium bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded">
                                                         Click to Heat
                                                     </p>
@@ -693,6 +717,21 @@ export function ThermalExpansionLabEnhanced() {
                                                     <div className="absolute -bottom-8 left-1/2 -translate-x-1/2">
                                                         <EnhancedFlame isHeating={true} />
                                                     </div>
+                                                )}
+                                                {waterHeatingComplete && currentStep === 'heat-water' && (
+                                                    <motion.div
+                                                        initial={{ opacity: 0, y: 10 }}
+                                                        animate={{ opacity: 1, y: 0 }}
+                                                        className="mt-2"
+                                                    >
+                                                        <Button
+                                                            onClick={handleContinueAfterWater}
+                                                            className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg"
+                                                            size="sm"
+                                                        >
+                                                            Continue
+                                                        </Button>
+                                                    </motion.div>
                                                 )}
                                             </motion.div>
                                             
@@ -747,7 +786,7 @@ export function ThermalExpansionLabEnhanced() {
                                                         {temperatures.alcohol}°C
                                                     </div>
                                                 )}
-                                                {currentStep === 'heat-alcohol' && suppliesReady && !heatingMaterial && (
+                                                {currentStep === 'heat-alcohol' && suppliesReady && !heatingMaterial && !alcoholHeatingComplete && (
                                                     <p className="text-xs md:text-sm font-medium bg-purple-100 dark:bg-purple-900 px-2 py-1 rounded">
                                                         Click to Heat
                                                     </p>
@@ -756,6 +795,21 @@ export function ThermalExpansionLabEnhanced() {
                                                     <div className="absolute -bottom-8 left-1/2 -translate-x-1/2">
                                                         <EnhancedFlame isHeating={true} />
                                                     </div>
+                                                )}
+                                                {alcoholHeatingComplete && currentStep === 'heat-alcohol' && (
+                                                    <motion.div
+                                                        initial={{ opacity: 0, y: 10 }}
+                                                        animate={{ opacity: 1, y: 0 }}
+                                                        className="mt-2"
+                                                    >
+                                                        <Button
+                                                            onClick={handleContinueAfterAlcohol}
+                                                            className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg"
+                                                            size="sm"
+                                                        >
+                                                            Continue to Results
+                                                        </Button>
+                                                    </motion.div>
                                                 )}
                                             </motion.div>
                                         </div>
