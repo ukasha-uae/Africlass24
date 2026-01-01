@@ -16,10 +16,18 @@ import { LabSupplies, SupplyItem } from './LabSupplies';
 type Step = 'intro' | 'collect-supplies' | 'setup-beakers' | 'select-liquid' | 'add-conditions' | 'observing' | 'results' | 'quiz' | 'complete';
 type LiquidType = 'water' | 'alcohol' | 'oil' | null;
 
-const evaporationRates = {
-    water: 0.8,
-    alcohol: 2.5,
-    oil: 0.3,
+// Base evaporation rates at room temperature (very slow - natural evaporation)
+const baseEvaporationRates = {
+    water: 0.1,      // Very slow at room temperature
+    alcohol: 0.5,    // Faster than water due to weaker intermolecular forces
+    oil: 0.05,       // Very slow - strong intermolecular forces
+};
+
+// Multipliers for different conditions
+const EVAPORATION_MULTIPLIERS = {
+    heat: 8,         // Heat dramatically increases evaporation (8x faster)
+    fan: 2.5,        // Fan increases evaporation (2.5x faster)
+    heatAndFan: 15,  // Combined effect is even stronger (15x faster)
 };
 
 // Enhanced Flame Component - Premium Design
@@ -234,22 +242,36 @@ export function EvaporationLabEnhanced() {
         }
     }, [currentStep]);
 
-    // Evaporation simulation
+    // Evaporation simulation - Only runs when observation is active
     React.useEffect(() => {
-        if (currentStep === 'observing' && observing) {
+        if (currentStep === 'observing' && observing && beakersFilled) {
             const interval = setInterval(() => {
                 setLiquidLevels(prev => {
-                    const fanMultiplier = fanOn ? 1.5 : 1;
-                    const heatMultiplier = heatOn ? 2 : 1;
+                    // Calculate multiplier based on conditions
+                    let multiplier = 1; // Base rate (room temperature - very slow)
                     
-                    const newWater = Math.max(0, prev.water - (evaporationRates.water * fanMultiplier * heatMultiplier));
-                    const newAlcohol = Math.max(0, prev.alcohol - (evaporationRates.alcohol * fanMultiplier * heatMultiplier));
-                    const newOil = Math.max(0, prev.oil - (evaporationRates.oil * fanMultiplier * heatMultiplier));
+                    if (heatOn && fanOn) {
+                        multiplier = EVAPORATION_MULTIPLIERS.heatAndFan;
+                    } else if (heatOn) {
+                        multiplier = EVAPORATION_MULTIPLIERS.heat;
+                    } else if (fanOn) {
+                        multiplier = EVAPORATION_MULTIPLIERS.fan;
+                    }
+                    // If neither heat nor fan is on, multiplier stays at 1 (natural slow evaporation)
+                    
+                    // Apply evaporation with appropriate rates
+                    const newWater = Math.max(0, prev.water - (baseEvaporationRates.water * multiplier));
+                    const newAlcohol = Math.max(0, prev.alcohol - (baseEvaporationRates.alcohol * multiplier));
+                    const newOil = Math.max(0, prev.oil - (baseEvaporationRates.oil * multiplier));
                     
                     // Check if all liquids have evaporated
                     if (newWater === 0 && newAlcohol === 0 && newOil === 0) {
                         setObserving(false);
-                        setTeacherMessage("All liquids have evaporated! Notice that alcohol evaporated first, then water, and oil was slowest. This is because alcohol has weaker intermolecular forces!");
+                        const conditionText = heatOn && fanOn ? "with heat and fan" : 
+                                            heatOn ? "with heat" : 
+                                            fanOn ? "with fan" : 
+                                            "at room temperature";
+                        setTeacherMessage(`All liquids have evaporated ${conditionText}! Notice that alcohol evaporated first, then water, and oil was slowest. This is because alcohol has weaker intermolecular forces!`);
                         // Give students time to observe before auto-transitioning
                         setTimeout(() => {
                             setCurrentStep('results');
@@ -264,7 +286,7 @@ export function EvaporationLabEnhanced() {
             
             return () => clearInterval(interval);
         }
-    }, [currentStep, observing, fanOn, heatOn]);
+    }, [currentStep, observing, fanOn, heatOn, beakersFilled]);
 
     const handleStartExperiment = () => {
         setCurrentStep('collect-supplies');
@@ -300,9 +322,24 @@ export function EvaporationLabEnhanced() {
     };
 
     const handleStartObservation = () => {
+        if (!beakersFilled) {
+            setTeacherMessage("Please fill the beakers first before starting observation!");
+            return;
+        }
+        
         setObserving(true);
-        setTeacherMessage("Observation started! Watch the liquid levels drop. Which one evaporates fastest?");
         setCurrentStep('observing');
+        
+        // Provide context-aware message based on conditions
+        if (!heatOn && !fanOn) {
+            setTeacherMessage("Observation started at room temperature! Evaporation will be very slow - this is natural evaporation. Watch carefully as the liquid levels drop slowly. Alcohol will evaporate faster than water, and oil will be slowest. Try turning on heat or fan to see how they speed up evaporation!");
+        } else if (heatOn && fanOn) {
+            setTeacherMessage("Observation started with heat and fan! Watch how quickly the liquids evaporate now. The combination of heat and airflow dramatically speeds up evaporation. Notice which liquid disappears first!");
+        } else if (heatOn) {
+            setTeacherMessage("Observation started with heat! The increased temperature gives molecules more energy to escape. Watch how much faster evaporation happens compared to room temperature!");
+        } else {
+            setTeacherMessage("Observation started with fan! The airflow removes vapor molecules, allowing more liquid to evaporate. Notice how this speeds up the process!");
+        }
     };
 
     const handleTeacherComplete = () => {
@@ -567,10 +604,34 @@ export function EvaporationLabEnhanced() {
                                     <Droplets className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                                     Interactive Experiment
                                 </CardTitle>
-                                <CardDescription>
+                                <CardDescription className="text-blue-900/80 dark:text-blue-100/80">
                                     {currentStep === 'setup-beakers' && 'Click beakers to fill them'}
                                     {currentStep === 'add-conditions' && 'Toggle fan/heat and start observation'}
-                                    {currentStep === 'observing' && `Time: ${(timeElapsed / 2).toFixed(1)}s`}
+                                    {currentStep === 'observing' && (
+                                        <div className="flex items-center gap-2">
+                                            <span>Time: {(timeElapsed / 2).toFixed(1)}s</span>
+                                            {!heatOn && !fanOn && (
+                                                <span className="text-xs bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded">
+                                                    ⚡ Natural evaporation (slow)
+                                                </span>
+                                            )}
+                                            {heatOn && (
+                                                <span className="text-xs bg-red-100 dark:bg-red-900 px-2 py-1 rounded">
+                                                    🔥 Heat: {EVAPORATION_MULTIPLIERS.heat}x faster
+                                                </span>
+                                            )}
+                                            {fanOn && (
+                                                <span className="text-xs bg-cyan-100 dark:bg-cyan-900 px-2 py-1 rounded">
+                                                    💨 Fan: {EVAPORATION_MULTIPLIERS.fan}x faster
+                                                </span>
+                                            )}
+                                            {heatOn && fanOn && (
+                                                <span className="text-xs bg-orange-100 dark:bg-orange-900 px-2 py-1 rounded">
+                                                    ⚡ Combined: {EVAPORATION_MULTIPLIERS.heatAndFan}x faster
+                                                </span>
+                                            )}
+                                        </div>
+                                    )}
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-6">
@@ -602,13 +663,24 @@ export function EvaporationLabEnhanced() {
                                             <span>Heat {heatOn ? 'ON' : 'OFF'}</span>
                                         </Button>
                                         {currentStep === 'add-conditions' && (
-                                            <Button 
-                                                onClick={handleStartObservation} 
-                                                size="lg" 
-                                                className="flex items-center gap-2 bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 hover:from-blue-700 hover:via-cyan-700 hover:to-teal-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 font-semibold"
-                                            >
-                                                Start Observation
-                                            </Button>
+                                            <div className="flex flex-col items-center gap-2">
+                                                <Button 
+                                                    onClick={handleStartObservation} 
+                                                    size="lg" 
+                                                    disabled={!beakersFilled}
+                                                    className="flex items-center gap-2 bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 hover:from-blue-700 hover:via-cyan-700 hover:to-teal-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                                                >
+                                                    Start Observation
+                                                </Button>
+                                                {!beakersFilled && (
+                                                    <p className="text-xs text-muted-foreground">Fill beakers first</p>
+                                                )}
+                                                {beakersFilled && !heatOn && !fanOn && (
+                                                    <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">
+                                                        💡 Tip: Turn on heat or fan to see faster evaporation!
+                                                    </p>
+                                                )}
+                                            </div>
                                         )}
                                     </div>
                                 )}
