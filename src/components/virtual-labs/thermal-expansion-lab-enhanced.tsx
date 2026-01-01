@@ -476,6 +476,7 @@ export function ThermalExpansionLabEnhanced() {
                     </Accordion>
                 </CardContent>
             </Card>
+            </motion.div>
 
             <AnimatePresence mode="wait">
                 {currentStep === 'intro' && (
