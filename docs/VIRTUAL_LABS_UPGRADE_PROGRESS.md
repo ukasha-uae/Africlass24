@@ -104,7 +104,18 @@
 - ❌ **Other Biology labs** (check `src/lib/virtual-labs-data.ts`)
 
 ### Physics Labs
-- ❌ **Thermal Expansion** (`expansion-of-solids-liquids`)
+13. ✅ **Thermal Expansion** (`expansion-of-solids-liquids`)
+    - Premium animated background (red/orange/yellow physics theme)
+    - LabSupplies component integration
+    - **3D cylindrical metal rod visualization** (replaces simple line)
+    - **Measurement rulers with markings** for all materials
+    - Enhanced flame visualization
+    - Student-controlled progression (Continue buttons)
+    - Clear expansion indicators (+15%, +30%, +40%)
+    - Length measurements (100mm → 115mm for metal)
+    - Level percentages for liquids (50% → 80%/90%)
+    - Enhanced results section with clear comparisons
+    - Status: Complete
 - ❌ **Expansion of Air** (`expansion-of-air`)
 - ❌ **Other Physics labs** (check `src/lib/virtual-labs-data.ts`)
 
@@ -181,6 +192,9 @@ For each lab, apply the following premium design elements:
 5. **Visual Feedback**: Add clear indicators showing what's happening (e.g., evaporation multipliers)
 6. **Premium Flames**: Multi-layer design with independent animations creates realistic effect
 7. **Logic Fixes**: Ensure experiments work logically (e.g., natural vs accelerated evaporation)
+8. **3D Visualizations**: Create realistic 3D representations (e.g., cylindrical metal rod instead of simple line)
+9. **Measurement Tools**: Add rulers, scales, and measurement indicators to help students observe changes
+10. **Student Control**: Use Continue buttons instead of auto-transitions to let students observe at their own pace
 
 ---
 
@@ -212,8 +226,10 @@ Use these as quality references:
 - **Food Tests**: `http://localhost:9002/virtual-labs/food-tests`
 - **Condensation**: `http://localhost:9002/virtual-labs/condensation` (enhanced kettle, slow droplets)
 - **Evaporation**: `http://localhost:9002/virtual-labs/evaporation-of-liquids` (premium flames, fixed logic)
+- **Thermal Expansion**: `http://localhost:9002/virtual-labs/expansion-of-solids-liquids` (3D rod, measurement rulers, student-controlled)
 
 ---
 
 **Note:** All labs are temporarily unlocked for development purposes. Remember to restore premium access logic before V1 deployment.
+
 
