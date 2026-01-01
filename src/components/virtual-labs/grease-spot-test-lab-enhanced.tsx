@@ -18,8 +18,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { TeacherVoice } from './TeacherVoice';
 import { useLabProgress } from '@/stores/lab-progress-store';
 import confetti from 'canvas-confetti';
+import { LabSupplies, SupplyItem } from './LabSupplies';
 
-type TestStep = 'intro' | 'select-food' | 'apply' | 'wait' | 'observe' | 'result' | 'quiz';
+type TestStep = 'intro' | 'collect-supplies' | 'select-food' | 'apply' | 'wait' | 'observe' | 'result' | 'quiz' | 'complete';
 type FoodSample = 'Groundnut Paste' | 'Bread' | 'Boiled Rice' | 'Water';
 
 interface FoodInfo {
@@ -73,9 +74,44 @@ export function GreaseSpotTestLabEnhanced() {
     const [dryProgress, setDryProgress] = React.useState(0);
     const [showSafety, setShowSafety] = React.useState(true);
     
+    // Supplies tracking
+    const [showSupplies, setShowSupplies] = React.useState(true);
+    const [collectedItems, setCollectedItems] = React.useState<string[]>([]);
+    
+    // Define supplies for the lab
+    const supplies: SupplyItem[] = [
+        {
+            id: 'brown-paper',
+            name: 'Brown Paper',
+            emoji: '📄',
+            description: 'Absorbent paper for testing',
+            required: true
+        },
+        {
+            id: 'food-samples',
+            name: 'Food Samples',
+            emoji: '🍽️',
+            description: 'Various foods to test for fats',
+            required: true
+        },
+        {
+            id: 'light-source',
+            name: 'Light Source',
+            emoji: '💡',
+            description: 'To observe translucent spots',
+            required: true
+        },
+        {
+            id: 'timer',
+            name: 'Timer',
+            emoji: '⏱️',
+            description: 'To track drying time',
+            required: true
+        }
+    ];
+    
     // Teacher voice
     const [teacherMessage, setTeacherMessage] = React.useState('');
-    const [pendingTransition, setPendingTransition] = React.useState<(() => void) | null>(null);
     
     // Quiz
     const [quizAnswer, setQuizAnswer] = React.useState<string>('');
@@ -114,12 +150,20 @@ export function GreaseSpotTestLabEnhanced() {
 
     // Teacher message callbacks
     const handleTeacherComplete = React.useCallback(() => {
-        if (pendingTransition) {
-            const transition = pendingTransition;
-            setPendingTransition(null);
-            transition();
+        // No pending transitions - immediate responsiveness
+    }, []);
+
+    // Supplies collection handlers
+    const handleCollect = React.useCallback((itemId: string) => {
+        if (!collectedItems.includes(itemId)) {
+            setCollectedItems(prev => [...prev, itemId]);
         }
-    }, [pendingTransition]);
+    }, [collectedItems]);
+
+    const handleAllSuppliesCollected = React.useCallback(() => {
+        setCurrentStep('select-food');
+        setTeacherMessage('Great! Now choose a food sample to test. We have groundnut paste (very oily), bread (small amount of fat), boiled rice (almost no fat), and water as our negative control. Which one would you like to test first?');
+    }, []);
 
     // Initial intro
     React.useEffect(() => {
@@ -129,8 +173,8 @@ export function GreaseSpotTestLabEnhanced() {
     }, [currentStep]);
 
     const handleStartExperiment = () => {
-        setCurrentStep('select-food');
-        setTeacherMessage('Choose a food sample to test. We have groundnut paste (very oily), bread (small amount of fat), boiled rice (almost no fat), and water as our negative control. Which one would you like to test first?');
+        setCurrentStep('collect-supplies');
+        setTeacherMessage('First, let\'s gather our supplies. We need brown paper, food samples, a light source to observe the spots, and a timer to track drying time. Click on each item to collect them!');
     };
 
     const handleFoodSelect = (food: FoodSample) => {
@@ -144,12 +188,6 @@ export function GreaseSpotTestLabEnhanced() {
         };
         
         setTeacherMessage(messages[food]);
-        setPendingTransition(() => () => {
-            setTimeout(() => {
-                const actionButton = document.querySelector('[data-action-button]');
-                actionButton?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 100);
-        });
     };
 
     const handleApply = () => {
@@ -174,12 +212,6 @@ export function GreaseSpotTestLabEnhanced() {
         const foodInfo = foodData[selectedFood];
         
         setTeacherMessage(foodInfo.result);
-        setPendingTransition(() => () => {
-            setTimeout(() => {
-                const quizSection = document.querySelector('[data-quiz-section]');
-                quizSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
-        });
     };
 
     const handleQuizSubmit = () => {
@@ -206,9 +238,7 @@ export function GreaseSpotTestLabEnhanced() {
                 });
                 
                 setXpEarned(earnedXP);
-                setShowCelebration(true);
-                setTimeout(() => setShowCelebration(false), 5000);
-                
+                setCurrentStep('complete');
                 setTeacherMessage(`Excellent work! You've mastered the grease spot test and earned ${earnedXP} XP! You now have ${totalXP + earnedXP} total XP. Remember, translucent spots mean fats are present!`);
             } else {
                 setTeacherMessage('Correct! You clearly understand how to identify high-fat foods. Well done!');
@@ -236,7 +266,12 @@ export function GreaseSpotTestLabEnhanced() {
         setQuizIsCorrect(null);
         setXpEarned(0);
         setShowCelebration(false);
+        setCollectedItems([]);
         setTeacherMessage('Ready to test another food? The grease spot test is quick and simple - perfect for identifying fatty foods! Click Start Experiment when ready.');
+    };
+    
+    const handleViewQuiz = () => {
+        setCurrentStep('quiz');
     };
 
     const objectiveText = "To learn how to test for the presence of fats and oils in different food samples using the simple grease spot test.";
@@ -244,7 +279,35 @@ export function GreaseSpotTestLabEnhanced() {
     const safetyText = "The grease spot test is very safe and can be done at home. Key precautions: Handle food samples hygienically and wash hands before and after. Do not eat any food samples used in experiments unless specifically designated as edible. Use clean brown paper or paper bags. Work on a clean surface. If testing unknown substances, avoid contact with skin and eyes. Clean up spills immediately to prevent slipping hazards.";
 
     return (
-        <div className="space-y-6">
+        <div className="relative min-h-screen pb-20 overflow-hidden">
+            {/* Premium Animated Background */}
+            <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 dark:from-amber-950/20 dark:via-yellow-950/20 dark:to-orange-950/20" />
+                {[...Array(6)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute rounded-full bg-gradient-to-r from-amber-200/30 to-yellow-200/30 dark:from-amber-800/20 dark:to-yellow-800/20 blur-3xl"
+                        style={{
+                            width: `${200 + i * 100}px`,
+                            height: `${200 + i * 100}px`,
+                            left: `${(i * 15) % 100}%`,
+                            top: `${(i * 20) % 100}%`,
+                        }}
+                        animate={{
+                            x: [0, 50, 0],
+                            y: [0, 30, 0],
+                            scale: [1, 1.2, 1],
+                        }}
+                        transition={{
+                            duration: 10 + i * 2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                    />
+                ))}
+            </div>
+
+            <div className="relative z-10 space-y-6 pb-20">
             {/* Completion Badge */}
             {hasCompleted && labProgress && (
                 <motion.div
@@ -278,116 +341,183 @@ export function GreaseSpotTestLabEnhanced() {
                 />
             )}
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>Objective</CardTitle>
-                    <CardDescription>{objectiveText}</CardDescription>
-                </CardHeader>
-            </Card>
+            {/* Premium Objective Card */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+            >
+                <Card className="border-2 border-amber-300/50 dark:border-amber-700/50 bg-gradient-to-br from-amber-50/80 via-yellow-50/80 to-orange-50/80 dark:from-amber-950/30 dark:via-yellow-950/30 dark:to-orange-950/30 backdrop-blur-sm shadow-lg">
+                    <CardHeader className="relative z-10 bg-gradient-to-r from-amber-100/50 to-yellow-100/50 dark:from-amber-900/30 dark:to-yellow-900/30 border-b border-amber-200/50 dark:border-amber-800/50">
+                        <CardTitle className="flex items-center gap-2">
+                            <Trophy className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+                            Objective
+                        </CardTitle>
+                        <CardDescription className="text-amber-900/80 dark:text-amber-100/80">{objectiveText}</CardDescription>
+                    </CardHeader>
+                </Card>
+            </motion.div>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>Lab Information</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger>
-                                <div className="flex items-center gap-2">
-                                    <BookOpen className="h-4 w-4" />
-                                    <span>Background Theory</span>
-                                </div>
-                            </AccordionTrigger>
-                            <AccordionContent className="prose prose-sm dark:prose-invert text-muted-foreground">
-                                <p>{theoryText}</p>
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger>
-                                <div className="flex items-center gap-2">
-                                    <Shield className="h-4 w-4" />
-                                    <span>Safety Precautions</span>
-                                </div>
-                            </AccordionTrigger>
-                            <AccordionContent className="prose prose-sm dark:prose-invert text-muted-foreground">
-                                <p>{safetyText}</p>
-                            </AccordionContent>
-                        </AccordionItem>
-                    </Accordion>
-                </CardContent>
-            </Card>
+            {/* Premium Lab Information Card */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+            >
+                <Card className="border-2 border-amber-300/50 dark:border-amber-700/50 bg-gradient-to-br from-amber-50/80 via-yellow-50/80 to-orange-50/80 dark:from-amber-950/30 dark:via-yellow-950/30 dark:to-orange-950/30 backdrop-blur-sm shadow-lg">
+                    <CardHeader className="relative z-10 bg-gradient-to-r from-amber-100/50 to-yellow-100/50 dark:from-amber-900/30 dark:to-yellow-900/30 border-b border-amber-200/50 dark:border-amber-800/50">
+                        <CardTitle className="flex items-center gap-2">
+                            <BookOpen className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+                            Lab Information
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <Accordion type="single" collapsible className="w-full">
+                            <AccordionItem value="item-1" data-theory-section>
+                                <AccordionTrigger>
+                                    <div className="flex items-center gap-2">
+                                        <BookOpen className="h-4 w-4" />
+                                        <span>Background Theory</span>
+                                    </div>
+                                </AccordionTrigger>
+                                <AccordionContent className="prose prose-sm dark:prose-invert text-muted-foreground">
+                                    <p>{theoryText}</p>
+                                </AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem value="item-2" data-safety-section>
+                                <AccordionTrigger>
+                                    <div className="flex items-center gap-2">
+                                        <Shield className="h-4 w-4" />
+                                        <span>Safety Precautions</span>
+                                    </div>
+                                </AccordionTrigger>
+                                <AccordionContent className="prose prose-sm dark:prose-invert text-muted-foreground">
+                                    <p>{safetyText}</p>
+                                </AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
+                    </CardContent>
+                </Card>
+            </motion.div>
+
+            {/* Supplies Collection Step */}
+            {currentStep === 'collect-supplies' && (
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                >
+                    <LabSupplies
+                        supplies={supplies}
+                        collectedItems={collectedItems}
+                        onCollect={handleCollect}
+                        showSupplies={showSupplies}
+                        title="Lab Supplies - Click to Collect"
+                        description="Collect all the supplies needed for the grease spot test"
+                        onAllCollected={handleAllSuppliesCollected}
+                    />
+                </motion.div>
+            )}
 
             {/* Main Lab Interface */}
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center justify-between">
-                        <span>📄 Interactive Grease Spot Test</span>
-                        <Button 
-                            variant="outline" 
-                            size="sm"
-                            onClick={() => setShowSafety(!showSafety)}
-                            className={cn("transition-colors", showSafety && "border-green-500 text-green-600")}
-                        >
-                            {showSafety ? <Eye className="h-4 w-4 mr-2" /> : <EyeOff className="h-4 w-4 mr-2" />}
-                            Safety {showSafety ? 'ON' : 'OFF'}
-                        </Button>
-                    </CardTitle>
-                    <CardDescription>Test foods for fats using translucent grease spots</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                    {/* Start Button */}
-                    {currentStep === 'intro' && (
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            className="flex flex-col items-center justify-center py-12 space-y-4"
-                        >
-                            <Newspaper className="h-24 w-24 text-amber-600" />
-                            <Button 
-                                size="lg" 
-                                onClick={handleStartExperiment}
-                                className="text-lg px-8"
-                            >
-                                Start Experiment 📄
-                            </Button>
-                        </motion.div>
-                    )}
+            {(currentStep !== 'collect-supplies' && currentStep !== 'complete') && (
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                >
+                    <Card className="border-2 border-amber-300/50 dark:border-amber-700/50 bg-gradient-to-br from-amber-50/80 via-yellow-50/80 to-orange-50/80 dark:from-amber-950/30 dark:via-yellow-950/30 dark:to-orange-950/30 backdrop-blur-sm shadow-lg">
+                        <CardHeader className="relative z-10 bg-gradient-to-r from-amber-100/50 to-yellow-100/50 dark:from-amber-900/30 dark:to-yellow-900/30 border-b border-amber-200/50 dark:border-amber-800/50">
+                            <CardTitle className="flex items-center justify-between">
+                                <span className="flex items-center gap-2">
+                                    <Newspaper className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+                                    Interactive Grease Spot Test
+                                </span>
+                                <Button 
+                                    variant="outline" 
+                                    size="sm"
+                                    onClick={() => setShowSafety(!showSafety)}
+                                    className={cn(
+                                        "transition-colors text-slate-700 dark:text-slate-300 hover:text-amber-700 dark:hover:text-amber-300",
+                                        showSafety && "border-green-500 text-green-600 dark:text-green-400"
+                                    )}
+                                >
+                                    {showSafety ? <Eye className="h-4 w-4 mr-2" /> : <EyeOff className="h-4 w-4 mr-2" />}
+                                    <span>Safety {showSafety ? 'ON' : 'OFF'}</span>
+                                </Button>
+                            </CardTitle>
+                            <CardDescription className="text-amber-900/80 dark:text-amber-100/80">Test foods for fats using translucent grease spots</CardDescription>
+                        </CardHeader>
+                        <CardContent className="relative z-10 space-y-6 pt-6">
+                            {/* Start Button */}
+                            {currentStep === 'intro' && (
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    className="flex flex-col items-center justify-center py-12 space-y-4"
+                                >
+                                    <motion.div
+                                        animate={{ 
+                                            rotate: [0, 5, -5, 0],
+                                            scale: [1, 1.1, 1]
+                                        }}
+                                        transition={{ 
+                                            duration: 2,
+                                            repeat: Infinity,
+                                            ease: "easeInOut"
+                                        }}
+                                    >
+                                        <Newspaper className="h-24 w-24 text-amber-600 dark:text-amber-400" />
+                                    </motion.div>
+                                    <Button 
+                                        size="lg" 
+                                        onClick={handleStartExperiment}
+                                        className="text-lg px-8 bg-gradient-to-r from-amber-600 via-yellow-600 to-orange-600 hover:from-amber-700 hover:via-yellow-700 hover:to-orange-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 font-semibold"
+                                    >
+                                        Start Experiment 📄
+                                    </Button>
+                                </motion.div>
+                            )}
 
-                    {/* Food Selection */}
-                    {currentStep === 'select-food' && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="space-y-4"
-                        >
-                            <Label className="text-lg font-semibold flex items-center gap-2">
-                                <Utensils className="h-5 w-5" />
-                                Select a Food Sample
-                            </Label>
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                                {foodOptions.map(food => {
-                                    const foodInfo = foodData[food];
-                                    const IconComponent = foodInfo.icon;
-                                    return (
-                                        <motion.div key={food} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                            <Button 
-                                                variant={selectedFood === food ? 'default' : 'outline'}
-                                                onClick={() => handleFoodSelect(food)}
-                                                className="h-auto w-full flex-col gap-2 py-4"
-                                            >
-                                                <IconComponent className="h-8 w-8" />
-                                                <span className="text-xs sm:text-sm font-medium text-center">{food}</span>
-                                            </Button>
-                                        </motion.div>
-                                    );
-                                })}
-                            </div>
-                        </motion.div>
-                    )}
+                            {/* Food Selection */}
+                            {currentStep === 'select-food' && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="space-y-4"
+                                >
+                                    <Label className="text-lg font-semibold flex items-center gap-2 text-amber-900 dark:text-amber-100">
+                                        <Utensils className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+                                        Select a Food Sample
+                                    </Label>
+                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                        {foodOptions.map(food => {
+                                            const foodInfo = foodData[food];
+                                            const IconComponent = foodInfo.icon;
+                                            return (
+                                                <motion.div key={food} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                                    <Button 
+                                                        variant={selectedFood === food ? 'default' : 'outline'}
+                                                        onClick={() => handleFoodSelect(food)}
+                                                        className={cn(
+                                                            "h-auto w-full flex-col gap-2 py-4 transition-all duration-300",
+                                                            selectedFood === food
+                                                                ? "bg-gradient-to-r from-amber-600 via-yellow-600 to-orange-600 hover:from-amber-700 hover:via-yellow-700 hover:to-orange-700 text-white shadow-lg"
+                                                                : "text-slate-700 dark:text-slate-300 hover:text-amber-700 dark:hover:text-amber-300 hover:bg-amber-50 dark:hover:bg-amber-950/20 border-amber-300 dark:border-amber-700"
+                                                        )}
+                                                    >
+                                                        <IconComponent className="h-8 w-8" />
+                                                        <span className="text-xs sm:text-sm font-medium text-center">{food}</span>
+                                                    </Button>
+                                                </motion.div>
+                                            );
+                                        })}
+                                    </div>
+                                </motion.div>
+                            )}
 
-                    {/* Brown Paper Visualization */}
-                    {(currentStep === 'apply' || currentStep === 'wait' || currentStep === 'observe' || currentStep === 'result') && selectedFood && (
-                        <div className="relative flex items-center justify-center p-8 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 rounded-xl border-2 min-h-[450px]">
+                            {/* Brown Paper Visualization */}
+                            {(currentStep === 'apply' || currentStep === 'wait' || currentStep === 'observe' || currentStep === 'result') && selectedFood && (
+                                <div className="relative flex items-center justify-center p-8 bg-gradient-to-br from-amber-50/90 to-yellow-50/90 dark:from-amber-900/30 dark:to-yellow-900/30 rounded-xl border-2 border-amber-300/50 dark:border-amber-700/50 min-h-[450px] shadow-lg backdrop-blur-sm">
                             {/* Light source */}
                             {(currentStep === 'observe' || currentStep === 'result') && (
                                 <motion.div
@@ -507,14 +637,14 @@ export function GreaseSpotTestLabEnhanced() {
                         </div>
                     )}
 
-                    {/* Result Display */}
-                    <AnimatePresence>
-                        {currentStep === 'result' && selectedFood && (
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className="p-6 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-950/30 dark:to-yellow-950/30 rounded-xl border-2 border-amber-200 dark:border-amber-800"
-                            >
+                            {/* Result Display */}
+                            <AnimatePresence>
+                                {currentStep === 'result' && selectedFood && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="p-6 bg-gradient-to-br from-amber-50/90 to-yellow-50/90 dark:from-amber-950/30 dark:to-yellow-950/30 rounded-xl border-2 border-amber-300/50 dark:border-amber-700/50 shadow-lg backdrop-blur-sm"
+                                    >
                                 <div className="flex items-start gap-4">
                                     <div className="p-3 bg-amber-500 rounded-full flex-shrink-0">
                                         <CheckCircle className="h-6 w-6 text-white" />
@@ -538,64 +668,81 @@ export function GreaseSpotTestLabEnhanced() {
                                                 </div>
                                             </div>
                                         </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </CardContent>
-                <CardFooter className="flex flex-col gap-3">
-                    {currentStep === 'select-food' && selectedFood && (
-                        <Button 
-                            size="lg" 
-                            className="w-full bg-amber-600 hover:bg-amber-700"
-                            onClick={handleApply}
-                            data-action-button
-                        >
-                            <Newspaper className="h-5 w-5 mr-2" />
-                            Rub on Brown Paper
-                        </Button>
-                    )}
-                    
-                    {currentStep === 'observe' && (
-                        <Button 
-                            size="lg" 
-                            className="w-full"
-                            onClick={handleShowResult}
-                            data-action-button
-                        >
-                            <Eye className="h-5 w-5 mr-2" />
-                            View Result Analysis
-                        </Button>
-                    )}
-                    
-                    {currentStep !== 'intro' && (
-                        <Button 
-                            variant="outline" 
-                            onClick={handleReset}
-                            className="w-full"
-                        >
-                            <RefreshCw className="h-4 w-4 mr-2" />
-                            Reset & Try Another Food
-                        </Button>
-                    )}
-                </CardFooter>
-            </Card>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                        </CardContent>
+                        <CardFooter className="relative z-10 flex flex-col gap-3 bg-gradient-to-r from-amber-50/50 to-yellow-50/50 dark:from-amber-950/30 dark:to-yellow-950/30 border-t border-amber-200/50 dark:border-amber-800/50">
+                            {currentStep === 'select-food' && selectedFood && (
+                                <Button 
+                                    size="lg" 
+                                    className="w-full bg-gradient-to-r from-amber-600 via-yellow-600 to-orange-600 hover:from-amber-700 hover:via-yellow-700 hover:to-orange-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 font-semibold"
+                                    onClick={handleApply}
+                                    data-action-button
+                                >
+                                    <Newspaper className="h-5 w-5 mr-2" />
+                                    Rub on Brown Paper
+                                </Button>
+                            )}
+                            
+                            {currentStep === 'observe' && (
+                                <Button 
+                                    size="lg" 
+                                    className="w-full bg-gradient-to-r from-amber-600 via-yellow-600 to-orange-600 hover:from-amber-700 hover:via-yellow-700 hover:to-orange-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 font-semibold"
+                                    onClick={handleShowResult}
+                                    data-action-button
+                                >
+                                    <Eye className="h-5 w-5 mr-2" />
+                                    View Result Analysis
+                                </Button>
+                            )}
+                            
+                            {currentStep === 'result' && (
+                                <Button 
+                                    size="lg" 
+                                    className="w-full bg-gradient-to-r from-amber-600 via-yellow-600 to-orange-600 hover:from-amber-700 hover:via-yellow-700 hover:to-orange-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 font-semibold"
+                                    onClick={handleViewQuiz}
+                                >
+                                    <BookOpen className="h-5 w-5 mr-2" />
+                                    Take Quiz
+                                </Button>
+                            )}
+                            
+                            {currentStep !== 'intro' && currentStep !== 'collect-supplies' && currentStep !== 'complete' && (
+                                <Button 
+                                    variant="outline" 
+                                    onClick={handleReset}
+                                    className="w-full text-slate-700 dark:text-slate-300 hover:text-amber-700 dark:hover:text-amber-300 hover:bg-amber-50 dark:hover:bg-amber-950/20 border-amber-300 dark:border-amber-700"
+                                >
+                                    <RefreshCw className="h-4 w-4 mr-2" />
+                                    <span>Reset & Try Another Food</span>
+                                </Button>
+                            )}
+                        </CardFooter>
+                    </Card>
+                </motion.div>
+            )}
 
             {/* Quiz Section */}
-            {currentStep === 'result' && (
+            {currentStep === 'quiz' && (
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
                     data-quiz-section
                 >
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Post-Lab Quiz</CardTitle>
-                            <CardDescription>Test your understanding of the experiment</CardDescription>
+                    <Card className="border-2 border-amber-300/50 dark:border-amber-700/50 bg-gradient-to-br from-amber-50/80 via-yellow-50/80 to-orange-50/80 dark:from-amber-950/30 dark:via-yellow-950/30 dark:to-orange-950/30 backdrop-blur-sm shadow-lg">
+                        <CardHeader className="relative z-10 bg-gradient-to-r from-amber-100/50 to-yellow-100/50 dark:from-amber-900/30 dark:to-yellow-900/30 border-b border-amber-200/50 dark:border-amber-800/50">
+                            <CardTitle className="flex items-center gap-2">
+                                <BookOpen className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+                                Post-Lab Quiz
+                            </CardTitle>
+                            <CardDescription className="text-amber-900/80 dark:text-amber-100/80">Test your understanding of the experiment</CardDescription>
                         </CardHeader>
-                        <CardContent className="space-y-4">
-                            <p className="font-medium">
+                        <CardContent className="relative z-10 space-y-6 pt-6">
+                            <p className="font-medium text-amber-900 dark:text-amber-100">
                                 Which food sample produces the MOST obvious translucent grease spot?
                             </p>
                             <RadioGroup 
@@ -604,9 +751,9 @@ export function GreaseSpotTestLabEnhanced() {
                                 disabled={quizIsCorrect !== null}
                             >
                                 {foodOptions.filter(f => f !== 'Water').map(food => (
-                                    <div key={food} className="flex items-center space-x-2 py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800">
-                                        <RadioGroupItem value={food} id={`q-${food}`} />
-                                        <Label htmlFor={`q-${food}`} className="flex-1 cursor-pointer">{food}</Label>
+                                    <div key={food} className="flex items-center space-x-2 py-3 px-4 rounded-lg border-2 border-amber-200/50 dark:border-amber-800/50 hover:bg-amber-50/50 dark:hover:bg-amber-950/20 hover:border-amber-400 dark:hover:border-amber-600 transition-all duration-200">
+                                        <RadioGroupItem value={food} id={`q-${food}`} className="border-amber-400 dark:border-amber-600" />
+                                        <Label htmlFor={`q-${food}`} className="flex-1 cursor-pointer text-amber-900 dark:text-amber-100 font-medium">{food}</Label>
                                     </div>
                                 ))}
                             </RadioGroup>
@@ -635,11 +782,12 @@ export function GreaseSpotTestLabEnhanced() {
                                 </motion.div>
                             )}
                         </CardContent>
-                        <CardFooter>
+                        <CardFooter className="relative z-10 flex flex-col gap-3 bg-gradient-to-r from-amber-50/50 to-yellow-50/50 dark:from-amber-950/30 dark:to-yellow-950/30 border-t border-amber-200/50 dark:border-amber-800/50">
                             <Button 
                                 onClick={handleQuizSubmit} 
                                 disabled={!quizAnswer || quizIsCorrect !== null}
                                 size="lg"
+                                className="w-full bg-gradient-to-r from-amber-600 via-yellow-600 to-orange-600 hover:from-amber-700 hover:via-yellow-700 hover:to-orange-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 font-semibold"
                             >
                                 {quizIsCorrect === true ? "Correct! ✓" : quizIsCorrect === false ? "Review Answer" : quizAttempts === 1 ? "Try Again" : "Submit Answer"}
                             </Button>
@@ -648,29 +796,101 @@ export function GreaseSpotTestLabEnhanced() {
                 </motion.div>
             )}
 
-            {/* XP Celebration */}
-            <AnimatePresence>
-                {showCelebration && xpEarned > 0 && (
+            {/* Lab Complete Section */}
+            {currentStep === 'complete' && (
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+                >
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.8, y: 50 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        className="fixed bottom-8 right-8 z-50"
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
                     >
-                        <div className="bg-gradient-to-br from-amber-500 to-yellow-600 text-white p-6 rounded-2xl shadow-2xl border-4 border-yellow-300">
-                            <div className="flex items-center gap-4">
-                                <div className="p-3 bg-white/20 rounded-full">
-                                    <Sparkles className="h-8 w-8" />
+                        <Card className="border-2 border-amber-300/50 dark:border-amber-700/50 bg-gradient-to-br from-amber-50/95 via-yellow-50/95 to-orange-50/95 dark:from-amber-950/95 dark:via-yellow-950/95 dark:to-orange-950/95 backdrop-blur-md shadow-2xl max-w-2xl w-full mx-4">
+                            <CardContent className="p-8 space-y-6">
+                                <div className="flex flex-col items-center text-center space-y-4">
+                                    <motion.div
+                                        animate={{ 
+                                            rotate: [0, 10, -10, 0],
+                                            scale: [1, 1.1, 1]
+                                        }}
+                                        transition={{ 
+                                            duration: 2,
+                                            repeat: Infinity,
+                                            ease: "easeInOut"
+                                        }}
+                                    >
+                                        <Trophy className="h-20 w-20 text-amber-500 dark:text-amber-400" />
+                                    </motion.div>
+                                    <h2 className="text-3xl font-bold bg-gradient-to-r from-amber-600 via-yellow-600 to-orange-600 bg-clip-text text-transparent">
+                                        Lab Complete!
+                                    </h2>
+                                    <p className="text-lg text-amber-900/80 dark:text-amber-100/80">
+                                        You've mastered the grease spot test!
+                                    </p>
                                 </div>
-                                <div>
-                                    <div className="text-2xl font-bold">+{xpEarned} XP</div>
-                                    <div className="text-sm opacity-90">Lab Complete!</div>
+
+                                <div className="space-y-4 pt-4 border-t border-amber-200 dark:border-amber-800">
+                                    <h3 className="font-semibold text-lg text-amber-900 dark:text-amber-100 flex items-center gap-2">
+                                        <Award className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+                                        What You've Learned:
+                                    </h3>
+                                    <ul className="space-y-2 text-amber-800 dark:text-amber-200">
+                                        <li className="flex items-start gap-2">
+                                            <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                                            <span>How to detect fats and oils using the simple grease spot test</span>
+                                        </li>
+                                        <li className="flex items-start gap-2">
+                                            <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                                            <span>That translucent spots indicate the presence of fats</span>
+                                        </li>
+                                        <li className="flex items-start gap-2">
+                                            <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                                            <span>How different foods contain varying amounts of fat</span>
+                                        </li>
+                                        <li className="flex items-start gap-2">
+                                            <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                                            <span>That nuts like groundnuts are very high in healthy fats</span>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </div>
-                        </div>
+
+                                {xpEarned > 0 && (
+                                    <div className="flex items-center justify-center gap-3 p-4 bg-gradient-to-r from-amber-100/50 to-yellow-100/50 dark:from-amber-900/30 dark:to-yellow-900/30 rounded-lg border border-amber-300/50 dark:border-amber-700/50">
+                                        <Award className="h-6 w-6 text-amber-600 dark:text-amber-400" />
+                                        <span className="text-xl font-bold text-amber-900 dark:text-amber-100">
+                                            +{xpEarned} XP Earned!
+                                        </span>
+                                    </div>
+                                )}
+
+                                <Button
+                                    onClick={handleReset}
+                                    size="lg"
+                                    className="w-full bg-gradient-to-r from-amber-600 via-yellow-600 to-orange-600 hover:from-amber-700 hover:via-yellow-700 hover:to-orange-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 font-semibold"
+                                >
+                                    <RefreshCw className="h-5 w-5 mr-2" />
+                                    Restart Lab
+                                </Button>
+                            </CardContent>
+                        </Card>
                     </motion.div>
-                )}
-            </AnimatePresence>
+                </motion.div>
+            )}
+
+            {showCelebration && (
+                <motion.div
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none"
+                >
+                    <div className="text-6xl">🧪✨</div>
+                </motion.div>
+            )}
+            </div>
         </div>
     );
 }
