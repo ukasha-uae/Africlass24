@@ -4,28 +4,171 @@ import * as React from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../ui/card';
 import { Button } from '../ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { CheckCircle, XCircle, Flame, Droplets, BookOpen, Shield, Sparkles, Trophy, Award, GripVertical, Thermometer } from 'lucide-react';
+import { CheckCircle, XCircle, Flame, Droplets, BookOpen, Shield, Sparkles, Trophy, Award, GripVertical, Thermometer, RefreshCw } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { useLabProgress } from '@/stores/lab-progress-store';
 import { TeacherVoice } from './TeacherVoice';
+import { LabSupplies, SupplyItem } from './LabSupplies';
 
 type Step = 'intro' | 'collect-supplies' | 'setup' | 'heat-metal' | 'heat-water' | 'heat-alcohol' | 'results' | 'quiz' | 'complete';
+
+// Enhanced Flame Component - Premium Design
+function EnhancedFlame({ isHeating }: { isHeating: boolean }) {
+    if (!isHeating) return null;
+    return (
+        <motion.div
+            className="relative w-16 h-20"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.3 }}
+        >
+            {/* Heat shimmer effect */}
+            <motion.div
+                className="absolute inset-x-0 -top-8 h-16 bg-gradient-to-b from-red-300/30 to-transparent blur-xl"
+                animate={{
+                    scaleY: [1, 1.2, 1],
+                    opacity: [0.5, 0.8, 0.5],
+                }}
+                transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                }}
+            />
+
+            {/* Outer flame - red/orange */}
+            <motion.div
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-20"
+                animate={{
+                    scaleX: [1, 1.05, 0.95, 1],
+                    scaleY: [1, 1.1, 0.9, 1],
+                    y: [0, -2, 0],
+                    x: [0, 0.5, -0.5, 0],
+                }}
+                transition={{
+                    duration: 0.7,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                }}
+                style={{
+                    background: 'radial-gradient(ellipse at center bottom, #ff4500 0%, #ff8c00 50%, transparent 100%)',
+                    clipPath: 'polygon(30% 100%, 50% 0%, 70% 100%)',
+                    filter: 'blur(1px)',
+                }}
+            />
+
+            {/* Middle flame - yellow/orange */}
+            <motion.div
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-10 h-16"
+                animate={{
+                    scaleX: [1, 1.15, 0.85, 1],
+                    scaleY: [1, 1.2, 0.9, 1],
+                    x: [0, 1, -1, 0],
+                }}
+                transition={{
+                    duration: 0.6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.1
+                }}
+                style={{
+                    background: 'radial-gradient(ellipse at center bottom, #ffd700 0%, #ffa500 40%, #ff6b35 80%, transparent 100%)',
+                    clipPath: 'polygon(35% 100%, 50% 0%, 65% 100%)',
+                    filter: 'blur(0.5px)',
+                }}
+            />
+
+            {/* Inner core - bright yellow/white */}
+            <motion.div
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-14"
+                animate={{
+                    scaleX: [1, 1.2, 0.8, 1],
+                    scaleY: [1, 1.25, 0.85, 1],
+                    x: [0, -1, 1, 0],
+                }}
+                transition={{
+                    duration: 0.4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.2
+                }}
+                style={{
+                    background: 'radial-gradient(ellipse at center bottom, #fff 0%, #ffd700 50%, #ffa500 100%)',
+                    clipPath: 'polygon(40% 100%, 50% 0%, 60% 100%)',
+                }}
+            />
+
+            {/* Flickering particles */}
+            {[...Array(5)].map((_, i) => (
+                <motion.div
+                    key={i}
+                    className="absolute w-1 h-1 bg-yellow-300 rounded-full"
+                    style={{
+                        bottom: `${10 + i * 8}%`,
+                        left: `${45 + (i % 3 - 1) * 5}%`,
+                    }}
+                    animate={{
+                        y: [0, -15, 0],
+                        x: [(i % 3 - 1) * 3, (i % 3 - 1) * 6, (i % 3 - 1) * 3],
+                        opacity: [0.8, 0.3, 0.8],
+                        scale: [0.8, 1.2, 0.8],
+                    }}
+                    transition={{
+                        duration: 0.5 + i * 0.1,
+                        repeat: Infinity,
+                        ease: "easeOut",
+                        delay: i * 0.1
+                    }}
+                />
+            ))}
+        </motion.div>
+    );
+}
 
 export function ThermalExpansionLabEnhanced() {
     const { toast } = useToast();
     const [currentStep, setCurrentStep] = React.useState<Step>('intro');
     const [teacherMessage, setTeacherMessage] = React.useState('');
-    const [pendingTransition, setPendingTransition] = React.useState<(() => void) | null>(null);
     
-    // Supplies tracking
+    // Supplies tracking - using standardized component
     const [showSupplies, setShowSupplies] = React.useState(true);
-    const [metalRodCollected, setMetalRodCollected] = React.useState(false);
-    const [waterCollected, setWaterCollected] = React.useState(false);
-    const [alcoholCollected, setAlcoholCollected] = React.useState(false);
-    const [thermometerCollected, setThermometerCollected] = React.useState(false);
+    const [collectedItems, setCollectedItems] = React.useState<string[]>([]);
+    
+    // Define supplies for the lab
+    const supplies: SupplyItem[] = [
+        {
+            id: 'metal-rod',
+            name: 'Metal Rod',
+            emoji: '🔩',
+            description: 'Solid material to test expansion',
+            required: true
+        },
+        {
+            id: 'water',
+            name: 'Water',
+            emoji: '💧',
+            description: 'Liquid for expansion comparison',
+            required: true
+        },
+        {
+            id: 'alcohol',
+            name: 'Alcohol',
+            emoji: '🧪',
+            description: 'Liquid with different expansion rate',
+            required: true
+        },
+        {
+            id: 'thermometer',
+            name: 'Thermometer',
+            emoji: '🌡️',
+            description: 'Temperature measurement device',
+            required: true
+        }
+    ];
     
     // Experiment state
     const [suppliesReady, setSuppliesReady] = React.useState(false);
@@ -64,56 +207,29 @@ export function ThermalExpansionLabEnhanced() {
     }, [currentStep]);
 
     const handleStartExperiment = () => {
-        setTeacherMessage("Great! Let's gather our supplies. Start by clicking on the METAL ROD - we'll heat this first!");
-        setPendingTransition(() => () => {
-            setCurrentStep('collect-supplies');
-        });
+        setCurrentStep('collect-supplies');
+        setTeacherMessage("Perfect! Let's gather our supplies. We need a metal rod, water, alcohol, and a thermometer. Click on each item to collect them!");
     };
     
-    const handleCollectMetalRod = () => {
-        if (!metalRodCollected) {
-            setMetalRodCollected(true);
-            setTeacherMessage("Perfect! Now click on the WATER container - we'll measure its expansion too.");
-            toast({ title: '✅ Metal Rod Collected' });
+    // Supplies collection handlers
+    const handleCollect = React.useCallback((itemId: string) => {
+        if (!collectedItems.includes(itemId)) {
+            setCollectedItems(prev => [...prev, itemId]);
         }
-    };
-    
-    const handleCollectWater = () => {
-        if (metalRodCollected && !waterCollected) {
-            setWaterCollected(true);
-            setTeacherMessage("Good! Now click on the ALCOHOL bottle - liquids expand even more than solids!");
-            toast({ title: '✅ Water Collected' });
-        }
-    };
-    
-    const handleCollectAlcohol = () => {
-        if (waterCollected && !alcoholCollected) {
-            setAlcoholCollected(true);
-            setTeacherMessage("Excellent! Finally, click on the THERMOMETER - we need this to measure temperature!");
-            toast({ title: '✅ Alcohol Collected' });
-        }
-    };
-    
-    const handleCollectThermometer = () => {
-        if (alcoholCollected && !thermometerCollected) {
-            setThermometerCollected(true);
-            setShowSupplies(false);
-            setTeacherMessage("All supplies ready! Now we'll set up three containers and heat each one. Watch what happens to each material!");
-            toast({ title: '✅ All Supplies Collected!' });
-            setPendingTransition(() => () => {
-                setCurrentStep('setup');
-            });
-        }
-    };
+    }, [collectedItems]);
+
+    const handleAllSuppliesCollected = React.useCallback(() => {
+        setShowSupplies(false);
+        setCurrentStep('setup');
+        setTeacherMessage("All supplies ready! Now we'll set up three containers and heat each one. Watch what happens to each material!");
+    }, []);
     
     const handleSetupComplete = () => {
         if (!suppliesReady) {
             setSuppliesReady(true);
             setTeacherMessage("Containers filled! Now let's start heating. Click the FLAME under the metal rod first!");
             toast({ title: '✅ Setup Complete' });
-            setPendingTransition(() => () => {
-                setCurrentStep('heat-metal');
-            });
+            setCurrentStep('heat-metal');
         }
     };
     
@@ -131,21 +247,15 @@ export function ThermalExpansionLabEnhanced() {
                     if (material === 'metal') {
                         setMetalExpanded(true);
                         setTeacherMessage("Wow! The metal rod expanded! Notice it grew slightly. Now let's heat the water!");
-                        setPendingTransition(() => () => {
-                            setCurrentStep('heat-water');
-                        });
+                        setCurrentStep('heat-water');
                     } else if (material === 'water') {
                         setWaterExpanded(true);
                         setTeacherMessage("The water expanded more than the metal! Liquids expand more than solids. Now let's try alcohol!");
-                        setPendingTransition(() => () => {
-                            setCurrentStep('heat-alcohol');
-                        });
+                        setCurrentStep('heat-alcohol');
                     } else if (material === 'alcohol') {
                         setAlcoholExpanded(true);
                         setTeacherMessage("Amazing! Alcohol expanded the MOST! This shows different materials have different expansion rates!");
-                        setPendingTransition(() => () => {
-                            setCurrentStep('results');
-                        });
+                        setCurrentStep('results');
                     }
                     return prev;
                 }
@@ -156,19 +266,9 @@ export function ThermalExpansionLabEnhanced() {
         toast({ title: `🔥 Heating ${material}...` });
     };
     
-    const handleTeacherComplete = () => {
-        if (pendingTransition) {
-            const transition = pendingTransition;
-            setPendingTransition(null);
-            transition();
-        }
-    };
-
     const handleViewResults = () => {
         setTeacherMessage("Excellent work! You've seen how different materials expand differently when heated. Now let's test your knowledge!");
-        setPendingTransition(() => () => {
-            setCurrentStep('quiz');
-        });
+        setCurrentStep('quiz');
     };
 
     const handleQuizSubmit = () => {
@@ -200,10 +300,7 @@ export function ThermalExpansionLabEnhanced() {
     const handleRestart = () => {
         setCurrentStep('intro');
         setShowSupplies(true);
-        setMetalRodCollected(false);
-        setWaterCollected(false);
-        setAlcoholCollected(false);
-        setThermometerCollected(false);
+        setCollectedItems([]);
         setSuppliesReady(false);
         setMetalExpanded(false);
         setWaterExpanded(false);
@@ -216,15 +313,43 @@ export function ThermalExpansionLabEnhanced() {
         setQuizFeedback('');
         setQuizSubmitted(false);
         setShowCelebration(false);
-        setPendingTransition(null);
         setTeacherMessage("Welcome back! Ready to explore thermal expansion again? Let's heat some materials!");
     };
 
     return (
-        <div className="space-y-6 pb-20">
+        <div className="relative min-h-screen pb-20">
+            {/* Premium Animated Background - Physics Theme */}
+            <div className="fixed inset-0 -z-10 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 dark:from-red-950/20 dark:via-orange-950/20 dark:to-yellow-950/20" />
+                {/* Animated orbs */}
+                {[...Array(8)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute rounded-full bg-gradient-to-br from-red-200/40 via-orange-200/40 to-yellow-200/40 dark:from-red-800/20 dark:via-orange-800/20 dark:to-yellow-800/20 blur-3xl"
+                        style={{
+                            width: `${200 + i * 50}px`,
+                            height: `${200 + i * 50}px`,
+                            left: `${(i * 12.5) % 100}%`,
+                            top: `${(i * 15) % 100}%`,
+                        }}
+                        animate={{
+                            x: [0, 100, 0],
+                            y: [0, 50, 0],
+                            scale: [1, 1.2, 1],
+                        }}
+                        transition={{
+                            duration: 10 + i * 2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: i * 0.5,
+                        }}
+                    />
+                ))}
+            </div>
+
+            <div className="relative z-10 space-y-6">
             <TeacherVoice 
                 message={teacherMessage}
-                onComplete={handleTeacherComplete}
             />
 
             {isCompleted && (
@@ -279,20 +404,30 @@ export function ThermalExpansionLabEnhanced() {
                 </motion.div>
             )}
 
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                        <Thermometer className="h-5 w-5 text-red-600" />
-                        Thermal Expansion
-                    </CardTitle>
-                    <CardDescription>Observe how materials expand when heated</CardDescription>
-                </CardHeader>
-            </Card>
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+            >
+                <Card className="bg-gradient-to-br from-white/80 via-red-50/50 to-orange-50/50 dark:from-gray-900/80 dark:via-red-950/30 dark:to-orange-950/30 backdrop-blur-sm border-2 border-red-200/50 dark:border-red-800/50 shadow-xl">
+                    <CardHeader className="bg-gradient-to-r from-red-100/50 to-orange-100/50 dark:from-red-900/20 dark:to-orange-900/20 border-b border-red-200/50 dark:border-red-800/50">
+                        <CardTitle className="flex items-center gap-2 text-2xl bg-gradient-to-r from-red-700 to-orange-700 dark:from-red-400 dark:to-orange-400 bg-clip-text text-transparent">
+                            <Thermometer className="h-6 w-6 text-red-600 dark:text-red-400" />
+                            Thermal Expansion
+                        </CardTitle>
+                        <CardDescription className="text-base mt-2">Observe how materials expand when heated</CardDescription>
+                    </CardHeader>
+                </Card>
+            </motion.div>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>Lab Information</CardTitle>
-                </CardHeader>
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+            >
+                <Card className="bg-gradient-to-br from-white/80 via-red-50/50 to-orange-50/50 dark:from-gray-900/80 dark:via-red-950/30 dark:to-orange-950/30 backdrop-blur-sm border-2 border-red-200/50 dark:border-red-800/50 shadow-xl">
+                    <CardHeader className="bg-gradient-to-r from-red-100/50 to-orange-100/50 dark:from-red-900/20 dark:to-orange-900/20 border-b border-red-200/50 dark:border-red-800/50">
+                        <CardTitle className="text-xl bg-gradient-to-r from-red-700 to-orange-700 dark:from-red-400 dark:to-orange-400 bg-clip-text text-transparent">Lab Information</CardTitle>
+                    </CardHeader>
                 <CardContent>
                     <Accordion type="single" collapsible className="w-full">
                         <AccordionItem value="theory">
@@ -350,12 +485,12 @@ export function ThermalExpansionLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>Welcome to the Thermal Expansion Lab!</CardTitle>
-                                <CardDescription>Discover how heat changes material size</CardDescription>
+                        <Card className="bg-gradient-to-br from-white/90 via-red-50/70 to-orange-50/70 dark:from-gray-900/90 dark:via-red-950/40 dark:to-orange-950/40 backdrop-blur-sm border-2 border-red-200/50 dark:border-red-800/50 shadow-xl">
+                            <CardHeader className="bg-gradient-to-r from-red-100/50 to-orange-100/50 dark:from-red-900/20 dark:to-orange-900/20 border-b border-red-200/50 dark:border-red-800/50">
+                                <CardTitle className="text-2xl bg-gradient-to-r from-red-700 to-orange-700 dark:from-red-400 dark:to-orange-400 bg-clip-text text-transparent">Welcome to the Thermal Expansion Lab!</CardTitle>
+                                <CardDescription className="text-base">Discover how heat changes material size</CardDescription>
                             </CardHeader>
-                            <CardContent className="space-y-4">
+                            <CardContent className="space-y-4 pt-6">
                                 <div className="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20 p-6 rounded-lg border-2 border-red-200 dark:border-red-800">
                                     <div className="flex items-start gap-4">
                                         <Thermometer className="w-16 h-16 text-red-600 dark:text-red-400 flex-shrink-0" />
@@ -371,8 +506,12 @@ export function ThermalExpansionLabEnhanced() {
                                     </div>
                                 </div>
                             </CardContent>
-                            <CardFooter>
-                                <Button onClick={handleStartExperiment} className="w-full" size="lg">
+                            <CardFooter className="bg-gradient-to-r from-red-50/50 to-orange-50/50 dark:from-red-950/20 dark:to-orange-950/20 border-t border-red-200/50 dark:border-red-800/50">
+                                <Button 
+                                    onClick={handleStartExperiment} 
+                                    className="w-full bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white shadow-lg hover:shadow-xl transition-all duration-300" 
+                                    size="lg"
+                                >
                                     Start Experiment
                                 </Button>
                             </CardFooter>
@@ -387,133 +526,13 @@ export function ThermalExpansionLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card className="border-2 border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-950/20">
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2 text-lg">
-                                    <Sparkles className="h-5 w-5 text-amber-600" />
-                                    Lab Supplies - Click to Collect
-                                </CardTitle>
-                                <CardDescription>Click on each item in order to collect them</CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="flex gap-6 justify-center flex-wrap">
-                                    {/* Metal Rod */}
-                                    {!metalRodCollected && (
-                                        <motion.div
-                                            onClick={handleCollectMetalRod}
-                                            whileHover={{ scale: 1.05, y: -5 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            className="cursor-pointer bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-2 border-gray-400 dark:border-gray-600 hover:border-gray-600 hover:shadow-xl transition-all"
-                                        >
-                                            <div className="flex flex-col items-center gap-2">
-                                                <div className="w-4 h-32 bg-gradient-to-r from-gray-400 to-gray-600 rounded-sm" />
-                                                <span className="text-sm font-medium">Metal Rod</span>
-                                                <span className="text-xs text-muted-foreground">Click to Collect</span>
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                    
-                                    {/* Water */}
-                                    {metalRodCollected && !waterCollected && (
-                                        <motion.div
-                                            onClick={handleCollectWater}
-                                            whileHover={{ scale: 1.05, y: -5 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            className="cursor-pointer bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-2 border-blue-300 dark:border-blue-700 hover:border-blue-500 hover:shadow-xl transition-all"
-                                        >
-                                            <div className="flex flex-col items-center gap-2">
-                                                <div className="w-16 h-24 border-2 border-blue-400 rounded-lg bg-blue-100 dark:bg-blue-900/50">
-                                                    <div className="w-full h-3/4 bg-blue-400/60 rounded-b-lg" />
-                                                </div>
-                                                <span className="text-sm font-medium">Water</span>
-                                                <span className="text-xs text-muted-foreground">Click to Collect</span>
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                    
-                                    {/* Alcohol */}
-                                    {waterCollected && !alcoholCollected && (
-                                        <motion.div
-                                            onClick={handleCollectAlcohol}
-                                            whileHover={{ scale: 1.05, y: -5 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            className="cursor-pointer bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-2 border-purple-300 dark:border-purple-700 hover:border-purple-500 hover:shadow-xl transition-all"
-                                        >
-                                            <div className="flex flex-col items-center gap-2">
-                                                <div className="w-16 h-24 border-2 border-purple-400 rounded-lg bg-purple-100 dark:bg-purple-900/50">
-                                                    <div className="w-full h-3/4 bg-purple-400/60 rounded-b-lg" />
-                                                </div>
-                                                <span className="text-sm font-medium">Alcohol</span>
-                                                <span className="text-xs text-muted-foreground">Click to Collect</span>
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                    
-                                    {/* Thermometer */}
-                                    {alcoholCollected && !thermometerCollected && (
-                                        <motion.div
-                                            onClick={handleCollectThermometer}
-                                            whileHover={{ scale: 1.05, y: -5 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            className="cursor-pointer bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-2 border-red-300 dark:border-red-700 hover:border-red-500 hover:shadow-xl transition-all"
-                                        >
-                                            <div className="flex flex-col items-center gap-2">
-                                                <div className="flex flex-col items-center">
-                                                    <div className="w-3 h-20 bg-gradient-to-b from-white to-red-500 rounded-t-full border border-gray-400" />
-                                                    <div className="w-6 h-4 bg-red-500 rounded-full border border-gray-400" />
-                                                </div>
-                                                <span className="text-sm font-medium">Thermometer</span>
-                                                <span className="text-xs text-muted-foreground">Click to Collect</span>
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                    
-                                    {/* Collected Items Display */}
-                                    <div className="w-full mt-4 flex gap-4 justify-center flex-wrap">
-                                        {metalRodCollected && (
-                                            <motion.div
-                                                initial={{ scale: 0 }}
-                                                animate={{ scale: 1 }}
-                                                className="flex items-center gap-2 bg-gray-100 dark:bg-gray-900 px-4 py-2 rounded-full"
-                                            >
-                                                <CheckCircle className="h-4 w-4 text-gray-600" />
-                                                <span className="text-sm">Metal Rod</span>
-                                            </motion.div>
-                                        )}
-                                        {waterCollected && (
-                                            <motion.div
-                                                initial={{ scale: 0 }}
-                                                animate={{ scale: 1 }}
-                                                className="flex items-center gap-2 bg-blue-100 dark:bg-blue-900 px-4 py-2 rounded-full"
-                                            >
-                                                <CheckCircle className="h-4 w-4 text-blue-600" />
-                                                <span className="text-sm">Water</span>
-                                            </motion.div>
-                                        )}
-                                        {alcoholCollected && (
-                                            <motion.div
-                                                initial={{ scale: 0 }}
-                                                animate={{ scale: 1 }}
-                                                className="flex items-center gap-2 bg-purple-100 dark:bg-purple-900 px-4 py-2 rounded-full"
-                                            >
-                                                <CheckCircle className="h-4 w-4 text-purple-600" />
-                                                <span className="text-sm">Alcohol</span>
-                                            </motion.div>
-                                        )}
-                                        {thermometerCollected && (
-                                            <motion.div
-                                                initial={{ scale: 0 }}
-                                                animate={{ scale: 1 }}
-                                                className="flex items-center gap-2 bg-red-100 dark:bg-red-900 px-4 py-2 rounded-full"
-                                            >
-                                                <CheckCircle className="h-4 w-4 text-red-600" />
-                                                <span className="text-sm">Thermometer</span>
-                                            </motion.div>
-                                        )}
-                                    </div>
-                                </div>
-                            </CardContent>
-                        </Card>
+                        <LabSupplies
+                            supplies={supplies}
+                            collectedItems={collectedItems}
+                            onCollect={handleCollect}
+                            showSupplies={showSupplies}
+                            onAllCollected={handleAllSuppliesCollected}
+                        />
                     </motion.div>
                 )}
 
@@ -524,20 +543,24 @@ export function ThermalExpansionLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card className="border-2 border-red-200 dark:border-red-800">
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <Flame className="h-5 w-5 text-red-600" />
+                        <Card className="bg-gradient-to-br from-white/90 via-red-50/70 to-orange-50/70 dark:from-gray-900/90 dark:via-red-950/40 dark:to-orange-950/40 backdrop-blur-sm border-2 border-red-200/50 dark:border-red-800/50 shadow-xl">
+                            <CardHeader className="bg-gradient-to-r from-red-100/50 to-orange-100/50 dark:from-red-900/20 dark:to-orange-900/20 border-b border-red-200/50 dark:border-red-800/50">
+                                <CardTitle className="flex items-center gap-2 text-xl bg-gradient-to-r from-red-700 to-orange-700 dark:from-red-400 dark:to-orange-400 bg-clip-text text-transparent">
+                                    <Flame className="h-6 w-6 text-red-600 dark:text-red-400" />
                                     Interactive Experiment
                                 </CardTitle>
-                                <CardDescription>Click to heat each material</CardDescription>
+                                <CardDescription className="text-base">Click to heat each material</CardDescription>
                             </CardHeader>
-                            <CardContent className="space-y-6">
+                            <CardContent className="space-y-6 pt-6">
                                 {/* Setup Stage */}
                                 {currentStep === 'setup' && !suppliesReady && (
                                     <div className="text-center space-y-4">
                                         <p className="text-lg font-medium">Click on the containers to fill them with materials</p>
-                                        <Button onClick={handleSetupComplete} size="lg">
+                                        <Button 
+                                            onClick={handleSetupComplete} 
+                                            size="lg"
+                                            className="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+                                        >
                                             Setup Containers
                                         </Button>
                                     </div>
@@ -553,7 +576,7 @@ export function ThermalExpansionLabEnhanced() {
                                                 onClick={currentStep === 'heat-metal' && suppliesReady ? () => handleHeatMaterial('metal') : undefined}
                                                 whileHover={currentStep === 'heat-metal' && suppliesReady && !heatingMaterial ? { scale: 1.05 } : {}}
                                                 className={cn(
-                                                    "flex flex-col items-center gap-2",
+                                                    "relative flex flex-col items-center gap-2",
                                                     currentStep === 'heat-metal' && suppliesReady && !heatingMaterial && "cursor-pointer"
                                                 )}
                                             >
@@ -576,7 +599,9 @@ export function ThermalExpansionLabEnhanced() {
                                                     </p>
                                                 )}
                                                 {heatingMaterial === 'metal' && (
-                                                    <Flame className="h-6 w-6 text-red-500 animate-pulse" />
+                                                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2">
+                                                        <EnhancedFlame isHeating={true} />
+                                                    </div>
                                                 )}
                                             </motion.div>
                                             
@@ -585,7 +610,7 @@ export function ThermalExpansionLabEnhanced() {
                                                 onClick={currentStep === 'heat-water' && suppliesReady ? () => handleHeatMaterial('water') : undefined}
                                                 whileHover={currentStep === 'heat-water' && suppliesReady && !heatingMaterial ? { scale: 1.05 } : {}}
                                                 className={cn(
-                                                    "flex flex-col items-center gap-2",
+                                                    "relative flex flex-col items-center gap-2",
                                                     currentStep === 'heat-water' && suppliesReady && !heatingMaterial && "cursor-pointer"
                                                 )}
                                             >
@@ -610,7 +635,9 @@ export function ThermalExpansionLabEnhanced() {
                                                     </p>
                                                 )}
                                                 {heatingMaterial === 'water' && (
-                                                    <Flame className="h-6 w-6 text-red-500 animate-pulse" />
+                                                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2">
+                                                        <EnhancedFlame isHeating={true} />
+                                                    </div>
                                                 )}
                                             </motion.div>
                                             
@@ -619,7 +646,7 @@ export function ThermalExpansionLabEnhanced() {
                                                 onClick={currentStep === 'heat-alcohol' && suppliesReady ? () => handleHeatMaterial('alcohol') : undefined}
                                                 whileHover={currentStep === 'heat-alcohol' && suppliesReady && !heatingMaterial ? { scale: 1.05 } : {}}
                                                 className={cn(
-                                                    "flex flex-col items-center gap-2",
+                                                    "relative flex flex-col items-center gap-2",
                                                     currentStep === 'heat-alcohol' && suppliesReady && !heatingMaterial && "cursor-pointer"
                                                 )}
                                             >
@@ -644,7 +671,9 @@ export function ThermalExpansionLabEnhanced() {
                                                     </p>
                                                 )}
                                                 {heatingMaterial === 'alcohol' && (
-                                                    <Flame className="h-6 w-6 text-red-500 animate-pulse" />
+                                                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2">
+                                                        <EnhancedFlame isHeating={true} />
+                                                    </div>
                                                 )}
                                             </motion.div>
                                         </div>
@@ -662,13 +691,13 @@ export function ThermalExpansionLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card className="border-2 border-red-200 dark:border-red-800">
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <CheckCircle className="h-5 w-5 text-red-600" />
+                        <Card className="bg-gradient-to-br from-white/90 via-red-50/70 to-orange-50/70 dark:from-gray-900/90 dark:via-red-950/40 dark:to-orange-950/40 backdrop-blur-sm border-2 border-red-200/50 dark:border-red-800/50 shadow-xl">
+                            <CardHeader className="bg-gradient-to-r from-red-100/50 to-orange-100/50 dark:from-red-900/20 dark:to-orange-900/20 border-b border-red-200/50 dark:border-red-800/50">
+                                <CardTitle className="flex items-center gap-2 text-xl bg-gradient-to-r from-red-700 to-orange-700 dark:from-red-400 dark:to-orange-400 bg-clip-text text-transparent">
+                                    <CheckCircle className="h-6 w-6 text-red-600 dark:text-red-400" />
                                     Experiment Results
                                 </CardTitle>
-                                <CardDescription>Analysis of thermal expansion</CardDescription>
+                                <CardDescription className="text-base">Analysis of thermal expansion</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-4">
                                 <div className="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20 p-6 rounded-lg border-2 border-red-200 dark:border-red-800">
@@ -704,8 +733,12 @@ export function ThermalExpansionLabEnhanced() {
                                     </p>
                                 </div>
                             </CardContent>
-                            <CardFooter>
-                                <Button onClick={handleViewResults} className="w-full" size="lg">
+                            <CardFooter className="bg-gradient-to-r from-red-50/50 to-orange-50/50 dark:from-red-950/20 dark:to-orange-950/20 border-t border-red-200/50 dark:border-red-800/50">
+                                <Button 
+                                    onClick={handleViewResults} 
+                                    className="w-full bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white shadow-lg hover:shadow-xl transition-all duration-300" 
+                                    size="lg"
+                                >
                                     Continue to Quiz
                                 </Button>
                             </CardFooter>
@@ -720,10 +753,10 @@ export function ThermalExpansionLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>Knowledge Check</CardTitle>
-                                <CardDescription>Answer these questions about thermal expansion</CardDescription>
+                        <Card className="bg-gradient-to-br from-white/90 via-red-50/70 to-orange-50/70 dark:from-gray-900/90 dark:via-red-950/40 dark:to-orange-950/40 backdrop-blur-sm border-2 border-red-200/50 dark:border-red-800/50 shadow-xl">
+                            <CardHeader className="bg-gradient-to-r from-red-100/50 to-orange-100/50 dark:from-red-900/20 dark:to-orange-900/20 border-b border-red-200/50 dark:border-red-800/50">
+                                <CardTitle className="text-xl bg-gradient-to-r from-red-700 to-orange-700 dark:from-red-400 dark:to-orange-400 bg-clip-text text-transparent">Knowledge Check</CardTitle>
+                                <CardDescription className="text-base">Answer these questions about thermal expansion</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-6">
                                 {/* Question 1 */}
@@ -866,23 +899,28 @@ export function ThermalExpansionLabEnhanced() {
                                     </motion.div>
                                 )}
                             </CardContent>
-                            <CardFooter className="flex gap-3">
+                            <CardFooter className="flex gap-3 bg-gradient-to-r from-red-50/50 to-orange-50/50 dark:from-red-950/20 dark:to-orange-950/20 border-t border-red-200/50 dark:border-red-800/50">
                                 <Button 
                                     onClick={handleQuizSubmit} 
                                     disabled={!selectedAnswer1 || !selectedAnswer2 || !selectedAnswer3 || quizSubmitted}
-                                    className="flex-1"
+                                    className="flex-1 bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
                                     size="lg"
                                 >
                                     Submit Answers
                                 </Button>
                                 {quizSubmitted && !quizFeedback.includes('Perfect') && (
-                                    <Button onClick={() => {
-                                        setSelectedAnswer1(null);
-                                        setSelectedAnswer2(null);
-                                        setSelectedAnswer3(null);
-                                        setQuizFeedback('');
-                                        setQuizSubmitted(false);
-                                    }} variant="outline" size="lg">
+                                    <Button 
+                                        onClick={() => {
+                                            setSelectedAnswer1(null);
+                                            setSelectedAnswer2(null);
+                                            setSelectedAnswer3(null);
+                                            setQuizFeedback('');
+                                            setQuizSubmitted(false);
+                                        }} 
+                                        variant="outline" 
+                                        size="lg"
+                                        className="border-2 border-red-300 dark:border-red-700 hover:bg-red-50 dark:hover:bg-red-950/30"
+                                    >
                                         Try Again
                                     </Button>
                                 )}
@@ -898,19 +936,19 @@ export function ThermalExpansionLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card className="border-2 border-red-200 dark:border-red-800">
-                            <CardHeader className="text-center">
+                        <Card className="bg-gradient-to-br from-white/90 via-red-50/70 to-orange-50/70 dark:from-gray-900/90 dark:via-red-950/40 dark:to-orange-950/40 backdrop-blur-sm border-2 border-red-200/50 dark:border-red-800/50 shadow-xl">
+                            <CardHeader className="text-center bg-gradient-to-r from-red-100/50 to-orange-100/50 dark:from-red-900/20 dark:to-orange-900/20 border-b border-red-200/50 dark:border-red-800/50">
                                 <motion.div
-                                    animate={{ rotate: [0, -10, 10, -10, 10, 0] }}
+                                    animate={{ rotate: [0, -10, 10, -10, 10, 0], scale: [1, 1.2, 1] }}
                                     transition={{ duration: 0.5 }}
                                     className="flex justify-center mb-4"
                                 >
-                                    <Trophy className="h-16 w-16 text-yellow-500" />
+                                    <Trophy className="h-20 w-20 text-yellow-500" />
                                 </motion.div>
-                                <CardTitle>Lab Complete!</CardTitle>
-                                <CardDescription>You've mastered thermal expansion</CardDescription>
+                                <CardTitle className="text-2xl bg-gradient-to-r from-red-700 to-orange-700 dark:from-red-400 dark:to-orange-400 bg-clip-text text-transparent">Lab Complete!</CardTitle>
+                                <CardDescription className="text-base">You've mastered thermal expansion</CardDescription>
                             </CardHeader>
-                            <CardContent className="space-y-4">
+                            <CardContent className="space-y-4 pt-6">
                                 <div className="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20 p-6 rounded-lg border-2 border-red-200 dark:border-red-800">
                                     <h3 className="font-semibold text-center text-lg mb-4">What You've Learned:</h3>
                                     <ul className="space-y-2 text-sm">
@@ -932,9 +970,21 @@ export function ThermalExpansionLabEnhanced() {
                                         </li>
                                     </ul>
                                 </div>
+                                {xpEarned > 0 && (
+                                    <div className="flex items-center justify-center gap-2 text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+                                        <Award className="h-8 w-8 text-yellow-500" />
+                                        +{xpEarned} XP
+                                    </div>
+                                )}
                             </CardContent>
-                            <CardFooter>
-                                <Button onClick={handleRestart} variant="outline" className="w-full" size="lg">
+                            <CardFooter className="bg-gradient-to-r from-red-50/50 to-orange-50/50 dark:from-red-950/20 dark:to-orange-950/20 border-t border-red-200/50 dark:border-red-800/50">
+                                <Button 
+                                    onClick={handleRestart} 
+                                    variant="outline" 
+                                    className="w-full border-2 border-red-300 dark:border-red-700 hover:bg-red-50 dark:hover:bg-red-950/30" 
+                                    size="lg"
+                                >
+                                    <RefreshCw className="h-4 w-4 mr-2" />
                                     Restart Lab
                                 </Button>
                             </CardFooter>
@@ -942,6 +992,7 @@ export function ThermalExpansionLabEnhanced() {
                     </motion.div>
                 )}
             </AnimatePresence>
+            </div>
         </div>
     );
 }
