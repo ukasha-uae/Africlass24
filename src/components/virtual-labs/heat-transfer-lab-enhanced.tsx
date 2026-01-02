@@ -4,28 +4,111 @@ import * as React from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../ui/card';
 import { Button } from '../ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { CheckCircle, Flame, BookOpen, Shield, Sparkles, Trophy, Award, GripVertical, Thermometer, Wind, Zap } from 'lucide-react';
+import { CheckCircle, Flame, BookOpen, Shield, Sparkles, Trophy, Award, GripVertical, Thermometer, Wind, Zap, RefreshCw } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { useLabProgress } from '@/stores/lab-progress-store';
 import { TeacherVoice } from './TeacherVoice';
+import { LabSupplies, SupplyItem } from './LabSupplies';
 
 type Step = 'intro' | 'collect-supplies' | 'conduction' | 'convection' | 'radiation' | 'results' | 'quiz' | 'complete';
+
+// Enhanced Flame Component - Premium Design
+function EnhancedFlame({ isHeating }: { isHeating: boolean }) {
+    if (!isHeating) return null;
+    return (
+        <motion.div
+            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-20"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.3 }}
+        >
+            {/* Heat shimmer effect */}
+            <motion.div
+                className="absolute inset-x-0 -top-8 h-16 bg-gradient-to-b from-red-300/30 to-transparent blur-xl"
+                animate={{
+                    scaleY: [1, 1.2, 1],
+                    opacity: [0.5, 0.8, 0.5],
+                }}
+                transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                }}
+            />
+            {/* Outer flame */}
+            <motion.div
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-20"
+                animate={{
+                    scaleX: [1, 1.05, 0.95, 1],
+                    scaleY: [1, 1.1, 0.9, 1],
+                    y: [0, -2, 0],
+                    x: [0, 0.5, -0.5, 0],
+                }}
+                transition={{
+                    duration: 0.7,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                }}
+                style={{
+                    background: 'radial-gradient(ellipse at center bottom, #ff4500 0%, #ff8c00 50%, transparent 100%)',
+                    clipPath: 'polygon(30% 100%, 50% 0%, 70% 100%)',
+                    filter: 'blur(1px)',
+                }}
+            />
+            {/* Middle flame */}
+            <motion.div
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-10 h-16"
+                animate={{
+                    scaleX: [1, 1.15, 0.85, 1],
+                    scaleY: [1, 1.2, 0.9, 1],
+                    x: [0, 1, -1, 0],
+                }}
+                transition={{
+                    duration: 0.6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.1
+                }}
+                style={{
+                    background: 'radial-gradient(ellipse at center bottom, #ffd700 0%, #ffa500 40%, #ff6b35 80%, transparent 100%)',
+                    clipPath: 'polygon(35% 100%, 50% 0%, 65% 100%)',
+                    filter: 'blur(0.5px)',
+                }}
+            />
+            {/* Inner core */}
+            <motion.div
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-14"
+                animate={{
+                    scaleX: [1, 1.2, 0.8, 1],
+                    scaleY: [1, 1.25, 0.85, 1],
+                    x: [0, -1, 1, 0],
+                }}
+                transition={{
+                    duration: 0.4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.2
+                }}
+                style={{
+                    background: 'radial-gradient(ellipse at center bottom, #fff 0%, #ffd700 50%, #ffa500 100%)',
+                    clipPath: 'polygon(40% 100%, 50% 0%, 60% 100%)',
+                }}
+            />
+        </motion.div>
+    );
+}
 
 export function HeatTransferLabEnhanced() {
     const { toast } = useToast();
     const [currentStep, setCurrentStep] = React.useState<Step>('intro');
     const [teacherMessage, setTeacherMessage] = React.useState('');
-    const [pendingTransition, setPendingTransition] = React.useState<(() => void) | null>(null);
     
     // Supplies tracking
-    const [showSupplies, setShowSupplies] = React.useState(true);
-    const [metalRodCollected, setMetalRodCollected] = React.useState(false);
-    const [beakerCollected, setBeakerCollected] = React.useState(false);
-    const [infraredSourceCollected, setInfraredSourceCollected] = React.useState(false);
-    const [thermometerCollected, setThermometerCollected] = React.useState(false);
+    const [collectedSupplies, setCollectedSupplies] = React.useState<string[]>([]);
     
     // Experiment state
     const [suppliesReady, setSuppliesReady] = React.useState(false);
@@ -52,8 +135,13 @@ export function HeatTransferLabEnhanced() {
     const isCompleted = isLabCompleted(labId);
     const completion = getLabCompletion(labId);
 
-    // Draggable teacher position
-    const [teacherPosition, setTeacherPosition] = React.useState({ x: 0, y: 0 });
+    // Supplies definition
+    const supplies: SupplyItem[] = [
+        { id: 'metal-rod', name: 'Metal Rod', emoji: '🔩', description: 'For conduction test' },
+        { id: 'beaker', name: 'Beaker with Water', emoji: '🧪', description: 'For convection test' },
+        { id: 'heat-source', name: 'Heat Source', emoji: '🔥', description: 'For radiation test' },
+        { id: 'thermometer', name: 'Thermometer', emoji: '🌡️', description: 'Measure temperature' },
+    ];
 
     // Intro message
     React.useEffect(() => {
@@ -63,47 +151,21 @@ export function HeatTransferLabEnhanced() {
     }, [currentStep]);
 
     const handleStartExperiment = () => {
-        setTeacherMessage("Great! Let's gather our supplies. Start by clicking on the METAL ROD - we'll use it to demonstrate conduction!");
-        setPendingTransition(() => () => {
-            setCurrentStep('collect-supplies');
-        });
+        setTeacherMessage("Great! Let's gather our supplies. Click on each item to collect them for your experiment!");
+        setCurrentStep('collect-supplies');
     };
-    
-    const handleCollectMetalRod = () => {
-        if (!metalRodCollected) {
-            setMetalRodCollected(true);
-            setTeacherMessage("Perfect! Now click on the BEAKER with water - we'll use it to show convection!");
-            toast({ title: '✅ Metal Rod Collected' });
+
+    const handleCollectSupply = (itemId: string) => {
+        if (!collectedSupplies.includes(itemId)) {
+            setCollectedSupplies(prev => [...prev, itemId]);
+            toast({ title: `✅ ${supplies.find(s => s.id === itemId)?.name} Collected` });
         }
     };
-    
-    const handleCollectBeaker = () => {
-        if (metalRodCollected && !beakerCollected) {
-            setBeakerCollected(true);
-            setTeacherMessage("Good! Now click on the INFRARED HEAT SOURCE - this shows radiation!");
-            toast({ title: '✅ Beaker Collected' });
-        }
-    };
-    
-    const handleCollectInfrared = () => {
-        if (beakerCollected && !infraredSourceCollected) {
-            setInfraredSourceCollected(true);
-            setTeacherMessage("Excellent! Finally, click on the THERMOMETER - we need this to measure temperature changes!");
-            toast({ title: '✅ Infrared Source Collected' });
-        }
-    };
-    
-    const handleCollectThermometer = () => {
-        if (infraredSourceCollected && !thermometerCollected) {
-            setThermometerCollected(true);
-            setShowSupplies(false);
-            setSuppliesReady(true);
-            setTeacherMessage("All supplies ready! Now we'll test each method of heat transfer. Let's start with conduction!");
-            toast({ title: '✅ All Supplies Collected!' });
-            setPendingTransition(() => () => {
-                setCurrentStep('conduction');
-            });
-        }
+
+    const handleAllSuppliesCollected = () => {
+        setSuppliesReady(true);
+        setTeacherMessage("All supplies ready! Now we'll test each method of heat transfer. Let's start with conduction!");
+        setCurrentStep('conduction');
     };
     
     const handleTestConduction = () => {
@@ -125,10 +187,7 @@ export function HeatTransferLabEnhanced() {
                 toast({ title: '✅ Conduction Demonstrated!' });
                 
                 setTimeout(() => {
-                    setTeacherMessage("Now let's test convection with the water beaker!");
-                    setPendingTransition(() => () => {
-                        setCurrentStep('convection');
-                    });
+                    setTeacherMessage("Excellent! Conduction is complete. Click 'Continue to Convection' when you're ready to test the next method!");
                 }, 1500);
             }
         }, 200);
@@ -147,10 +206,7 @@ export function HeatTransferLabEnhanced() {
             toast({ title: '✅ Convection Demonstrated!' });
             
             setTimeout(() => {
-                setTeacherMessage("Now let's test radiation through empty space!");
-                setPendingTransition(() => () => {
-                    setCurrentStep('radiation');
-                });
+                setTeacherMessage("Perfect! Convection is complete. Click 'Continue to Radiation' when you're ready to test the final method!");
             }, 1500);
         }, 2000);
     };
@@ -168,27 +224,29 @@ export function HeatTransferLabEnhanced() {
             toast({ title: '✅ Radiation Demonstrated!' });
             
             setTimeout(() => {
-                setTeacherMessage("You've demonstrated all three heat transfer methods! Now let's test your knowledge with the quiz!");
-                setPendingTransition(() => () => {
-                    setCurrentStep('results');
-                });
+                setTeacherMessage("Excellent! Radiation is complete. You've demonstrated all three heat transfer methods! Click 'View Results' when you're ready!");
             }, 1500);
         }, 2000);
     };
     
-    const handleTeacherComplete = () => {
-        if (pendingTransition) {
-            const transition = pendingTransition;
-            setPendingTransition(null);
-            transition();
-        }
+    const handleContinueToConvection = () => {
+        setTeacherMessage("Now let's test convection with the water beaker!");
+        setCurrentStep('convection');
+    };
+
+    const handleContinueToRadiation = () => {
+        setTeacherMessage("Now let's test radiation through empty space!");
+        setCurrentStep('radiation');
     };
 
     const handleViewResults = () => {
-        setTeacherMessage("You've successfully demonstrated conduction, convection, and radiation! These three mechanisms work together to transfer heat throughout our world. Now test your understanding!");
-        setPendingTransition(() => () => {
-            setCurrentStep('quiz');
-        });
+        setTeacherMessage("You've successfully demonstrated conduction, convection, and radiation! These three mechanisms work together to transfer heat throughout our world. Let's analyze the results!");
+        setCurrentStep('results');
+    };
+
+    const handleViewQuiz = () => {
+        setTeacherMessage("Now let's test your understanding! Answer the questions about heat transfer.");
+        setCurrentStep('quiz');
     };
 
     const handleQuizSubmit = () => {
@@ -219,11 +277,7 @@ export function HeatTransferLabEnhanced() {
 
     const handleRestart = () => {
         setCurrentStep('intro');
-        setShowSupplies(true);
-        setMetalRodCollected(false);
-        setBeakerCollected(false);
-        setInfraredSourceCollected(false);
-        setThermometerCollected(false);
+        setCollectedSupplies([]);
         setSuppliesReady(false);
         setConductionTested(false);
         setConductionHeating(false);
@@ -238,16 +292,45 @@ export function HeatTransferLabEnhanced() {
         setQuizFeedback('');
         setQuizSubmitted(false);
         setShowCelebration(false);
-        setPendingTransition(null);
         setTeacherMessage("Welcome back! Ready to explore heat transfer again? Let's gather our supplies!");
     };
 
     return (
-        <div className="space-y-6 pb-20">
+        <div className="relative min-h-screen pb-20">
+            {/* Premium Animated Background - Physics Theme (Orange/Red) */}
+            <div className="fixed inset-0 -z-10 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-red-50 to-amber-50 dark:from-orange-950/30 dark:via-red-950/30 dark:to-amber-950/30" />
+                {[...Array(8)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute rounded-full bg-gradient-to-br from-orange-200/40 via-red-200/40 to-amber-200/40 dark:from-orange-800/20 dark:via-red-800/20 dark:to-amber-800/20 blur-3xl"
+                        style={{
+                            width: `${200 + i * 50}px`,
+                            height: `${200 + i * 50}px`,
+                            left: `${(i * 12.5) % 100}%`,
+                            top: `${(i * 15) % 100}%`,
+                        }}
+                        animate={{
+                            x: [0, 50, -50, 0],
+                            y: [0, 30, -30, 0],
+                            scale: [1, 1.2, 0.8, 1],
+                            opacity: [0.3, 0.5, 0.3],
+                        }}
+                        transition={{
+                            duration: 10 + i * 2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: i * 0.5,
+                        }}
+                    />
+                ))}
+            </div>
+
+            <div className="relative space-y-6">
             {/* Teacher Voice */}
             <TeacherVoice 
                 message={teacherMessage}
-                onComplete={handleTeacherComplete}
+                onComplete={() => {}}
                 emotion={currentStep === 'complete' ? 'celebrating' : (currentStep === 'conduction' || currentStep === 'convection' || currentStep === 'radiation') ? 'explaining' : 'happy'}
                 quickActions={[
                     { label: 'Reset Lab', icon: '🔄', onClick: handleRestart },
@@ -260,7 +343,7 @@ export function HeatTransferLabEnhanced() {
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20 border-2 border-orange-200 dark:border-orange-800 rounded-lg p-4"
+                    className="bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20 border-2 border-orange-200 dark:border-orange-800 rounded-lg p-4 backdrop-blur-sm shadow-lg"
                 >
                     <div className="flex items-center gap-3">
                         <div className="bg-orange-100 dark:bg-orange-900 p-2 rounded-full">
@@ -283,7 +366,7 @@ export function HeatTransferLabEnhanced() {
                     animate={{ opacity: 1, scale: 1 }}
                     className="fixed inset-0 flex items-center justify-center z-50 bg-black/50 backdrop-blur-sm"
                 >
-                    <Card className="w-full max-w-md mx-4">
+                    <Card className="w-full max-w-md mx-4 border-2 border-yellow-400 bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-950/30 dark:to-orange-950/30 shadow-2xl">
                         <CardHeader className="text-center">
                             <motion.div
                                 animate={{ rotate: [0, -10, 10, -10, 10, 0], scale: [1, 1.2, 1] }}
@@ -308,20 +391,35 @@ export function HeatTransferLabEnhanced() {
                 </motion.div>
             )}
 
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                        <Flame className="h-5 w-5 text-orange-600" />
-                        Heat Transfer
-                    </CardTitle>
-                    <CardDescription>Explore conduction, convection, and radiation</CardDescription>
-                </CardHeader>
-            </Card>
+            {/* Objective Card - Premium Design */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+            >
+                <Card className="border-2 border-orange-200/50 dark:border-orange-800/50 bg-gradient-to-br from-orange-50/80 via-red-50/80 to-amber-50/80 dark:from-orange-950/40 dark:via-red-950/40 dark:to-amber-950/40 backdrop-blur-sm shadow-xl">
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2 text-xl">
+                            <Flame className="h-6 w-6 text-orange-600 dark:text-orange-400" />
+                            Heat Transfer Mechanisms
+                        </CardTitle>
+                        <CardDescription className="text-base">Explore conduction, convection, and radiation</CardDescription>
+                    </CardHeader>
+                </Card>
+            </motion.div>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>Lab Information</CardTitle>
-                </CardHeader>
+            {/* Lab Information Card - Premium Design */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+            >
+                <Card className="border-2 border-orange-200/50 dark:border-orange-800/50 bg-gradient-to-br from-white/90 to-orange-50/90 dark:from-gray-900/90 dark:to-orange-950/90 backdrop-blur-sm shadow-xl">
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                            <BookOpen className="h-5 w-5 text-orange-600" />
+                            Lab Information
+                        </CardTitle>
+                    </CardHeader>
                 <CardContent>
                     <Accordion type="single" collapsible className="w-full">
                         <AccordionItem value="theory">
@@ -374,9 +472,9 @@ export function HeatTransferLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card>
+                        <Card className="border-2 border-orange-200/50 dark:border-orange-800/50 bg-gradient-to-br from-white/90 to-orange-50/90 dark:from-gray-900/90 dark:to-orange-950/90 backdrop-blur-sm shadow-xl">
                             <CardHeader>
-                                <CardTitle>Welcome to the Heat Transfer Lab!</CardTitle>
+                                <CardTitle className="text-xl">Welcome to the Heat Transfer Lab!</CardTitle>
                                 <CardDescription>Discover how heat travels through conduction, convection, and radiation</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-4">
@@ -396,7 +494,11 @@ export function HeatTransferLabEnhanced() {
                                 </div>
                             </CardContent>
                             <CardFooter>
-                                <Button onClick={handleStartExperiment} className="w-full" size="lg">
+                                <Button 
+                                    onClick={handleStartExperiment} 
+                                    className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-lg" 
+                                    size="lg"
+                                >
                                     Start Experiment
                                 </Button>
                             </CardFooter>
@@ -411,130 +513,16 @@ export function HeatTransferLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card className="border-2 border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-950/20">
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2 text-lg">
-                                    <Sparkles className="h-5 w-5 text-amber-600" />
-                                    Lab Supplies - Click to Collect
-                                </CardTitle>
-                                <CardDescription>Click on each item in order to collect them</CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="flex gap-6 justify-center flex-wrap">
-                                    {/* Metal Rod */}
-                                    {!metalRodCollected && (
-                                        <motion.div
-                                            onClick={handleCollectMetalRod}
-                                            whileHover={{ scale: 1.05, y: -5 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            className="cursor-pointer bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-2 border-gray-400 dark:border-gray-600 hover:border-gray-600 hover:shadow-xl transition-all"
-                                        >
-                                            <div className="flex flex-col items-center gap-2">
-                                                <div className="w-4 h-24 bg-gradient-to-r from-gray-400 to-gray-600 rounded-sm" />
-                                                <span className="text-sm font-medium">Metal Rod</span>
-                                                <span className="text-xs text-muted-foreground">Click to Collect</span>
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                    
-                                    {/* Beaker */}
-                                    {metalRodCollected && !beakerCollected && (
-                                        <motion.div
-                                            onClick={handleCollectBeaker}
-                                            whileHover={{ scale: 1.05, y: -5 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            className="cursor-pointer bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-2 border-blue-300 dark:border-blue-700 hover:border-blue-500 hover:shadow-xl transition-all"
-                                        >
-                                            <div className="flex flex-col items-center gap-2">
-                                                <div className="w-16 h-24 border-2 border-blue-400 rounded-lg bg-blue-100/50 dark:bg-blue-900/50">
-                                                    <div className="w-full h-1/2 bg-blue-400/60 rounded-b-lg mt-2" />
-                                                </div>
-                                                <span className="text-sm font-medium">Beaker</span>
-                                                <span className="text-xs text-muted-foreground">Click to Collect</span>
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                    
-                                    {/* Infrared Source */}
-                                    {beakerCollected && !infraredSourceCollected && (
-                                        <motion.div
-                                            onClick={handleCollectInfrared}
-                                            whileHover={{ scale: 1.05, y: -5 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            className="cursor-pointer bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-2 border-red-300 dark:border-red-700 hover:border-red-500 hover:shadow-xl transition-all"
-                                        >
-                                            <div className="flex flex-col items-center gap-2">
-                                                <Zap className="h-12 w-12 text-red-500" />
-                                                <span className="text-sm font-medium">Heat Source</span>
-                                                <span className="text-xs text-muted-foreground">Click to Collect</span>
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                    
-                                    {/* Thermometer */}
-                                    {infraredSourceCollected && !thermometerCollected && (
-                                        <motion.div
-                                            onClick={handleCollectThermometer}
-                                            whileHover={{ scale: 1.05, y: -5 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            className="cursor-pointer bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-2 border-orange-300 dark:border-orange-700 hover:border-orange-500 hover:shadow-xl transition-all"
-                                        >
-                                            <div className="flex flex-col items-center gap-2">
-                                                <Thermometer className="h-12 w-12 text-orange-500" />
-                                                <span className="text-sm font-medium">Thermometer</span>
-                                                <span className="text-xs text-muted-foreground">Click to Collect</span>
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                    
-                                    {/* Collected Items Display */}
-                                    <div className="w-full mt-4 flex gap-4 justify-center flex-wrap">
-                                        {metalRodCollected && (
-                                            <motion.div
-                                                initial={{ scale: 0 }}
-                                                animate={{ scale: 1 }}
-                                                className="flex items-center gap-2 bg-gray-100 dark:bg-gray-900 px-4 py-2 rounded-full"
-                                            >
-                                                <CheckCircle className="h-4 w-4 text-gray-600" />
-                                                <span className="text-sm">Metal Rod</span>
-                                            </motion.div>
-                                        )}
-                                        {beakerCollected && (
-                                            <motion.div
-                                                initial={{ scale: 0 }}
-                                                animate={{ scale: 1 }}
-                                                className="flex items-center gap-2 bg-blue-100 dark:bg-blue-900 px-4 py-2 rounded-full"
-                                            >
-                                                <CheckCircle className="h-4 w-4 text-blue-600" />
-                                                <span className="text-sm">Beaker</span>
-                                            </motion.div>
-                                        )}
-                                        {infraredSourceCollected && (
-                                            <motion.div
-                                                initial={{ scale: 0 }}
-                                                animate={{ scale: 1 }}
-                                                className="flex items-center gap-2 bg-red-100 dark:bg-red-900 px-4 py-2 rounded-full"
-                                            >
-                                                <CheckCircle className="h-4 w-4 text-red-600" />
-                                                <span className="text-sm">Heat Source</span>
-                                            </motion.div>
-                                        )}
-                                        {thermometerCollected && (
-                                            <motion.div
-                                                initial={{ scale: 0 }}
-                                                animate={{ scale: 1 }}
-                                                className="flex items-center gap-2 bg-orange-100 dark:bg-orange-900 px-4 py-2 rounded-full"
-                                            >
-                                                <CheckCircle className="h-4 w-4 text-orange-600" />
-                                                <span className="text-sm">Thermometer</span>
-                                            </motion.div>
-                                        )}
-                                    </div>
-                                </div>
-                            </CardContent>
-                        </Card>
+                        <LabSupplies
+                            supplies={supplies}
+                            collectedItems={collectedSupplies}
+                            onCollect={handleCollectSupply}
+                            onAllCollected={handleAllSuppliesCollected}
+                            showSupplies={true}
+                        />
                     </motion.div>
                 )}
+
 
                 {currentStep === 'conduction' && (
                     <motion.div
@@ -543,13 +531,13 @@ export function HeatTransferLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card className="border-2 border-orange-200 dark:border-orange-800">
+                        <Card className="border-2 border-orange-200/50 dark:border-orange-800/50 bg-gradient-to-br from-white/90 to-orange-50/90 dark:from-gray-900/90 dark:to-orange-950/90 backdrop-blur-sm shadow-xl">
                             <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <Thermometer className="h-5 w-5 text-gray-600" />
+                                <CardTitle className="flex items-center gap-2 text-xl">
+                                    <Thermometer className="h-6 w-6 text-gray-600" />
                                     Stage 1: Conduction
                                 </CardTitle>
-                                <CardDescription>Heat transfer through direct contact in solids</CardDescription>
+                                <CardDescription className="text-base">Heat transfer through direct contact in solids</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-6">
                                 <div className="flex justify-center items-center">
@@ -574,9 +562,13 @@ export function HeatTransferLabEnhanced() {
                                                     ))}
                                                 </div>
                                                 
-                                                <div className="text-center">
+                                                <div className="text-center relative">
                                                     <p className="text-xs md:text-sm font-medium mb-2">Hot End</p>
-                                                    {conductionHeating && <Flame className="h-6 md:h-8 w-6 md:w-8 mx-auto text-orange-500 animate-pulse" />}
+                                                    {conductionHeating && (
+                                                        <div className="relative h-20 flex items-center justify-center">
+                                                            <EnhancedFlame isHeating={conductionHeating} />
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
                                             
@@ -590,9 +582,36 @@ export function HeatTransferLabEnhanced() {
                                     </div>
                                 </div>
 
-                                <Button onClick={handleTestConduction} disabled={conductionTested || conductionHeating} size="lg" className="w-full">
-                                    {conductionHeating ? 'Testing...' : conductionTested ? '✅ Conduction Complete' : 'Test Conduction'}
-                                </Button>
+                                {!conductionTested && (
+                                    <Button 
+                                        onClick={handleTestConduction} 
+                                        disabled={conductionHeating} 
+                                        size="lg" 
+                                        className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-lg disabled:opacity-50"
+                                    >
+                                        {conductionHeating ? 'Testing...' : 'Test Conduction'}
+                                    </Button>
+                                )}
+
+                                {conductionTested && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="space-y-3"
+                                    >
+                                        <div className="p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 border-2 border-green-200 dark:border-green-800 rounded-lg text-center">
+                                            <p className="font-semibold text-green-700 dark:text-green-300">✅ Conduction Complete!</p>
+                                            <p className="text-sm text-green-600 dark:text-green-400 mt-1">Temperature reached {conductionTemp}°C</p>
+                                        </div>
+                                        <Button 
+                                            onClick={handleContinueToConvection} 
+                                            size="lg" 
+                                            className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-lg"
+                                        >
+                                            Continue to Convection
+                                        </Button>
+                                    </motion.div>
+                                )}
                             </CardContent>
                         </Card>
                     </motion.div>
@@ -605,13 +624,13 @@ export function HeatTransferLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card className="border-2 border-orange-200 dark:border-orange-800">
+                        <Card className="border-2 border-orange-200/50 dark:border-orange-800/50 bg-gradient-to-br from-white/90 to-orange-50/90 dark:from-gray-900/90 dark:to-orange-950/90 backdrop-blur-sm shadow-xl">
                             <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <Wind className="h-5 w-5 text-blue-600" />
+                                <CardTitle className="flex items-center gap-2 text-xl">
+                                    <Wind className="h-6 w-6 text-blue-600" />
                                     Stage 2: Convection
                                 </CardTitle>
-                                <CardDescription>Heat transfer through fluid movement</CardDescription>
+                                <CardDescription className="text-base">Heat transfer through fluid movement</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-6">
                                 <div className="flex justify-center items-center">
@@ -671,9 +690,36 @@ export function HeatTransferLabEnhanced() {
                                     </div>
                                 </div>
 
-                                <Button onClick={handleTestConvection} disabled={convectionTested || convectionHeating} size="lg" className="w-full">
-                                    {convectionHeating ? 'Testing...' : convectionTested ? '✅ Convection Complete' : 'Test Convection'}
-                                </Button>
+                                {!convectionTested && (
+                                    <Button 
+                                        onClick={handleTestConvection} 
+                                        disabled={convectionHeating} 
+                                        size="lg" 
+                                        className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-lg disabled:opacity-50"
+                                    >
+                                        {convectionHeating ? 'Testing...' : 'Test Convection'}
+                                    </Button>
+                                )}
+
+                                {convectionTested && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="space-y-3"
+                                    >
+                                        <div className="p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 border-2 border-green-200 dark:border-green-800 rounded-lg text-center">
+                                            <p className="font-semibold text-green-700 dark:text-green-300">✅ Convection Complete!</p>
+                                            <p className="text-sm text-green-600 dark:text-green-400 mt-1">Circular currents observed</p>
+                                        </div>
+                                        <Button 
+                                            onClick={handleContinueToRadiation} 
+                                            size="lg" 
+                                            className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-lg"
+                                        >
+                                            Continue to Radiation
+                                        </Button>
+                                    </motion.div>
+                                )}
                             </CardContent>
                         </Card>
                     </motion.div>
@@ -686,13 +732,13 @@ export function HeatTransferLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card className="border-2 border-orange-200 dark:border-orange-800">
+                        <Card className="border-2 border-orange-200/50 dark:border-orange-800/50 bg-gradient-to-br from-white/90 to-orange-50/90 dark:from-gray-900/90 dark:to-orange-950/90 backdrop-blur-sm shadow-xl">
                             <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <Zap className="h-5 w-5 text-yellow-600" />
+                                <CardTitle className="flex items-center gap-2 text-xl">
+                                    <Zap className="h-6 w-6 text-yellow-600" />
                                     Stage 3: Radiation
                                 </CardTitle>
-                                <CardDescription>Heat transfer through electromagnetic waves</CardDescription>
+                                <CardDescription className="text-base">Heat transfer through electromagnetic waves</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-6">
                                 <div className="flex justify-center items-center">
@@ -747,9 +793,36 @@ export function HeatTransferLabEnhanced() {
                                     </div>
                                 </div>
 
-                                <Button onClick={handleTestRadiation} disabled={radiationTested || radiationHeating} size="lg" className="w-full">
-                                    {radiationHeating ? 'Testing...' : radiationTested ? '✅ Radiation Complete' : 'Test Radiation'}
-                                </Button>
+                                {!radiationTested && (
+                                    <Button 
+                                        onClick={handleTestRadiation} 
+                                        disabled={radiationHeating} 
+                                        size="lg" 
+                                        className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-lg disabled:opacity-50"
+                                    >
+                                        {radiationHeating ? 'Testing...' : 'Test Radiation'}
+                                    </Button>
+                                )}
+
+                                {radiationTested && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="space-y-3"
+                                    >
+                                        <div className="p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 border-2 border-green-200 dark:border-green-800 rounded-lg text-center">
+                                            <p className="font-semibold text-green-700 dark:text-green-300">✅ Radiation Complete!</p>
+                                            <p className="text-sm text-green-600 dark:text-green-400 mt-1">Heat traveled through empty space</p>
+                                        </div>
+                                        <Button 
+                                            onClick={handleViewResults} 
+                                            size="lg" 
+                                            className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-lg"
+                                        >
+                                            View Results
+                                        </Button>
+                                    </motion.div>
+                                )}
                             </CardContent>
                         </Card>
                     </motion.div>
@@ -762,13 +835,13 @@ export function HeatTransferLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card className="border-2 border-orange-200 dark:border-orange-800">
+                        <Card className="border-2 border-orange-200/50 dark:border-orange-800/50 bg-gradient-to-br from-white/90 to-orange-50/90 dark:from-gray-900/90 dark:to-orange-950/90 backdrop-blur-sm shadow-xl">
                             <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <CheckCircle className="h-5 w-5 text-orange-600" />
+                                <CardTitle className="flex items-center gap-2 text-xl">
+                                    <CheckCircle className="h-6 w-6 text-orange-600" />
                                     Experiment Results
                                 </CardTitle>
-                                <CardDescription>Summary of heat transfer mechanisms</CardDescription>
+                                <CardDescription className="text-base">Summary of heat transfer mechanisms</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-4">
                                 <div className="bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20 p-6 rounded-lg border-2 border-orange-200 dark:border-orange-800">
@@ -804,7 +877,11 @@ export function HeatTransferLabEnhanced() {
                                 </div>
                             </CardContent>
                             <CardFooter>
-                                <Button onClick={handleViewResults} className="w-full" size="lg">
+                                <Button 
+                                    onClick={handleViewQuiz} 
+                                    className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-lg" 
+                                    size="lg"
+                                >
                                     Continue to Quiz
                                 </Button>
                             </CardFooter>
@@ -819,15 +896,15 @@ export function HeatTransferLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card>
+                        <Card className="border-2 border-orange-200/50 dark:border-orange-800/50 bg-gradient-to-br from-white/90 to-orange-50/90 dark:from-gray-900/90 dark:to-orange-950/90 backdrop-blur-sm shadow-xl">
                             <CardHeader>
-                                <CardTitle>Knowledge Check</CardTitle>
-                                <CardDescription>Answer these questions about heat transfer</CardDescription>
+                                <CardTitle className="text-xl">Knowledge Check</CardTitle>
+                                <CardDescription className="text-base">Answer these questions about heat transfer</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-6">
                                 {/* Question 1 */}
                                 <div className="space-y-3">
-                                    <p className="font-medium">1. Which method of heat transfer works through empty space?</p>
+                                    <p className="font-medium text-lg">1. Which method of heat transfer works through empty space?</p>
                                     <div className="space-y-2">
                                         {[
                                             { value: 'conduction', label: 'Conduction' },
@@ -841,7 +918,7 @@ export function HeatTransferLabEnhanced() {
                                                 onClick={() => !quizSubmitted && setSelectedAnswer1(option.value)}
                                                 className={cn(
                                                     "p-4 rounded-lg border-2 cursor-pointer transition-all",
-                                                    selectedAnswer1 === option.value && !quizSubmitted && "border-orange-500 bg-orange-50 dark:bg-orange-950/20",
+                                                    selectedAnswer1 === option.value && !quizSubmitted && "border-orange-500 bg-orange-50 dark:bg-orange-950/20 shadow-md",
                                                     selectedAnswer1 === option.value && quizSubmitted && option.isCorrect && "border-green-500 bg-green-50 dark:bg-green-950/20",
                                                     selectedAnswer1 === option.value && quizSubmitted && !option.isCorrect && "border-red-500 bg-red-50 dark:bg-red-950/20",
                                                     selectedAnswer1 !== option.value && "border-gray-200 dark:border-gray-700 hover:border-gray-300"
@@ -868,7 +945,7 @@ export function HeatTransferLabEnhanced() {
 
                                 {/* Question 2 */}
                                 <div className="space-y-3">
-                                    <p className="font-medium">2. Why is metal a good conductor of heat?</p>
+                                    <p className="font-medium text-lg">2. Why is metal a good conductor of heat?</p>
                                     <div className="space-y-2">
                                         {[
                                             { value: 'color', label: 'Because it is shiny' },
@@ -882,7 +959,7 @@ export function HeatTransferLabEnhanced() {
                                                 onClick={() => !quizSubmitted && setSelectedAnswer2(option.value)}
                                                 className={cn(
                                                     "p-4 rounded-lg border-2 cursor-pointer transition-all",
-                                                    selectedAnswer2 === option.value && !quizSubmitted && "border-orange-500 bg-orange-50 dark:bg-orange-950/20",
+                                                    selectedAnswer2 === option.value && !quizSubmitted && "border-orange-500 bg-orange-50 dark:bg-orange-950/20 shadow-md",
                                                     selectedAnswer2 === option.value && quizSubmitted && option.isCorrect && "border-green-500 bg-green-50 dark:bg-green-950/20",
                                                     selectedAnswer2 === option.value && quizSubmitted && !option.isCorrect && "border-red-500 bg-red-50 dark:bg-red-950/20",
                                                     selectedAnswer2 !== option.value && "border-gray-200 dark:border-gray-700 hover:border-gray-300"
@@ -909,7 +986,7 @@ export function HeatTransferLabEnhanced() {
 
                                 {/* Question 3 */}
                                 <div className="space-y-3">
-                                    <p className="font-medium">3. In convection, why does heated fluid rise?</p>
+                                    <p className="font-medium text-lg">3. In convection, why does heated fluid rise?</p>
                                     <div className="space-y-2">
                                         {[
                                             { value: 'more-dense', label: 'It becomes more dense' },
@@ -923,7 +1000,7 @@ export function HeatTransferLabEnhanced() {
                                                 onClick={() => !quizSubmitted && setSelectedAnswer3(option.value)}
                                                 className={cn(
                                                     "p-4 rounded-lg border-2 cursor-pointer transition-all",
-                                                    selectedAnswer3 === option.value && !quizSubmitted && "border-orange-500 bg-orange-50 dark:bg-orange-950/20",
+                                                    selectedAnswer3 === option.value && !quizSubmitted && "border-orange-500 bg-orange-50 dark:bg-orange-950/20 shadow-md",
                                                     selectedAnswer3 === option.value && quizSubmitted && option.isCorrect && "border-green-500 bg-green-50 dark:bg-green-950/20",
                                                     selectedAnswer3 === option.value && quizSubmitted && !option.isCorrect && "border-red-500 bg-red-50 dark:bg-red-950/20",
                                                     selectedAnswer3 !== option.value && "border-gray-200 dark:border-gray-700 hover:border-gray-300"
@@ -967,7 +1044,7 @@ export function HeatTransferLabEnhanced() {
                                 <Button 
                                     onClick={handleQuizSubmit} 
                                     disabled={!selectedAnswer1 || !selectedAnswer2 || !selectedAnswer3 || quizSubmitted}
-                                    className="flex-1"
+                                    className="flex-1 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-lg disabled:opacity-50"
                                     size="lg"
                                 >
                                     Submit Answers
@@ -995,20 +1072,24 @@ export function HeatTransferLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card className="border-2 border-orange-200 dark:border-orange-800">
+                        <Card className="border-2 border-yellow-400/50 dark:border-yellow-600/50 bg-gradient-to-br from-yellow-50/90 via-orange-50/90 to-amber-50/90 dark:from-yellow-950/40 dark:via-orange-950/40 dark:to-amber-950/40 backdrop-blur-sm shadow-2xl">
                             <CardHeader className="text-center">
                                 <motion.div
                                     animate={{ rotate: [0, -10, 10, -10, 10, 0] }}
                                     transition={{ duration: 0.5 }}
                                     className="flex justify-center mb-4"
                                 >
-                                    <Trophy className="h-16 w-16 text-yellow-500" />
+                                    <Trophy className="h-20 w-20 text-yellow-500" />
                                 </motion.div>
-                                <CardTitle>Lab Complete!</CardTitle>
-                                <CardDescription>You've mastered heat transfer</CardDescription>
+                                <CardTitle className="text-2xl">Lab Complete!</CardTitle>
+                                <CardDescription className="text-base">You've mastered heat transfer</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-4">
                                 <div className="bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20 p-6 rounded-lg border-2 border-orange-200 dark:border-orange-800">
+                                    <div className="flex items-center justify-center gap-2 mb-4">
+                                        <Award className="h-8 w-8 text-orange-600" />
+                                        <span className="text-2xl font-bold text-orange-600">+{xpEarned} XP</span>
+                                    </div>
                                     <h3 className="font-semibold text-center text-lg mb-4">What You've Learned:</h3>
                                     <ul className="space-y-2 text-sm">
                                         <li className="flex items-start gap-2">
@@ -1031,7 +1112,13 @@ export function HeatTransferLabEnhanced() {
                                 </div>
                             </CardContent>
                             <CardFooter>
-                                <Button onClick={handleRestart} variant="outline" className="w-full" size="lg">
+                                <Button 
+                                    onClick={handleRestart} 
+                                    variant="outline" 
+                                    className="w-full border-2 bg-white/50 hover:bg-white/80 dark:bg-gray-900/50 dark:hover:bg-gray-900/80" 
+                                    size="lg"
+                                >
+                                    <RefreshCw className="h-4 w-4 mr-2" />
                                     Restart Lab
                                 </Button>
                             </CardFooter>
