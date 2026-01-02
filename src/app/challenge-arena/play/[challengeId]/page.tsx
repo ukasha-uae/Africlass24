@@ -99,6 +99,13 @@ export default function QuizBattlePage() {
     }
   }, [challengeId, user, router]);
 
+  // Reset selected answer when question changes
+  useEffect(() => {
+    if (gamePhase === 'playing' && challenge) {
+      setSelectedAnswer(null);
+    }
+  }, [currentQuestionIndex, gamePhase, challenge]);
+
   // Enhanced timer countdown with color coding and sound effects
   useEffect(() => {
     if (gamePhase !== 'playing') return;
@@ -179,8 +186,8 @@ export default function QuizBattlePage() {
       }));
       
       setCurrentQuestionIndex(prev => prev + 1);
-      setSelectedAnswer(null);
       setTimeLeft(120);
+      // Note: selectedAnswer is reset via useEffect when currentQuestionIndex changes
     } else {
       // Last question - add a small delay before showing results
       setTimeout(() => {

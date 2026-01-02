@@ -29,7 +29,9 @@ export default function ArenaQuestionRenderer({
   useEffect(() => {
     setInputValue('');
     setSelectedOptions([]);
-  }, [question.id]);
+    // Force re-render by clearing any internal selection state
+    // The selectedAnswer prop should be null from parent, but we ensure clean state
+  }, [question.id, selectedAnswer]);
 
   // Multiple Choice
   if (question.type === 'mcq' && question.options) {
@@ -40,7 +42,10 @@ export default function ArenaQuestionRenderer({
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {question.options.map((option, index) => {
-            const isSelected = selectedAnswer === index || selectedAnswer === option;
+            // Only show as selected if selectedAnswer is explicitly set and matches
+            // This prevents showing previous answer when selectedAnswer is null/undefined
+            const isSelected = (selectedAnswer !== null && selectedAnswer !== undefined) && 
+                              (selectedAnswer === index || selectedAnswer === option);
             const correctAnswerIndex = typeof question.correctAnswer === 'string' 
               ? question.options.indexOf(question.correctAnswer)
               : -1;
