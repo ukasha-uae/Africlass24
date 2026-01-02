@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { useLabProgress } from '@/stores/lab-progress-store';
 import { TeacherVoice } from './TeacherVoice';
+import { LabSupplies } from './LabSupplies';
 import { Slider } from '../ui/slider';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
@@ -26,14 +27,15 @@ export function OhmsLawLabEnhanced() {
     const { toast } = useToast();
     const [currentStep, setCurrentStep] = React.useState<Step>('intro');
     const [teacherMessage, setTeacherMessage] = React.useState('');
-    const [pendingTransition, setPendingTransition] = React.useState<(() => void) | null>(null);
     
-    // Supplies tracking
-    const [showSupplies, setShowSupplies] = React.useState(true);
-    const [batteryCollected, setBatteryCollected] = React.useState(false);
-    const [resistorCollected, setResistorCollected] = React.useState(false);
-    const [ammeterCollected, setAmmeterCollected] = React.useState(false);
-    const [voltmeterCollected, setVoltmeterCollected] = React.useState(false);
+    // Supplies tracking using LabSupplies component
+    const [collectedSupplies, setCollectedSupplies] = React.useState<string[]>([]);
+    const supplies = [
+        { id: 'battery', name: 'Battery', emoji: '🔋', description: 'Voltage source' },
+        { id: 'resistor', name: 'Resistor', emoji: '⚡', description: 'Current control' },
+        { id: 'ammeter', name: 'Ammeter', emoji: '📊', description: 'Current measurement' },
+        { id: 'voltmeter', name: 'Voltmeter', emoji: '📈', description: 'Voltage measurement' },
+    ];
     
     // Experiment state
     const [selectedResistor, setSelectedResistor] = React.useState<number>(10); // Ohms
@@ -64,46 +66,20 @@ export function OhmsLawLabEnhanced() {
     }, [currentStep]);
 
     const handleStartExperiment = () => {
-        setTeacherMessage("Great! Let's gather our circuit components. Start by clicking on the BATTERY - our voltage source!");
-        setPendingTransition(() => () => {
-            setCurrentStep('collect-supplies');
-        });
+        setTeacherMessage("Great! Let's gather our circuit components. Click on each item to collect them!");
+        setCurrentStep('collect-supplies');
     };
     
-    const handleCollectBattery = () => {
-        if (!batteryCollected) {
-            setBatteryCollected(true);
-            setTeacherMessage("Perfect! Now click on the RESISTOR - this will control the current flow!");
-            toast({ title: '✅ Battery Collected' });
+    const handleCollectSupply = (itemId: string) => {
+        if (!collectedSupplies.includes(itemId)) {
+            setCollectedSupplies(prev => [...prev, itemId]);
+            toast({ title: `✅ ${supplies.find(s => s.id === itemId)?.name} Collected` });
         }
     };
     
-    const handleCollectResistor = () => {
-        if (batteryCollected && !resistorCollected) {
-            setResistorCollected(true);
-            setTeacherMessage("Excellent! Now click on the AMMETER - we'll use this to measure current!");
-            toast({ title: '✅ Resistor Collected' });
-        }
-    };
-    
-    const handleCollectAmmeter = () => {
-        if (resistorCollected && !ammeterCollected) {
-            setAmmeterCollected(true);
-            setTeacherMessage("Good! Finally, click on the VOLTMETER - we'll measure the voltage across components!");
-            toast({ title: '✅ Ammeter Collected' });
-        }
-    };
-    
-    const handleCollectVoltmeter = () => {
-        if (ammeterCollected && !voltmeterCollected) {
-            setVoltmeterCollected(true);
-            setShowSupplies(false);
-            setTeacherMessage("All components ready! Now let's build circuits and test Ohm's Law by varying voltage and resistance!");
-            toast({ title: '✅ All Components Collected!' });
-            setPendingTransition(() => () => {
-                setCurrentStep('experiment');
-            });
-        }
+    const handleAllSuppliesCollected = () => {
+        setTeacherMessage("All components ready! Now let's build circuits and test Ohm's Law by varying voltage and resistance!");
+        toast({ title: '✅ All Components Collected!' });
     };
     
     const handleTakeReading = () => {
@@ -138,11 +114,7 @@ export function OhmsLawLabEnhanced() {
     };
     
     const handleTeacherComplete = () => {
-        if (pendingTransition) {
-            const transition = pendingTransition;
-            setPendingTransition(null);
-            transition();
-        }
+        // Direct state updates - no pending transitions
     };
 
     const handleViewResults = () => {
@@ -151,16 +123,12 @@ export function OhmsLawLabEnhanced() {
             return;
         }
         setTeacherMessage("Excellent! You've collected multiple data points. Let's analyze the relationship between voltage, current, and resistance!");
-        setPendingTransition(() => () => {
-            setCurrentStep('results');
-        });
+        setCurrentStep('results');
     };
 
     const handleViewQuiz = () => {
         setTeacherMessage("Let's test your understanding of Ohm's Law and electrical circuits!");
-        setPendingTransition(() => () => {
-            setCurrentStep('quiz');
-        });
+        setCurrentStep('quiz');
     };
 
     const handleQuizSubmit = () => {
@@ -191,11 +159,7 @@ export function OhmsLawLabEnhanced() {
 
     const handleRestart = () => {
         setCurrentStep('intro');
-        setShowSupplies(true);
-        setBatteryCollected(false);
-        setResistorCollected(false);
-        setAmmeterCollected(false);
-        setVoltmeterCollected(false);
+        setCollectedSupplies([]);
         setSelectedResistor(10);
         setVoltage(5);
         setReadings([]);
@@ -207,12 +171,46 @@ export function OhmsLawLabEnhanced() {
         setQuizFeedback('');
         setQuizSubmitted(false);
         setShowCelebration(false);
-        setPendingTransition(null);
         setTeacherMessage("Ready to explore Ohm's Law again!");
     };
 
+    // Check if all supplies collected
+    const allSuppliesCollected = collectedSupplies.length >= supplies.length;
+    const batteryCollected = collectedSupplies.includes('battery');
+    const resistorCollected = collectedSupplies.includes('resistor');
+    const ammeterCollected = collectedSupplies.includes('ammeter');
+    const voltmeterCollected = collectedSupplies.includes('voltmeter');
+
     return (
-        <div className="space-y-6 pb-20">
+        <div className="relative min-h-screen pb-20">
+            {/* Premium Animated Background - Yellow/Amber Physics Theme */}
+            <div className="fixed inset-0 -z-10 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 dark:from-yellow-950/30 dark:via-amber-950/30 dark:to-orange-950/30" />
+                {[...Array(8)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute rounded-full bg-gradient-to-br from-yellow-200/40 to-amber-300/40 dark:from-yellow-800/20 dark:to-amber-900/20 blur-3xl"
+                        style={{
+                            width: `${200 + i * 50}px`,
+                            height: `${200 + i * 50}px`,
+                            left: `${(i * 12.5) % 100}%`,
+                            top: `${(i * 15) % 100}%`,
+                        }}
+                        animate={{
+                            x: [0, 100, 0],
+                            y: [0, 50, 0],
+                            scale: [1, 1.2, 1],
+                        }}
+                        transition={{
+                            duration: 10 + i * 2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                    />
+                ))}
+            </div>
+
+            <div className="relative space-y-6">
             <TeacherVoice 
                 message={teacherMessage}
                 onComplete={handleTeacherComplete}
@@ -245,7 +243,7 @@ export function OhmsLawLabEnhanced() {
                     animate={{ opacity: 1, scale: 1 }}
                     className="fixed inset-0 flex items-center justify-center z-50 bg-black/50 backdrop-blur-sm"
                 >
-                    <Card className="w-full max-w-md mx-4">
+                    <Card className="w-full max-w-md mx-4 border-2 border-yellow-200/50 dark:border-yellow-800/50 bg-gradient-to-br from-white/95 to-yellow-50/95 dark:from-gray-900/95 dark:to-yellow-950/95 backdrop-blur-sm shadow-2xl">
                         <CardHeader className="text-center">
                             <motion.div
                                 animate={{ rotate: [0, -10, 10, -10, 10, 0], scale: [1, 1.2, 1] }}
@@ -255,11 +253,11 @@ export function OhmsLawLabEnhanced() {
                                 <Trophy className="h-20 w-20 text-yellow-500" />
                             </motion.div>
                             <CardTitle className="text-2xl">Congratulations!</CardTitle>
-                            <CardDescription>You've mastered Ohm's Law!</CardDescription>
+                            <CardDescription className="text-base">You've mastered Ohm's Law!</CardDescription>
                         </CardHeader>
                         <CardContent className="text-center space-y-4">
-                            <div className="flex items-center justify-center gap-2 text-3xl font-bold text-yellow-600">
-                                <Award className="h-8 w-8" />
+                            <div className="flex items-center justify-center gap-2 text-3xl font-bold bg-gradient-to-r from-yellow-500 to-amber-500 bg-clip-text text-transparent">
+                                <Award className="h-8 w-8 text-yellow-500" />
                                 +{xpEarned} XP
                             </div>
                             <p className="text-sm text-muted-foreground">
@@ -270,20 +268,30 @@ export function OhmsLawLabEnhanced() {
                 </motion.div>
             )}
 
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                        <Zap className="h-5 w-5 text-yellow-600" />
-                        Ohm's Law Lab
-                    </CardTitle>
-                    <CardDescription>Explore the relationship between voltage, current, and resistance</CardDescription>
-                </CardHeader>
-            </Card>
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+            >
+                <Card className="border-2 border-yellow-200/50 dark:border-yellow-800/50 bg-gradient-to-br from-white/90 to-yellow-50/90 dark:from-gray-900/90 dark:to-yellow-950/90 backdrop-blur-sm shadow-xl">
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2 text-xl">
+                            <Zap className="h-6 w-6 text-yellow-600" />
+                            Ohm's Law Lab
+                        </CardTitle>
+                        <CardDescription className="text-base">Explore the relationship between voltage, current, and resistance</CardDescription>
+                    </CardHeader>
+                </Card>
+            </motion.div>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>Lab Information</CardTitle>
-                </CardHeader>
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+            >
+                <Card className="border-2 border-yellow-200/50 dark:border-yellow-800/50 bg-gradient-to-br from-white/90 to-yellow-50/90 dark:from-gray-900/90 dark:to-yellow-950/90 backdrop-blur-sm shadow-xl">
+                    <CardHeader>
+                        <CardTitle className="text-lg">Lab Information</CardTitle>
+                    </CardHeader>
                 <CardContent>
                     <Accordion type="single" collapsible className="w-full">
                         <AccordionItem value="theory">
@@ -334,6 +342,7 @@ export function OhmsLawLabEnhanced() {
                     </Accordion>
                 </CardContent>
             </Card>
+            </motion.div>
 
             <AnimatePresence mode="wait">
                 {currentStep === 'intro' && (
@@ -343,10 +352,10 @@ export function OhmsLawLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card>
+                        <Card className="border-2 border-yellow-200/50 dark:border-yellow-800/50 bg-gradient-to-br from-white/90 to-yellow-50/90 dark:from-gray-900/90 dark:to-yellow-950/90 backdrop-blur-sm shadow-xl">
                             <CardHeader>
-                                <CardTitle>Welcome to Ohm's Law Lab!</CardTitle>
-                                <CardDescription>Discover the fundamental relationship in electrical circuits</CardDescription>
+                                <CardTitle className="text-xl">Welcome to Ohm's Law Lab!</CardTitle>
+                                <CardDescription className="text-base">Discover the fundamental relationship in electrical circuits</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-4">
                                 <div className="bg-gradient-to-r from-yellow-50 to-amber-50 dark:from-yellow-950/20 dark:to-amber-950/20 p-6 rounded-lg border-2 border-yellow-200 dark:border-yellow-800">
@@ -366,7 +375,11 @@ export function OhmsLawLabEnhanced() {
                                 </div>
                             </CardContent>
                             <CardFooter>
-                                <Button onClick={handleStartExperiment} className="w-full" size="lg">
+                                <Button 
+                                    onClick={handleStartExperiment} 
+                                    className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-white shadow-lg" 
+                                    size="lg"
+                                >
                                     Start Experiment
                                 </Button>
                             </CardFooter>
@@ -381,110 +394,32 @@ export function OhmsLawLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card className="border-2 border-yellow-200 dark:border-yellow-800 bg-yellow-50/50 dark:bg-yellow-950/20">
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2 text-lg">
-                                    <Sparkles className="h-5 w-5 text-yellow-600" />
-                                    Circuit Components - Click to Collect
-                                </CardTitle>
-                                <CardDescription>Click on each item in order</CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="flex gap-6 justify-center flex-wrap">
-                                    {/* Battery */}
-                                    {!batteryCollected && (
-                                        <motion.div
-                                            onClick={handleCollectBattery}
-                                            whileHover={{ scale: 1.05, y: -5 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            className="cursor-pointer bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-2 border-green-400 dark:border-green-600 hover:border-green-600 hover:shadow-xl transition-all"
+                        <LabSupplies
+                            supplies={supplies}
+                            collectedItems={collectedSupplies}
+                            onCollect={handleCollectSupply}
+                            onAllCollected={handleAllSuppliesCollected}
+                            showSupplies={true}
+                        />
+                        {allSuppliesCollected && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="mt-6"
+                            >
+                                <Card className="border-2 border-yellow-200/50 dark:border-yellow-800/50 bg-gradient-to-br from-white/90 to-yellow-50/90 dark:from-gray-900/90 dark:to-yellow-950/90 backdrop-blur-sm shadow-xl">
+                                    <CardFooter>
+                                        <Button 
+                                            onClick={() => setCurrentStep('experiment')} 
+                                            className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-white shadow-lg"
+                                            size="lg"
                                         >
-                                            <div className="flex flex-col items-center gap-2">
-                                                <Battery className="h-12 w-12 text-green-500" />
-                                                <span className="text-sm font-medium">Battery</span>
-                                                <span className="text-xs text-muted-foreground">Click to Collect</span>
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                    
-                                    {/* Resistor */}
-                                    {batteryCollected && !resistorCollected && (
-                                        <motion.div
-                                            onClick={handleCollectResistor}
-                                            whileHover={{ scale: 1.05, y: -5 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            className="cursor-pointer bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-2 border-orange-400 dark:border-orange-600 hover:border-orange-600 hover:shadow-xl transition-all"
-                                        >
-                                            <div className="flex flex-col items-center gap-2">
-                                                <Cable className="h-12 w-12 text-orange-500" />
-                                                <span className="text-sm font-medium">Resistor</span>
-                                                <span className="text-xs text-muted-foreground">Click to Collect</span>
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                    
-                                    {/* Ammeter */}
-                                    {resistorCollected && !ammeterCollected && (
-                                        <motion.div
-                                            onClick={handleCollectAmmeter}
-                                            whileHover={{ scale: 1.05, y: -5 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            className="cursor-pointer bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-2 border-blue-400 dark:border-blue-600 hover:border-blue-600 hover:shadow-xl transition-all"
-                                        >
-                                            <div className="flex flex-col items-center gap-2">
-                                                <Activity className="h-12 w-12 text-blue-500" />
-                                                <span className="text-sm font-medium">Ammeter</span>
-                                                <span className="text-xs text-muted-foreground">Click to Collect</span>
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                    
-                                    {/* Voltmeter */}
-                                    {ammeterCollected && !voltmeterCollected && (
-                                        <motion.div
-                                            onClick={handleCollectVoltmeter}
-                                            whileHover={{ scale: 1.05, y: -5 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            className="cursor-pointer bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-2 border-purple-400 dark:border-purple-600 hover:border-purple-600 hover:shadow-xl transition-all"
-                                        >
-                                            <div className="flex flex-col items-center gap-2">
-                                                <Zap className="h-12 w-12 text-purple-500" />
-                                                <span className="text-sm font-medium">Voltmeter</span>
-                                                <span className="text-xs text-muted-foreground">Click to Collect</span>
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                    
-                                    {/* Collected Items */}
-                                    <div className="w-full mt-4 flex gap-4 justify-center flex-wrap">
-                                        {batteryCollected && (
-                                            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="flex items-center gap-2 bg-green-100 dark:bg-green-900 px-4 py-2 rounded-full">
-                                                <CheckCircle className="h-4 w-4 text-green-600" />
-                                                <span className="text-sm">Battery</span>
-                                            </motion.div>
-                                        )}
-                                        {resistorCollected && (
-                                            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="flex items-center gap-2 bg-orange-100 dark:bg-orange-900 px-4 py-2 rounded-full">
-                                                <CheckCircle className="h-4 w-4 text-orange-600" />
-                                                <span className="text-sm">Resistor</span>
-                                            </motion.div>
-                                        )}
-                                        {ammeterCollected && (
-                                            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="flex items-center gap-2 bg-blue-100 dark:bg-blue-900 px-4 py-2 rounded-full">
-                                                <CheckCircle className="h-4 w-4 text-blue-600" />
-                                                <span className="text-sm">Ammeter</span>
-                                            </motion.div>
-                                        )}
-                                        {voltmeterCollected && (
-                                            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="flex items-center gap-2 bg-purple-100 dark:bg-purple-900 px-4 py-2 rounded-full">
-                                                <CheckCircle className="h-4 w-4 text-purple-600" />
-                                                <span className="text-sm">Voltmeter</span>
-                                            </motion.div>
-                                        )}
-                                    </div>
-                                </div>
-                            </CardContent>
-                        </Card>
+                                            Continue to Experiment
+                                        </Button>
+                                    </CardFooter>
+                                </Card>
+                            </motion.div>
+                        )}
                     </motion.div>
                 )}
 
@@ -495,13 +430,13 @@ export function OhmsLawLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card className="border-2 border-yellow-200 dark:border-yellow-800">
+                        <Card className="border-2 border-yellow-200/50 dark:border-yellow-800/50 bg-gradient-to-br from-white/90 to-yellow-50/90 dark:from-gray-900/90 dark:to-yellow-950/90 backdrop-blur-sm shadow-xl">
                             <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <Zap className="h-5 w-5 text-yellow-600" />
+                                <CardTitle className="flex items-center gap-2 text-xl">
+                                    <Zap className="h-6 w-6 text-yellow-600" />
                                     Circuit Measurements
                                 </CardTitle>
-                                <CardDescription>Readings taken: {readings.length}</CardDescription>
+                                <CardDescription className="text-base">Readings taken: {readings.length}</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-6">
                                 {/* Circuit Controls */}
@@ -572,7 +507,11 @@ export function OhmsLawLabEnhanced() {
                                 </div>
 
                                 {/* Take Reading Button */}
-                                <Button onClick={handleTakeReading} className="w-full" size="lg">
+                                <Button 
+                                    onClick={handleTakeReading} 
+                                    className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-white shadow-lg" 
+                                    size="lg"
+                                >
                                     <Activity className="h-5 w-5 mr-2" />
                                     Take Reading
                                 </Button>
@@ -604,7 +543,12 @@ export function OhmsLawLabEnhanced() {
                                 )}
                             </CardContent>
                             <CardFooter>
-                                <Button onClick={handleViewResults} disabled={readings.length < 3} className="w-full" size="lg">
+                                <Button 
+                                    onClick={handleViewResults} 
+                                    disabled={readings.length < 3} 
+                                    className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-white shadow-lg disabled:opacity-50" 
+                                    size="lg"
+                                >
                                     View Results ({readings.length}/3+ readings)
                                 </Button>
                             </CardFooter>
@@ -619,13 +563,13 @@ export function OhmsLawLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card className="border-2 border-yellow-200 dark:border-yellow-800">
+                        <Card className="border-2 border-yellow-200/50 dark:border-yellow-800/50 bg-gradient-to-br from-white/90 to-yellow-50/90 dark:from-gray-900/90 dark:to-yellow-950/90 backdrop-blur-sm shadow-xl">
                             <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
-                                    <CheckCircle className="h-5 w-5 text-yellow-600" />
+                                <CardTitle className="flex items-center gap-2 text-xl">
+                                    <CheckCircle className="h-6 w-6 text-yellow-600" />
                                     Experimental Results & Analysis
                                 </CardTitle>
-                                <CardDescription>Data visualization and conclusions</CardDescription>
+                                <CardDescription className="text-base">Data visualization and conclusions</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-6">
                                 {/* Graph */}
@@ -678,7 +622,11 @@ export function OhmsLawLabEnhanced() {
                                 </div>
                             </CardContent>
                             <CardFooter>
-                                <Button onClick={handleViewQuiz} className="w-full" size="lg">
+                                <Button 
+                                    onClick={handleViewQuiz} 
+                                    className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-white shadow-lg" 
+                                    size="lg"
+                                >
                                     Take the Quiz
                                 </Button>
                             </CardFooter>
@@ -693,10 +641,10 @@ export function OhmsLawLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card>
+                        <Card className="border-2 border-yellow-200/50 dark:border-yellow-800/50 bg-gradient-to-br from-white/90 to-yellow-50/90 dark:from-gray-900/90 dark:to-yellow-950/90 backdrop-blur-sm shadow-xl">
                             <CardHeader>
-                                <CardTitle>Knowledge Check</CardTitle>
-                                <CardDescription>Test your understanding of Ohm's Law</CardDescription>
+                                <CardTitle className="text-xl">Knowledge Check</CardTitle>
+                                <CardDescription className="text-base">Test your understanding of Ohm's Law</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-6">
                                 {/* Question 1 */}
@@ -841,19 +789,24 @@ export function OhmsLawLabEnhanced() {
                                 <Button 
                                     onClick={handleQuizSubmit} 
                                     disabled={!quizAnswer1 || !quizAnswer2 || !quizAnswer3 || quizSubmitted}
-                                    className="flex-1"
+                                    className="flex-1 bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-white shadow-lg disabled:opacity-50"
                                     size="lg"
                                 >
                                     Submit Answers
                                 </Button>
                                 {quizSubmitted && !quizFeedback.includes('all 3') && (
-                                    <Button onClick={() => {
-                                        setQuizAnswer1(undefined);
-                                        setQuizAnswer2(undefined);
-                                        setQuizAnswer3(undefined);
-                                        setQuizFeedback('');
-                                        setQuizSubmitted(false);
-                                    }} variant="outline" size="lg">
+                                    <Button 
+                                        onClick={() => {
+                                            setQuizAnswer1(undefined);
+                                            setQuizAnswer2(undefined);
+                                            setQuizAnswer3(undefined);
+                                            setQuizFeedback('');
+                                            setQuizSubmitted(false);
+                                        }} 
+                                        variant="outline" 
+                                        size="lg"
+                                        className="border-yellow-300 hover:bg-yellow-50 dark:hover:bg-yellow-950/20"
+                                    >
                                         Try Again
                                     </Button>
                                 )}
@@ -869,19 +822,31 @@ export function OhmsLawLabEnhanced() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                     >
-                        <Card className="border-2 border-yellow-200 dark:border-yellow-800">
+                        <Card className="border-2 border-yellow-200/50 dark:border-yellow-800/50 bg-gradient-to-br from-white/90 to-yellow-50/90 dark:from-gray-900/90 dark:to-yellow-950/90 backdrop-blur-sm shadow-xl">
                             <CardHeader className="text-center">
                                 <motion.div
-                                    animate={{ rotate: [0, -10, 10, -10, 10, 0] }}
+                                    animate={{ rotate: [0, -10, 10, -10, 10, 0], scale: [1, 1.1, 1] }}
                                     transition={{ duration: 0.5 }}
                                     className="flex justify-center mb-4"
                                 >
-                                    <Trophy className="h-16 w-16 text-yellow-500" />
+                                    <Trophy className="h-20 w-20 text-yellow-500" />
                                 </motion.div>
-                                <CardTitle>Lab Complete!</CardTitle>
-                                <CardDescription>You've mastered Ohm's Law!</CardDescription>
+                                <CardTitle className="text-2xl">Lab Complete! 🎉</CardTitle>
+                                <CardDescription className="text-base">You've mastered Ohm's Law!</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-4">
+                                {xpEarned > 0 && (
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="bg-gradient-to-r from-yellow-400 to-amber-400 dark:from-yellow-600 dark:to-amber-600 p-6 rounded-lg text-center"
+                                    >
+                                        <div className="flex items-center justify-center gap-3 text-3xl font-bold text-white">
+                                            <Award className="h-8 w-8" />
+                                            +{xpEarned} XP Earned!
+                                        </div>
+                                    </motion.div>
+                                )}
                                 <div className="bg-gradient-to-r from-yellow-50 to-amber-50 dark:from-yellow-950/20 dark:to-amber-950/20 p-6 rounded-lg border-2 border-yellow-200 dark:border-yellow-800">
                                     <h3 className="font-semibold text-center text-lg mb-4">What You've Learned:</h3>
                                     <ul className="space-y-2 text-sm">
@@ -905,7 +870,13 @@ export function OhmsLawLabEnhanced() {
                                 </div>
                             </CardContent>
                             <CardFooter>
-                                <Button onClick={handleRestart} variant="outline" className="w-full" size="lg">
+                                <Button 
+                                    onClick={handleRestart} 
+                                    variant="outline" 
+                                    className="w-full border-yellow-300 hover:bg-yellow-50 dark:hover:bg-yellow-950/20" 
+                                    size="lg"
+                                >
+                                    <RefreshCw className="h-5 w-5 mr-2" />
                                     Restart Lab
                                 </Button>
                             </CardFooter>
@@ -913,6 +884,7 @@ export function OhmsLawLabEnhanced() {
                     </motion.div>
                 )}
             </AnimatePresence>
+            </div>
         </div>
     );
 }
