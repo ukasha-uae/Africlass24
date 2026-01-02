@@ -71,11 +71,15 @@ export function MagneticFieldLabEnhanced() {
     }, [currentStep]);
 
     // Calculate magnetic interaction - CORRECT SCIENTIFIC LOGIC
-    // Visual representation:
+    // Visual representation in code:
     // - Red (#ef4444) = North pole (N)
     // - Blue (#3b82f6) = South pole (S)
-    // When flipped=false: Left side = Red(N), Right side = Blue(S)
-    // When flipped=true: Left side = Blue(S), Right side = Red(N)
+    // When flipped=false: 
+    //   - Left rect (x=-45): Red(N) - label shows 'N' at x=-22
+    //   - Right rect (x=0): Blue(S) - label shows 'S' at x=22
+    // When flipped=true:
+    //   - Left rect (x=-45): Blue(S) - label shows 'S' at x=-22
+    //   - Right rect (x=0): Red(N) - label shows 'N' at x=22
     React.useEffect(() => {
         if (isDragging) {
             setInteractionType('none');
@@ -101,39 +105,56 @@ export function MagneticFieldLabEnhanced() {
             
             if (horizontalAlignment) {
                 // Horizontal alignment
+                // Visual representation:
+                // flipped=false: Left side (x=-45) = Red(N), Right side (x=0) = Blue(S)
+                // flipped=true: Left side (x=-45) = Blue(S), Right side (x=0) = Red(N)
                 if (magnet1.x < magnet2.x) {
-                    // M1 left, M2 right
-                    // M1's RIGHT end faces M2: flipped=false→S(blue), flipped=true→N(red)
+                    // M1 is on LEFT, M2 is on RIGHT
+                    // M1's RIGHT end (x=0 area) faces M2
+                    // Right end: flipped=false→Blue(S), flipped=true→Red(N)
                     m1FacingPole = magnet1.flipped ? 'N' : 'S';
-                    // M2's LEFT end faces M1: flipped=false→N(red), flipped=true→S(blue)
+                    
+                    // M2's LEFT end (x=-45 area) faces M1  
+                    // Left end: flipped=false→Red(N), flipped=true→Blue(S)
                     m2FacingPole = magnet2.flipped ? 'S' : 'N';
                 } else {
-                    // M1 right, M2 left
-                    // M1's LEFT end faces M2: flipped=false→N(red), flipped=true→S(blue)
+                    // M1 is on RIGHT, M2 is on LEFT
+                    // M1's LEFT end (x=-45 area) faces M2
+                    // Left end: flipped=false→Red(N), flipped=true→Blue(S)
                     m1FacingPole = magnet1.flipped ? 'S' : 'N';
-                    // M2's RIGHT end faces M1: flipped=false→S(blue), flipped=true→N(red)
+                    
+                    // M2's RIGHT end (x=0 area) faces M1
+                    // Right end: flipped=false→Blue(S), flipped=true→Red(N)
                     m2FacingPole = magnet2.flipped ? 'N' : 'S';
                 }
             } else {
-                // Vertical alignment - simplified for rotation=0
+                // Vertical alignment - for rotation=0, magnets are horizontal
+                // Top magnet's bottom faces bottom magnet's top
                 if (magnet1.y < magnet2.y) {
-                    // M1 top, M2 bottom
-                    // For rotation=0, treat as horizontal: bottom=right, top=left
-                    m1FacingPole = magnet1.flipped ? 'N' : 'S'; // bottom end
-                    m2FacingPole = magnet2.flipped ? 'S' : 'N'; // top end
+                    // M1 is on TOP, M2 is on BOTTOM
+                    // For horizontal magnets (rotation=0), bottom = right side
+                    m1FacingPole = magnet1.flipped ? 'N' : 'S'; // bottom = right
+                    // Top = left side
+                    m2FacingPole = magnet2.flipped ? 'S' : 'N'; // top = left
                 } else {
-                    // M1 bottom, M2 top
-                    m1FacingPole = magnet1.flipped ? 'S' : 'N'; // top end
-                    m2FacingPole = magnet2.flipped ? 'N' : 'S'; // bottom end
+                    // M1 is on BOTTOM, M2 is on TOP
+                    m1FacingPole = magnet1.flipped ? 'S' : 'N'; // top = left
+                    m2FacingPole = magnet2.flipped ? 'N' : 'S'; // bottom = right
                 }
             }
             
             // SCIENTIFIC RULE: 
             // - Opposite poles (N-S or S-N) → ATTRACT (pull together)
             // - Same poles (N-N or S-S) → REPEL (push apart)
-            if (m1FacingPole !== m2FacingPole) {
+            // If poles are different, they attract. If same, they repel.
+            const polesAreDifferent = m1FacingPole !== m2FacingPole;
+            
+            // Apply the correct physics: opposite poles attract, same poles repel
+            if (polesAreDifferent) {
+                // Different poles (N-S or S-N) → ATTRACT
                 setInteractionType('attract');
             } else {
+                // Same poles (N-N or S-S) → REPEL  
                 setInteractionType('repel');
             }
         } else {
@@ -793,30 +814,48 @@ export function MagneticFieldLabEnhanced() {
                                 <CardDescription className="text-base">Drag magnets together to see attraction and repulsion!</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-6">
-                                {/* Interaction Display */}
-                                {interactionType !== 'none' && (
-                                    <motion.div
-                                        initial={{ opacity: 0, scale: 0.9 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        className={cn(
-                                            "p-4 rounded-lg border-2 font-semibold text-center text-lg",
-                                            interactionType === 'attract' && "bg-green-50 dark:bg-green-950/20 border-green-500 text-green-700 dark:text-green-300",
-                                            interactionType === 'repel' && "bg-red-50 dark:bg-red-950/20 border-red-500 text-red-700 dark:text-red-300"
-                                        )}
-                                    >
-                                        {interactionType === 'attract' ? (
-                                            <div>
-                                                <div className="text-2xl mb-2">🧲 ATTRACTION</div>
-                                                <div>Opposite poles (N-S) are pulling together!</div>
-                                            </div>
-                                        ) : (
-                                            <div>
-                                                <div className="text-2xl mb-2">⚡ REPULSION</div>
-                                                <div>Same poles (N-N or S-S) are pushing apart!</div>
-                                            </div>
-                                        )}
-                                    </motion.div>
-                                )}
+                                {/* Interaction Display with Debug Info */}
+                                {interactionType !== 'none' && (() => {
+                                    // Calculate facing poles for display
+                                    let m1Pole = '';
+                                    let m2Pole = '';
+                                    const horizontalAlignment = Math.abs(magnet1.y - magnet2.y) < 50;
+                                    if (horizontalAlignment) {
+                                        if (magnet1.x < magnet2.x) {
+                                            m1Pole = magnet1.flipped ? 'N' : 'S';
+                                            m2Pole = magnet2.flipped ? 'S' : 'N';
+                                        } else {
+                                            m1Pole = magnet1.flipped ? 'S' : 'N';
+                                            m2Pole = magnet2.flipped ? 'N' : 'S';
+                                        }
+                                    }
+                                    
+                                    return (
+                                        <motion.div
+                                            initial={{ opacity: 0, scale: 0.9 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            className={cn(
+                                                "p-4 rounded-lg border-2 font-semibold text-center text-lg",
+                                                interactionType === 'attract' && "bg-green-50 dark:bg-green-950/20 border-green-500 text-green-700 dark:text-green-300",
+                                                interactionType === 'repel' && "bg-red-50 dark:bg-red-950/20 border-red-500 text-red-700 dark:text-red-300"
+                                            )}
+                                        >
+                                            {interactionType === 'attract' ? (
+                                                <div>
+                                                    <div className="text-2xl mb-2">🧲 ATTRACTION</div>
+                                                    <div>Opposite poles ({m1Pole}-{m2Pole}) are pulling together!</div>
+                                                    <div className="text-sm mt-2 opacity-75">M1 facing: {m1Pole}, M2 facing: {m2Pole}</div>
+                                                </div>
+                                            ) : (
+                                                <div>
+                                                    <div className="text-2xl mb-2">⚡ REPULSION</div>
+                                                    <div>Same poles ({m1Pole}-{m2Pole}) are pushing apart!</div>
+                                                    <div className="text-sm mt-2 opacity-75">M1 facing: {m1Pole}, M2 facing: {m2Pole}</div>
+                                                </div>
+                                            )}
+                                        </motion.div>
+                                    );
+                                })()}
 
                                 {/* SVG Canvas */}
                                 <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700">
@@ -942,29 +981,30 @@ export function MagneticFieldLabEnhanced() {
                                                 <rect x="-50" y="-15" width="100" height="30" rx="5" fill="rgba(0,0,0,0.1)" />
                                                 {/* Main magnet body */}
                                                 <rect x="-45" y="-12" width="90" height="24" rx="4" stroke="black" strokeWidth="3" fill="white" />
-                                                {/* North pole (red) */}
+                                                {/* Left side: flipped=false→Red(N), flipped=true→Blue(S) */}
                                                 <rect 
-                                                    x={magnet1.flipped ? 0 : -45} 
+                                                    x="-45" 
                                                     y="-12" 
                                                     width="45" 
                                                     height="24" 
                                                     rx="4" 
                                                     fill={magnet1.flipped ? "#3b82f6" : "#ef4444"} 
                                                 />
-                                                {/* South pole (blue) */}
+                                                {/* Right side: flipped=false→Blue(S), flipped=true→Red(N) */}
                                                 <rect 
-                                                    x={magnet1.flipped ? -45 : 0} 
+                                                    x="0" 
                                                     y="-12" 
                                                     width="45" 
                                                     height="24" 
                                                     rx="4" 
                                                     fill={magnet1.flipped ? "#ef4444" : "#3b82f6"} 
                                                 />
-                                                {/* Labels - N on red side, S on blue side */}
-                                                <text x={magnet1.flipped ? 22 : -22} y="6" textAnchor="middle" fill="white" fontWeight="bold" fontSize="16" stroke="white" strokeWidth="0.5">
+                                                {/* Labels - Left side label */}
+                                                <text x="-22" y="6" textAnchor="middle" fill="white" fontWeight="bold" fontSize="16" stroke="white" strokeWidth="0.5">
                                                     {magnet1.flipped ? 'S' : 'N'}
                                                 </text>
-                                                <text x={magnet1.flipped ? -22 : 22} y="6" textAnchor="middle" fill="white" fontWeight="bold" fontSize="16" stroke="white" strokeWidth="0.5">
+                                                {/* Labels - Right side label */}
+                                                <text x="22" y="6" textAnchor="middle" fill="white" fontWeight="bold" fontSize="16" stroke="white" strokeWidth="0.5">
                                                     {magnet1.flipped ? 'N' : 'S'}
                                                 </text>
                                                 {/* Drag indicator */}
@@ -998,29 +1038,30 @@ export function MagneticFieldLabEnhanced() {
                                                 <rect x="-50" y="-15" width="100" height="30" rx="5" fill="rgba(0,0,0,0.1)" />
                                                 {/* Main magnet body */}
                                                 <rect x="-45" y="-12" width="90" height="24" rx="4" stroke="black" strokeWidth="3" fill="white" />
-                                                {/* North pole (red) */}
+                                                {/* Left side: flipped=false→Red(N), flipped=true→Blue(S) */}
                                                 <rect 
-                                                    x={magnet2.flipped ? 0 : -45} 
+                                                    x="-45" 
                                                     y="-12" 
                                                     width="45" 
                                                     height="24" 
                                                     rx="4" 
                                                     fill={magnet2.flipped ? "#3b82f6" : "#ef4444"} 
                                                 />
-                                                {/* South pole (blue) */}
+                                                {/* Right side: flipped=false→Blue(S), flipped=true→Red(N) */}
                                                 <rect 
-                                                    x={magnet2.flipped ? -45 : 0} 
+                                                    x="0" 
                                                     y="-12" 
                                                     width="45" 
                                                     height="24" 
                                                     rx="4" 
                                                     fill={magnet2.flipped ? "#ef4444" : "#3b82f6"} 
                                                 />
-                                                {/* Labels - N on red side, S on blue side */}
-                                                <text x={magnet2.flipped ? 22 : -22} y="6" textAnchor="middle" fill="white" fontWeight="bold" fontSize="16" stroke="white" strokeWidth="0.5">
+                                                {/* Labels - Left side label */}
+                                                <text x="-22" y="6" textAnchor="middle" fill="white" fontWeight="bold" fontSize="16" stroke="white" strokeWidth="0.5">
                                                     {magnet2.flipped ? 'S' : 'N'}
                                                 </text>
-                                                <text x={magnet2.flipped ? -22 : 22} y="6" textAnchor="middle" fill="white" fontWeight="bold" fontSize="16" stroke="white" strokeWidth="0.5">
+                                                {/* Labels - Right side label */}
+                                                <text x="22" y="6" textAnchor="middle" fill="white" fontWeight="bold" fontSize="16" stroke="white" strokeWidth="0.5">
                                                     {magnet2.flipped ? 'N' : 'S'}
                                                 </text>
                                                 {/* Drag indicator */}
