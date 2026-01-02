@@ -116,7 +116,20 @@
     - Level percentages for liquids (50% → 80%/90%)
     - Enhanced results section with clear comparisons
     - Status: Complete
-- ❌ **Expansion of Air** (`expansion-of-air`)
+
+14. ✅ **Expansion of Air** (`expansion-of-air`)
+    - Premium animated background (blue/cyan physics theme with 8 animated orbs)
+    - LabSupplies component integration
+    - **Enhanced balloon visualization** with 3D effects and shine
+    - **Enhanced bottle visualization** with shine and gradient
+    - **EnhancedFlame component** for realistic multi-layer flame animation
+    - Student-controlled progression (Continue buttons)
+    - Slower heating animation (200ms intervals) for better observation
+    - Temperature display on bottle
+    - Enhanced results section with clear observations
+    - Full "Lab Complete!" section with XP display
+    - Premium quiz section with enhanced styling
+    - Status: Complete
 - ❌ **Other Physics labs** (check `src/lib/virtual-labs-data.ts`)
 
 ### Chemistry Labs
