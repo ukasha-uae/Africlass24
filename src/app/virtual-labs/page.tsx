@@ -16,7 +16,7 @@ import PremiumUnlockModal from '@/components/premium/PremiumUnlockModal';
 
 export default function VirtualLabsPage() {
   // V1 Route Guard: Check if user has access to virtual labs
-  const { hasAccess, campus } = useV1FeatureAccess('virtualLabs');
+  const { hasAccess, campus, mounted: accessMounted } = useV1FeatureAccess('virtualLabs');
   const { user } = useFirebase();
   const [filter, setFilter] = useState<'All' | 'Biology' | 'Chemistry' | 'Physics'>('All');
   const [difficultyFilter, setDifficultyFilter] = useState<'All' | 'Easy' | 'Medium' | 'Hard'>('All');
@@ -30,6 +30,19 @@ export default function VirtualLabsPage() {
   useEffect(() => {
     setMounted(true);
   }, []);
+  
+  // Wait for access check to complete before rendering to prevent hydration mismatch
+  if (!accessMounted) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50/30 to-indigo-50/30 dark:from-slate-900 dark:via-purple-950/30 dark:to-indigo-950/30 relative overflow-hidden">
+        <div className="container mx-auto px-4 py-8 relative z-10">
+          <div className="flex items-center justify-center min-h-[60vh]">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const subjectIcons = {
     Biology: Dna,

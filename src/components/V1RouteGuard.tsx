@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { hasCampusFeature } from '@/lib/featureFlags';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -30,7 +30,21 @@ export function V1RouteGuard({
 }: V1RouteGuardProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const hasAccess = hasCampusFeature(campus, feature);
+  const [mounted, setMounted] = useState(false);
+  
+  // Prevent hydration mismatch by only checking access after mount
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
+  // During SSR and initial render, always show children to prevent hydration mismatch
+  // After mount, check access and show restriction if needed
+  const hasAccess = mounted ? hasCampusFeature(campus, feature) : true;
+  
+  // If not mounted yet, always render children (matches server render)
+  if (!mounted) {
+    return <>{children}</>;
+  }
 
   // Removed auto-redirect - let users see the access message instead
   // This allows users to understand why they don't have access
@@ -90,19 +104,27 @@ export function V1RouteGuard({
 
 /**
  * Hook to check if current user has access to a feature
+ * Uses mounted state to prevent hydration mismatches
  */
 export function useV1FeatureAccess(feature: 'lessons' | 'virtualLabs' | 'arena') {
-  if (typeof window === 'undefined') {
-    return { hasAccess: false, campus: 'shs' as const };
-  }
+  const [mounted, setMounted] = useState(false);
+  const [campus, setCampus] = useState<'primary' | 'jhs' | 'shs'>('shs');
+  
+  useEffect(() => {
+    setMounted(true);
+    if (typeof window !== 'undefined') {
+      const storedLevel = localStorage.getItem('userEducationLevel')?.toLowerCase() || 'shs';
+      const detectedCampus = (storedLevel === 'primary' ? 'primary' :
+                             storedLevel === 'jhs' ? 'jhs' :
+                             'shs') as 'primary' | 'jhs' | 'shs';
+      setCampus(detectedCampus);
+    }
+  }, []);
 
-  const storedLevel = localStorage.getItem('userEducationLevel')?.toLowerCase() || 'shs';
-  const campus = (storedLevel === 'primary' ? 'primary' :
-                 storedLevel === 'jhs' ? 'jhs' :
-                 'shs') as 'primary' | 'jhs' | 'shs';
-
+  // During SSR, default to SHS (which has most access) to prevent hydration mismatch
+  // After mount, use the actual detected campus
   const hasAccess = hasCampusFeature(campus, feature);
 
-  return { hasAccess, campus };
+  return { hasAccess, campus, mounted };
 }
 
