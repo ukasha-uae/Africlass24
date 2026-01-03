@@ -14,6 +14,26 @@ import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
+// Math symbol components that will definitely render
+const SquareRoot = ({ children }: { children: string }) => (
+  <span style={{ position: 'relative', display: 'inline-block', paddingLeft: '0.5em' }}>
+    <span style={{ 
+      position: 'absolute', 
+      top: '-0.1em', 
+      left: '-0.3em', 
+      fontSize: '1.2em',
+      lineHeight: '1'
+    }}>√</span>
+    <span style={{ textDecoration: 'overline', paddingLeft: '0.2em' }}>{children}</span>
+  </span>
+);
+
+const Fraction = ({ num, den }: { num: string; den: string }) => (
+  <span style={{ display: 'inline-block', textAlign: 'center', verticalAlign: 'middle', fontSize: '0.9em' }}>
+    <span style={{ display: 'block', borderBottom: '1px solid currentColor', padding: '0 0.1em', lineHeight: '1.2' }}>{num}</span>
+    <span style={{ lineHeight: '1.2' }}>{den}</span>
+  </span>
+);
 
 interface Measurement {
   height: number;
