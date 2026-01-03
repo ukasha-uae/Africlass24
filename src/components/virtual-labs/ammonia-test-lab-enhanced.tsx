@@ -984,8 +984,8 @@ export function AmmoniaTestLab() {
                 </motion.div>
             )}
 
-            {/* Lab Complete Section - Only show after quiz is completed */}
-            {currentStep === 'complete' && quizIsCorrect === true && (
+            {/* Lab Complete Section */}
+            {currentStep === 'complete' && (
                 <motion.div
                     key="complete"
                     initial={{ opacity: 0, scale: 0.9 }}
