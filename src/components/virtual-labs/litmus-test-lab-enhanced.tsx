@@ -943,7 +943,6 @@ export function LitmusTestLab() {
                                         })}
                                     </div>
                                 </div>
-                        </div>
 
                                 {quizFeedback && (
                                     <motion.div
