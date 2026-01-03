@@ -133,7 +133,7 @@ export function AmmoniaTestLab() {
             
             toast({ title: '📄 Testing with Litmus...', description: 'Observing color change' });
             
-            // Transition to result after testing animation
+            // Transition to result after testing animation - show color change
             setTimeout(() => {
                 setCurrentStep('result');
                 setTeacherMessage("Fantastic! The red litmus paper turned blue! This proves that ammonia is a BASE. Remember, bases turn red litmus blue. Well done!");
@@ -144,11 +144,11 @@ export function AmmoniaTestLab() {
                 });
                 setIsAnimating(false);
                 
-                // Transition to quiz after showing result
+                // Transition to quiz after showing result - give user time to see the blue litmus
                 setTimeout(() => {
                     setCurrentStep('quiz');
                     setTeacherMessage("Time to test your understanding! Answer these questions based on what you observed in the experiment. Good luck!");
-                }, 3000);
+                }, 4000);
             }, 3000);
         }
     };
@@ -723,7 +723,7 @@ export function AmmoniaTestLab() {
                                     <motion.div
                                         className={cn(
                                             "w-8 h-28 rounded-sm border-2 transition-all duration-1000",
-                                            (currentStep === 'result' || currentStep === 'complete') 
+                                            (currentStep === 'result' || currentStep === 'quiz' || currentStep === 'complete') 
                                                 ? "bg-blue-500 border-blue-700 shadow-[0_0_20px_rgba(59,130,246,0.6)]" 
                                                 : "bg-red-500 border-red-700"
                                         )}
@@ -739,11 +739,11 @@ export function AmmoniaTestLab() {
                                     <div className="mt-2 flex items-center gap-1">
                                         <Droplets className="h-3 w-3 text-blue-600" />
                                         <span className="text-xs font-medium">
-                                            {(currentStep === 'result' || currentStep === 'complete') ? 'Blue' : 'Red'} Litmus
+                                            {(currentStep === 'result' || currentStep === 'quiz' || currentStep === 'complete') ? 'Blue' : 'Red'} Litmus
                                         </span>
                                     </div>
                                     
-                                    {(currentStep === 'result' || currentStep === 'complete') && (
+                                    {(currentStep === 'result' || currentStep === 'quiz' || currentStep === 'complete') && (
                                         <>
                                             <motion.div
                                                 className="absolute -right-12 top-1/2 -translate-y-1/2"
@@ -857,7 +857,7 @@ export function AmmoniaTestLab() {
             )}
 
             {/* Quiz */}
-            {currentStep === 'complete' && (
+            {(currentStep === 'quiz' || currentStep === 'complete') && (
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -984,8 +984,8 @@ export function AmmoniaTestLab() {
                 </motion.div>
             )}
 
-            {/* Lab Complete Section */}
-            {currentStep === 'complete' && (
+            {/* Lab Complete Section - Only show after quiz is completed */}
+            {currentStep === 'complete' && quizIsCorrect === true && (
                 <motion.div
                     key="complete"
                     initial={{ opacity: 0, scale: 0.9 }}
