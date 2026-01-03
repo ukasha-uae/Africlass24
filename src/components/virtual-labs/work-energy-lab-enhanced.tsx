@@ -129,7 +129,7 @@ export function WorkEnergyLabEnhanced() {
       options: [
         "Doubles",
         "Quadruples",
-        <>Increases by <SquareRoot>2</SquareRoot></>,
+        "Increases by sqrt(2) (about 1.41×)",
         "Stays the same"
       ],
       correct: 2,
