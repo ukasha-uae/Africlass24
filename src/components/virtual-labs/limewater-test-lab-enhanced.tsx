@@ -326,8 +326,8 @@ export function LimewaterTestLabEnhanced() {
             </div>
 
             <div className="relative max-w-5xl mx-auto p-4 space-y-6">
-            {/* Celebration Overlay */}
-            <AnimatePresence>
+                {/* Celebration Overlay */}
+                <AnimatePresence>
                 {showCelebration && xpEarned !== null && (
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -391,17 +391,17 @@ export function LimewaterTestLabEnhanced() {
                         </motion.div>
                     </motion.div>
                 )}
-            </AnimatePresence>
+                </AnimatePresence>
 
-            {/* Teacher Voice */}
-            <TeacherVoice message={teacherMessage} onComplete={handleTeacherComplete} />
+                {/* Teacher Voice */}
+                <TeacherVoice message={teacherMessage} onComplete={handleTeacherComplete} />
 
-            {/* Objective */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-            >
-                <Card className="border-2 border-cyan-200/50 dark:border-cyan-800/50 bg-gradient-to-br from-white/90 to-cyan-50/90 dark:from-gray-900/90 dark:to-cyan-950/90 backdrop-blur-sm shadow-xl">
+                {/* Objective */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                >
+                    <Card className="border-2 border-cyan-200/50 dark:border-cyan-800/50 bg-gradient-to-br from-white/90 to-cyan-50/90 dark:from-gray-900/90 dark:to-cyan-950/90 backdrop-blur-sm shadow-xl">
                 <CardHeader>
                     <div className="flex items-center justify-between flex-wrap gap-2">
                         <CardTitle className="flex items-center gap-2">
@@ -420,10 +420,11 @@ export function LimewaterTestLabEnhanced() {
                     </div>
                     <CardDescription>{objectiveText}</CardDescription>
                 </CardHeader>
-            </Card>
+                    </Card>
+                </motion.div>
 
-            {/* Theory & Safety */}
-            <Card className="border-2 border-cyan-200/50 dark:border-cyan-800/50 bg-gradient-to-br from-white/90 to-blue-50/90 dark:from-gray-900/90 dark:to-blue-950/90 backdrop-blur-sm shadow-xl">
+                {/* Theory & Safety */}
+                <Card className="border-2 border-cyan-200/50 dark:border-cyan-800/50 bg-gradient-to-br from-white/90 to-blue-50/90 dark:from-gray-900/90 dark:to-blue-950/90 backdrop-blur-sm shadow-xl">
                 <CardHeader>
                     <CardTitle>Lab Information</CardTitle>
                     <CardDescription>Essential background and safety guidelines</CardDescription>
@@ -462,8 +463,8 @@ export function LimewaterTestLabEnhanced() {
                 </CardContent>
             </Card>
 
-            {/* Main Experiment */}
-            <Card className="border-2 border-violet-200/50 dark:border-violet-800/50 bg-gradient-to-br from-white/90 to-violet-50/90 dark:from-gray-900/90 dark:to-violet-950/90 backdrop-blur-sm shadow-xl">
+                {/* Main Experiment */}
+                <Card className="border-2 border-violet-200/50 dark:border-violet-800/50 bg-gradient-to-br from-white/90 to-violet-50/90 dark:from-gray-900/90 dark:to-violet-950/90 backdrop-blur-sm shadow-xl">
                 <CardHeader>
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                         <CardTitle className="flex items-center gap-2">
@@ -812,9 +813,9 @@ export function LimewaterTestLabEnhanced() {
             </Card>
 
 
-            {/* Practice Mode */}
-            {showPractice && (
-                <Card className="border-2 border-amber-200/50 dark:border-amber-800/50 bg-gradient-to-br from-white/90 to-amber-50/90 dark:from-gray-900/90 dark:to-amber-950/90 backdrop-blur-sm shadow-xl">
+                {/* Practice Mode */}
+                {showPractice && (
+                    <Card className="border-2 border-amber-200/50 dark:border-amber-800/50 bg-gradient-to-br from-white/90 to-amber-50/90 dark:from-gray-900/90 dark:to-amber-950/90 backdrop-blur-sm shadow-xl">
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
                             <Sparkles className="h-5 w-5 text-amber-600" />
@@ -876,8 +877,8 @@ export function LimewaterTestLabEnhanced() {
                 </Card>
             )}
 
-            {/* Lab Notes - Always Available */}
-            <Card className="border-2 border-amber-200/50 dark:border-amber-800/50 bg-gradient-to-br from-white/90 to-amber-50/90 dark:from-gray-900/90 dark:to-amber-950/90 backdrop-blur-sm shadow-xl">
+                {/* Lab Notes - Always Available */}
+                <Card className="border-2 border-amber-200/50 dark:border-amber-800/50 bg-gradient-to-br from-white/90 to-amber-50/90 dark:from-gray-900/90 dark:to-amber-950/90 backdrop-blur-sm shadow-xl">
                 <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="lab-notes" className="border-none">
                         <AccordionTrigger className="px-6 pt-6 hover:no-underline">
@@ -904,9 +905,9 @@ export function LimewaterTestLabEnhanced() {
                 </Accordion>
             </Card>
 
-            {/* Quiz Section */}
-            {(currentStep === 'quiz' || currentStep === 'complete') && (
-                <motion.div
+                {/* Quiz Section */}
+                {(currentStep === 'quiz' || currentStep === 'complete') && (
+                    <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     id="quiz-section"
@@ -1114,9 +1115,9 @@ export function LimewaterTestLabEnhanced() {
                 </motion.div>
             )}
 
-            {/* Lab Complete Section */}
-            {currentStep === 'complete' && quizIsCorrect === true && (
-                <motion.div
+                {/* Lab Complete Section */}
+                {currentStep === 'complete' && quizIsCorrect === true && (
+                    <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     className="relative"
@@ -1183,8 +1184,8 @@ export function LimewaterTestLabEnhanced() {
                             </Button>
                         </CardContent>
                     </Card>
-                </motion.div>
-            )}
+                    </motion.div>
+                )}
             </div>
         </div>
     );
