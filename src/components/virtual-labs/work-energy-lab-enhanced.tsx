@@ -372,9 +372,9 @@ export function WorkEnergyLabEnhanced() {
                       <ul className="space-y-2 text-sm text-purple-800 dark:text-purple-200">
                         <li>• The Law of Conservation of Energy</li>
                         <li>• How to calculate potential energy (PE = mgh)</li>
-                        <li>• How to calculate kinetic energy (KE = (1/2)mv²)</li>
+                        <li>• How to calculate kinetic energy (KE = <Fraction num="1" den="2" />mv<sup>2</sup>)</li>
                         <li>• Energy transformation from potential to kinetic</li>
-                        <li>• The relationship: v = √(2gh) - final speed</li>
+                        <li>• The relationship: v = <SquareRoot>2gh</SquareRoot> - final speed</li>
                         <li>• Why mass doesn't affect final speed</li>
                       </ul>
                     </div>
@@ -427,7 +427,7 @@ export function WorkEnergyLabEnhanced() {
                         doubling speed quadruples the energy!
                       </p>
                       <div className="bg-red-100 dark:bg-red-900 p-3 rounded-lg font-mono text-sm text-center font-bold">
-                        KE = ½mv<sup>2</sup>
+                        KE = <Fraction num="1" den="2" />mv<sup>2</sup>
                       </div>
                       <p className="text-xs text-red-600 dark:text-red-400 mt-2">
                         <strong>m</strong> = mass (kg) • <strong>v</strong> = velocity (m/s)
@@ -461,7 +461,7 @@ export function WorkEnergyLabEnhanced() {
                       💡 Fascinating Discovery:
                     </h4>
                     <p className="text-sm text-green-800 dark:text-green-200 mb-2">
-                      Final speed: <strong>v = √(2gh)</strong>
+                      Final speed: <strong>v = <SquareRoot>2gh</SquareRoot></strong>
                     </p>
                     <p className="text-sm text-green-800 dark:text-green-200">
                       Notice there's no mass (m) in this formula! A feather and a hammer dropped from the same 
@@ -969,7 +969,7 @@ export function WorkEnergyLabEnhanced() {
                     </LineChart>
                   </ResponsiveContainer>
                   <p className="text-sm text-center text-muted-foreground mt-4">
-                    📈 Notice: As height increases, final speed increases (following v = √(2gh)). 
+                    📈 Notice: As height increases, final speed increases (following v = <SquareRoot>2gh</SquareRoot>). 
                     PE and KE values are equal at the bottom, proving energy conservation!
                   </p>
                 </div>
@@ -990,8 +990,8 @@ export function WorkEnergyLabEnhanced() {
                         throughout the motion. No energy is created or destroyed - it only changes form.
                       </p>
                       <p>
-                        <strong>Speed Relationship:</strong> Final speed depends on height: v = √(2gh). 
-                        Doubling the height doesn't double the speed - it increases it by √2 (about 1.41×).
+                        <strong>Speed Relationship:</strong> Final speed depends on height: v = <SquareRoot>2gh</SquareRoot>. 
+                        Doubling the height doesn't double the speed - it increases it by <SquareRoot>2</SquareRoot> (about 1.41×).
                       </p>
                       <p>
                         <strong>Mass Independence:</strong> While mass affects the energy amounts (in Joules), 
@@ -1015,13 +1015,13 @@ export function WorkEnergyLabEnhanced() {
                       <div className="bg-blue-100 dark:bg-blue-900 p-3 rounded">
                         <strong>At the bottom (ground level):</strong><br />
                         PE = 0 (no height)<br />
-                        KE = ½mv<sup>2</sup> (maximum)<br />
-                        Total Energy = ½mv<sup>2</sup>
+                        KE = <Fraction num="1" den="2" />mv<sup>2</sup> (maximum)<br />
+                        Total Energy = <Fraction num="1" den="2" />mv<sup>2</sup>
                       </div>
                       <div className="bg-blue-100 dark:bg-blue-900 p-3 rounded">
                         <strong>Conservation equation:</strong><br />
-                        mgh = ½mv<sup>2</sup><br />
-                        Solving for v: v = √(2gh)<br />
+                        mgh = <Fraction num="1" den="2" />mv<sup>2</sup><br />
+                        Solving for v: v = <SquareRoot>2gh</SquareRoot><br />
                         Notice: mass cancels out!
                       </div>
                     </div>
@@ -1223,9 +1223,9 @@ export function WorkEnergyLabEnhanced() {
                   <ul className="space-y-2">
                     <li>✓ Energy cannot be created or destroyed, only transformed</li>
                     <li>✓ Potential energy (PE = mgh) is stored energy due to position</li>
-                    <li>✓ Kinetic energy (KE = ½mv<sup>2</sup>) is energy of motion</li>
+                    <li>✓ Kinetic energy (KE = <Fraction num="1" den="2" />mv<sup>2</sup>) is energy of motion</li>
                     <li>✓ As objects fall, PE converts to KE while total energy stays constant</li>
-                    <li>✓ Final speed depends on height: v = √(2gh)</li>
+                    <li>✓ Final speed depends on height: v = <SquareRoot>2gh</SquareRoot></li>
                   </ul>
                 </div>
 
