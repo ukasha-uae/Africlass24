@@ -193,11 +193,11 @@ export function OxygenTestLabEnhanced() {
                 });
             }
             
-            // Transition to quiz after showing result
+            // Transition to quiz after showing result - give students time to observe
             setTimeout(() => {
                 setCurrentStep('quiz');
                 setTeacherMessage("Excellent work on the experiment! Now let's check your understanding. Answer the quiz below - you've got this!");
-            }, 3000);
+            }, 8000); // 8 seconds to allow proper observation of results
         }, 2000);
     };
 
