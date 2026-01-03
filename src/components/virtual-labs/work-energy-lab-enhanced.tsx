@@ -14,6 +14,11 @@ import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
+// Helper component for rendering math formulas
+const MathFormula = ({ children }: { children: React.ReactNode }) => (
+  <span className="font-mono">{children}</span>
+);
+
 interface Measurement {
   height: number;
   potentialEnergy: number;
@@ -128,7 +133,7 @@ export function WorkEnergyLabEnhanced() {
       options: [
         "Doubles",
         "Quadruples",
-        "Increases by √2",
+        "Increases by &radic;2",
         "Stays the same"
       ],
       correct: 2,
@@ -169,7 +174,7 @@ export function WorkEnergyLabEnhanced() {
         setMeasurements(prev => {
           const newMeasurements = [...prev, measurement];
           if (newMeasurements.length === 1) {
-            setTeacherMessage("Excellent! You've recorded your first measurement. Try different heights to see how it affects the final speed. Notice the formula v = √(2gh) - the speed depends on height, not mass!");
+            setTeacherMessage("Excellent! You've recorded your first measurement. Try different heights to see how it affects the final speed. Notice the formula v = sqrt(2gh) - the speed depends on height, not mass!");
           } else if (newMeasurements.length === 2) {
             setTeacherMessage("Great work! Now you're collecting valuable data. Try one or two more measurements with different heights. Compare the final speeds!");
           } else if (newMeasurements.length >= 3) {
@@ -215,10 +220,10 @@ export function WorkEnergyLabEnhanced() {
       setTeacherMessage(
         "Perfect score! 🏆 You've mastered the Law of Conservation of Energy - one of the most fundamental laws in all of physics! " +
         "Here's the profound truth you now understand: Energy cannot be created or destroyed, only transformed from one form to another. " +
-        "In your experiment: Potential Energy (PE = mgh) at the top converted to Kinetic Energy (KE = ½mv²) at the bottom. " +
-        "Total energy remained constant: PEinitial = KEfinal (ignoring friction). The beautiful formula v = √(2gh) emerges from this! " +
+        "In your experiment: Potential Energy (PE = mgh) at the top converted to Kinetic Energy (KE = (1/2)mv^2) at the bottom. " +
+        "Total energy remained constant: PEinitial = KEfinal (ignoring friction). The beautiful formula v = sqrt(2gh) emerges from this! " +
         "Notice something amazing: MASS DOESN'T AFFECT FINAL SPEED! A 1kg object and 10kg object reach the same speed from the same height. " +
-        "Why? Because PE depends on mass (mgh) AND KE depends on mass (½mv²) - the mass cancels out mathematically! " +
+        "Why? Because PE depends on mass (mgh) AND KE depends on mass ((1/2)mv^2) - the mass cancels out mathematically! " +
         "Real-world applications everywhere: Roller coasters convert PE to KE for thrilling rides. Hydroelectric dams use falling water's " +
         "PE to spin turbines (KE) generating electricity. Pendulums swing by trading PE and KE back and forth. Even springs store elastic PE! " +
         "This law, established by Émilie du Châtelet and James Joule, governs everything from atomic reactions to the entire universe. " +
@@ -231,11 +236,11 @@ export function WorkEnergyLabEnhanced() {
       });
     } else if (score >= quizQuestions.length / 2) {
       setTeacherMessage(
-        `Good effort! You got ${score} out of ${quizQuestions.length} correct. Let me clarify the core concepts: Conservation of Energy means the TOTAL energy stays constant - it just changes forms. In your experiment: At the TOP of the ramp: Maximum PE (mgh), Zero KE (object at rest, v=0). SLIDING DOWN: PE decreases (height decreasing), KE increases (speed increasing). Energy is transforming! At the BOTTOM: Zero PE (height=0), Maximum KE (fastest speed). All PE became KE! The formulas: PE = mgh (mass × gravity × height), KE = ½mv² (half × mass × velocity squared). Setting them equal: mgh = ½mv², we can solve for v: v = √(2gh). Notice mass (m) cancels! That's why a bowling ball and marble reach the same speed - height determines speed, not mass! In real life, friction converts some energy to heat (that's why surfaces warm up), but the TOTAL energy including heat is still conserved. Review your data: higher starting height → higher PE → higher final KE → faster speed. The relationship is mathematical and precise. Keep studying - you're close to mastery!`
+        `Good effort! You got ${score} out of ${quizQuestions.length} correct. Let me clarify the core concepts: Conservation of Energy means the TOTAL energy stays constant - it just changes forms. In your experiment: At the TOP of the ramp: Maximum PE (mgh), Zero KE (object at rest, v=0). SLIDING DOWN: PE decreases (height decreasing), KE increases (speed increasing). Energy is transforming! At the BOTTOM: Zero PE (height=0), Maximum KE (fastest speed). All PE became KE! The formulas: PE = mgh (mass × gravity × height), KE = (1/2)mv^2 (half × mass × velocity squared). Setting them equal: mgh = (1/2)mv^2, we can solve for v: v = sqrt(2gh). Notice mass (m) cancels! That's why a bowling ball and marble reach the same speed - height determines speed, not mass! In real life, friction converts some energy to heat (that's why surfaces warm up), but the TOTAL energy including heat is still conserved. Review your data: higher starting height → higher PE → higher final KE → faster speed. The relationship is mathematical and precise. Keep studying - you're close to mastery!`
       );
     } else {
       setTeacherMessage(
-        `You got ${score} out of ${quizQuestions.length}. Don't worry - energy concepts take time to grasp! Let's start simple: ENERGY is the ability to do work or cause change. It comes in many forms: kinetic (motion), potential (position), thermal (heat), chemical (food, batteries), electrical, nuclear, etc. Two key types in this lab: POTENTIAL ENERGY (PE): Stored energy due to POSITION/HEIGHT. Formula: PE = mgh (mass × 9.81 × height in meters). Higher up = more PE. A book on a high shelf has more PE than on the floor. KINETIC ENERGY (KE): Energy of MOTION. Formula: KE = ½mv² (half × mass × velocity squared). Faster moving = more KE. A speeding car has more KE than a parked one. THE LAW: Energy cannot vanish or appear from nothing - it TRANSFORMS. Your experiment: Object starts HIGH (lots of PE, no KE) → slides down → ends LOW (no PE, lots of KE). The PE didn't disappear - it BECAME KE! That's why the object speeds up as it descends. Think of it like money: you can exchange dollars for euros, but the total value stays the same. Energy exchanges forms but the total amount is conserved. Watch the experiment again: as height (PE) decreases, speed (KE) increases proportionally. The energy is transforming before your eyes! This principle applies to EVERYTHING in the universe. Keep practicing - you're learning the most important law in physics!`
+        `You got ${score} out of ${quizQuestions.length}. Don't worry - energy concepts take time to grasp! Let's start simple: ENERGY is the ability to do work or cause change. It comes in many forms: kinetic (motion), potential (position), thermal (heat), chemical (food, batteries), electrical, nuclear, etc. Two key types in this lab: POTENTIAL ENERGY (PE): Stored energy due to POSITION/HEIGHT. Formula: PE = mgh (mass × 9.81 × height in meters). Higher up = more PE. A book on a high shelf has more PE than on the floor. KINETIC ENERGY (KE): Energy of MOTION. Formula: KE = (1/2)mv^2 (half × mass × velocity squared). Faster moving = more KE. A speeding car has more KE than a parked one. THE LAW: Energy cannot vanish or appear from nothing - it TRANSFORMS. Your experiment: Object starts HIGH (lots of PE, no KE) → slides down → ends LOW (no PE, lots of KE). The PE didn't disappear - it BECAME KE! That's why the object speeds up as it descends. Think of it like money: you can exchange dollars for euros, but the total value stays the same. Energy exchanges forms but the total amount is conserved. Watch the experiment again: as height (PE) decreases, speed (KE) increases proportionally. The energy is transforming before your eyes! This principle applies to EVERYTHING in the universe. Keep practicing - you're learning the most important law in physics!`
       );
     }
   };
@@ -371,9 +376,9 @@ export function WorkEnergyLabEnhanced() {
                       <ul className="space-y-2 text-sm text-purple-800 dark:text-purple-200">
                         <li>• The Law of Conservation of Energy</li>
                         <li>• How to calculate potential energy (PE = mgh)</li>
-                        <li>• How to calculate kinetic energy (KE = ½mv²)</li>
+                        <li>• How to calculate kinetic energy (KE = <MathFormula>(1/2)mv<sup>2</sup></MathFormula>)</li>
                         <li>• Energy transformation from potential to kinetic</li>
-                        <li>• The relationship: v = √(2gh) - final speed</li>
+                        <li>• The relationship: v = <MathFormula>&radic;(2gh)</MathFormula> - final speed</li>
                         <li>• Why mass doesn't affect final speed</li>
                       </ul>
                     </div>
@@ -426,7 +431,7 @@ export function WorkEnergyLabEnhanced() {
                         doubling speed quadruples the energy!
                       </p>
                       <div className="bg-red-100 dark:bg-red-900 p-3 rounded-lg font-mono text-sm text-center font-bold">
-                        KE = ½mv<sup>2</sup>
+                        KE = &frac12;mv<sup>2</sup>
                       </div>
                       <p className="text-xs text-red-600 dark:text-red-400 mt-2">
                         <strong>m</strong> = mass (kg) • <strong>v</strong> = velocity (m/s)
@@ -460,7 +465,7 @@ export function WorkEnergyLabEnhanced() {
                       💡 Fascinating Discovery:
                     </h4>
                     <p className="text-sm text-green-800 dark:text-green-200 mb-2">
-                      Final speed: <strong>v = √(2gh)</strong>
+                      Final speed: <strong>v = &radic;(2gh)</strong>
                     </p>
                     <p className="text-sm text-green-800 dark:text-green-200">
                       Notice there's no mass (m) in this formula! A feather and a hammer dropped from the same 
@@ -968,7 +973,7 @@ export function WorkEnergyLabEnhanced() {
                     </LineChart>
                   </ResponsiveContainer>
                   <p className="text-sm text-center text-muted-foreground mt-4">
-                    📈 Notice: As height increases, final speed increases (following v = √(2gh)). 
+                    📈 Notice: As height increases, final speed increases (following v = &radic;(2gh)). 
                     PE and KE values are equal at the bottom, proving energy conservation!
                   </p>
                 </div>
@@ -989,8 +994,8 @@ export function WorkEnergyLabEnhanced() {
                         throughout the motion. No energy is created or destroyed - it only changes form.
                       </p>
                       <p>
-                        <strong>Speed Relationship:</strong> Final speed depends on height: v = √(2gh). 
-                        Doubling the height doesn't double the speed - it increases it by √2 (about 1.41×).
+                        <strong>Speed Relationship:</strong> Final speed depends on height: v = &radic;(2gh). 
+                        Doubling the height doesn't double the speed - it increases it by &radic;2 (about 1.41×).
                       </p>
                       <p>
                         <strong>Mass Independence:</strong> While mass affects the energy amounts (in Joules), 
@@ -1014,13 +1019,13 @@ export function WorkEnergyLabEnhanced() {
                       <div className="bg-blue-100 dark:bg-blue-900 p-3 rounded">
                         <strong>At the bottom (ground level):</strong><br />
                         PE = 0 (no height)<br />
-                        KE = ½mv<sup>2</sup> (maximum)<br />
-                        Total Energy = ½mv<sup>2</sup>
+                        KE = &frac12;mv<sup>2</sup> (maximum)<br />
+                        Total Energy = &frac12;mv<sup>2</sup>
                       </div>
                       <div className="bg-blue-100 dark:bg-blue-900 p-3 rounded">
                         <strong>Conservation equation:</strong><br />
-                        mgh = ½mv<sup>2</sup><br />
-                        Solving for v: v = √(2gh)<br />
+                        mgh = &frac12;mv<sup>2</sup><br />
+                        Solving for v: v = &radic;(2gh)<br />
                         Notice: mass cancels out!
                       </div>
                     </div>
@@ -1222,9 +1227,9 @@ export function WorkEnergyLabEnhanced() {
                   <ul className="space-y-2">
                     <li>✓ Energy cannot be created or destroyed, only transformed</li>
                     <li>✓ Potential energy (PE = mgh) is stored energy due to position</li>
-                    <li>✓ Kinetic energy (KE = ½mv<sup>2</sup>) is energy of motion</li>
+                    <li>✓ Kinetic energy (KE = &frac12;mv<sup>2</sup>) is energy of motion</li>
                     <li>✓ As objects fall, PE converts to KE while total energy stays constant</li>
-                    <li>✓ Final speed depends on height: v = √(2gh)</li>
+                    <li>✓ Final speed depends on height: v = &radic;(2gh)</li>
                   </ul>
                 </div>
 
