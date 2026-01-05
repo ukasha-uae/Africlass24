@@ -1,7 +1,12 @@
 /**
  * Monetization System for Challenge Arena
  * Handles premium subscriptions, coin purchases, and feature unlocks
+ * 
+ * IMPORTANT: Subscriptions are stored in BOTH Firestore (for cross-device sync) 
+ * and localStorage (for offline access). Firestore is the source of truth.
  */
+
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 
 export type SubscriptionTier = 'free' | 'premium' | 'virtual_lab' | 'full_bundle';
 export type PremiumFeature = 
@@ -109,36 +114,72 @@ export const PREMIUM_FEATURES: Record<PremiumFeature, {
 
 /**
  * Check if user has premium subscription (Challenge Arena Premium)
+ * Automatically validates expiration date
  */
 export function isPremiumUser(userId: string): boolean {
   if (typeof window === 'undefined') return false;
   
   const subscription = getUserSubscription(userId);
-  return (subscription?.tier === 'premium' || subscription?.tier === 'full_bundle') && subscription?.isActive === true;
+  if (!subscription) return false;
+  
+  // Double-check expiration (getUserSubscription already validates, but be extra safe)
+  if (subscription.endDate && subscription.isActive) {
+    const endDate = new Date(subscription.endDate);
+    const now = new Date();
+    if (now > endDate) {
+      return false; // Expired
+    }
+  }
+  
+  return (subscription.tier === 'premium' || subscription.tier === 'full_bundle') && subscription.isActive === true;
 }
 
 /**
  * Check if user has Virtual Lab subscription
+ * Automatically validates expiration date
  */
 export function hasVirtualLabAccess(userId: string): boolean {
   if (typeof window === 'undefined') return false;
   
   const subscription = getUserSubscription(userId);
-  return (subscription?.tier === 'virtual_lab' || subscription?.tier === 'full_bundle') && subscription?.isActive === true;
+  if (!subscription) return false;
+  
+  // Double-check expiration (getUserSubscription already validates, but be extra safe)
+  if (subscription.endDate && subscription.isActive) {
+    const endDate = new Date(subscription.endDate);
+    const now = new Date();
+    if (now > endDate) {
+      return false; // Expired
+    }
+  }
+  
+  return (subscription.tier === 'virtual_lab' || subscription.tier === 'full_bundle') && subscription.isActive === true;
 }
 
 /**
  * Check if user has Full Bundle subscription (both Challenge Arena and Virtual Lab)
+ * Automatically validates expiration date
  */
 export function hasFullBundle(userId: string): boolean {
   if (typeof window === 'undefined') return false;
   
   const subscription = getUserSubscription(userId);
-  return subscription?.tier === 'full_bundle' && subscription?.isActive === true;
+  if (!subscription) return false;
+  
+  // Double-check expiration (getUserSubscription already validates, but be extra safe)
+  if (subscription.endDate && subscription.isActive) {
+    const endDate = new Date(subscription.endDate);
+    const now = new Date();
+    if (now > endDate) {
+      return false; // Expired
+    }
+  }
+  
+  return subscription.tier === 'full_bundle' && subscription.isActive === true;
 }
 
 /**
- * Get user subscription
+ * Get user subscription with automatic expiration validation
  */
 export function getUserSubscription(userId: string): UserSubscription | null {
   if (typeof window === 'undefined') return null;
@@ -147,15 +188,34 @@ export function getUserSubscription(userId: string): UserSubscription | null {
   if (!subscriptions) return null;
   
   const allSubscriptions: Record<string, UserSubscription> = JSON.parse(subscriptions);
-  return allSubscriptions[userId] || null;
+  const subscription = allSubscriptions[userId];
+  
+  if (!subscription) return null;
+  
+  // Validate expiration date - automatically deactivate if expired
+  if (subscription.endDate && subscription.isActive) {
+    const endDate = new Date(subscription.endDate);
+    const now = new Date();
+    
+    if (now > endDate) {
+      // Subscription has expired - deactivate it
+      subscription.isActive = false;
+      allSubscriptions[userId] = subscription;
+      localStorage.setItem('userSubscriptions', JSON.stringify(allSubscriptions));
+    }
+  }
+  
+  return subscription;
 }
 
 /**
  * Set user subscription
+ * Saves to BOTH Firestore (for cross-device sync) and localStorage (for offline access)
  */
-export function setUserSubscription(userId: string, subscription: UserSubscription): void {
+export function setUserSubscription(userId: string, subscription: UserSubscription, firestore?: any): void {
   if (typeof window === 'undefined') return;
   
+  // Save to localStorage first (for immediate access)
   const subscriptions = localStorage.getItem('userSubscriptions');
   const allSubscriptions: Record<string, UserSubscription> = subscriptions 
     ? JSON.parse(subscriptions) 
@@ -163,24 +223,161 @@ export function setUserSubscription(userId: string, subscription: UserSubscripti
   
   allSubscriptions[userId] = subscription;
   localStorage.setItem('userSubscriptions', JSON.stringify(allSubscriptions));
+  
+  // Also save to Firestore (for cross-device sync) - do this in background
+  if (firestore) {
+    import('firebase/firestore').then(({ doc, setDoc }) => {
+      const subscriptionRef = doc(firestore, 'subscriptions', userId);
+      setDoc(subscriptionRef, subscription, { merge: true }).catch((error) => {
+        console.warn('Failed to save subscription to Firestore:', error);
+      });
+    });
+  }
+}
+
+/**
+ * Bidirectional sync: Firestore <-> localStorage
+ * Call this when user logs in to sync subscription across devices
+ * - If subscription exists in Firestore: sync to localStorage (Firestore is source of truth)
+ * - If subscription exists in localStorage but not Firestore: upload to Firestore (migration)
+ */
+export async function syncSubscriptionFromFirestore(userId: string, firestore: any, auth?: any): Promise<void> {
+  if (typeof window === 'undefined' || !firestore) {
+    console.log('[Subscription Sync] Skipped - window or firestore not available');
+    return;
+  }
+  
+  // Check if user is authenticated
+  if (auth) {
+    const currentUser = auth.currentUser;
+    if (!currentUser || currentUser.uid !== userId) {
+      console.warn('[Subscription Sync] User not authenticated or user ID mismatch');
+      console.warn('[Subscription Sync] Current user:', currentUser?.uid, 'Requested userId:', userId);
+      // Still try to proceed - might be using anonymous auth
+    }
+  }
+  
+  try {
+    const { doc, getDoc, setDoc } = await import('firebase/firestore');
+    const subscriptionRef = doc(firestore, 'subscriptions', userId);
+    const subscriptionSnap = await getDoc(subscriptionRef);
+    
+    // Check localStorage for existing subscription
+    const subscriptions = localStorage.getItem('userSubscriptions');
+    const allSubscriptions: Record<string, UserSubscription> = subscriptions 
+      ? JSON.parse(subscriptions) 
+      : {};
+    const localSubscription = allSubscriptions[userId];
+    
+    console.log('[Subscription Sync] User ID:', userId);
+    console.log('[Subscription Sync] Firestore has subscription:', subscriptionSnap.exists());
+    console.log('[Subscription Sync] localStorage has subscription:', !!localSubscription);
+    
+    if (subscriptionSnap.exists()) {
+      // Firestore has subscription - use it as source of truth
+      const subscription = subscriptionSnap.data() as UserSubscription;
+      console.log('[Subscription Sync] Found in Firestore:', subscription.tier, subscription.isActive);
+      
+      // Validate expiration
+      if (subscription.endDate && subscription.isActive) {
+        const endDate = new Date(subscription.endDate);
+        const now = new Date();
+        
+        if (now > endDate) {
+          subscription.isActive = false;
+          // Update in Firestore
+          await setDoc(subscriptionRef, subscription, { merge: true });
+          console.log('[Subscription Sync] Subscription expired, deactivated');
+        }
+      }
+      
+      // Sync to localStorage
+      allSubscriptions[userId] = subscription;
+      localStorage.setItem('userSubscriptions', JSON.stringify(allSubscriptions));
+      console.log('[Subscription Sync] Synced from Firestore to localStorage');
+    } else if (localSubscription) {
+      // No subscription in Firestore, but exists in localStorage - upload it (migration)
+      console.log('[Subscription Sync] Found in localStorage only, uploading to Firestore:', localSubscription.tier);
+      
+      // Validate expiration before uploading
+      if (localSubscription.endDate && localSubscription.isActive) {
+        const endDate = new Date(localSubscription.endDate);
+        const now = new Date();
+        
+        if (now > endDate) {
+          localSubscription.isActive = false;
+          console.log('[Subscription Sync] Local subscription expired');
+        }
+      }
+      
+      // Upload to Firestore
+      try {
+        await setDoc(subscriptionRef, localSubscription, { merge: true });
+        console.log('[Subscription Sync] ✅ Successfully migrated subscription from localStorage to Firestore');
+      } catch (writeError: any) {
+        console.warn('[Subscription Sync] ⚠️ Failed to write to Firestore (will continue with localStorage only):', writeError.message);
+        if (writeError.code === 'permission-denied') {
+          console.warn('[Subscription Sync] Permission denied - Firestore rules may not be deployed yet.');
+          console.warn('[Subscription Sync] Subscription will work locally but won\'t sync across devices until rules are deployed.');
+          // Don't throw - allow app to continue with localStorage only
+        } else {
+          // For other errors, also don't throw - just log
+          console.warn('[Subscription Sync] Error details:', writeError.code, writeError.message);
+        }
+        // Don't throw - gracefully degrade to localStorage only
+      }
+    } else {
+      console.log('[Subscription Sync] No subscription found in either Firestore or localStorage');
+    }
+  } catch (error: any) {
+    // Only log errors, don't break the app
+    if (error.code === 'permission-denied') {
+      console.warn('[Subscription Sync] ⚠️ Permission denied - Firestore rules may not be deployed.');
+      console.warn('[Subscription Sync] App will continue using localStorage only.');
+      console.warn('[Subscription Sync] To enable cross-device sync, deploy Firestore rules.');
+    } else {
+      console.warn('[Subscription Sync] ⚠️ Sync error (non-critical):', error.message || error);
+    }
+    // Don't throw - gracefully degrade to localStorage only
+  }
 }
 
 /**
  * Check if user has access to a premium feature
+ * Automatically validates expiration date
  */
 export function hasPremiumFeature(userId: string, feature: PremiumFeature): boolean {
   const subscription = getUserSubscription(userId);
   if (!subscription || !subscription.isActive) return false;
+  
+  // Double-check expiration
+  if (subscription.endDate) {
+    const endDate = new Date(subscription.endDate);
+    const now = new Date();
+    if (now > endDate) {
+      return false; // Expired
+    }
+  }
   
   return subscription.features.includes(feature);
 }
 
 /**
  * Get all premium features for user
+ * Automatically validates expiration date
  */
 export function getUserPremiumFeatures(userId: string): PremiumFeature[] {
   const subscription = getUserSubscription(userId);
   if (!subscription || !subscription.isActive) return [];
+  
+  // Double-check expiration
+  if (subscription.endDate) {
+    const endDate = new Date(subscription.endDate);
+    const now = new Date();
+    if (now > endDate) {
+      return []; // Expired
+    }
+  }
   
   return subscription.features;
 }
@@ -192,16 +389,26 @@ export function addSubscription(
   userId: string,
   planId: string,
   duration: 'monthly' | 'annual',
-  subscriptionType: 'challengeArena' | 'virtualLab' | 'fullBundle' = 'challengeArena'
+  subscriptionType: 'challengeArena' | 'virtualLab' | 'fullBundle' = 'challengeArena',
+  firestore?: any
 ): UserSubscription {
   if (typeof window === 'undefined') {
     throw new Error('Cannot add subscription on server side');
   }
 
   const now = new Date();
+  // Create a new date object to avoid mutating the original
   const endDate = duration === 'monthly'
-    ? new Date(now.setMonth(now.getMonth() + 1)).toISOString()
-    : new Date(now.setFullYear(now.getFullYear() + 1)).toISOString();
+    ? (() => {
+        const date = new Date(now);
+        date.setMonth(date.getMonth() + 1);
+        return date.toISOString();
+      })()
+    : (() => {
+        const date = new Date(now);
+        date.setFullYear(date.getFullYear() + 1);
+        return date.toISOString();
+      })();
 
   // Determine tier and features based on subscription type
   let tier: SubscriptionTier;
@@ -229,7 +436,7 @@ export function addSubscription(
     planId,
   };
 
-  setUserSubscription(userId, subscription);
+  setUserSubscription(userId, subscription, firestore);
 
   // Update player profile
   try {
@@ -260,7 +467,7 @@ export function initializePremiumSubscription(userId: string, tier: Subscription
     planId: 'premium_monthly', // Default for demo
   };
   
-  setUserSubscription(userId, subscription);
+  setUserSubscription(userId, subscription, firestore);
 }
 
 /**

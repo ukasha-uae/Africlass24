@@ -1019,20 +1019,28 @@ const generateGameQuestions = (
       
       const correctOption = q.options[q.correctAnswer];
       // Create a fill-in-the-blank version with better question rewriting
-      let blankQuestion = q.question.replace(/\?/g, '').trim();
+      let blankQuestion = q.question.trim();
       
       if (blankQuestion.toLowerCase().includes('what is') || blankQuestion.toLowerCase().includes('what does')) {
-        // Convert "What is X?" to "X is: _____" or "What does X stand for?" to "X stands for: _____"
-        blankQuestion = blankQuestion.replace(/what (?:is|does)\s+/i, '');
-        if (blankQuestion.toLowerCase().includes('stand for')) {
-          blankQuestion = blankQuestion.replace(/\s+stand for/i, ' stands for: _____');
-        } else {
-          blankQuestion = blankQuestion.replace(/\?/g, '');
-          const parts = blankQuestion.split(/\s+/);
-          if (parts.length > 0) {
-            blankQuestion = `${blankQuestion.replace(/\?/g, '')}: _____`;
+        // Convert "What is X?" to "X is: _____" (more natural)
+        // Extract the subject (X) from "What is X?"
+        const whatIsMatch = blankQuestion.match(/what (?:is|does)\s+(.+?)\s*\?/i);
+        if (whatIsMatch && whatIsMatch[1]) {
+          const subject = whatIsMatch[1].trim();
+          if (blankQuestion.toLowerCase().includes('stand for')) {
+            blankQuestion = `${subject} stands for: _____`;
+          } else {
+            // Capitalize first letter of subject for better readability
+            const capitalizedSubject = subject.charAt(0).toUpperCase() + subject.slice(1);
+            blankQuestion = `${capitalizedSubject} is: _____`;
           }
+        } else {
+          // Fallback: keep original question but add blank
+          blankQuestion = blankQuestion.replace(/\?/g, '') + ' _____';
         }
+      } else if (blankQuestion.toLowerCase().includes('which')) {
+        // For "Which" questions, convert to "The correct answer is: _____"
+        blankQuestion = `The correct answer is: _____`;
       } else {
         // For other questions, replace question mark with blank or add blank at the end
         if (blankQuestion.endsWith('?')) {

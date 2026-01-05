@@ -7,9 +7,10 @@ import {
   isPremiumUser, 
   hasVirtualLabAccess, 
   hasFullBundle,
-  getUserSubscription 
+  getUserSubscription,
+  setUserSubscription
 } from '@/lib/monetization';
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 
 interface SubscriptionStatusBadgeProps {
@@ -25,32 +26,68 @@ export function SubscriptionStatusBadge({
   variant = 'default',
   className = ''
 }: SubscriptionStatusBadgeProps) {
-  const { user } = useFirebase();
+  const { user, firestore, auth } = useFirebase();
+  const [mounted, setMounted] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
+  
+  // Ensure we only access localStorage after client-side hydration
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Sync subscription from Firestore when user logs in or changes
+  useEffect(() => {
+    if (mounted && user?.uid && firestore) {
+      import('@/lib/monetization').then(({ syncSubscriptionFromFirestore }) => {
+        syncSubscriptionFromFirestore(user.uid, firestore, auth).then(() => {
+          // Trigger re-render after sync
+          setRefreshKey(prev => prev + 1);
+        }).catch(err => {
+          console.warn('Failed to sync subscription:', err);
+        });
+      });
+    }
+  }, [mounted, user?.uid, firestore, auth]);
+
+  // Listen for storage changes (in case subscription is updated in another tab)
+  useEffect(() => {
+    if (!mounted) return;
+    
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'userSubscriptions') {
+        setRefreshKey(prev => prev + 1);
+      }
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [mounted]);
   
   // Try multiple user ID sources
   const targetUserId = useMemo(() => {
     if (userId) return userId;
     if (user?.uid) return user.uid;
     // Fallback to localStorage currentUserId (used by challenge system)
-    if (typeof window !== 'undefined') {
+    // Only access localStorage after mount to prevent hydration mismatch
+    if (mounted && typeof window !== 'undefined') {
       const currentUserId = localStorage.getItem('currentUserId');
       if (currentUserId) return currentUserId;
     }
     return '';
-  }, [userId, user?.uid]);
+  }, [userId, user?.uid, mounted]);
   
   const subscriptionStatus = useMemo(() => {
-    // Get all possible user IDs to check
-    const userIdsToCheck: string[] = [];
-    if (targetUserId) userIdsToCheck.push(targetUserId);
-    if (user?.uid && !userIdsToCheck.includes(user.uid)) userIdsToCheck.push(user.uid);
-    if (typeof window !== 'undefined') {
-      const currentUserId = localStorage.getItem('currentUserId');
-      if (currentUserId && !userIdsToCheck.includes(currentUserId)) userIdsToCheck.push(currentUserId);
+    // During SSR or before mount, return null to prevent hydration mismatch
+    if (!mounted) {
+      return null;
     }
     
-    // If no user IDs found, return a default "free" status if user exists
-    if (userIdsToCheck.length === 0) {
+    // Priority: Firebase user.uid > targetUserId > currentUserId
+    // Always prioritize Firebase user.uid if available
+    const primaryUserId = user?.uid || targetUserId || (typeof window !== 'undefined' ? localStorage.getItem('currentUserId') : null);
+    
+    if (!primaryUserId) {
+      // If we have a user but no ID, return free status
       if (user || userId) {
         return {
           hasBundle: false,
@@ -63,24 +100,53 @@ export function SubscriptionStatusBadge({
       return null;
     }
     
+    // Get all possible user IDs to check (for migration/sync purposes)
+    const userIdsToCheck: string[] = [primaryUserId];
+    if (user?.uid && !userIdsToCheck.includes(user.uid)) userIdsToCheck.push(user.uid);
+    if (targetUserId && !userIdsToCheck.includes(targetUserId)) userIdsToCheck.push(targetUserId);
+    if (typeof window !== 'undefined') {
+      const currentUserId = localStorage.getItem('currentUserId');
+      if (currentUserId && !userIdsToCheck.includes(currentUserId)) userIdsToCheck.push(currentUserId);
+    }
+    
     // Check subscription status with all possible user IDs
     let finalHasBundle = false;
     let finalIsPremium = false;
     let finalHasVirtualLab = false;
     let finalSubscription: ReturnType<typeof getUserSubscription> = null;
     
-    for (const uid of userIdsToCheck) {
-      const hasBundle = hasFullBundle(uid);
-      const isPremium = isPremiumUser(uid);
-      const hasVL = hasVirtualLabAccess(uid);
-      const subscription = getUserSubscription(uid);
-      
-      if (hasBundle || isPremium || hasVL || subscription) {
-        finalHasBundle = finalHasBundle || hasBundle;
-        finalIsPremium = finalIsPremium || isPremium;
-        finalHasVirtualLab = finalHasVirtualLab || hasVL;
-        if (subscription && !finalSubscription) {
-          finalSubscription = subscription;
+    // First, check with primary user ID (Firebase user.uid if available)
+    const primaryHasBundle = hasFullBundle(primaryUserId);
+    const primaryIsPremium = isPremiumUser(primaryUserId);
+    const primaryHasVL = hasVirtualLabAccess(primaryUserId);
+    const primarySubscription = getUserSubscription(primaryUserId);
+    
+    finalHasBundle = primaryHasBundle;
+    finalIsPremium = primaryIsPremium;
+    finalHasVirtualLab = primaryHasVL;
+    finalSubscription = primarySubscription;
+    
+    // If no subscription found with primary ID, check other IDs (for migration)
+    if (!finalSubscription && !finalHasBundle && !finalIsPremium && !finalHasVirtualLab) {
+      for (const uid of userIdsToCheck) {
+        if (uid === primaryUserId) continue; // Already checked
+        
+        const hasBundle = hasFullBundle(uid);
+        const isPremium = isPremiumUser(uid);
+        const hasVL = hasVirtualLabAccess(uid);
+        const subscription = getUserSubscription(uid);
+        
+        if (hasBundle || isPremium || hasVL || subscription) {
+          finalHasBundle = finalHasBundle || hasBundle;
+          finalIsPremium = finalIsPremium || isPremium;
+          finalHasVirtualLab = finalHasVirtualLab || hasVL;
+          if (subscription && !finalSubscription) {
+            finalSubscription = subscription;
+            // Sync subscription to primary user ID if found under different ID
+            if (primaryUserId && uid !== primaryUserId && typeof window !== 'undefined') {
+              setUserSubscription(primaryUserId, subscription);
+            }
+          }
         }
       }
     }
@@ -88,6 +154,7 @@ export function SubscriptionStatusBadge({
     // Debug logging (remove in production if needed)
     if (process.env.NODE_ENV === 'development') {
       console.log('SubscriptionStatusBadge Debug:', {
+        primaryUserId,
         userIdsToCheck,
         targetUserId,
         firebaseUid: user?.uid,
@@ -107,7 +174,38 @@ export function SubscriptionStatusBadge({
       subscription: finalSubscription,
       isFree: !finalHasBundle && !finalIsPremium && !finalHasVirtualLab
     };
-  }, [targetUserId, user?.uid]);
+  }, [targetUserId, user?.uid, mounted, refreshKey]);
+  
+  // During SSR or before mount, show a placeholder that matches what will be rendered
+  // This prevents hydration mismatch
+  if (!mounted) {
+    // Show a consistent placeholder during SSR
+    if (variant === 'compact') {
+      return (
+        <div className={`flex items-center gap-1 ${className}`}>
+          <Badge variant="outline" className="border-gray-300 dark:border-gray-700 text-[10px] px-1.5 py-0.5">
+            Free
+          </Badge>
+        </div>
+      );
+    }
+    if (variant === 'detailed') {
+      return (
+        <div className={`space-y-2 ${className}`}>
+          <Badge variant="outline" className="border-gray-300 dark:border-gray-700">
+            Free User
+          </Badge>
+        </div>
+      );
+    }
+    return (
+      <div className={`flex items-center gap-2 ${className}`}>
+        <Badge variant="outline" className="border-gray-300 dark:border-gray-700">
+          Free
+        </Badge>
+      </div>
+    );
+  }
   
   // Always show something if we have user context (even if subscriptionStatus is null)
   // This ensures the badge is visible for debugging

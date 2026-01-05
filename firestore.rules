@@ -16,6 +16,17 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    // Subscriptions - users can read/write their own subscription
+    // IMPORTANT: This must be before the catch-all rule below
+    match /subscriptions/{userId} {
+      // Allow read if user is authenticated and matches the userId
+      allow read: if request.auth != null && request.auth.uid == userId;
+      // Allow create/update if user is authenticated and matches the userId
+      allow create, update: if request.auth != null && request.auth.uid == userId;
+      // Prevent deletion
+      allow delete: if false;
+    }
+
     // Allow authenticated users to seed/manage lesson content (for admin/seed operations)
     match /subjects/{subjectId}/{document=**} {
       allow read: if true;

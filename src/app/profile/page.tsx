@@ -15,6 +15,7 @@ import { useToast } from '@/hooks/use-toast';
 import StudentProfileSetup from '@/components/StudentProfileSetup';
 import CampusSelector from '@/components/CampusSelector';
 import { SubscriptionStatusBadge } from '@/components/SubscriptionStatusBadge';
+import { syncSubscriptionFromFirestore } from '@/lib/monetization';
 
 export default function ProfilePage() {
   const hasMounted = useHasMounted();
@@ -25,8 +26,34 @@ export default function ProfilePage() {
   const [parentEmail, setParentEmail] = useState('');
   const [editMode, setEditMode] = useState(false);
   const [educationLevel, setEducationLevel] = useState<'Primary' | 'JHS' | 'SHS'>('Primary');
-  const { firestore, user } = useFirebase();
+  const { firestore, user, auth } = useFirebase();
   const { toast } = useToast();
+  
+  // Manual sync function for testing
+  const handleManualSync = async () => {
+    if (user?.uid && firestore) {
+      try {
+        await syncSubscriptionFromFirestore(user.uid, firestore, auth);
+        toast({
+          title: 'Sync Complete',
+          description: 'Subscription synced successfully. Refreshing page...',
+        });
+        setTimeout(() => window.location.reload(), 1000);
+      } catch (error: any) {
+        toast({
+          title: 'Sync Failed',
+          description: error.message || 'Failed to sync subscription',
+          variant: 'destructive',
+        });
+      }
+    } else {
+      toast({
+        title: 'Cannot Sync',
+        description: 'Please make sure you are logged in',
+        variant: 'destructive',
+      });
+    }
+  };
   const profileRef = useMemo(() => (user && firestore) ? doc(firestore, `students/${user.uid}`) : null, [user, firestore]);
   const { data: profile } = useDoc<any>(profileRef as any);
 
@@ -110,6 +137,11 @@ export default function ProfilePage() {
             <Button variant="default" size="sm" onClick={() => setEditMode((v) => !v)} className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl transition-all hover:scale-105">
               {editMode ? 'Close Edit' : 'Edit Profile'}
             </Button>
+            {user && (
+              <Button variant="outline" size="sm" onClick={handleManualSync} className="ml-2">
+                🔄 Sync Subscription
+              </Button>
+            )}
           </div>
         </div>
         {editMode && <StudentProfileSetup onSave={() => setEditMode(false)} />}

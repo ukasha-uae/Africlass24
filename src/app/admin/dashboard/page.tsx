@@ -45,7 +45,7 @@ export default function AdminDashboard() {
   const [subscriptionType, setSubscriptionType] = useState<'challengeArena' | 'virtualLab' | 'fullBundle'>('fullBundle');
   const [activeTab, setActiveTab] = useState('search');
   const { toast } = useToast();
-  const { user } = useFirebase();
+  const { user, firestore } = useFirebase();
 
   useEffect(() => {
     loadAllUsers();
@@ -356,7 +356,7 @@ export default function AdminDashboard() {
                               ? `virtual_lab_${duration}`
                               : `full_bundle_${duration}`;
                             
-                            addSubscription(userId, planId, duration, subscriptionType);
+                            addSubscription(userId, planId, duration, subscriptionType, firestore);
                             
                             toast({
                               title: 'Premium Granted! ✅',

@@ -128,21 +128,46 @@ export default function PracticeModePage() {
     }));
   }, [availableSubjects]);
   
+  // Auto-select appropriate class level based on education level
+  const getDefaultClassLevel = (eduLevel: EducationLevel): string => {
+    if (eduLevel === 'JHS') return 'JHS 1';
+    if (eduLevel === 'SHS') return 'SHS 1';
+    return 'Primary 1';
+  };
+
   const [formData, setFormData] = useState({
     subject: subjectParam ? subjectParam : '',
-    classLevel: level === 'JHS' ? 'JHS 1' : level === 'SHS' ? 'SHS 1' : 'Primary 1',
+    classLevel: getDefaultClassLevel(level),
   });
   
   // Get class levels for the selected education level
   const classLevels = useMemo(() => getClassLevels(level), [level]);
   
-  // Update formData when subjectParam changes
+  // Update formData when subjectParam changes - auto-advance to step 2
   useEffect(() => {
     if (subjectParam) {
       setFormData(prev => ({ ...prev, subject: subjectParam }));
-      setStep(2); // Skip to difficulty selection
+      setStep(2); // Automatically advance to class level selection
     }
   }, [subjectParam]);
+
+  // Auto-advance to step 2 when subject is selected manually
+  useEffect(() => {
+    if (formData.subject && step === 1) {
+      // Small delay to show selection feedback before advancing
+      const timer = setTimeout(() => {
+        setStep(2);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [formData.subject, step]);
+
+  // Ensure class level is set when level changes
+  useEffect(() => {
+    if (!formData.classLevel || !formData.classLevel.startsWith(level)) {
+      setFormData(prev => ({ ...prev, classLevel: getDefaultClassLevel(level) }));
+    }
+  }, [level]);
   
   // Update level when levelParam changes
   useEffect(() => {
@@ -157,9 +182,16 @@ export default function PracticeModePage() {
     
     setLoading(true);
     try {
+      // Ensure class level is set - default to appropriate level for education level
+      let selectedClassLevel = formData.classLevel;
+      if (!selectedClassLevel || !selectedClassLevel.startsWith(level)) {
+        selectedClassLevel = getDefaultClassLevel(level);
+        setFormData(prev => ({ ...prev, classLevel: selectedClassLevel }));
+      }
+
       // Get question count from class level
-      const selectedClassLevel = classLevels.find(cl => cl.id === formData.classLevel);
-      const questionCount = selectedClassLevel?.questions || 10;
+      const classLevelData = classLevels.find(cl => cl.id === selectedClassLevel);
+      const questionCount = classLevelData?.questions || 10;
       const timeLimit = 300;
 
       // Use the subject name directly (it's already the full name from getAvailableSubjects)
@@ -169,7 +201,7 @@ export default function PracticeModePage() {
         type: 'practice',
         level: level,
         subject: selectedSubject,
-        difficulty: formData.classLevel as any,
+        difficulty: selectedClassLevel as any,
         questionCount,
         timeLimit,
         creatorId: userId,
@@ -190,7 +222,10 @@ export default function PracticeModePage() {
 
   const canProceed = () => {
     if (step === 1) return !!formData.subject;
-    if (step === 2) return !!formData.classLevel;
+    if (step === 2) {
+      // Always allow proceeding - will auto-select default class level if none chosen
+      return true;
+    }
     return true;
   };
 
@@ -288,7 +323,11 @@ export default function PracticeModePage() {
                           ? 'border-green-500 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 shadow-lg' 
                           : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-gray-800 hover:border-green-300 dark:hover:border-green-700'
                       }`}
-                      onClick={() => setFormData({ ...formData, subject: subject.name })}
+                      onClick={() => {
+                        setFormData({ ...formData, subject: subject.name });
+                        // Auto-advance to step 2 after selection
+                        setTimeout(() => setStep(2), 300);
+                      }}
                     >
                       <div className={`p-3 rounded-lg shrink-0 ${subject.bg} group-hover:scale-110 transition-transform`}>
                         <subject.icon className={`h-6 w-6 ${subject.color}`} />
@@ -312,7 +351,9 @@ export default function PracticeModePage() {
               <CardTitle className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
                 Select Class Level
               </CardTitle>
-              <CardDescription className="text-base">Choose your class level ({level})</CardDescription>
+              <CardDescription className="text-base">
+                Choose your class level ({level}) - {formData.classLevel} is pre-selected
+              </CardDescription>
             </CardHeader>
             <CardContent className="pb-4 space-y-4">
               {/* Premium Class Level Cards */}

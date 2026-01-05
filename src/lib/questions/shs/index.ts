@@ -1,31 +1,31 @@
-/**
- * SHS Questions Index
- * 
- * This file combines all SHS subject question banks.
- * For scalability, each subject should have its own file.
- * 
- * Currently, questions are in challenge-questions.ts.
- * As we migrate to modular structure, import from subject files here.
- */
-
+// SHS Questions Index
+// Imports all SHS subject question banks
 import type { ChallengeQuestion } from '../types';
+import { chemistryQuestions } from './chemistry';
+import { physicsQuestions } from './physics';
+import { biologyQuestions } from './biology';
+import { electiveMathematicsQuestions } from './elective-mathematics';
 
-// TODO: Migrate to modular structure
-// Import from individual subject files:
-// import { chemistryQuestions } from './chemistry';
-// import { physicsQuestions } from './physics';
-// etc.
+// Combine all SHS questions
+export const shsQuestionBank: ChallengeQuestion[] = [
+  ...chemistryQuestions,
+  ...physicsQuestions,
+  ...biologyQuestions,
+  ...electiveMathematicsQuestions,
+];
 
-// For now, this is a placeholder that will be populated
-// by importing from challenge-questions.ts
-export const shsQuestionBank: ChallengeQuestion[] = [];
+// Export individual question banks for selective loading
+export { chemistryQuestions } from './chemistry';
+export { physicsQuestions } from './physics';
+export { biologyQuestions } from './biology';
+export { electiveMathematicsQuestions } from './elective-mathematics';
 
-// Future structure:
-// export const shsQuestionBank: ChallengeQuestion[] = [
-//   ...chemistryQuestions,
-//   ...physicsQuestions,
-//   ...coreMathematicsQuestions,
-//   ...integratedScienceQuestions,
-//   ...englishLanguageQuestions,
-//   ...socialStudiesQuestions,
-// ];
+// Helper function to get questions by subject
+export function getSHSQuestionsBySubject(subject: string): ChallengeQuestion[] {
+  return shsQuestionBank.filter(q => q.subject === subject);
+}
+
+// Helper function to get questions by type
+export function getSHSQuestionsByType(type: ChallengeQuestion['type']): ChallengeQuestion[] {
+  return shsQuestionBank.filter(q => q.type === type);
+}

@@ -7,6 +7,7 @@ import { Firestore } from 'firebase/firestore';
 import { Auth, User, onAuthStateChanged } from 'firebase/auth';
 import { FirebaseErrorListener } from '@/components/FirebaseErrorListener';
 import { initiateAnonymousSignIn, migrateLocalAttemptsToFirestore } from './non-blocking-login';
+import { syncSubscriptionFromFirestore } from '@/lib/monetization';
 
 interface FirebaseProviderProps {
   children: ReactNode;
@@ -84,11 +85,25 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = ({
 
     const unsubscribe = onAuthStateChanged(
       auth,
-      (firebaseUser) => { // Auth state determined
+      async (firebaseUser) => { // Auth state determined
         setUserAuthState({ user: firebaseUser, isUserLoading: false, userError: null });
-        // If we've just signed in and have local attempts, migrate them into Firestore
+        // If we've just signed in, sync data from Firestore
         if (firebaseUser && firestore) {
-          try { migrateLocalAttemptsToFirestore(auth, firestore); } catch (e) { console.error('Error migrating local attempts on sign in', e); }
+          try { 
+            // Migrate local quiz attempts to Firestore
+            migrateLocalAttemptsToFirestore(auth, firestore);
+            // Sync subscription from Firestore to localStorage (for cross-device sync)
+            // This may fail if rules aren't deployed - that's OK, it will use localStorage
+            await syncSubscriptionFromFirestore(firebaseUser.uid, firestore, auth).catch(err => {
+              // Silently handle permission errors - app will work with localStorage only
+              if (err.code !== 'permission-denied') {
+                console.warn('Subscription sync error (non-critical):', err.message);
+              }
+            });
+          } catch (e) { 
+            // Don't break the app if sync fails
+            console.warn('Error syncing data on sign in (non-critical):', e); 
+          }
         }
       },
       (error) => { // Auth listener error
