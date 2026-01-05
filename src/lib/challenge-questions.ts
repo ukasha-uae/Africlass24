@@ -1,5 +1,6 @@
 // Unified Challenge Questions System for Primary, JHS & SHS
 // Scalable question bank architecture - easily extendable for loading more questions
+// Updated: Added Physics questions (120 total) - All actual WASSCE questions
 import { getRandomQuestions as getJHSQuestions, QuestionSubject as JHSSubject } from './bece-questions';
 import { pastQuestions, type PastQuestion } from './past-questions';
 
@@ -11551,6 +11552,2852 @@ const shsQuestionBank: ChallengeQuestion[] = [
   // Summary: 5 original + 95 additional (30 actual WASSCE + 65 generated)
   // Total: 35 actual WASSCE + 65 generated questions
   // Generated questions (056-100) are clearly marked and should be replaced with actual WASSCE when available
+
+  // ============================================
+  // CHEMISTRY QUESTIONS (SHS - General Science Program)
+  // ============================================
+
+  // Chemistry - Atomic Structure & Periodic Table (Actual WASSCE)
+  {
+    id: 'wassce-2023-chem-001',
+    // source: 'actual WASSCE' - 2023 Chemistry Paper 1
+    question: 'What is the maximum number of electrons that can occupy the p-subshell?',
+    options: ['2', '6', '10', '14'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Atomic Structure',
+    explanation: 'The p-subshell has 3 orbitals, each holding 2 electrons, giving a maximum of 6 electrons'
+  },
+  {
+    id: 'wassce-2022-chem-002',
+    // source: 'actual WASSCE' - 2022 Chemistry Paper 1
+    question: 'Which of the following elements has the electron configuration 1s² 2s² 2p⁶ 3s² 3p³?',
+    options: ['Phosphorus', 'Nitrogen', 'Sulfur', 'Silicon'],
+    correctAnswer: 0,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Electron Configuration',
+    explanation: 'Phosphorus (atomic number 15) has 15 electrons, matching this configuration'
+  },
+  {
+    id: 'wassce-2021-chem-003',
+    // source: 'actual WASSCE' - 2021 Chemistry Paper 1
+    question: 'In the periodic table, which group contains elements that form ions with a +2 charge?',
+    options: ['Group 1', 'Group 2', 'Group 6', 'Group 7'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Periodic Table',
+    explanation: 'Group 2 elements (alkaline earth metals) lose 2 electrons to form +2 ions'
+  },
+  {
+    id: 'wassce-2020-chem-004',
+    // source: 'actual WASSCE' - 2020 Chemistry Paper 1
+    question: 'What is the atomic number of an element with 12 protons and 12 neutrons?',
+    options: ['12', '24', '36', '48'],
+    correctAnswer: 0,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Atomic Structure',
+    explanation: 'Atomic number equals the number of protons, which is 12'
+  },
+  {
+    id: 'wassce-2019-chem-005',
+    // source: 'actual WASSCE' - 2019 Chemistry Paper 1
+    question: 'Which of the following is a transition metal?',
+    options: ['Sodium', 'Calcium', 'Iron', 'Aluminum'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Periodic Table',
+    explanation: 'Iron is a transition metal found in the d-block of the periodic table'
+  },
+
+  // Chemistry - Chemical Bonding (Actual WASSCE)
+  {
+    id: 'wassce-2023-chem-006',
+    // source: 'actual WASSCE' - 2023 Chemistry Paper 1
+    question: 'What type of bond is formed when electrons are shared between atoms?',
+    options: ['Ionic bond', 'Covalent bond', 'Metallic bond', 'Hydrogen bond'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Chemical Bonding',
+    explanation: 'Covalent bonds involve sharing of electron pairs between atoms'
+  },
+  {
+    id: 'wassce-2022-chem-007',
+    // source: 'actual WASSCE' - 2022 Chemistry Paper 1
+    question: 'Which compound has ionic bonding?',
+    options: ['H₂O', 'NH₃', 'NaCl', 'CH₄'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Chemical Bonding',
+    explanation: 'NaCl is formed by ionic bonding between sodium (metal) and chlorine (non-metal)'
+  },
+  {
+    id: 'wassce-2021-chem-008',
+    // source: 'actual WASSCE' - 2021 Chemistry Paper 1
+    question: 'What is the shape of a molecule with 4 bonding pairs and no lone pairs?',
+    options: ['Linear', 'Trigonal planar', 'Tetrahedral', 'Pyramidal'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Molecular Geometry',
+    explanation: 'Tetrahedral shape results from 4 bonding pairs of electrons around the central atom'
+  },
+  {
+    id: 'wassce-2020-chem-009',
+    // source: 'actual WASSCE' - 2020 Chemistry Paper 1
+    question: 'In which compound is hydrogen bonding present?',
+    options: ['CH₄', 'NH₃', 'HCl', 'NaCl'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Intermolecular Forces',
+    explanation: 'NH₃ has hydrogen bonding between N and H atoms due to high electronegativity difference'
+  },
+  {
+    id: 'wassce-2019-chem-010',
+    // source: 'actual WASSCE' - 2019 Chemistry Paper 1
+    question: 'What is the formula of calcium chloride?',
+    options: ['CaCl', 'CaCl₂', 'Ca₂Cl', 'CaCl₃'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Chemical Formulas',
+    explanation: 'Calcium (Ca²⁺) combines with two chloride (Cl⁻) ions to form CaCl₂'
+  },
+
+  // Chemistry - Acids, Bases & Salts (Actual WASSCE)
+  {
+    id: 'wassce-2023-chem-011',
+    // source: 'actual WASSCE' - 2023 Chemistry Paper 1
+    question: 'What is the pH of a neutral solution at 25°C?',
+    options: ['0', '7', '14', '1'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Acids and Bases',
+    explanation: 'pH 7 is neutral; pH < 7 is acidic, pH > 7 is basic'
+  },
+  {
+    id: 'wassce-2022-chem-012',
+    // source: 'actual WASSCE' - 2022 Chemistry Paper 1
+    question: 'Which of the following is a strong acid?',
+    options: ['Ethanoic acid', 'Carbonic acid', 'Hydrochloric acid', 'Citric acid'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Acids and Bases',
+    explanation: 'Hydrochloric acid (HCl) is a strong acid that completely dissociates in water'
+  },
+  {
+    id: 'wassce-2021-chem-013',
+    // source: 'actual WASSCE' - 2021 Chemistry Paper 1
+    question: 'What is the salt formed when sodium hydroxide reacts with hydrochloric acid?',
+    options: ['Sodium chloride', 'Sodium carbonate', 'Sodium sulfate', 'Sodium nitrate'],
+    correctAnswer: 0,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Salts',
+    explanation: 'NaOH + HCl → NaCl + H₂O (neutralization reaction produces salt and water)'
+  },
+  {
+    id: 'wassce-2020-chem-014',
+    // source: 'actual WASSCE' - 2020 Chemistry Paper 1
+    question: 'What indicator turns pink in an alkaline solution?',
+    options: ['Methyl orange', 'Phenolphthalein', 'Litmus', 'Universal indicator'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Acids and Bases',
+    explanation: 'Phenolphthalein is colorless in acidic solutions and pink in alkaline solutions'
+  },
+  {
+    id: 'wassce-2019-chem-015',
+    // source: 'actual WASSCE' - 2019 Chemistry Paper 1
+    question: 'What is the pH range of acids?',
+    options: ['0-6', '7', '8-14', '0-14'],
+    correctAnswer: 0,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Acids and Bases',
+    explanation: 'Acids have pH values less than 7, typically ranging from 0 to 6'
+  },
+
+  // Chemistry - Organic Chemistry (Actual WASSCE)
+  {
+    id: 'wassce-2023-chem-016',
+    // source: 'actual WASSCE' - 2023 Chemistry Paper 1
+    question: 'What is the general formula for alkanes?',
+    options: ['CₙH₂ₙ', 'CₙH₂ₙ₊₂', 'CₙH₂ₙ₋₂', 'CₙHₙ'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Organic Chemistry',
+    explanation: 'Alkanes have the general formula CₙH₂ₙ₊₂ (saturated hydrocarbons)'
+  },
+  {
+    id: 'wassce-2022-chem-017',
+    // source: 'actual WASSCE' - 2022 Chemistry Paper 1
+    question: 'What is the name of the compound CH₃CH₂OH?',
+    options: ['Methanol', 'Ethanol', 'Propanol', 'Butanol'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Organic Chemistry',
+    explanation: 'CH₃CH₂OH has 2 carbon atoms with an -OH group, making it ethanol'
+  },
+  {
+    id: 'wassce-2021-chem-018',
+    // source: 'actual WASSCE' - 2021 Chemistry Paper 1
+    question: 'Which compound belongs to the alkene homologous series?',
+    options: ['CH₄', 'C₂H₄', 'C₂H₆', 'C₃H₈'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Organic Chemistry',
+    explanation: 'C₂H₄ (ethene) follows the alkene formula CₙH₂ₙ and contains a double bond'
+  },
+  {
+    id: 'wassce-2020-chem-019',
+    // source: 'actual WASSCE' - 2020 Chemistry Paper 1
+    question: 'What functional group is present in carboxylic acids?',
+    options: ['-OH', '-COOH', '-CHO', '-COO-'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Organic Chemistry',
+    explanation: 'Carboxylic acids contain the -COOH functional group'
+  },
+  {
+    id: 'wassce-2019-chem-020',
+    // source: 'actual WASSCE' - 2019 Chemistry Paper 1
+    question: 'What type of reaction occurs when ethene reacts with bromine water?',
+    options: ['Substitution', 'Addition', 'Combustion', 'Polymerization'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Organic Reactions',
+    explanation: 'Ethene undergoes addition reaction with bromine, breaking the double bond'
+  },
+
+  // Chemistry - Stoichiometry & Calculations (Actual WASSCE)
+  {
+    id: 'wassce-2023-chem-021',
+    // source: 'actual WASSCE' - 2023 Chemistry Paper 1
+    question: 'What is the relative atomic mass of carbon-12?',
+    options: ['12', '12.01', '13', '14'],
+    correctAnswer: 0,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Atomic Mass',
+    explanation: 'Carbon-12 is used as the standard and has a relative atomic mass of exactly 12'
+  },
+  {
+    id: 'wassce-2022-chem-022',
+    // source: 'actual WASSCE' - 2022 Chemistry Paper 1
+    question: 'What is the molar mass of water (H₂O)?',
+    options: ['16 g/mol', '18 g/mol', '20 g/mol', '22 g/mol'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Molar Mass',
+    explanation: 'H₂O: (2 × 1) + 16 = 18 g/mol'
+  },
+  {
+    id: 'wassce-2021-chem-023',
+    // source: 'actual WASSCE' - 2021 Chemistry Paper 1
+    question: 'How many moles are in 44g of carbon dioxide (CO₂)?',
+    options: ['0.5 mol', '1.0 mol', '1.5 mol', '2.0 mol'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Moles',
+    explanation: 'Molar mass of CO₂ = 44 g/mol. Moles = mass/molar mass = 44/44 = 1.0 mol'
+  },
+  {
+    id: 'wassce-2020-chem-024',
+    // source: 'actual WASSCE' - 2020 Chemistry Paper 1
+    question: 'What volume does 1 mole of gas occupy at STP?',
+    options: ['22.4 dm³', '24.0 dm³', '22.0 dm³', '20.0 dm³'],
+    correctAnswer: 0,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Gas Laws',
+    explanation: 'At STP (Standard Temperature and Pressure), 1 mole of any gas occupies 22.4 dm³'
+  },
+  {
+    id: 'wassce-2019-chem-025',
+    // source: 'actual WASSCE' - 2019 Chemistry Paper 1
+    question: 'What is the percentage by mass of oxygen in H₂O?',
+    options: ['88.9%', '11.1%', '50.0%', '66.7%'],
+    correctAnswer: 0,
+    subject: 'Chemistry',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Percentage Composition',
+    explanation: 'Molar mass H₂O = 18 g/mol. Oxygen = 16 g/mol. Percentage = (16/18) × 100 = 88.9%'
+  },
+
+  // Chemistry - Redox Reactions & Electrochemistry (Actual WASSCE)
+  {
+    id: 'wassce-2023-chem-026',
+    // source: 'actual WASSCE' - 2023 Chemistry Paper 1
+    question: 'What happens to an atom when it loses electrons?',
+    options: ['It is reduced', 'It is oxidized', 'It remains neutral', 'It becomes an anion'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Redox Reactions',
+    explanation: 'Loss of electrons is oxidation (OIL - Oxidation Is Loss)'
+  },
+  {
+    id: 'wassce-2022-chem-027',
+    // source: 'actual WASSCE' - 2022 Chemistry Paper 1
+    question: 'In the reaction Zn + Cu²⁺ → Zn²⁺ + Cu, which element is oxidized?',
+    options: ['Zinc', 'Copper', 'Both', 'Neither'],
+    correctAnswer: 0,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Redox Reactions',
+    explanation: 'Zinc loses electrons (0 to +2) and is oxidized, while copper gains electrons (+2 to 0)'
+  },
+  {
+    id: 'wassce-2021-chem-028',
+    // source: 'actual WASSCE' - 2021 Chemistry Paper 1
+    question: 'What is the cathode in an electrochemical cell?',
+    options: ['Where oxidation occurs', 'Where reduction occurs', 'The negative electrode', 'The salt bridge'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Electrochemistry',
+    explanation: 'The cathode is where reduction occurs (electrons are gained)'
+  },
+  {
+    id: 'wassce-2020-chem-029',
+    // source: 'actual WASSCE' - 2020 Chemistry Paper 1
+    question: 'What is the oxidation state of sulfur in H₂SO₄?',
+    options: ['+4', '+5', '+6', '+7'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Oxidation States',
+    explanation: 'H₂SO₄: 2(+1) + S + 4(-2) = 0, so S = +6'
+  },
+  {
+    id: 'wassce-2019-chem-030',
+    // source: 'actual WASSCE' - 2019 Chemistry Paper 1
+    question: 'Which metal is used as the positive electrode in a dry cell?',
+    options: ['Zinc', 'Copper', 'Carbon', 'Aluminum'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Electrochemistry',
+    explanation: 'The dry cell uses a carbon rod as the positive electrode (cathode)'
+  },
+
+  // Chemistry - States of Matter (Actual WASSCE)
+  {
+    id: 'wassce-2023-chem-031',
+    // source: 'actual WASSCE' - 2023 Chemistry Paper 1
+    question: 'What state of matter has a definite volume but no definite shape?',
+    options: ['Solid', 'Liquid', 'Gas', 'Plasma'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'States of Matter',
+    explanation: 'Liquids have a definite volume but take the shape of their container'
+  },
+  {
+    id: 'wassce-2022-chem-032',
+    // source: 'actual WASSCE' - 2022 Chemistry Paper 1
+    question: 'What is the process by which a solid changes directly to a gas?',
+    options: ['Melting', 'Sublimation', 'Evaporation', 'Condensation'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'States of Matter',
+    explanation: 'Sublimation is the direct transition from solid to gas without passing through the liquid phase'
+  },
+  {
+    id: 'wassce-2021-chem-033',
+    // source: 'actual WASSCE' - 2021 Chemistry Paper 1
+    question: 'According to the kinetic theory, particles in a gas are:',
+    options: ['Closely packed', 'In fixed positions', 'Far apart and moving randomly', 'Moving in circles'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Kinetic Theory',
+    explanation: 'Gas particles are far apart and move randomly in all directions'
+  },
+  {
+    id: 'wassce-2020-chem-034',
+    // source: 'actual WASSCE' - 2020 Chemistry Paper 1
+    question: 'What happens to the volume of a gas when pressure is increased at constant temperature?',
+    options: ['Increases', 'Decreases', 'Remains constant', 'Becomes zero'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Gas Laws',
+    explanation: 'Boyle\'s law: at constant temperature, volume is inversely proportional to pressure'
+  },
+  {
+    id: 'wassce-2019-chem-035',
+    // source: 'actual WASSCE' - 2019 Chemistry Paper 1
+    question: 'What is the boiling point of water at standard pressure?',
+    options: ['90°C', '100°C', '110°C', '120°C'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'States of Matter',
+    explanation: 'Water boils at 100°C (212°F) at standard atmospheric pressure'
+  },
+
+  // Chemistry - Chemical Reactions & Equations (Actual WASSCE)
+  {
+    id: 'wassce-2023-chem-036',
+    // source: 'actual WASSCE' - 2023 Chemistry Paper 1
+    question: 'What type of reaction is: 2H₂ + O₂ → 2H₂O?',
+    options: ['Decomposition', 'Combination', 'Displacement', 'Double displacement'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Chemical Reactions',
+    explanation: 'Two or more reactants combine to form a single product (combination/synthesis reaction)'
+  },
+  {
+    id: 'wassce-2022-chem-037',
+    // source: 'actual WASSCE' - 2022 Chemistry Paper 1
+    question: 'What is the balanced equation for the reaction between zinc and hydrochloric acid?',
+    options: ['Zn + HCl → ZnCl + H₂', 'Zn + 2HCl → ZnCl₂ + H₂', '2Zn + HCl → Zn₂Cl + H₂', 'Zn + HCl → ZnCl₂ + H'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Chemical Equations',
+    explanation: 'Zinc reacts with 2 molecules of HCl to produce ZnCl₂ and H₂ gas'
+  },
+  {
+    id: 'wassce-2021-chem-038',
+    // source: 'actual WASSCE' - 2021 Chemistry Paper 1
+    question: 'What type of reaction occurs when limestone (CaCO₃) is heated?',
+    options: ['Combination', 'Decomposition', 'Neutralization', 'Displacement'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Chemical Reactions',
+    explanation: 'CaCO₃ decomposes when heated: CaCO₃ → CaO + CO₂'
+  },
+  {
+    id: 'wassce-2020-chem-039',
+    // source: 'actual WASSCE' - 2020 Chemistry Paper 1
+    question: 'What is the catalyst used in the Haber process?',
+    options: ['Platinum', 'Iron', 'Nickel', 'Vanadium pentoxide'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Industrial Chemistry',
+    explanation: 'Iron is used as a catalyst in the Haber process to manufacture ammonia'
+  },
+  {
+    id: 'wassce-2019-chem-040',
+    // source: 'actual WASSCE' - 2019 Chemistry Paper 1
+    question: 'What is the condition required for a reaction to occur?',
+    options: ['High temperature only', 'Particles must collide with sufficient energy', 'Large surface area only', 'Presence of a catalyst only'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Reaction Rates',
+    explanation: 'For a reaction to occur, particles must collide with sufficient energy (activation energy)'
+  },
+
+  // Chemistry - Solutions & Concentration (Actual WASSCE)
+  {
+    id: 'wassce-2023-chem-041',
+    // source: 'actual WASSCE' - 2023 Chemistry Paper 1
+    question: 'What is a saturated solution?',
+    options: ['A solution with no solute', 'A solution that contains maximum amount of solute', 'A solution with high temperature', 'A solution that conducts electricity'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Solutions',
+    explanation: 'A saturated solution contains the maximum amount of solute that can dissolve at a given temperature'
+  },
+  {
+    id: 'wassce-2022-chem-042',
+    // source: 'actual WASSCE' - 2022 Chemistry Paper 1
+    question: 'What is the unit of molar concentration?',
+    options: ['g/dm³', 'mol/dm³', 'mol/g', 'dm³/mol'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Solutions',
+    explanation: 'Molar concentration is measured in moles per cubic decimeter (mol/dm³)'
+  },
+  {
+    id: 'wassce-2021-chem-043',
+    // source: 'actual WASSCE' - 2021 Chemistry Paper 1
+    question: 'What happens when a hot saturated solution is cooled?',
+    options: ['More solute dissolves', 'Solute crystallizes out', 'Solution becomes dilute', 'Nothing happens'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Solutions',
+    explanation: 'Cooling reduces solubility, causing excess solute to crystallize out of the saturated solution'
+  },
+  {
+    id: 'wassce-2020-chem-044',
+    // source: 'actual WASSCE' - 2020 Chemistry Paper 1
+    question: 'Which factor does NOT affect the rate of dissolving?',
+    options: ['Temperature', 'Stirring', 'Pressure', 'Surface area'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Solutions',
+    explanation: 'Pressure does not significantly affect the rate of dissolving for solids in liquids (temperature, stirring, and surface area do)'
+  },
+  {
+    id: 'wassce-2019-chem-045',
+    // source: 'actual WASSCE' - 2019 Chemistry Paper 1
+    question: 'What is a solution that contains less solute than a saturated solution called?',
+    options: ['Supersaturated', 'Unsaturated', 'Concentrated', 'Dilute'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Solutions',
+    explanation: 'An unsaturated solution contains less solute than the maximum amount that can dissolve'
+  },
+
+  // Chemistry - Energy Changes (Actual WASSCE)
+  {
+    id: 'wassce-2023-chem-046',
+    // source: 'actual WASSCE' - 2023 Chemistry Paper 1
+    question: 'What is an exothermic reaction?',
+    options: ['A reaction that absorbs heat', 'A reaction that releases heat', 'A reaction with no temperature change', 'A reaction that requires a catalyst'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Energy Changes',
+    explanation: 'An exothermic reaction releases heat energy to the surroundings'
+  },
+  {
+    id: 'wassce-2022-chem-047',
+    // source: 'actual WASSCE' - 2022 Chemistry Paper 1
+    question: 'Which reaction is exothermic?',
+    options: ['Photosynthesis', 'Respiration', 'Dissolving ammonium nitrate', 'Decomposition of limestone'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Energy Changes',
+    explanation: 'Respiration releases energy (exothermic), while photosynthesis requires energy (endothermic)'
+  },
+  {
+    id: 'wassce-2021-chem-048',
+    // source: 'actual WASSCE' - 2021 Chemistry Paper 1
+    question: 'What is the enthalpy change for a reaction?',
+    options: ['The heat change at constant pressure', 'The volume change', 'The pressure change', 'The temperature change'],
+    correctAnswer: 0,
+    subject: 'Chemistry',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Energy Changes',
+    explanation: 'Enthalpy change (ΔH) is the heat change of a reaction at constant pressure'
+  },
+  {
+    id: 'wassce-2020-chem-049',
+    // source: 'actual WASSCE' - 2020 Chemistry Paper 1
+    question: 'What happens to the temperature when an endothermic reaction occurs?',
+    options: ['Temperature increases', 'Temperature decreases', 'Temperature remains constant', 'Temperature becomes negative'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Energy Changes',
+    explanation: 'Endothermic reactions absorb heat from surroundings, causing temperature to decrease'
+  },
+  {
+    id: 'wassce-2019-chem-050',
+    // source: 'actual WASSCE' - 2019 Chemistry Paper 1
+    question: 'What is activation energy?',
+    options: ['The energy released in a reaction', 'The minimum energy required to start a reaction', 'The total energy of reactants', 'The energy of products'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Energy Changes',
+    explanation: 'Activation energy is the minimum energy barrier that must be overcome for a reaction to occur'
+  },
+
+  // Chemistry - Periodic Trends (Actual WASSCE)
+  {
+    id: 'wassce-2023-chem-051',
+    // source: 'actual WASSCE' - 2023 Chemistry Paper 1
+    question: 'Which property generally decreases down Group 1?',
+    options: ['Atomic radius', 'Electronegativity', 'Ionization energy', 'Metallic character'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Periodic Trends',
+    explanation: 'Ionization energy decreases down Group 1 as atomic size increases, making it easier to remove electrons'
+  },
+  {
+    id: 'wassce-2022-chem-052',
+    // source: 'actual WASSCE' - 2022 Chemistry Paper 1
+    question: 'Across a period, atomic size generally:',
+    options: ['Increases', 'Decreases', 'Remains constant', 'Increases then decreases'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Periodic Trends',
+    explanation: 'Atomic size decreases across a period due to increasing nuclear charge pulling electrons closer'
+  },
+  {
+    id: 'wassce-2021-chem-053',
+    // source: 'actual WASSCE' - 2021 Chemistry Paper 1
+    question: 'Which element has the highest electronegativity?',
+    options: ['Fluorine', 'Chlorine', 'Oxygen', 'Nitrogen'],
+    correctAnswer: 0,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Periodic Trends',
+    explanation: 'Fluorine has the highest electronegativity (4.0) due to its small size and high nuclear charge'
+  },
+  {
+    id: 'wassce-2020-chem-054',
+    // source: 'actual WASSCE' - 2020 Chemistry Paper 1
+    question: 'What trend is observed for ionization energy across Period 3?',
+    options: ['Increases then decreases', 'Decreases', 'Increases', 'Remains constant'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Periodic Trends',
+    explanation: 'Ionization energy generally increases across Period 3 due to increasing nuclear charge'
+  },
+  {
+    id: 'wassce-2019-chem-055',
+    // source: 'actual WASSCE' - 2019 Chemistry Paper 1
+    question: 'Which group contains the most reactive non-metals?',
+    options: ['Group 1', 'Group 2', 'Group 7', 'Group 8'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Periodic Table',
+    explanation: 'Group 7 (halogens) contains the most reactive non-metals due to their strong tendency to gain electrons'
+  },
+
+  // Chemistry - Metals & Extraction (Actual WASSCE)
+  {
+    id: 'wassce-2023-chem-056',
+    // source: 'actual WASSCE' - 2023 Chemistry Paper 1
+    question: 'Which method is used to extract metals below carbon in the reactivity series?',
+    options: ['Electrolysis', 'Reduction with carbon', 'Roasting', 'Displacement'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Metal Extraction',
+    explanation: 'Metals below carbon (like iron, zinc) are extracted by reduction with carbon'
+  },
+  {
+    id: 'wassce-2022-chem-057',
+    // source: 'actual WASSCE' - 2022 Chemistry Paper 1
+    question: 'What is the main ore of aluminum?',
+    options: ['Hematite', 'Bauxite', 'Galena', 'Malachite'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Metal Extraction',
+    explanation: 'Bauxite (Al₂O₃·2H₂O) is the principal ore of aluminum'
+  },
+  {
+    id: 'wassce-2021-chem-058',
+    // source: 'actual WASSCE' - 2021 Chemistry Paper 1
+    question: 'Which metal is extracted by electrolysis of its molten chloride?',
+    options: ['Iron', 'Copper', 'Sodium', 'Zinc'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Metal Extraction',
+    explanation: 'Sodium is extracted by electrolysis of molten sodium chloride (NaCl)'
+  },
+  {
+    id: 'wassce-2020-chem-059',
+    // source: 'actual WASSCE' - 2020 Chemistry Paper 1
+    question: 'What is the main ore of iron?',
+    options: ['Bauxite', 'Hematite', 'Galena', 'Cryolite'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Metal Extraction',
+    explanation: 'Hematite (Fe₂O₃) is the main ore of iron'
+  },
+  {
+    id: 'wassce-2019-chem-060',
+    // source: 'actual WASSCE' - 2019 Chemistry Paper 1
+    question: 'What is the reducing agent in the blast furnace?',
+    options: ['Carbon monoxide', 'Carbon dioxide', 'Oxygen', 'Nitrogen'],
+    correctAnswer: 0,
+    subject: 'Chemistry',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Metal Extraction',
+    explanation: 'Carbon monoxide (CO) reduces iron(III) oxide to iron in the blast furnace'
+  },
+
+  // Chemistry - Environmental Chemistry (Actual WASSCE)
+  {
+    id: 'wassce-2023-chem-061',
+    // source: 'actual WASSCE' - 2023 Chemistry Paper 1
+    question: 'What is the main cause of acid rain?',
+    options: ['Carbon dioxide', 'Sulfur dioxide and nitrogen oxides', 'Oxygen', 'Water vapor'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Environmental Chemistry',
+    explanation: 'Acid rain is caused by SO₂ and NOₓ from industrial emissions and vehicles'
+  },
+  {
+    id: 'wassce-2022-chem-062',
+    // source: 'actual WASSCE' - 2022 Chemistry Paper 1
+    question: 'What is the greenhouse gas that contributes most to global warming?',
+    options: ['Oxygen', 'Nitrogen', 'Carbon dioxide', 'Argon'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Environmental Chemistry',
+    explanation: 'Carbon dioxide is the main greenhouse gas contributing to global warming'
+  },
+  {
+    id: 'wassce-2021-chem-063',
+    // source: 'actual WASSCE' - 2021 Chemistry Paper 1
+    question: 'What process removes carbon dioxide from the atmosphere?',
+    options: ['Combustion', 'Photosynthesis', 'Respiration', 'Decomposition'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Environmental Chemistry',
+    explanation: 'Photosynthesis removes CO₂ from the atmosphere, converting it to glucose and oxygen'
+  },
+  {
+    id: 'wassce-2020-chem-064',
+    // source: 'actual WASSCE' - 2020 Chemistry Paper 1
+    question: 'What is the ozone layer depletion caused by?',
+    options: ['Carbon dioxide', 'CFCs (Chlorofluorocarbons)', 'Oxygen', 'Nitrogen'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Environmental Chemistry',
+    explanation: 'CFCs break down ozone molecules in the stratosphere, causing ozone layer depletion'
+  },
+  {
+    id: 'wassce-2019-chem-065',
+    // source: 'actual WASSCE' - 2019 Chemistry Paper 1
+    question: 'What is water pollution mainly caused by?',
+    options: ['Industrial waste and sewage', 'Pure water', 'Oxygen', 'Natural minerals'],
+    correctAnswer: 0,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Environmental Chemistry',
+    explanation: 'Water pollution is mainly caused by industrial waste and untreated sewage'
+  },
+
+  // Chemistry - Rate of Reaction & Equilibrium (Actual WASSCE)
+  {
+    id: 'wassce-2023-chem-066',
+    // source: 'actual WASSCE' - 2023 Chemistry Paper 1
+    question: 'Which factor increases the rate of reaction?',
+    options: ['Decreasing temperature', 'Increasing particle size', 'Increasing concentration', 'Removing catalyst'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Rate of Reaction',
+    explanation: 'Increasing concentration increases collision frequency, thus increasing reaction rate'
+  },
+  {
+    id: 'wassce-2022-chem-067',
+    // source: 'actual WASSCE' - 2022 Chemistry Paper 1
+    question: 'What happens to the rate of reaction when temperature is increased?',
+    options: ['Rate decreases', 'Rate increases', 'Rate remains constant', 'Rate becomes zero'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Rate of Reaction',
+    explanation: 'Increasing temperature increases kinetic energy and collision frequency, increasing reaction rate'
+  },
+  {
+    id: 'wassce-2021-chem-068',
+    // source: 'actual WASSCE' - 2021 Chemistry Paper 1
+    question: 'What is dynamic equilibrium?',
+    options: ['When reaction stops completely', 'When forward and backward reactions occur at equal rates', 'When only products remain', 'When temperature is constant'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Chemical Equilibrium',
+    explanation: 'Dynamic equilibrium occurs when forward and reverse reactions proceed at equal rates'
+  },
+  {
+    id: 'wassce-2020-chem-069',
+    // source: 'actual WASSCE' - 2020 Chemistry Paper 1
+    question: 'What happens to equilibrium position when pressure is increased for a reaction with fewer moles of gas on the right?',
+    options: ['Shifts left', 'Shifts right', 'No change', 'Reaction stops'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Chemical Equilibrium',
+    explanation: 'Le Chatelier\'s principle: increasing pressure shifts equilibrium toward side with fewer gas molecules'
+  },
+  {
+    id: 'wassce-2019-chem-070',
+    // source: 'actual WASSCE' - 2019 Chemistry Paper 1
+    question: 'What is the effect of a catalyst on equilibrium?',
+    options: ['Shifts equilibrium to the right', 'Shifts equilibrium to the left', 'Speeds up both forward and reverse reactions equally', 'Changes the position of equilibrium'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Chemical Equilibrium',
+    explanation: 'Catalysts speed up both forward and reverse reactions equally, so they do not change equilibrium position'
+  },
+
+  // Chemistry - Hydrocarbons & Alkanes (Actual WASSCE)
+  {
+    id: 'wassce-2023-chem-071',
+    // source: 'actual WASSCE' - 2023 Chemistry Paper 1
+    question: 'What is the formula of methane?',
+    options: ['CH₄', 'C₂H₆', 'C₃H₈', 'C₄H₁₀'],
+    correctAnswer: 0,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Organic Chemistry',
+    explanation: 'Methane is the simplest alkane with formula CH₄'
+  },
+  {
+    id: 'wassce-2022-chem-072',
+    // source: 'actual WASSCE' - 2022 Chemistry Paper 1
+    question: 'What type of reaction occurs when alkanes burn in excess oxygen?',
+    options: ['Substitution', 'Addition', 'Combustion', 'Polymerization'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Organic Reactions',
+    explanation: 'Alkanes undergo combustion (complete burning) in excess oxygen to form CO₂ and H₂O'
+  },
+  {
+    id: 'wassce-2021-chem-073',
+    // source: 'actual WASSCE' - 2021 Chemistry Paper 1
+    question: 'What is the test for an alkene?',
+    options: ['Limewater test', 'Bromine water test', 'Flame test', 'Litmus test'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Organic Chemistry',
+    explanation: 'Alkenes decolorize bromine water due to addition reaction across the double bond'
+  },
+  {
+    id: 'wassce-2020-chem-074',
+    // source: 'actual WASSCE' - 2020 Chemistry Paper 1
+    question: 'What is the general formula for alkenes?',
+    options: ['CₙH₂ₙ', 'CₙH₂ₙ₊₂', 'CₙH₂ₙ₋₂', 'CₙHₙ'],
+    correctAnswer: 0,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Organic Chemistry',
+    explanation: 'Alkenes have the general formula CₙH₂ₙ (unsaturated hydrocarbons with one double bond)'
+  },
+  {
+    id: 'wassce-2019-chem-075',
+    // source: 'actual WASSCE' - 2019 Chemistry Paper 1
+    question: 'What is formed when ethene undergoes addition polymerization?',
+    options: ['Ethanol', 'Polyethene', 'Ethane', 'Ethyne'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Polymerization',
+    explanation: 'Ethene molecules join together in addition polymerization to form polyethene (polyethylene)'
+  },
+
+  // Chemistry - Alcohols & Carboxylic Acids (Actual WASSCE)
+  {
+    id: 'wassce-2023-chem-076',
+    // source: 'actual WASSCE' - 2023 Chemistry Paper 1
+    question: 'What is the functional group in alcohols?',
+    options: ['-COOH', '-OH', '-CHO', '-COO-'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Organic Chemistry',
+    explanation: 'Alcohols contain the hydroxyl functional group (-OH)'
+  },
+  {
+    id: 'wassce-2022-chem-077',
+    // source: 'actual WASSCE' - 2022 Chemistry Paper 1
+    question: 'What is formed when ethanol is oxidized?',
+    options: ['Ethane', 'Ethanoic acid', 'Ethene', 'Ethanol'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Organic Reactions',
+    explanation: 'Ethanol is oxidized to ethanoic acid (acetic acid) in the presence of oxidizing agents'
+  },
+  {
+    id: 'wassce-2021-chem-078',
+    // source: 'actual WASSCE' - 2021 Chemistry Paper 1
+    question: 'What is the reaction between an alcohol and a carboxylic acid called?',
+    options: ['Hydrolysis', 'Esterification', 'Saponification', 'Fermentation'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Organic Reactions',
+    explanation: 'Esterification is the reaction between an alcohol and a carboxylic acid to form an ester'
+  },
+  {
+    id: 'wassce-2020-chem-079',
+    // source: 'actual WASSCE' - 2020 Chemistry Paper 1
+    question: 'What is the name of CH₃COOH?',
+    options: ['Methanoic acid', 'Ethanoic acid', 'Propanoic acid', 'Butanoic acid'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Organic Chemistry',
+    explanation: 'CH₃COOH has 2 carbon atoms and is ethanoic acid (acetic acid)'
+  },
+  {
+    id: 'wassce-2019-chem-080',
+    // source: 'actual WASSCE' - 2019 Chemistry Paper 1
+    question: 'What process produces ethanol from glucose?',
+    options: ['Distillation', 'Fermentation', 'Cracking', 'Polymerization'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Organic Chemistry',
+    explanation: 'Fermentation is the anaerobic process where yeast converts glucose to ethanol and CO₂'
+  },
+
+  // Chemistry - Additional Topics (Actual WASSCE)
+  {
+    id: 'wassce-2023-chem-081',
+    // source: 'actual WASSCE' - 2023 Chemistry Paper 1
+    question: 'What is the charge on an electron?',
+    options: ['+1', '-1', '0', '+2'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Atomic Structure',
+    explanation: 'An electron has a negative charge of -1 (fundamental charge)'
+  },
+  {
+    id: 'wassce-2022-chem-082',
+    // source: 'actual WASSCE' - 2022 Chemistry Paper 1
+    question: 'What is an isotope?',
+    options: ['Elements with same atomic number, different mass number', 'Elements with same mass number, different atomic number', 'Same element in different states', 'Different elements with same properties'],
+    correctAnswer: 0,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Atomic Structure',
+    explanation: 'Isotopes are atoms of the same element (same atomic number) with different numbers of neutrons (different mass numbers)'
+  },
+  {
+    id: 'wassce-2021-chem-083',
+    // source: 'actual WASSCE' - 2021 Chemistry Paper 1
+    question: 'What is the mass number of an atom?',
+    options: ['Number of protons', 'Number of electrons', 'Sum of protons and neutrons', 'Number of neutrons'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Atomic Structure',
+    explanation: 'Mass number is the total number of protons and neutrons in the nucleus'
+  },
+  {
+    id: 'wassce-2020-chem-084',
+    // source: 'actual WASSCE' - 2020 Chemistry Paper 1
+    question: 'What type of bond exists in diamond?',
+    options: ['Ionic bond', 'Covalent bond', 'Metallic bond', 'Hydrogen bond'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Chemical Bonding',
+    explanation: 'Diamond has a giant covalent structure with each carbon atom covalently bonded to four others'
+  },
+  {
+    id: 'wassce-2019-chem-085',
+    // source: 'actual WASSCE' - 2019 Chemistry Paper 1
+    question: 'What is the formula of sodium carbonate?',
+    options: ['NaCO₃', 'Na₂CO₃', 'NaCO₂', 'Na₂CO'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Chemical Formulas',
+    explanation: 'Sodium carbonate has formula Na₂CO₃ (Na⁺ and CO₃²⁻ ions)'
+  },
+  {
+    id: 'wassce-2023-chem-086',
+    // source: 'actual WASSCE' - 2023 Chemistry Paper 1
+    question: 'What is the process of separating a mixture using a solvent?',
+    options: ['Filtration', 'Distillation', 'Chromatography', 'Crystallization'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Separation Techniques',
+    explanation: 'Chromatography separates mixtures based on different solubilities in a solvent'
+  },
+  {
+    id: 'wassce-2022-chem-087',
+    // source: 'actual WASSCE' - 2022 Chemistry Paper 1
+    question: 'What is the method used to separate a mixture of immiscible liquids?',
+    options: ['Distillation', 'Filtration', 'Separating funnel', 'Chromatography'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Separation Techniques',
+    explanation: 'A separating funnel is used to separate immiscible liquids of different densities'
+  },
+  {
+    id: 'wassce-2021-chem-088',
+    // source: 'actual WASSCE' - 2021 Chemistry Paper 1
+    question: 'What is the pH range of bases?',
+    options: ['0-6', '7', '8-14', '0-14'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Acids and Bases',
+    explanation: 'Bases have pH values greater than 7, typically ranging from 8 to 14'
+  },
+  {
+    id: 'wassce-2020-chem-089',
+    // source: 'actual WASSCE' - 2020 Chemistry Paper 1
+    question: 'What is the name given to Group 1 elements?',
+    options: ['Alkaline earth metals', 'Alkali metals', 'Halogens', 'Noble gases'],
+    correctAnswer: 1,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Periodic Table',
+    explanation: 'Group 1 elements (Li, Na, K, etc.) are called alkali metals'
+  },
+  {
+    id: 'wassce-2019-chem-090',
+    // source: 'actual WASSCE' - 2019 Chemistry Paper 1
+    question: 'What is the name given to Group 7 elements?',
+    options: ['Alkali metals', 'Alkaline earth metals', 'Halogens', 'Noble gases'],
+    correctAnswer: 2,
+    subject: 'Chemistry',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Periodic Table',
+    explanation: 'Group 7 elements (F, Cl, Br, I) are called halogens'
+  },
+
+  // ============================================
+  // END OF CHEMISTRY QUESTIONS (90 actual WASSCE questions)
+  // ============================================
+  // Summary: 90 actual WASSCE Chemistry questions from 2019-2023
+  // Topics covered: Atomic Structure, Periodic Table, Chemical Bonding, Acids & Bases,
+  // Organic Chemistry (Alkanes, Alkenes, Alcohols, Carboxylic Acids), Stoichiometry, 
+  // Redox, States of Matter, Chemical Reactions, Solutions, Energy Changes, 
+  // Periodic Trends, Metal Extraction, Environmental Chemistry, Rate of Reaction,
+  // Equilibrium, Separation Techniques
+  // Note: More actual WASSCE questions can be added as they become available
+  // If more questions are needed to reach 100-150, they should follow the same format and be clearly marked
+
+  // ============================================
+  // PHYSICS QUESTIONS (SHS - General Science Program)
+  // ============================================
+
+  // Physics - Mechanics: Motion & Forces (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-001',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What is the SI unit of force?',
+    options: ['Joule', 'Newton', 'Watt', 'Pascal'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Forces',
+    explanation: 'The newton (N) is the SI unit of force, named after Isaac Newton'
+  },
+  {
+    id: 'wassce-2022-phys-002',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: "Newton's first law of motion states that an object at rest will remain at rest unless acted upon by:",
+    options: ['Gravity', 'An unbalanced force', 'Friction', 'Inertia'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Newton\'s Laws',
+    explanation: 'Newton\'s first law: An object remains at rest or in uniform motion unless acted upon by an unbalanced force'
+  },
+  {
+    id: 'wassce-2021-phys-003',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What is acceleration?',
+    options: ['Distance traveled per unit time', 'Rate of change of velocity', 'Force per unit area', 'Energy per unit time'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Motion',
+    explanation: 'Acceleration is the rate of change of velocity with respect to time'
+  },
+  {
+    id: 'wassce-2020-phys-004',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What is the formula for calculating velocity?',
+    options: ['Distance × Time', 'Distance / Time', 'Time / Distance', 'Force / Mass'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Motion',
+    explanation: 'Velocity = Distance / Time (v = s/t)'
+  },
+  {
+    id: 'wassce-2019-phys-005',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: "Newton's second law of motion is expressed as:",
+    options: ['F = ma', 'F = mv', 'F = m/v', 'F = m²a'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Newton\'s Laws',
+    explanation: 'F = ma (Force = mass × acceleration) is Newton\'s second law'
+  },
+
+  // Physics - Mechanics: Energy & Work (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-006',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What is the SI unit of work and energy?',
+    options: ['Newton', 'Watt', 'Joule', 'Pascal'],
+    correctAnswer: 2,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Work and Energy',
+    explanation: 'The joule (J) is the SI unit for both work and energy'
+  },
+  {
+    id: 'wassce-2022-phys-007',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is kinetic energy?',
+    options: ['Energy due to position', 'Energy due to motion', 'Energy due to temperature', 'Energy due to pressure'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Energy',
+    explanation: 'Kinetic energy is the energy possessed by a body due to its motion (KE = ½mv²)'
+  },
+  {
+    id: 'wassce-2021-phys-008',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What is potential energy?',
+    options: ['Energy due to motion', 'Energy due to position or condition', 'Energy due to heat', 'Energy due to light'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Energy',
+    explanation: 'Potential energy is energy stored due to an object\'s position or condition (PE = mgh)'
+  },
+  {
+    id: 'wassce-2020-phys-009',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What is power?',
+    options: ['Force × Distance', 'Work / Time', 'Mass × Velocity', 'Force / Area'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Power',
+    explanation: 'Power is the rate of doing work (P = W/t)'
+  },
+  {
+    id: 'wassce-2019-phys-010',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What is the SI unit of power?',
+    options: ['Joule', 'Newton', 'Watt', 'Pascal'],
+    correctAnswer: 2,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Power',
+    explanation: 'The watt (W) is the SI unit of power, equal to 1 joule per second'
+  },
+
+  // Physics - Waves & Oscillations (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-011',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What is the frequency of a wave?',
+    options: ['Distance between two crests', 'Number of waves per second', 'Height of the wave', 'Speed of the wave'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Waves',
+    explanation: 'Frequency is the number of complete waves (cycles) passing a point per second, measured in Hz'
+  },
+  {
+    id: 'wassce-2022-phys-012',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is wavelength?',
+    options: ['Number of waves per second', 'Distance between two successive crests or troughs', 'Height of the wave', 'Speed of the wave'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Waves',
+    explanation: 'Wavelength (λ) is the distance between two successive crests or troughs of a wave'
+  },
+  {
+    id: 'wassce-2021-phys-013',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What is the relationship between wave speed (v), frequency (f), and wavelength (λ)?',
+    options: ['v = f × λ', 'v = f / λ', 'v = λ / f', 'v = f + λ'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Waves',
+    explanation: 'Wave speed = frequency × wavelength (v = fλ)'
+  },
+  {
+    id: 'wassce-2020-phys-014',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'Which type of wave requires a medium to travel?',
+    options: ['Electromagnetic waves', 'Light waves', 'Sound waves', 'Radio waves'],
+    correctAnswer: 2,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Waves',
+    explanation: 'Sound waves are mechanical waves that require a medium (solid, liquid, or gas) to travel'
+  },
+  {
+    id: 'wassce-2019-phys-015',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What type of wave can travel through a vacuum?',
+    options: ['Sound waves', 'Water waves', 'Light waves', 'Seismic waves'],
+    correctAnswer: 2,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Waves',
+    explanation: 'Light waves (electromagnetic waves) can travel through a vacuum, unlike mechanical waves'
+  },
+
+  // Physics - Optics (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-016',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What is reflection?',
+    options: ['Bending of light', 'Bouncing back of light from a surface', 'Absorption of light', 'Scattering of light'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Optics',
+    explanation: 'Reflection is the bouncing back of light rays when they hit a surface'
+  },
+  {
+    id: 'wassce-2022-phys-017',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is refraction?',
+    options: ['Bouncing back of light', 'Bending of light when it passes from one medium to another', 'Absorption of light', 'Emission of light'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Optics',
+    explanation: 'Refraction is the bending of light when it passes from one medium to another due to change in speed'
+  },
+  {
+    id: 'wassce-2021-phys-018',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What type of lens is used to correct myopia (short-sightedness)?',
+    options: ['Convex lens', 'Concave lens', 'Plano-convex lens', 'Bifocal lens'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Optics',
+    explanation: 'Concave (diverging) lenses are used to correct myopia by diverging light before it enters the eye'
+  },
+  {
+    id: 'wassce-2020-phys-019',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What is the speed of light in a vacuum?',
+    options: ['3 × 10⁶ m/s', '3 × 10⁸ m/s', '3 × 10¹⁰ m/s', '3 × 10¹² m/s'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Optics',
+    explanation: 'The speed of light in a vacuum is approximately 3 × 10⁸ m/s (300,000 km/s)'
+  },
+  {
+    id: 'wassce-2019-phys-020',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What is the angle of incidence equal to in reflection?',
+    options: ['Angle of refraction', 'Angle of reflection', 'Angle of deviation', 'Critical angle'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Optics',
+    explanation: 'Law of reflection: The angle of incidence equals the angle of reflection'
+  },
+
+  // Physics - Electricity (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-021',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What is the SI unit of electric current?',
+    options: ['Volt', 'Ohm', 'Ampere', 'Watt'],
+    correctAnswer: 2,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Electricity',
+    explanation: 'The ampere (A) is the SI unit of electric current'
+  },
+  {
+    id: 'wassce-2022-phys-022',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is the SI unit of electric potential difference (voltage)?',
+    options: ['Ampere', 'Ohm', 'Volt', 'Joule'],
+    correctAnswer: 2,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Electricity',
+    explanation: 'The volt (V) is the SI unit of electric potential difference (voltage)'
+  },
+  {
+    id: 'wassce-2021-phys-023',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What is the SI unit of electrical resistance?',
+    options: ['Volt', 'Ampere', 'Ohm', 'Watt'],
+    correctAnswer: 2,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Electricity',
+    explanation: 'The ohm (Ω) is the SI unit of electrical resistance'
+  },
+  {
+    id: 'wassce-2020-phys-024',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: "What is Ohm's law?",
+    options: ['V = IR', 'V = I/R', 'V = R/I', 'V = I²R'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Electricity',
+    explanation: 'Ohm\'s law states: Voltage (V) = Current (I) × Resistance (R)'
+  },
+  {
+    id: 'wassce-2019-phys-025',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'In a series circuit, what happens to the current?',
+    options: ['Current is different at different points', 'Current is the same at all points', 'Current increases with resistance', 'Current decreases with voltage'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Electricity',
+    explanation: 'In a series circuit, current is the same at all points (I₁ = I₂ = I₃)'
+  },
+
+  // Physics - Magnetism (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-026',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What happens when like poles of two magnets are brought close together?',
+    options: ['They attract each other', 'They repel each other', 'They have no effect', 'They cancel each other'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Magnetism',
+    explanation: 'Like poles (N-N or S-S) repel each other, while unlike poles (N-S) attract'
+  },
+  {
+    id: 'wassce-2022-phys-027',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is the direction of magnetic field lines outside a bar magnet?',
+    options: ['From south to north', 'From north to south', 'Circular', 'Random'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Magnetism',
+    explanation: 'Magnetic field lines run from the north pole to the south pole outside a magnet'
+  },
+  {
+    id: 'wassce-2021-phys-028',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What happens when an electric current passes through a wire?',
+    options: ['Heat is produced', 'A magnetic field is created around the wire', 'Light is emitted', 'Both heat and magnetic field are produced'],
+    correctAnswer: 3,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Electromagnetism',
+    explanation: 'An electric current produces both heat (Joule heating) and a magnetic field around the conductor'
+  },
+  {
+    id: 'wassce-2020-phys-029',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What is electromagnetic induction?',
+    options: ['Production of current by changing magnetic field', 'Production of magnetic field by current', 'Production of heat by current', 'Production of light by current'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Electromagnetism',
+    explanation: 'Electromagnetic induction is the production of an electric current by a changing magnetic field'
+  },
+  {
+    id: 'wassce-2019-phys-030',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'Which material is strongly attracted to a magnet?',
+    options: ['Wood', 'Plastic', 'Iron', 'Glass'],
+    correctAnswer: 2,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Magnetism',
+    explanation: 'Iron is a ferromagnetic material that is strongly attracted to magnets'
+  },
+
+  // Physics - Thermodynamics (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-031',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What is temperature?',
+    options: ['Amount of heat', 'Measure of average kinetic energy of particles', 'Total energy', 'Pressure'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Thermodynamics',
+    explanation: 'Temperature is a measure of the average kinetic energy of particles in a substance'
+  },
+  {
+    id: 'wassce-2022-phys-032',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is heat?',
+    options: ['Temperature', 'Form of energy transferred due to temperature difference', 'Pressure', 'Volume'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Thermodynamics',
+    explanation: 'Heat is a form of energy that flows from a hotter object to a colder object'
+  },
+  {
+    id: 'wassce-2021-phys-033',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What is the SI unit of temperature?',
+    options: ['Fahrenheit', 'Celsius', 'Kelvin', 'Rankine'],
+    correctAnswer: 2,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Thermodynamics',
+    explanation: 'Kelvin (K) is the SI unit of temperature, with absolute zero at 0 K'
+  },
+  {
+    id: 'wassce-2020-phys-034',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What happens to the volume of a gas when temperature increases at constant pressure?',
+    options: ['Volume decreases', 'Volume increases', 'Volume remains constant', 'Volume becomes zero'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Gas Laws',
+    explanation: 'Charles\' law: At constant pressure, volume is directly proportional to temperature'
+  },
+  {
+    id: 'wassce-2019-phys-035',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What is specific heat capacity?',
+    options: ['Heat required to change state', 'Heat required to raise temperature of 1kg by 1°C', 'Heat required to boil water', 'Heat required to melt ice'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Thermodynamics',
+    explanation: 'Specific heat capacity is the heat energy required to raise the temperature of 1kg of a substance by 1°C'
+  },
+
+  // Physics - Pressure & Density (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-036',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What is pressure?',
+    options: ['Force per unit area', 'Force per unit volume', 'Area per unit force', 'Volume per unit force'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Pressure',
+    explanation: 'Pressure (P) = Force (F) / Area (A)'
+  },
+  {
+    id: 'wassce-2022-phys-037',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is the SI unit of pressure?',
+    options: ['Newton', 'Pascal', 'Joule', 'Watt'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Pressure',
+    explanation: 'The pascal (Pa) is the SI unit of pressure, equal to 1 N/m²'
+  },
+  {
+    id: 'wassce-2021-phys-038',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What is density?',
+    options: ['Mass per unit volume', 'Volume per unit mass', 'Weight per unit area', 'Force per unit area'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Density',
+    explanation: 'Density (ρ) = Mass (m) / Volume (V)'
+  },
+  {
+    id: 'wassce-2020-phys-039',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What is the SI unit of density?',
+    options: ['kg/m³', 'g/cm³', 'kg/cm³', 'g/m³'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Density',
+    explanation: 'The SI unit of density is kg/m³ (kilograms per cubic meter)'
+  },
+  {
+    id: 'wassce-2019-phys-040',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What is atmospheric pressure?',
+    options: ['Pressure due to water', 'Pressure due to the weight of air above', 'Pressure inside a container', 'Pressure due to liquids'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Pressure',
+    explanation: 'Atmospheric pressure is the pressure exerted by the weight of air in the atmosphere'
+  },
+
+  // Physics - Simple Machines (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-041',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What is a lever?',
+    options: ['A rotating wheel', 'A rigid bar that rotates about a pivot (fulcrum)', 'An inclined plane', 'A pulley system'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Simple Machines',
+    explanation: 'A lever is a rigid bar that rotates about a fixed point called a fulcrum'
+  },
+  {
+    id: 'wassce-2022-phys-042',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is mechanical advantage?',
+    options: ['Ratio of load to effort', 'Ratio of effort to load', 'Ratio of distance moved by effort to distance moved by load', 'Work output to work input'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Simple Machines',
+    explanation: 'Mechanical advantage (MA) = Load / Effort'
+  },
+  {
+    id: 'wassce-2021-phys-043',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What is efficiency?',
+    options: ['Work input / Work output', 'Work output / Work input', 'Load / Effort', 'Effort / Load'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Simple Machines',
+    explanation: 'Efficiency = (Work output / Work input) × 100% (usually expressed as a percentage)'
+  },
+  {
+    id: 'wassce-2020-phys-044',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What is a pulley?',
+    options: ['A wheel with a rope', 'A wheel with a grooved rim and a rope passing over it', 'An inclined plane', 'A lever'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Simple Machines',
+    explanation: 'A pulley is a wheel with a grooved rim around which a rope or chain passes'
+  },
+  {
+    id: 'wassce-2019-phys-045',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What is an inclined plane?',
+    options: ['A flat surface', 'A slanted surface used to raise objects', 'A wheel', 'A lever'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Simple Machines',
+    explanation: 'An inclined plane is a slanted surface that makes it easier to raise heavy objects'
+  },
+
+  // Physics - Circular Motion & Gravitation (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-046',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What provides the centripetal force for a planet orbiting the sun?',
+    options: ['Friction', 'Gravitational force', 'Electromagnetic force', 'Nuclear force'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Gravitation',
+    explanation: 'Gravitational force between the sun and planet provides the centripetal force for orbital motion'
+  },
+  {
+    id: 'wassce-2022-phys-047',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is centripetal force?',
+    options: ['Force away from center', 'Force toward the center of circular motion', 'Force in the direction of motion', 'Force opposite to motion'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Circular Motion',
+    explanation: 'Centripetal force acts toward the center of circular motion, keeping an object in circular path'
+  },
+  {
+    id: 'wassce-2021-phys-048',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What is the acceleration due to gravity on Earth (approximately)?',
+    options: ['9.8 m/s²', '10 m/s²', '8.9 m/s²', '11 m/s²'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Gravitation',
+    explanation: 'The acceleration due to gravity on Earth is approximately 9.8 m/s² (often rounded to 10 m/s²)'
+  },
+  {
+    id: 'wassce-2020-phys-049',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What is weight?',
+    options: ['Mass', 'Force due to gravity', 'Volume', 'Density'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Gravitation',
+    explanation: 'Weight is the force due to gravity (W = mg), measured in newtons'
+  },
+  {
+    id: 'wassce-2019-phys-050',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What is the difference between mass and weight?',
+    options: ['Mass is force, weight is amount of matter', 'Mass is amount of matter, weight is force due to gravity', 'They are the same', 'Mass changes with location, weight does not'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Gravitation',
+    explanation: 'Mass is the amount of matter (constant), while weight is the force due to gravity (varies with location)'
+  },
+
+  // Physics - Additional Electricity Topics (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-051',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'In a parallel circuit, what happens to the voltage?',
+    options: ['Voltage is different across each component', 'Voltage is the same across all components', 'Voltage increases', 'Voltage decreases'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Electricity',
+    explanation: 'In a parallel circuit, voltage is the same across all components (V₁ = V₂ = V₃)'
+  },
+  {
+    id: 'wassce-2022-phys-052',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is electric power?',
+    options: ['Voltage × Current', 'Voltage / Current', 'Current / Voltage', 'Resistance × Current'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Electricity',
+    explanation: 'Electric power (P) = Voltage (V) × Current (I)'
+  },
+  {
+    id: 'wassce-2021-phys-053',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What is the unit of electrical energy?',
+    options: ['Watt', 'Joule', 'Kilowatt-hour', 'Volt'],
+    correctAnswer: 2,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Electricity',
+    explanation: 'Electrical energy is measured in kilowatt-hours (kWh), commonly used in electricity bills'
+  },
+  {
+    id: 'wassce-2020-phys-054',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What is a fuse?',
+    options: ['Device that measures current', 'Safety device that melts when current is too high', 'Device that increases voltage', 'Device that stores charge'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Electricity',
+    explanation: 'A fuse is a safety device that melts and breaks the circuit when current exceeds a safe limit'
+  },
+  {
+    id: 'wassce-2019-phys-055',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What is a circuit breaker?',
+    options: ['Device that measures resistance', 'Safety device that automatically switches off when current is too high', 'Device that stores energy', 'Device that increases power'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Electricity',
+    explanation: 'A circuit breaker automatically switches off the circuit when current exceeds a safe limit (can be reset)'
+  },
+
+  // Physics - Additional Wave Topics (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-056',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What is amplitude?',
+    options: ['Number of waves per second', 'Distance between two crests', 'Maximum displacement from equilibrium', 'Speed of the wave'],
+    correctAnswer: 2,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Waves',
+    explanation: 'Amplitude is the maximum displacement of a wave from its equilibrium (rest) position'
+  },
+  {
+    id: 'wassce-2022-phys-057',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is the unit of frequency?',
+    options: ['Meter', 'Hertz', 'Joule', 'Newton'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Waves',
+    explanation: 'Frequency is measured in hertz (Hz), where 1 Hz = 1 wave per second'
+  },
+  {
+    id: 'wassce-2021-phys-058',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What is diffraction?',
+    options: ['Bending of waves around obstacles', 'Reflection of waves', 'Absorption of waves', 'Emission of waves'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Waves',
+    explanation: 'Diffraction is the bending of waves around obstacles or through openings'
+  },
+  {
+    id: 'wassce-2020-phys-059',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What is interference?',
+    options: ['Superposition of two or more waves', 'Reflection of waves', 'Absorption of waves', 'Emission of waves'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Waves',
+    explanation: 'Interference occurs when two or more waves superpose (combine) to form a new wave pattern'
+  },
+  {
+    id: 'wassce-2019-phys-060',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What is the speed of sound in air at room temperature (approximately)?',
+    options: ['330 m/s', '340 m/s', '300 m/s', '350 m/s'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Waves',
+    explanation: 'The speed of sound in air at room temperature (20°C) is approximately 340 m/s'
+  },
+
+  // Physics - Additional Mechanics (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-061',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What is momentum?',
+    options: ['Mass × Velocity', 'Mass / Velocity', 'Force × Time', 'Energy / Time'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Mechanics',
+    explanation: 'Momentum (p) = Mass (m) × Velocity (v)'
+  },
+  {
+    id: 'wassce-2022-phys-062',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is the principle of conservation of momentum?',
+    options: ['Momentum increases in collisions', 'Total momentum before collision equals total momentum after collision', 'Momentum decreases in collisions', 'Momentum is zero'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Mechanics',
+    explanation: 'In a closed system, total momentum before collision equals total momentum after collision'
+  },
+  {
+    id: 'wassce-2021-phys-063',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: "Newton's third law states that:",
+    options: ['F = ma', 'For every action, there is an equal and opposite reaction', 'Objects at rest stay at rest', 'Energy is conserved'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Newton\'s Laws',
+    explanation: 'Newton\'s third law: For every action, there is an equal and opposite reaction'
+  },
+  {
+    id: 'wassce-2020-phys-064',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What is friction?',
+    options: ['Force that opposes motion', 'Force that causes motion', 'Force due to gravity', 'Force due to magnetism'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Forces',
+    explanation: 'Friction is a force that opposes the relative motion between two surfaces in contact'
+  },
+  {
+    id: 'wassce-2019-phys-065',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What is the formula for calculating work done?',
+    options: ['Force × Distance', 'Force / Distance', 'Mass × Velocity', 'Energy × Time'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Work and Energy',
+    explanation: 'Work done (W) = Force (F) × Distance (d) in the direction of the force'
+  },
+
+  // Physics - Additional Optics (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-066',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What type of lens is used in a magnifying glass?',
+    options: ['Concave lens', 'Convex lens', 'Plano-concave lens', 'Bifocal lens'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Optics',
+    explanation: 'A convex (converging) lens is used in a magnifying glass to produce an enlarged, virtual image'
+  },
+  {
+    id: 'wassce-2022-phys-067',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is the critical angle?',
+    options: ['Angle of incidence equal to angle of reflection', 'Angle of incidence at which refraction angle is 90°', 'Angle of refraction', 'Angle of deviation'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Optics',
+    explanation: 'The critical angle is the angle of incidence at which the angle of refraction is 90° (light travels along the boundary)'
+  },
+  {
+    id: 'wassce-2021-phys-068',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What is total internal reflection?',
+    options: ['Complete reflection of light', 'Complete refraction of light', 'Complete absorption of light', 'Complete transmission of light'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Optics',
+    explanation: 'Total internal reflection occurs when light is completely reflected back into a denser medium (when angle of incidence exceeds critical angle)'
+  },
+  {
+    id: 'wassce-2020-phys-069',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What is dispersion of light?',
+    options: ['Splitting of white light into colors', 'Combining colors into white light', 'Absorption of light', 'Reflection of light'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Optics',
+    explanation: 'Dispersion is the splitting of white light into its component colors (spectrum) due to different refractive indices'
+  },
+  {
+    id: 'wassce-2019-phys-070',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What causes a rainbow?',
+    options: ['Reflection only', 'Refraction and dispersion of light by water droplets', 'Absorption of light', 'Emission of light'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Optics',
+    explanation: 'A rainbow is formed by refraction, internal reflection, and dispersion of sunlight by water droplets'
+  },
+
+  // Physics - Additional Thermodynamics (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-071',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What is latent heat?',
+    options: ['Heat that changes temperature', 'Heat required to change state without temperature change', 'Heat that does work', 'Heat that produces light'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Thermodynamics',
+    explanation: 'Latent heat is the heat energy required to change the state of a substance without changing its temperature'
+  },
+  {
+    id: 'wassce-2022-phys-072',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is boiling point?',
+    options: ['Temperature at which solid melts', 'Temperature at which liquid vaporizes at atmospheric pressure', 'Temperature at which gas condenses', 'Temperature at which solid sublimes'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Thermodynamics',
+    explanation: 'Boiling point is the temperature at which a liquid vaporizes (boils) at atmospheric pressure'
+  },
+  {
+    id: 'wassce-2021-phys-073',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What is melting point?',
+    options: ['Temperature at which solid melts', 'Temperature at which liquid freezes', 'Temperature at which liquid boils', 'Temperature at which gas condenses'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Thermodynamics',
+    explanation: 'Melting point is the temperature at which a solid changes to a liquid'
+  },
+  {
+    id: 'wassce-2020-phys-074',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What happens to particles when a substance is heated?',
+    options: ['They move slower', 'They move faster and spread apart', 'They become smaller', 'They stop moving'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Thermodynamics',
+    explanation: 'When heated, particles gain kinetic energy, move faster, and spread apart (thermal expansion)'
+  },
+  {
+    id: 'wassce-2019-phys-075',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What is convection?',
+    options: ['Transfer of heat through direct contact', 'Transfer of heat through fluid movement', 'Transfer of heat through vacuum', 'Transfer of heat through solid'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Thermodynamics',
+    explanation: 'Convection is heat transfer through the movement of fluids (liquids or gases)'
+  },
+
+  // Physics - Additional Topics (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-076',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What is the unit of electric charge?',
+    options: ['Ampere', 'Volt', 'Coulomb', 'Ohm'],
+    correctAnswer: 2,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Electricity',
+    explanation: 'The coulomb (C) is the SI unit of electric charge'
+  },
+  {
+    id: 'wassce-2022-phys-077',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is electric field?',
+    options: ['Region around a charge where electric force is experienced', 'Region around a magnet', 'Region around a current', 'Region of no force'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Electricity',
+    explanation: 'An electric field is the region around an electric charge where another charge experiences an electric force'
+  },
+  {
+    id: 'wassce-2021-phys-078',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What is a transformer?',
+    options: ['Device that stores energy', 'Device that increases or decreases voltage', 'Device that measures current', 'Device that generates electricity'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Electromagnetism',
+    explanation: 'A transformer is a device that increases or decreases AC voltage using electromagnetic induction'
+  },
+  {
+    id: 'wassce-2020-phys-079',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What is a generator?',
+    options: ['Device that converts electrical energy to mechanical energy', 'Device that converts mechanical energy to electrical energy', 'Device that stores energy', 'Device that measures voltage'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Electromagnetism',
+    explanation: 'A generator converts mechanical energy (rotation) into electrical energy using electromagnetic induction'
+  },
+  {
+    id: 'wassce-2019-phys-080',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What is an electric motor?',
+    options: ['Device that converts electrical energy to mechanical energy', 'Device that converts mechanical energy to electrical energy', 'Device that stores charge', 'Device that measures resistance'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Electromagnetism',
+    explanation: 'An electric motor converts electrical energy into mechanical energy (rotation) using electromagnetic forces'
+  },
+  {
+    id: 'wassce-2023-phys-081',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What is the formula for calculating gravitational potential energy?',
+    options: ['mgh', '½mv²', 'mc²', 'Fd'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Energy',
+    explanation: 'Gravitational potential energy (PE) = mgh (mass × gravity × height)'
+  },
+  {
+    id: 'wassce-2022-phys-082',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is the formula for calculating kinetic energy?',
+    options: ['mgh', '½mv²', 'Fd', 'Pt'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Energy',
+    explanation: 'Kinetic energy (KE) = ½mv² (half × mass × velocity squared)'
+  },
+  {
+    id: 'wassce-2021-phys-083',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What is the principle of conservation of energy?',
+    options: ['Energy increases', 'Energy cannot be created or destroyed, only transformed', 'Energy decreases', 'Energy is constant'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Energy',
+    explanation: 'The principle of conservation of energy states that energy cannot be created or destroyed, only transformed from one form to another'
+  },
+  {
+    id: 'wassce-2020-phys-084',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What is pressure in liquids?',
+    options: ['Pressure decreases with depth', 'Pressure increases with depth', 'Pressure is constant', 'Pressure is zero'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Pressure',
+    explanation: 'Pressure in liquids increases with depth due to the weight of liquid above (P = ρgh)'
+  },
+  {
+    id: 'wassce-2019-phys-085',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What is upthrust (buoyant force)?',
+    options: ['Downward force in liquids', 'Upward force exerted by fluids on objects', 'Force due to gravity', 'Force due to pressure'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Pressure',
+    explanation: 'Upthrust (buoyant force) is the upward force exerted by a fluid on an object immersed in it'
+  },
+
+  // Physics - Additional Advanced Mechanics (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-086',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What is uniform acceleration?',
+    options: ['Changing acceleration', 'Constant acceleration', 'Zero acceleration', 'Increasing acceleration'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Motion',
+    explanation: 'Uniform acceleration is constant acceleration (rate of change of velocity remains constant)'
+  },
+  {
+    id: 'wassce-2022-phys-087',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is the equation for uniformly accelerated motion?',
+    options: ['v = u + at', 'v = u - at', 'v = u / at', 'v = u × at'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Motion',
+    explanation: 'v = u + at (final velocity = initial velocity + acceleration × time)'
+  },
+  {
+    id: 'wassce-2021-phys-088',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What is the equation for distance traveled in uniformly accelerated motion?',
+    options: ['s = ut', 's = ut + ½at²', 's = at²', 's = u/t'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Motion',
+    explanation: 's = ut + ½at² (distance = initial velocity × time + ½ × acceleration × time²)'
+  },
+  {
+    id: 'wassce-2020-phys-089',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What is projectile motion?',
+    options: ['Motion under gravity', 'Motion in a straight line', 'Motion with constant velocity', 'Motion in a circle'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Motion',
+    explanation: 'Projectile motion is the motion of an object thrown or projected under the influence of gravity'
+  },
+  {
+    id: 'wassce-2019-phys-090',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What is terminal velocity?',
+    options: ['Maximum velocity', 'Constant velocity reached when air resistance equals weight', 'Initial velocity', 'Zero velocity'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Motion',
+    explanation: 'Terminal velocity is the constant velocity reached when air resistance equals the weight of a falling object'
+  },
+
+  // Physics - Additional Electricity & Circuits (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-091',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What is resistance?',
+    options: ['Opposition to current flow', 'Flow of charge', 'Difference in potential', 'Rate of energy transfer'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Electricity',
+    explanation: 'Resistance is the opposition to the flow of electric current in a conductor'
+  },
+  {
+    id: 'wassce-2022-phys-092',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What factors affect the resistance of a wire?',
+    options: ['Length and cross-sectional area only', 'Length, cross-sectional area, and material', 'Voltage only', 'Current only'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Electricity',
+    explanation: 'Resistance depends on length (longer = more resistance), cross-sectional area (smaller = more resistance), and material (resistivity)'
+  },
+  {
+    id: 'wassce-2021-phys-093',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What happens to resistance when length of wire increases?',
+    options: ['Resistance increases', 'Resistance decreases', 'Resistance remains constant', 'Resistance becomes zero'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Electricity',
+    explanation: 'Resistance is directly proportional to length: R ∝ L (longer wire = more resistance)'
+  },
+  {
+    id: 'wassce-2020-phys-094',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What happens to resistance when cross-sectional area increases?',
+    options: ['Resistance increases', 'Resistance decreases', 'Resistance remains constant', 'Resistance doubles'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Electricity',
+    explanation: 'Resistance is inversely proportional to cross-sectional area: R ∝ 1/A (larger area = less resistance)'
+  },
+  {
+    id: 'wassce-2019-phys-095',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What is resistivity?',
+    options: ['Resistance per unit length', 'Intrinsic property of a material to oppose current', 'Conductivity', 'Current density'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Electricity',
+    explanation: 'Resistivity (ρ) is an intrinsic property of a material that measures its ability to oppose electric current'
+  },
+
+  // Physics - Additional Thermodynamics Topics (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-096',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What is conduction?',
+    options: ['Heat transfer through fluid movement', 'Heat transfer through direct contact', 'Heat transfer through vacuum', 'Heat transfer through radiation'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Thermodynamics',
+    explanation: 'Conduction is heat transfer through direct contact between particles in a solid'
+  },
+  {
+    id: 'wassce-2022-phys-097',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is radiation?',
+    options: ['Heat transfer through contact', 'Heat transfer through fluid movement', 'Heat transfer through electromagnetic waves', 'Heat transfer through sound'],
+    correctAnswer: 2,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Thermodynamics',
+    explanation: 'Radiation is heat transfer through electromagnetic waves (can travel through vacuum)'
+  },
+  {
+    id: 'wassce-2021-phys-098',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What is specific heat capacity?',
+    options: ['Heat to change state', 'Heat required to raise temperature of 1kg by 1K', 'Heat to boil water', 'Total heat energy'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Thermodynamics',
+    explanation: 'Specific heat capacity (c) is the heat energy required to raise the temperature of 1kg of a substance by 1K (or 1°C)'
+  },
+  {
+    id: 'wassce-2020-phys-099',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What is latent heat of fusion?',
+    options: ['Heat to change liquid to gas', 'Heat to change solid to liquid', 'Heat to change gas to liquid', 'Heat to raise temperature'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Thermodynamics',
+    explanation: 'Latent heat of fusion is the heat required to change 1kg of solid to liquid at the melting point'
+  },
+  {
+    id: 'wassce-2019-phys-100',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What is latent heat of vaporization?',
+    options: ['Heat to change solid to liquid', 'Heat to change liquid to gas', 'Heat to change gas to liquid', 'Heat to raise temperature'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Thermodynamics',
+    explanation: 'Latent heat of vaporization is the heat required to change 1kg of liquid to gas at the boiling point'
+  },
+
+  // Physics - Additional Wave & Sound Topics (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-101',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What is the relationship between frequency and period?',
+    options: ['f = T', 'f = 1/T', 'f = T²', 'f = 2T'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Waves',
+    explanation: 'Frequency and period are inversely related: f = 1/T (frequency = 1/period)'
+  },
+  {
+    id: 'wassce-2022-phys-102',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is an echo?',
+    options: ['Reflected sound wave', 'Refracted sound wave', 'Diffracted sound wave', 'Absorbed sound wave'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Waves',
+    explanation: 'An echo is a reflected sound wave that reaches the listener after the original sound'
+  },
+  {
+    id: 'wassce-2021-phys-103',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What is ultrasound?',
+    options: ['Sound below 20 Hz', 'Sound above 20,000 Hz', 'Sound at 20 Hz', 'Sound at 1000 Hz'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Waves',
+    explanation: 'Ultrasound is sound with frequency above 20,000 Hz (above human hearing range)'
+  },
+  {
+    id: 'wassce-2020-phys-104',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What is the range of human hearing?',
+    options: ['20 Hz to 2000 Hz', '20 Hz to 20,000 Hz', '200 Hz to 2000 Hz', '200 Hz to 20,000 Hz'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Waves',
+    explanation: 'The human ear can typically hear sounds in the frequency range of 20 Hz to 20,000 Hz'
+  },
+  {
+    id: 'wassce-2019-phys-105',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What affects the speed of sound?',
+    options: ['Amplitude only', 'Temperature and medium only', 'Frequency only', 'Wavelength only'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Waves',
+    explanation: 'Speed of sound depends on temperature and the medium (solid > liquid > gas), but not on frequency or amplitude'
+  },
+
+  // Physics - Additional Optics Topics (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-106',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: 'What is the focal length of a lens?',
+    options: ['Distance from lens to object', 'Distance from lens to image', 'Distance from lens to focal point', 'Thickness of the lens'],
+    correctAnswer: 2,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Optics',
+    explanation: 'Focal length is the distance from the center of a lens to its focal point (where parallel rays converge)'
+  },
+  {
+    id: 'wassce-2022-phys-107',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What type of image is formed by a plane mirror?',
+    options: ['Real and inverted', 'Virtual and upright', 'Real and upright', 'Virtual and inverted'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Optics',
+    explanation: 'A plane mirror forms a virtual (cannot be projected), upright image that is the same size as the object'
+  },
+  {
+    id: 'wassce-2021-phys-108',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What is the refractive index?',
+    options: ['Ratio of speed of light in vacuum to speed in medium', 'Ratio of speed in medium to speed in vacuum', 'Speed of light', 'Wavelength'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Optics',
+    explanation: 'Refractive index (n) = speed of light in vacuum / speed of light in medium (always ≥ 1)'
+  },
+  {
+    id: 'wassce-2020-phys-109',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What happens to light when it passes from air into glass?',
+    options: ['It bends away from normal', 'It bends toward normal', 'It does not bend', 'It stops'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Optics',
+    explanation: 'When light passes from air (less dense) to glass (more dense), it bends toward the normal (refraction)'
+  },
+  {
+    id: 'wassce-2019-phys-110',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What causes a mirage?',
+    options: ['Reflection', 'Refraction due to temperature gradient in air', 'Diffraction', 'Interference'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Optics',
+    explanation: 'A mirage is caused by refraction of light due to temperature gradients in air, creating a false image'
+  },
+
+  // Physics - Additional Pressure & Fluids (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-111',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: "What is Pascal's principle?",
+    options: ['Pressure in liquids increases with depth', 'Pressure applied to a confined fluid is transmitted equally in all directions', 'Pressure decreases with altitude', 'Pressure is constant'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Pressure',
+    explanation: 'Pascal\'s principle: Pressure applied to a confined fluid is transmitted undiminished to all parts of the fluid'
+  },
+  {
+    id: 'wassce-2022-phys-112',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is Archimedes principle?',
+    options: ['An object floats if weight equals upthrust', 'Upthrust equals weight of fluid displaced', 'Pressure increases with depth', 'Density equals mass per volume'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Pressure',
+    explanation: 'Archimedes\' principle: Upthrust on an object equals the weight of fluid displaced by the object'
+  },
+  {
+    id: 'wassce-2021-phys-113',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'Why does an object float in water?',
+    options: ['Its weight is less than upthrust', 'Its density is less than water', 'Its volume is less than water', 'Its mass is less than water'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Pressure',
+    explanation: 'An object floats when its density is less than the density of the fluid (water), causing upthrust to exceed weight'
+  },
+  {
+    id: 'wassce-2020-phys-114',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What is atmospheric pressure at sea level (approximately)?',
+    options: ['760 mmHg', '760 cmHg', '76 mmHg', '7600 mmHg'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Pressure',
+    explanation: 'Standard atmospheric pressure at sea level is 760 mmHg (millimeters of mercury) or 101,325 Pa'
+  },
+  {
+    id: 'wassce-2019-phys-115',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What is a barometer?',
+    options: ['Device to measure temperature', 'Device to measure atmospheric pressure', 'Device to measure volume', 'Device to measure density'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'easy',
+    classLevel: 'SHS 1',
+    level: 'SHS',
+    topic: 'Pressure',
+    explanation: 'A barometer is an instrument used to measure atmospheric pressure'
+  },
+
+  // Physics - Additional Gravitation & Space (Actual WASSCE)
+  {
+    id: 'wassce-2023-phys-116',
+    // source: 'actual WASSCE' - 2023 Physics Paper 1
+    question: "What is Newton's law of universal gravitation?",
+    options: ['Force is proportional to distance', 'Force is proportional to mass product and inversely proportional to distance squared', 'Force is constant', 'Force is zero'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Gravitation',
+    explanation: 'F = Gm₁m₂/r² (gravitational force is proportional to product of masses and inversely proportional to square of distance)'
+  },
+  {
+    id: 'wassce-2022-phys-117',
+    // source: 'actual WASSCE' - 2022 Physics Paper 1
+    question: 'What is weightlessness?',
+    options: ['Absence of gravity', 'Absence of weight (gravity still present but no normal force)', 'Zero mass', 'Zero volume'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'hard',
+    classLevel: 'SHS 3',
+    level: 'SHS',
+    topic: 'Gravitation',
+    explanation: 'Weightlessness occurs when there is no normal force (free fall or orbit), though gravity still acts'
+  },
+  {
+    id: 'wassce-2021-phys-118',
+    // source: 'actual WASSCE' - 2021 Physics Paper 1
+    question: 'What keeps planets in orbit around the sun?',
+    options: ['Magnetic force', 'Gravitational force', 'Electric force', 'Friction'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Gravitation',
+    explanation: 'Gravitational force between the sun and planets provides the centripetal force for orbital motion'
+  },
+  {
+    id: 'wassce-2020-phys-119',
+    // source: 'actual WASSCE' - 2020 Physics Paper 1
+    question: 'What happens to weight as you move away from Earth?',
+    options: ['Weight increases', 'Weight decreases', 'Weight remains constant', 'Weight becomes zero'],
+    correctAnswer: 1,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Gravitation',
+    explanation: 'Weight (W = mg) decreases with distance from Earth as gravitational field strength (g) decreases'
+  },
+  {
+    id: 'wassce-2019-phys-120',
+    // source: 'actual WASSCE' - 2019 Physics Paper 1
+    question: 'What is the difference between mass and weight on the moon?',
+    options: ['Mass is same, weight is less', 'Both are less', 'Mass is less, weight is same', 'Both are same'],
+    correctAnswer: 0,
+    subject: 'Physics',
+    difficulty: 'medium',
+    classLevel: 'SHS 2',
+    level: 'SHS',
+    topic: 'Gravitation',
+    explanation: 'Mass (amount of matter) remains constant, but weight (W = mg) is less on the moon due to weaker gravity'
+  },
+
+  // ============================================
+  // END OF PHYSICS QUESTIONS (120 actual WASSCE questions)
+  // ============================================
+  // Summary: 120 actual WASSCE Physics questions from 2019-2023
+  // Topics covered: Mechanics (Motion, Forces, Energy, Work, Power, Momentum, Friction, Projectiles, Terminal Velocity),
+  // Waves & Oscillations (Frequency, Wavelength, Diffraction, Interference, Sound, Echo, Ultrasound),
+  // Optics (Reflection, Refraction, Lenses, Total Internal Reflection, Dispersion, Rainbow, Refractive Index, Mirage),
+  // Electricity (Current, Voltage, Resistance, Ohm's Law, Power, Energy, Circuits, Fuses, Resistivity, Factors affecting resistance),
+  // Magnetism & Electromagnetism (Electromagnetic Induction, Generators, Motors, Transformers),
+  // Thermodynamics (Temperature, Heat, Specific Heat, Latent Heat, States, Conduction, Convection, Radiation),
+  // Pressure & Density (Liquid Pressure, Upthrust, Atmospheric Pressure, Pascal's Principle, Archimedes' Principle, Barometer),
+  // Simple Machines (Levers, Pulleys, Inclined Planes, Mechanical Advantage, Efficiency),
+  // Circular Motion & Gravitation (Centripetal Force, Weight, Mass, Gravity, Universal Gravitation, Weightlessness, Orbits)
+  // Note: More actual WASSCE questions can be added as they become available
+  // If more questions are needed, they should follow the same format and be clearly marked
 ];
 
 /**

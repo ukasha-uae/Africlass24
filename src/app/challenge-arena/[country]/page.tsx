@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
   Trophy, Zap, Calendar, Users, Target, TrendingUp, 
   Clock, Award, Play, Plus, Eye, Swords, School, Bell,
-  BrainCircuit, ChevronRight, BookOpen, Calculator, FlaskConical, Globe, Languages, Palette, Computer, Music
+  BrainCircuit, ChevronRight, ChevronDown, ChevronUp, BookOpen, Calculator, FlaskConical, Globe, Languages, Palette, Computer, Music
 } from 'lucide-react';
 import Link from 'next/link';
 import {
@@ -67,6 +67,7 @@ export default function LocalizedChallengeArenaPage() {
   const [showCoinStore, setShowCoinStore] = useState(false);
   const [showTransactionHistory, setShowTransactionHistory] = useState(false);
   const [showSubscriptionManagement, setShowSubscriptionManagement] = useState(false);
+  const [expandedPrograms, setExpandedPrograms] = useState<Set<string>>(new Set());
 
   const { firestore, user } = useFirebase();
   
@@ -210,6 +211,98 @@ export default function LocalizedChallengeArenaPage() {
   // Get subjects for the selected level
   const availableSubjects = getAvailableSubjects(educationLevel);
 
+  // Group SHS subjects by program
+  const groupSubjectsByProgram = (subjects: string[]) => {
+    if (educationLevel !== 'SHS') {
+      return { 'All Subjects': { subjects, icon: BookOpen, color: 'from-blue-500 to-indigo-600', description: 'All available subjects' } };
+    }
+
+    type IconComponent = typeof BookOpen;
+    const programs: Record<string, { subjects: string[]; icon: IconComponent; color: string; description: string }> = {
+      'Core Subjects': {
+        subjects: [],
+        icon: BookOpen,
+        color: 'from-blue-500 to-indigo-600',
+        description: 'Required for all SHS programs'
+      },
+      'General Science': {
+        subjects: [],
+        icon: FlaskConical,
+        color: 'from-green-500 to-emerald-600',
+        description: 'Physics, Chemistry, Biology & Elective Mathematics'
+      },
+      'General Arts': {
+        subjects: [],
+        icon: Globe,
+        color: 'from-purple-500 to-pink-600',
+        description: 'Literature, History, Geography & Social Sciences'
+      },
+      'Business': {
+        subjects: [],
+        icon: Calculator,
+        color: 'from-orange-500 to-red-600',
+        description: 'Accounting, Business Management & Cost Accounting'
+      },
+      'Visual Arts': {
+        subjects: [],
+        icon: Palette,
+        color: 'from-pink-500 to-rose-600',
+        description: 'Art, Textiles & Graphic Design'
+      },
+      'Home Economics': {
+        subjects: [],
+        icon: BookOpen,
+        color: 'from-amber-500 to-yellow-600',
+        description: 'Food & Nutrition, Management & Clothing'
+      },
+      'Agricultural Science': {
+        subjects: [],
+        icon: FlaskConical,
+        color: 'from-green-600 to-teal-600',
+        description: 'Agriculture, Crop & Animal Husbandry'
+      },
+      'Technical': {
+        subjects: [],
+        icon: Computer,
+        color: 'from-slate-500 to-gray-600',
+        description: 'Technical Drawing, Construction & Engineering'
+      }
+    };
+
+    subjects.forEach(subject => {
+      if (subject === 'Mixed') {
+        programs['Core Subjects'].subjects.push(subject);
+      } else if (['Core Mathematics', 'English Language', 'Integrated Science', 'Social Studies'].includes(subject)) {
+        programs['Core Subjects'].subjects.push(subject);
+      } else if (['Physics', 'Chemistry', 'Biology', 'Elective Mathematics'].includes(subject)) {
+        programs['General Science'].subjects.push(subject);
+      } else if (['Literature in English', 'History', 'Geography', 'Economics', 'Government', 'Christian Religious Studies', 'Islamic Religious Studies'].includes(subject)) {
+        programs['General Arts'].subjects.push(subject);
+      } else if (['Accounting', 'Business Management', 'Cost Accounting'].includes(subject)) {
+        programs['Business'].subjects.push(subject);
+      } else if (['General Knowledge in Art', 'Textiles', 'Graphic Design'].includes(subject)) {
+        programs['Visual Arts'].subjects.push(subject);
+      } else if (['Food and Nutrition', 'Management in Living', 'Clothing and Textiles'].includes(subject)) {
+        programs['Home Economics'].subjects.push(subject);
+      } else if (['Agricultural Science', 'Crop Husbandry', 'Animal Husbandry'].includes(subject)) {
+        programs['Agricultural Science'].subjects.push(subject);
+      } else if (['Technical Drawing', 'Building Construction', 'Woodwork', 'Metalwork', 'Electronics', 'Auto Mechanics'].includes(subject)) {
+        programs['Technical'].subjects.push(subject);
+      }
+    });
+
+    // Remove empty programs
+    Object.keys(programs).forEach(key => {
+      if (programs[key].subjects.length === 0) {
+        delete programs[key];
+      }
+    });
+
+    return programs;
+  };
+
+  const subjectGroups = groupSubjectsByProgram(availableSubjects);
+
   // Subject icons mapping
   const getSubjectIcon = (subject: string) => {
     const subjectLower = subject.toLowerCase();
@@ -222,6 +315,20 @@ export default function LocalizedChallengeArenaPage() {
     if (subjectLower.includes('french')) return Languages;
     if (subjectLower.includes('arabic')) return Languages;
     if (subjectLower.includes('music')) return Music;
+    if (subjectLower.includes('physics')) return FlaskConical;
+    if (subjectLower.includes('chemistry')) return FlaskConical;
+    if (subjectLower.includes('biology')) return FlaskConical;
+    if (subjectLower.includes('history')) return Globe;
+    if (subjectLower.includes('geography')) return Globe;
+    if (subjectLower.includes('economics')) return Calculator;
+    if (subjectLower.includes('government')) return Globe;
+    if (subjectLower.includes('literature')) return BookOpen;
+    if (subjectLower.includes('accounting')) return Calculator;
+    if (subjectLower.includes('business')) return Calculator;
+    if (subjectLower.includes('art') || subjectLower.includes('textiles') || subjectLower.includes('graphic')) return Palette;
+    if (subjectLower.includes('food') || subjectLower.includes('nutrition') || subjectLower.includes('management') || subjectLower.includes('clothing')) return BookOpen;
+    if (subjectLower.includes('agricultural') || subjectLower.includes('crop') || subjectLower.includes('animal')) return FlaskConical;
+    if (subjectLower.includes('technical') || subjectLower.includes('drawing') || subjectLower.includes('construction') || subjectLower.includes('woodwork') || subjectLower.includes('metalwork') || subjectLower.includes('electronics') || subjectLower.includes('auto') || subjectLower.includes('mechanics')) return Computer;
     return BookOpen;
   };
 
@@ -340,36 +447,116 @@ export default function LocalizedChallengeArenaPage() {
                   Available Subjects for {educationLevel}
                 </CardTitle>
                 <CardDescription className="text-sm">
-                  Click on a subject to start practicing or challenging
+                  {educationLevel === 'SHS' 
+                    ? 'Select subjects organized by program' 
+                    : 'Click on a subject to start practicing or challenging'}
                 </CardDescription>
               </div>
             </div>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-              {availableSubjects.map((subject, index) => {
-                const Icon = getSubjectIcon(subject);
-                const subjectColor = getSubjectColor(subject, index);
-                return (
-                  <Link
-                    key={`${subject}-${index}`}
-                    href={`/challenge-arena/practice?level=${educationLevel}&subject=${encodeURIComponent(subject)}`}
-                  >
-                    <Card className={`group relative bg-gradient-to-br ${subjectColor} p-4 rounded-xl shadow-lg text-white overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer border-0 h-full`}>
-                      <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
-                      <div className="relative z-10">
-                        <div className="mb-3">
-                          <Icon className="h-8 w-8 sm:h-10 sm:w-10 group-hover:scale-110 transition-transform" />
+            {educationLevel === 'SHS' ? (
+              // SHS: Grouped by Program (Collapsible)
+              <div className="space-y-4">
+                {Object.entries(subjectGroups).map(([programName, programData]) => {
+                  const ProgramIcon = programData.icon;
+                  const isExpanded = expandedPrograms.has(programName);
+                  const toggleProgram = () => {
+                    setExpandedPrograms(prev => {
+                      const newSet = new Set(prev);
+                      if (newSet.has(programName)) {
+                        newSet.delete(programName);
+                      } else {
+                        newSet.add(programName);
+                      }
+                      return newSet;
+                    });
+                  };
+                  
+                  return (
+                    <div key={programName} className="space-y-3">
+                      {/* Program Header - Clickable */}
+                      <div 
+                        onClick={toggleProgram}
+                        className={`flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r ${programData.color} text-white shadow-lg cursor-pointer hover:shadow-xl transition-all duration-200`}
+                      >
+                        <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
+                          <ProgramIcon className="h-6 w-6" />
                         </div>
-                        <h3 className="font-bold text-sm sm:text-base leading-tight group-hover:underline">
-                          {subject}
-                        </h3>
+                        <div className="flex-1">
+                          <h3 className="text-lg font-bold">{programName}</h3>
+                          <p className="text-sm text-white/90">{programData.description}</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
+                            {programData.subjects.length} {programData.subjects.length === 1 ? 'Subject' : 'Subjects'}
+                          </Badge>
+                          {isExpanded ? (
+                            <ChevronUp className="h-5 w-5 text-white/90" />
+                          ) : (
+                            <ChevronDown className="h-5 w-5 text-white/90" />
+                          )}
+                        </div>
                       </div>
-                    </Card>
-                  </Link>
-                );
-              })}
-            </div>
+                      
+                      {/* Subjects Grid - Collapsible */}
+                      {isExpanded && (
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 animate-in slide-in-from-top-2 duration-200">
+                          {programData.subjects.map((subject, index) => {
+                            const Icon = getSubjectIcon(subject);
+                            const subjectColor = getSubjectColor(subject, index);
+                            return (
+                              <Link
+                                key={`${subject}-${index}`}
+                                href={`/challenge-arena/practice?level=${educationLevel}&subject=${encodeURIComponent(subject)}`}
+                              >
+                                <Card className={`group relative bg-gradient-to-br ${subjectColor} p-4 rounded-xl shadow-lg text-white overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer border-0 h-full`}>
+                                  <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+                                  <div className="relative z-10">
+                                    <div className="mb-3">
+                                      <Icon className="h-8 w-8 sm:h-10 sm:w-10 group-hover:scale-110 transition-transform" />
+                                    </div>
+                                    <h3 className="font-bold text-sm sm:text-base leading-tight group-hover:underline">
+                                      {subject}
+                                    </h3>
+                                  </div>
+                                </Card>
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              // Primary/JHS: Simple Grid
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+                {availableSubjects.map((subject, index) => {
+                  const Icon = getSubjectIcon(subject);
+                  const subjectColor = getSubjectColor(subject, index);
+                  return (
+                    <Link
+                      key={`${subject}-${index}`}
+                      href={`/challenge-arena/practice?level=${educationLevel}&subject=${encodeURIComponent(subject)}`}
+                    >
+                      <Card className={`group relative bg-gradient-to-br ${subjectColor} p-4 rounded-xl shadow-lg text-white overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer border-0 h-full`}>
+                        <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+                        <div className="relative z-10">
+                          <div className="mb-3">
+                            <Icon className="h-8 w-8 sm:h-10 sm:w-10 group-hover:scale-110 transition-transform" />
+                          </div>
+                          <h3 className="font-bold text-sm sm:text-base leading-tight group-hover:underline">
+                            {subject}
+                          </h3>
+                        </div>
+                      </Card>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
           </CardContent>
         </Card>
 
