@@ -12,6 +12,7 @@ import { jhsEnglishLanguageQuestions } from './questions/jhs/english-language';
 import { jhsScienceQuestions } from './questions/jhs/science';
 import { jhsSocialStudiesQuestions } from './questions/jhs/social-studies';
 import { jhsICTQuestions } from './questions/jhs/ict';
+import { jhsCreativeArtsQuestions } from './questions/jhs/creative-arts';
 import { primaryMathematicsQuestions } from './questions/primary/mathematics';
 import { primaryEnglishLanguageQuestions } from './questions/primary/english-language';
 import { primaryScienceQuestions } from './questions/primary/science';
@@ -17416,6 +17417,42 @@ export function getChallengeQuestions(
           options: q.options,
           correctAnswer: q.correctAnswer,
           subject: 'ICT',
+          difficulty: q.difficulty,
+          classLevel: mappedClassLevel,
+          level: 'JHS' as EducationLevel,
+          explanation: q.explanation,
+          topic: q.topic
+        };
+      });
+      filtered = [...filtered, ...beceConverted];
+    } else if (subject === 'Creative Arts' || subject === 'Cultural and Creative Arts' || subject === 'CCA') {
+      // Start with modular JHS Creative Arts questions
+      filtered = [...jhsCreativeArtsQuestions];
+      // Also get questions from bece-questions.ts
+      let beceDifficulty: QuestionDifficulty = 'medium';
+      if (classLevel === 'JHS 1') beceDifficulty = 'easy';
+      else if (classLevel === 'JHS 2') beceDifficulty = 'medium';
+      else if (classLevel === 'JHS 3') beceDifficulty = 'hard';
+      else if (legacyDifficulty) beceDifficulty = legacyDifficulty;
+      
+      const beceQuestions = getJHSQuestions(count, 'Creative Arts' as JHSSubject, beceDifficulty);
+      const beceConverted = beceQuestions.map(q => {
+        let mappedClassLevel: ClassLevel | undefined = undefined;
+        if (classLevel) {
+          mappedClassLevel = classLevel;
+        } else if (q.difficulty === 'easy') {
+          mappedClassLevel = 'JHS 1';
+        } else if (q.difficulty === 'medium') {
+          mappedClassLevel = 'JHS 2';
+        } else if (q.difficulty === 'hard') {
+          mappedClassLevel = 'JHS 3';
+        }
+        return {
+          id: q.id,
+          question: q.question,
+          options: q.options,
+          correctAnswer: q.correctAnswer,
+          subject: 'Creative Arts',
           difficulty: q.difficulty,
           classLevel: mappedClassLevel,
           level: 'JHS' as EducationLevel,
