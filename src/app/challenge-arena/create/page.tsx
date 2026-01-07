@@ -18,11 +18,17 @@ import {
   Search,
   CheckCircle2,
   ArrowRight,
-  ArrowLeft
+  ArrowLeft,
+  Computer,
+  Palette,
+  Languages,
+  Music
 } from 'lucide-react';
-import { createChallenge, getAllPlayers, Player } from '@/lib/challenge';
+import { createChallenge, getAllPlayers, Player, getPlayerProfile } from '@/lib/challenge';
 import { useToast } from '@/hooks/use-toast';
 import { useFirebase } from '@/firebase/provider';
+import { getAvailableSubjects, type EducationLevel } from '@/lib/challenge-questions';
+import { useMemo } from 'react';
 
 // Create challenge page is now enabled for friend challenges
 export default function CreateChallengePage() {
@@ -33,6 +39,54 @@ export default function CreateChallengePage() {
   const [loading, setLoading] = useState(false);
   const [friends, setFriends] = useState<Player[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+  
+  // Get user's education level
+  const userLevel = useMemo(() => {
+    if (typeof window === 'undefined') return 'JHS';
+    const userId = user?.uid || 'test-user-1';
+    const player = getPlayerProfile(userId);
+    const savedLevel = localStorage.getItem('userEducationLevel');
+    return (player?.level || savedLevel || 'JHS') as EducationLevel;
+  }, [user]);
+  
+  // Get available subjects for user's level
+  const availableSubjects = useMemo(() => {
+    return getAvailableSubjects(userLevel).filter(s => s !== 'Mixed');
+  }, [userLevel]);
+  
+  // Map subjects to UI format with icons
+  const getSubjectIcon = (subject: string) => {
+    const lower = subject.toLowerCase();
+    if (lower.includes('math')) return Calculator;
+    if (lower.includes('english') || lower.includes('language')) return BookOpen;
+    if (lower.includes('science') || lower.includes('physics') || lower.includes('chemistry') || lower.includes('biology') || lower.includes('integrated')) return FlaskConical;
+    if (lower.includes('social')) return Globe;
+    if (lower.includes('ict') || lower.includes('computing')) return Computer;
+    if (lower.includes('creative') || lower.includes('arts')) return Palette;
+    if (lower.includes('french') || lower.includes('arabic')) return Languages;
+    if (lower.includes('music')) return Music;
+    return BookOpen;
+  };
+  
+  const getSubjectColor = (subject: string, index: number) => {
+    const colors = ['text-blue-500', 'text-green-500', 'text-orange-500', 'text-purple-500', 'text-red-500', 'text-yellow-500', 'text-pink-500', 'text-indigo-500'];
+    return colors[index % colors.length];
+  };
+  
+  const getSubjectBg = (subject: string, index: number) => {
+    const bgs = ['bg-blue-500/10', 'bg-green-500/10', 'bg-orange-500/10', 'bg-purple-500/10', 'bg-red-500/10', 'bg-yellow-500/10', 'bg-pink-500/10', 'bg-indigo-500/10'];
+    return bgs[index % bgs.length];
+  };
+  
+  const SUBJECTS = useMemo(() => {
+    return availableSubjects.map((subject, index) => ({
+      id: subject.toLowerCase().replace(/\s+/g, '-'),
+      name: subject,
+      icon: getSubjectIcon(subject),
+      color: getSubjectColor(subject, index),
+      bg: getSubjectBg(subject, index),
+    }));
+  }, [availableSubjects]);
   
   const [formData, setFormData] = useState({
     subject: '',
@@ -120,10 +174,13 @@ export default function CreateChallengePage() {
         }
       }
 
+      // Map subject ID back to full subject name
+      const subjectName = SUBJECTS.find(s => s.id === formData.subject)?.name || formData.subject;
+      
       const challenge = createChallenge({
         type: formData.type as any,
-        level: 'JHS',
-        subject: formData.subject,
+        level: userLevel,
+        subject: subjectName,
         difficulty: formData.difficulty as any,
         questionCount,
         timeLimit,
