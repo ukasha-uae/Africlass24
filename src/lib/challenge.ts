@@ -176,13 +176,21 @@ export interface PlayerAnswer {
 
 type SHSClassLevel = 'SHS 1' | 'SHS 2' | 'SHS 3';
 type JHSClassLevel = 'JHS 1' | 'JHS 2' | 'JHS 3';
-type ClassLevelForPromotion = SHSClassLevel | JHSClassLevel;
+type PrimaryClassLevel =
+  | 'Primary 1'
+  | 'Primary 2'
+  | 'Primary 3'
+  | 'Primary 4'
+  | 'Primary 5'
+  | 'Primary 6';
+
+type ClassLevelForPromotion = SHSClassLevel | JHSClassLevel | PrimaryClassLevel;
 
 interface SubjectMasteryRecord {
   userId: string;
-  level: EducationLevel;      // 'SHS' or 'JHS' for auto-promotion
+  level: EducationLevel;      // 'SHS', 'JHS', or 'Primary' for auto-promotion
   subject: string;
-  classLevel: ClassLevelForPromotion;  // SHS 1/2/3 or JHS 1/2/3
+  classLevel: ClassLevelForPromotion;  // SHS 1/2/3, JHS 1/2/3, or Primary 1-6
   totalQuestions: number;     // total questions answered at this classLevel
   totalCorrect: number;       // number answered correctly
   challengesPlayed: number;   // how many challenges contributed
@@ -225,24 +233,36 @@ function getSubjectMasteryKey(
 
 /**
  * Update local mastery stats after a challenge result.
- * Used for SHS and JHS levels to drive auto-promotion between class levels (1/2/3).
+ * Used for SHS, JHS, and Primary levels to drive auto-promotion between class levels.
  */
 function updateSubjectMasteryFromResult(
   challenge: Challenge,
   result: GameResult
 ): void {
   if (typeof window === 'undefined') return;
-  if (challenge.level !== 'SHS' && challenge.level !== 'JHS') return;
+  if (challenge.level !== 'SHS' && challenge.level !== 'JHS' && challenge.level !== 'Primary') return;
 
   // Only auto-promote for real students, not AI bosses
   if (!result.userId || result.userId.startsWith('boss-')) return;
 
   // Check if difficulty is a valid class level for this education level
   const classLevel = challenge.difficulty as ClassLevelForPromotion;
-  const isValidSHS = challenge.level === 'SHS' && (classLevel === 'SHS 1' || classLevel === 'SHS 2' || classLevel === 'SHS 3');
-  const isValidJHS = challenge.level === 'JHS' && (classLevel === 'JHS 1' || classLevel === 'JHS 2' || classLevel === 'JHS 3');
-  
-  if (!isValidSHS && !isValidJHS) return;
+  const isValidSHS =
+    challenge.level === 'SHS' &&
+    (classLevel === 'SHS 1' || classLevel === 'SHS 2' || classLevel === 'SHS 3');
+  const isValidJHS =
+    challenge.level === 'JHS' &&
+    (classLevel === 'JHS 1' || classLevel === 'JHS 2' || classLevel === 'JHS 3');
+  const isValidPrimary =
+    challenge.level === 'Primary' &&
+    (classLevel === 'Primary 1' ||
+      classLevel === 'Primary 2' ||
+      classLevel === 'Primary 3' ||
+      classLevel === 'Primary 4' ||
+      classLevel === 'Primary 5' ||
+      classLevel === 'Primary 6');
+
+  if (!isValidSHS && !isValidJHS && !isValidPrimary) return;
 
   const questionsAnswered = result.answers?.length || 0;
   if (questionsAnswered === 0) return;
@@ -344,6 +364,57 @@ function getEffectiveJHSClassLevel(
       if (accuracy >= 0.8) {
         // Promote to next level
         currentLevel = classOrder[i + 1];
+        continue;
+      }
+    }
+    break;
+  }
+
+  return currentLevel;
+}
+
+/**
+ * Decide which Primary class level to actually use when generating questions,
+ * based on local mastery. We only ever promote upwards (1 -> 6).
+ */
+function getEffectivePrimaryClassLevel(
+  userId: string,
+  subject: string,
+  requestedClassLevel: string
+): string {
+  const primaryLevels: PrimaryClassLevel[] = [
+    'Primary 1',
+    'Primary 2',
+    'Primary 3',
+    'Primary 4',
+    'Primary 5',
+    'Primary 6',
+  ];
+
+  if (!primaryLevels.includes(requestedClassLevel as PrimaryClassLevel)) {
+    return requestedClassLevel;
+  }
+  if (typeof window === 'undefined') return requestedClassLevel;
+
+  const state = getSubjectMasteryState();
+  let currentLevel = requestedClassLevel as PrimaryClassLevel;
+
+  // Simple promotion rule (same as JHS/SHS):
+  // - at least 5 challenges played at that classLevel
+  // - accuracy (totalCorrect / totalQuestions) >= 80%
+  for (let i = 0; i < primaryLevels.length - 1; i++) {
+    const level = primaryLevels[i];
+    if (currentLevel !== level) continue;
+
+    const key = getSubjectMasteryKey(userId, 'Primary', subject, level);
+    const record = state[key];
+    if (!record) break;
+
+    if (record.challengesPlayed >= 5 && record.totalQuestions > 0) {
+      const accuracy = record.totalCorrect / record.totalQuestions;
+      if (accuracy >= 0.8) {
+        // Promote to next level
+        currentLevel = primaryLevels[i + 1];
         continue;
       }
     }
@@ -1085,12 +1156,14 @@ const generateGameQuestions = (
   }
   if (subject === 'social') mappedSubject = 'Social Studies';
 
-  // For SHS and JHS, allow local auto-promotion between class levels (1/2/3) based on mastery
+  // For Primary, JHS, and SHS, allow local auto-promotion between class levels based on mastery
   let effectiveDifficulty = difficulty;
   if (level === 'SHS') {
     effectiveDifficulty = getEffectiveSHSClassLevel(userId, mappedSubject, difficulty);
   } else if (level === 'JHS') {
     effectiveDifficulty = getEffectiveJHSClassLevel(userId, mappedSubject, difficulty);
+  } else if (level === 'Primary') {
+    effectiveDifficulty = getEffectivePrimaryClassLevel(userId, mappedSubject, difficulty);
   }
 
   // STRICT LEVEL FILTERING - Use the new unified challenge questions system
