@@ -441,7 +441,7 @@ export const coreMathematicsQuestions: ChallengeQuestion[] = [
   {
     id: 'shs-coremath-029',
     type: 'mcq',
-    question: 'If A = \\n\\n[ 1  2 ]\\n[ 3  4 ], what is the determinant of A?',
+    question: 'If A = [[1, 2], [3, 4]], what is the determinant of A?',
     options: ['-2', '2', '5', '7'],
     correctAnswer: 0,
     subject: 'Core Mathematics',
