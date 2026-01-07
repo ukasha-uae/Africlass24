@@ -919,6 +919,40 @@ export default function LocalizedChallengeArenaPage() {
                 </Card>
               </Link>
 
+              <Link href="/challenge-arena/create">
+                <Card className="relative bg-gradient-to-br from-purple-500 to-indigo-600 p-6 sm:p-8 rounded-2xl shadow-xl text-white overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer border-0">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+                  <div className="relative">
+                    <div className="text-4xl sm:text-5xl lg:text-6xl mb-3 sm:mb-4">👥</div>
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-2">Challenge Friend</h3>
+                    <p className="text-base sm:text-lg mb-3 sm:mb-4 opacity-90">
+                      Challenge a specific friend or classmate directly
+                    </p>
+                    <div className="space-y-2 mb-4 sm:mb-6">
+                      <div className="flex items-center">
+                        <span className="text-white/80 mr-2">👤</span>
+                        <span className="text-sm sm:text-base">Choose opponent</span>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="text-white/80 mr-2">⚡</span>
+                        <span className="text-sm sm:text-base">Instant notification</span>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="text-white/80 mr-2">🎯</span>
+                        <span className="text-sm sm:text-base">Custom settings</span>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="text-white/80 mr-2">🏆</span>
+                        <span className="text-sm sm:text-base">Real-time battle</span>
+                      </div>
+                    </div>
+                    <div className="w-full bg-white text-purple-600 text-center py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-bold hover:bg-gray-100 transition-colors">
+                      Challenge Friend
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+
               {/* Premium Game Modes */}
               {FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaBoss && (
                 <Link href="/challenge-arena/boss-battle">
