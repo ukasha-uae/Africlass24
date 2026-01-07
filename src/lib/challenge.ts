@@ -6,6 +6,8 @@ import { calculateXP, calculateCoins, checkAchievements } from './gamification';
 import { getCoinMultiplier, getQuestionLimit } from './monetization';
 import { trackQuestionUsage } from './analytics';
 import { createUserNotification } from './realtime-notifications';
+import { initializeFirebase } from '@/firebase';
+import { collection, doc, setDoc, getDoc, updateDoc, query, where, getDocs, onSnapshot, serverTimestamp } from 'firebase/firestore';
 
 export interface Player {
   userId: string;
@@ -593,15 +595,60 @@ export const updatePlayerStats = (
 
 // Challenge Management
 
+// Firestore helpers for challenges
+async function saveChallengeToFirestore(challenge: Challenge): Promise<void> {
+  try {
+    const { firestore } = initializeFirebase();
+    if (!firestore) return;
+    const challengeRef = doc(firestore, 'challenges', challenge.id);
+    await setDoc(challengeRef, {
+      ...challenge,
+      createdAt: challenge.createdAt || serverTimestamp(),
+      updatedAt: serverTimestamp(),
+    }, { merge: true });
+  } catch (error) {
+    console.error('Failed to save challenge to Firestore:', error);
+  }
+}
+
+async function getChallengeFromFirestore(challengeId: string): Promise<Challenge | undefined> {
+  try {
+    const { firestore } = initializeFirebase();
+    if (!firestore) return undefined;
+    const challengeRef = doc(firestore, 'challenges', challengeId);
+    const challengeSnap = await getDoc(challengeRef);
+    if (challengeSnap.exists()) {
+      return challengeSnap.data() as Challenge;
+    }
+    return undefined;
+  } catch (error) {
+    console.error('Failed to get challenge from Firestore:', error);
+    return undefined;
+  }
+}
+
 export const getAllChallenges = (): Challenge[] => {
   if (typeof window === 'undefined') return [];
   const challenges = localStorage.getItem('challenges');
   return challenges ? JSON.parse(challenges) : [];
 };
 
-export const getChallenge = (challengeId: string): Challenge | undefined => {
+export const getChallenge = async (challengeId: string): Promise<Challenge | undefined> => {
+  // First check localStorage
   const challenges = getAllChallenges();
-  return challenges.find(c => c.id === challengeId);
+  const localChallenge = challenges.find(c => c.id === challengeId);
+  if (localChallenge) return localChallenge;
+  
+  // If not found, check Firestore
+  const firestoreChallenge = await getChallengeFromFirestore(challengeId);
+  if (firestoreChallenge) {
+    // Cache it in localStorage for faster access
+    challenges.push(firestoreChallenge);
+    localStorage.setItem('challenges', JSON.stringify(challenges));
+    return firestoreChallenge;
+  }
+  
+  return undefined;
 };
 
 export const getMyChallenges = (userId: string): Challenge[] => {
@@ -656,6 +703,11 @@ export const createChallenge = (challenge: Omit<Challenge, 'id' | 'createdAt' | 
   challenges.push(newChallenge);
   localStorage.setItem('challenges', JSON.stringify(challenges));
   
+  // Save to Firestore so opponent can access it
+  saveChallengeToFirestore(newChallenge).catch(err => {
+    console.error('Failed to save challenge to Firestore:', err);
+  });
+  
   // Send notifications to opponents (deferred to avoid React state update during render)
   if (typeof window !== 'undefined') {
     setTimeout(() => {
@@ -670,15 +722,27 @@ export const createChallenge = (challenge: Omit<Challenge, 'id' | 'createdAt' | 
   return newChallenge;
 };
 
-export const acceptChallenge = (challengeId: string, userId: string): boolean => {
-  const challenges = getAllChallenges();
-  const challengeIndex = challenges.findIndex(c => c.id === challengeId);
+export const acceptChallenge = async (challengeId: string, userId: string): Promise<boolean> => {
+  // First try to get from localStorage
+  let challenges = getAllChallenges();
+  let challengeIndex = challenges.findIndex(c => c.id === challengeId);
+  let challenge: Challenge | undefined;
   
-  if (challengeIndex === -1) return false;
+  if (challengeIndex === -1) {
+    // Not in localStorage, try Firestore
+    const firestoreChallenge = await getChallengeFromFirestore(challengeId);
+    if (!firestoreChallenge) return false;
+    challenge = firestoreChallenge;
+    // Add to localStorage
+    challenges.push(challenge);
+    challengeIndex = challenges.length - 1;
+  } else {
+    challenge = challenges[challengeIndex];
+  }
   
-  const challenge = challenges[challengeIndex];
+  if (!challenge) return false;
+  
   const opponentIndex = challenge.opponents.findIndex(o => o.userId === userId);
-  
   if (opponentIndex === -1) return false;
   
   challenge.opponents[opponentIndex].status = 'accepted';
@@ -691,6 +755,12 @@ export const acceptChallenge = (challengeId: string, userId: string): boolean =>
   
   challenges[challengeIndex] = challenge;
   localStorage.setItem('challenges', JSON.stringify(challenges));
+  
+  // Update Firestore
+  saveChallengeToFirestore(challenge).catch(err => {
+    console.error('Failed to update challenge in Firestore:', err);
+  });
+  
   return true;
 };
 

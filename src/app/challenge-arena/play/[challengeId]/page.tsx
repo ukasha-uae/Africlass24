@@ -25,6 +25,7 @@ import {
   createOrUpdatePlayer,
   submitChallengeAnswers,
   completeChallenge,
+  acceptChallenge,
   Challenge,
   GameQuestion,
   Player,
@@ -81,12 +82,32 @@ export default function QuizBattlePage() {
   useEffect(() => {
     // Use mock user ID for testing
     const userId = user?.uid || 'test-user-1';
-    const challengeData = getChallenge(challengeId);
-    if (!challengeData) {
-      router.push('/challenge-arena');
-      return;
-    }
-    setChallenge(challengeData);
+    
+    // getChallenge is now async, so we need to handle it properly
+    const loadChallenge = async () => {
+      const challengeData = await getChallenge(challengeId);
+      if (!challengeData) {
+        router.push('/challenge-arena');
+        return;
+      }
+      setChallenge(challengeData);
+      
+      // Check if user is the opponent and challenge is pending
+      if (challengeData.status === 'pending' && challengeData.opponents.some(o => o.userId === userId && o.status === 'invited')) {
+        // Show accept button for opponent
+        setGamePhase('waiting');
+      } else if (challengeData.status === 'pending') {
+        setGamePhase('waiting');
+      } else {
+        setGamePhase('playing');
+        // Track start time for first question
+        if (challengeData.questions.length > 0) {
+          setQuestionStartTimes({ [challengeData.questions[0].id]: Date.now() });
+        }
+      }
+    };
+    
+    loadChallenge();
     
     // Get or create player profile
     let playerProfile = getPlayerProfile(userId);
@@ -108,17 +129,7 @@ export default function QuizBattlePage() {
       });
     }
     setPlayer(playerProfile);
-    
-    if (challengeData.status === 'pending') {
-      setGamePhase('waiting');
-    } else {
-      setGamePhase('playing');
-      // Track start time for first question
-      if (challengeData.questions.length > 0) {
-        setQuestionStartTimes({ [challengeData.questions[0].id]: Date.now() });
-      }
-    }
-  }, [challengeId, user, router]);
+    }, [challengeId, user, router]);
 
   // Reset selected answer when question changes - with explicit null assignment for mobile
   useEffect(() => {
@@ -373,6 +384,27 @@ export default function QuizBattlePage() {
   }
 
   if (gamePhase === 'waiting') {
+    const userId = user?.uid || 'test-user-1';
+    const isCreator = challenge?.creatorId === userId;
+    const opponent = challenge?.opponents.find(o => o.userId === userId);
+    const isInvitedOpponent = opponent?.status === 'invited';
+    
+    const handleAcceptChallenge = async () => {
+      if (!challenge) return;
+      const success = await acceptChallenge(challenge.id, userId);
+      if (success) {
+        toast({ title: 'Challenge Accepted!', description: 'Get ready to battle!' });
+        setGamePhase('playing');
+        // Reload challenge to get updated status
+        const updatedChallenge = await getChallenge(challenge.id);
+        if (updatedChallenge) {
+          setChallenge(updatedChallenge);
+        }
+      } else {
+        toast({ title: 'Error', description: 'Failed to accept challenge', variant: 'destructive' });
+      }
+    };
+    
     return (
       <div className="container mx-auto p-6 flex flex-col items-center justify-center min-h-[60vh] text-center">
         <div className="mb-8 relative">
@@ -382,40 +414,53 @@ export default function QuizBattlePage() {
           </div>
         </div>
         
-        <h1 className="text-3xl font-bold mb-2">Waiting for Opponent</h1>
-        <p className="text-muted-foreground mb-8 max-w-md">
-          We've sent the challenge invitation. The game will start as soon as your opponent accepts.
-        </p>
-
-        <div className="grid grid-cols-2 gap-8 mb-8 w-full max-w-md">
-          <div className="flex flex-col items-center">
-            <Avatar className="h-20 w-20 border-4 border-primary mb-3">
-              <AvatarFallback>{player.userName.substring(0, 2).toUpperCase()}</AvatarFallback>
-            </Avatar>
-            <p className="font-bold">{player.userName}</p>
-            <Badge variant="outline" className="mt-1">Ready</Badge>
-          </div>
-
-          <div className="flex flex-col items-center">
-            <div className="h-20 w-20 rounded-full border-4 border-dashed border-muted-foreground flex items-center justify-center mb-3 bg-muted/30">
-              <Users className="h-8 w-8 text-muted-foreground" />
+        {isInvitedOpponent ? (
+          <>
+            <h1 className="text-3xl font-bold mb-2">Challenge Invitation</h1>
+            <p className="text-muted-foreground mb-8 max-w-md">
+              {challenge?.creatorName} from {challenge?.creatorSchool} has challenged you to a {challenge?.subject} duel!
+            </p>
+            <div className="flex gap-4">
+              <Button variant="outline" onClick={() => router.push('/challenge-arena')}>
+                Decline
+              </Button>
+              <Button onClick={handleAcceptChallenge} size="lg">
+                Accept Challenge
+              </Button>
             </div>
-            <p className="font-bold text-muted-foreground">Opponent</p>
-            <Badge variant="secondary" className="mt-1 animate-pulse">Waiting...</Badge>
-          </div>
-        </div>
+          </>
+        ) : (
+          <>
+            <h1 className="text-3xl font-bold mb-2">Waiting for Opponent</h1>
+            <p className="text-muted-foreground mb-8 max-w-md">
+              We've sent the challenge invitation. The game will start as soon as your opponent accepts.
+            </p>
 
-        <div className="flex gap-4">
-          <Button variant="outline" onClick={() => router.push('/challenge-arena')}>
-            Cancel Challenge
-          </Button>
-          <Button onClick={() => {
-            // For demo purposes, simulate opponent accepting
-            setGamePhase('playing');
-          }}>
-            Start Anyway (Demo)
-          </Button>
-        </div>
+            <div className="grid grid-cols-2 gap-8 mb-8 w-full max-w-md">
+              <div className="flex flex-col items-center">
+                <Avatar className="h-20 w-20 border-4 border-primary mb-3">
+                  <AvatarFallback>{player?.userName.substring(0, 2).toUpperCase()}</AvatarFallback>
+                </Avatar>
+                <p className="font-bold">{player?.userName}</p>
+                <Badge variant="outline" className="mt-1">Ready</Badge>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <div className="h-20 w-20 rounded-full border-4 border-dashed border-muted-foreground flex items-center justify-center mb-3 bg-muted/30">
+                  <Users className="h-8 w-8 text-muted-foreground" />
+                </div>
+                <p className="font-bold text-muted-foreground">Opponent</p>
+                <Badge variant="secondary" className="mt-1 animate-pulse">Waiting...</Badge>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <Button variant="outline" onClick={() => router.push('/challenge-arena')}>
+                Cancel Challenge
+              </Button>
+            </div>
+          </>
+        )}
       </div>
     );
   }

@@ -18,6 +18,23 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    // Challenges - accessible to creator and opponents
+    match /challenges/{challengeId} {
+      // Allow read if user is creator or opponent
+      allow read: if request.auth != null && (
+        resource.data.creatorId == request.auth.uid ||
+        request.auth.uid in resource.data.opponents[].userId
+      );
+      // Allow create if user is authenticated
+      allow create: if request.auth != null;
+      // Allow update if user is creator or opponent
+      allow update: if request.auth != null && (
+        resource.data.creatorId == request.auth.uid ||
+        request.auth.uid in resource.data.opponents[].userId
+      );
+      allow delete: if false;
+    }
+
     // Per-user notifications (challenge invites, system messages, etc.)
     match /users/{userId}/notifications/{notificationId} {
       // Only the owner can read their own notifications
