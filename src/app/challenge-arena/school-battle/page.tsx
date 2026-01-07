@@ -35,8 +35,6 @@ import { useToast } from '@/hooks/use-toast';
 import { useFirebase } from '@/firebase/provider';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { FEATURE_FLAGS } from '@/lib/featureFlags';
-import { isPremiumUser, hasPremiumFeature } from '@/lib/monetization';
-import PremiumUnlockModal from '@/components/premium/PremiumUnlockModal';
 
 // Get subjects based on education level
 const getSubjectsForLevel = (level: 'Primary' | 'JHS' | 'SHS') => {
@@ -52,7 +50,7 @@ const getSubjectsForLevel = (level: 'Primary' | 'JHS' | 'SHS') => {
       // General Arts
       'Literature in English', 'History', 'Geography', 'Economics', 'Government',
       // Business
-      'Accounting', 'Business Management', 'Cost Accounting'
+      'Accounting', 'Business Management', 'Cost Accounting',
       // Visual Arts
       'General Knowledge in Art', 'Textiles', 'Graphic Design',
       // Home Economics
@@ -74,20 +72,12 @@ export default function SchoolBattlePage() {
   const { country } = useLocalization();
   const { user } = useFirebase();
   
-  // Check premium access
-  const userId = user?.uid || 'test-user-1';
-  const isPremium = isPremiumUser(userId);
-  const hasSchoolAccess = hasPremiumFeature(userId, 'school_battle');
-  const [showUnlockModal, setShowUnlockModal] = useState(false);
-  
-  // V1 Route Guard: Check feature flag and premium access
+  // V1 Route Guard: Check feature flag (premium check removed for V1)
   useEffect(() => {
     if (!FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaSchool) {
       router.replace('/challenge-arena/practice');
-    } else if (!isPremium && !hasSchoolAccess) {
-      setShowUnlockModal(true);
     }
-  }, [router, isPremium, hasSchoolAccess, userId]);
+  }, [router]);
   
   // Don't render if feature is disabled
   if (!FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaSchool) {
@@ -533,18 +523,6 @@ export default function SchoolBattlePage() {
         </CardContent>
       </Card>
 
-      {/* Premium Unlock Modal */}
-      <PremiumUnlockModal
-        open={showUnlockModal}
-        onClose={() => {
-          setShowUnlockModal(false);
-          router.push('/challenge-arena/ghana');
-        }}
-        feature="school_battle"
-        onSuccess={() => {
-          setShowUnlockModal(false);
-        }}
-      />
     </div>
   );
 }

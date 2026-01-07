@@ -26,27 +26,17 @@ import type { Player } from '@/lib/challenge';
 import { useFirebase } from '@/firebase/provider';
 import { useToast } from '@/hooks/use-toast';
 import { FEATURE_FLAGS } from '@/lib/featureFlags';
-import { isPremiumUser, hasPremiumFeature } from '@/lib/monetization';
-import PremiumUnlockModal from '@/components/premium/PremiumUnlockModal';
 
 export default function BossBattlePage() {
   const router = useRouter();
   const { user } = useFirebase();
   
-  // Check premium access
-  const userId = user?.uid || 'test-user-1';
-  const isPremium = isPremiumUser(userId);
-  const hasBossAccess = hasPremiumFeature(userId, 'boss_battle');
-  const [showUnlockModal, setShowUnlockModal] = useState(false);
-  
-  // V1 Route Guard: Check feature flag and premium access
+  // V1 Route Guard: Check feature flag (premium check removed for V1)
   useEffect(() => {
     if (!FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaBoss) {
       router.replace('/challenge-arena/practice');
-    } else if (!isPremium && !hasBossAccess) {
-      setShowUnlockModal(true);
     }
-  }, [router, isPremium, hasBossAccess]);
+  }, [router]);
   
   // Don't render if feature is disabled
   if (!FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaBoss) {
@@ -293,18 +283,6 @@ export default function BossBattlePage() {
         </div>
       )}
 
-      {/* Premium Unlock Modal */}
-      <PremiumUnlockModal
-        open={showUnlockModal}
-        onClose={() => {
-          setShowUnlockModal(false);
-          router.push('/challenge-arena/ghana');
-        }}
-        feature="boss_battle"
-        onSuccess={() => {
-          setShowUnlockModal(false);
-        }}
-      />
     </div>
   );
 }

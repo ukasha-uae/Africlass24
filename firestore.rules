@@ -11,7 +11,9 @@ service cloud.firestore {
     }
     
     match /students/{studentId} {
-      allow read: if request.auth != null && request.auth.uid == studentId;
+      // Allow authenticated users to read other students' profiles for friend challenges
+      allow read: if request.auth != null;
+      // Only allow users to create/update their own profile
       allow create, update: if request.auth != null && request.auth.uid == studentId;
       allow delete: if false;
     }
