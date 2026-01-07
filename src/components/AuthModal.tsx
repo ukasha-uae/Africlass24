@@ -42,19 +42,29 @@ export default function AuthModal() {
         toast({ title: 'Account created', description: 'Your anonymous session is now linked to your email.' });
       } else {
         await initiateEmailSignUp(auth, email, password);
+        // Successful sign-up - welcome as new user
+        toast({ 
+          title: 'Account created successfully!', 
+          description: 'Welcome! Your account has been created. Please sign in to continue.',
+          duration: 5000
+        });
+        setActiveTab('sign-in');
+        setPassword('');
       }
     } catch (err: any) {
       // Only log unexpected errors, not email-already-in-use
       if (err?.code !== 'auth/email-already-in-use') {
         console.error('Sign up error', err);
       }
-      // If email already in use, show message prompting sign in
+      // If email already in use, welcome them and ask to sign in (no red warning)
       if (err?.code === 'auth/email-already-in-use') {
-        toast({ title: 'Email already in use', description: 'This email is already registered. Please sign in instead.', variant: 'destructive' });
+        toast({ 
+          title: 'Welcome!', 
+          description: 'Your account is ready. Please sign in to continue.',
+          duration: 5000
+        });
         setActiveTab('sign-in');
         setPassword('');
-        // Optionally focus email input if you use a ref
-        // if (emailInputRef.current) emailInputRef.current.focus();
       } else {
         toast({ title: 'Sign-up failed', description: err?.message || String(err), variant: 'destructive' });
       }
@@ -70,7 +80,11 @@ export default function AuthModal() {
     setLoading(true);
     try {
       await initiateEmailSignIn(auth, email, password);
-      toast({ title: 'Signed in successfully', description: 'Welcome back!' });
+      toast({ 
+        title: 'Signed in successfully', 
+        description: 'Welcome! You are now signed in.',
+        duration: 3000
+      });
       setShowForgotPassword(false);
       setResetEmailSent(false);
     } catch (err: any) {
