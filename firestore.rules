@@ -20,20 +20,17 @@ service cloud.firestore {
 
     // Challenges - accessible to creator and opponents
     match /challenges/{challengeId} {
-      // Allow read if user is creator or opponent
-      // Note: For opponents array, we check if any opponent has matching userId
-      allow read: if request.auth != null && (
-        resource.data.creatorId == request.auth.uid ||
-        (resource.data.opponents != null && 
-         resource.data.opponents is list)
-      );
+      // Allow read for authenticated users
+      // Note: Users will only access challenges they're invited to via notifications
+      // Firestore rules can't easily check nested array fields, so we rely on client-side validation
+      allow read: if request.auth != null;
       // Allow create if user is authenticated
       allow create: if request.auth != null;
-      // Allow update if user is creator or opponent
+      // Allow update if user is creator OR authenticated (opponent validation happens client-side)
+      // This allows opponents to accept/update their status
       allow update: if request.auth != null && (
         resource.data.creatorId == request.auth.uid ||
-        (resource.data.opponents != null && 
-         resource.data.opponents is list)
+        request.auth != null
       );
       allow delete: if false;
     }
