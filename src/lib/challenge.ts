@@ -175,12 +175,14 @@ export interface PlayerAnswer {
 // ============================================
 
 type SHSClassLevel = 'SHS 1' | 'SHS 2' | 'SHS 3';
+type JHSClassLevel = 'JHS 1' | 'JHS 2' | 'JHS 3';
+type ClassLevelForPromotion = SHSClassLevel | JHSClassLevel;
 
 interface SubjectMasteryRecord {
   userId: string;
-  level: EducationLevel;      // We will only use 'SHS' for auto-promotion
+  level: EducationLevel;      // 'SHS' or 'JHS' for auto-promotion
   subject: string;
-  classLevel: SHSClassLevel;  // SHS 1, SHS 2, SHS 3
+  classLevel: ClassLevelForPromotion;  // SHS 1/2/3 or JHS 1/2/3
   totalQuestions: number;     // total questions answered at this classLevel
   totalCorrect: number;       // number answered correctly
   challengesPlayed: number;   // how many challenges contributed
@@ -216,27 +218,31 @@ function getSubjectMasteryKey(
   userId: string,
   level: EducationLevel,
   subject: string,
-  classLevel: SHSClassLevel
+  classLevel: ClassLevelForPromotion
 ): string {
   return `${userId}|${level}|${subject}|${classLevel}`;
 }
 
 /**
  * Update local mastery stats after a challenge result.
- * Only used for SHS levels to drive auto-promotion between SHS 1/2/3.
+ * Used for SHS and JHS levels to drive auto-promotion between class levels (1/2/3).
  */
 function updateSubjectMasteryFromResult(
   challenge: Challenge,
   result: GameResult
 ): void {
   if (typeof window === 'undefined') return;
-  if (challenge.level !== 'SHS') return;
+  if (challenge.level !== 'SHS' && challenge.level !== 'JHS') return;
 
   // Only auto-promote for real students, not AI bosses
   if (!result.userId || result.userId.startsWith('boss-')) return;
 
-  const classLevel = challenge.difficulty as SHSClassLevel;
-  if (classLevel !== 'SHS 1' && classLevel !== 'SHS 2' && classLevel !== 'SHS 3') return;
+  // Check if difficulty is a valid class level for this education level
+  const classLevel = challenge.difficulty as ClassLevelForPromotion;
+  const isValidSHS = challenge.level === 'SHS' && (classLevel === 'SHS 1' || classLevel === 'SHS 2' || classLevel === 'SHS 3');
+  const isValidJHS = challenge.level === 'JHS' && (classLevel === 'JHS 1' || classLevel === 'JHS 2' || classLevel === 'JHS 3');
+  
+  if (!isValidSHS && !isValidJHS) return;
 
   const questionsAnswered = result.answers?.length || 0;
   if (questionsAnswered === 0) return;
@@ -287,6 +293,49 @@ function getEffectiveSHSClassLevel(
     if (currentLevel !== level) continue;
 
     const key = getSubjectMasteryKey(userId, 'SHS', subject, level);
+    const record = state[key];
+    if (!record) break;
+
+    if (record.challengesPlayed >= 5 && record.totalQuestions > 0) {
+      const accuracy = record.totalCorrect / record.totalQuestions;
+      if (accuracy >= 0.8) {
+        // Promote to next level
+        currentLevel = classOrder[i + 1];
+        continue;
+      }
+    }
+    break;
+  }
+
+  return currentLevel;
+}
+
+/**
+ * Decide which JHS class level to actually use when generating questions,
+ * based on local mastery. We only ever promote upwards (1 -> 2 -> 3).
+ */
+function getEffectiveJHSClassLevel(
+  userId: string,
+  subject: string,
+  requestedClassLevel: string
+): string {
+  if (requestedClassLevel !== 'JHS 1' && requestedClassLevel !== 'JHS 2' && requestedClassLevel !== 'JHS 3') {
+    return requestedClassLevel;
+  }
+  if (typeof window === 'undefined') return requestedClassLevel;
+
+  const state = getSubjectMasteryState();
+  const classOrder: JHSClassLevel[] = ['JHS 1', 'JHS 2', 'JHS 3'];
+  let currentLevel = requestedClassLevel as JHSClassLevel;
+
+  // Simple promotion rule:
+  // - at least 5 challenges played at that classLevel
+  // - accuracy (totalCorrect / totalQuestions) >= 80%
+  for (let i = 0; i < classOrder.length - 1; i++) {
+    const level = classOrder[i];
+    if (currentLevel !== level) continue;
+
+    const key = getSubjectMasteryKey(userId, 'JHS', subject, level);
     const record = state[key];
     if (!record) break;
 
@@ -1036,11 +1085,13 @@ const generateGameQuestions = (
   }
   if (subject === 'social') mappedSubject = 'Social Studies';
 
-  // For SHS, allow local auto-promotion between SHS 1/2/3 based on mastery
-  const effectiveDifficulty =
-    level === 'SHS'
-      ? getEffectiveSHSClassLevel(userId, mappedSubject, difficulty)
-      : difficulty;
+  // For SHS and JHS, allow local auto-promotion between class levels (1/2/3) based on mastery
+  let effectiveDifficulty = difficulty;
+  if (level === 'SHS') {
+    effectiveDifficulty = getEffectiveSHSClassLevel(userId, mappedSubject, difficulty);
+  } else if (level === 'JHS') {
+    effectiveDifficulty = getEffectiveJHSClassLevel(userId, mappedSubject, difficulty);
+  }
 
   // STRICT LEVEL FILTERING - Use the new unified challenge questions system
   // Each level ONLY gets questions from their own level
