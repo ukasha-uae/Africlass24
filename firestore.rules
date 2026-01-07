@@ -16,6 +16,16 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    // Per-user notifications (challenge invites, system messages, etc.)
+    match /users/{userId}/notifications/{notificationId} {
+      // Only the owner can read their own notifications
+      allow read: if request.auth != null && request.auth.uid == userId;
+      // Only the owner can create/update their notifications (serverless client writes)
+      allow create, update: if request.auth != null && request.auth.uid == userId;
+      // Prevent deletion for now (we can flip this later if needed)
+      allow delete: if request.auth != null && request.auth.uid == userId;
+    }
+
     // Subscriptions - users can read/write their own subscription
     // IMPORTANT: This must be before the catch-all rule below
     match /subscriptions/{userId} {

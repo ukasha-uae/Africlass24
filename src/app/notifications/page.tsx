@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useMemo, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -13,56 +13,57 @@ import {
   Swords,
   Info
 } from 'lucide-react';
-import { 
-  getInAppNotifications, 
-  markNotificationAsRead, 
-  markAllNotificationsAsRead,
-  deleteNotification,
-  InAppNotification 
-} from '@/lib/in-app-notifications';
+import { useFirebase } from '@/firebase/provider';
+import { collection } from 'firebase/firestore';
+import { useCollection } from '@/firebase';
+import type { WithId } from '@/firebase/use-collection';
 import { formatDistanceToNow } from 'date-fns';
 import { useRouter } from 'next/navigation';
 import NotificationSettings from '@/components/NotificationSettings';
 
 export default function NotificationsPage() {
-  const [notifications, setNotifications] = useState<InAppNotification[]>([]);
+  const { firestore, user } = useFirebase();
+  const [notifications, setNotifications] = useState<WithId<FirestoreNotification>[]>([]);
   const [filter, setFilter] = useState('all');
   const router = useRouter();
-  const userId = 'user-1'; // Hardcoded for now
 
-  const loadNotifications = () => {
-    const data = getInAppNotifications(userId);
-    setNotifications(data);
+  type FirestoreNotification = {
+    type: string;
+    title: string;
+    message: string;
+    data?: any;
+    actionUrl?: string;
+    read: boolean;
+    createdAt?: any;
   };
 
-  useEffect(() => {
-    loadNotifications();
-    
-    const handleUpdate = () => loadNotifications();
-    window.addEventListener('notifications-updated', handleUpdate);
-    
-    return () => {
-      window.removeEventListener('notifications-updated', handleUpdate);
-    };
-  }, []);
+  const notifQuery = useMemo(() => {
+    if (!firestore || !user) return null;
+    return collection(firestore, 'users', user.uid, 'notifications');
+  }, [firestore, user]);
+
+  const { data } = useCollection<FirestoreNotification>(notifQuery as any);
+
+  if (data && data !== notifications) {
+    setNotifications(data as WithId<FirestoreNotification>[]);
+  }
 
   const handleMarkAsRead = (id: string) => {
-    markNotificationAsRead(id);
-    loadNotifications();
+    // Mark-as-read is not wired yet for Firestore; can be added via markUserNotificationAsRead
+    void id;
   };
 
   const handleMarkAllRead = () => {
-    markAllNotificationsAsRead(userId);
-    loadNotifications();
+    // Bulk mark-all-read can be added later
   };
 
   const handleDelete = (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
-    deleteNotification(id);
-    loadNotifications();
+    // Delete can be wired via deleteUserNotification
+    void id;
   };
 
-  const handleNotificationClick = (notification: InAppNotification) => {
+  const handleNotificationClick = (notification: WithId<FirestoreNotification>) => {
     if (!notification.read) {
       handleMarkAsRead(notification.id);
     }

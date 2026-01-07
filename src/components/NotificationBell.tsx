@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Bell, Check, Trash2, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -10,67 +10,78 @@ import {
 } from '@/components/ui/popover';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Badge } from '@/components/ui/badge';
-import { 
-  getInAppNotifications, 
-  getUnreadNotificationCount, 
-  markNotificationAsRead, 
-  markAllNotificationsAsRead,
-  deleteNotification,
-  InAppNotification 
-} from '@/lib/in-app-notifications';
+import { useFirebase } from '@/firebase/provider';
+import { collection } from 'firebase/firestore';
+import { useCollection } from '@/firebase';
+import type { WithId } from '@/firebase/use-collection';
+import { showNotification } from '@/lib/notifications';
 import Link from 'next/link';
 import { formatDistanceToNow } from 'date-fns';
 import { useRouter } from 'next/navigation';
 
 export default function NotificationBell() {
-  const [notifications, setNotifications] = useState<InAppNotification[]>([]);
+  const { firestore, user } = useFirebase();
   const [unreadCount, setUnreadCount] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
-  const userId = 'user-1'; // Hardcoded for now
 
-  const loadNotifications = () => {
-    const data = getInAppNotifications(userId);
-    setNotifications(data);
-    setUnreadCount(data.filter(n => !n.read).length);
+  type FirestoreNotification = {
+    type: string;
+    title: string;
+    message: string;
+    data?: any;
+    actionUrl?: string;
+    read: boolean;
+    createdAt?: any;
   };
+
+  const notifQuery = useMemo(() => {
+    if (!firestore || !user) return null;
+    return collection(firestore, 'users', user.uid, 'notifications');
+  }, [firestore, user]);
+
+  const { data: notifications } = useCollection<FirestoreNotification>(notifQuery as any);
+
+  const prevIdsRef = useRef<string[]>([]);
 
   useEffect(() => {
-    loadNotifications();
-
-    // Listen for updates
-    const handleUpdate = () => loadNotifications();
-    window.addEventListener('notifications-updated', handleUpdate);
-    
-    // Poll for new notifications every minute
-    const interval = setInterval(loadNotifications, 60000);
-
-    return () => {
-      window.removeEventListener('notifications-updated', handleUpdate);
-      clearInterval(interval);
-    };
-  }, []);
-
-  const handleMarkAsRead = (id: string) => {
-    markNotificationAsRead(id);
-    loadNotifications();
-  };
-
-  const handleMarkAllRead = () => {
-    markAllNotificationsAsRead(userId);
-    loadNotifications();
-  };
-
-  const handleDelete = (id: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-    deleteNotification(id);
-    loadNotifications();
-  };
-
-  const handleNotificationClick = (notification: InAppNotification) => {
-    if (!notification.read) {
-      handleMarkAsRead(notification.id);
+    if (!notifications) {
+      setUnreadCount(0);
+      return;
     }
+
+    const unread = notifications.filter(n => !n.read);
+    setUnreadCount(unread.length);
+
+    // Detect new notifications (by id) since last render
+    const currentIds = notifications.map(n => (n as WithId<FirestoreNotification>).id);
+    const prevIds = prevIdsRef.current;
+
+    const newIds = currentIds.filter(id => !prevIds.includes(id));
+    if (newIds.length > 0) {
+      // For each new unread challenge_invite, fire a browser notification
+      notifications.forEach(n => {
+        const notif = n as WithId<FirestoreNotification>;
+        if (
+          newIds.includes(notif.id) &&
+          !notif.read &&
+          notif.type === 'challenge_invite'
+        ) {
+          // This will only show if user has granted permission & enabled notifications
+          showNotification(notif.title, notif.message, 'quiz', {
+            actionUrl: notif.actionUrl,
+            challengeId: notif.data?.challengeId,
+          }).catch(() => {
+            // Best-effort only; ignore errors
+          });
+        }
+      });
+    }
+
+    prevIdsRef.current = currentIds;
+  }, [notifications]);
+
+  const handleNotificationClick = (notification: WithId<FirestoreNotification>) => {
     setIsOpen(false);
     
     if (notification.actionUrl) {
@@ -104,7 +115,7 @@ export default function NotificationBell() {
           )}
         </div>
         <ScrollArea className="h-[300px]">
-          {notifications.length === 0 ? (
+          {!notifications || notifications.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full p-8 text-center text-muted-foreground">
               <Bell className="h-8 w-8 mb-2 opacity-20" />
               <p className="text-sm">No notifications yet</p>

@@ -2,10 +2,10 @@
 import { getSchoolById } from './schools';
 import { QuestionDifficulty } from './bece-questions';
 import { getChallengeQuestions, getAvailableSubjects, type EducationLevel } from './challenge-questions';
-import { createInAppNotification } from './in-app-notifications';
 import { calculateXP, calculateCoins, checkAchievements } from './gamification';
 import { getCoinMultiplier, getQuestionLimit } from './monetization';
 import { trackQuestionUsage } from './analytics';
+import { createUserNotification } from './realtime-notifications';
 
 export interface Player {
   userId: string;
@@ -106,8 +106,13 @@ export const checkGameQuestionAnswer = (question: GameQuestion, answer: any): bo
   }
 
   if (question.type === 'truefalse') {
-    const correctAnswer = question.correctAnswer === 'true' || question.correctAnswer === true;
-    return answer === correctAnswer;
+    const correctAnswer =
+      String(question.correctAnswer).toLowerCase().trim() === 'true';
+    const userBool =
+      typeof answer === 'boolean'
+        ? answer
+        : String(answer).toLowerCase().trim() === 'true';
+    return userBool === correctAnswer;
   }
 
   if (question.type === 'fillblank') {
@@ -731,7 +736,7 @@ const generateSchoolAIResults = (challenge: Challenge, aiUserId: string): void =
   
   const answers: PlayerAnswer[] = challenge.questions.map(q => {
     const isCorrect = Math.random() < accuracyRate;
-    let answer = q.correctAnswer;
+    let answer: string | number | string[] = q.correctAnswer;
     if (!isCorrect && q.options) {
       const wrongOptions = q.options.filter(o => o !== q.correctAnswer);
       answer = wrongOptions[Math.floor(Math.random() * wrongOptions.length)] || q.correctAnswer;
@@ -739,7 +744,7 @@ const generateSchoolAIResults = (challenge: Challenge, aiUserId: string): void =
 
     return {
       questionId: q.id,
-      answer,
+      answer: String(Array.isArray(answer) ? answer.join(',') : answer),
       isCorrect,
       timeSpent: 4000 + Math.random() * 3000, // 4-7 seconds per question
       points: isCorrect ? q.points : 0
@@ -1087,7 +1092,7 @@ const generateAIResults = (challenge: Challenge, bossId: string): void => {
   const answers: PlayerAnswer[] = challenge.questions.map(q => {
     const isCorrect = Math.random() < boss.accuracy;
     // If correct, pick correct answer. If wrong, pick random wrong answer.
-    let answer = q.correctAnswer;
+    let answer: string | number | string[] = q.correctAnswer;
     if (!isCorrect && q.options) {
       const wrongOptions = q.options.filter(o => o !== q.correctAnswer);
       answer = wrongOptions[Math.floor(Math.random() * wrongOptions.length)];
@@ -1095,7 +1100,7 @@ const generateAIResults = (challenge: Challenge, bossId: string): void => {
 
     return {
       questionId: q.id,
-      answer,
+      answer: String(Array.isArray(answer) ? answer.join(',') : answer),
       isCorrect,
       timeSpent: 5000 * boss.speedFactor, // Simulated time per question
       points: isCorrect ? q.points : 0
@@ -1306,18 +1311,18 @@ const generateGameQuestions = (
     }
     
     // Use year from question data first, fallback to extracted from ID
-    const finalYear = q.year || extractedYear;
+    const finalYear = (q as any).year || extractedYear;
     
     // Determine paper: use explicit paper field, then extracted from ID, then infer from type
     let finalPaper: 1 | 2 | undefined;
-    if (q.paper) {
-      finalPaper = q.paper;
+    if ((q as any).paper) {
+      finalPaper = (q as any).paper;
     } else if (extractedPaper) {
       finalPaper = extractedPaper;
-    } else if (q.type === 'mcq' || q.type === 'true-false' || q.type === 'fill-blank') {
+    } else if ((q as any).type === 'mcq' || (q as any).type === 'true-false' || (q as any).type === 'fill-blank') {
       // MCQs, True/False, and Fill-blank are typically Paper 1
       finalPaper = 1;
-    } else if (q.type === 'essay' || q.type === 'short-answer') {
+    } else if ((q as any).type === 'essay' || (q as any).type === 'short-answer') {
       // Essay and Short Answer are typically Paper 2
       finalPaper = 2;
     }
@@ -1328,10 +1333,10 @@ const generateGameQuestions = (
       points,
       explanation: q.explanation || '',
       source: level === 'JHS' ? 'bece' : 'wassce' as 'bece' | 'practice',
-      year: finalYear || undefined, // Use actual year from question, or extract from ID
+      year: (q as any).year || finalYear || undefined, // Use actual year from question, or extract from ID
       questionNumber: questionNumber || undefined, // Keep for backward compatibility
       paper: finalPaper, // Paper 1 or 2 (inferred from type if not explicit)
-      verifiedQuestionNumber: q.verifiedQuestionNumber || undefined, // Only set when verified against actual papers
+      verifiedQuestionNumber: (q as any).verifiedQuestionNumber || undefined, // Only set when verified against actual papers
     };
 
     // Use pre-calculated question type for this index
@@ -1445,8 +1450,7 @@ const generateGameQuestions = (
 // Notifications
 
 const createChallengeNotification = (challenge: Challenge, recipientId: string): void => {
-  createInAppNotification({
-    userId: recipientId,
+  createUserNotification(recipientId, {
     type: 'challenge_invite',
     title: 'New Challenge Invitation',
     message: `${challenge.creatorName} from ${challenge.creatorSchool} has challenged you to a ${challenge.subject} duel!`,
@@ -1458,6 +1462,10 @@ const createChallengeNotification = (challenge: Challenge, recipientId: string):
       scheduledTime: challenge.scheduledTime,
     },
     actionUrl: `/challenge-arena/play/${challenge.id}`
+  }).catch(err => {
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('[Challenge Notification] Failed to create notification', err);
+    }
   });
 };
 
@@ -1602,6 +1610,7 @@ export const initializeChallengeData = (): void => {
         totalGames: 22,
         winStreak: 3,
         highestStreak: 8,
+        coins: 0,
         xp: 2500,
         achievements: ['first_blood', 'warrior', 'rising_star'],
         level: 'JHS'
@@ -1617,6 +1626,7 @@ export const initializeChallengeData = (): void => {
         totalGames: 21,
         winStreak: 0,
         highestStreak: 5,
+        coins: 0,
         xp: 1800,
         achievements: ['first_blood', 'warrior'],
         level: 'JHS'
@@ -1632,6 +1642,7 @@ export const initializeChallengeData = (): void => {
         totalGames: 30,
         winStreak: 8,
         highestStreak: 12,
+        coins: 0,
         xp: 4500,
         achievements: ['first_blood', 'warrior', 'rising_star', 'on_fire', 'unstoppable'],
         level: 'SHS'
@@ -1647,6 +1658,7 @@ export const initializeChallengeData = (): void => {
         totalGames: 22,
         winStreak: 2,
         highestStreak: 6,
+        coins: 0,
         xp: 3200,
         achievements: ['first_blood', 'warrior', 'rising_star'],
         level: 'SHS'
@@ -1662,6 +1674,7 @@ export const initializeChallengeData = (): void => {
         totalGames: 26,
         winStreak: 4,
         highestStreak: 9,
+        coins: 0,
         xp: 3800,
         achievements: ['first_blood', 'warrior', 'rising_star', 'on_fire'],
         level: 'JHS'
@@ -1677,6 +1690,7 @@ export const initializeChallengeData = (): void => {
         totalGames: 20,
         winStreak: 1,
         highestStreak: 4,
+        coins: 0,
         xp: 1500,
         achievements: ['first_blood', 'warrior'],
         level: 'SHS'
@@ -1692,6 +1706,7 @@ export const initializeChallengeData = (): void => {
         totalGames: 20,
         winStreak: 2,
         highestStreak: 5,
+        coins: 0,
         xp: 2100,
         achievements: ['first_blood', 'warrior', 'rising_star'],
         level: 'JHS'
@@ -1707,6 +1722,7 @@ export const initializeChallengeData = (): void => {
         totalGames: 20,
         winStreak: 0,
         highestStreak: 3,
+        coins: 0,
         xp: 1600,
         achievements: ['first_blood', 'warrior'],
         level: 'JHS'
