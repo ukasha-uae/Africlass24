@@ -595,6 +595,30 @@ export const updatePlayerStats = (
 
 // Challenge Management
 
+// Helper function to remove undefined values recursively
+function removeUndefinedValues(obj: any): any {
+  if (obj === null || obj === undefined) {
+    return null;
+  }
+  
+  if (Array.isArray(obj)) {
+    return obj.map(item => removeUndefinedValues(item)).filter(item => item !== undefined);
+  }
+  
+  if (typeof obj === 'object' && obj.constructor === Object) {
+    const cleaned: any = {};
+    Object.keys(obj).forEach(key => {
+      const value = obj[key];
+      if (value !== undefined) {
+        cleaned[key] = removeUndefinedValues(value);
+      }
+    });
+    return cleaned;
+  }
+  
+  return obj;
+}
+
 // Firestore helpers for challenges
 async function saveChallengeToFirestore(challenge: Challenge): Promise<void> {
   try {
@@ -602,19 +626,12 @@ async function saveChallengeToFirestore(challenge: Challenge): Promise<void> {
     if (!firestore) return;
     const challengeRef = doc(firestore, 'challenges', challenge.id);
     
-    // Remove undefined values - Firestore doesn't accept undefined
-    const challengeData: any = {};
-    Object.keys(challenge).forEach(key => {
-      const value = (challenge as any)[key];
-      if (value !== undefined) {
-        challengeData[key] = value;
-      }
+    // Remove all undefined values recursively - Firestore doesn't accept undefined
+    const challengeData = removeUndefinedValues({
+      ...challenge,
+      createdAt: challenge.createdAt || serverTimestamp(),
+      updatedAt: serverTimestamp(),
     });
-    
-    // Ensure required fields are set
-    challengeData.id = challenge.id;
-    challengeData.createdAt = challenge.createdAt || serverTimestamp();
-    challengeData.updatedAt = serverTimestamp();
     
     await setDoc(challengeRef, challengeData, { merge: true });
   } catch (error) {
