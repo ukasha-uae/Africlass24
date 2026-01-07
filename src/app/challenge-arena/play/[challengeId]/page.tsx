@@ -446,11 +446,25 @@ export default function QuizBattlePage() {
               </div>
 
               <div className="flex flex-col items-center">
-                <div className="h-20 w-20 rounded-full border-4 border-dashed border-muted-foreground flex items-center justify-center mb-3 bg-muted/30">
-                  <Users className="h-8 w-8 text-muted-foreground" />
-                </div>
-                <p className="font-bold text-muted-foreground">Opponent</p>
-                <Badge variant="secondary" className="mt-1 animate-pulse">Waiting...</Badge>
+                {challenge?.opponents && challenge.opponents.length > 0 && challenge.opponents[0].userName ? (
+                  <>
+                    <Avatar className="h-20 w-20 border-4 border-dashed border-muted-foreground mb-3 bg-muted/30">
+                      <AvatarFallback className="text-muted-foreground">
+                        {challenge.opponents[0].userName.substring(0, 2).toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                    <p className="font-bold text-muted-foreground">{challenge.opponents[0].userName}</p>
+                    <Badge variant="secondary" className="mt-1 animate-pulse">Waiting...</Badge>
+                  </>
+                ) : (
+                  <>
+                    <div className="h-20 w-20 rounded-full border-4 border-dashed border-muted-foreground flex items-center justify-center mb-3 bg-muted/30">
+                      <Users className="h-8 w-8 text-muted-foreground" />
+                    </div>
+                    <p className="font-bold text-muted-foreground">Opponent</p>
+                    <Badge variant="secondary" className="mt-1 animate-pulse">Waiting...</Badge>
+                  </>
+                )}
               </div>
             </div>
 

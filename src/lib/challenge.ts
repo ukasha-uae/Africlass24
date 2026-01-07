@@ -739,12 +739,16 @@ export const createChallenge = (challenge: Omit<Challenge, 'id' | 'createdAt' | 
   // Send notifications to opponents (deferred to avoid React state update during render)
   if (typeof window !== 'undefined') {
     setTimeout(() => {
-      challenge.opponents.forEach(opponent => {
+      console.log('[Challenge] Created challenge:', newChallenge.id, 'Opponents:', newChallenge.opponents);
+      newChallenge.opponents.forEach(opponent => {
         if (opponent.status === 'invited') {
-          createChallengeNotification(newChallenge, opponent.userId);
+          console.log('[Challenge] Sending notification to opponent:', opponent.userId, opponent.userName, opponent.school);
+          createChallengeNotification(newChallenge, opponent.userId).catch(err => {
+            console.error('[Challenge] Failed to send notification to', opponent.userId, err);
+          });
         }
       });
-    }, 0);
+    }, 100); // Small delay to ensure Firestore save completes
   }
   
   return newChallenge;
@@ -1547,24 +1551,29 @@ const generateGameQuestions = (
 
 // Notifications
 
-const createChallengeNotification = (challenge: Challenge, recipientId: string): void => {
-  createUserNotification(recipientId, {
-    type: 'challenge_invite',
-    title: 'New Challenge Invitation',
-    message: `${challenge.creatorName} from ${challenge.creatorSchool} has challenged you to a ${challenge.subject} duel!`,
-    data: {
-      challengeId: challenge.id,
-      from: challenge.creatorName,
-      fromSchool: challenge.creatorSchool,
-      subject: challenge.subject,
-      scheduledTime: challenge.scheduledTime,
-    },
-    actionUrl: `/challenge-arena/play/${challenge.id}`
-  }).catch(err => {
+const createChallengeNotification = async (challenge: Challenge, recipientId: string): Promise<void> => {
+  try {
+    console.log('[Challenge Notification] Creating notification for:', recipientId, 'Challenge:', challenge.id);
+    await createUserNotification(recipientId, {
+      type: 'challenge_invite',
+      title: 'New Challenge Invitation',
+      message: `${challenge.creatorName} from ${challenge.creatorSchool} has challenged you to a ${challenge.subject} duel!`,
+      data: {
+        challengeId: challenge.id,
+        from: challenge.creatorName,
+        fromSchool: challenge.creatorSchool,
+        subject: challenge.subject,
+        scheduledTime: challenge.scheduledTime,
+      },
+      actionUrl: `/challenge-arena/play/${challenge.id}`
+    });
+    console.log('[Challenge Notification] Notification created successfully for:', recipientId);
+  } catch (err) {
+    console.error('[Challenge Notification] Failed to create notification for', recipientId, err);
     if (process.env.NODE_ENV === 'development') {
-      console.warn('[Challenge Notification] Failed to create notification', err);
+      console.warn('[Challenge Notification] Error details:', err);
     }
-  });
+  }
 };
 
 export const getChallengeNotifications = (userId: string): any[] => {

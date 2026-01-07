@@ -162,7 +162,27 @@ export default function CreateChallengePage() {
     setLoading(true);
     try {
       const userId = user?.uid || 'test-user-1';
-      const currentUser = { id: userId, name: user?.displayName || user?.email || 'Test Player', school: 'My School' };
+      
+      // Get creator's real profile from Firestore
+      let creatorName = user?.displayName || user?.email?.split('@')[0] || 'Player';
+      let creatorSchool = 'Unknown School';
+      
+      if (firestore && user) {
+        try {
+          const { doc, getDoc } = await import('firebase/firestore');
+          const profileRef = doc(firestore, 'students', user.uid);
+          const profileSnap = await getDoc(profileRef);
+          if (profileSnap.exists()) {
+            const profileData = profileSnap.data();
+            creatorName = profileData.studentName || creatorName;
+            creatorSchool = profileData.schoolName || creatorSchool;
+          }
+        } catch (err) {
+          console.error('Failed to fetch creator profile:', err);
+        }
+      }
+      
+      const currentUser = { id: userId, name: creatorName, school: creatorSchool };
       const questionCount = formData.difficulty === 'easy' ? 5 : formData.difficulty === 'medium' ? 10 : 15;
       const timeLimit = formData.difficulty === 'easy' ? 30 : formData.difficulty === 'medium' ? 45 : 60;
       
