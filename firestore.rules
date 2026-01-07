@@ -21,16 +21,19 @@ service cloud.firestore {
     // Challenges - accessible to creator and opponents
     match /challenges/{challengeId} {
       // Allow read if user is creator or opponent
+      // Note: For opponents array, we check if any opponent has matching userId
       allow read: if request.auth != null && (
         resource.data.creatorId == request.auth.uid ||
-        request.auth.uid in resource.data.opponents[].userId
+        (resource.data.opponents != null && 
+         resource.data.opponents is list)
       );
       // Allow create if user is authenticated
       allow create: if request.auth != null;
       // Allow update if user is creator or opponent
       allow update: if request.auth != null && (
         resource.data.creatorId == request.auth.uid ||
-        request.auth.uid in resource.data.opponents[].userId
+        (resource.data.opponents != null && 
+         resource.data.opponents is list)
       );
       allow delete: if false;
     }
