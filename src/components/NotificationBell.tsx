@@ -18,6 +18,7 @@ import { showNotification } from '@/lib/notifications';
 import Link from 'next/link';
 import { formatDistanceToNow } from 'date-fns';
 import { useRouter } from 'next/navigation';
+import { markUserNotificationAsRead, markAllUserNotificationsAsRead, deleteUserNotification } from '@/lib/realtime-notifications';
 
 export default function NotificationBell() {
   const { firestore, user } = useFirebase();
@@ -84,8 +85,50 @@ export default function NotificationBell() {
   const handleNotificationClick = (notification: WithId<FirestoreNotification>) => {
     setIsOpen(false);
     
+    // Mark as read when clicked
+    if (!notification.read && user) {
+      markUserNotificationAsRead(user.uid, notification.id).catch(err => {
+        console.error('Failed to mark notification as read:', err);
+      });
+    }
+    
     if (notification.actionUrl) {
       router.push(notification.actionUrl);
+    }
+  };
+
+  const handleMarkAsRead = async (notificationId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!user) return;
+    try {
+      await markUserNotificationAsRead(user.uid, notificationId);
+    } catch (err) {
+      console.error('Failed to mark notification as read:', err);
+    }
+  };
+
+  const handleMarkAllRead = async () => {
+    if (!user) return;
+    try {
+      // Mark all unread notifications as read
+      if (notifications) {
+        const unread = notifications.filter(n => !n.read);
+        await Promise.all(
+          unread.map(n => markUserNotificationAsRead(user.uid, (n as WithId<FirestoreNotification>).id))
+        );
+      }
+    } catch (err) {
+      console.error('Failed to mark all notifications as read:', err);
+    }
+  };
+
+  const handleDelete = async (notificationId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!user) return;
+    try {
+      await deleteUserNotification(user.uid, notificationId);
+    } catch (err) {
+      console.error('Failed to delete notification:', err);
     }
   };
 
@@ -142,7 +185,36 @@ export default function NotificationBell() {
                         {notification.message}
                       </p>
                       <p className="text-[10px] text-muted-foreground">
-                        {formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })}
+                        {(() => {
+                          try {
+                            if (!notification.createdAt) return 'Just now';
+                            // Handle Firestore Timestamp
+                            let date: Date;
+                            if (notification.createdAt?.toDate) {
+                              // Firestore Timestamp object
+                              date = notification.createdAt.toDate();
+                            } else if (notification.createdAt?.seconds) {
+                              // Firestore Timestamp with seconds property
+                              date = new Date(notification.createdAt.seconds * 1000);
+                            } else if (typeof notification.createdAt === 'string') {
+                              // ISO string
+                              date = new Date(notification.createdAt);
+                            } else if (typeof notification.createdAt === 'number') {
+                              // Unix timestamp
+                              date = new Date(notification.createdAt);
+                            } else {
+                              // Fallback
+                              date = new Date(notification.createdAt);
+                            }
+                            // Validate date
+                            if (isNaN(date.getTime())) {
+                              return 'Just now';
+                            }
+                            return formatDistanceToNow(date, { addSuffix: true });
+                          } catch (error) {
+                            return 'Just now';
+                          }
+                        })()}
                       </p>
                     </div>
                     <Button

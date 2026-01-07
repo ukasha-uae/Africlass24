@@ -155,7 +155,36 @@ export default function NotificationsPage() {
                               {notification.title}
                             </h4>
                             <span className="text-xs text-muted-foreground whitespace-nowrap">
-                              {formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })}
+                              {(() => {
+                                try {
+                                  if (!notification.createdAt) return 'Just now';
+                                  // Handle Firestore Timestamp
+                                  let date: Date;
+                                  if (notification.createdAt?.toDate) {
+                                    // Firestore Timestamp object
+                                    date = notification.createdAt.toDate();
+                                  } else if (notification.createdAt?.seconds) {
+                                    // Firestore Timestamp with seconds property
+                                    date = new Date(notification.createdAt.seconds * 1000);
+                                  } else if (typeof notification.createdAt === 'string') {
+                                    // ISO string
+                                    date = new Date(notification.createdAt);
+                                  } else if (typeof notification.createdAt === 'number') {
+                                    // Unix timestamp
+                                    date = new Date(notification.createdAt);
+                                  } else {
+                                    // Fallback
+                                    date = new Date(notification.createdAt);
+                                  }
+                                  // Validate date
+                                  if (isNaN(date.getTime())) {
+                                    return 'Just now';
+                                  }
+                                  return formatDistanceToNow(date, { addSuffix: true });
+                                } catch (error) {
+                                  return 'Just now';
+                                }
+                              })()}
                             </span>
                           </div>
                           <p className="text-sm text-muted-foreground mt-1">

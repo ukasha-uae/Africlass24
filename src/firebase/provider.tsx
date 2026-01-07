@@ -86,7 +86,9 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = ({
     const unsubscribe = onAuthStateChanged(
       auth,
       async (firebaseUser) => { // Auth state determined
+        console.log('[Auth] Auth state changed:', firebaseUser ? `User ${firebaseUser.uid} (${firebaseUser.isAnonymous ? 'anonymous' : 'email'})` : 'No user');
         setUserAuthState({ user: firebaseUser, isUserLoading: false, userError: null });
+        
         // If we've just signed in, sync data from Firestore
         if (firebaseUser && firestore) {
           try { 
@@ -104,24 +106,62 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = ({
             // Don't break the app if sync fails
             console.warn('Error syncing data on sign in (non-critical):', e); 
           }
+        } else if (!firebaseUser) {
+          // No user - attempt anonymous sign-in
+          console.log('[Auth] No user after auth state change, attempting anonymous sign-in...');
+          try {
+            initiateAnonymousSignIn(auth);
+          } catch (err) {
+            console.error('[Auth] Failed to initiate anonymous sign-in after auth state change:', err);
+          }
         }
       },
       (error) => { // Auth listener error
         console.error("FirebaseProvider: onAuthStateChanged error:", error);
         setUserAuthState({ user: null, isUserLoading: false, userError: error });
+        // Even on error, try to sign in anonymously
+        if (auth && !auth.currentUser) {
+          try {
+            console.log('[Auth] Attempting anonymous sign-in after auth error...');
+            initiateAnonymousSignIn(auth);
+          } catch (err) {
+            console.error('[Auth] Failed to initiate anonymous sign-in after error:', err);
+          }
+        }
       }
     );
     // After subscribing, if we don't have a user and the auth object exists, ensure anonymous signin is attempted
     if (auth) {
-      // Only attempt if no user is present on the client
-      // Avoid calling sign in repeatedly - if userAuthState.isUserLoading false & user null, we call once.
-      if (!userAuthState.user && !userAuthState.isUserLoading) {
-        try {
-          initiateAnonymousSignIn(auth);
-        } catch (err) {
-          console.error('Error initiating anonymous sign-in', err);
+      // Wait a bit for the auth state to settle, then attempt anonymous sign-in if no user
+      const checkAndSignIn = async () => {
+        // Wait for initial auth state to be determined
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // Check again if still no user after auth state settles
+        if (!auth.currentUser) {
+          try {
+            console.log('[Auth] No user detected, initiating anonymous sign-in...');
+            initiateAnonymousSignIn(auth);
+          } catch (err) {
+            console.error('[Auth] Error initiating anonymous sign-in', err);
+            // Retry after a delay if it fails
+            setTimeout(() => {
+              if (!auth.currentUser) {
+                try {
+                  console.log('[Auth] Retrying anonymous sign-in...');
+                  initiateAnonymousSignIn(auth);
+                } catch (retryErr) {
+                  console.error('[Auth] Retry failed:', retryErr);
+                }
+              }
+            }, 2000);
+          }
+        } else {
+          console.log('[Auth] User already signed in:', auth.currentUser.uid, auth.currentUser.isAnonymous ? '(anonymous)' : '(email)');
         }
-      }
+      };
+      
+      checkAndSignIn();
     }
     return () => unsubscribe(); // Cleanup
   }, [auth]); // Depends on the auth instance

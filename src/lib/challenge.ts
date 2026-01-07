@@ -731,24 +731,72 @@ export const createChallenge = (challenge: Omit<Challenge, 'id' | 'createdAt' | 
   challenges.push(newChallenge);
   localStorage.setItem('challenges', JSON.stringify(challenges));
   
-  // Save to Firestore so opponent can access it
-  saveChallengeToFirestore(newChallenge).catch(err => {
-    console.error('Failed to save challenge to Firestore:', err);
-  });
-  
-  // Send notifications to opponents (deferred to avoid React state update during render)
+  // Save to Firestore so opponent can access it, then send notifications
   if (typeof window !== 'undefined') {
-    setTimeout(() => {
+    // Use setTimeout to defer to avoid React state update during render
+    setTimeout(async () => {
+      // Ensure user is authenticated before proceeding
+      const { auth } = initializeFirebase();
+      if (!auth?.currentUser) {
+        console.warn('[Challenge] User not authenticated, attempting anonymous sign-in before creating notifications...');
+        try {
+          const { initiateAnonymousSignIn } = await import('@/firebase/non-blocking-login');
+          initiateAnonymousSignIn(auth);
+          // Wait a bit for sign-in to complete
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        } catch (err) {
+          console.error('[Challenge] Failed to sign in anonymously:', err);
+        }
+      }
+      
+      // Save to Firestore (don't block on this)
+      saveChallengeToFirestore(newChallenge).then(() => {
+        console.log('[Challenge] Challenge saved to Firestore:', newChallenge.id);
+      }).catch(err => {
+        console.error('[Challenge] Failed to save challenge to Firestore:', err);
+      });
+      
+      // Send notifications to opponents (independent of Firestore save)
       console.log('[Challenge] Created challenge:', newChallenge.id, 'Opponents:', newChallenge.opponents);
-      newChallenge.opponents.forEach(opponent => {
-        if (opponent.status === 'invited') {
-          console.log('[Challenge] Sending notification to opponent:', opponent.userId, opponent.userName, opponent.school);
-          createChallengeNotification(newChallenge, opponent.userId).catch(err => {
-            console.error('[Challenge] Failed to send notification to', opponent.userId, err);
-          });
+      const invitedOpponents = newChallenge.opponents.filter(opponent => opponent.status === 'invited');
+      
+      if (invitedOpponents.length === 0) {
+        console.log('[Challenge] No invited opponents to notify');
+        return;
+      }
+      
+      // Check authentication again before sending notifications
+      if (!auth?.currentUser) {
+        console.error('[Challenge] Cannot send notifications: user not authenticated');
+        console.log('[Challenge] Notifications will be available when the opponent signs in');
+        return;
+      }
+      
+      console.log('[Challenge] User authenticated:', auth.currentUser.uid, auth.currentUser.isAnonymous ? '(anonymous)' : '(email)');
+      
+      const notificationPromises = invitedOpponents.map(opponent => {
+        console.log('[Challenge] Sending notification to opponent:', opponent.userId, opponent.userName, opponent.school);
+        return createChallengeNotification(newChallenge, opponent.userId).catch(err => {
+          console.error('[Challenge] Failed to send notification to', opponent.userId, err);
+          throw err; // Re-throw to catch in Promise.allSettled
+        });
+      });
+      
+      const results = await Promise.allSettled(notificationPromises);
+      results.forEach((result, index) => {
+        const opponent = invitedOpponents[index];
+        if (result.status === 'fulfilled') {
+          console.log('[Challenge] ✅ Notification sent successfully to', opponent?.userId, opponent?.userName);
+        } else {
+          console.error('[Challenge] ❌ Notification failed for', opponent?.userId, opponent?.userName, 'Error:', result.reason);
         }
       });
-    }, 100); // Small delay to ensure Firestore save completes
+    }, 100); // Small delay to avoid React state update during render
+  } else {
+    // Server-side: just save to Firestore
+    saveChallengeToFirestore(newChallenge).catch(err => {
+      console.error('Failed to save challenge to Firestore:', err);
+    });
   }
   
   return newChallenge;
@@ -1554,6 +1602,13 @@ const generateGameQuestions = (
 const createChallengeNotification = async (challenge: Challenge, recipientId: string): Promise<void> => {
   try {
     console.log('[Challenge Notification] Creating notification for:', recipientId, 'Challenge:', challenge.id);
+    console.log('[Challenge Notification] Challenge details:', {
+      id: challenge.id,
+      creatorName: challenge.creatorName,
+      creatorSchool: challenge.creatorSchool,
+      subject: challenge.subject
+    });
+    
     // Build data object, only including scheduledTime if it exists
     const notificationData: any = {
       challengeId: challenge.id,
@@ -1565,19 +1620,28 @@ const createChallengeNotification = async (challenge: Challenge, recipientId: st
       notificationData.scheduledTime = challenge.scheduledTime;
     }
     
-    await createUserNotification(recipientId, {
-      type: 'challenge_invite',
+    const notificationPayload = {
+      type: 'challenge_invite' as const,
       title: 'New Challenge Invitation',
       message: `${challenge.creatorName} from ${challenge.creatorSchool} has challenged you to a ${challenge.subject} duel!`,
       data: notificationData,
       actionUrl: `/challenge-arena/play/${challenge.id}`
+    };
+    
+    console.log('[Challenge Notification] Calling createUserNotification with payload:', notificationPayload);
+    const notificationId = await createUserNotification(recipientId, notificationPayload);
+    console.log('[Challenge Notification] ✅ Notification created successfully for:', recipientId, 'Notification ID:', notificationId);
+  } catch (err: any) {
+    console.error('[Challenge Notification] ❌ Failed to create notification for', recipientId, err);
+    console.error('[Challenge Notification] Error details:', {
+      code: err?.code,
+      message: err?.message,
+      stack: err?.stack
     });
-    console.log('[Challenge Notification] Notification created successfully for:', recipientId);
-  } catch (err) {
-    console.error('[Challenge Notification] Failed to create notification for', recipientId, err);
     if (process.env.NODE_ENV === 'development') {
-      console.warn('[Challenge Notification] Error details:', err);
+      console.warn('[Challenge Notification] Full error object:', err);
     }
+    // Don't re-throw - we want to continue even if notification fails
   }
 };
 

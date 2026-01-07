@@ -43,7 +43,7 @@ export default function QuizBattlePage() {
   const params = useParams();
   const router = useRouter();
   const { playSound, isMuted, toggleMute } = useSoundEffects();
-  const { user } = useFirebase();
+  const { user, firestore } = useFirebase();
   const { toast } = useToast();
   const { setFullscreen } = useFullscreen();
   const challengeId = params.challengeId as string;
@@ -109,26 +109,63 @@ export default function QuizBattlePage() {
     
     loadChallenge();
     
-    // Get or create player profile
-    let playerProfile = getPlayerProfile(userId);
-    if (!playerProfile) {
-      // Create a default player if one doesn't exist
-      playerProfile = createOrUpdatePlayer({
-        userId,
-        userName: user?.email?.split('@')[0] || 'Player',
-        school: 'Unknown School',
-        rating: 1000,
-        wins: 0,
-        losses: 0,
-        draws: 0,
-        totalGames: 0,
-        winStreak: 0,
-        highestStreak: 0,
-        coins: 0,
-        level: 'SHS' as const
-      });
-    }
-    setPlayer(playerProfile);
+    // Get or create player profile - try Firestore first
+    const loadPlayerProfile = async () => {
+      let playerProfile = getPlayerProfile(userId);
+      
+      // Try to get real profile from Firestore
+      if (firestore && user) {
+        try {
+          const { doc, getDoc } = await import('firebase/firestore');
+          const profileRef = doc(firestore, 'students', user.uid);
+          const profileSnap = await getDoc(profileRef);
+          if (profileSnap.exists()) {
+            const profileData = profileSnap.data();
+            // Update player profile with real data
+            playerProfile = createOrUpdatePlayer({
+              userId,
+              userName: profileData.studentName || user?.displayName || user?.email?.split('@')[0] || 'Player',
+              school: profileData.schoolName || 'Unknown School',
+              rating: playerProfile?.rating || 1000,
+              wins: playerProfile?.wins || 0,
+              losses: playerProfile?.losses || 0,
+              draws: playerProfile?.draws || 0,
+              totalGames: playerProfile?.totalGames || 0,
+              winStreak: playerProfile?.winStreak || 0,
+              highestStreak: playerProfile?.highestStreak || 0,
+              coins: playerProfile?.coins || 0,
+              level: (profileData.studentClass?.includes('SHS') ? 'SHS' : 
+                     profileData.studentClass?.includes('JHS') ? 'JHS' : 
+                     profileData.studentClass?.includes('Primary') ? 'Primary' : 
+                     playerProfile?.level || 'JHS') as 'Primary' | 'JHS' | 'SHS'
+            });
+          }
+        } catch (err) {
+          console.error('Failed to fetch player profile from Firestore:', err);
+        }
+      }
+      
+      if (!playerProfile) {
+        // Create a default player if one doesn't exist
+        playerProfile = createOrUpdatePlayer({
+          userId,
+          userName: user?.displayName || user?.email?.split('@')[0] || 'Player',
+          school: 'Unknown School',
+          rating: 1000,
+          wins: 0,
+          losses: 0,
+          draws: 0,
+          totalGames: 0,
+          winStreak: 0,
+          highestStreak: 0,
+          coins: 0,
+          level: 'SHS' as const
+        });
+      }
+      setPlayer(playerProfile);
+    };
+    
+    loadPlayerProfile();
     }, [challengeId, user, router]);
 
   // Reset selected answer when question changes - with explicit null assignment for mobile
@@ -439,9 +476,11 @@ export default function QuizBattlePage() {
             <div className="grid grid-cols-2 gap-8 mb-8 w-full max-w-md">
               <div className="flex flex-col items-center">
                 <Avatar className="h-20 w-20 border-4 border-primary mb-3">
-                  <AvatarFallback>{player?.userName.substring(0, 2).toUpperCase()}</AvatarFallback>
+                  <AvatarFallback>
+                    {(challenge?.creatorName || player?.userName || 'C').substring(0, 2).toUpperCase()}
+                  </AvatarFallback>
                 </Avatar>
-                <p className="font-bold">{player?.userName}</p>
+                <p className="font-bold">{challenge?.creatorName || player?.userName}</p>
                 <Badge variant="outline" className="mt-1">Ready</Badge>
               </div>
 

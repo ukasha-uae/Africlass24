@@ -7,6 +7,7 @@ import {
   doc,
   serverTimestamp,
 } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
 // Firestore-backed user notifications (cross-device, realtime via onSnapshot)
 
@@ -31,8 +32,16 @@ export interface UserNotification extends UserNotificationPayload {
 }
 
 function getNotificationsCollection(userId: string) {
-  const { firestore } = initializeFirebase();
-  return collection(firestore, 'users', userId, 'notifications');
+  try {
+    const { firestore } = initializeFirebase();
+    if (!firestore) {
+      throw new Error('Firestore is not initialized');
+    }
+    return collection(firestore, 'users', userId, 'notifications');
+  } catch (error) {
+    console.error('[Notification] Failed to get notifications collection for user:', userId, error);
+    throw error;
+  }
 }
 
 // Helper function to remove undefined values recursively
@@ -63,17 +72,111 @@ export async function createUserNotification(
   userId: string,
   payload: UserNotificationPayload
 ) {
-  if (!userId) return;
-  const colRef = getNotificationsCollection(userId);
+  console.log('[Notification] createUserNotification called with userId:', userId, 'payload:', payload);
   
-  // Remove all undefined values - Firestore doesn't accept undefined
-  const cleanedPayload = removeUndefinedValues({
-    ...payload,
-    read: false,
-    createdAt: serverTimestamp(),
-  });
+  if (!userId) {
+    console.warn('[Notification] Cannot create notification: userId is empty');
+    return;
+  }
   
-  await addDoc(colRef, cleanedPayload);
+  // Check if user is authenticated before attempting write
+  const { auth } = initializeFirebase();
+  const currentUser = auth?.currentUser;
+  
+  if (!currentUser) {
+    const error = new Error('User not authenticated - cannot create notification');
+    console.error('[Notification] ❌', error.message);
+    console.error('[Notification] Auth state:', {
+      authExists: !!auth,
+      currentUser: null,
+      authReady: auth ? 'checking...' : 'no auth instance'
+    });
+    throw error;
+  }
+  
+  console.log('[Notification] User authenticated:', currentUser.uid);
+  
+  try {
+    console.log('[Notification] Getting notifications collection for user:', userId);
+    const colRef = getNotificationsCollection(userId);
+    console.log('[Notification] Collection reference obtained');
+    
+    // Remove all undefined values - Firestore doesn't accept undefined
+    const cleanedPayload = removeUndefinedValues({
+      ...payload,
+      read: false,
+      createdAt: serverTimestamp(),
+    });
+    
+    console.log('[Notification] Creating notification for user:', userId, 'Payload:', cleanedPayload);
+    console.log('[Notification] Collection path:', colRef.path);
+    console.log('[Notification] Current user creating notification:', currentUser.uid, currentUser.isAnonymous ? '(anonymous)' : '(email)');
+    console.log('[Notification] Target user ID:', userId);
+    console.log('[Notification] Note: Target user must be signed in with this exact Firebase Auth UID to receive the notification');
+    
+    // Try to write directly without timeout first to see the actual error
+    try {
+      console.log('[Notification] Attempting Firestore write...');
+      const startTime = Date.now();
+      const docRef = await addDoc(colRef, cleanedPayload);
+      const duration = Date.now() - startTime;
+      console.log('[Notification] ✅ Notification created successfully:', docRef.id, 'for user:', userId, `(took ${duration}ms)`);
+      
+      // Verify the notification was actually written
+      try {
+        const { getDoc } = await import('firebase/firestore');
+        const { firestore } = initializeFirebase();
+        const verifyRef = doc(firestore, 'users', userId, 'notifications', docRef.id);
+        const verifySnap = await getDoc(verifyRef);
+        if (verifySnap.exists()) {
+          console.log('[Notification] ✅ Verified: Notification exists in Firestore');
+        } else {
+          console.warn('[Notification] ⚠️ Warning: Notification was created but not found on verification');
+        }
+      } catch (verifyErr) {
+        console.warn('[Notification] Could not verify notification (non-critical):', verifyErr);
+      }
+      
+      return docRef.id;
+    } catch (addDocError: any) {
+      // Log the specific error from addDoc
+      console.error('[Notification] addDoc failed:', {
+        code: addDocError?.code,
+        message: addDocError?.message,
+        name: addDocError?.name,
+        stack: addDocError?.stack
+      });
+      
+      // Provide context based on error type
+      if (addDocError?.code === 'permission-denied') {
+        console.error('[Notification] Permission denied - check Firestore rules');
+        console.error('[Notification] Collection path:', colRef.path);
+        console.error('[Notification] Current user:', currentUser.uid);
+        console.error('[Notification] Target user:', userId);
+        console.error('[Notification] Rule should allow: allow create: if request.auth != null;');
+      } else if (addDocError?.code === 'unavailable') {
+        console.error('[Notification] Firestore service unavailable - check network connection');
+      } else if (addDocError?.code === 'unauthenticated') {
+        console.error('[Notification] User not authenticated - this should not happen as we checked earlier');
+      } else {
+        console.error('[Notification] Unknown error - full details:', addDocError);
+      }
+      
+      throw addDocError;
+    }
+  } catch (error: any) {
+    console.error('[Notification] ❌ Failed to create notification for user:', userId, 'Error:', error);
+    console.error('[Notification] Error details:', {
+      code: error.code,
+      message: error.message,
+      stack: error.stack
+    });
+    if (error.code === 'permission-denied') {
+      console.error('[Notification] Permission denied - check Firestore rules for users/' + userId + '/notifications');
+      console.error('[Notification] Current user:', currentUser?.uid || 'not authenticated');
+    }
+    throw error; // Re-throw so caller can handle it
+  }
 }
 
 export async function markUserNotificationAsRead(
