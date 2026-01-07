@@ -36,9 +36,11 @@ service cloud.firestore {
     match /users/{userId}/notifications/{notificationId} {
       // Only the owner can read their own notifications
       allow read: if request.auth != null && request.auth.uid == userId;
-      // Only the owner can create/update their notifications (serverless client writes)
-      allow create, update: if request.auth != null && request.auth.uid == userId;
-      // Prevent deletion for now (we can flip this later if needed)
+      // Allow any authenticated user to CREATE notifications (for challenge invitations)
+      // But only the owner can UPDATE their notifications
+      allow create: if request.auth != null;
+      allow update: if request.auth != null && request.auth.uid == userId;
+      // Only the owner can delete their notifications
       allow delete: if request.auth != null && request.auth.uid == userId;
     }
 
