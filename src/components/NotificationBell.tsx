@@ -11,7 +11,7 @@ import {
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Badge } from '@/components/ui/badge';
 import { useFirebase } from '@/firebase/provider';
-import { collection } from 'firebase/firestore';
+import { collection, query, orderBy } from 'firebase/firestore';
 import { useCollection } from '@/firebase';
 import type { WithId } from '@/firebase/use-collection';
 import { showNotification } from '@/lib/notifications';
@@ -38,7 +38,9 @@ export default function NotificationBell() {
 
   const notifQuery = useMemo(() => {
     if (!firestore || !user) return null;
-    return collection(firestore, 'users', user.uid, 'notifications');
+    const notificationsCollection = collection(firestore, 'users', user.uid, 'notifications');
+    // Order by createdAt descending so newest notifications appear first
+    return query(notificationsCollection, orderBy('createdAt', 'desc'));
   }, [firestore, user]);
 
   const { data: notifications } = useCollection<FirestoreNotification>(notifQuery as any);
