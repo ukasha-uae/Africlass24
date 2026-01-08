@@ -11,7 +11,7 @@ import {
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Badge } from '@/components/ui/badge';
 import { useFirebase } from '@/firebase/provider';
-import { collection, query, orderBy } from 'firebase/firestore';
+import { collection } from 'firebase/firestore';
 import { useCollection } from '@/firebase';
 import type { WithId } from '@/firebase/use-collection';
 import { showNotification } from '@/lib/notifications';
