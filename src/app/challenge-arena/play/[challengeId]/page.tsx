@@ -1,7 +1,7 @@
 'use client';
 // Enhanced after-game experience for all Arena modes
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -64,6 +64,9 @@ export default function QuizBattlePage() {
   const [questionStartTimes, setQuestionStartTimes] = useState<Record<string, number>>({});
   const [questionTimeSpent, setQuestionTimeSpent] = useState<Record<string, number>>({});
   const [suspiciousActivity, setSuspiciousActivity] = useState<string[]>([]);
+  
+  // Ref to store unsubscribe function for challenge listener
+  const unsubscribeRef = useRef<(() => void) | null>(null);
 
   // Enable fullscreen mode when gameplay starts
   useEffect(() => {
@@ -83,38 +86,127 @@ export default function QuizBattlePage() {
     // Use mock user ID for testing
     const userId = user?.uid || 'test-user-1';
     
-    // getChallenge is now async, so we need to handle it properly
+    // Set up player profile immediately from localStorage (synchronous, non-blocking)
+    // This allows the challenge to load without waiting for Firestore
+    let playerProfile = getPlayerProfile(userId);
+    if (!playerProfile) {
+      // Create a default player immediately so we don't block on loading
+      playerProfile = createOrUpdatePlayer({
+        userId,
+        userName: user?.displayName || user?.email?.split('@')[0] || 'Player',
+        school: 'Unknown School',
+        rating: 1000,
+        wins: 0,
+        losses: 0,
+        draws: 0,
+        totalGames: 0,
+        winStreak: 0,
+        highestStreak: 0,
+        coins: 0,
+        level: 'SHS' as const
+      });
+    }
+    setPlayer(playerProfile); // Set immediately so challenge can load
+    
+    // Load challenge data
     const loadChallenge = async () => {
-      const challengeData = await getChallenge(challengeId);
-      if (!challengeData) {
-        router.push('/challenge-arena');
-        return;
-      }
-      setChallenge(challengeData);
-      
-      // Check if user is the opponent and challenge is pending
-      if (challengeData.status === 'pending' && challengeData.opponents.some(o => o.userId === userId && o.status === 'invited')) {
-        // Show accept button for opponent
-        setGamePhase('waiting');
-      } else if (challengeData.status === 'pending') {
-        setGamePhase('waiting');
-      } else {
-        setGamePhase('playing');
-        // Track start time for first question
-        if (challengeData.questions.length > 0) {
-          setQuestionStartTimes({ [challengeData.questions[0].id]: Date.now() });
+      try {
+        const challengeData = await getChallenge(challengeId);
+        if (!challengeData) {
+          router.push('/challenge-arena');
+          return;
         }
+        setChallenge(challengeData);
+        
+        // Check if challenge is already completed OR has results - show results (prevents reset to waiting)
+        if (challengeData.status === 'completed' || (challengeData.results && challengeData.results.length > 0)) {
+          setGamePhase('results');
+          if (challengeData.results && challengeData.results.length > 0) {
+            setResults(challengeData.results);
+          }
+        } else if (challengeData.status === 'pending' && challengeData.opponents.some(o => o.userId === userId && o.status === 'invited')) {
+          // Show accept button for opponent
+          setGamePhase('waiting');
+        } else if (challengeData.status === 'pending') {
+          setGamePhase('waiting');
+        } else {
+          setGamePhase('playing');
+          // Track start time for first question
+          if (challengeData.questions.length > 0) {
+            setQuestionStartTimes({ [challengeData.questions[0].id]: Date.now() });
+          }
+        }
+      } catch (error) {
+        console.error('Failed to load challenge:', error);
+        router.push('/challenge-arena');
       }
     };
     
     loadChallenge();
     
-    // Get or create player profile - try Firestore first
-    const loadPlayerProfile = async () => {
-      let playerProfile = getPlayerProfile(userId);
+    // Set up real-time listener for challenge updates (so creator sees when opponent accepts)
+    if (firestore) {
+      const setupListener = async () => {
+        try {
+          const { doc, onSnapshot } = await import('firebase/firestore');
+          const challengeRef = doc(firestore, 'challenges', challengeId);
+          
+          unsubscribeRef.current = onSnapshot(
+            challengeRef,
+            (snapshot) => {
+              if (snapshot.exists()) {
+                const challengeData = snapshot.data() as Challenge;
+                setChallenge(challengeData);
+                
+                // Update results state when challenge.results changes (from Firestore, contains all players)
+                if (challengeData.results && challengeData.results.length > 0) {
+                  setResults(challengeData.results);
+                }
+                
+                // Update game phase based on challenge status
+                setGamePhase((currentPhase) => {
+                  // CRITICAL: If challenge is completed OR has results data, always show results (prevents reset to waiting)
+                  if (challengeData.status === 'completed' || (challengeData.results && challengeData.results.length > 0)) {
+                    return 'results';
+                  }
+                  
+                  // If we're already in results phase, stay there (prevents resetting to waiting)
+                  if (currentPhase === 'results') {
+                    return currentPhase;
+                  }
+                  
+                  // Handle status transitions only if not in results phase and no results data
+                  if (challengeData.status === 'pending') {
+                    return 'waiting';
+                  } else if (challengeData.status === 'accepted' && currentPhase === 'waiting') {
+                    // Challenge was accepted, start the game
+                    // Track start time for first question
+                    if (challengeData.questions.length > 0) {
+                      setQuestionStartTimes({ [challengeData.questions[0].id]: Date.now() });
+                    }
+                    return 'playing';
+                  }
+                  
+                  // Keep current phase for other statuses (in-progress, etc.)
+                  return currentPhase;
+                });
+              }
+            },
+            (error) => {
+              console.error('Error listening to challenge updates:', error);
+            }
+          );
+        } catch (err) {
+          console.error('Failed to set up challenge listener:', err);
+        }
+      };
       
-      // Try to get real profile from Firestore
-      if (firestore && user) {
+      setupListener();
+    }
+    
+    // Enhance player profile asynchronously from Firestore (non-blocking)
+    if (firestore && user && playerProfile) {
+      const enhancePlayerProfile = async () => {
         try {
           const { doc, getDoc } = await import('firebase/firestore');
           const profileRef = doc(firestore, 'students', user.uid);
@@ -122,7 +214,7 @@ export default function QuizBattlePage() {
           if (profileSnap.exists()) {
             const profileData = profileSnap.data();
             // Update player profile with real data
-            playerProfile = createOrUpdatePlayer({
+            const enhancedProfile = createOrUpdatePlayer({
               userId,
               userName: profileData.studentName || user?.displayName || user?.email?.split('@')[0] || 'Player',
               school: profileData.schoolName || 'Unknown School',
@@ -139,34 +231,25 @@ export default function QuizBattlePage() {
                      profileData.studentClass?.includes('Primary') ? 'Primary' : 
                      playerProfile?.level || 'JHS') as 'Primary' | 'JHS' | 'SHS'
             });
+            setPlayer(enhancedProfile);
           }
         } catch (err) {
           console.error('Failed to fetch player profile from Firestore:', err);
+          // Non-critical error, continue with existing profile
         }
-      }
+      };
       
-      if (!playerProfile) {
-        // Create a default player if one doesn't exist
-        playerProfile = createOrUpdatePlayer({
-          userId,
-          userName: user?.displayName || user?.email?.split('@')[0] || 'Player',
-          school: 'Unknown School',
-          rating: 1000,
-          wins: 0,
-          losses: 0,
-          draws: 0,
-          totalGames: 0,
-          winStreak: 0,
-          highestStreak: 0,
-          coins: 0,
-          level: 'SHS' as const
-        });
-      }
-      setPlayer(playerProfile);
-    };
+      enhancePlayerProfile();
+    }
     
-    loadPlayerProfile();
-    }, [challengeId, user, router]);
+    // Cleanup listener on unmount
+    return () => {
+      if (unsubscribeRef.current) {
+        unsubscribeRef.current();
+        unsubscribeRef.current = null;
+      }
+    };
+    }, [challengeId, user, router, firestore]);
 
   // Reset selected answer when question changes - with explicit null assignment for mobile
   useEffect(() => {
@@ -276,7 +359,7 @@ export default function QuizBattlePage() {
     }
   };
 
-  const finishChallenge = (answersMap: Record<string, string>) => {
+  const finishChallenge = async (answersMap: Record<string, string>) => {
     if (!challenge || gamePhase === 'results') return;
 
     // Use mock user ID for testing
@@ -315,7 +398,7 @@ export default function QuizBattlePage() {
     const totalTimeTaken = Date.now() - startTime;
 
     // Submit answers and get updated challenge directly
-    const updatedChallenge = submitChallengeAnswers(challengeId, userId, playerAnswers, totalTimeTaken);
+    const updatedChallenge = await submitChallengeAnswers(challengeId, userId, playerAnswers, totalTimeTaken);
     
     if (updatedChallenge && updatedChallenge.results) {
       setResults(updatedChallenge.results);
@@ -409,7 +492,7 @@ export default function QuizBattlePage() {
     }
   };
 
-  if (gamePhase === 'loading' || !challenge || !player) {
+  if (gamePhase === 'loading' || !challenge) {
     return (
       <div className="container mx-auto p-6 flex items-center justify-center min-h-screen">
         <div className="text-center">
@@ -541,19 +624,74 @@ export default function QuizBattlePage() {
     : 0;
   const timeProgress = (timeLeft / 120) * 100;
 
-  if (gamePhase === 'results' && results) {
-    // Use mock user ID for testing
+  if (gamePhase === 'results' && (results || challenge?.results)) {
+    // Get current user ID - use user.uid with fallback for testing scenarios
     const userId = user?.uid || 'test-user-1';
     
+    // Use challenge.results as primary source (from Firestore, contains all players)
+    // Fall back to results state if challenge.results is not available yet
+    const allResults = challenge?.results || results || [];
+    
+    console.log('[Results Debug] Current user:', user?.uid);
+    console.log('[Results Debug] Challenge ID:', challenge?.id);
+    console.log('[Results Debug] Challenge type:', challenge?.type);
+    console.log('[Results Debug] Challenge creatorId:', challenge?.creatorId);
+    console.log('[Results Debug] Challenge opponents:', challenge?.opponents?.map((o: any) => ({ userId: o.userId, userName: o.userName, status: o.status })));
+    console.log('[Results Debug] All results count:', allResults.length);
+    console.log('[Results Debug] All results:', allResults.map((r: any) => ({ userId: r.userId, userName: r.userName, score: r.score, rank: r.rank })));
+    
     // Deduplicate results to prevent key collisions from legacy data
-    const uniqueResults = results.reduce((acc: any[], current: any) => {
+    const uniqueResults = allResults.reduce((acc: any[], current: any) => {
       if (!acc.find(item => item.userId === current.userId)) {
         acc.push(current);
       }
       return acc;
     }, []);
+    
+    // Ensure ranks are assigned - if all ranks are 0 or undefined, sort and assign them
+    const hasRanks = uniqueResults.every((r: any) => r.rank && r.rank > 0);
+    if (!hasRanks && uniqueResults.length > 0) {
+      // Sort by score (descending), then by time (ascending)
+      uniqueResults.sort((a: any, b: any) => {
+        if (b.score !== a.score) return b.score - a.score;
+        return (a.totalTime || 0) - (b.totalTime || 0);
+      });
+      // Assign ranks
+      uniqueResults.forEach((result: any, index: number) => {
+        result.rank = index + 1;
+      });
+    }
+    
+    console.log('[Results Debug] Unique results count:', uniqueResults.length);
+    console.log('[Results Debug] Unique results:', uniqueResults.map((r: any) => ({ userId: r.userId, userName: r.userName, score: r.score, rank: r.rank })));
+    console.log('[Results Debug] Expected results:', challenge?.opponents?.length + 1, '(creator +', challenge?.opponents?.length, 'opponents)');
 
-    const myResult = uniqueResults.find((r: any) => r.userId === userId);
+    // Find current user's result - prioritize exact userId match
+    let myResult = null;
+    
+    if (uniqueResults.length > 0 && user?.uid) {
+      // Primary match: exact userId match using user.uid (not fallback)
+      myResult = uniqueResults.find((r: any) => r.userId === user.uid);
+      
+      // Fallback 1: Match by creatorId if we're the creator
+      if (!myResult && challenge && user.uid === challenge.creatorId) {
+        myResult = uniqueResults.find((r: any) => r.userId === challenge.creatorId);
+      }
+      
+      // Fallback 2: Match by opponent userId if we're an opponent
+      if (!myResult && challenge) {
+        const opponent = challenge.opponents.find(o => o.userId === user.uid);
+        if (opponent) {
+          myResult = uniqueResults.find((r: any) => r.userId === opponent.userId);
+        }
+      }
+    }
+    
+    // If still no match and using fallback userId, try to find by position
+    if (!myResult && uniqueResults.length > 0 && userId === 'test-user-1') {
+      // Last resort: use first result for testing
+      myResult = uniqueResults[0];
+    }
     const ratingChange = myResult?.ratingChange || 0;
     const isWin = myResult?.rank === 1;
     const isPodium = myResult?.rank <= 3;
@@ -564,11 +702,14 @@ export default function QuizBattlePage() {
     const isTournament = challenge.type === 'tournament';
 
     // Calculate performance metrics with fallback values
-    const correctAnswers = myResult?.correctAnswers || 0;
-    const totalQuestions = challenge.questions.length || 1; // Prevent division by zero
-    const accuracy = Math.round((correctAnswers / totalQuestions) * 100) || 0;
+    // Use accuracy from result if available, otherwise calculate from correctAnswers
+    const correctAnswers = myResult?.correctAnswers ?? 0;
+    const totalQuestions = challenge?.questions?.length || 1; // Prevent division by zero
+    const accuracy = myResult?.accuracy !== undefined 
+      ? Math.round(myResult.accuracy) 
+      : (correctAnswers > 0 && totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0);
     const totalTimeSeconds = myResult?.totalTime ? Math.round(myResult.totalTime / 1000) : 0;
-    const avgTimePerQuestion = totalQuestions > 0 ? Math.round(totalTimeSeconds / totalQuestions) : 0;
+    const avgTimePerQuestion = totalQuestions > 0 && correctAnswers > 0 ? Math.round(totalTimeSeconds / totalQuestions) : 0;
     
     // Generate motivational message and performance grade based on challenge type
     const getPerformanceInsight = () => {
@@ -772,64 +913,161 @@ export default function QuizBattlePage() {
                   </>
                 ) : isSchoolBattle ? (
                   <>
-                    <h1 className="text-3xl sm:text-4xl font-bold mb-2 flex items-center justify-center gap-2">
-                      {isWin ? (
-                        <>
-                          🏫 School Victory!
-                        </>
-                      ) : (
-                        <>
-                          🎓 Honorable Fight
-                        </>
-                      )}
-                    </h1>
-                    <p className="text-lg text-muted-foreground mb-2">{performance.message}</p>
-                    <p className="text-sm text-muted-foreground">Representing {player?.school}</p>
+                    {uniqueResults.length === 2 ? (
+                      <>
+                        <h1 className="text-3xl sm:text-4xl font-bold mb-2 flex items-center justify-center gap-2">
+                          {isWin ? (
+                            <>
+                              <Trophy className="h-10 w-10 text-yellow-500 animate-bounce" />
+                              {(() => {
+                                return `${myResult?.userName || 'You'} Won!`;
+                              })()}
+                            </>
+                          ) : (
+                            <>
+                              <Target className="h-10 w-10 text-purple-500" />
+                              {(() => {
+                                const winnerResult = uniqueResults.find((r: any) => r.rank === 1);
+                                return `${winnerResult?.userName || 'Opponent'} Won!`;
+                              })()}
+                            </>
+                          )}
+                        </h1>
+                        <div className="text-lg text-muted-foreground mb-2 flex items-center justify-center gap-2 flex-wrap">
+                          <span className="font-semibold">{myResult?.userName || 'You'}</span>
+                          <span className="text-muted-foreground">vs</span>
+                          <span className="font-semibold">
+                            {uniqueResults.find((r: any) => r.userId !== (user?.uid || userId) && r.userId !== myResult?.userId)?.userName || 'Opponent'}
+                          </span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">{performance.message}</p>
+                      </>
+                    ) : (
+                      <>
+                        <h1 className="text-3xl sm:text-4xl font-bold mb-2 flex items-center justify-center gap-2">
+                          {isWin ? (
+                            <>
+                              🏫 School Victory!
+                            </>
+                          ) : (
+                            <>
+                              🎓 Honorable Fight
+                            </>
+                          )}
+                        </h1>
+                        <p className="text-lg text-muted-foreground mb-2">{performance.message}</p>
+                        <p className="text-sm text-muted-foreground">Representing {player?.school}</p>
+                      </>
+                    )}
                   </>
                 ) : isTournament ? (
                   <>
-                    <h1 className="text-3xl sm:text-4xl font-bold mb-2 flex items-center justify-center gap-2">
-                      {isWin ? (
-                        <>
-                          <Trophy className="h-10 w-10 text-yellow-500 animate-bounce" />
-                          Tournament Champion!
-                        </>
-                      ) : isPodium ? (
-                        <>
-                          <Medal className="h-10 w-10 text-blue-500" />
-                          Podium Finish!
-                        </>
-                      ) : (
-                        <>
-                          <Star className="h-10 w-10 text-purple-500" />
-                          Tournament Complete
-                        </>
-                      )}
-                    </h1>
-                    <p className="text-lg text-muted-foreground mb-2">{performance.message}</p>
+                    {uniqueResults.length === 2 ? (
+                      <>
+                        <h1 className="text-3xl sm:text-4xl font-bold mb-2 flex items-center justify-center gap-2">
+                          {isWin ? (
+                            <>
+                              <Trophy className="h-10 w-10 text-yellow-500 animate-bounce" />
+                              {(() => {
+                                return `${myResult?.userName || 'You'} Won!`;
+                              })()}
+                            </>
+                          ) : (
+                            <>
+                              <Medal className="h-10 w-10 text-purple-500" />
+                              {(() => {
+                                const winnerResult = uniqueResults.find((r: any) => r.rank === 1);
+                                return `${winnerResult?.userName || 'Opponent'} Won!`;
+                              })()}
+                            </>
+                          )}
+                        </h1>
+                        <div className="text-lg text-muted-foreground mb-2 flex items-center justify-center gap-2 flex-wrap">
+                          <span className="font-semibold">{myResult?.userName || 'You'}</span>
+                          <span className="text-muted-foreground">vs</span>
+                          <span className="font-semibold">
+                            {uniqueResults.find((r: any) => r.userId !== (user?.uid || userId) && r.userId !== myResult?.userId)?.userName || 'Opponent'}
+                          </span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">{performance.message}</p>
+                      </>
+                    ) : (
+                      <>
+                        <h1 className="text-3xl sm:text-4xl font-bold mb-2 flex items-center justify-center gap-2">
+                          {isWin ? (
+                            <>
+                              <Trophy className="h-10 w-10 text-yellow-500 animate-bounce" />
+                              Tournament Champion!
+                            </>
+                          ) : isPodium ? (
+                            <>
+                              <Medal className="h-10 w-10 text-blue-500" />
+                              Podium Finish!
+                            </>
+                          ) : (
+                            <>
+                              <Star className="h-10 w-10 text-purple-500" />
+                              Tournament Complete
+                            </>
+                          )}
+                        </h1>
+                        <p className="text-lg text-muted-foreground mb-2">{performance.message}</p>
+                      </>
+                    )}
                   </>
                 ) : isQuickMatch ? (
                   <>
-                    <h1 className="text-3xl sm:text-4xl font-bold mb-2 flex items-center justify-center gap-2">
-                      {isWin ? (
-                        <>
-                          <Zap className="h-10 w-10 text-yellow-500 animate-bounce" />
-                          Victory!
-                        </>
-                      ) : isPodium ? (
-                        <>
-                          <Award className="h-10 w-10 text-blue-500" />
-                          Nice Work!
-                        </>
-                      ) : (
-                        <>
-                          <Target className="h-10 w-10 text-gray-500" />
-                          Match Complete
-                        </>
-                      )}
-                    </h1>
-                    <p className="text-lg text-muted-foreground mb-2">{performance.message}</p>
-                    <p className="text-sm text-muted-foreground">Rank #{myResult?.rank}</p>
+                    {uniqueResults.length === 2 ? (
+                      <>
+                        <h1 className="text-3xl sm:text-4xl font-bold mb-2 flex items-center justify-center gap-2">
+                          {isWin ? (
+                            <>
+                              <Trophy className="h-10 w-10 text-yellow-500 animate-bounce" />
+                              {`${myResult?.userName || 'You'} Won!`}
+                            </>
+                          ) : (
+                            <>
+                              <Target className="h-10 w-10 text-purple-500" />
+                              {(() => {
+                                const winnerResult = uniqueResults.find((r: any) => r.rank === 1);
+                                return `${winnerResult?.userName || 'Opponent'} Won!`;
+                              })()}
+                            </>
+                          )}
+                        </h1>
+                        <div className="text-lg text-muted-foreground mb-2 flex items-center justify-center gap-2 flex-wrap">
+                          <span className="font-semibold">{myResult?.userName || 'You'}</span>
+                          <span className="text-muted-foreground">vs</span>
+                          <span className="font-semibold">
+                            {uniqueResults.find((r: any) => r.userId !== (user?.uid || userId) && r.userId !== myResult?.userId)?.userName || 'Opponent'}
+                          </span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">{performance.message}</p>
+                      </>
+                    ) : (
+                      <>
+                        <h1 className="text-3xl sm:text-4xl font-bold mb-2 flex items-center justify-center gap-2">
+                          {isWin ? (
+                            <>
+                              <Zap className="h-10 w-10 text-yellow-500 animate-bounce" />
+                              Victory!
+                            </>
+                          ) : isPodium ? (
+                            <>
+                              <Award className="h-10 w-10 text-blue-500" />
+                              Nice Work!
+                            </>
+                          ) : (
+                            <>
+                              <Target className="h-10 w-10 text-gray-500" />
+                              Match Complete
+                            </>
+                          )}
+                        </h1>
+                        <p className="text-lg text-muted-foreground mb-2">{performance.message}</p>
+                        <p className="text-sm text-muted-foreground">Rank #{myResult?.rank}</p>
+                      </>
+                    )}
                   </>
                 ) : isPractice ? (
                   <>
@@ -838,6 +1076,34 @@ export default function QuizBattlePage() {
                       Practice Complete!
                     </h1>
                     <p className="text-lg text-muted-foreground mb-2">{performance.message}</p>
+                  </>
+                ) : uniqueResults.length === 2 ? (
+                  // Default case: Any other challenge type with 2 players - show winner
+                  <>
+                    <h1 className="text-3xl sm:text-4xl font-bold mb-2 flex items-center justify-center gap-2">
+                      {isWin ? (
+                        <>
+                          <Trophy className="h-10 w-10 text-yellow-500 animate-bounce" />
+                          {`${myResult?.userName || 'You'} Won!`}
+                        </>
+                      ) : (
+                        <>
+                          <Target className="h-10 w-10 text-purple-500" />
+                          {(() => {
+                            const winnerResult = uniqueResults.find((r: any) => r.rank === 1);
+                            return `${winnerResult?.userName || 'Opponent'} Won!`;
+                          })()}
+                        </>
+                      )}
+                    </h1>
+                    <div className="text-lg text-muted-foreground mb-2 flex items-center justify-center gap-2 flex-wrap">
+                      <span className="font-semibold">{myResult?.userName || 'You'}</span>
+                      <span className="text-muted-foreground">vs</span>
+                      <span className="font-semibold">
+                        {uniqueResults.find((r: any) => r.userId !== (user?.uid || userId) && r.userId !== myResult?.userId)?.userName || 'Opponent'}
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">{performance.message}</p>
                   </>
                 ) : (
                   <>
@@ -857,44 +1123,151 @@ export default function QuizBattlePage() {
                   </div>
                 </div>
 
-                {/* Premium Main Stats Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
-                  <div className="group relative p-5 sm:p-6 bg-gradient-to-br from-amber-500/10 to-orange-500/10 backdrop-blur-sm rounded-2xl border-2 border-amber-200/30 dark:border-amber-800/30 shadow-lg hover:shadow-xl transition-all hover:scale-105 overflow-hidden">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-amber-400/20 to-orange-400/20 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
-                    <div className="relative text-center">
-                      <div className="text-4xl mb-2 group-hover:scale-110 transition-transform inline-block">🏆</div>
-                      <p className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">{myResult?.score}</p>
-                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium mt-1">Points</p>
+                {/* Head-to-Head Comparison for 2 Players */}
+                {!isPractice && uniqueResults.length === 2 ? (
+                  <div className="mt-6 space-y-4">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
+                      <div className="flex-1 w-full sm:w-auto">
+                        <div className={`p-6 rounded-2xl border-2 ${
+                          myResult?.rank === 1 
+                            ? 'bg-gradient-to-br from-yellow-500/20 to-orange-500/20 border-yellow-400 shadow-lg' 
+                            : 'bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border-blue-200/30'
+                        }`}>
+                          <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center gap-3">
+                              <Avatar className="h-12 w-12 border-2 border-white shadow-lg">
+                                <AvatarFallback className="text-lg font-bold">
+                                  {myResult?.userName?.split(' ').map((n: string) => n[0]).join('').toUpperCase() || 'You'}
+                                </AvatarFallback>
+                              </Avatar>
+                              <div>
+                                <p className="font-bold text-lg">{myResult?.userName || 'You'}</p>
+                                <Badge variant={myResult?.rank === 1 ? 'default' : 'secondary'} className="mt-1">
+                                  {myResult?.rank === 1 ? '🏆 Winner' : `Rank #${myResult?.rank}`}
+                                </Badge>
+                              </div>
+                            </div>
+                            <div className="text-right">
+                              <p className="text-3xl font-bold">{myResult?.score ?? 0}</p>
+                              <p className="text-xs text-muted-foreground">points</p>
+                            </div>
+                          </div>
+                          <div className="grid grid-cols-3 gap-4 mt-4 pt-4 border-t">
+                            <div className="text-center">
+                              <p className="text-2xl font-bold text-green-600">{accuracy}%</p>
+                              <p className="text-xs text-muted-foreground">Accuracy</p>
+                            </div>
+                            <div className="text-center">
+                              <p className="text-2xl font-bold text-blue-600">{correctAnswers}/{totalQuestions}</p>
+                              <p className="text-xs text-muted-foreground">Correct</p>
+                            </div>
+                            <div className="text-center">
+                              <p className="text-2xl font-bold text-purple-600">{totalTimeSeconds}s</p>
+                              <p className="text-xs text-muted-foreground">Time</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="text-2xl font-bold text-muted-foreground py-2">VS</div>
+                      
+                      <div className="flex-1 w-full sm:w-auto">
+                        {(() => {
+                          // Find opponent result - use actual user.uid, not fallback
+                          const actualUserId = user?.uid || userId;
+                          const opponentResult = uniqueResults.find((r: any) => r.userId !== actualUserId && r.userId !== myResult?.userId);
+                          const opponentAccuracy = opponentResult?.accuracy !== undefined 
+                            ? Math.round(opponentResult.accuracy) 
+                            : (opponentResult?.correctAnswers && challenge?.questions?.length 
+                              ? Math.round((opponentResult.correctAnswers / challenge.questions.length) * 100) 
+                              : 0);
+                          const opponentTimeSeconds = opponentResult?.totalTime ? Math.round(opponentResult.totalTime / 1000) : (opponentResult?.timeTaken || 0);
+                          
+                          return (
+                            <div className={`p-6 rounded-2xl border-2 ${
+                              opponentResult?.rank === 1 
+                                ? 'bg-gradient-to-br from-yellow-500/20 to-orange-500/20 border-yellow-400 shadow-lg' 
+                                : 'bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border-blue-200/30'
+                            }`}>
+                              <div className="flex items-center justify-between mb-4">
+                                <div className="flex items-center gap-3">
+                                  <Avatar className="h-12 w-12 border-2 border-white shadow-lg">
+                                    <AvatarFallback className="text-lg font-bold">
+                                      {opponentResult?.userName?.split(' ').map((n: string) => n[0]).join('').toUpperCase() || 'Opp'}
+                                    </AvatarFallback>
+                                  </Avatar>
+                                  <div>
+                                    <p className="font-bold text-lg">{opponentResult?.userName || 'Opponent'}</p>
+                                    <Badge variant={opponentResult?.rank === 1 ? 'default' : 'secondary'} className="mt-1">
+                                      {opponentResult?.rank === 1 ? '🏆 Winner' : `Rank #${opponentResult?.rank}`}
+                                    </Badge>
+                                  </div>
+                                </div>
+                                <div className="text-right">
+                                  <p className="text-3xl font-bold">{opponentResult?.score ?? 0}</p>
+                                  <p className="text-xs text-muted-foreground">points</p>
+                                </div>
+                              </div>
+                              <div className="grid grid-cols-3 gap-4 mt-4 pt-4 border-t">
+                                <div className="text-center">
+                                  <p className="text-2xl font-bold text-green-600">{opponentAccuracy}%</p>
+                                  <p className="text-xs text-muted-foreground">Accuracy</p>
+                                </div>
+                                <div className="text-center">
+                                  <p className="text-2xl font-bold text-blue-600">{opponentResult?.correctAnswers ?? 0}/{totalQuestions}</p>
+                                  <p className="text-xs text-muted-foreground">Correct</p>
+                                </div>
+                                <div className="text-center">
+                                  <p className="text-2xl font-bold text-purple-600">{opponentTimeSeconds}s</p>
+                                  <p className="text-xs text-muted-foreground">Time</p>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })()}
+                      </div>
                     </div>
                   </div>
-                  
-                  <div className="group relative p-5 sm:p-6 bg-gradient-to-br from-green-500/10 to-emerald-500/10 backdrop-blur-sm rounded-2xl border-2 border-green-200/30 dark:border-green-800/30 shadow-lg hover:shadow-xl transition-all hover:scale-105 overflow-hidden">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-green-400/20 to-emerald-400/20 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
-                    <div className="relative text-center">
-                      <div className="text-4xl mb-2 group-hover:scale-110 transition-transform inline-block">🎯</div>
-                      <p className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">{accuracy}%</p>
-                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium mt-1">Accuracy</p>
+                ) : (
+                  /* Single Player Stats Grid (for practice or multiple players) */
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
+                    <div className="group relative p-5 sm:p-6 bg-gradient-to-br from-amber-500/10 to-orange-500/10 backdrop-blur-sm rounded-2xl border-2 border-amber-200/30 dark:border-amber-800/30 shadow-lg hover:shadow-xl transition-all hover:scale-105 overflow-hidden">
+                      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-amber-400/20 to-orange-400/20 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+                      <div className="relative text-center">
+                        <div className="text-4xl mb-2 group-hover:scale-110 transition-transform inline-block">🏆</div>
+                        <p className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">{myResult?.score ?? 0}</p>
+                        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium mt-1">Points</p>
+                      </div>
                     </div>
-                  </div>
+                    
+                    <div className="group relative p-5 sm:p-6 bg-gradient-to-br from-green-500/10 to-emerald-500/10 backdrop-blur-sm rounded-2xl border-2 border-green-200/30 dark:border-green-800/30 shadow-lg hover:shadow-xl transition-all hover:scale-105 overflow-hidden">
+                      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-green-400/20 to-emerald-400/20 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+                      <div className="relative text-center">
+                        <div className="text-4xl mb-2 group-hover:scale-110 transition-transform inline-block">🎯</div>
+                        <p className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">{accuracy}%</p>
+                        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium mt-1">Accuracy</p>
+                      </div>
+                    </div>
 
-                  <div className="group relative p-5 sm:p-6 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 backdrop-blur-sm rounded-2xl border-2 border-blue-200/30 dark:border-blue-800/30 shadow-lg hover:shadow-xl transition-all hover:scale-105 overflow-hidden">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
-                    <div className="relative text-center">
-                      <div className="text-4xl mb-2 group-hover:scale-110 transition-transform inline-block">⏱️</div>
-                      <p className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">{avgTimePerQuestion}s</p>
-                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium mt-1">Avg/Question</p>
+                    <div className="group relative p-5 sm:p-6 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 backdrop-blur-sm rounded-2xl border-2 border-blue-200/30 dark:border-blue-800/30 shadow-lg hover:shadow-xl transition-all hover:scale-105 overflow-hidden">
+                      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+                      <div className="relative text-center">
+                        <div className="text-4xl mb-2 group-hover:scale-110 transition-transform inline-block">⏱️</div>
+                        <p className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">{avgTimePerQuestion}s</p>
+                        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium mt-1">Avg/Question</p>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="group relative p-5 sm:p-6 bg-gradient-to-br from-orange-500/10 to-red-500/10 backdrop-blur-sm rounded-2xl border-2 border-orange-200/30 dark:border-orange-800/30 shadow-lg hover:shadow-xl transition-all hover:scale-105 overflow-hidden">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-400/20 to-red-400/20 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
-                    <div className="relative text-center">
-                      <div className="text-4xl mb-2 group-hover:scale-110 transition-transform inline-block">🔥</div>
-                      <p className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">{mockStreak}</p>
-                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium mt-1">Day Streak</p>
+                    <div className="group relative p-5 sm:p-6 bg-gradient-to-br from-orange-500/10 to-red-500/10 backdrop-blur-sm rounded-2xl border-2 border-orange-200/30 dark:border-orange-800/30 shadow-lg hover:shadow-xl transition-all hover:scale-105 overflow-hidden">
+                      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-400/20 to-red-400/20 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+                      <div className="relative text-center">
+                        <div className="text-4xl mb-2 group-hover:scale-110 transition-transform inline-block">🔥</div>
+                        <p className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">{mockStreak}</p>
+                        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium mt-1">Day Streak</p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
 
                 {/* Premium Rating change and Coins for competitive modes */}
                 {!isPractice && (
@@ -955,6 +1328,128 @@ export default function QuizBattlePage() {
               </div>
             </CardContent>
           </Card>
+
+          {/* Leaderboard for competitive modes - Show both players immediately */}
+          {!isPractice && uniqueResults.length > 0 && (
+            <Card className="mb-6">
+              <CardContent className="p-6">
+                <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+                  <Trophy className="h-5 w-5 text-yellow-500" />
+                  {isSchoolBattle ? 'School Rankings' : isTournament ? 'Tournament Standings' : 'Match Results'}
+                </h2>
+                
+                {/* Special message for school battles */}
+                {isSchoolBattle && (
+                  <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                    <p className="text-sm text-blue-700 dark:text-blue-300 flex items-center gap-2">
+                      <span>🏫</span>
+                      <span>This battle counts toward your school's overall ranking!</span>
+                    </p>
+                  </div>
+                )}
+
+                {/* Boss Battle special display */}
+                {isBossBattle && (
+                  <div className="mb-4 p-4 bg-purple-50 dark:bg-purple-950/20 rounded-lg border border-purple-200 dark:border-purple-800">
+                    <div className="flex items-center gap-3">
+                      <div className="text-3xl">🤖</div>
+                      <div className="flex-1">
+                        <p className="font-semibold text-purple-900 dark:text-purple-100">
+                          {isWin ? 'AI Boss Defeated!' : 'Boss Survived!'}
+                        </p>
+                        <p className="text-sm text-purple-700 dark:text-purple-300">
+                          {isWin 
+                            ? `You've proven your superiority over the AI! XP Earned: +${challenge.questions.length * 10}` 
+                            : `The AI was strong, but you gained valuable experience. Try again!`}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <div className="space-y-3">
+                  {uniqueResults.map((result: any, idx: number) => {
+                    const resultAccuracy = result.accuracy !== undefined 
+                      ? Math.round(result.accuracy) 
+                      : (result.correctAnswers && challenge?.questions?.length 
+                        ? Math.round((result.correctAnswers / challenge.questions.length) * 100) 
+                        : 0);
+                    const resultTimeSeconds = result.totalTime ? Math.round(result.totalTime / 1000) : (result.timeTaken || 0);
+                    
+                    return (
+                      <div
+                        key={result.userId || idx}
+                        className={`flex items-center gap-3 p-4 rounded-lg transition-all border-2 ${
+                          result.userId === (user?.uid || userId)
+                            ? 'bg-primary/10 border-primary shadow-lg' 
+                            : 'bg-muted border-border hover:bg-muted/80'
+                        }`}
+                      >
+                        <div className={`flex items-center justify-center w-12 h-12 rounded-full font-bold text-lg ${
+                          result.rank === 1 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600 text-white shadow-lg' :
+                          result.rank === 2 ? 'bg-gradient-to-br from-gray-300 to-gray-500 text-white shadow-md' :
+                          result.rank === 3 ? 'bg-gradient-to-br from-orange-400 to-orange-600 text-white shadow-md' :
+                          'bg-background border-2 border-border'
+                        }`}>
+                          {result.rank === 1 && '🥇'}
+                          {result.rank === 2 && '🥈'}
+                          {result.rank === 3 && '🥉'}
+                          {result.rank > 3 && result.rank}
+                        </div>
+                        <Avatar className="h-12 w-12">
+                          <AvatarFallback className="text-lg">
+                            {isSchoolBattle 
+                              ? result.school?.substring(0, 2).toUpperCase() || '??'
+                              : result.userName?.split(' ').map((n: string) => n[0]).join('').toUpperCase() || '??'}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div className="flex-1">
+                          <div className="font-semibold text-lg flex items-center gap-2">
+                            {isSchoolBattle ? result.school : result.userName}
+                            {result.userId === (user?.uid || userId) && (
+                              <Badge variant="secondary" className="ml-1">You</Badge>
+                            )}
+                            {isBossBattle && result.userId !== userId && (
+                              <Badge variant="outline" className="ml-1 border-purple-500 text-purple-500">AI</Badge>
+                            )}
+                          </div>
+                          {isSchoolBattle && result.userName && (
+                             <p className="text-xs text-muted-foreground">Represented by {result.userName}</p>
+                          )}
+                          <div className="flex items-center gap-4 mt-1 text-sm">
+                            <span className="text-muted-foreground">
+                              {result.correctAnswers ?? 0}/{challenge?.questions?.length || 0} correct
+                            </span>
+                            <span className="text-muted-foreground">•</span>
+                            <span className="text-muted-foreground">
+                              {resultAccuracy}% accuracy
+                            </span>
+                            <span className="text-muted-foreground">•</span>
+                            <span className="text-muted-foreground">
+                              {resultTimeSeconds}s
+                            </span>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-2xl font-bold">{result.score ?? 0}</p>
+                          <p className="text-xs text-muted-foreground mb-1">points</p>
+                          {!isBossBattle && result.ratingChange !== undefined && (
+                            <p className={`text-sm flex items-center justify-end gap-1 ${
+                              result.ratingChange > 0 ? 'text-green-600' :
+                              result.ratingChange < 0 ? 'text-red-600' : 'text-muted-foreground'
+                            }`}>
+                              {result.ratingChange > 0 ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
+                              {result.ratingChange > 0 ? '+' : ''}{result.ratingChange}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Detailed Performance Breakdown */}
           {isPractice && (
@@ -1088,108 +1583,6 @@ export default function QuizBattlePage() {
                     </div>
                   </div>
                 )}
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Leaderboard for competitive modes */}
-          {!isPractice && (
-            <Card className="mb-6">
-              <CardContent className="p-6">
-                <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-                  <Trophy className="h-5 w-5 text-yellow-500" />
-                  {isSchoolBattle ? 'School Rankings' : isTournament ? 'Tournament Standings' : 'Leaderboard'}
-                </h2>
-                
-                {/* Special message for school battles */}
-                {isSchoolBattle && (
-                  <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
-                    <p className="text-sm text-blue-700 dark:text-blue-300 flex items-center gap-2">
-                      <span>🏫</span>
-                      <span>This battle counts toward your school's overall ranking!</span>
-                    </p>
-                  </div>
-                )}
-
-                {/* Boss Battle special display */}
-                {isBossBattle && (
-                  <div className="mb-4 p-4 bg-purple-50 dark:bg-purple-950/20 rounded-lg border border-purple-200 dark:border-purple-800">
-                    <div className="flex items-center gap-3">
-                      <div className="text-3xl">🤖</div>
-                      <div className="flex-1">
-                        <p className="font-semibold text-purple-900 dark:text-purple-100">
-                          {isWin ? 'AI Boss Defeated!' : 'Boss Survived!'}
-                        </p>
-                        <p className="text-sm text-purple-700 dark:text-purple-300">
-                          {isWin 
-                            ? `You've proven your superiority over the AI! XP Earned: +${challenge.questions.length * 10}` 
-                            : `The AI was strong, but you gained valuable experience. Try again!`}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                <div className="space-y-3">
-                  {uniqueResults.map((result: any, idx: number) => (
-                    <div
-                      key={result.userId}
-                      className={`flex items-center gap-3 p-3 rounded-lg transition-all ${
-                        result.userId === userId 
-                          ? 'bg-primary/10 border-2 border-primary shadow-lg scale-105' 
-                          : 'bg-muted hover:bg-muted/80'
-                      }`}
-                    >
-                      <div className={`flex items-center justify-center w-10 h-10 rounded-full font-bold ${
-                        result.rank === 1 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600 text-white shadow-lg' :
-                        result.rank === 2 ? 'bg-gradient-to-br from-gray-300 to-gray-500 text-white shadow-md' :
-                        result.rank === 3 ? 'bg-gradient-to-br from-orange-400 to-orange-600 text-white shadow-md' :
-                        'bg-background border-2 border-border'
-                      }`}>
-                        {result.rank === 1 && '🥇'}
-                        {result.rank === 2 && '🥈'}
-                        {result.rank === 3 && '🥉'}
-                        {result.rank > 3 && result.rank}
-                      </div>
-                      <Avatar className="h-10 w-10">
-                        <AvatarFallback>
-                          {isSchoolBattle 
-                            ? result.school.substring(0, 2).toUpperCase()
-                            : result.userName.split(' ').map((n: string) => n[0]).join('')}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div className="flex-1">
-                        <div className="font-semibold flex items-center">
-                          {isSchoolBattle ? result.school : result.userName}
-                          {result.userId === userId && (
-                            <Badge variant="secondary" className="ml-2">You</Badge>
-                          )}
-                          {isBossBattle && result.userId !== userId && (
-                            <Badge variant="outline" className="ml-2 border-purple-500 text-purple-500">AI</Badge>
-                          )}
-                        </div>
-                        {isSchoolBattle && (
-                           <p className="text-xs text-muted-foreground">Represented by {result.userName}</p>
-                        )}
-                        <p className="text-sm text-muted-foreground">
-                          {result.correctAnswers}/{challenge.questions.length} correct • {result.timeTaken}s
-                        </p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-lg font-bold">{result.score}</p>
-                        {!isBossBattle && (
-                          <p className={`text-sm flex items-center gap-1 ${
-                            result.ratingChange > 0 ? 'text-green-600' :
-                            result.ratingChange < 0 ? 'text-red-600' : 'text-muted-foreground'
-                          }`}>
-                            {result.ratingChange > 0 ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
-                            {result.ratingChange > 0 ? '+' : ''}{result.ratingChange}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
               </CardContent>
             </Card>
           )}
@@ -1483,12 +1876,12 @@ export default function QuizBattlePage() {
                 <div className="flex items-center justify-center gap-3">
                   <Avatar className="h-12 w-12 border-2 border-green-500 shadow-lg">
                     <AvatarFallback className="text-base font-bold bg-gradient-to-br from-green-500 to-emerald-600 text-white">
-                      {player.userName.split(' ').map(n => n[0]).join('')}
+                      {(player?.userName || 'Player').split(' ').map(n => n[0]).join('')}
                     </AvatarFallback>
                   </Avatar>
                   <div className="text-center">
-                    <p className="font-bold text-sm bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">{player.userName}</p>
-                    <p className="text-xs text-muted-foreground">Rating: {player.rating}</p>
+                    <p className="font-bold text-sm bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">{player?.userName || 'Player'}</p>
+                    <p className="text-xs text-muted-foreground">Rating: {player?.rating || 1000}</p>
                     <Badge variant="secondary" className="mt-1 text-xs px-2 py-0.5 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30">
                       🧠 Practice
                     </Badge>
@@ -1499,12 +1892,12 @@ export default function QuizBattlePage() {
                   <div className="flex items-center gap-2">
                     <Avatar className="h-12 w-12 border-2 border-blue-500 shadow-lg">
                       <AvatarFallback className="text-base font-bold bg-gradient-to-br from-blue-500 to-indigo-600 text-white">
-                        {player.userName.split(' ').map(n => n[0]).join('')}
+                        {(player?.userName || 'Player').split(' ').map(n => n[0]).join('')}
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <p className="font-bold text-sm bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">{player.userName}</p>
-                      <p className="text-xs text-muted-foreground">R: {player.rating}</p>
+                      <p className="font-bold text-sm bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">{player?.userName || 'Player'}</p>
+                      <p className="text-xs text-muted-foreground">R: {player?.rating || 1000}</p>
                     </div>
                   </div>
                   

@@ -928,18 +928,37 @@ const generateSchoolAIResults = (challenge: Challenge, aiUserId: string): void =
   opponent.timeTaken = totalTime;
 };
 
-export const submitChallengeAnswers = (
+export const submitChallengeAnswers = async (
   challengeId: string,
   userId: string,
   answers: PlayerAnswer[],
   totalTimeOverride?: number
-): Challenge | null => {
-  const challenges = getAllChallenges();
-  const challengeIndex = challenges.findIndex(c => c.id === challengeId);
+): Promise<Challenge | null> => {
+  // First try to get from localStorage
+  let challenges = getAllChallenges();
+  let challengeIndex = challenges.findIndex(c => c.id === challengeId);
+  let challenge: Challenge | undefined;
   
-  if (challengeIndex === -1) return null;
+  if (challengeIndex === -1) {
+    // Not in localStorage, try Firestore
+    const firestoreChallenge = await getChallengeFromFirestore(challengeId);
+    if (!firestoreChallenge) return null;
+    challenge = firestoreChallenge;
+    // Add to localStorage
+    challenges.push(challenge);
+    challengeIndex = challenges.length - 1;
+  } else {
+    challenge = challenges[challengeIndex];
+    // CRITICAL: Also load from Firestore to get latest results from other players
+    const firestoreChallenge = await getChallengeFromFirestore(challengeId);
+    if (firestoreChallenge && firestoreChallenge.results) {
+      // Merge results from Firestore to ensure we have all players' results
+      challenge = { ...challenge, results: firestoreChallenge.results };
+      challenges[challengeIndex] = challenge;
+    }
+  }
   
-  const challenge = challenges[challengeIndex];
+  if (!challenge) return null;
   
   const opponentIndex = challenge.opponents.findIndex(o => o.userId === userId);
   
@@ -980,10 +999,13 @@ export const submitChallengeAnswers = (
   // Check if result already exists and update or push
   const existingResultIndex = challenge.results.findIndex(r => r.userId === userId);
   if (existingResultIndex > -1) {
+    console.log('[Submit Answers] Updating existing result for user:', userId, resultData.userName);
     challenge.results[existingResultIndex] = resultData;
   } else {
+    console.log('[Submit Answers] Adding new result for user:', userId, resultData.userName, 'Total results now:', challenge.results.length + 1);
     challenge.results.push(resultData);
   }
+  console.log('[Submit Answers] Challenge results after submission:', challenge.results.map(r => ({ userId: r.userId, userName: r.userName, score: r.score })));
 
   // Special handling for Boss Battles: Generate AI results immediately if user is done
   if (challenge.type === 'boss' && userId === challenge.creatorId) {
@@ -1007,6 +1029,13 @@ export const submitChallengeAnswers = (
   // CRITICAL: Save challenge to localStorage FIRST before calling completeChallenge
   challenges[challengeIndex] = challenge;
   localStorage.setItem('challenges', JSON.stringify(challenges));
+  
+  // Save to Firestore so both players can see updated results
+  if (typeof window !== 'undefined') {
+    await saveChallengeToFirestore(challenge).catch(err => {
+      console.error('Failed to save challenge results to Firestore:', err);
+    });
+  }
   
   if (allFinished && challenge.status !== 'completed') {
     completeChallenge(challenge);
@@ -1103,6 +1132,13 @@ export const completeChallenge = (challenge: Challenge): void => {
   if (challengeIndex > -1) {
     challenges[challengeIndex] = challenge;
     localStorage.setItem('challenges', JSON.stringify(challenges));
+  }
+  
+  // Save completed challenge with final results to Firestore so both players can see results
+  if (typeof window !== 'undefined') {
+    saveChallengeToFirestore(challenge).catch(err => {
+      console.error('Failed to save completed challenge to Firestore:', err);
+    });
   }
 };
 

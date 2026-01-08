@@ -197,8 +197,11 @@ export default function CreateChallengePage() {
       // Map subject ID back to full subject name
       const subjectName = SUBJECTS.find(s => s.id === formData.subject)?.name || formData.subject;
       
+      // Map 'friend' type to 'quick' since Challenge interface doesn't support 'friend'
+      const challengeType = formData.type === 'friend' ? 'quick' : formData.type;
+      
       const challenge = createChallenge({
-        type: formData.type as any,
+        type: challengeType as any,
         level: userLevel,
         subject: subjectName,
         difficulty: formData.difficulty as any,
@@ -224,12 +227,19 @@ export default function CreateChallengePage() {
     if (step === 1) return !!formData.subject;
     if (step === 2) return true; // difficulty always selected
     if (step === 3) return formData.type === 'quick' || (formData.type === 'friend' && formData.opponentId);
+    if (step === 4) return true; // confirmation step
     return true;
   };
 
   const nextStep = () => {
-    if (step < 3) setStep(step + 1);
-    else handleCreate();
+    // Skip step 3 (friend selection) if quick match is selected
+    if (step === 2 && formData.type === 'quick') {
+      setStep(4); // Go directly to confirmation
+    } else if (step < 4) {
+      setStep(step + 1);
+    } else {
+      handleCreate();
+    }
   };
 
   const DIFFICULTIES = [
@@ -247,12 +257,12 @@ export default function CreateChallengePage() {
             <Swords className="h-6 w-6 text-primary" />
             Challenge Arena
           </h1>
-          <span className="text-sm text-muted-foreground">Step {step} of 3</span>
+          <span className="text-sm text-muted-foreground">Step {step} of 4</span>
         </div>
         
         {/* Progress Bar */}
         <div className="flex gap-2">
-          {[1, 2, 3].map((s) => (
+          {[1, 2, 3, 4].map((s) => (
             <div 
               key={s} 
               className={`h-1.5 flex-1 rounded-full transition-colors ${s <= step ? 'bg-primary' : 'bg-muted'}`}
@@ -358,81 +368,121 @@ export default function CreateChallengePage() {
           </div>
         )}
 
-        {/* Step 3: Friend Selection OR Confirmation */}
-        {step === 3 && (
+        {/* Step 3: Friend Selection (only for friend type) */}
+        {step === 3 && formData.type === 'friend' && (
           <div className="animate-in fade-in duration-200">
-            {formData.type === 'friend' ? (
-              <>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-lg">Select Friend</CardTitle>
-                  <div className="relative mt-2">
-                    <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-                    <Input 
-                      placeholder="Search..." 
-                      className="pl-9 h-9"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                  </div>
-                </CardHeader>
-                <CardContent className="pb-4">
-                  <div className="grid grid-cols-1 gap-2 max-h-48 overflow-y-auto">
-                    {filteredFriends.map((friend) => (
-                      <button
-                        key={friend.userId}
-                        className={`flex items-center gap-3 p-2.5 rounded-lg border-2 transition-all ${
-                          formData.opponentId === friend.userId 
-                            ? 'border-primary bg-primary/5' 
-                            : 'border-transparent bg-muted/50 hover:bg-muted'
-                        }`}
-                        onClick={() => setFormData({ ...formData, opponentId: friend.userId })}
-                      >
-                        <Avatar className="h-8 w-8">
-                          <AvatarFallback className="text-xs">{friend.userName.substring(0, 2).toUpperCase()}</AvatarFallback>
-                        </Avatar>
-                        <div className="flex-1 text-left overflow-hidden">
-                          <p className="font-medium text-sm truncate">{friend.userName}</p>
-                          <p className="text-xs text-muted-foreground truncate">{friend.school}</p>
-                        </div>
-                        {formData.opponentId === friend.userId && (
-                          <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
-                        )}
-                      </button>
-                    ))}
-                    {filteredFriends.length === 0 && (
-                      <p className="text-center py-6 text-sm text-muted-foreground">No friends found</p>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-lg">Select Friend</CardTitle>
+              <CardDescription>Choose who you want to challenge</CardDescription>
+              <div className="relative mt-2">
+                <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input 
+                  placeholder="Search by name or school..." 
+                  className="pl-9 h-9"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+            </CardHeader>
+            <CardContent className="pb-4">
+              <div className="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto pr-1">
+                {filteredFriends.map((friend) => (
+                  <button
+                    key={friend.userId}
+                    className={`flex items-center gap-3 p-3 rounded-lg border-2 transition-all text-left ${
+                      formData.opponentId === friend.userId 
+                        ? 'border-primary bg-primary/5' 
+                        : 'border-transparent bg-muted/50 hover:bg-muted'
+                    }`}
+                    onClick={() => setFormData({ ...formData, opponentId: friend.userId })}
+                  >
+                    <Avatar className="h-10 w-10">
+                      <AvatarFallback className="text-sm">{friend.userName.substring(0, 2).toUpperCase()}</AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium text-sm truncate">{friend.userName}</p>
+                      <p className="text-xs text-muted-foreground truncate">{friend.school}</p>
+                    </div>
+                    {formData.opponentId === friend.userId && (
+                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
                     )}
+                  </button>
+                ))}
+                {filteredFriends.length === 0 && (
+                  <p className="text-center py-6 text-sm text-muted-foreground">No friends found</p>
+                )}
+              </div>
+            </CardContent>
+          </div>
+        )}
+
+        {/* Step 4: Confirmation & Summary */}
+        {step === 4 && (
+          <div className="animate-in fade-in duration-200">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-lg">Challenge Summary</CardTitle>
+              <CardDescription>Review your challenge settings</CardDescription>
+            </CardHeader>
+            <CardContent className="pb-4 space-y-4">
+              {/* Challenge Summary Card */}
+              <div className="bg-primary/5 rounded-xl p-4 space-y-4 border-2 border-primary/20">
+                {/* Opponent Preview */}
+                {formData.type === 'friend' && selectedFriend ? (
+                  <div className="flex items-center gap-3 pb-3 border-b border-primary/20">
+                    <Avatar className="h-12 w-12 border-2 border-primary/30">
+                      <AvatarFallback className="text-base font-bold">{selectedFriend.userName.substring(0, 2).toUpperCase()}</AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1">
+                      <p className="font-bold text-base">VS {selectedFriend.userName}</p>
+                      <p className="text-xs text-muted-foreground">{selectedFriend.school}</p>
+                    </div>
                   </div>
-                </CardContent>
-              </>
-            ) : (
-              <>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-lg">Ready to Battle!</CardTitle>
-                  <CardDescription>Review your challenge settings</CardDescription>
-                </CardHeader>
-                <CardContent className="pb-4">
-                  <div className="bg-muted/50 rounded-xl p-4 space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">Subject</span>
-                      <span className="font-medium text-sm">{SUBJECTS.find(s => s.id === formData.subject)?.name}</span>
+                ) : (
+                  <div className="flex items-center gap-3 pb-3 border-b border-primary/20">
+                    <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center">
+                      <Zap className="h-6 w-6 text-primary" />
                     </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">Difficulty</span>
-                      <span className="font-medium text-sm capitalize">{formData.difficulty}</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">Questions</span>
-                      <span className="font-medium text-sm">{DIFFICULTIES.find(d => d.id === formData.difficulty)?.questions}</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">Opponent</span>
-                      <span className="font-medium text-sm">Random Match</span>
+                    <div className="flex-1">
+                      <p className="font-bold text-base">Quick Match</p>
+                      <p className="text-xs text-muted-foreground">Random opponent</p>
                     </div>
                   </div>
-                </CardContent>
-              </>
-            )}
+                )}
+                
+                {/* Settings Grid */}
+                <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div>
+                    <span className="text-muted-foreground text-xs block mb-1">Subject</span>
+                    <p className="font-medium flex items-center gap-1">
+                      {(() => {
+                        const subject = SUBJECTS.find(s => s.id === formData.subject);
+                        const Icon = subject?.icon || BookOpen;
+                        return (
+                          <>
+                            <Icon className="h-4 w-4" />
+                            {subject?.name || formData.subject}
+                          </>
+                        );
+                      })()}
+                    </p>
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground text-xs block mb-1">Difficulty</span>
+                    <p className="font-medium capitalize">{formData.difficulty}</p>
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground text-xs block mb-1">Questions</span>
+                    <p className="font-medium">{DIFFICULTIES.find(d => d.id === formData.difficulty)?.questions || 10}</p>
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground text-xs block mb-1">Time Limit</span>
+                    <p className="font-medium">
+                      {formData.difficulty === 'easy' ? '30s' : formData.difficulty === 'medium' ? '45s' : '60s'} per Q
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
           </div>
         )}
 
@@ -452,7 +502,14 @@ export default function CreateChallengePage() {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setStep(step - 1)}
+              onClick={() => {
+                // If on step 4 and quick match, go back to step 2 (skip step 3)
+                if (step === 4 && formData.type === 'quick') {
+                  setStep(2);
+                } else {
+                  setStep(step - 1);
+                }
+              }}
               className="gap-1"
             >
               <ArrowLeft className="h-4 w-4" />
@@ -466,9 +523,9 @@ export default function CreateChallengePage() {
             disabled={!canProceed() || loading}
             className="gap-1"
           >
-            {loading ? 'Creating...' : step === 3 ? 'Start Challenge' : 'Next'}
-            {!loading && step < 3 && <ArrowRight className="h-4 w-4" />}
-            {!loading && step === 3 && <Swords className="h-4 w-4" />}
+            {loading ? 'Creating...' : step === 4 ? 'Start Challenge' : 'Next'}
+            {!loading && step < 4 && <ArrowRight className="h-4 w-4" />}
+            {!loading && step === 4 && <Swords className="h-4 w-4" />}
           </Button>
         </div>
       </Card>
