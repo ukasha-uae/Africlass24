@@ -19,6 +19,7 @@ import Link from 'next/link';
 import { formatDistanceToNow } from 'date-fns';
 import { useRouter } from 'next/navigation';
 import { markUserNotificationAsRead, markAllUserNotificationsAsRead, deleteUserNotification } from '@/lib/realtime-notifications';
+import { playNotificationSound } from '@/lib/notification-sound';
 
 export default function NotificationBell() {
   const { firestore, user } = useFirebase();
@@ -74,6 +75,7 @@ export default function NotificationBell() {
 
     const newIds = currentIds.filter(id => !prevIds.includes(id));
     if (newIds.length > 0) {
+      let shouldPlaySound = false;
       // For each new unread challenge_invite, fire a browser notification
       notifications.forEach(n => {
         const notif = n as WithId<FirestoreNotification>;
@@ -82,6 +84,7 @@ export default function NotificationBell() {
           !notif.read &&
           notif.type === 'challenge_invite'
         ) {
+          shouldPlaySound = true;
           // This will only show if user has granted permission & enabled notifications
           showNotification(notif.title, notif.message, 'quiz', {
             actionUrl: notif.actionUrl,
@@ -91,6 +94,11 @@ export default function NotificationBell() {
           });
         }
       });
+      
+      // Play notification sound for new challenge invitations
+      if (shouldPlaySound) {
+        playNotificationSound();
+      }
     }
 
     prevIdsRef.current = currentIds;

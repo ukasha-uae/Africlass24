@@ -921,9 +921,7 @@ export default function QuizBattlePage() {
                           {isWin ? (
                             <>
                               <Trophy className="h-10 w-10 text-yellow-500 animate-bounce" />
-                              {(() => {
-                                return `${myResult?.userName || 'You'} Won!`;
-                              })()}
+                              You Won!
                             </>
                           ) : (
                             <>
@@ -942,6 +940,17 @@ export default function QuizBattlePage() {
                             {uniqueResults.find((r: any) => r.userId !== (user?.uid || userId) && r.userId !== myResult?.userId)?.userName || 'Opponent'}
                           </span>
                         </div>
+                        {(() => {
+                          // Check if scores are tied but winner was determined by time
+                          const winnerResult = uniqueResults.find((r: any) => r.rank === 1);
+                          const loserResult = uniqueResults.find((r: any) => r.rank === 2);
+                          const isTieByScore = winnerResult && loserResult && winnerResult.score === loserResult.score;
+                          return isTieByScore ? (
+                            <p className="text-xs text-muted-foreground mb-2 italic">
+                              ⚡ Tied on score! Winner determined by fastest time
+                            </p>
+                          ) : null;
+                        })()}
                         <p className="text-sm text-muted-foreground">{performance.message}</p>
                       </>
                     ) : (
@@ -970,9 +979,7 @@ export default function QuizBattlePage() {
                           {isWin ? (
                             <>
                               <Trophy className="h-10 w-10 text-yellow-500 animate-bounce" />
-                              {(() => {
-                                return `${myResult?.userName || 'You'} Won!`;
-                              })()}
+                              You Won!
                             </>
                           ) : (
                             <>
@@ -991,6 +998,17 @@ export default function QuizBattlePage() {
                             {uniqueResults.find((r: any) => r.userId !== (user?.uid || userId) && r.userId !== myResult?.userId)?.userName || 'Opponent'}
                           </span>
                         </div>
+                        {(() => {
+                          // Check if scores are tied but winner was determined by time
+                          const winnerResult = uniqueResults.find((r: any) => r.rank === 1);
+                          const loserResult = uniqueResults.find((r: any) => r.rank === 2);
+                          const isTieByScore = winnerResult && loserResult && winnerResult.score === loserResult.score;
+                          return isTieByScore ? (
+                            <p className="text-xs text-muted-foreground mb-2 italic">
+                              ⚡ Tied on score! Winner determined by fastest time
+                            </p>
+                          ) : null;
+                        })()}
                         <p className="text-sm text-muted-foreground">{performance.message}</p>
                       </>
                     ) : (
@@ -1025,7 +1043,7 @@ export default function QuizBattlePage() {
                           {isWin ? (
                             <>
                               <Trophy className="h-10 w-10 text-yellow-500 animate-bounce" />
-                              {`${myResult?.userName || 'You'} Won!`}
+                              You Won!
                             </>
                           ) : (
                             <>
@@ -1044,6 +1062,17 @@ export default function QuizBattlePage() {
                             {uniqueResults.find((r: any) => r.userId !== (user?.uid || userId) && r.userId !== myResult?.userId)?.userName || 'Opponent'}
                           </span>
                         </div>
+                        {(() => {
+                          // Check if scores are tied but winner was determined by time
+                          const winnerResult = uniqueResults.find((r: any) => r.rank === 1);
+                          const loserResult = uniqueResults.find((r: any) => r.rank === 2);
+                          const isTieByScore = winnerResult && loserResult && winnerResult.score === loserResult.score;
+                          return isTieByScore ? (
+                            <p className="text-xs text-muted-foreground mb-2 italic">
+                              ⚡ Tied on score! Winner determined by fastest time
+                            </p>
+                          ) : null;
+                        })()}
                         <p className="text-sm text-muted-foreground">{performance.message}</p>
                       </>
                     ) : (
@@ -1067,7 +1096,10 @@ export default function QuizBattlePage() {
                           )}
                         </h1>
                         <p className="text-lg text-muted-foreground mb-2">{performance.message}</p>
-                        <p className="text-sm text-muted-foreground">Rank #{myResult?.rank}</p>
+                        {/* Only show rank if it's been assigned (rank > 0). Avoids showing "Rank #0" or "Rank #undefined" */}
+                        {myResult?.rank && myResult.rank > 0 && (
+                          <p className="text-sm text-muted-foreground">Rank #{myResult.rank}</p>
+                        )}
                       </>
                     )}
                   </>
@@ -1144,9 +1176,12 @@ export default function QuizBattlePage() {
                               </Avatar>
                               <div>
                                 <p className="font-bold text-lg">{myResult?.userName || 'You'}</p>
-                                <Badge variant={myResult?.rank === 1 ? 'default' : 'secondary'} className="mt-1">
-                                  {myResult?.rank === 1 ? '🏆 Winner' : `Rank #${myResult?.rank}`}
-                                </Badge>
+                                {/* Only show rank badge if rank is assigned (rank > 0). Prevents "Rank #0" display */}
+                                {myResult?.rank && myResult.rank > 0 && (
+                                  <Badge variant={myResult.rank === 1 ? 'default' : 'secondary'} className="mt-1">
+                                    {myResult.rank === 1 ? '🏆 Winner' : `Rank #${myResult.rank}`}
+                                  </Badge>
+                                )}
                               </div>
                             </div>
                             <div className="text-right">
@@ -1200,9 +1235,12 @@ export default function QuizBattlePage() {
                                   </Avatar>
                                   <div>
                                     <p className="font-bold text-lg">{opponentResult?.userName || 'Opponent'}</p>
-                                    <Badge variant={opponentResult?.rank === 1 ? 'default' : 'secondary'} className="mt-1">
-                                      {opponentResult?.rank === 1 ? '🏆 Winner' : `Rank #${opponentResult?.rank}`}
-                                    </Badge>
+                                    {/* Only show rank badge if rank is assigned (rank > 0). Prevents "Rank #0" display */}
+                                    {opponentResult?.rank && opponentResult.rank > 0 && (
+                                      <Badge variant={opponentResult.rank === 1 ? 'default' : 'secondary'} className="mt-1">
+                                        {opponentResult.rank === 1 ? '🏆 Winner' : `Rank #${opponentResult.rank}`}
+                                      </Badge>
+                                    )}
                                   </div>
                                 </div>
                                 <div className="text-right">
@@ -1602,7 +1640,13 @@ export default function QuizBattlePage() {
               isBossBattle && FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaBoss ? "/challenge-arena/boss-battle" :
               isSchoolBattle && FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaSchool ? "/challenge-arena/school-battle" :
               isTournament && FEATURE_FLAGS.V1_LAUNCH.showChallengeArenaTournament ? "/challenge-arena/tournaments" :
-              "/challenge-arena/quick-match"
+              // Friend challenges are stored as 'quick' type but can be detected:
+              // Quick matches always have timeLimit: 120, friend challenges have 30/45/60
+              // If it's a quick match with 1 opponent and timeLimit !== 120, it's a friend challenge
+              (isQuickMatch && challenge?.opponents?.length === 1 && challenge?.maxPlayers === 2 && 
+               challenge?.timeLimit !== 120)
+                ? "/challenge-arena/create?type=friend"
+                : "/challenge-arena/quick-match"
             } className="w-full">
               <Button className="w-full h-12 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70">
                 <RotateCcw className="h-4 w-4 mr-2" />

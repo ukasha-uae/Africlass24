@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect, useMemo } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -28,17 +28,21 @@ import { createChallenge, getAllPlayers, Player, getPlayerProfile } from '@/lib/
 import { useToast } from '@/hooks/use-toast';
 import { useFirebase } from '@/firebase/provider';
 import { getAvailableSubjects, type EducationLevel } from '@/lib/challenge-questions';
-import { useMemo } from 'react';
+import { updateUserPresence, startPresenceHeartbeat, isUserOnline } from '@/lib/user-presence';
+import { Badge } from '@/components/ui/badge';
+import { Circle } from 'lucide-react';
 
 // Create challenge page is now enabled for friend challenges
 export default function CreateChallengePage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { toast } = useToast();
   const { user, firestore } = useFirebase();
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [friends, setFriends] = useState<Player[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [userLastSeenMap, setUserLastSeenMap] = useState<Record<string, Date | null>>({});
   
   // Get user's education level
   const userLevel = useMemo(() => {
@@ -88,73 +92,135 @@ export default function CreateChallengePage() {
     }));
   }, [availableSubjects]);
   
-  const [formData, setFormData] = useState({
-    subject: '',
-    difficulty: 'medium',
-    type: 'quick', // quick, friend
-    opponentId: '',
+  // Initialize formData with type from URL parameter
+  const [formData, setFormData] = useState(() => {
+    if (typeof window === 'undefined') {
+      return { subject: '', difficulty: 'medium', type: 'quick' as const, opponentId: '' };
+    }
+    const params = new URLSearchParams(window.location.search);
+    const typeFromUrl = params.get('type') === 'friend' ? 'friend' : 'quick';
+    return {
+      subject: '',
+      difficulty: 'medium',
+      type: typeFromUrl,
+      opponentId: '',
+    };
   });
+  
+  // Update formData.type when URL parameter changes (if user navigates with different type param)
+  useEffect(() => {
+    const typeParam = searchParams?.get('type');
+    if (typeParam === 'friend' && formData.type !== 'friend') {
+      setFormData(prev => ({ ...prev, type: 'friend' }));
+    }
+  }, [searchParams, formData.type]);
 
-  // Query Firestore for real users
+  // Start presence heartbeat for current user
+  useEffect(() => {
+    if (!user?.uid) return;
+    
+    const cleanup = startPresenceHeartbeat(user.uid);
+    return cleanup;
+  }, [user?.uid]);
+
+  // Query Firestore for real users with online status
   useEffect(() => {
     if (!firestore || !user) return;
     
-    const fetchUsers = async () => {
+    let unsubscribe: (() => void) | null = null;
+    
+    const setupListener = async () => {
       try {
-        const { collection, query, where, getDocs, limit } = await import('firebase/firestore');
+        const { collection, query, limit, onSnapshot } = await import('firebase/firestore');
         const studentsRef = collection(firestore, 'students');
-        // Get up to 50 other users (excluding current user)
+        
+        // Use limit without orderBy to avoid index requirements
         const q = query(studentsRef, limit(50));
-        const snapshot = await getDocs(q);
         
-        const usersList: Player[] = [];
-        snapshot.forEach((doc) => {
-          const data = doc.data();
-          // Skip current user
-          if (doc.id !== user.uid && data.studentName) {
-            usersList.push({
-              userId: doc.id,
-              userName: data.studentName || 'Student',
-              school: data.schoolName || 'Unknown School',
-              level: (data.studentClass?.includes('SHS') ? 'SHS' : 
-                     data.studentClass?.includes('JHS') ? 'JHS' : 
-                     data.studentClass?.includes('Primary') ? 'Primary' : 'JHS') as 'Primary' | 'JHS' | 'SHS',
-              rating: 1200,
-              wins: 0,
-              losses: 0,
-              draws: 0,
-              totalGames: 0,
-              winStreak: 0,
-              highestStreak: 0,
-              xp: 0,
-              achievements: [],
-              coins: 0,
-            });
+        unsubscribe = onSnapshot(q, (snapshot) => {
+          const usersList: Player[] = [];
+          const lastSeenMap: Record<string, Date | null> = {};
+          
+          snapshot.forEach((docSnapshot) => {
+            const data = docSnapshot.data();
+            const userId = docSnapshot.id;
+            
+            // Skip current user
+            if (userId === user.uid) return;
+            
+            if (data.studentName) {
+              const lastSeen = data.lastSeen?.toDate?.() || null;
+              lastSeenMap[userId] = lastSeen;
+              
+              usersList.push({
+                userId,
+                userName: data.studentName || 'Student',
+                school: data.schoolName || 'Unknown School',
+                level: (data.studentClass?.includes('SHS') ? 'SHS' : 
+                       data.studentClass?.includes('JHS') ? 'JHS' : 
+                       data.studentClass?.includes('Primary') ? 'Primary' : 'JHS') as 'Primary' | 'JHS' | 'SHS',
+                rating: 1200,
+                wins: 0,
+                losses: 0,
+                draws: 0,
+                totalGames: 0,
+                winStreak: 0,
+                highestStreak: 0,
+                xp: 0,
+                achievements: [],
+                coins: 0,
+              });
+            }
+          });
+          
+          // Sort by online status first, then by name
+          usersList.sort((a, b) => {
+            const aOnline = isUserOnline(lastSeenMap[a.userId]);
+            const bOnline = isUserOnline(lastSeenMap[b.userId]);
+            if (aOnline !== bOnline) {
+              return aOnline ? -1 : 1;
+            }
+            return a.userName.localeCompare(b.userName);
+          });
+          
+          setUserLastSeenMap(lastSeenMap);
+          
+          // If no real users found, fall back to mock players
+          if (usersList.length === 0) {
+            const allPlayers = getAllPlayers();
+            setFriends(allPlayers.filter(p => p.userId !== user.uid));
+          } else {
+            setFriends(usersList);
           }
-        });
-        
-        // If no real users found, fall back to mock players
-        if (usersList.length === 0) {
+        }, (error) => {
+          console.error('Error fetching users:', error);
+          // Fall back to mock players
           const allPlayers = getAllPlayers();
-          setFriends(allPlayers.filter(p => p.userId !== user.uid));
-        } else {
-          setFriends(usersList);
-        }
+          setFriends(allPlayers.filter(p => p.userId !== (user?.uid || 'test-user-1')));
+        });
       } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error('Error setting up users listener:', error);
         // Fall back to mock players
         const allPlayers = getAllPlayers();
         setFriends(allPlayers.filter(p => p.userId !== (user?.uid || 'test-user-1')));
       }
     };
     
-    fetchUsers();
+    setupListener();
+    
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
   }, [firestore, user]);
 
-  const filteredFriends = friends.filter(friend => 
-    friend.userName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    friend.school.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // Filter friends by search query only
+  // Online users are already sorted to the top in the friends list
+  const filteredFriends = friends.filter(friend => {
+    return friend.userName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      friend.school.toLowerCase().includes(searchQuery.toLowerCase());
+  });
 
   const selectedFriend = friends.find(f => f.userId === formData.opponentId);
 
@@ -383,31 +449,49 @@ export default function CreateChallengePage() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
+              <p className="text-xs text-muted-foreground mt-2">
+                Online users appear first with a green indicator
+              </p>
             </CardHeader>
             <CardContent className="pb-4">
               <div className="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto pr-1">
-                {filteredFriends.map((friend) => (
-                  <button
-                    key={friend.userId}
-                    className={`flex items-center gap-3 p-3 rounded-lg border-2 transition-all text-left ${
-                      formData.opponentId === friend.userId 
-                        ? 'border-primary bg-primary/5' 
-                        : 'border-transparent bg-muted/50 hover:bg-muted'
-                    }`}
-                    onClick={() => setFormData({ ...formData, opponentId: friend.userId })}
-                  >
-                    <Avatar className="h-10 w-10">
-                      <AvatarFallback className="text-sm">{friend.userName.substring(0, 2).toUpperCase()}</AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-medium text-sm truncate">{friend.userName}</p>
-                      <p className="text-xs text-muted-foreground truncate">{friend.school}</p>
-                    </div>
-                    {formData.opponentId === friend.userId && (
-                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
-                    )}
-                  </button>
-                ))}
+                {filteredFriends.map((friend) => {
+                  const isOnline = isUserOnline(userLastSeenMap[friend.userId]);
+                  return (
+                    <button
+                      key={friend.userId}
+                      className={`flex items-center gap-3 p-3 rounded-lg border-2 transition-all text-left ${
+                        formData.opponentId === friend.userId 
+                          ? 'border-primary bg-primary/5' 
+                          : 'border-transparent bg-muted/50 hover:bg-muted'
+                      }`}
+                      onClick={() => setFormData({ ...formData, opponentId: friend.userId })}
+                    >
+                      <div className="relative">
+                        <Avatar className="h-10 w-10">
+                          <AvatarFallback className="text-sm">{friend.userName.substring(0, 2).toUpperCase()}</AvatarFallback>
+                        </Avatar>
+                        {isOnline && (
+                          <Circle className="absolute -bottom-0.5 -right-0.5 h-3.5 w-3.5 fill-green-500 text-green-500 border-2 border-background rounded-full" />
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <p className="font-medium text-sm truncate">{friend.userName}</p>
+                          {isOnline && (
+                            <Badge variant="outline" className="h-4 px-1.5 text-[10px] border-green-500 text-green-600 dark:text-green-400">
+                              Online
+                            </Badge>
+                          )}
+                        </div>
+                        <p className="text-xs text-muted-foreground truncate">{friend.school}</p>
+                      </div>
+                      {formData.opponentId === friend.userId && (
+                        <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
+                      )}
+                    </button>
+                  );
+                })}
                 {filteredFriends.length === 0 && (
                   <p className="text-center py-6 text-sm text-muted-foreground">No friends found</p>
                 )}

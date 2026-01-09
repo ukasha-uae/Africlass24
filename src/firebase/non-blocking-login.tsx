@@ -8,6 +8,9 @@ import {
   linkWithCredential,
   signOut,
   sendPasswordResetEmail,
+  setPersistence,
+  browserLocalPersistence,
+  browserSessionPersistence,
 } from 'firebase/auth';
 import { Firestore, collection, query, where, getDocs, addDoc } from 'firebase/firestore';
 import { getLocalQuizAttempts, clearLocalQuizAttempts } from '@/lib/local-quiz-attempts';
@@ -20,13 +23,38 @@ export function initiateAnonymousSignIn(authInstance: Auth): void {
 }
 
 /** Initiate email/password sign-up (returns promise to catch errors like email-already-in-use). */
-export function initiateEmailSignUp(authInstance: Auth, email: string, password: string): Promise<any> {
+export async function initiateEmailSignUp(authInstance: Auth, email: string, password: string, stayLoggedIn: boolean = true): Promise<any> {
+  // Set persistence based on user preference (before sign-up so it applies when user is auto-signed in)
+  try {
+    await setPersistence(
+      authInstance, 
+      stayLoggedIn ? browserLocalPersistence : browserSessionPersistence
+    );
+  } catch (error) {
+    console.warn('Failed to set auth persistence, using default:', error);
+    // Continue with sign-up even if persistence setting fails
+  }
+  
   // Return the promise so caller can catch errors (e.g., email-already-in-use)
+  // Note: createUserWithEmailAndPassword automatically signs the user in
   return createUserWithEmailAndPassword(authInstance, email, password);
 }
 
 /** Initiate email/password sign-in (returns promise to catch errors). */
-export function initiateEmailSignIn(authInstance: Auth, email: string, password: string): Promise<any> {
+export async function initiateEmailSignIn(authInstance: Auth, email: string, password: string, stayLoggedIn: boolean = true): Promise<any> {
+  // Set persistence based on user preference
+  // LOCAL persistence (default) = stays logged in across browser sessions
+  // SESSION persistence = only for current browser session
+  try {
+    await setPersistence(
+      authInstance, 
+      stayLoggedIn ? browserLocalPersistence : browserSessionPersistence
+    );
+  } catch (error) {
+    console.warn('Failed to set auth persistence, using default:', error);
+    // Continue with sign-in even if persistence setting fails
+  }
+  
   // Return the promise so caller can catch errors (e.g., wrong-password, user-not-found)
   return signInWithEmailAndPassword(authInstance, email, password);
 }

@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { useFirebase } from '@/firebase';
 import { linkAnonymousToEmail, initiateEmailSignIn, initiateEmailSignUp, doSignOut, migrateLocalAttemptsToFirestore, sendPasswordReset } from '@/firebase/non-blocking-login';
 import { useToast } from '@/hooks/use-toast';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
 
 export default function AuthModal() {
   const { auth, user, firestore } = useFirebase();
@@ -17,6 +19,7 @@ export default function AuthModal() {
   const [activeTab, setActiveTab] = useState<'sign-in'|'sign-up'>('sign-in');
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [resetEmailSent, setResetEmailSent] = useState(false);
+  const [stayLoggedIn, setStayLoggedIn] = useState(true); // Default to true for better UX
   const { toast } = useToast();
 
   const signUp = async () => {
@@ -41,11 +44,17 @@ export default function AuthModal() {
         }
         toast({ title: 'Account created', description: 'Your anonymous session is now linked to your email.' });
       } else {
-        await initiateEmailSignUp(auth, email, password);
-        // Successful sign-up - welcome as new user
+        await initiateEmailSignUp(auth, email, password, stayLoggedIn);
+        // Save preference for future reference
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('stayLoggedInPreference', String(stayLoggedIn));
+        }
+        // Successful sign-up - welcome as new user (user is auto-signed in)
         toast({ 
           title: 'Account created successfully!', 
-          description: 'Welcome! Your account has been created. Please sign in to continue.',
+          description: stayLoggedIn 
+            ? 'Welcome! Your account has been created and you are signed in.' 
+            : 'Welcome! Your account has been created and you are signed in for this session.',
           duration: 5000
         });
         setActiveTab('sign-in');
@@ -79,10 +88,16 @@ export default function AuthModal() {
     if (!password.trim()) { toast({ title: 'Password required', description: 'Please enter a password.' }); return; }
     setLoading(true);
     try {
-      await initiateEmailSignIn(auth, email, password);
+      await initiateEmailSignIn(auth, email, password, stayLoggedIn);
+      // Save preference for future reference
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('stayLoggedInPreference', String(stayLoggedIn));
+      }
       toast({ 
         title: 'Signed in successfully', 
-        description: 'Welcome! You are now signed in.',
+        description: stayLoggedIn 
+          ? 'Welcome! You are now signed in and will stay logged in.' 
+          : 'Welcome! You are now signed in.',
         duration: 3000
       });
       setShowForgotPassword(false);
@@ -210,6 +225,21 @@ export default function AuthModal() {
                 }}
               />
               
+              {/* Stay Logged In Checkbox */}
+              <div className="flex items-center space-x-2">
+                <Checkbox 
+                  id="stay-logged-in" 
+                  checked={stayLoggedIn}
+                  onCheckedChange={(checked) => setStayLoggedIn(checked === true)}
+                />
+                <Label 
+                  htmlFor="stay-logged-in" 
+                  className="text-sm font-normal cursor-pointer"
+                >
+                  Stay logged in
+                </Label>
+              </div>
+              
               {/* Forgot Password Section */}
               {showForgotPassword && !resetEmailSent && (
                 <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-lg p-3 space-y-2">
@@ -245,6 +275,22 @@ export default function AuthModal() {
             <TabsContent value="sign-up" className="space-y-2 mt-4">
               <Input placeholder="Email" value={email} onChange={(e) => setEmail((e.target as HTMLInputElement).value)} />
               <Input type="password" placeholder="Password" value={password} onChange={(e) => setPassword((e.target as HTMLInputElement).value)} />
+              
+              {/* Stay Logged In Checkbox for Sign Up */}
+              <div className="flex items-center space-x-2">
+                <Checkbox 
+                  id="stay-logged-in-signup" 
+                  checked={stayLoggedIn}
+                  onCheckedChange={(checked) => setStayLoggedIn(checked === true)}
+                />
+                <Label 
+                  htmlFor="stay-logged-in-signup" 
+                  className="text-sm font-normal cursor-pointer"
+                >
+                  Stay logged in
+                </Label>
+              </div>
+              
               <div className="flex gap-2 justify-end">
                 <Button disabled={loading} onClick={signUp}>Create Account</Button>
               </div>
