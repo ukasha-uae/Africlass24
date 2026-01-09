@@ -1524,10 +1524,12 @@ const generateGameQuestions = (
 
   // Convert to GameQuestion format with variety of question types
   // Pre-calculate question types to ensure proper distribution
+  // Reduced fillblank to 0% to avoid poor quality conversions
+  // Only use fillblank for questions that naturally work as fill-in-the-blank
   const totalQuestions = challengeQuestions.length;
-  const mcqCount = Math.floor(totalQuestions * 0.70);
+  const mcqCount = Math.floor(totalQuestions * 0.80);
   const trueFalseCount = Math.floor(totalQuestions * 0.15);
-  const fillBlankCount = Math.floor(totalQuestions * 0.10);
+  const fillBlankCount = 0; // Disabled - conversions produce poor quality questions
   const numberInputCount = totalQuestions - mcqCount - trueFalseCount - fillBlankCount;
   
   // Create array of question types with proper distribution
@@ -1649,58 +1651,14 @@ const generateGameQuestions = (
         correctAnswer: isTrue ? 'true' : 'false',
       };
     } else if (questionType === 'fillblank') {
-      // Fill Blank (10%) - Convert MCQ to Fill Blank
-      // BUT: Skip conversion for "Which of the following" questions - they need options!
-      if (q.question.toLowerCase().includes('which of the following') || 
-          q.question.toLowerCase().includes('which of these')) {
-        // Keep as MCQ - these questions don't work well as fillblank
-        return {
-          ...baseQuestion,
-          type: 'mcq' as const,
-          options: q.options,
-          correctAnswer: q.options[q.correctAnswer],
-        };
-      }
-      
-      const correctOption = q.options[q.correctAnswer];
-      // Create a fill-in-the-blank version with better question rewriting
-      let blankQuestion = q.question.trim();
-      
-      if (blankQuestion.toLowerCase().includes('what is') || blankQuestion.toLowerCase().includes('what does')) {
-        // Convert "What is X?" to "X is: _____" (more natural)
-        // Extract the subject (X) from "What is X?"
-        const whatIsMatch = blankQuestion.match(/what (?:is|does)\s+(.+?)\s*\?/i);
-        if (whatIsMatch && whatIsMatch[1]) {
-          const subject = whatIsMatch[1].trim();
-          if (blankQuestion.toLowerCase().includes('stand for')) {
-            blankQuestion = `${subject} stands for: _____`;
-          } else {
-            // Capitalize first letter of subject for better readability
-            const capitalizedSubject = subject.charAt(0).toUpperCase() + subject.slice(1);
-            blankQuestion = `${capitalizedSubject} is: _____`;
-          }
-        } else {
-          // Fallback: keep original question but add blank
-          blankQuestion = blankQuestion.replace(/\?/g, '') + ' _____';
-        }
-      } else if (blankQuestion.toLowerCase().includes('which')) {
-        // For "Which" questions, convert to "The correct answer is: _____"
-        blankQuestion = `The correct answer is: _____`;
-      } else {
-        // For other questions, replace question mark with blank or add blank at the end
-        if (blankQuestion.endsWith('?')) {
-          blankQuestion = blankQuestion.slice(0, -1) + ': _____';
-        } else {
-          blankQuestion = blankQuestion + ' _____';
-        }
-      }
-      
+      // Fill Blank - DISABLED: Conversions produce poor quality questions
+      // Fallback to MCQ for all fillblank attempts
+      // Example of poor conversion: "Which is the smallest number?" -> "The correct answer is: _____"
       return {
         ...baseQuestion,
-        type: 'fillblank' as const,
-        question: blankQuestion || q.question,
-        correctAnswer: correctOption.toLowerCase().trim(),
-        alternatives: q.options.filter((opt, idx) => idx !== q.correctAnswer).slice(0, 2).map(o => o.toLowerCase().trim()),
+        type: 'mcq' as const,
+        options: q.options,
+        correctAnswer: q.options[q.correctAnswer],
       };
     } else {
       // Number Input (5%) - Only for math questions
