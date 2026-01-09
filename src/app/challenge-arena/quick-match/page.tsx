@@ -134,6 +134,7 @@ export default function QuickMatchPage() {
         
         unsubscribe = onSnapshot(q, (snapshot) => {
           const playersList: Player[] = [];
+          const allUsers: Array<{userId: string, userName: string, lastSeen: any, isOnline: boolean}> = [];
           
           snapshot.forEach((docSnapshot) => {
             const data = docSnapshot.data();
@@ -145,6 +146,14 @@ export default function QuickMatchPage() {
             if (data.studentName) {
               const lastSeen = data.lastSeen?.toDate?.() || null;
               const isOnline = isUserOnline(lastSeen);
+              
+              // Debug logging
+              allUsers.push({
+                userId,
+                userName: data.studentName || 'Student',
+                lastSeen: lastSeen ? lastSeen.toISOString() : 'null',
+                isOnline
+              });
               
               // Only include online users for quick match
               if (!isOnline) return;
@@ -169,6 +178,9 @@ export default function QuickMatchPage() {
               });
             }
           });
+          
+          console.log('[Quick Match] All users from Firestore:', allUsers);
+          console.log('[Quick Match] Online players found:', playersList.length, playersList.map(p => p.userName));
           
           setOnlinePlayers(playersList);
         }, (error) => {
