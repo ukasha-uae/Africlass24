@@ -626,6 +626,8 @@ async function saveChallengeToFirestore(challenge: Challenge): Promise<void> {
     if (!firestore) return;
     const challengeRef = doc(firestore, 'challenges', challenge.id);
     
+    // CRITICAL: For results array, we need to replace the entire array to preserve all results
+    // setDoc with merge:true replaces arrays, so we need to ensure we always save the complete results array
     // Remove all undefined values recursively - Firestore doesn't accept undefined
     const challengeData = removeUndefinedValues({
       ...challenge,
@@ -633,6 +635,7 @@ async function saveChallengeToFirestore(challenge: Challenge): Promise<void> {
       updatedAt: serverTimestamp(),
     });
     
+    // Use setDoc with merge:true - this replaces arrays, but that's OK because we always pass the complete merged results array
     await setDoc(challengeRef, challengeData, { merge: true });
   } catch (error) {
     console.error('Failed to save challenge to Firestore:', error);
