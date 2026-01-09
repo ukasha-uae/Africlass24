@@ -1891,6 +1891,7 @@ export default function QuizBattlePage() {
                isBossBattle ? (isWin ? "Next Boss" : "Rematch") :
                isSchoolBattle ? "Defend Again" :
                isTournament ? "View Tournaments" :
+               isQuickMatch ? "Re-match" :
                "Play Again"}
             </Button>
           </div>
