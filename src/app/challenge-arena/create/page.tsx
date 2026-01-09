@@ -44,6 +44,8 @@ export default function CreateChallengePage() {
   const [friends, setFriends] = useState<Player[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [userLastSeenMap, setUserLastSeenMap] = useState<Record<string, Date | null>>({});
+  const [createdChallengeId, setCreatedChallengeId] = useState<string | null>(null);
+  const [createdChallengeData, setCreatedChallengeData] = useState<{creatorName: string, creatorSchool: string, subject: string, opponentName?: string} | null>(null);
   
   // Get user's education level - use state to avoid hydration mismatch
   const [userLevel, setUserLevel] = useState<EducationLevel>('JHS');
@@ -284,7 +286,20 @@ export default function CreateChallengePage() {
         maxPlayers: 2,
       });
 
-      toast({ title: 'Challenge Created!', description: 'Get ready to battle!' });
+      // Store challenge data for sharing
+      const opponentName = formData.type === 'friend' && formData.opponentId 
+        ? friends.find(f => f.userId === formData.opponentId)?.userName 
+        : undefined;
+      
+      setCreatedChallengeId(challenge.id);
+      setCreatedChallengeData({
+        creatorName: currentUser.name,
+        creatorSchool: currentUser.school,
+        subject: subjectName,
+        opponentName,
+      });
+
+      toast({ title: 'Challenge Created!', description: 'You can share with your opponent!' });
       router.push(`/challenge-arena/play/${challenge.id}`);
     } catch (error) {
       toast({ title: 'Error', description: 'Failed to create challenge', variant: 'destructive' });
@@ -569,6 +584,26 @@ export default function CreateChallengePage() {
                     </p>
                   </div>
                 </div>
+                
+                {/* Share Challenge Button - Only show for friend challenges */}
+                {formData.type === 'friend' && selectedFriend && createdChallengeId && createdChallengeData && (
+                  <div className="pt-4 border-t border-primary/20">
+                    <ShareChallengeDialog
+                      challengeId={createdChallengeId}
+                      creatorName={createdChallengeData.creatorName}
+                      creatorSchool={createdChallengeData.creatorSchool}
+                      subject={createdChallengeData.subject}
+                      opponentName={createdChallengeData.opponentName}
+                      opponentUserId={formData.opponentId}
+                      onEmailSent={() => {
+                        toast({ title: 'Email sent!', description: 'Your opponent will be notified.' });
+                      }}
+                      onWhatsAppSent={() => {
+                        toast({ title: 'WhatsApp opened!', description: 'Send the message to notify your opponent.' });
+                      }}
+                    />
+                  </div>
+                )}
               </div>
             </CardContent>
           </div>

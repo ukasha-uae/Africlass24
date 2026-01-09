@@ -39,6 +39,7 @@ import { useFirebase } from '@/firebase/provider';
 import { useToast } from '@/hooks/use-toast';
 import { FEATURE_FLAGS } from '@/lib/featureFlags';
 import { useFullscreen } from '@/contexts/FullscreenContext';
+import { ShareChallengeDialog } from '@/components/challenge/ShareChallengeDialog';
 
 export default function QuizBattlePage() {
   const params = useParams();
@@ -630,7 +631,23 @@ export default function QuizBattlePage() {
               </div>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 flex-wrap justify-center">
+              {challenge?.opponents && challenge.opponents.length > 0 && challenge.opponents[0].userName && (
+                <ShareChallengeDialog
+                  challengeId={challenge.id}
+                  creatorName={challenge.creatorName}
+                  creatorSchool={challenge.creatorSchool}
+                  subject={challenge.subject}
+                  opponentName={challenge.opponents[0].userName}
+                  opponentUserId={challenge.opponents[0].userId}
+                  onEmailSent={() => {
+                    toast({ title: 'Email opened!', description: 'Send the email to notify your opponent.' });
+                  }}
+                  onWhatsAppSent={() => {
+                    toast({ title: 'WhatsApp opened!', description: 'Send the message to notify your opponent.' });
+                  }}
+                />
+              )}
               <Button variant="outline" onClick={() => router.push('/challenge-arena')}>
                 Cancel Challenge
               </Button>
