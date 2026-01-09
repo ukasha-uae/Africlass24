@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Bell, Check, Trash2, X } from 'lucide-react';
+import { Bell, Check, Trash2, X, Trophy, Sword } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Popover,
@@ -10,6 +10,16 @@ import {
 } from '@/components/ui/popover';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Badge } from '@/components/ui/badge';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 import { useFirebase } from '@/firebase/provider';
 import { collection } from 'firebase/firestore';
 import { useCollection } from '@/firebase';
@@ -25,6 +35,8 @@ export default function NotificationBell() {
   const { firestore, user } = useFirebase();
   const [unreadCount, setUnreadCount] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const [challengeAlertOpen, setChallengeAlertOpen] = useState(false);
+  const [challengeAlertNotification, setChallengeAlertNotification] = useState<WithId<FirestoreNotification> | null>(null);
   const router = useRouter();
 
   type FirestoreNotification = {
@@ -76,6 +88,8 @@ export default function NotificationBell() {
     const newIds = currentIds.filter(id => !prevIds.includes(id));
     if (newIds.length > 0) {
       let shouldPlaySound = false;
+      let latestChallengeNotification: WithId<FirestoreNotification> | null = null;
+      
       // For each new unread challenge_invite, fire a browser notification
       notifications.forEach(n => {
         const notif = n as WithId<FirestoreNotification>;
@@ -85,6 +99,10 @@ export default function NotificationBell() {
           notif.type === 'challenge_invite'
         ) {
           shouldPlaySound = true;
+          // Track the latest challenge notification for the popup
+          if (!latestChallengeNotification) {
+            latestChallengeNotification = notif;
+          }
           // This will only show if user has granted permission & enabled notifications
           showNotification(notif.title, notif.message, 'quiz', {
             actionUrl: notif.actionUrl,
@@ -98,6 +116,12 @@ export default function NotificationBell() {
       // Play notification sound for new challenge invitations
       if (shouldPlaySound) {
         playNotificationSound();
+      }
+      
+      // Show popup alert for the latest challenge invitation
+      if (latestChallengeNotification) {
+        setChallengeAlertNotification(latestChallengeNotification);
+        setChallengeAlertOpen(true);
       }
     }
 
@@ -154,17 +178,88 @@ export default function NotificationBell() {
     }
   };
 
+  const handleChallengeAlertAccept = () => {
+    if (!challengeAlertNotification) return;
+    
+    // Mark notification as read
+    if (!challengeAlertNotification.read && user) {
+      markUserNotificationAsRead(user.uid, challengeAlertNotification.id).catch(err => {
+        console.error('Failed to mark notification as read:', err);
+      });
+    }
+    
+    // Navigate to challenge
+    if (challengeAlertNotification.actionUrl) {
+      router.push(challengeAlertNotification.actionUrl);
+    }
+    
+    // Close alert
+    setChallengeAlertOpen(false);
+    setChallengeAlertNotification(null);
+  };
+
+  const handleChallengeAlertDismiss = () => {
+    // Just close the alert, notification remains unread
+    setChallengeAlertOpen(false);
+    setChallengeAlertNotification(null);
+  };
+
   return (
-    <Popover open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative">
-          <Bell className="h-5 w-5" />
-          {unreadCount > 0 && (
-            <span className="absolute top-1 right-1 h-2.5 w-2.5 rounded-full bg-red-600 border-2 border-background" />
-          )}
-          <span className="sr-only">Notifications</span>
-        </Button>
-      </PopoverTrigger>
+    <>
+      {/* Challenge Alert Dialog */}
+      <AlertDialog open={challengeAlertOpen} onOpenChange={setChallengeAlertOpen}>
+        <AlertDialogContent className="sm:max-w-md">
+          <AlertDialogHeader>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="p-2 bg-orange-100 dark:bg-orange-900/30 rounded-full">
+                <Sword className="h-5 w-5 text-orange-600 dark:text-orange-400" />
+              </div>
+              <AlertDialogTitle className="text-xl">Challenge Invitation!</AlertDialogTitle>
+            </div>
+            <AlertDialogDescription className="text-base pt-2">
+              {challengeAlertNotification && (
+                <>
+                  <p className="font-semibold text-foreground mb-2">
+                    {challengeAlertNotification.message}
+                  </p>
+                  {challengeAlertNotification.data?.subject && (
+                    <div className="mt-3 p-3 bg-muted/50 rounded-lg">
+                      <p className="text-sm text-muted-foreground">
+                        <span className="font-medium">Subject:</span> {challengeAlertNotification.data.subject}
+                      </p>
+                      {challengeAlertNotification.data.fromSchool && (
+                        <p className="text-sm text-muted-foreground mt-1">
+                          <span className="font-medium">From:</span> {challengeAlertNotification.data.fromSchool}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </>
+              )}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter className="flex-col sm:flex-row gap-2 sm:gap-0">
+            <AlertDialogCancel onClick={handleChallengeAlertDismiss}>
+              Dismiss
+            </AlertDialogCancel>
+            <AlertDialogAction onClick={handleChallengeAlertAccept} className="w-full sm:w-auto">
+              <Trophy className="h-4 w-4 mr-2 inline" />
+              Accept Challenge
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      <Popover open={isOpen} onOpenChange={setIsOpen}>
+        <PopoverTrigger asChild>
+          <Button variant="ghost" size="icon" className="relative">
+            <Bell className="h-5 w-5" />
+            {unreadCount > 0 && (
+              <span className="absolute top-1 right-1 h-2.5 w-2.5 rounded-full bg-red-600 border-2 border-background" />
+            )}
+            <span className="sr-only">Notifications</span>
+          </Button>
+        </PopoverTrigger>
       <PopoverContent className="w-80 p-0" align="end">
         <div className="flex items-center justify-between p-4 border-b">
           <h4 className="font-semibold">Notifications</h4>
@@ -265,5 +360,6 @@ export default function NotificationBell() {
         </div>
       </PopoverContent>
     </Popover>
+    </>
   );
 }
