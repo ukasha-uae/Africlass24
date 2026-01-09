@@ -216,25 +216,25 @@ export default function NotificationBell() {
               </div>
               <AlertDialogTitle className="text-xl">Challenge Invitation!</AlertDialogTitle>
             </div>
-            <AlertDialogDescription className="text-base pt-2">
+            <AlertDialogDescription asChild>
               {challengeAlertNotification && (
-                <>
-                  <p className="font-semibold text-foreground mb-2">
+                <div className="text-base pt-2">
+                  <div className="font-semibold text-foreground mb-2">
                     {challengeAlertNotification.message}
-                  </p>
+                  </div>
                   {challengeAlertNotification.data?.subject && (
                     <div className="mt-3 p-3 bg-muted/50 rounded-lg">
-                      <p className="text-sm text-muted-foreground">
+                      <div className="text-sm text-muted-foreground">
                         <span className="font-medium">Subject:</span> {challengeAlertNotification.data.subject}
-                      </p>
+                      </div>
                       {challengeAlertNotification.data.fromSchool && (
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <div className="text-sm text-muted-foreground mt-1">
                           <span className="font-medium">From:</span> {challengeAlertNotification.data.fromSchool}
-                        </p>
+                        </div>
                       )}
                     </div>
                   )}
-                </>
+                </div>
               )}
             </AlertDialogDescription>
           </AlertDialogHeader>
