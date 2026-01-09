@@ -1084,13 +1084,15 @@ export const submitChallengeAnswers = async (
       const { firestore } = initializeFirebase();
       if (firestore) {
         const challengeRef = doc(firestore, 'challenges', challengeId);
+        let mergedResults: any[] = [];
+        
         await runTransaction(firestore, async (transaction) => {
           // Fetch the latest challenge data from Firestore
           const challengeDoc = await transaction.get(challengeRef);
           const latestChallenge = challengeDoc.exists() ? challengeDoc.data() as Challenge : null;
           
           // Merge results: combine existing Firestore results with our new result
-          const mergedResults = latestChallenge?.results ? [...latestChallenge.results] : [];
+          mergedResults = latestChallenge?.results ? [...latestChallenge.results] : [];
           
           // Find and update/insert our result
           const existingIndex = mergedResults.findIndex(r => r.userId === userId);
@@ -1110,7 +1112,12 @@ export const submitChallengeAnswers = async (
           transaction.set(challengeRef, challengeData, { merge: true });
         });
         
-        console.log('[Submit Answers] ✅ Results saved to Firestore via transaction. Total results:', challenge.results.length);
+        // CRITICAL: Update the local challenge object with merged results so it's returned correctly
+        challenge.results = mergedResults;
+        challenges[challengeIndex] = challenge;
+        localStorage.setItem('challenges', JSON.stringify(challenges));
+        
+        console.log('[Submit Answers] ✅ Results saved to Firestore via transaction. Total results:', mergedResults.length);
       } else {
         // Fallback to regular save if transaction fails
         await saveChallengeToFirestore(challenge).catch(err => {
