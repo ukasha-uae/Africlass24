@@ -68,7 +68,6 @@ export default function StudyGroupsPage() {
   const [joinCode, setJoinCode] = useState('');
 
   useEffect(() => {
-    initializeSocialData();
     loadGroups();
   }, []);
 

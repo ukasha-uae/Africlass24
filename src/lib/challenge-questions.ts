@@ -1645,7 +1645,7 @@ const jhsQuestionBank: ChallengeQuestion[] = [
   // Surds (Actual BECE)
   {
     id: 'bece-2018-math-046',
-    question: `Simplify: (2${String.fromCharCode(8730)}3 + ${String.fromCharCode(8730)}2)(2${String.fromCharCode(8730)}3 - ${String.fromCharCode(8730)}2)`,
+    question: `Simplify: (2√3 + √2)(2√3 - √2)`,
     options: ['8', '10', '12', '14'],
     correctAnswer: 1,
     subject: 'Mathematics',
@@ -1653,31 +1653,31 @@ const jhsQuestionBank: ChallengeQuestion[] = [
     classLevel: 'JHS 3',
     level: 'JHS',
     topic: 'Surds',
-    explanation: `Difference of two squares: (2${String.fromCharCode(8730)}3)² - (${String.fromCharCode(8730)}2)² = (4×3) - 2 = 12 - 2 = 10`
+    explanation: `Difference of two squares: (2√3)² - (√2)² = (4×3) - 2 = 12 - 2 = 10`
   },
   {
     id: 'bece-2017-math-047',
-    question: `Simplify: ${String.fromCharCode(8730)}50`,
-    options: [`5${String.fromCharCode(8730)}2`, `10${String.fromCharCode(8730)}2`, `25${String.fromCharCode(8730)}2`, `50`],
+    question: `Simplify: √50`,
+    options: [`5√2`, `10√2`, `25√2`, `50`],
     correctAnswer: 0,
     subject: 'Mathematics',
     difficulty: 'medium',
     classLevel: 'JHS 2',
     level: 'JHS',
     topic: 'Surds',
-    explanation: `${String.fromCharCode(8730)}50 = ${String.fromCharCode(8730)}(25×2) = 5${String.fromCharCode(8730)}2`
+    explanation: `√50 = √(25×2) = 5√2`
   },
   {
     id: 'bece-2016-math-048',
-    question: `Simplify: ${String.fromCharCode(8730)}12 + ${String.fromCharCode(8730)}27`,
-    options: [`5${String.fromCharCode(8730)}3`, `7${String.fromCharCode(8730)}3`, `39`, `${String.fromCharCode(8730)}39`],
+    question: `Simplify: √12 + √27`,
+    options: [`5√3`, `7√3`, `39`, `√39`],
     correctAnswer: 0,
     subject: 'Mathematics',
     difficulty: 'medium',
     classLevel: 'JHS 2',
     level: 'JHS',
     topic: 'Surds',
-    explanation: `${String.fromCharCode(8730)}12 = 2${String.fromCharCode(8730)}3, ${String.fromCharCode(8730)}27 = 3${String.fromCharCode(8730)}3. Sum = 5${String.fromCharCode(8730)}3`
+    explanation: `√12 = 2√3, √27 = 3√3. Sum = 5√3`
   },
 
   // Sets (Actual BECE)
@@ -5233,12 +5233,12 @@ const shsQuestionBank: ChallengeQuestion[] = [
   // Surds
   {
     id: 'wassce-2018-math-063',
-    question: `Simplify: ${String.fromCharCode(8730)}12`,
+    question: `Simplify: √12`,
     options: [
-      `2${String.fromCharCode(8730)}3`,
-      `3${String.fromCharCode(8730)}2`,
-      `4${String.fromCharCode(8730)}3`,
-      `6${String.fromCharCode(8730)}2`
+      `2√3`,
+      `3√2`,
+      `4√3`,
+      `6√2`
     ],
     correctAnswer: 0,
     subject: 'Core Mathematics',
@@ -5250,12 +5250,12 @@ const shsQuestionBank: ChallengeQuestion[] = [
   },
   {
     id: 'wassce-2019-math-064',
-    question: `Simplify: ${String.fromCharCode(8730)}8 + ${String.fromCharCode(8730)}18`,
+    question: `Simplify: √8 + √18`,
     options: [
-      `5${String.fromCharCode(8730)}2`,
-      `7${String.fromCharCode(8730)}2`,
-      `13${String.fromCharCode(8730)}2`,
-      `26${String.fromCharCode(8730)}2`
+      `5√2`,
+      `7√2`,
+      `13√2`,
+      `26√2`
     ],
     correctAnswer: 0,
     subject: 'Core Mathematics',
@@ -5267,11 +5267,11 @@ const shsQuestionBank: ChallengeQuestion[] = [
   },
   {
     id: 'wassce-2020-math-065',
-    question: `Rationalize: 1/${String.fromCharCode(8730)}3`,
+    question: `Rationalize: 1/√3`,
     options: [
-      `${String.fromCharCode(8730)}3/3`,
-      `3/${String.fromCharCode(8730)}3`,
-      `${String.fromCharCode(8730)}3`,
+      `√3/3`,
+      `3/√3`,
+      `√3`,
       `1/3`
     ],
     correctAnswer: 0,
@@ -5392,27 +5392,27 @@ const shsQuestionBank: ChallengeQuestion[] = [
   // Algebra - Surds and Radicals
   {
     id: 'wassce-2020-math-074',
-    question: `Simplify: ${String.fromCharCode(8730)}12 + ${String.fromCharCode(8730)}27`,
-    options: [`5${String.fromCharCode(8730)}3`, `3${String.fromCharCode(8730)}5`, `7${String.fromCharCode(8730)}3`, `${String.fromCharCode(8730)}39`],
+    question: `Simplify: √12 + √27`,
+    options: [`5√3`, `3√5`, `7√3`, `√39`],
     correctAnswer: 0,
     subject: 'Core Mathematics',
     difficulty: 'medium',
     classLevel: 'SHS 2',
     level: 'SHS',
     topic: 'Surds',
-    explanation: `${String.fromCharCode(8730)}12 = 2${String.fromCharCode(8730)}3, ${String.fromCharCode(8730)}27 = 3${String.fromCharCode(8730)}3. Sum = 5${String.fromCharCode(8730)}3`
+    explanation: `√12 = 2√3, √27 = 3√3. Sum = 5√3`
   },
   {
     id: 'wassce-2021-math-075',
-    question: `Rationalize: 1 / (${String.fromCharCode(8730)}5 - 2)`,
-    options: [`${String.fromCharCode(8730)}5 + 2`, `${String.fromCharCode(8730)}5 - 2`, `(${String.fromCharCode(8730)}5 + 2) / 1`, `(${String.fromCharCode(8730)}5 + 2) / 9`],
+    question: `Rationalize: 1 / (√5 - 2)`,
+    options: [`√5 + 2`, `√5 - 2`, `(√5 + 2) / 1`, `(√5 + 2) / 9`],
     correctAnswer: 0,
     subject: 'Core Mathematics',
     difficulty: 'hard',
     classLevel: 'SHS 3',
     level: 'SHS',
     topic: 'Surds',
-    explanation: `Multiply numerator and denominator by (${String.fromCharCode(8730)}5 + 2): (${String.fromCharCode(8730)}5 + 2) / (5 - 4) = ${String.fromCharCode(8730)}5 + 2`
+    explanation: `Multiply numerator and denominator by (√5 + 2): (√5 + 2) / (5 - 4) = √5 + 2`
   },
 
   // Geometry - Circles
@@ -5886,27 +5886,27 @@ const shsQuestionBank: ChallengeQuestion[] = [
   // Surds (Actual WASSCE)
   {
     id: 'wassce-2016-math-112',
-    question: `Simplify: ${String.fromCharCode(8730)}50 - ${String.fromCharCode(8730)}18`,
-    options: [`2${String.fromCharCode(8730)}2`, `3${String.fromCharCode(8730)}2`, `4${String.fromCharCode(8730)}2`, `5${String.fromCharCode(8730)}2`],
+    question: `Simplify: √50 - √18`,
+    options: [`2√2`, `3√2`, `4√2`, `5√2`],
     correctAnswer: 0,
     subject: 'Core Mathematics',
     difficulty: 'medium',
     classLevel: 'SHS 2',
     level: 'SHS',
     topic: 'Surds',
-    explanation: `${String.fromCharCode(8730)}50 = 5${String.fromCharCode(8730)}2, ${String.fromCharCode(8730)}18 = 3${String.fromCharCode(8730)}2. Difference = 2${String.fromCharCode(8730)}2`
+    explanation: `√50 = 5√2, √18 = 3√2. Difference = 2√2`
   },
   {
     id: 'wassce-2017-math-113',
-    question: `Rationalize: 3 / (${String.fromCharCode(8730)}7 + 2)`,
-    options: [`3(${String.fromCharCode(8730)}7 - 2) / 3`, `${String.fromCharCode(8730)}7 - 2`, `3(${String.fromCharCode(8730)}7 - 2)`, `(${String.fromCharCode(8730)}7 - 2) / 3`],
+    question: `Rationalize: 3 / (√7 + 2)`,
+    options: [`3(√7 - 2) / 3`, `√7 - 2`, `3(√7 - 2)`, `(√7 - 2) / 3`],
     correctAnswer: 0,
     subject: 'Core Mathematics',
     difficulty: 'hard',
     classLevel: 'SHS 3',
     level: 'SHS',
     topic: 'Surds',
-    explanation: `Multiply by (${String.fromCharCode(8730)}7 - 2)/(${String.fromCharCode(8730)}7 - 2): 3(${String.fromCharCode(8730)}7 - 2) / (7 - 4) = 3(${String.fromCharCode(8730)}7 - 2) / 3`
+    explanation: `Multiply by (√7 - 2)/(√7 - 2): 3(√7 - 2) / (7 - 4) = 3(√7 - 2) / 3`
   },
 
   // Geometry - Coordinate Geometry (Actual WASSCE)
@@ -6298,15 +6298,15 @@ const shsQuestionBank: ChallengeQuestion[] = [
   {
     id: 'generated-math-144',
     // source: 'generated' - High quality, WASSCE-style question
-    question: `Simplify: ${String.fromCharCode(8730)}72 / ${String.fromCharCode(8730)}2`,
-    options: ['6', `6${String.fromCharCode(8730)}2`, '12', `3${String.fromCharCode(8730)}2`],
+    question: `Simplify: √72 / √2`,
+    options: ['6', `6√2`, '12', `3√2`],
     correctAnswer: 0,
     subject: 'Core Mathematics',
     difficulty: 'medium',
     classLevel: 'SHS 2',
     level: 'SHS',
     topic: 'Surds',
-    explanation: `${String.fromCharCode(8730)}72 / ${String.fromCharCode(8730)}2 = ${String.fromCharCode(8730)}(72/2) = ${String.fromCharCode(8730)}36 = 6`
+    explanation: `√72 / √2 = √(72/2) = √36 = 6`
   },
   {
     id: 'generated-math-145',

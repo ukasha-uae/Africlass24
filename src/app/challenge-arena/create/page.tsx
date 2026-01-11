@@ -52,7 +52,7 @@ export default function CreateChallengePage() {
   
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const userId = user?.uid || 'test-user-1';
+    const userId = user?.uid || `anon-${Date.now()}`;
     const player = getPlayerProfile(userId);
     const savedLevel = localStorage.getItem('userEducationLevel');
     const level = (player?.level || savedLevel || 'JHS') as EducationLevel;
@@ -200,15 +200,15 @@ export default function CreateChallengePage() {
           }
         }, (error) => {
           console.error('Error fetching users:', error);
-          // Fall back to mock players
+          // Fall back to empty list for anonymous users
           const allPlayers = getAllPlayers();
-          setFriends(allPlayers.filter(p => p.userId !== (user?.uid || 'test-user-1')));
+          setFriends(allPlayers.filter(p => user?.uid && p.userId !== user.uid));
         });
       } catch (error) {
         console.error('Error setting up users listener:', error);
-        // Fall back to mock players
+        // Fall back to empty list for anonymous users
         const allPlayers = getAllPlayers();
-        setFriends(allPlayers.filter(p => p.userId !== (user?.uid || 'test-user-1')));
+        setFriends(allPlayers.filter(p => user?.uid && p.userId !== user.uid));
       }
     };
     
@@ -233,7 +233,7 @@ export default function CreateChallengePage() {
   const handleCreate = async () => {
     setLoading(true);
     try {
-      const userId = user?.uid || 'test-user-1';
+      const userId = user?.uid || `anon-${Date.now()}`;
       
       // Get creator's real profile from Firestore
       let creatorName = user?.displayName || user?.email?.split('@')[0] || 'Player';

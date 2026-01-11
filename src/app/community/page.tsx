@@ -44,7 +44,6 @@ export default function CommunityPage() {
   });
 
   useEffect(() => {
-    initializeSocialData();
     loadQuestions();
   }, []);
 

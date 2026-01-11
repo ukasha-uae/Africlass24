@@ -53,7 +53,7 @@ export const PREMIUM_FEATURES: Record<PremiumFeature, {
   boss_battle: {
     name: 'Boss Battle',
     description: 'Challenge AI bosses and earn exclusive rewards',
-    icon: '👹',
+    icon: '🤖',
   },
   tournaments: {
     name: 'Tournaments',

@@ -45,7 +45,7 @@ export default function QuizBattlePage() {
   const params = useParams();
   const router = useRouter();
   const { playSound, isMuted, toggleMute } = useSoundEffects();
-  const { user, firestore } = useFirebase();
+  const { user, firestore, isUserLoading } = useFirebase();
   const { toast } = useToast();
   const { setFullscreen } = useFullscreen();
   const challengeId = params.challengeId as string;
@@ -85,17 +85,57 @@ export default function QuizBattlePage() {
   }, [gamePhase, setFullscreen]);
 
   useEffect(() => {
-    // Use mock user ID for testing
-    const userId = user?.uid || 'test-user-1';
+    // Use authenticated user ID from Firebase
+    const userId = user?.uid;
+    
+    // CRITICAL: Don't redirect if still loading user state
+    // This prevents interruption during auth persistence loading or HMR
+    if (!userId && !isUserLoading) {
+      // No user after loading complete - redirect to sign in
+      router.push('/challenge-arena');
+      return;
+    }
+    
+    // Skip if still loading
+    if (!userId) {
+      return;
+    }
     
     // Set up player profile immediately from localStorage (synchronous, non-blocking)
     // This allows the challenge to load without waiting for Firestore
     let playerProfile = getPlayerProfile(userId);
     if (!playerProfile) {
+      // Try to get student name from Firestore profile
+      let displayName = user?.displayName || 'Player';
+      
+      // Async fetch of student profile name (non-blocking)
+      if (firestore) {
+        import('firebase/firestore').then(async ({ doc, getDoc }) => {
+          try {
+            const profileRef = doc(firestore, `students/${userId}`);
+            const profileSnap = await getDoc(profileRef);
+            if (profileSnap.exists()) {
+              const profileData = profileSnap.data();
+              const studentName = profileData?.studentName;
+              if (studentName && playerProfile) {
+                // Update player profile with actual student name
+                const updatedProfile = createOrUpdatePlayer({
+                  ...playerProfile,
+                  userName: studentName
+                });
+                setPlayer(updatedProfile);
+              }
+            }
+          } catch (err) {
+            console.warn('[Challenge] Could not fetch student profile:', err);
+          }
+        });
+      }
+      
       // Create a default player immediately so we don't block on loading
       playerProfile = createOrUpdatePlayer({
         userId,
-        userName: user?.displayName || user?.email?.split('@')[0] || 'Player',
+        userName: displayName,
         school: 'Unknown School',
         rating: 1000,
         wins: 0,
@@ -401,8 +441,12 @@ export default function QuizBattlePage() {
   const finishChallenge = async (answersMap: Record<string, string>) => {
     if (!challenge || gamePhase === 'results') return;
 
-    // Use mock user ID for testing
-    const userId = user?.uid || 'test-user-1';
+    // Use authenticated user ID - anonymous users get unique ID from Firebase
+    const userId = user?.uid;
+    if (!userId) {
+      toast({ title: 'Error', description: 'You must be signed in to submit answers.', variant: 'destructive' });
+      return;
+    }
 
     // Convert to PlayerAnswer[] with proper timing tracking
     const playerAnswers: PlayerAnswer[] = challenge.questions.map(q => {
@@ -453,8 +497,26 @@ export default function QuizBattlePage() {
       }
     }
     
-    setGamePhase('results');
-    playSound('complete');
+    // CRITICAL: Only show results if BOTH players have finished (for non-practice modes)
+    // For practice mode or boss battles, show results immediately
+    const isPractice = challenge.type === 'practice';
+    const isBossBattle = challenge.type === 'boss';
+    const totalPlayers = 1 + (challenge.opponents?.length || 0); // Creator + opponents
+    const finishedPlayers = updatedChallenge?.results?.length || 1;
+    
+    if (isPractice || isBossBattle || finishedPlayers >= totalPlayers) {
+      // All players finished, show results
+      setGamePhase('results');
+      playSound('complete');
+    } else {
+      // Wait for opponent to finish
+      setGamePhase('waiting-for-opponent');
+      toast({ 
+        title: 'Challenge Complete!', 
+        description: 'Waiting for opponent to finish...',
+        duration: 5000
+      });
+    }
   };
 
   const handleShare = async () => {
@@ -544,11 +606,23 @@ export default function QuizBattlePage() {
     );
   }
 
-  if (gamePhase === 'waiting') {
-    const userId = user?.uid || 'test-user-1';
+  if (gamePhase === 'waiting' || gamePhase === 'waiting-for-opponent') {
+    const userId = user?.uid;
+    if (!userId) {
+      return (
+        <div className="container mx-auto p-6 flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <p className="text-muted-foreground">Please sign in to join challenges.</p>
+          </div>
+        </div>
+      );
+    }
     const isCreator = challenge?.creatorId === userId;
     const opponent = challenge?.opponents.find(o => o.userId === userId);
     const isInvitedOpponent = opponent?.status === 'invited';
+    
+    // Check if waiting for opponent to finish (after completing challenge)
+    const isWaitingForResults = gamePhase === 'waiting-for-opponent';
     
     const handleAcceptChallenge = async () => {
       if (!challenge) return;
@@ -575,11 +649,27 @@ export default function QuizBattlePage() {
           </div>
         </div>
         
-        {isInvitedOpponent ? (
+        {isWaitingForResults ? (
+          <>
+            <h1 className="text-3xl font-bold mb-2">Challenge Complete!</h1>
+            <p className="text-muted-foreground mb-8 max-w-md">
+              You've finished the challenge! Waiting for your opponent to complete their answers...
+            </p>
+            <div className="bg-muted/50 rounded-lg p-6 max-w-md">
+              <p className="text-sm text-muted-foreground mb-4">
+                Your results will be displayed once both players have finished.
+              </p>
+              <div className="flex items-center justify-center gap-2">
+                <Trophy className="h-5 w-5 text-yellow-500" />
+                <span className="font-semibold">Fair Play Enabled</span>
+              </div>
+            </div>
+          </>
+        ) : isInvitedOpponent ? (
           <>
             <h1 className="text-3xl font-bold mb-2">Challenge Invitation</h1>
             <p className="text-muted-foreground mb-8 max-w-md">
-              {challenge?.creatorName} from {challenge?.creatorSchool} has challenged you to a {challenge?.subject} duel!
+              {challenge?.creatorName} from {challenge?.creatorSchool} has invited you to a {challenge?.subject} challenge on SmartClass24 (S24).
             </p>
             <div className="flex gap-4">
               <Button variant="outline" onClick={() => router.push('/challenge-arena')}>
@@ -682,8 +772,17 @@ export default function QuizBattlePage() {
   const timeProgress = (timeLeft / 120) * 100;
 
   if (gamePhase === 'results' && (results || challenge?.results)) {
-    // Get current user ID - use user.uid with fallback for testing scenarios
-    const userId = user?.uid || 'test-user-1';
+    // Get current user ID - require authenticated user
+    const userId = user?.uid;
+    if (!userId) {
+      return (
+        <div className="container mx-auto p-6 flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <p className="text-muted-foreground">Please sign in to view results.</p>
+          </div>
+        </div>
+      );
+    }
     
     // CRITICAL: Always use challenge.results as primary source (from Firestore, contains all players)
     // Merge with results state to ensure we have the most up-to-date data
@@ -908,6 +1007,8 @@ export default function QuizBattlePage() {
     };
 
     // Handle Play Again - rematch with same opponent for quick matches
+    // BOTH PLAYERS can call for rematch: The function correctly identifies the opponent
+    // whether the current user is the creator or the opponent
     const handlePlayAgain = async () => {
       if (!challenge || !user) return;
       
@@ -915,28 +1016,35 @@ export default function QuizBattlePage() {
       if (isQuickMatch && challenge.opponents.length === 1) {
         const currentUserId = user.uid;
         
-        // Determine the opponent: if current user is creator, opponent is opponents[0], otherwise opponent is creator
-        let opponentPlayer: Player | undefined;
+        // Determine the opponent for rematch:
+        // - If current user is creator → opponent is in opponents array
+        // - If current user is opponent → creator is the opponent for rematch
+        // This ensures BOTH players can initiate a rematch correctly
+        // Use challenge data directly (don't rely on player profile cache which may not have opponent)
+        let opponentUserId: string;
+        let opponentUserName: string;
+        let opponentSchool: string;
+        
         if (challenge.creatorId === currentUserId) {
           // Current user is creator, opponent is in opponents array
           const opponentData = challenge.opponents[0];
-          opponentPlayer = getPlayerProfile(opponentData.userId);
+          opponentUserId = opponentData.userId;
+          opponentUserName = opponentData.userName;
+          opponentSchool = opponentData.school;
         } else {
           // Current user is the opponent, so the creator is the opponent for rematch
-          opponentPlayer = getPlayerProfile(challenge.creatorId);
+          // Try to get creator info from challenge results or use fallback
+          const creatorResult = challenge.results?.find(r => r.userId === challenge.creatorId);
+          opponentUserId = challenge.creatorId;
+          opponentUserName = creatorResult?.userName || challenge.creatorName || 'Opponent';
+          opponentSchool = creatorResult?.school || challenge.creatorSchool || 'Unknown School';
         }
         
-        if (!opponentPlayer) {
-          toast({ title: 'Error', description: 'Opponent profile not found for rematch', variant: 'destructive' });
-          return;
-        }
-        
-        // Get player profile for creator info
+        // Get current user's info (try player profile, fallback to challenge results)
         const playerProfile = getPlayerProfile(currentUserId);
-        if (!playerProfile) {
-          toast({ title: 'Error', description: 'Player profile not found', variant: 'destructive' });
-          return;
-        }
+        const currentUserResult = challenge.results?.find(r => r.userId === currentUserId);
+        const creatorName = playerProfile?.userName || currentUserResult?.userName || challenge.creatorName || 'You';
+        const creatorSchool = playerProfile?.school || currentUserResult?.school || challenge.creatorSchool || 'Unknown School';
         
         // Create new challenge with same opponent
         const questionCount = challenge.difficulty === 'easy' ? 5 : challenge.difficulty === 'medium' ? 10 : 15;
@@ -950,13 +1058,13 @@ export default function QuizBattlePage() {
           questionCount,
           timeLimit,
           creatorId: currentUserId,
-          creatorName: playerProfile.userName,
-          creatorSchool: playerProfile.school,
-          opponents: [{ userId: opponentPlayer.userId, userName: opponentPlayer.userName, school: opponentPlayer.school, status: 'invited' as const }],
+          creatorName: creatorName,
+          creatorSchool: creatorSchool,
+          opponents: [{ userId: opponentUserId, userName: opponentUserName, school: opponentSchool, status: 'invited' as const }],
           maxPlayers: 2,
         });
         
-        toast({ title: 'Rematch Created!', description: `Challenging ${opponentPlayer.userName} again!` });
+        toast({ title: 'Rematch Created!', description: `Challenging ${opponentUserName} again!` });
         router.push(`/challenge-arena/play/${newChallenge.id}`);
         return;
       }
@@ -1361,9 +1469,8 @@ export default function QuizBattlePage() {
                       
                       <div className="flex-1 w-full sm:w-auto">
                         {(() => {
-                          // Find opponent result - use actual user.uid, not fallback
-                          const actualUserId = user?.uid || userId;
-                          const opponentResult = uniqueResults.find((r: any) => r.userId !== actualUserId && r.userId !== myResult?.userId);
+                          // Find opponent result - CRITICAL: Only use authenticated user.uid, never fallback
+                          const opponentResult = uniqueResults.find((r: any) => r.userId !== user?.uid && r.userId !== myResult?.userId);
                           const opponentAccuracy = opponentResult?.accuracy !== undefined 
                             ? Math.round(opponentResult.accuracy) 
                             : (opponentResult?.correctAnswers && challenge?.questions?.length 

@@ -1,0 +1,116 @@
+﻿{
+    "total_questions":  350,
+    "unique_questions":  331,
+    "duplicates":  17,
+    "duplicate_list":  [
+                           {
+                               "question":  "What do we use to hear?",
+                               "count":  2
+                           },
+                           {
+                               "question":  "What do we use to smell?",
+                               "count":  2
+                           },
+                           {
+                               "question":  "What do we use to taste food?",
+                               "count":  2
+                           },
+                           {
+                               "question":  "Which animal gives us milk?",
+                               "count":  2
+                           },
+                           {
+                               "question":  "What do plants need to grow?",
+                               "count":  2
+                           },
+                           {
+                               "question":  "What do we call the process where plants make food?",
+                               "count":  2
+                           },
+                           {
+                               "question":  "What do we call animals that eat only plants?",
+                               "count":  2
+                           },
+                           {
+                               "question":  "What do we call animals that eat only meat?",
+                               "count":  3
+                           },
+                           {
+                               "question":  "What do we call the process where plants release water?",
+                               "count":  2
+                           },
+                           {
+                               "question":  "What do we call animals that eat both plants and meat?",
+                               "count":  2
+                           },
+                           {
+                               "question":  "Which animal is a mammal?",
+                               "count":  3
+                           },
+                           {
+                               "question":  "What do we call the process where animals move to warmer places?",
+                               "count":  2
+                           },
+                           {
+                               "question":  "What do we call the process where plants take in carbon dioxide?",
+                               "count":  2
+                           },
+                           {
+                               "question":  "What do we call the process where plants release oxygen?",
+                               "count":  2
+                           },
+                           {
+                               "question":  "What do we call the process where living things make more of themselves?",
+                               "count":  2
+                           },
+                           {
+                               "question":  "What do we call the process where living things get energy from food?",
+                               "count":  2
+                           },
+                           {
+                               "question":  "Which organ helps us breathe?",
+                               "count":  2
+                           }
+                       ],
+    "topic_distribution":  {
+                               "Animals":  71,
+                               "Body Parts":  19,
+                               "Plants":  60,
+                               "Five Senses":  11,
+                               "Living Things":  3,
+                               "Habitats":  4,
+                               "Weather":  14,
+                               "Health":  3,
+                               "Food Groups":  5,
+                               "States of Matter":  15,
+                               "Materials":  7,
+                               "Energy":  13,
+                               "Environment":  3,
+                               "Water Cycle":  5,
+                               "Solar System":  14,
+                               "Ecosystems":  1,
+                               "Human Body":  41,
+                               "Forces":  5,
+                               "Biology":  23,
+                               "Scientific Method":  2,
+                               "Space":  3,
+                               "Food":  2,
+                               "Science":  4,
+                               "Senses":  4,
+                               "Light":  4,
+                               "Earth Science":  14
+                           },
+    "class_level_distribution":  {
+                                     "Primary 1":  41,
+                                     "Primary 2":  47,
+                                     "Primary 3":  33,
+                                     "Primary 4":  58,
+                                     "Primary 5":  26,
+                                     "Primary 6":  145
+                                 },
+    "difficulty_distribution":  {
+                                    "easy":  89,
+                                    "medium":  97,
+                                    "hard":  164
+                                }
+}

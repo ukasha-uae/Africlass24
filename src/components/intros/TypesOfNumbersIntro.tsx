@@ -523,7 +523,7 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
                     >
                       <div className="text-white font-bold text-lg sm:text-xl">
                         {symbol.startsWith('√') ? (
-                          <span style={{ fontFamily: 'serif' }}>{String.fromCharCode(8730)}{symbol.slice(1)}</span>
+                          <span style={{ fontFamily: 'serif' }}>√{symbol.slice(1)}</span>
                         ) : (
                           symbol
                         )}
@@ -669,7 +669,7 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
                   >
                     <div className="text-yellow-300 font-bold text-sm sm:text-base mb-2">
                       {item.q.includes('√9') ? (
-                        <>Is <span style={{ fontFamily: 'serif' }}>{String.fromCharCode(8730)}9</span> irrational?</>
+                        <>Is <span style={{ fontFamily: 'serif' }}>√9</span> irrational?</>
                       ) : (
                         item.q
                       )}
@@ -699,7 +699,7 @@ const TypesOfNumbersIntro: React.FC<LessonIntroProps> = ({ onComplete }) => {
           <Infinity className="w-4 h-4 sm:w-6 sm:h-6 text-purple-400 mx-auto mb-0.5 sm:mb-1" />
           <p className="text-purple-300 text-[10px] sm:text-sm">Irrational</p>
           <p className="text-white font-mono text-xs sm:text-base">
-            π, <span style={{ fontFamily: 'serif' }}>{String.fromCharCode(8730)}2</span>
+            π, <span style={{ fontFamily: 'serif' }}>√2</span>
           </p>
         </div>
       </div>

@@ -63,7 +63,7 @@ export default function LocalizedChallengeArenaPage() {
   const [topPlayers, setTopPlayers] = useState<Player[]>([]);
   const [matchHistory, setMatchHistory] = useState<any[]>([]);
   const [activeTab, setActiveTab] = useState('play');
-  const [educationLevel, setEducationLevel] = useState<'Primary' | 'JHS' | 'SHS'>('Primary');
+  const [educationLevel, setEducationLevel] = useState<'Primary' | 'JHS' | 'SHS'>('JHS');
   const [hasInitialized, setHasInitialized] = useState(false);
   const [showCoinStore, setShowCoinStore] = useState(false);
   const [showTransactionHistory, setShowTransactionHistory] = useState(false);
@@ -73,7 +73,7 @@ export default function LocalizedChallengeArenaPage() {
   const { firestore, user } = useFirebase();
   
   // Check premium status
-  const userId = user?.uid || 'test-user-1';
+  const userId = user?.uid || `anon-${Date.now()}`;
   const isPremium = isPremiumUser(userId);
   const profileRef = useMemo(() => (user && firestore) ? doc(firestore, `students/${user.uid}`) : null, [user, firestore]);
   const { data: userProfile } = useDoc(profileRef);
@@ -88,7 +88,7 @@ export default function LocalizedChallengeArenaPage() {
   const profileEducationLevel = userProfile?.educationLevel || null;
   
   useEffect(() => {
-    let initialLevel: 'Primary' | 'JHS' | 'SHS' = 'Primary';
+    let initialLevel: 'Primary' | 'JHS' | 'SHS' = 'JHS';
     
     // Priority 1: Check URL parameter
     if (levelParam) {
@@ -202,9 +202,9 @@ export default function LocalizedChallengeArenaPage() {
   const colors = getCountryColors();
 
   // Mock user for development/testing
-  const mockUserId = user?.uid || 'test-user-1';
+  const mockUserId = user?.uid || `anon-${Date.now()}`;
   const mockUserProfile = userProfile || {
-    studentName: 'Test Student',
+    studentName: user?.displayName || 'Guest Student',
     educationLevel: 'SHS' as const,
   };
 
@@ -241,7 +241,6 @@ export default function LocalizedChallengeArenaPage() {
   useEffect(() => {
     if (hasInitialized) return;
     
-    initializeChallengeData();
     loadData();
     setHasInitialized(true);
   }, [hasInitialized, loadData]);
@@ -483,131 +482,6 @@ export default function LocalizedChallengeArenaPage() {
             </div>
           </div>
         </div>
-
-        {/* Subjects for Selected Level */}
-        <Card className={`mb-6 bg-gradient-to-r ${colors.cardBg} border-2 border-primary/20 shadow-xl`}>
-          <CardHeader className="pb-3">
-            <div className="flex items-center gap-3">
-              <div className={`p-2 rounded-lg bg-gradient-to-br ${colors.primary}`}>
-                <BookOpen className="h-5 w-5 text-white" />
-              </div>
-              <div>
-                <CardTitle className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  Available Subjects for {educationLevel}
-                </CardTitle>
-                <CardDescription className="text-sm">
-                  {educationLevel === 'SHS' 
-                    ? 'Select subjects organized by program' 
-                    : 'Click on a subject to start practicing or challenging'}
-                </CardDescription>
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent>
-            {educationLevel === 'SHS' ? (
-              // SHS: Grouped by Program (Collapsible)
-              <div className="space-y-4">
-                {Object.entries(subjectGroups).map(([programName, programData]) => {
-                  const ProgramIcon = programData.icon;
-                  const isExpanded = expandedPrograms.has(programName);
-                  const toggleProgram = () => {
-                    setExpandedPrograms(prev => {
-                      const newSet = new Set(prev);
-                      if (newSet.has(programName)) {
-                        newSet.delete(programName);
-                      } else {
-                        newSet.add(programName);
-                      }
-                      return newSet;
-                    });
-                  };
-                  
-                  return (
-                    <div key={programName} className="space-y-3">
-                      {/* Program Header - Clickable */}
-                      <div 
-                        onClick={toggleProgram}
-                        className={`flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r ${programData.color} text-white shadow-lg cursor-pointer hover:shadow-xl transition-all duration-200`}
-                      >
-                        <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
-                          <ProgramIcon className="h-6 w-6" />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-lg font-bold">{programName}</h3>
-                          <p className="text-sm text-white/90">{programData.description}</p>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
-                            {programData.subjects.length} {programData.subjects.length === 1 ? 'Subject' : 'Subjects'}
-                          </Badge>
-                          {isExpanded ? (
-                            <ChevronUp className="h-5 w-5 text-white/90" />
-                          ) : (
-                            <ChevronDown className="h-5 w-5 text-white/90" />
-                          )}
-                        </div>
-                      </div>
-                      
-                      {/* Subjects Grid - Collapsible */}
-                      {isExpanded && (
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 animate-in slide-in-from-top-2 duration-200">
-                          {programData.subjects.map((subject, index) => {
-                            const Icon = getSubjectIcon(subject);
-                            const subjectColor = getSubjectColor(subject, index);
-                            return (
-                              <Link
-                                key={`${subject}-${index}`}
-                                href={`/challenge-arena/practice?level=${educationLevel}&subject=${encodeURIComponent(subject)}`}
-                              >
-                                <Card className={`group relative bg-gradient-to-br ${subjectColor} p-4 rounded-xl shadow-lg text-white overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer border-0 h-full`}>
-                                  <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
-                                  <div className="relative z-10">
-                                    <div className="mb-3">
-                                      <Icon className="h-8 w-8 sm:h-10 sm:w-10 group-hover:scale-110 transition-transform" />
-                                    </div>
-                                    <h3 className="font-bold text-sm sm:text-base leading-tight group-hover:underline">
-                                      {subject}
-                                    </h3>
-                                  </div>
-                                </Card>
-                              </Link>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            ) : (
-              // Primary/JHS: Simple Grid
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-                {availableSubjects.map((subject, index) => {
-                  const Icon = getSubjectIcon(subject);
-                  const subjectColor = getSubjectColor(subject, index);
-                  return (
-                    <Link
-                      key={`${subject}-${index}`}
-                      href={`/challenge-arena/practice?level=${educationLevel}&subject=${encodeURIComponent(subject)}`}
-                    >
-                      <Card className={`group relative bg-gradient-to-br ${subjectColor} p-4 rounded-xl shadow-lg text-white overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer border-0 h-full`}>
-                        <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
-                        <div className="relative z-10">
-                          <div className="mb-3">
-                            <Icon className="h-8 w-8 sm:h-10 sm:w-10 group-hover:scale-110 transition-transform" />
-                          </div>
-                          <h3 className="font-bold text-sm sm:text-base leading-tight group-hover:underline">
-                            {subject}
-                          </h3>
-                        </div>
-                      </Card>
-                    </Link>
-                  );
-                })}
-              </div>
-            )}
-          </CardContent>
-        </Card>
 
         {/* Welcome & Multi-Country Info Banner */}
         <Card className={`mb-6 bg-gradient-to-r ${colors.cardBg} border-2`}>
@@ -885,7 +759,7 @@ export default function LocalizedChallengeArenaPage() {
                 </Card>
               </Link>
 
-              <Link href="/challenge-arena/quick-match">
+              <Link href={`/challenge-arena/quick-match?level=${educationLevel}`}>
                 <Card className="relative bg-gradient-to-br from-orange-500 to-red-600 p-6 sm:p-8 rounded-2xl shadow-xl text-white overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer border-0">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
                   <div className="relative">
@@ -959,7 +833,7 @@ export default function LocalizedChallengeArenaPage() {
                   <Card className="relative bg-gradient-to-br from-red-500 to-orange-600 p-6 sm:p-8 rounded-2xl shadow-xl text-white overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer border-0">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
                     <div className="relative z-0">
-                      <div className="text-4xl sm:text-5xl lg:text-6xl mb-3 sm:mb-4">👹</div>
+                      <div className="text-4xl sm:text-5xl lg:text-6xl mb-3 sm:mb-4">🤖</div>
                       <h3 className="text-2xl sm:text-3xl font-bold mb-2">
                         Boss Battle
                       </h3>

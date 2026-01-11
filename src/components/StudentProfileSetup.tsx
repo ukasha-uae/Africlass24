@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -27,20 +27,25 @@ export default function StudentProfileSetup({ onSave }: { onSave?: () => void })
   const [studentClass, setStudentClass] = useState('');
   const [schoolAddress, setSchoolAddress] = useState('');
   const [parentPhoneNumber, setParentPhoneNumber] = useState('');
+  const [whatsappNumber, setWhatsappNumber] = useState('');
   const [profilePictureUrl, setProfilePictureUrl] = useState('');
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<{ code?: string; message?: string } | null>(null);
   const [permTestResult, setPermTestResult] = useState<{ ok: boolean; message: string } | null>(null);
+  const hasInitialized = useRef(false);
 
   useEffect(() => {
-    if (profile) {
-      // If profile exists, fill the state for editability if needed
+    // Only initialize form fields once when profile first loads
+    // This prevents overwriting user input while they're typing
+    if (profile && !hasInitialized.current) {
       setStudentName(profile.studentName || '');
       setSchoolName(profile.schoolName || '');
       setStudentClass(profile.studentClass || '');
       setSchoolAddress(profile.schoolAddress || '');
       setParentPhoneNumber(profile.parentPhoneNumber || '');
+      setWhatsappNumber(profile.whatsappNumber || profile.whatsapp || profile.phone || '');
       setProfilePictureUrl(profile.profilePictureUrl || '');
+      hasInitialized.current = true;
     }
   }, [profile]);
 
@@ -82,6 +87,7 @@ export default function StudentProfileSetup({ onSave }: { onSave?: () => void })
         schoolType: selectedSchool?.type || null,
         schoolAddress,
         parentPhoneNumber,
+        whatsappNumber: whatsappNumber || null,
         profilePictureUrl: profilePictureUrl || null,
         updatedAt: serverTimestamp(),
       } as any;
@@ -90,13 +96,27 @@ export default function StudentProfileSetup({ onSave }: { onSave?: () => void })
       console.debug('Saving profile for uid:', user.uid);
       
       await setDoc(doc(firestore, `students/${user.uid}`), payload, { merge: true });
-      if (onSave) onSave();
       
       // Update school student count
       if (selectedSchool?.id) {
         updateSchoolStudentCount(selectedSchool.id, 1);
       }
       
+      // Validate referral if user was referred (non-blocking)
+      try {
+        const { validateReferral } = await import('@/lib/referrals');
+        // Check if user has completed at least one quiz/lesson (basic activity check)
+        const { getUserProgress } = await import('@/lib/user-progress');
+        const progress = getUserProgress();
+        if (progress.quizzesTaken > 0 || progress.lessonsCompleted > 0) {
+          await validateReferral(user.uid);
+        }
+      } catch (referralError) {
+        // Non-critical - don't break profile save
+        console.warn('[Referrals] Error validating referral (non-critical):', referralError);
+      }
+      
+      if (onSave) onSave();
       toast({ title: 'Profile saved', description: 'Your student profile has been saved.' });
     } catch (err: any) {
       console.error('Failed to save profile', err);
@@ -133,22 +153,12 @@ export default function StudentProfileSetup({ onSave }: { onSave?: () => void })
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-black/40 p-4">
-      <Card className="max-w-xl w-full flex flex-col max-h-[90vh]">
-        <CardHeader>
-          <CardTitle>Welcome — Set up your student profile</CardTitle>
+    <div className="w-full">
+      <Card className="w-full flex flex-col border-0 shadow-none">
+        <CardHeader className="pb-4">
+          <CardTitle className="text-xl">Welcome — Set up your student profile</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-3 overflow-y-auto max-h-[70vh]">
-          <div className="text-xs text-muted-foreground">
-            Firebase Project: <span className="font-mono text-sm">{firebaseApp?.options?.projectId || 'unknown'}</span>
-            {firebaseApp?.options?.projectId && (
-              <a className="ml-2 text-xs text-primary underline" href={`https://console.firebase.google.com/project/${firebaseApp.options.projectId}/firestore/rules`} target="_blank" rel="noreferrer">Open Firebase Console</a>
-            )}
-          </div>
-          <div className="text-xs text-muted-foreground">
-            Signed in as: <span className="font-mono text-sm">{user?.uid}</span> {user?.isAnonymous ? '(anonymous)' : ''}
-          </div>
-          
+        <CardContent className="space-y-3 overflow-y-auto">
           {/* Profile Picture Preview */}
           <div className="flex flex-col items-center gap-3 py-2">
             <Avatar className="w-24 h-24">
@@ -194,12 +204,26 @@ export default function StudentProfileSetup({ onSave }: { onSave?: () => void })
             <Label className="text-sm">Parent / Guardian Phone Number</Label>
             <Input value={parentPhoneNumber} onChange={(e: any) => setParentPhoneNumber(e.target.value)} />
           </div>
+          <div>
+            <Label className="text-sm">Your WhatsApp Number (for challenge notifications)</Label>
+            <Input 
+              type="tel"
+              placeholder="e.g., 0244123456 or +233244123456"
+              value={whatsappNumber} 
+              onChange={(e: any) => setWhatsappNumber(e.target.value)} 
+            />
+            <p className="text-xs text-muted-foreground mt-1">Your WhatsApp number will be used to notify you about challenges when you're offline</p>
+          </div>
         </CardContent>
-        <CardFooter className="flex justify-between gap-2 sticky bottom-0 bg-white/80 backdrop-blur-md py-4 z-10">
+        <CardFooter className="flex justify-between gap-2 py-4 border-t bg-muted/30">
           <div className="flex items-center gap-2">
-            <Button onClick={runPermissionCheck} disabled={!user || !firestore} variant="ghost">Test Permissions</Button>
-            {permTestResult && (
-              <div className={`text-sm ${permTestResult?.ok ? 'text-green-600' : 'text-destructive'}`}>{permTestResult?.message}</div>
+            {process.env.NODE_ENV === 'development' && (
+              <>
+                <Button onClick={runPermissionCheck} disabled={!user || !firestore} variant="ghost" size="sm">Test Permissions</Button>
+                {permTestResult && (
+                  <div className={`text-xs ${permTestResult?.ok ? 'text-green-600' : 'text-destructive'}`}>{permTestResult?.message}</div>
+                )}
+              </>
             )}
           </div>
           <div>

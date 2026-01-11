@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -23,10 +23,12 @@ import {
   Computer,
   Music
 } from 'lucide-react';
-import { createChallenge } from '@/lib/challenge';
+import { createChallenge, getPrimaryPromotionInfo, getPrimaryPromotionProgress } from '@/lib/challenge';
 import { useToast } from '@/hooks/use-toast';
 import { useFirebase } from '@/firebase/provider';
 import { getAvailableSubjects, type EducationLevel } from '@/lib/challenge-questions';
+import { PromotionProgress } from '@/components/promotion/PromotionProgress';
+import { PromotionNotification } from '@/components/promotion/PromotionNotification';
 
 // Get class levels based on education level
 const getClassLevels = (level: 'Primary' | 'JHS' | 'SHS') => {
@@ -111,6 +113,8 @@ export default function PracticeModePage() {
   const [level, setLevel] = useState<EducationLevel>(levelParam || 'JHS');
   const [step, setStep] = useState(subjectParam ? 2 : 1); // Skip to step 2 if subject is provided
   const [loading, setLoading] = useState(false);
+  const [showPromotionNotification, setShowPromotionNotification] = useState(false);
+  const [promotionInfo, setPromotionInfo] = useState<{from: string; to: string; subject: string} | null>(null);
   
   // Get available subjects for the selected level
   const availableSubjects = useMemo(() => {
@@ -191,13 +195,28 @@ export default function PracticeModePage() {
         setFormData(prev => ({ ...prev, classLevel: selectedClassLevel }));
       }
 
+      // Use the subject name directly (it's already the full name from getAvailableSubjects)
+      const selectedSubject = formData.subject || subjects[0]?.name || 'Mathematics';
+
+      // Check for promotion (Primary level only for now)
+      if (level === 'Primary') {
+        const promotionInfo = getPrimaryPromotionInfo(userId, selectedSubject, selectedClassLevel);
+        if (promotionInfo.wasPromoted && promotionInfo.effectiveLevel !== selectedClassLevel) {
+          setPromotionInfo({
+            from: selectedClassLevel,
+            to: promotionInfo.effectiveLevel,
+            subject: selectedSubject,
+          });
+          setShowPromotionNotification(true);
+          // Use the effective (promoted) level for question generation
+          selectedClassLevel = promotionInfo.effectiveLevel;
+        }
+      }
+
       // Get question count from class level
       const classLevelData = classLevels.find(cl => cl.id === selectedClassLevel);
       const questionCount = classLevelData?.questions || 10;
       const timeLimit = 300;
-
-      // Use the subject name directly (it's already the full name from getAvailableSubjects)
-      const selectedSubject = formData.subject || subjects[0]?.name || 'Mathematics';
 
       const challenge = createChallenge({
         type: 'practice',
@@ -237,6 +256,14 @@ export default function PracticeModePage() {
   };
 
   const selectedClassLevel = classLevels.find(cl => cl.id === formData.classLevel);
+
+  // Get promotion progress for Primary level
+  const promotionProgress = useMemo(() => {
+    if (level === 'Primary' && formData.subject && user?.uid) {
+      return getPrimaryPromotionProgress(user.uid, formData.subject, formData.classLevel);
+    }
+    return null;
+  }, [level, formData.subject, formData.classLevel, user?.uid]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 dark:from-slate-900 dark:via-green-950 dark:to-emerald-950 relative overflow-hidden">
@@ -358,6 +385,20 @@ export default function PracticeModePage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="pb-4 space-y-4">
+              {/* Promotion Notification */}
+              {showPromotionNotification && promotionInfo && (
+                <PromotionNotification
+                  fromLevel={promotionInfo.from}
+                  toLevel={promotionInfo.to}
+                  subject={promotionInfo.subject}
+                  onDismiss={() => setShowPromotionNotification(false)}
+                />
+              )}
+
+              {/* Promotion Progress (Primary level only) */}
+              {promotionProgress && (
+                <PromotionProgress progress={promotionProgress} subject={formData.subject} />
+              )}
               {/* Premium Class Level Cards */}
               <div className={`grid gap-3 sm:gap-4 ${classLevels.length === 3 ? 'grid-cols-3' : 'grid-cols-2 sm:grid-cols-3'}`}>
                 {classLevels.map((cl) => {

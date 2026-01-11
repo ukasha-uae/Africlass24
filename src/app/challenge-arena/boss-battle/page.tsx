@@ -74,7 +74,7 @@ export default function BossBattlePage() {
     setIsStarting(true);
     
     // Use mock user ID for testing
-    const userId = user?.uid || 'test-user-1';
+    const userId = user?.uid || `anon-${Date.now()}`;
     
     // Ensure player profile exists
     let player = getPlayerProfile(userId);

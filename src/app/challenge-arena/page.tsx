@@ -10,9 +10,19 @@ export default function ChallengeArenaPage() {
   const router = useRouter();
 
   useEffect(() => {
-    // Redirect to the localized challenge arena page
+    // Redirect to the localized challenge arena page, preserving education level
     const countryId = country?.id || 'ghana';
-    router.replace(`/challenge-arena/${countryId}`);
+    
+    // Get saved education level from localStorage to preserve user's selection
+    let levelParam = '';
+    if (typeof window !== 'undefined') {
+      const savedLevel = localStorage.getItem('userEducationLevel');
+      if (savedLevel && (savedLevel === 'Primary' || savedLevel === 'JHS' || savedLevel === 'SHS')) {
+        levelParam = `?level=${savedLevel}`;
+      }
+    }
+    
+    router.replace(`/challenge-arena/${countryId}${levelParam}`);
   }, [country, router]);
 
   return (

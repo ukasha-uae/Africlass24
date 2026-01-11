@@ -139,10 +139,20 @@ export default function PricingPage() {
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
             Choose Your Plan
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
             Start free, upgrade when you're ready for serious exam preparation. 
             All features accessible, premium unlocks unlimited questions, all virtual labs, and advanced analytics.
           </p>
+          <Link href="/redeem-codes">
+            <Button 
+              variant="outline" 
+              size="lg"
+              className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950/50 dark:to-pink-950/50 border-2 border-purple-300 dark:border-purple-700 hover:bg-gradient-to-r hover:from-purple-100 hover:to-pink-100 dark:hover:from-purple-900/50 dark:hover:to-pink-900/50 text-purple-700 dark:text-purple-300 font-semibold"
+            >
+              <Gift className="h-5 w-5 mr-2" />
+              {isPremium ? 'Earn Next Month Premium Free' : 'Earn Premium for Free (Invite 10 Friends)'}
+            </Button>
+          </Link>
         </div>
 
         {/* Plan Toggle */}

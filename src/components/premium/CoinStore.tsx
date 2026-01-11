@@ -39,7 +39,7 @@ export default function CoinStore({ open, onClose, onPurchaseComplete }: CoinSto
   const [isProcessing, setIsProcessing] = useState(false);
   const [step, setStep] = useState<'select' | 'payment'>('select');
 
-  const userId = user?.uid || 'test-user-1';
+  const userId = user?.uid || `anon-${Date.now()}`;
   const player = getPlayerProfile(userId);
   const currentCoins = player?.coins || 0;
 

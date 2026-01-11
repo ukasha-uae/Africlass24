@@ -55,6 +55,38 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    // Referrals - users can read their own referrals and create new ones
+    match /referrals/{referralId} {
+      // Allow read if user is authenticated and:
+      // 1. They are the referrer (owner of the code), OR
+      // 2. They are the referred user, OR
+      // 3. The document is a code document (referredUid is null) - anyone can read to verify code
+      allow read: if request.auth != null && (
+        resource.data.referrerUid == request.auth.uid || 
+        (resource.data.referredUid != null && resource.data.referredUid == request.auth.uid) ||
+        resource.data.referredUid == null
+      );
+      // Allow create if user is authenticated (can create referrals/codes)
+      allow create: if request.auth != null;
+      // Allow update if user is authenticated and is the referred user (for validation) or referrer
+      allow update: if request.auth != null && (
+        resource.data.referredUid == request.auth.uid ||
+        resource.data.referrerUid == request.auth.uid
+      );
+      // Prevent deletion
+      allow delete: if false;
+    }
+
+    // Users collection - store referral codes
+    match /users/{userId} {
+      // Allow read if user is authenticated and matches the userId
+      allow read: if request.auth != null && request.auth.uid == userId;
+      // Allow create/update if user is authenticated and matches the userId
+      allow create, update: if request.auth != null && request.auth.uid == userId;
+      // Prevent deletion
+      allow delete: if false;
+    }
+
     // Allow authenticated users to seed/manage lesson content (for admin/seed operations)
     match /subjects/{subjectId}/{document=**} {
       allow read: if true;

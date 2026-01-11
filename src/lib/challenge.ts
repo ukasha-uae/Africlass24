@@ -201,6 +201,25 @@ interface SubjectMasteryRecord {
   totalQuestions: number;     // total questions answered at this classLevel
   totalCorrect: number;       // number answered correctly
   challengesPlayed: number;   // how many challenges contributed
+  recentChallenges?: number[]; // Track recent challenge accuracies for demotion (last 5)
+}
+
+export interface PromotionInfo {
+  wasPromoted: boolean;
+  effectiveLevel: string;
+  requestedLevel: string;
+  promotionOccurred: boolean;
+}
+
+export interface PromotionProgress {
+  currentLevel: string;
+  nextLevel: string;
+  challengesCompleted: number;
+  challengesRequired: number;
+  currentAccuracy: number;
+  accuracyRequired: number;
+  progressPercentage: number;
+  canPromote: boolean;
 }
 
 interface SubjectMasteryState {
@@ -280,6 +299,14 @@ function updateSubjectMasteryFromResult(
   const key = getSubjectMasteryKey(result.userId, challenge.level, challenge.subject, classLevel);
   const existing = state[key];
 
+  const accuracy = questionsAnswered > 0 ? correctAnswers / questionsAnswered : 0;
+  const recentChallenges = existing?.recentChallenges || [];
+  recentChallenges.push(accuracy);
+  // Keep only last 5 challenges for demotion logic
+  if (recentChallenges.length > 5) {
+    recentChallenges.shift();
+  }
+
   const updated: SubjectMasteryRecord = {
     userId: result.userId,
     level: challenge.level,
@@ -288,6 +315,7 @@ function updateSubjectMasteryFromResult(
     totalQuestions: (existing?.totalQuestions || 0) + questionsAnswered,
     totalCorrect: (existing?.totalCorrect || 0) + correctAnswers,
     challengesPlayed: (existing?.challengesPlayed || 0) + 1,
+    recentChallenges,
   };
 
   state[key] = updated;
@@ -382,7 +410,7 @@ function getEffectiveJHSClassLevel(
 
 /**
  * Decide which Primary class level to actually use when generating questions,
- * based on local mastery. We only ever promote upwards (1 -> 6).
+ * based on local mastery. Supports promotion and demotion.
  */
 function getEffectivePrimaryClassLevel(
   userId: string,
@@ -405,8 +433,24 @@ function getEffectivePrimaryClassLevel(
 
   const state = getSubjectMasteryState();
   let currentLevel = requestedClassLevel as PrimaryClassLevel;
+  const requestedIndex = primaryLevels.indexOf(currentLevel);
 
-  // Simple promotion rule (same as JHS/SHS):
+  // Check for demotion first (if at a level higher than requested)
+  for (let i = requestedIndex + 1; i < primaryLevels.length; i++) {
+    const level = primaryLevels[i];
+    const key = getSubjectMasteryKey(userId, 'Primary', subject, level);
+    const record = state[key];
+    
+    if (record && record.recentChallenges && record.recentChallenges.length >= 3) {
+      const recentAvg = record.recentChallenges.reduce((a, b) => a + b, 0) / record.recentChallenges.length;
+      if (recentAvg < 0.6) {
+        // Demote: recent performance is poor
+        return requestedClassLevel; // Return to requested level
+      }
+    }
+  }
+
+  // Promotion rule:
   // - at least 5 challenges played at that classLevel
   // - accuracy (totalCorrect / totalQuestions) >= 80%
   for (let i = 0; i < primaryLevels.length - 1; i++) {
@@ -429,6 +473,133 @@ function getEffectivePrimaryClassLevel(
   }
 
   return currentLevel;
+}
+
+/**
+ * Get promotion info for Primary level
+ */
+export function getPrimaryPromotionInfo(
+  userId: string,
+  subject: string,
+  requestedClassLevel: string
+): PromotionInfo {
+  const effectiveLevel = getEffectivePrimaryClassLevel(userId, subject, requestedClassLevel);
+  return {
+    wasPromoted: effectiveLevel !== requestedClassLevel,
+    effectiveLevel,
+    requestedLevel: requestedClassLevel,
+    promotionOccurred: effectiveLevel !== requestedClassLevel,
+  };
+}
+
+/**
+ * Get promotion progress for Primary level
+ */
+export function getPrimaryPromotionProgress(
+  userId: string,
+  subject: string,
+  classLevel: string
+): PromotionProgress | null {
+  if (typeof window === 'undefined') return null;
+
+  const primaryLevels: PrimaryClassLevel[] = [
+    'Primary 1',
+    'Primary 2',
+    'Primary 3',
+    'Primary 4',
+    'Primary 5',
+    'Primary 6',
+  ];
+
+  if (!primaryLevels.includes(classLevel as PrimaryClassLevel)) return null;
+  const currentIndex = primaryLevels.indexOf(classLevel as PrimaryClassLevel);
+  if (currentIndex === primaryLevels.length - 1) return null; // Already at max level
+
+  const state = getSubjectMasteryState();
+  const key = getSubjectMasteryKey(userId, 'Primary', subject, classLevel as PrimaryClassLevel);
+  const record = state[key];
+
+  if (!record) {
+    return {
+      currentLevel: classLevel,
+      nextLevel: primaryLevels[currentIndex + 1],
+      challengesCompleted: 0,
+      challengesRequired: 5,
+      currentAccuracy: 0,
+      accuracyRequired: 0.8,
+      progressPercentage: 0,
+      canPromote: false,
+    };
+  }
+
+  const accuracy = record.totalQuestions > 0 ? record.totalCorrect / record.totalQuestions : 0;
+  const challengesProgress = Math.min(record.challengesPlayed / 5, 1);
+  const accuracyProgress = Math.min(accuracy / 0.8, 1);
+  const progressPercentage = (challengesProgress + accuracyProgress) / 2 * 100;
+
+  return {
+    currentLevel: classLevel,
+    nextLevel: primaryLevels[currentIndex + 1],
+    challengesCompleted: record.challengesPlayed,
+    challengesRequired: 5,
+    currentAccuracy: accuracy,
+    accuracyRequired: 0.8,
+    progressPercentage,
+    canPromote: record.challengesPlayed >= 5 && accuracy >= 0.8,
+  };
+}
+
+/**
+ * Reset mastery stats for a specific subject and class level
+ */
+export function resetSubjectMastery(
+  userId: string,
+  level: EducationLevel,
+  subject: string,
+  classLevel?: ClassLevelForPromotion
+): void {
+  if (typeof window === 'undefined') return;
+  
+  const state = getSubjectMasteryState();
+  
+  if (classLevel) {
+    // Reset specific class level
+    const key = getSubjectMasteryKey(userId, level, subject, classLevel);
+    delete state[key];
+  } else {
+    // Reset all class levels for this subject
+    const keys = Object.keys(state);
+    keys.forEach(key => {
+      const [uId, lvl, subj] = key.split('|');
+      if (uId === userId && lvl === level && subj === subject) {
+        delete state[key];
+      }
+    });
+  }
+  
+  saveSubjectMasteryState(state);
+}
+
+/**
+ * Get all mastery records for a user and subject
+ */
+export function getUserSubjectMastery(
+  userId: string,
+  level: EducationLevel,
+  subject: string
+): SubjectMasteryRecord[] {
+  if (typeof window === 'undefined') return [];
+  
+  const state = getSubjectMasteryState();
+  const records: SubjectMasteryRecord[] = [];
+  
+  Object.values(state).forEach(record => {
+    if (record.userId === userId && record.level === level && record.subject === subject) {
+      records.push(record);
+    }
+  });
+  
+  return records;
 }
 
 export interface Tournament {
@@ -548,6 +719,43 @@ export const getAllPlayers = (): Player[] => {
   const players = localStorage.getItem('challengePlayers');
   return players ? JSON.parse(players) : [];
 };
+
+/**
+ * Update player's userName from Firestore student profile
+ * This syncs the challenge arena display name with the registered student name
+ */
+export const syncPlayerNameFromFirestore = async (userId: string): Promise<string | null> => {
+  try {
+    const { firestore } = initializeFirebase();
+    if (!firestore) return null;
+    
+    const { doc, getDoc } = await import('firebase/firestore');
+    const profileRef = doc(firestore, `students/${userId}`);
+    const profileSnap = await getDoc(profileRef);
+    
+    if (profileSnap.exists()) {
+      const profileData = profileSnap.data();
+      const studentName = profileData?.studentName;
+      
+      if (studentName) {
+        // Update player profile with actual student name
+        const player = getPlayerProfile(userId);
+        if (player) {
+          createOrUpdatePlayer({
+            ...player,
+            userName: studentName
+          });
+        }
+        return studentName;
+      }
+    }
+    return null;
+  } catch (error) {
+    console.warn('[Challenge] Failed to sync player name from Firestore:', error);
+    return null;
+  }
+};
+
 
 export const updatePlayerStats = (
   userId: string,
@@ -772,15 +980,8 @@ export const createChallenge = (challenge: Omit<Challenge, 'id' | 'createdAt' | 
       // Ensure user is authenticated before proceeding
       const { auth } = initializeFirebase();
       if (!auth?.currentUser) {
-        console.warn('[Challenge] User not authenticated, attempting anonymous sign-in before creating notifications...');
-        try {
-          const { initiateAnonymousSignIn } = await import('@/firebase/non-blocking-login');
-          initiateAnonymousSignIn(auth);
-          // Wait a bit for sign-in to complete
-          await new Promise(resolve => setTimeout(resolve, 1000));
-        } catch (err) {
-          console.error('[Challenge] Failed to sign in anonymously:', err);
-        }
+        console.error('[Challenge] User not authenticated - cannot create challenge notifications');
+        return; // Exit early if no user
       }
       
       // Save to Firestore (don't block on this)
@@ -1029,10 +1230,23 @@ export const submitChallengeAnswers = async (
     challenge.results = [];
   }
   
+  // Get player profile and sync name from Firestore student profile
   const player = getPlayerProfile(userId);
+  let displayName = player?.userName || 'Unknown';
+  
+  // Try to get actual student name from Firestore (non-blocking)
+  try {
+    const syncedName = await syncPlayerNameFromFirestore(userId);
+    if (syncedName) {
+      displayName = syncedName;
+    }
+  } catch (err) {
+    console.warn('[Challenge] Could not sync player name from Firestore:', err);
+  }
+  
   const resultData = {
     userId,
-    userName: player?.userName || 'Unknown',
+    userName: displayName,
     school: player?.school || 'Unknown',
     answers,
     score,
@@ -1729,6 +1943,7 @@ const createChallengeNotification = async (challenge: Challenge, recipientId: st
     // Build data object, only including scheduledTime if it exists
     const notificationData: any = {
       challengeId: challenge.id,
+      creatorId: challenge.creatorId, // Include creatorId to filter out notifications for creators
       from: challenge.creatorName,
       fromSchool: challenge.creatorSchool,
       subject: challenge.subject,
@@ -1740,7 +1955,7 @@ const createChallengeNotification = async (challenge: Challenge, recipientId: st
     const notificationPayload = {
       type: 'challenge_invite' as const,
       title: 'New Challenge Invitation',
-      message: `${challenge.creatorName} from ${challenge.creatorSchool} has challenged you to a ${challenge.subject} duel!`,
+      message: `${challenge.creatorName} from ${challenge.creatorSchool} has invited you to a ${challenge.subject} challenge on SmartClass24 (S24).`,
       data: notificationData,
       actionUrl: `/challenge-arena/play/${challenge.id}`
     };
@@ -1882,145 +2097,4 @@ export const getMatchHistory = (userId: string): MatchHistory[] => {
   });
 
   return history.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-};
-
-// Initialize Sample Data
-
-export const initializeChallengeData = (): void => {
-  if (typeof window === 'undefined') return;
-  
-  // Create sample players
-  if (!localStorage.getItem('challengePlayers')) {
-    const samplePlayers: Player[] = [
-      {
-        userId: 'user-1',
-        userName: 'Kwame Asante',
-        school: 'Accra Community School',
-        rating: 1200,
-        wins: 15,
-        losses: 5,
-        draws: 2,
-        totalGames: 22,
-        winStreak: 3,
-        highestStreak: 8,
-        coins: 0,
-        xp: 2500,
-        achievements: ['first_blood', 'warrior', 'rising_star'],
-        level: 'JHS'
-      },
-      {
-        userId: 'user-2',
-        userName: 'Ama Osei',
-        school: 'Kumasi High School',
-        rating: 1150,
-        wins: 12,
-        losses: 8,
-        draws: 1,
-        totalGames: 21,
-        winStreak: 0,
-        highestStreak: 5,
-        coins: 0,
-        xp: 1800,
-        achievements: ['first_blood', 'warrior'],
-        level: 'JHS'
-      },
-      {
-        userId: 'user-3',
-        userName: 'Kofi Mensah',
-        school: 'Achimota School',
-        rating: 1350,
-        wins: 25,
-        losses: 2,
-        draws: 3,
-        totalGames: 30,
-        winStreak: 8,
-        highestStreak: 12,
-        coins: 0,
-        xp: 4500,
-        achievements: ['first_blood', 'warrior', 'rising_star', 'on_fire', 'unstoppable'],
-        level: 'SHS'
-      },
-      {
-        userId: 'user-4',
-        userName: 'Abena Darko',
-        school: 'Wesley Girls High School',
-        rating: 1280,
-        wins: 18,
-        losses: 4,
-        draws: 0,
-        totalGames: 22,
-        winStreak: 2,
-        highestStreak: 6,
-        coins: 0,
-        xp: 3200,
-        achievements: ['first_blood', 'warrior', 'rising_star'],
-        level: 'SHS'
-      },
-      {
-        userId: 'user-5',
-        userName: 'Yaw Boateng',
-        school: 'Prempeh College',
-        rating: 1310,
-        wins: 20,
-        losses: 5,
-        draws: 1,
-        totalGames: 26,
-        winStreak: 4,
-        highestStreak: 9,
-        coins: 0,
-        xp: 3800,
-        achievements: ['first_blood', 'warrior', 'rising_star', 'on_fire'],
-        level: 'JHS'
-      },
-      {
-        userId: 'user-6',
-        userName: 'Esi Aidoo',
-        school: 'Holy Child School',
-        rating: 1180,
-        wins: 10,
-        losses: 8,
-        draws: 2,
-        totalGames: 20,
-        winStreak: 1,
-        highestStreak: 4,
-        coins: 0,
-        xp: 1500,
-        achievements: ['first_blood', 'warrior'],
-        level: 'SHS'
-      },
-      {
-        userId: 'user-7',
-        userName: 'Kojo Antwi',
-        school: 'Mfantsipim School',
-        rating: 1220,
-        wins: 14,
-        losses: 6,
-        draws: 0,
-        totalGames: 20,
-        winStreak: 2,
-        highestStreak: 5,
-        coins: 0,
-        xp: 2100,
-        achievements: ['first_blood', 'warrior', 'rising_star'],
-        level: 'JHS'
-      },
-      {
-        userId: 'user-8',
-        userName: 'Akosua Serwaa',
-        school: 'Yaa Asantewaa Girls',
-        rating: 1190,
-        wins: 11,
-        losses: 7,
-        draws: 2,
-        totalGames: 20,
-        winStreak: 0,
-        highestStreak: 3,
-        coins: 0,
-        xp: 1600,
-        achievements: ['first_blood', 'warrior'],
-        level: 'JHS'
-      }
-    ];
-    localStorage.setItem('challengePlayers', JSON.stringify(samplePlayers));
-  }
 };

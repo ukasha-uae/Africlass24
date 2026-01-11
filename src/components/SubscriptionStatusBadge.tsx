@@ -227,17 +227,28 @@ export function SubscriptionStatusBadge({
             <Badge variant="outline" className="border-gray-300 dark:border-gray-700">
               Free User
             </Badge>
-            {showUpgrade && (
-              <Link href="/pricing">
+            <div className="flex flex-wrap gap-2">
+              <Link href="/redeem-codes">
                 <Badge 
                   variant="outline" 
-                  className="cursor-pointer hover:bg-primary/10 border-primary/50 hover:border-primary transition-colors"
+                  className="cursor-pointer hover:bg-purple-500/10 border-purple-500/50 hover:border-purple-500 transition-colors bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950/50 dark:to-pink-950/50"
                 >
                   <Sparkles className="h-3 w-3 mr-1" />
-                  Upgrade to Premium
+                  Earn Premium Free
                 </Badge>
               </Link>
-            )}
+              {showUpgrade && (
+                <Link href="/pricing">
+                  <Badge 
+                    variant="outline" 
+                    className="cursor-pointer hover:bg-primary/10 border-primary/50 hover:border-primary transition-colors"
+                  >
+                    <Sparkles className="h-3 w-3 mr-1" />
+                    Buy Premium
+                  </Badge>
+                </Link>
+              )}
+            </div>
           </div>
         );
       }
@@ -317,16 +328,29 @@ export function SubscriptionStatusBadge({
           </div>
         )}
         
-        {isFree && showUpgrade && (
-          <Link href="/pricing">
-            <Badge 
-              variant="outline" 
-              className="cursor-pointer hover:bg-primary/10 border-primary/50 hover:border-primary transition-colors"
-            >
-              <Sparkles className="h-3 w-3 mr-1" />
-              Upgrade to Premium
-            </Badge>
-          </Link>
+        {isFree && (
+          <div className="flex flex-wrap gap-2">
+            <Link href="/redeem-codes">
+              <Badge 
+                variant="outline" 
+                className="cursor-pointer hover:bg-purple-500/10 border-purple-500/50 hover:border-purple-500 transition-colors bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950/50 dark:to-pink-950/50"
+              >
+                <Sparkles className="h-3 w-3 mr-1" />
+                Earn Premium Free
+              </Badge>
+            </Link>
+            {showUpgrade && (
+              <Link href="/pricing">
+                <Badge 
+                  variant="outline" 
+                  className="cursor-pointer hover:bg-primary/10 border-primary/50 hover:border-primary transition-colors"
+                >
+                  <Sparkles className="h-3 w-3 mr-1" />
+                  Buy Premium
+                </Badge>
+              </Link>
+            )}
+          </div>
         )}
       </div>
     );

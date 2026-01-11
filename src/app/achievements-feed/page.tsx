@@ -32,7 +32,6 @@ export default function AchievementsPage() {
   ];
 
   useEffect(() => {
-    initializeSocialData();
     loadShares();
   }, []);
 

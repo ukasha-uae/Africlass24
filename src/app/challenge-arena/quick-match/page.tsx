@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -32,9 +32,14 @@ import { getAvailableSubjects, type EducationLevel } from '@/lib/challenge-quest
 
 export default function QuickMatchPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { user, firestore } = useFirebase();
   const { playSound } = useSoundEffects();
   const { toast } = useToast();
+  
+  // Get education level from URL parameter (set by arena page)
+  const levelParam = searchParams?.get('level') as 'Primary' | 'JHS' | 'SHS' | null;
+  const userSelectedLevel = levelParam || 'JHS'; // Default to JHS if no param
   
   const [player, setPlayer] = useState<Player | null>(null);
   const [isSearching, setIsSearching] = useState(false);
@@ -177,7 +182,23 @@ export default function QuickMatchPage() {
     const userId = user?.uid || 'test-user-1';
     const playerProfile = getPlayerProfile(userId);
     if (playerProfile) {
-      setPlayer(playerProfile);
+      // Update player level to match selected arena level
+      const updatedProfile = { ...playerProfile, level: userSelectedLevel };
+      createOrUpdatePlayer(updatedProfile);
+      setPlayer(updatedProfile);
+      
+      // Sync player name from Firestore student profile (non-blocking)
+      if (firestore && user?.uid) {
+        import('@/lib/challenge').then(({ syncPlayerNameFromFirestore }) => {
+          syncPlayerNameFromFirestore(user.uid).then((name) => {
+            if (name && playerProfile.userName !== name) {
+              // Update local state with synced name
+              setPlayer({ ...playerProfile, userName: name });
+            }
+          });
+        });
+      }
+      
       // Set default subject based on player's level
       if (!subject) {
         const defaultSubjects = getAvailableSubjects(playerProfile.level || 'JHS').filter(s => s !== 'Mixed');
@@ -189,20 +210,45 @@ export default function QuickMatchPage() {
         setClassLevel(defaultClassLevels[0]?.id || 'JHS 1');
       }
     } else {
-      // Create a test player profile
-      const newPlayer = createOrUpdatePlayer({
-        userId: userId,
-        userName: user?.displayName || 'Test Player',
-        school: 'Test School',
-        level: 'JHS',
-        rating: 1200,
-      });
-      setPlayer(newPlayer);
-      // Set default class level for new player
-      const defaultClassLevels = getClassLevels('JHS');
-      setClassLevel(defaultClassLevels[0]?.id || 'JHS 1');
+      // Fetch student name from Firestore first, then create player
+      const createPlayer = async () => {
+        let displayName = user?.displayName || 'Test Player';
+        
+        // Try to get real student name from Firestore
+        if (firestore && user?.uid) {
+          try {
+            const { doc, getDoc } = await import('firebase/firestore');
+            const profileRef = doc(firestore, `students/${user.uid}`);
+            const profileSnap = await getDoc(profileRef);
+            if (profileSnap.exists()) {
+              const studentName = profileSnap.data()?.studentName;
+              if (studentName) {
+                displayName = studentName;
+              }
+            }
+          } catch (err) {
+            console.warn('[QuickMatch] Could not fetch student profile:', err);
+          }
+        }
+        
+        // Create a player profile with the fetched or default name
+        const newPlayer = createOrUpdatePlayer({
+          userId: userId,
+          userName: displayName,
+          school: 'Unknown School',
+          level: userSelectedLevel, // Use level from URL parameter
+          rating: 1200,
+        });
+        setPlayer(newPlayer);
+        
+        // Set default class level for new player
+        const defaultClassLevels = getClassLevels('JHS');
+        setClassLevel(defaultClassLevels[0]?.id || 'JHS 1');
+      };
+      
+      createPlayer();
     }
-  }, [user, router]);
+  }, [user, router, firestore]);
 
   useEffect(() => {
     if (!isSearching) return;

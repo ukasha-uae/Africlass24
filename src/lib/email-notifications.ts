@@ -52,7 +52,7 @@ export async function getUserWhatsApp(userId: string): Promise<string | null> {
     
     if (studentSnap.exists()) {
       const data = studentSnap.data();
-      return data.whatsapp || data.phone || null;
+      return data.whatsappNumber || data.whatsapp || data.phone || null;
     }
     
     return null;
@@ -130,7 +130,7 @@ export async function sendChallengeInviteEmail(
   const message = `
 🎯 You've been challenged!
 
-${creatorName} from ${creatorSchool} has challenged you to a ${subject} duel on S24!
+${creatorName} from ${creatorSchool} has invited you to a ${subject} challenge on SmartClass24 (S24).
 
 Click the link below to accept and start playing:
 ${url}

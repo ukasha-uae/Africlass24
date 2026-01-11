@@ -91,6 +91,7 @@ export default function NotificationBell() {
       let latestChallengeNotification: WithId<FirestoreNotification> | null = null;
       
       // For each new unread challenge_invite, fire a browser notification
+      // FILTER: Don't show notifications to the creator (they created the challenge, they don't need a popup)
       notifications.forEach(n => {
         const notif = n as WithId<FirestoreNotification>;
         if (
@@ -98,6 +99,11 @@ export default function NotificationBell() {
           !notif.read &&
           notif.type === 'challenge_invite'
         ) {
+          // Skip if current user is the creator of this challenge
+          if (user && notif.data?.creatorId === user.uid) {
+            return; // Don't show popup/notification to creator
+          }
+          
           shouldPlaySound = true;
           // Track the latest challenge notification for the popup
           if (!latestChallengeNotification) {

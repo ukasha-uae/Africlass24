@@ -93,7 +93,7 @@ export default function SchoolBattlePage() {
 
   useEffect(() => {
     // Load data
-    const userId = user?.uid || 'test-user-1';
+    const userId = user?.uid || `anon-${Date.now()}`;
     const allRankings = getSchoolRankings();
     const currentPlayer = getPlayerProfile(userId);
     setPlayer(currentPlayer);
@@ -156,7 +156,7 @@ export default function SchoolBattlePage() {
         difficulty: 'medium',
         questionCount: 10,
         timeLimit: 45,
-        creatorId: player?.userId || user?.uid || 'test-user-1',
+        creatorId: player?.userId || user?.uid || `anon-${Date.now()}`,
         creatorName: player?.userName || 'Unknown',
         creatorSchool: player?.school || 'Unknown',
         opponents: [aiOpponent], // Add AI opponent

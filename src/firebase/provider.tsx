@@ -85,6 +85,20 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = ({
       return;
     }
 
+    // CRITICAL: Set persistence to LOCAL before setting up auth listener
+    // This ensures users stay logged in across browser sessions
+    const setPersistenceAsync = async () => {
+      try {
+        const { setPersistence, browserLocalPersistence } = await import('firebase/auth');
+        await setPersistence(auth, browserLocalPersistence);
+        console.log('[Auth] Persistence set to LOCAL - users will stay logged in');
+      } catch (error) {
+        console.warn('[Auth] Failed to set persistence (will use default):', error);
+      }
+    };
+    
+    setPersistenceAsync();
+
     setUserAuthState({ user: null, isUserLoading: true, userError: null }); // Reset on auth instance change
     
     const unsubscribe = onAuthStateChanged(
@@ -116,50 +130,76 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = ({
                 console.warn('Subscription sync error (non-critical):', err.message);
               }
             });
+            
+            // Create referral code for new users (non-blocking)
+            if (typeof window !== 'undefined') {
+              try {
+                const { createUserReferralCode } = await import('@/lib/referrals');
+                const pendingReferrerUid = localStorage.getItem('pendingReferrerUid');
+                // Check if user already has a referral code to avoid creating duplicates
+                const { doc, getDoc } = await import('firebase/firestore');
+                const userRef = doc(firestore, 'users', firebaseUser.uid);
+                const userSnap = await getDoc(userRef);
+                
+                if (!userSnap.exists() || !userSnap.data()?.referralCode) {
+                  // New user or no referral code yet - create one
+                  const code = await createUserReferralCode(firebaseUser.uid, pendingReferrerUid);
+                  if (code) {
+                    // Store code in user document for easy access
+                    const { setDoc } = await import('firebase/firestore');
+                    await setDoc(userRef, { referralCode: code }, { merge: true });
+                    // Clear pending referrer after code creation (code creation handles referral record)
+                    localStorage.removeItem('pendingReferrerUid');
+                  }
+                } else if (pendingReferrerUid && pendingReferrerUid !== firebaseUser.uid) {
+                  // Existing user came via referral link - create referral record
+                  const { createReferralRecord } = await import('@/lib/referrals');
+                  const userData = userSnap.data();
+                  if (userData?.referralCode) {
+                    await createReferralRecord(pendingReferrerUid, firebaseUser.uid, userData.referralCode);
+                    localStorage.removeItem('pendingReferrerUid');
+                  }
+                } else if (pendingReferrerUid) {
+                  // Clear invalid self-referral
+                  localStorage.removeItem('pendingReferrerUid');
+                }
+              } catch (referralError) {
+                // Non-critical - don't break sign-in flow
+                console.warn('[Referrals] Error creating referral code (non-critical):', referralError);
+              }
+            }
           } catch (e) { 
             // Don't break the app if sync fails
             console.warn('Error syncing data on sign in (non-critical):', e); 
           }
-        } else if (!firebaseUser) {
-          // No user - attempt anonymous sign-in
-          console.log('[Auth] No user after auth state change, attempting anonymous sign-in...');
-          try {
-            initiateAnonymousSignIn(auth);
-          } catch (err) {
-            console.error('[Auth] Failed to initiate anonymous sign-in after auth state change:', err);
-          }
         }
+        // REMOVED: Automatic anonymous sign-in on null user
+        // This was causing logged-in users to be signed out during persistence operations
+        // Anonymous sign-in is now handled only on first visit via checkAndSignIn() delayed call
       },
       (error) => { // Auth listener error
         console.error("FirebaseProvider: onAuthStateChanged error:", error);
         setUserAuthState({ user: null, isUserLoading: false, userError: error });
-        // Even on error, try to sign in anonymously
-        if (auth && !auth.currentUser) {
-          try {
-            console.log('[Auth] Attempting anonymous sign-in after auth error...');
-            initiateAnonymousSignIn(auth);
-          } catch (err) {
-            console.error('[Auth] Failed to initiate anonymous sign-in after error:', err);
-          }
-        }
+        // REMOVED: Don't sign in anonymously on errors - this can interrupt real user sessions
       }
     );
     
     // After subscribing, if we don't have a user and the auth object exists, ensure anonymous signin is attempted
     if (auth) {
-      // Wait a bit for the auth state to settle, then attempt anonymous sign-in if no user
+      // Wait longer for the auth state to fully load from persistence before attempting anonymous sign-in
       const checkAndSignIn = async () => {
-        // Wait for initial auth state to be determined
-        await new Promise(resolve => setTimeout(resolve, 500));
+        // CRITICAL: Wait 3 seconds for Firebase to load persisted session
+        // This prevents signing in anonymously while a real user session is being restored
+        await new Promise(resolve => setTimeout(resolve, 3000));
         
-        // Check again if still no user after auth state settles
+        // Check again if still no user after auth state has fully settled
         if (!auth.currentUser) {
           try {
-            console.log('[Auth] No user detected, initiating anonymous sign-in...');
+            console.log('[Auth] No user after 3s, initiating anonymous sign-in...');
             initiateAnonymousSignIn(auth);
           } catch (err) {
             console.error('[Auth] Error initiating anonymous sign-in', err);
-            // Retry after a delay if it fails
+            // Single retry after longer delay
             setTimeout(() => {
               if (!auth.currentUser) {
                 try {
@@ -169,7 +209,7 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = ({
                   console.error('[Auth] Retry failed:', retryErr);
                 }
               }
-            }, 2000);
+            }, 3000);
           }
         } else {
           console.log('[Auth] User already signed in:', auth.currentUser.uid, auth.currentUser.isAnonymous ? '(anonymous)' : '(email)');

@@ -16,17 +16,20 @@ import { Firestore, collection, query, where, getDocs, addDoc } from 'firebase/f
 import { getLocalQuizAttempts, clearLocalQuizAttempts } from '@/lib/local-quiz-attempts';
 
 /** Initiate anonymous sign-in (non-blocking). */
-export function initiateAnonymousSignIn(authInstance: Auth): void {
-  // Set persistence to LOCAL (default) to ensure long-term session persistence
-  // This ensures users stay logged in across browser sessions, similar to Facebook/LinkedIn
-  setPersistence(authInstance, browserLocalPersistence).catch((error) => {
-    // Log but don't block - Firebase defaults to local persistence anyway
-    console.warn('[Auth] Failed to set persistence for anonymous sign-in (non-critical):', error);
-  });
+export async function initiateAnonymousSignIn(authInstance: Auth): Promise<void> {
+  try {
+    // Set persistence to LOCAL to ensure long-term session persistence
+    await setPersistence(authInstance, browserLocalPersistence);
+    console.log('[Auth] Anonymous sign-in persistence set to LOCAL');
+  } catch (error) {
+    console.warn('[Auth] Failed to set persistence for anonymous sign-in:', error);
+    // Continue with sign-in even if persistence setting fails
+  }
   
-  // CRITICAL: Call signInAnonymously directly. Do NOT use 'await signInAnonymously(...)'.
-  signInAnonymously(authInstance);
-  // Code continues immediately. Auth state change is handled by onAuthStateChanged listener.
+  // Call signInAnonymously - auth state change is handled by onAuthStateChanged listener
+  signInAnonymously(authInstance).catch(error => {
+    console.error('[Auth] Anonymous sign-in failed:', error);
+  });
 }
 
 /** Initiate email/password sign-up (returns promise to catch errors like email-already-in-use). */

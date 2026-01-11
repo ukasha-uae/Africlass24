@@ -41,6 +41,7 @@ import { useLocalization } from '@/hooks/useLocalization';
 import CountrySelector from '@/components/CountrySelector';
 import RegionSelector from '@/components/RegionSelector';
 import CountryMigrationDialog from '@/components/localization/CountryMigrationDialog';
+import { MasteryProgressSection } from '@/components/promotion/MasteryProgressSection';
 
 export default function SettingsPage() {
   const router = useRouter();
@@ -645,6 +646,9 @@ export default function SettingsPage() {
             </p>
           </CardContent>
         </Card>
+
+        {/* Mastery Progress Management */}
+        <MasteryProgressSection />
 
         {/* Education Level Transition - Primary to JHS */}
         {currentEducationLevel === 'Primary' && (

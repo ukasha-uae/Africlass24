@@ -28,7 +28,6 @@ export default function TeacherDashboard() {
   const [recentActivity, setRecentActivity] = useState<any[]>([]);
 
   useEffect(() => {
-    initializeTeacherData();
     loadData();
   }, []);
 

@@ -265,6 +265,27 @@ export default function LessonCompleteQuiz({ lessonId, topicSlug, subjectSlug, l
     if (correctAnswers >= passThreshold) {
         markLessonAsComplete(lessonId);
         setIsCompleted(true);
+        
+        // Validate referral after quiz completion (non-blocking)
+        if (user) {
+          try {
+            const { validateReferral } = await import('@/lib/referrals');
+            // Check if user has profile (they should have completed it by now)
+            const { doc, getDoc } = await import('firebase/firestore');
+            if (firestore) {
+              const profileRef = doc(firestore, `students/${user.uid}`);
+              const profileSnap = await getDoc(profileRef);
+              if (profileSnap.exists() && profileSnap.data()?.studentName) {
+                // User has completed profile, validate referral
+                await validateReferral(user.uid);
+              }
+            }
+          } catch (referralError) {
+            // Non-critical - don't break quiz completion
+            console.warn('[Referrals] Error validating referral (non-critical):', referralError);
+          }
+        }
+        
         toast({
           title: "Lesson Completed!",
                 description: `You passed with ${correctAnswers}/${displayedQuizzes.length} and earned 10 points. Great job!`,

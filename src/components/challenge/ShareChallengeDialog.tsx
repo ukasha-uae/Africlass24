@@ -1,13 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Share2, Mail, MessageCircle, Copy, Check } from 'lucide-react';
+import { Share2, Mail, MessageCircle, Copy, Check, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { generateWhatsAppLink } from '@/lib/email-notifications';
+import { generateWhatsAppLink, getUserWhatsApp } from '@/lib/email-notifications';
+import { getUserPresence } from '@/lib/user-presence';
 
 interface ShareChallengeDialogProps {
   challengeId: string;
@@ -34,22 +35,50 @@ export function ShareChallengeDialog({
   const [whatsappNumber, setWhatsappNumber] = useState('');
   const [email, setEmail] = useState('');
   const [copied, setCopied] = useState(false);
+  const [isOpponentOnline, setIsOpponentOnline] = useState<boolean | null>(null);
+  const [loadingWhatsApp, setLoadingWhatsApp] = useState(false);
   const { toast } = useToast();
 
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://smartc24.com';
   const challengeUrl = `${baseUrl}/challenge-arena/play/${challengeId}`;
 
-  const message = `🎯 ${creatorName} from ${creatorSchool} has challenged ${opponentName ? `${opponentName} ` : 'you '}to a ${subject} duel on S24!
-
-Click here to accept and play: ${challengeUrl}
+  const message = `${creatorName} from ${creatorSchool} has invited ${opponentName ? `${opponentName} ` : 'you '}to a ${subject} challenge on SmartClass24 (S24).
+Click here to play and see who scores higher: ${challengeUrl}
 
 Practice • Compete • Excel in WASSCE & BECE`;
+
+  // Auto-load WhatsApp number and check online status when dialog opens
+  useEffect(() => {
+    if (open && opponentUserId) {
+      setLoadingWhatsApp(true);
+      // Check if opponent is online
+      getUserPresence(opponentUserId).then(presence => {
+        setIsOpponentOnline(presence?.isOnline || false);
+        // If offline, load WhatsApp number
+        if (!presence?.isOnline) {
+          getUserWhatsApp(opponentUserId).then(number => {
+            if (number) {
+              setWhatsappNumber(number);
+            }
+            setLoadingWhatsApp(false);
+          }).catch(() => setLoadingWhatsApp(false));
+        } else {
+          setLoadingWhatsApp(false);
+        }
+      }).catch(() => {
+        setIsOpponentOnline(false);
+        setLoadingWhatsApp(false);
+      });
+    } else if (!opponentUserId) {
+      setIsOpponentOnline(null);
+    }
+  }, [open, opponentUserId]);
 
   const handleWhatsAppShare = () => {
     if (!whatsappNumber.trim()) {
       toast({
         title: 'WhatsApp number required',
-        description: 'Please enter a WhatsApp number',
+        description: 'Please enter a WhatsApp number or update your opponent\'s profile with their WhatsApp number',
         variant: 'destructive',
       });
       return;
@@ -77,8 +106,8 @@ Practice • Compete • Excel in WASSCE & BECE`;
       return;
     }
 
-    const subject = `${creatorName} has challenged you on S24!`;
-    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+    const subjectLine = `${creatorName} has challenged you on S24!`;
+    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(message)}`;
     window.location.href = mailtoLink;
     
     toast({
@@ -117,26 +146,53 @@ Practice • Compete • Excel in WASSCE & BECE`;
         </DialogHeader>
         
         <div className="space-y-4 py-4">
-          {/* WhatsApp Share */}
-          <div className="space-y-2">
-            <Label htmlFor="whatsapp">WhatsApp Number</Label>
-            <div className="flex gap-2">
-              <Input
-                id="whatsapp"
-                type="tel"
-                placeholder="e.g., 0244123456 or +233244123456"
-                value={whatsappNumber}
-                onChange={(e) => setWhatsappNumber(e.target.value)}
-              />
-              <Button onClick={handleWhatsAppShare} className="gap-2">
-                <MessageCircle className="h-4 w-4" />
-                Send
-              </Button>
+          {/* Online/Offline Status Info */}
+          {isOpponentOnline === true && (
+            <div className="flex items-start gap-2 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-800">
+              <AlertCircle className="h-4 w-4 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+              <div className="text-sm text-blue-800 dark:text-blue-200">
+                <p className="font-medium">Opponent is online</p>
+                <p className="text-xs mt-1">They will receive an in-app notification. WhatsApp is not needed.</p>
+              </div>
             </div>
-            <p className="text-xs text-muted-foreground">
-              Opens WhatsApp with a pre-filled message. Send it to notify your opponent!
-            </p>
-          </div>
+          )}
+
+          {/* WhatsApp Share - Only show if opponent is offline or status unknown */}
+          {(isOpponentOnline === false || isOpponentOnline === null) && (
+            <div className="space-y-2">
+              <Label htmlFor="whatsapp">
+                WhatsApp Number {opponentUserId ? '(auto-filled from profile)' : ''}
+              </Label>
+              <div className="flex gap-2">
+                <Input
+                  id="whatsapp"
+                  type="tel"
+                  placeholder={loadingWhatsApp ? "Loading..." : "e.g., 0244123456 or +233244123456"}
+                  value={whatsappNumber}
+                  onChange={(e) => setWhatsappNumber(e.target.value)}
+                  disabled={loadingWhatsApp}
+                />
+                <Button 
+                  onClick={handleWhatsAppShare} 
+                  className="gap-2"
+                  disabled={loadingWhatsApp || !whatsappNumber.trim()}
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  Send
+                </Button>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                {isOpponentOnline === false 
+                  ? "Opponent is offline. Send WhatsApp to notify them about the challenge."
+                  : "Opens WhatsApp with a pre-filled message. Send it to notify your opponent!"}
+              </p>
+              {!whatsappNumber && opponentUserId && (
+                <p className="text-xs text-amber-600 dark:text-amber-400">
+                  No WhatsApp number found in opponent's profile. They can add it in their profile settings.
+                </p>
+              )}
+            </div>
+          )}
 
           {/* Email Share */}
           <div className="space-y-2">
@@ -171,4 +227,3 @@ Practice • Compete • Excel in WASSCE & BECE`;
     </Dialog>
   );
 }
-

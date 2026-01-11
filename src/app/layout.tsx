@@ -6,8 +6,8 @@ import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
 import { Toaster } from "@/components/ui/toaster"
 import { FirebaseClientProvider } from '@/firebase';
-import StudentProfileSetup from '@/components/StudentProfileSetup';
 import { PWAInstallPrompt, PWAUpdatePrompt } from '@/components/PWAPrompts';
+import FirstTimeProfileModal from '@/components/FirstTimeProfileModal';
 import { LocalizationProvider } from '@/lib/localization/localization-context';
 import { FullscreenProvider } from '@/contexts/FullscreenContext';
 import { FullscreenMain } from '@/components/FullscreenMain';
@@ -26,6 +26,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
@@ -44,6 +46,7 @@ export default function RootLayout({
                 <Footer />
                 <PWAInstallPrompt />
                 <PWAUpdatePrompt />
+                <FirstTimeProfileModal />
                 <BottomNav />
                 <Toaster />
               </div>
